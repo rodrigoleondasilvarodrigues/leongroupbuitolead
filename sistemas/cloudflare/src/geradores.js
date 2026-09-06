@@ -136,7 +136,11 @@ export function gerarPosts(c) {
 }
 
 // ── site ──────────────────────────────────────────────────────────────────
-const esc = (s) => String(s || "").replace(/[&<>"]/g, (m) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[m]));
+// A aspa simples PRECISA estar aqui: o hero usa url('...') e a foto vem do
+// formulário público. Sem escapar, o cliente (ou quem tiver o link) fecha a
+// url() e injeta CSS no site entregue. `<` e `>` já barravam a saída do <style>.
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g,
+  (m) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m]));
 
 export function gerarSite(c, fotos = []) {
   const empresa = esc(c.empresa || "Company");
@@ -219,13 +223,23 @@ export const CADENCIA = [
 export const PRAZO_MAXIMO_DIAS = 5;
 
 // Soma dias ÚTEIS a partir de uma data — sábado e domingo não contam.
+// Dia da semana no fuso do cliente (EUA), não em UTC. Formulário respondido
+// domingo 20h em Boston é segunda 01h em UTC: contando em UTC o prazo caía na
+// segunda seguinte em vez da sexta — 3 dias de diferença no que foi prometido.
+const DIAS = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+export function diaDaSemanaEUA(quando) {
+  const r = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/New_York", weekday: "short" }).format(quando);
+  return DIAS.indexOf(r.slice(0, 3));
+}
+const fimDeSemana = (d) => { const s = diaDaSemanaEUA(d); return s === 0 || s === 6; };
+
 export function somaDiasUteis(base, dias) {
   const d = new Date(base);
   let restantes = dias;
   while (restantes > 0) {
     d.setUTCDate(d.getUTCDate() + 1);
-    const s = d.getUTCDay();
-    if (s !== 0 && s !== 6) restantes--;
+    if (!fimDeSemana(d)) restantes--;
   }
   return d;
 }
@@ -237,8 +251,7 @@ export function diasUteisDesde(base) {
   const d = new Date(ini);
   while (d < hoje) {
     d.setUTCDate(d.getUTCDate() + 1);
-    const s = d.getUTCDay();
-    if (s !== 0 && s !== 6) n++;
+    if (!fimDeSemana(d)) n++;   // mesmo fuso do somaDiasUteis, senão os dois discordam
   }
   return n;
 }

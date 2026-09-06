@@ -132,7 +132,33 @@ const VISOES_OP={
 const ROT={leads_novos:'Leads novos',agendamento:'Agendamento',nutricao:'Nutrição',recuperacao:'Recuperação'};
 
 async function carregar(){
-  D=await api('/api/painel');
+  let r;
+  try{ r=await api('/api/painel'); }
+  catch(e){ return avisoFalha('Sem conexão com o servidor. Tentando de novo em 1 minuto.'); }
+  // sessão expirada devolve {erro:"não autenticado"} — sem isso, D virava o
+  // objeto de erro, a tela congelava e nada explicava o motivo.
+  if(!r||r.erro){
+    if(/autentic/i.test(r&&r.erro||''))return location.href='/login';
+    return avisoFalha(r.erro||'Falha ao carregar.');
+  }
+  D=r; document.getElementById('aviso-falha')?.remove(); pintar();
+}
+
+function avisoFalha(txt){
+  document.getElementById('aviso-falha')?.remove();
+  const d=document.createElement('div');
+  d.id='aviso-falha'; d.className='alerta';
+  d.style.cssText='position:fixed;left:50%;transform:translateX(-50%);bottom:18px;z-index:99;max-width:92%';
+  d.textContent=txt;
+  document.body.appendChild(d);
+}
+
+// pintar() redesenha TODA a moldura: tema, selo, switch de setor e sub-abas.
+// Antes isso morava dentro de carregar(), então irPara() (que só chamava render())
+// trocava o conteúdo mas deixava cabeçalho, selo e abas no setor antigo —
+// na tela parecia que o clique não fez nada. Agora a troca é instantânea e completa.
+function pintar(){
+  if(!D.clientes) return;              // ainda carregando o primeiro painel
   const operacional = setor==='operacional';
   document.body.classList.toggle('operacional', operacional);
   document.getElementById('selo').textContent = operacional?'Operacional':'Comercial';
@@ -150,9 +176,9 @@ async function carregar(){
   document.getElementById('abas').innerHTML = operacional
     ? Object.entries(VISOES_OP).map(([k,v])=>{
         const n=D.clientes.filter(v.filtro).length;
-        return \`<button class="op \${k===aba?'on':''}" onclick="aba='\${k}';render()">\${v.rotulo} (\${n})</button>\`}).join('')
+        return \`<button class="op \${k===aba?'on':''}" onclick="aba='\${k}';pintar()">\${v.rotulo} (\${n})</button>\`}).join('')
     : Object.keys(D.pipelines).map(p=>{const n=D.leads.filter(l=>l.pipeline===p).length;
-        return \`<button class="\${p===aba?'on':''}" onclick="aba='\${p}';render()">\${ROT[p]} (\${n})</button>\`}).join('');
+        return \`<button class="\${p===aba?'on':''}" onclick="aba='\${p}';pintar()">\${ROT[p]} (\${n})</button>\`}).join('');
   render();
 }
 
@@ -262,7 +288,7 @@ async function abrirLead(id){
      <p style="font-size:11.5px;color:var(--cinza);margin-top:6px">
        Ao marcar "Fechou", os dados do lead viram um cliente no operacional automaticamente.</p></section>
    <section><h4>Zona de risco</h4>
-     <button class="acao" style="background:#c0392b" onclick="excluir('lead',\${l.id},'\${esc(l.nome)}')">Excluir este lead</button>
+     <button class="acao" style="background:#c0392b" onclick="excluir('lead',\${l.id})">Excluir este lead</button>
      <p style="font-size:11.5px;color:var(--cinza);margin-top:6px">
        Apaga o lead e todo o histórico dele. Não tem como desfazer.</p>
    </section>
@@ -386,7 +412,7 @@ async function abrirCliente(id){
        \${esc(r.servico)}</small>\${esc(r.texto)}</div>\`).join('')}
      \${(c.reviews||[]).length>5?\`<p style="font-size:12px;color:var(--cinza)">…e mais \${c.reviews.length-5} no arquivo.</p>\`:''}</section>
    <section><h4>Zona de risco</h4>
-     <button class="acao" style="background:#c0392b" onclick="excluir('cliente',\${c.id},'\${esc(c.empresa)}')">Excluir este cliente</button>
+     <button class="acao" style="background:#c0392b" onclick="excluir('cliente',\${c.id})">Excluir este cliente</button>
      <p style="font-size:11.5px;color:var(--cinza);margin-top:6px">
        Apaga o cliente, entregáveis, reviews, posts, marcos e mídias. Não tem como desfazer.</p>
    </section>
@@ -396,10 +422,12 @@ async function abrirCliente(id){
 }
 
 function irPara(s){
+  if(setor===s) return;                // já está nesse setor
   setor=s;
   aba = s==='operacional' ? 'todos' : 'leads_novos';
   fechar();
-  render();
+  pintar();                            // instantâneo: usa os dados já em memória
+  window.scrollTo(0,0);
 }
 const fechar=()=>{document.getElementById('painel').classList.remove('on');aberto=null};
 const V=id=>document.getElementById(id).value;
@@ -465,7 +493,11 @@ const salvarContratoCliente=()=>post('/api/contrato-cliente',{id:aberto,tipo_con
   renovacao_automatica:document.getElementById('kc_auto').checked,
   servicos_extras:V('kc_extras'),valor_extras:V('kc_valor_extras')}).then(carregar).then(()=>abrirCliente(aberto));
 
-async function excluir(tipo,id,nome){
+async function excluir(tipo,id){
+  // o nome vem dos dados em memória, não interpolado no onclick: nome com
+  // apóstrofo (O'Brien, D'Angelo) quebrava o handler e o botão ficava inerte.
+  const reg=(tipo==='lead'?D.leads:D.clientes).find(x=>x.id===id);
+  const nome=(tipo==='lead'?reg&&reg.nome:reg&&reg.empresa)||('#'+id);
   const digitado=prompt(
     'Isso apaga '+(tipo==='lead'?'o lead':'o cliente')+' "'+nome+'" e todo o histórico dele.\\n'+
     'Não tem como desfazer.\\n\\nPara confirmar, digite EXCLUIR:');

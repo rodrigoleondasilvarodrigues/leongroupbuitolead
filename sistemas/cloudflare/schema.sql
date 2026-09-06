@@ -126,7 +126,8 @@ CREATE TABLE IF NOT EXISTS marcos (
 -- ─────────────── controle ───────────────
 CREATE TABLE IF NOT EXISTS config (chave TEXT PRIMARY KEY, valor TEXT NOT NULL);
 CREATE TABLE IF NOT EXISTS tentativas_login (
-  id INTEGER PRIMARY KEY AUTOINCREMENT, ip TEXT, em TEXT NOT NULL, ok INTEGER
+  id INTEGER PRIMARY KEY AUTOINCREMENT, ip TEXT, em TEXT NOT NULL, ok INTEGER,
+  escopo TEXT DEFAULT 'login'
 );
 
 CREATE INDEX IF NOT EXISTS ix_leads ON leads(pipeline, coluna, arquivado);
@@ -137,3 +138,14 @@ CREATE INDEX IF NOT EXISTS ix_cli_slug ON clientes(slug);
 CREATE INDEX IF NOT EXISTS ix_ent ON entregaveis(cliente_id);
 CREATE INDEX IF NOT EXISTS ix_rev ON reviews(cliente_id);
 CREATE INDEX IF NOT EXISTS ix_login ON tentativas_login(ip, em);
+CREATE INDEX IF NOT EXISTS ix_login_esc ON tentativas_login(escopo, ip, em);
+CREATE INDEX IF NOT EXISTS ix_cli_token ON clientes(formulario_token);
+CREATE INDEX IF NOT EXISTS ix_cli_origem ON clientes(lead_origem_id);
+CREATE INDEX IF NOT EXISTS ix_mid  ON midias(cliente_id);
+CREATE INDEX IF NOT EXISTS ix_post ON posts(cliente_id);
+CREATE INDEX IF NOT EXISTS ix_marc ON marcos(cliente_id);
+CREATE INDEX IF NOT EXISTS ix_lig  ON ligacoes(lead_id);
+CREATE INDEX IF NOT EXISTS ix_evt  ON eventos(lead_id, tipo);
+CREATE INDEX IF NOT EXISTS ix_msg_lead ON mensagens(lead_id);
+CREATE INDEX IF NOT EXISTS ix_msg_cli  ON mensagens(cliente_id);
+

@@ -51,7 +51,9 @@ export async function criarSessao(env) {
 
 export async function sessaoValida(req, env) {
   const cru = req.headers.get("Cookie") || "";
-  const m = cru.match(new RegExp(`${COOKIE}=([^;]+)`));
+  // âncora obrigatória: sem ela, um cookie chamado "x_leon_sessao" casa primeiro
+  // e a sessão válida é descartada.
+  const m = cru.match(new RegExp(`(?:^|;\\s*)${COOKIE}=([^;]+)`));
   if (!m) return false;
   const partes = m[1].split(".");
   if (partes.length !== 4) return false;
@@ -77,36 +79,39 @@ export function chaveIp(ip) {
   return p.slice(0, 4).join(":") + "::/64";
 }
 
-export async function bloqueadoPorTentativas(env, ip) {
+// escopo separa os baldes: "login" (admin) e "formulario" (rota pública).
+// Sem isso, um cliente errando o link do formulário 50 vezes tranca o DONO
+// fora do próprio admin por uma hora.
+export async function bloqueadoPorTentativas(env, ip, escopo = "login") {
   const k = chaveIp(ip);
   const desde = new Date(Date.now() - JANELA_MIN * 60000).toISOString();
   const porIp = await env.DB.prepare(
-    "SELECT COUNT(*) AS n FROM tentativas_login WHERE ip=? AND ok=0 AND em>?"
-  ).bind(k, desde).first();
+    "SELECT COUNT(*) AS n FROM tentativas_login WHERE ip=? AND escopo=? AND ok=0 AND em>?"
+  ).bind(k, escopo, desde).first();
   if ((porIp?.n || 0) >= MAX_TENTATIVAS) return true;
 
   // teto global: mesmo distribuindo por milhares de IPs, o total tem limite
   const desdeG = new Date(Date.now() - JANELA_GLOBAL_MIN * 60000).toISOString();
   const global = await env.DB.prepare(
-    "SELECT COUNT(*) AS n FROM tentativas_login WHERE ok=0 AND em>?"
-  ).bind(desdeG).first();
+    "SELECT COUNT(*) AS n FROM tentativas_login WHERE escopo=? AND ok=0 AND em>?"
+  ).bind(escopo, desdeG).first();
   return (global?.n || 0) >= MAX_GLOBAL;
 }
 
 // atraso crescente conforme as falhas recentes — encarece cada tentativa
-export async function atrasoPorFalhas(env, ip) {
+export async function atrasoPorFalhas(env, ip, escopo = "login") {
   const desde = new Date(Date.now() - JANELA_MIN * 60000).toISOString();
   const r = await env.DB.prepare(
-    "SELECT COUNT(*) AS n FROM tentativas_login WHERE ip=? AND ok=0 AND em>?"
-  ).bind(chaveIp(ip), desde).first();
+    "SELECT COUNT(*) AS n FROM tentativas_login WHERE ip=? AND escopo=? AND ok=0 AND em>?"
+  ).bind(chaveIp(ip), escopo, desde).first();
   const falhas = r?.n || 0;
   if (!falhas) return;
   await new Promise((ok) => setTimeout(ok, Math.min(3000, 250 * falhas)));
 }
 
-export async function registrarTentativa(env, ip, ok) {
-  await env.DB.prepare("INSERT INTO tentativas_login (ip,em,ok) VALUES (?,?,?)")
-    .bind(chaveIp(ip), new Date().toISOString(), ok ? 1 : 0).run();
+export async function registrarTentativa(env, ip, ok, escopo = "login") {
+  await env.DB.prepare("INSERT INTO tentativas_login (ip,em,ok,escopo) VALUES (?,?,?,?)")
+    .bind(chaveIp(ip), new Date().toISOString(), ok ? 1 : 0, escopo).run();
 }
 
 export async function senhaConfere(env, senha) {
