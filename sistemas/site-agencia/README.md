@@ -13,7 +13,7 @@ e uma pasta de imagens. Hospedado no Cloudflare Pages, como manda o `CLAUDE.md`
 | `index.html` | Estrutura e todo o CSS |
 | `conteudo.js` | **Todo o texto**, em português e inglês. É aqui que você edita |
 | `site.js` | Comportamento: idioma, animações, formulário, WhatsApp |
-| `teste.js` | 45 verificações automáticas (ver abaixo) |
+| `teste.js` | 50 verificações automáticas (ver abaixo) |
 | `assets/` | Logo, símbolo, favicon e imagem de compartilhamento |
 
 ## O que precisa ser configurado
@@ -94,9 +94,10 @@ npx wrangler pages deploy sistemas/site-agencia \
 cd sistemas/site-agencia && npm install jsdom && node teste.js
 ```
 
-45 verificações: erro de JS, escolha de idioma, troca PT↔EN completa, montagem de
+50 verificações: erro de JS, escolha de idioma, troca PT↔EN completa, montagem de
 todas as seções, validação do formulário, prévia da mensagem, detecção de origem,
-isca de robô e — importante — **a regra de integridade**: o teste falha se o texto
+número e codificação do link do WhatsApp, isca de robô e — importante —
+**a regra de integridade**: o teste falha se o texto
 do site passar a alegar contagem de clientes, ano de fundação, depoimento atribuído,
 sede americana ou garantia de faturamento.
 
