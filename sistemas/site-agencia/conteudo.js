@@ -16,10 +16,13 @@
    Brasil:  55 + DDD + número   ->  "5531999999999"
    EUA:     1  + área + número  ->  "16170000000"
 
-   ⚠ ENQUANTO ESTIVER "" O BOTÃO AVISA QUE O CANAL NÃO ESTÁ
-     CONFIGURADO EM VEZ DE ABRIR UMA CONVERSA COM NÚMERO ERRADO.
-     Trocar por um número real antes de publicar.                        */
-const WHATSAPP = "";
+   ⚠ PROVISÓRIO — número brasileiro (61, Brasília), em uso até o número
+     americano legítimo existir. Quando trocar, mude SÓ esta linha e
+     republique: nenhum outro arquivo referencia o número.
+
+   Deixar como "" faz o botão avisar para usar o e-mail, em vez de abrir
+   uma conversa com número errado.                                       */
+const WHATSAPP = "5561998629189";
 
 /* Endpoint opcional do CRM. Preenchido, cada formulário enviado também
    nasce como lead em "Leads novos / Super Hot" no CRM — assim nenhum

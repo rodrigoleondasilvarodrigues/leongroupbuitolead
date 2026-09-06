@@ -100,11 +100,20 @@ setTimeout(()=>{
   console.log($('#previa').textContent.split('\n').map(l=>'      '+l).join('\n'));
 
   console.log('\n  → enviando:');
+  w.__aberto=null; w.__alert=null;
   $('#form').dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));
-  t('sem número configurado, avisa em vez de abrir link torto',
-    !!w.__alert && !w.__aberto, w.__alert||'nada');
+  const link=w.__aberto||'';
+  t('abriu o WhatsApp',/^https:\/\/wa\.me\//.test(link),link.slice(0,42)+'…');
+  t('número correto no link',link.includes('wa.me/5561998629189'),(link.match(/wa\.me\/(\d+)/)||['','-'])[1]);
+  t('mensagem codificada na URL',link.includes('?text=')&&link.length>180);
+  t('mensagem decodificada bate com a prévia',
+    decodeURIComponent((link.split('?text=')[1]||''))===$('#previa').textContent);
+  t('modal fechou depois de enviar',$('#modal').hidden);
+  t('nenhum aviso de erro',!w.__alert,w.__alert||'nenhum');
 
   console.log('\n\x1b[1m═══ 7. ISCA DE ROBÔ ═══\x1b[0m');
+  w.__alert=null; w.__aberto=null;
+  $$('[data-abrir]')[0].click();
   w.__alert=null;
   $('input[name="site_web"]').value='http://spam.com';
   $('#form').dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));

@@ -21,15 +21,19 @@ e uma pasta de imagens. Hospedado no Cloudflare Pages, como manda o `CLAUDE.md`
 Abra `conteudo.js`. As duas primeiras linhas úteis são:
 
 ```js
-const WHATSAPP = "";        // ← número, só dígitos: 5531999999999
+const WHATSAPP = "5561998629189";   // ⚠ PROVISÓRIO — trocar pelo americano
 const CRM_ENDPOINT = "https://leon-group.leongroup.workers.dev/api/site-lead";
 ```
 
-**Enquanto `WHATSAPP` estiver vazio**, o botão avisa a pessoa para usar o e-mail
-em vez de abrir uma conversa com número errado. Troque antes de divulgar o site.
+⚠ **O número atual é provisório** (brasileiro, DDD 61). Quando o número americano
+existir, mude **só esta linha** e republique — nenhum outro arquivo referencia o
+número, nem o HTML, nem o JS. Leva menos de um minuto.
 
 Formato: código do país + DDD + número, só dígitos.
 Brasil `5531999999999` · Estados Unidos `16175550123`
+
+Deixar como `""` faz o botão avisar para usar o e-mail, em vez de abrir uma conversa
+com número errado — útil se o número sair do ar antes de o novo entrar.
 
 ## Como o botão de WhatsApp funciona
 

@@ -27,6 +27,20 @@ Dois sistemas prontos e testados em `sistemas/`, feitos a partir das 311 especif
 Ordem de uso recomendada pela própria aula: começar pela entrega manual (sistema 2); ligar o CRM
 comercial só na transição do 2º para o 3º cliente.
 
+## Site da agência (2026-09-06)
+
+No ar em **https://leon-group-site.pages.dev** (Cloudflare Pages, código em
+`sistemas/site-agencia/`). Bilíngue PT/EN com escolha na primeira visita, história,
+serviços, método, FAQ e formulário que abre o WhatsApp com mensagem pronta — e que
+**também cria o lead no CRM** (rota `/api/site-lead`) antes de a conversa começar.
+
+- ⚠ **WhatsApp provisório:** `5561998629189` (brasileiro, DDD 61). Usuário avisou que
+  troca "muito em breve". Fica numa única linha em `sistemas/site-agencia/conteudo.js`.
+- Falta domínio próprio. Ao registrar, acrescentar a origem em `ORIGENS_SITE` no
+  `sistemas/cloudflare/src/index.js`, senão o CORS barra o formulário.
+- Texto escrito dentro da regra de integridade: assume que a agência é nova, sem caso
+  publicado, e que a operação é remota. `teste.js` falha se isso mudar.
+
 ## Decisões tomadas
 
 - **Número de atendimento nos EUA (2026-09-05):** será obtido pela via legítima (Google Voice,
@@ -45,6 +59,6 @@ Nenhum prazo definido ainda.
 
 **Concluído:** naming e slogan (Leon Group / Built to Lead.), identidade visual (preto + laranja, leão no O), brand kit completo, e-mail, Instagram e YouTube criados, kit visual do YouTube, duas séries de 12 posts publicadas, 42 Stories + destaques em 6 abas.
 
-**Pendente/sem confirmação:** página do Facebook, WhatsApp Business configurado, número de atendimento legítimo nos EUA, conexão no Meta Business Suite (pixel/dataset/conta de anúncios), oferta principal por escrito (escopo/preço/prazo), recorte comercial prioritário dentro de construction/home services, landing page, apresentação comercial, proposta/contrato/cobrança/onboarding, 5 criativos de aquisição, campanha inicial, sistema de acompanhamento de funil, primeiro cliente real, primeiro case com depoimento verificável.
+**Pendente/sem confirmação:** página do Facebook, WhatsApp Business configurado, número de atendimento legítimo nos EUA (o site usa provisoriamente um número brasileiro), conexão no Meta Business Suite (pixel/dataset/conta de anúncios), oferta principal por escrito (escopo/preço/prazo), recorte comercial prioritário dentro de construction/home services, apresentação comercial, proposta/contrato/cobrança/onboarding, 5 criativos de aquisição, campanha inicial, sistema de acompanhamento de funil, primeiro cliente real, primeiro case com depoimento verificável.
 
 **Regra de integridade (não negociável):** nunca declarar cliente inexistente como real, nunca inventar depoimento/avaliação/localização/equipe/resultado, nunca reutilizar mídia sem licença, nunca prometer faturamento ou posição no Google sem base verificável. Mockups/demonstrações só valem rotulados como tal. Prova social real só depois do primeiro trabalho pago e documentado.
