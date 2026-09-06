@@ -1,0 +1,13 @@
+{
+  "name": "leon-group",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:criar": "wrangler d1 create leon-group",
+    "db:aplicar": "wrangler d1 execute leon-group --remote --file=schema.sql",
+    "db:local": "wrangler d1 execute leon-group --local --file=schema.sql"
+  },
+  "devDependencies": { "wrangler": "^3.90.0" }
+}

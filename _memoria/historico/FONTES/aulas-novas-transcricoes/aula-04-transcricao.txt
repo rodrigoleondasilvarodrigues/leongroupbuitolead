@@ -1,0 +1,2605 @@
+[00:01.17 - 00:06.49] Bom, então sejam bem-vindos à nossa aula 4, nessa aula aqui eu vou passar alguns processos
+[00:06.49 - 00:10.01] comerciais que a gente utiliza aqui dentro da empresa pra gente conseguir ter um desempenho
+[00:10.01 - 00:14.49] maior e conseguir inconsequente escalar pra os R$ 100 mil por mês, R$ 20 mil por mês
+[00:14.49 - 00:18.49] mostrar toda a estrutura que é necessária pra vocês chegarem em resultados semelhantes.
+[00:18.49 - 00:19.49] Fechou?
+[00:19.49 - 00:23.97] E aí depois disso a gente vai estar livre pra soltar a pressão 100% pra rodar.
+[00:23.97 - 00:29.61] Se você não viu a última aula, lá na última aula eu já liberei tudo que vocês
+[00:29.61 - 00:37.21] precisam, desde o material da apresentação de fechamento, desde o arquivo que vocês jogam
+[00:37.21 - 00:40.29] no cloud, tem tudo lá já pronto pra uso.
+[00:40.29 - 00:41.29] Fechou?
+[00:41.29 - 00:45.69] E agora bora começar aqui, deixa que eu pode tirar a tela pra vocês, lembram, se
+[00:45.69 - 00:50.49] tiver dúvida pode interromper e a gente para pra tirar a dúvida.
+[00:50.49 - 00:58.23] Eu só letrei isso aqui, a última etapa que a gente passou, vai.
+[00:58.23 - 01:05.69] Bom, eu vou em ordem aqui da nossa lista que a gente fez lá no primeiro dia, vou
+[01:05.81 - 01:08.97] falar sobre os nossos processos comerciais, em seguida falo sobre os nossos processos
+[01:08.97 - 01:14.65] operacionais, depois sobre a escala, a contratação e a gente já soltar operação 100%.
+[01:14.65 - 01:15.65] Fechou?
+[01:15.65 - 01:20.42] Fechado, fechado.
+[01:20.42 - 01:26.22] Bom, vamos lá, vamos entender o nosso funil por completo pra a gente entender o nosso
+[01:26.22 - 01:29.46] processo e depois todas as nossas cadências que a gente utiliza aqui dentro.
+[01:29.46 - 01:38.86] Funil é simples, eu passei ele na primeira aula, inclusive tá por aqui, aqui ó.
+[01:38.94 - 01:43.59] O que é o nosso funil?
+[01:43.59 - 01:49.55] Cara, vê o nosso anúncio no MET, no WhatsApp, no Instagram, no Facebook, cai no WhatsApp,
+[01:49.55 - 01:53.79] recebe uma mensagem de boas-vindas assim que ele chega e uma ligação de qualificação.
+[01:53.79 - 01:57.23] A ligação de qualificação, a gente passou na aula 3, que já tá disponível,
+[01:57.23 - 02:00.07] que foi esta ligação aqui, certo?
+[02:00.07 - 02:05.23] E depois desta ligação vocês agendam a call, certo?
+[02:05.23 - 02:09.03] Então é muito simples, o cara só pode atender, não atender, o cara pode falar
+[02:09.03 - 02:14.11] que ele consegue marcar a reunião, vai pensar, vai falar com as pessoas, vendeu no caso
+[02:14.11 - 02:18.59] dessa ligação seria agendar a call e recusou, o cara recusou, certo?
+[02:18.59 - 02:24.59] Vou até trocar aqui pro agendou pra ficar mais fácil vocês verem o fluxo, certo?
+[02:24.59 - 02:29.23] Eu vou colocar aqui a guarda, pra mais claro, certo?
+[02:29.23 - 02:32.55] Bom, é basicamente esse que é o processo.
+[02:32.55 - 02:37.31] E aí a gente vai começar agora a utilizar um termo que se chama KPI, alguém sabe
+[02:37.31 - 02:38.31] o que significa?
+[02:40.57 - 02:47.45] Chave de sucesso, mais ou menos isso, é algo pra traquear, pra ver se tu tá fazendo
+[02:47.45 - 02:50.25] o passo a passo pra Team João Mendes.
+[02:50.25 - 02:53.29] É praticamente isso, é implicador chave de desempenho.
+[02:53.29 - 02:57.97] Então é pra você conseguir achar exatamente onde que tá o furo do seu funil.
+[02:57.97 - 03:02.97] Então se a gente vai dividir aqui em etapas o nosso funil e colocar ele realmente mistrinchado,
+[03:02.97 - 03:09.45] a gente tem ads do ads, tem WhatsApp, WhatsApp tem a ligação da ligação
+[03:10.17 - 03:29.70] tem a call marcada, tem a call marcada, tem a call comparecida e da call comparecida
+[03:29.70 - 03:31.14] tem a call fechada.
+[03:31.14 - 03:35.14] Então você tem que ver, por exemplo, de quantos leads que chegam no WhatsApp,
+[03:35.14 - 03:38.58] primeiramente quantos deles atendem a ligação.
+[03:38.58 - 03:42.26] Isso é a primeira métrica que vocês tem que analisar, certo?
+[03:42.26 - 03:49.70] Depois de quantos que ligam, que atendem, realmente marcam a call, quantos e de quantos
+[03:49.70 - 03:53.86] que marcam a call realmente aparecem na call que foi marcada.
+[03:53.86 - 04:00.42] E de quantos que aparecem na call que foi marcada, quantos deles realmente fecham contigo.
+[04:00.42 - 04:04.02] Porque a partir disso, rapaziada, você começa a controlar os furos do seu funil.
+[04:04.02 - 04:06.90] Sabe aonde que, por exemplo, você tá errando, e isso são equipiais.
+[04:06.90 - 04:09.94] Então, por exemplo, se você tá com uma taxa de leads que chegam no WhatsApp
+[04:09.94 - 04:12.90] pra poucos leads que atendem, o seu criativo tá uma merda.
+[04:12.90 - 04:17.22] Se você tem uma taxa muito boa aqui nessa primeira etapa, mas quando chega na
+[04:17.22 - 04:22.42] parte de call marcada, o lead não comparece, o problema provavelmente tá no SDR,
+[04:22.42 - 04:26.02] que é o cara que tá fazendo a ligação de qualificação, não tá gerando valor suficiente.
+[04:26.58 - 04:29.94] E da qual comparecer pra call fechada, se não tá tendo conversão,
+[04:29.94 - 04:32.66] ou é o anúncio que tá trazendo o lead ruim, que eu acho difícil,
+[04:33.46 - 04:39.38] ou em 80% dos casos vai ser o closer. Então, vocês tem que ter metrificado
+[04:39.38 - 04:44.34] tudo isso aqui. E é possível vocês metrificarem todos esses dados através do CRM.
+[04:45.30 - 04:50.66] Se você hoje não utiliza algum CRM, não se preocupa inicialmente utilizar agora,
+[04:50.66 - 04:55.54] mas futuramente vai ser necessário. CRM significa, vou colocar aqui embaixo,
+[04:55.54 - 05:03.38] Customer Relationship Manager. Então, o seu relacionamento com o seu cliente, tá?
+[05:03.38 - 05:07.14] É o gerenciamento de relações com o seu cliente, vamos dizer assim, certo?
+[05:07.14 - 05:10.18] E é por aqui que você consegue controlar quantos leads chegaram,
+[05:10.18 - 05:13.38] quantos leads deixaram de responder, quantos agendaram o call.
+[05:13.46 - 05:21.22] Você consegue literalmente olhar todas as etapas e saber exatamente onde é que está o erro.
+[05:21.22 - 05:30.90] Então, realmente é bom pra você entender em que etapa que tá tendo o gargalo da sua operação.
+[05:30.90 - 05:33.70] Então, hoje em dia, é praticamente...
+[05:33.70 - 05:40.50] O como, ele já tem um traqueamento pra WhatsApp ou a gente vai precisar fazer na mão?
+[05:41.46 - 05:44.18] O traqueamento pra WhatsApp, ele é na mão, sabe?
+[05:44.18 - 05:49.62] Mas assim, vocês podem criar uma planilha no Google Sheets, que é o que eu faço.
+[05:49.62 - 05:52.26] Você pode pedir pro Cloud criar na realidade, certo?
+[05:52.26 - 05:54.74] E nessa planilha, você deixa assim por cima da automática.
+[05:54.74 - 05:57.78] Então, você coloca quantos leads chegaram, quantas ligações teve,
+[05:57.78 - 06:02.10] quantas calls marcadas, quantos calls comparecidas e quantos fechamentos.
+[06:02.10 - 06:05.86] E ele já calcula todas as métricas e fala qualquer outra PPA que tá identificada.
+[06:06.42 - 06:07.30] Isso aqui.
+[06:07.30 - 06:12.66] É porque pelo menos o que eu imagino dentro do como é lead preenchido como se fosse um formulário.
+[06:12.66 - 06:15.54] Acho que eu vou começar todo o Google Sheets agora.
+[06:15.54 - 06:16.58] Deixa eu mostrar pra vocês.
+[06:16.58 - 06:18.82] É que eu não uso mais o como, eu não sei se eu tenho o conto lá ainda.
+[06:18.82 - 06:19.78] Deixa eu entrar aqui.
+[06:19.78 - 06:24.50] Ah, eu tenho o conto ainda.
+[06:24.50 - 06:25.70] Fechou.
+[06:25.70 - 06:31.19] Deixa eu mostrar.
+[06:31.19 - 06:35.75] É que são os pipelines desatualizados aqui no como.
+[06:35.75 - 06:38.30] Vou mostrar.
+[06:38.30 - 06:39.82] Isso aqui é o CRM do como.
+[06:39.82 - 06:42.86] Então, por exemplo, aqui eu consigo ver quantos leads agendaram a reunião,
+[06:42.86 - 06:46.30] quantos não compareceram, quantos tiveram venda, quantos a gente não vendeu,
+[06:46.30 - 06:48.78] tipo o cara recusou e quantos está em negociação.
+[06:49.90 - 06:52.22] Aí deixa eu ver esse aqui.
+[06:53.10 - 06:53.90] Não.
+[06:55.26 - 06:57.42] Isso aqui eu não uso mais, acho que está desatualizado.
+[06:58.38 - 07:01.10] Não vai ter como mostrar pra vocês porque está desatualizado isso aqui.
+[07:01.10 - 07:03.10] Mas enfim, é tipo isso aqui, tá ligado?
+[07:03.90 - 07:05.90] É você com o tipo de controle a cada etapa.
+[07:06.86 - 07:07.66] Exato, pronto.
+[07:07.66 - 07:12.62] É porque o pessoal que não conhece muito a parte de tech não vai mandar o que quer.
+[07:12.62 - 07:14.70] Mas é tipo isso aí que você falou.
+[07:14.70 - 07:15.50] Perfeito.
+[07:15.50 - 07:19.58] E tu quer direcionar a gente no sentido montar uma pipeline?
+[07:20.22 - 07:24.22] Cara, primeiro, segundo contato, ou pode ser mais do jeito que falou assim?
+[07:25.02 - 07:26.62] Então eu vou ensinar você a montar isso agora.
+[07:28.14 - 07:29.74] Ah não, valeu, valeu.
+[07:29.74 - 07:30.94] Boa.
+[07:30.94 - 07:32.38] Bom, vamos lá.
+[07:32.38 - 07:34.86] E aí, rapaziada, como é necessário vocês terem isso aqui?
+[07:34.86 - 07:36.86] Eu vou passar justamente por essa etapa.
+[07:36.86 - 07:40.22] E eu já vou aproveitar e colocar aqui nessa aula uma crescimento,
+[07:40.22 - 07:43.10] ela vai ser um pouquinho extensa, porque eu vou até colocar aqui.
+[07:44.86 - 07:45.50] Ah não, já está.
+[07:45.50 - 07:46.94] Esquece, eu acho que não estava aqui, esquece.
+[07:46.94 - 07:48.14] Depois eu não vou nem confundir vocês.
+[07:48.14 - 07:49.66] Já está ali, eu não vou nem confundir.
+[07:49.66 - 07:50.70] Bom, vamos lá.
+[07:50.70 - 07:54.38] Então hoje, como que é o nosso CRM aqui dentro da operação?
+[07:54.38 - 07:57.66] A gente tem um CRM que ele é um pouco extenso,
+[07:57.66 - 08:00.14] porém ele funciona muito, muito bem.
+[08:00.86 - 08:02.86] Deixa eu puxar aqui do meu outro mirror,
+[08:02.86 - 08:04.86] que eu já deixei essa aula aqui pra passar pra vocês.
+[08:24.62 - 08:27.50] Esse pipeline que a gente utiliza, rapaziada, aqui dentro da nossa operação,
+[08:27.50 - 08:30.86] é o mesmo pipeline que a gente utiliza nos nossos aplicativos, tá?
+[08:30.86 - 08:33.58] Eu criei ele inicialmente pra gente, depois a gente adaptou ele pro app.
+[08:34.62 - 08:37.26] Bom, é basicamente assim que funciona.
+[08:37.26 - 08:40.62] A gente tem, no total, quatro pipelines,
+[08:40.62 - 08:42.62] e dentro desses quatro pipelines a gente divide
+[08:42.62 - 08:45.26] exatamente essas colunas que vocês estão vendo aqui.
+[08:45.26 - 08:47.66] Aí eu vou colocar aqui pra vocês verem as pipelines que a gente tem.
+[08:49.18 - 08:51.18] Então a gente tem aqui, ó,
+[08:51.74 - 09:00.60] os pages novos,
+[09:00.68 - 09:03.08] que seria a coluna 1.
+[09:03.08 - 09:09.22] Depois a gente tem o arvindamento,
+[09:09.22 - 09:16.92] depois tem recuperação e depois tem inutilição.
+[09:19.26 - 09:21.58] Esses são os pipes que a gente utiliza, tá?
+[09:21.58 - 09:23.66] Bom, aqui o que acontece?
+[09:23.66 - 09:25.82] Eu vou destrinchar pra vocês como funciona
+[09:25.82 - 09:28.14] quando o acontece dentro desse funil.
+[09:28.38 - 09:31.42] Então vamos lá, o Lidia chegou aqui do anúncio,
+[09:31.42 - 09:34.30] então o Lidia, ele viu nosso anúncio, certo, lá no meta.
+[09:34.94 - 09:38.14] Ele vê o anúncio e ele cai dentro do WhatsApp, certo?
+[09:38.78 - 09:40.54] Cai aqui dentro do WhatsApp.
+[09:40.54 - 09:44.06] Assim que ele cai no WhatsApp, ele recebe a mensagem de boas-vindas.
+[09:44.06 - 09:47.02] Em aproximadamente 30 segundos ele recebe essa mensagem.
+[09:48.78 - 09:51.18] Vou colocar aqui os primeiros 30 segundos.
+[09:53.74 - 09:57.90] Depois de 30 segundos, porque é depois de 30 segundos?
+[09:57.90 - 10:00.30] Porque na realidade, rapaziada, essa mensagem de boas-vindas
+[10:00.30 - 10:03.42] só é pra ela chegar se o SDR não ligar.
+[10:03.98 - 10:06.22] Porque quando o Lidia chega no nosso WhatsApp,
+[10:06.30 - 10:10.54] assim que ele pinga, o SDR, ele tem que fazer a ligação,
+[10:11.50 - 10:13.98] qualificação em menos de um minuto.
+[10:14.70 - 10:17.34] Então o SDR espera essa mensagem ser enviada,
+[10:17.34 - 10:19.90] essa mensagem aqui que demora 30 segundos pra ser enviada.
+[10:19.90 - 10:22.06] Você pode colocar um time entre 15 a 30 segundos,
+[10:22.06 - 10:24.86] não muda muita coisa não, a gente está testando 15 agora, certo?
+[10:25.50 - 10:28.14] Porque agora eu tenho mais SDR pra poder fazer uma estrutura dessa,
+[10:28.14 - 10:29.98] antigamente eu não tinha, mas o seguinte,
+[10:29.98 - 10:32.94] nos primeiros 15 a 30 segundos ele vai receber a mensagem de boas-vindas,
+[10:33.58 - 10:36.38] avisando que alguém vai ligar em menos de cinco minutos.
+[10:36.94 - 10:41.42] Assim que ele recebe essa mensagem, o meu SDR em menos de um minuto,
+[10:42.30 - 10:44.94] ele pega e liga pro Lidia. Por que em menos de um minuto?
+[10:44.94 - 10:47.34] Porque o nosso público, rapaziada, é da construção,
+[10:47.34 - 10:49.50] então imagina o cara que é pintor, certo?
+[10:49.50 - 10:52.86] Ele está lá pintando a parede, ele pegou, ficou moscando dois minutos no celular,
+[10:52.86 - 10:56.30] viu o nosso anúncio, pegou e entrou em contato com a gente.
+[10:56.30 - 10:57.66] Quando ele entrou em contato com a gente,
+[10:58.54 - 11:01.90] passou ali aproximadamente um minuto depois que ele entrou em contato,
+[11:01.90 - 11:04.06] dois minutos, três minutos, ele já está na obra pintando de novo.
+[11:04.78 - 11:08.38] Então é o time do cara clicar pra chamar a gente e ligar pra ele ainda estar no celular
+[11:08.38 - 11:11.74] e poder atender, porque se o cara larga o celular lá no meio da obra,
+[11:11.74 - 11:13.98] volta a fazer o que ele estava fazendo na obra, pudeu,
+[11:14.46 - 11:16.94] porque o cara não vai ver você ligando,
+[11:16.94 - 11:19.98] quando ele chegar morto em casa destruída, ele não vai querer falar com ninguém
+[11:20.34 - 11:23.38] e quando apitar a ligação de vocês, ele vai mandar vocês pra casa do caralho.
+[11:23.94 - 11:26.70] Então tipo assim, você tem que ligar em menos de um minuto.
+[11:26.90 - 11:29.02] Isso aqui tem que ocorrer em menos de um minuto, certo?
+[11:29.66 - 11:33.90] Mas se por acaso ele não atender ou não responder,
+[11:34.34 - 11:38.70] ele vai ficar travado aqui nessa etapa que a gente chama de super hot,
+[11:39.06 - 11:40.78] que seria o lide mais quente.
+[11:40.78 - 11:43.70] Então nas primeiras 24 horas, se ele não atende a ligação
+[11:43.70 - 11:47.54] ou não der nenhum sinal de vida, ele vai ficar nessa etapa de super hot.
+[11:48.58 - 11:51.82] E aí qual que a função do SDR inicialmente sua,
+[11:51.82 - 11:55.02] porque você ainda não tem SDR, é fazer 10 ativações por dia
+[11:55.54 - 11:57.98] em cada lide dentro desta coluna.
+[11:58.02 - 12:00.46] Então se por exemplo você tem três livros que chegaram hoje
+[12:00.82 - 12:03.18] e nenhum dos três te atendeu ou não te respondeu,
+[12:03.62 - 12:07.98] nas próximas 24 horas você tem que ativar esse lide de 10 maneiras diferentes,
+[12:08.26 - 12:11.82] seja ligando, seja mandando áudio, seja mandando foto de visualização única,
+[12:12.14 - 12:15.98] seja mandando um documento falso
+[12:15.98 - 12:18.22] como se tivesse feito um pix para o cara poder abrir.
+[12:18.62 - 12:20.66] Aí quando o cara abre tem uma foto sua pedindo pra te responder,
+[12:21.10 - 12:24.74] seja em ver uma figurinha, seja em ver um áudio de visualização única.
+[12:25.14 - 12:28.14] Então você tem que ativar ele de dez maneiras, certo?
+[12:28.58 - 12:31.78] E aí de alguma maneira, rapaziada, usualmente nesse primeiro dia aqui,
+[12:32.10 - 12:33.98] o lide ele responde.
+[12:34.82 - 12:37.74] O lide ele responde na primeira vez que você ativa ele.
+[12:38.34 - 12:42.02] E não sei porque não copiou, mas acima da etapa de super hot
+[12:42.46 - 12:45.90] a gente tem uma etapa que a gente chama de.
+[12:48.06 - 12:51.94] A gente tem uma etapa que a gente chama de responderam, responderam.
+[12:52.62 - 12:54.86] Ele fica nessa etapa também por 24 horas.
+[13:01.74 - 13:04.42] O que acontece se na hora que você estiver ativando esse lide,
+[13:04.74 - 13:09.26] ele pegar e te responder, ele é movido para essa etapa aqui de responderam.
+[13:09.74 - 13:12.14] E aí seu objetivo é pegar e ligar para esse lide em menos de um minuto.
+[13:13.10 - 13:15.42] O que a gente está fazendo quando a gente faz essas ativações?
+[13:15.62 - 13:17.46] Follow up, que é você ativar esse lide.
+[13:17.74 - 13:20.62] Porém, você tem que entender follow up não é tentar vender.
+[13:21.18 - 13:23.54] No follow up, que é essa ativação que você faz na mensagem,
+[13:23.54 - 13:26.02] que você faz na ligação, você não vai fazer oferta,
+[13:26.22 - 13:28.70] você não vai tentar vender, você não vai fazer promoção,
+[13:28.90 - 13:32.38] você não vai fazer marketing de oferta, você vai tentar retornar ao contato.
+[13:33.14 - 13:35.66] Por isso que no follow up, você tem que ser o mais natural possível.
+[13:36.10 - 13:38.06] Você tem que ser a pessoa mais humanizada possível.
+[13:38.34 - 13:40.54] Por isso que você manda áudio, por isso que você manda figurinha.
+[13:40.54 - 13:45.14] Você não vai mandar um puta texto, vai mandar algo que seja humano,
+[13:46.06 - 13:48.26] algo que gera curiosidade do cara querer te responder,
+[13:48.50 - 13:50.74] gera necessidade do cara querer te responder, você tem que ser humano.
+[13:51.22 - 13:54.46] Porque na hora que o cara te responder, é aí que você vai fazer a ligação.
+[13:54.82 - 13:57.14] E aí é na ligação que você vai marcar call, que você vai fazer,
+[13:57.94 - 13:59.34] vai criar valor com o lide, etc.
+[13:59.34 - 14:00.34] Não no follow up.
+[14:00.34 - 14:03.46] Ninguém gosta de receber tentativa de venda via WhatsApp.
+[14:06.02 - 14:07.14] É isso.
+[14:07.14 - 14:09.66] Depois de 24 horas, automaticamente o lide é movido
+[14:10.06 - 14:13.26] para o hot e diminui para sete ativações por dias.
+[14:13.78 - 14:16.90] Depois, se passar 24 horas ele não responder, ele vai para o warm,
+[14:17.30 - 14:22.90] depois ele vai para o cold e depois do cold para o super cold.
+[14:23.58 - 14:26.70] Então é esse tipo de funil que a gente utiliza.
+[14:27.34 - 14:30.22] E aí você percebe que vai diminuindo as ativações.
+[14:30.22 - 14:32.22] Então vai ficando tranquilo. Perfeito.
+[14:32.66 - 14:35.66] Se o cara não responder em nenhuma dessas etapas,
+[14:36.14 - 14:38.50] qual é o próximo funil que ele vai ser enviado?
+[14:38.86 - 14:41.78] Funil de nutrição, que é o funil para a gente manter follow up
+[14:41.78 - 14:43.30] infinito no lide.
+[14:43.30 - 14:47.26] Nesse funil de nutrição, a gente utiliza este sistema aqui.
+[14:55.34 - 14:57.26] Como que o nosso sistema de nutrição funciona?
+[14:57.98 - 15:01.14] Quando ele não responde nenhum dos cinco dias
+[15:01.34 - 15:03.54] ele segue consecutivos com a gente,
+[15:03.54 - 15:05.42] quer dizer que praticamente ele já perdeu interesse
+[15:05.42 - 15:07.02] ou não precisa mais agora.
+[15:07.02 - 15:10.74] A nutrição serve para a gente manter um contato de opa, estou aqui se precisar.
+[15:11.30 - 15:12.30] Essa é a ideia.
+[15:12.30 - 15:16.54] Então a gente configurou que o nosso sistema a cada sete dias
+[15:16.54 - 15:20.18] mais ou menos envia uma mensagem aleatória para o lide.
+[15:20.42 - 15:22.94] A nossa IA gera uma mensagem aleatória e envia para o lide.
+[15:23.66 - 15:26.02] E essa mensagem não tem objetivo de oferta de venda.
+[15:26.34 - 15:28.86] É agregando o valor com o nosso conteúdo.
+[15:28.86 - 15:30.86] Então manda um post do nosso Instagram,
+[15:30.86 - 15:33.50] manda uma prova social com um cliente nosso, para quê?
+[15:33.74 - 15:36.86] Para quando ele precisar fazer um marketing e lembrar da gente que está ali.
+[15:37.50 - 15:39.34] E é o que acontece quando ele pega
+[15:40.30 - 15:43.22] e ele responde alguma dessas mensagens aqui,
+[15:43.82 - 15:47.02] ele é movido para a nossa etapa de responder.
+[15:47.90 - 15:50.50] E ele cai nessa etapa de responder ao lado dos lides novos.
+[15:51.14 - 15:53.78] Porque quando ele volta, rapaziada, o lide que volta da nutrição,
+[15:53.78 - 15:55.26] ele é um lide muito quente para fechar.
+[15:56.30 - 15:57.38] Muito quente.
+[15:57.38 - 16:00.58] Porque ele chegou no CRM faz tempo, ele já teve muito tempo de pensar.
+[16:00.90 - 16:03.30] E quando ele manda mensagem é porque ele está decisivo a fechar.
+[16:03.78 - 16:06.46] Então por isso que ele vem para essa etapa aqui de lides novos.
+[16:07.02 - 16:09.30] Certo? Então é isso que acontece.
+[16:10.18 - 16:13.74] Agora na etapa de agendamento é um pouco diferente.
+[16:14.50 - 16:15.98] Quando o lide
+[16:16.34 - 16:19.74] ele atende você e ele topa agendar a reunião,
+[16:20.66 - 16:24.90] ele vem aqui para a primeira coluna que se chama call agendado.
+[16:25.58 - 16:30.02] Nessa etapa de call agendado, ele recebe uma mensagem de confirmação.
+[16:34.74 - 16:36.30] Ainda com que mensagem?
+[16:36.30 - 16:39.46] Deixe-me ver se eu consigo puxar do meu CRM para mostrar para vocês.
+[16:42.80 - 16:45.12] O nosso CRM é o código próprio.
+[16:45.12 - 16:48.68] O CRM a gente vai criar o nosso ou vai ter um conflito ou alguma coisa?
+[16:49.76 - 16:58.58] Então é isso que eu vou chegar lá, rapidão.
+[16:59.42 - 17:01.06] Depois eu vou puxar a mensagem que a gente utiliza
+[17:01.06 - 17:04.54] porque está no código da nossa VPS e eu não consigo puxar agora
+[17:04.54 - 17:05.86] porque está dentro da VPS.
+[17:05.90 - 17:09.02] Mas enfim, é uma mensagem que basicamente ela confirma
+[17:09.54 - 17:13.38] com o nome do lide, o horário, o local que vai ser o Google Meet
+[17:13.90 - 17:16.10] e uma instrução para baixar o Google Meet.
+[17:16.10 - 17:18.10] É muito simples, certo?
+[17:18.10 - 17:20.22] E aí um ponto que vocês têm que ter em mente.
+[17:20.22 - 17:24.22] Você não vai agendar a call para mais de dois dias para frente,
+[17:24.38 - 17:26.50] senão você vai tomar no show certeza.
+[17:26.50 - 17:29.06] Assim, prioridade máxima aqui dentro da nossa operação hoje
+[17:29.26 - 17:31.62] é agendar a call para o lide no mesmo dia.
+[17:31.98 - 17:33.46] Se o lide é qualificado, rapaziada,
+[17:33.50 - 17:35.06] tudo é um lide qualificado dentro do nosso mercado.
+[17:35.06 - 17:37.22] É um cara que ele tem mais de 20, 25 mil dólares,
+[17:37.50 - 17:39.66] 30 mil dólares por mês de faturamento
+[17:39.66 - 17:41.82] e ele está precisando muito do nosso serviço.
+[17:42.22 - 17:45.02] Quando chega um lide desse e ele não tem horário disponível no dia,
+[17:45.46 - 17:48.58] a gente não marca ele, a gente fala que ele vai retornar ligação amanhã.
+[17:49.06 - 17:51.34] Porque se eu marco esse lide para amanhã,
+[17:51.34 - 17:54.78] como é um cara que ele já tem muito trampo e ele é muito corrido dia a dia,
+[17:54.78 - 17:56.90] a chance de eliminar nosso lide é a seguinte maior.
+[17:56.90 - 17:58.98] E para recuperar esse lide é mais difícil ainda.
+[17:59.54 - 18:02.18] Porque puta mano, o cara vai ter marcado a call, vai ter esquecido,
+[18:02.18 - 18:04.10] ele vai querer deixar isso mais para frente, vai prorrogar.
+[18:04.62 - 18:07.90] Agora se eu chego para o cara e fala normal, beleza, eu vou te ligar amanhã
+[18:07.90 - 18:10.74] para a gente conversar, aí é outros quem?
+[18:11.46 - 18:13.82] Fala assim não, beleza, você está comendo hoje, amanhã te ligo para a gente conversar,
+[18:13.82 - 18:15.50] para a gente poder marcar o horário.
+[18:15.50 - 18:17.30] Porque eu não estou marcando nenhum compromisso com o cara.
+[18:18.30 - 18:20.38] Eu deixo um horário firmado que eu vou ligar,
+[18:20.38 - 18:22.10] mas não é algo tão sério quanto uma reunião.
+[18:22.10 - 18:24.06] Então se o cara acabar esquecendo ou passando,
+[18:24.42 - 18:26.82] ele não vai se sentir naquela vontade de procrastinar,
+[18:26.82 - 18:28.62] fala putz, deixa eu retornar a ligação.
+[18:28.62 - 18:31.78] Eu não sei o quê, até porque a nossa ligação, como eu falei na call passada,
+[18:32.02 - 18:36.46] ela é muito humanizada, se não vai fazer uma ligação merda de vendedor nato.
+[18:36.58 - 18:39.18] Você não vai ligar de forma entusiasmada, entusiada do cara,
+[18:39.18 - 18:42.74] você vai ligar uma forma natural, vai aparecer um amigo, vai entrar um raporra de verdade.
+[18:43.18 - 18:46.78] Então não vai ter esse problema do cara retornar a sua ligação, certo?
+[18:47.22 - 18:50.02] Bom, quando ele cai nessa coluna aqui de call agendado
+[18:50.02 - 18:52.74] dentro do pipeline de agendamento, ele recebe a mensagem de confirmação.
+[18:53.38 - 18:56.62] E aí existe algumas cadências que a gente tem aqui.
+[18:58.02 - 19:00.78] Eu vou colocar aqui as quatro, os cinco pontos de contato
+[19:00.78 - 19:02.42] que a gente tem com a Olíndia aqui.
+[19:02.42 - 19:07.10] A gente tem o follow de 24 horas,
+[19:08.62 - 19:11.38] o follow de 8 horas,
+[19:13.06 - 19:15.90] o follow de 4 horas,
+[19:17.58 - 19:21.18] o follow de 2 horas,
+[19:21.18 - 19:24.06] o follow de 1 hora
+[19:26.50 - 19:30.63] e o follow de 30 minutos que ele esqueci.
+[19:33.95 - 19:36.67] Tá? Como que funciona?
+[19:36.67 - 19:39.07] Dentro do nosso CRM, a gente fez uma configuração automática.
+[19:39.19 - 19:41.67] Quando a gente vai marcar o lead, quando a gente está aqui,
+[19:41.67 - 19:43.67] a gente marca a reunião com o lead.
+[19:43.67 - 19:46.99] Nas configurações do lead dentro do CRM, a gente define o horário da reunião.
+[19:47.83 - 19:52.07] E aí automaticamente o nosso CRM sabe exatamente quantas horas faltam para a call dele.
+[19:52.91 - 19:56.51] Se por exemplo, a gente marcou para amanhã
+[19:57.03 - 20:00.35] 8 horas da noite e agora são 6, faltam mais de 24 horas.
+[20:01.03 - 20:04.11] Quando faltar exatamente 24 horas, o meu CRM vai mandar uma mensagem.
+[20:04.99 - 20:06.67] Quando faltar 8 horas, ele vai mandar outro.
+[20:06.67 - 20:10.15] 4, 2, 1 e 30 minutos não é mensagem, é ligação.
+[20:12.83 - 20:13.59] Como que isso funciona?
+[20:13.59 - 20:16.07] Rapaziada, isso aqui serve para o lead não esquecer da gente.
+[20:16.43 - 20:19.79] Muitas vezes o cara, ele não é que ele vai ser cusão e não vai querer
+[20:19.79 - 20:23.27] entrar na call porque ele não é responsável ou que não sei o que.
+[20:23.55 - 20:26.35] É muitas vezes porque o cara está na correria.
+[20:26.35 - 20:28.75] E o cara simplesmente esqueceu de entrar na call.
+[20:29.03 - 20:31.19] Isso é normal de acontecer, rapaziada, normal.
+[20:31.59 - 20:34.07] E então a gente tem essa cadência grande de folos
+[20:34.43 - 20:36.59] justamente para o cara não esquecer.
+[20:36.59 - 20:40.87] O que a gente fala nesses folos ou a gente fala sobre o time estar pronto.
+[20:43.02 - 20:44.34] Vou até estender porque é um pouquinho grande.
+[20:44.34 - 20:46.50] Ou a gente fala sobre o time estar pronto.
+[20:46.50 - 20:50.38] Ou a gente envia um conteúdo no Instagram.
+[20:50.38 - 20:52.74] Nosso, no Instagram nosso, que é a agregar valor para o cara.
+[20:54.10 - 20:57.90] Ou a gente envia uma foto do time montando o plano.
+[21:02.00 - 21:07.28] Mas nunca é tipo assim, perguntando se o cara vai comparecer a algo do tipo.
+[21:07.72 - 21:10.16] Tem uma frase dentro do mundo de vendas que posso utilizar que é nunca
+[21:10.16 - 21:11.60] dê munição para o seu inimigo.
+[21:11.60 - 21:13.72] Você dá brecha para o cara desmarcar, o cara vai desmarcar.
+[21:14.48 - 21:16.12] Então se você vira para o cara e falar assim
+[21:16.12 - 21:18.32] oh, o plano está tudo certo para hoje.
+[21:18.80 - 21:21.64] Puta, tu já está dando brecha para o cara falar que ele vai ter que desmarcar.
+[21:22.20 - 21:24.20] Você nunca dá essa brecha para o seu inimigo.
+[21:24.68 - 21:26.32] Porque o cara já sabe que serve de alguma coisa.
+[21:27.28 - 21:31.92] E se você é uma pessoa que criou uma conexão com o cara, o cara não vai desmarcar.
+[21:32.24 - 21:34.12] Só que se você der a brecha ele vai.
+[21:34.12 - 21:36.16] Então você nunca pergunta se está tudo certo.
+[21:36.16 - 21:37.36] Você só confirma.
+[21:37.36 - 21:39.44] E você vai sem todos os suolos.
+[21:39.44 - 21:41.44] Então, por exemplo, a gente faz.
+[21:41.44 - 21:43.56] A gente divide, coloca de forma aleatória isso aqui.
+[21:44.04 - 21:46.04] Não tem uma sequência padrão.
+[21:46.04 - 21:47.20] É 100% aleatório.
+[21:47.20 - 21:49.12] As mensagens são enviadas com o cunha.
+[21:51.26 - 21:53.38] Então a gente faz esse tipo de ativação.
+[21:53.70 - 21:56.26] E quando falta 30 minutos a gente liga para o nosso lead
+[21:57.18 - 21:58.22] e confirma a reunião com ele.
+[21:58.22 - 22:03.10] Fala olá, em 15 minutos a gente vai já deixar o link da nossa call.
+[22:03.10 - 22:04.78] A gente nem fala reunião, a gente fala call.
+[22:04.78 - 22:08.06] Porque parece algo menos como posso dizer
+[22:09.38 - 22:10.58] beautiful people, tá ligado?
+[22:10.58 - 22:13.18] Porque reunião parece que é uma parada extremamente séria
+[22:13.18 - 22:14.78] que a gente vai tentar vender alguma coisa.
+[22:14.78 - 22:17.94] Call é mais natural, não passa aquela sensação de venda, sabe?
+[22:18.42 - 22:21.42] Então a gente fala assim, pô, daqui 15 minutos a gente vai deixar o link da nossa call
+[22:21.42 - 22:25.42] no Google Meet que cultivo e faltando 5 minutos a gente entra. Fechou? Beleza.
+[22:27.02 - 22:28.94] Novamente, não dando um brecha para o cara fugir.
+[22:30.70 - 22:33.30] Certo? Perfeito.
+[22:33.30 - 22:36.22] E aí a gente tem o nosso pipeline de recuperação.
+[22:36.50 - 22:37.62] O que é o pipeline de...
+[22:37.62 - 22:39.74] Ah não, calma, eu não terminei o meu agendamento, foi mal.
+[22:40.42 - 22:44.66] E é o seguinte, quando acontece isso, a gente tem aqui call ao rolando.
+[22:46.10 - 22:48.10] A coluna chama call rolando.
+[22:48.10 - 22:51.54] E quando o lead entra em call depois desse time aqui, ele vem para call rolando.
+[22:52.94 - 22:54.90] E o lead dá no show que ele não some.
+[22:54.94 - 22:57.86] A gente tem o pipeline de no show.
+[22:57.86 - 23:00.14] E o pipeline não, perdão, a coluna de no show.
+[23:01.18 - 23:03.78] E aí abaixo do no show a gente tem no show,
+[23:05.93 - 23:10.37] FP1, não, ou FP, F1,
+[23:11.73 - 23:21.86] no show, F2, no show, F3, certo?
+[23:22.82 - 23:23.74] O que acontece?
+[23:23.74 - 23:26.18] Se o cara cai aqui na call rolando e não está rolando o call,
+[23:26.54 - 23:30.86] o SDR ou o closer ou você mesmo vai arrastar ele para a etapa de no show.
+[23:30.86 - 23:34.26] Quando ele cai na etapa de no show, ele vai receber uma mensagem.
+[23:36.50 - 23:40.22] Mensagem de questionamento.
+[23:40.22 - 23:49.86] Pô, mas, fulano, a gente percebeu que você não conseguiu comparecer
+[23:49.86 - 23:52.94] a nossa call, imagina que você esteja na correria, na obra,
+[23:52.94 - 23:56.18] enfim, se inventa alguma desculpa não ocupa no cara, mas tipo simpatizando.
+[23:56.18 - 23:58.30] A gente pode remarcar amanhã para o mesmo horário?
+[23:58.30 - 24:00.58] Ou se você já tiver horário disponível,
+[24:00.78 - 24:05.38] você pode mandar sempre ele vou deixar marcado amanhã para o mesmo horário.
+[24:06.06 - 24:07.78] Me confirma aqui.
+[24:07.78 - 24:11.74] E aí você já está diminuindo uma etapa do cara falar, cara, vou verificar.
+[24:11.74 - 24:14.70] Quando você falar que está marcado, o cara só vai mandar tipo um OK, sabe?
+[24:15.50 - 24:19.46] E aí se passarem três horas e o cara não responder
+[24:19.86 - 24:26.29] esta mensagem passaram três horas e ele não respondeu essa mensagem.
+[24:26.45 - 24:29.33] Ele vem para o no show, falou o que é isso aqui?
+[24:29.77 - 24:34.21] São o que a gente chama de dois L e dois M e são.
+[24:35.89 - 24:38.97] Duas ligações seguidas.
+[24:38.97 - 24:41.41] E duas mensagens seguidas.
+[24:41.41 - 24:44.93] O que você vai falar nessa mensagem é personalizado.
+[24:45.53 - 24:47.17] Então de tudo que você conversou com o Lidia,
+[24:47.17 - 24:50.17] você vai tentar puxar algum ponto de conexão que você gerou no rapor
+[24:50.17 - 24:52.65] na ligação de qualificação e falar com ele.
+[24:52.65 - 24:55.85] Fala cara, é o mínimo que eu espero de ti alguma resposta
+[24:56.17 - 24:58.45] referente a toda a conversa que a gente teve que foi super bacana
+[24:58.45 - 24:59.81] sob tudo que ele conversou.
+[24:59.81 - 25:01.21] Aí você puxa os problemas, etc.
+[25:01.21 - 25:04.21] Pode mandar isso em ligação ou em áudio.
+[25:05.37 - 25:07.57] E aí isso vai fazer o cara querer te responder.
+[25:08.65 - 25:13.01] Se se passarem 24 horas essa mensagem e o cara não te responder,
+[25:15.61 - 25:17.89] ele vem para o no show, falou dois.
+[25:18.29 - 25:21.05] Mesmo processo, duas ligações, duas mensagens.
+[25:21.73 - 25:23.89] Aí você vai inventar o que você falar aqui novamente.
+[25:24.57 - 25:27.29] Isso é tudo baseado em feeling, não tem muito o que você colocar.
+[25:27.73 - 25:29.29] Aqui a gente geralmente coloca
+[25:29.33 - 25:31.65] quem que espera uma última resposta, senão a gente vai encerrar.
+[25:32.53 - 25:36.93] E aí aqui no no show falou três, a gente vem e faz o encerramento.
+[25:38.01 - 25:40.13] Aqui realmente acontece o encerramento.
+[25:40.13 - 25:43.29] Então essa é a mensagem, a gente faz por último o dois L's,
+[25:43.65 - 25:45.77] só que não é dois M's, é um M.
+[25:47.94 - 25:51.98] Aqui você faz duas ligações e uma mensagem de encerramento.
+[25:52.50 - 25:54.78] Caso a Lidia não te responda. Certo?
+[25:55.42 - 25:57.26] Então se ele não te responder, você encerra,
+[25:57.26 - 26:00.62] fala que foi bom, durou o contato, mas é uma falta de respeito
+[26:00.78 - 26:03.50] ter respondido você nos últimos quatro dias, três dias.
+[26:04.14 - 26:06.18] Mesmo que vocês tenham marcado um compromisso, certo?
+[26:06.90 - 26:11.34] E aí a última etapa que existe aqui é recusou.
+[26:13.18 - 26:15.74] Que é quando o Lidia fala que não vai fechar com vocês.
+[26:15.74 - 26:18.50] E aí existem o último pipeline, que é o pipeline de recuperação.
+[26:18.54 - 26:21.18] Para que ele existe? Para o Lidia que tornou o show.
+[26:21.70 - 26:23.58] O Lidia que recusou a Anacol, irmão,
+[26:23.58 - 26:25.42] você pode mandar ele para casa do cara, porque esse cara
+[26:25.42 - 26:27.58] você não perde nem nervio, o cara que já fala que não vai fechar
+[26:28.26 - 26:31.06] pode descartar ele e mandar para a aba de perdido aí.
+[26:31.66 - 26:33.50] Deixe ele nessa etapa de recusou que futuramente
+[26:33.50 - 26:35.82] você pode fazer um remarka e quem deixa ele aqui que não vai te afetar em nada.
+[26:36.62 - 26:38.82] Agora, por exemplo, se o cara do no show
+[26:38.82 - 26:42.42] ele pegar e sumir, tipo ele não aparecer até nessa mensagem de encerramento.
+[26:42.90 - 26:45.98] Depois de 24 horas essa mensagem de encerramento, você vai mandar ele
+[26:46.26 - 26:49.38] para a aba de recuperação, aba de recuperação.
+[26:49.74 - 26:54.30] Ela tem uma função semelhante a aba de nutrição.
+[26:54.50 - 26:56.78] Só que em vez de ser a cada sete dias,
+[26:56.78 - 26:59.62] ela vai ser a cada quatorze dias, certo?
+[27:02.57 - 27:06.69] E aí você vai ter um pipe, ele vai ter menos cadência de mensagem
+[27:06.69 - 27:09.29] para esses leads, até porque esses leads são leads que não alteram
+[27:09.29 - 27:12.05] em nem se responder, porém ainda assim vai estar mantendo contato.
+[27:12.41 - 27:14.97] Então dentro de todo esse processo comercial,
+[27:15.01 - 27:18.33] o único momento em que realmente a gente para de fazer contato
+[27:18.33 - 27:20.33] com o Lidia é quando ele fala que ele não quer.
+[27:20.73 - 27:22.93] E se em algum momento todo funil ele falar que não quer,
+[27:23.13 - 27:24.41] você move ele para cá.
+[27:24.41 - 27:26.61] E quando o Lidia fala que ele não quer a porra do produto,
+[27:26.85 - 27:30.33] você vai continuar mandando a mensagem de algum jeito para ele, certo?
+[27:30.69 - 27:35.17] Então este aqui é o nosso funil comercial que a gente utiliza hoje
+[27:35.17 - 27:38.01] dentro da nossa agência e ele é bem completo, ele é validado.
+[27:38.61 - 27:41.73] Você tem duas maneiras hoje de implementar esse funil comercial,
+[27:42.21 - 27:44.45] seja através do como, certo?
+[27:45.49 - 27:47.37] Ou através do Cloud Code,
+[27:48.41 - 27:51.69] que particularmente eu prefiro o Cloud Code, certo?
+[27:52.85 - 27:56.25] Hoje para você conseguir fazer um sistema desse dentro do Cloud Code,
+[27:56.53 - 27:58.41] você vai precisar de algumas ferramentas, quais são elas?
+[27:58.69 - 28:01.21] O Cloud Fair, que é onde você vai hospedar o seu site,
+[28:01.57 - 28:04.53] que é de graça isso aqui, hospedar e colocar domínio, não tem custo.
+[28:05.17 - 28:07.41] Além do Cloud Fair, vai precisar de alguns outros
+[28:07.41 - 28:09.13] arquivos que o Cloud vai pedir para você baixar,
+[28:09.13 - 28:10.57] se não me engano no load,
+[28:10.57 - 28:12.53] que é tipo o Cérebro executor de tudo.
+[28:13.69 - 28:15.77] E, deixa eu ver o que eu fiz demais.
+[28:15.85 - 28:18.29] Ah, e precisa do plano pelo menos max do Cloud,
+[28:18.77 - 28:20.81] que é 500 reais por mês.
+[28:20.81 - 28:23.05] Se você pegar o resumo dessa aula aqui,
+[28:23.05 - 28:25.05] que vai estar na área de membros e enviar para o Cloud Code,
+[28:25.49 - 28:28.21] ele consegue criar exatamente esse pipeline.
+[28:29.17 - 28:31.45] Esses quatro pipelines conseguem exatamente isso aqui funcional.
+[28:31.85 - 28:34.53] Ah, e precisa de uma última ferramenta, que é o ZAPI,
+[28:37.25 - 28:40.85] que é basicamente uma API entre o CRM e o WhatsApp.
+[28:40.85 - 28:43.41] É por aqui que você vai conseguir enviar mensagem,
+[28:44.57 - 28:47.33] por aqui que o nosso CRM vai conseguir enviar mensagem pro WhatsApp
+[28:47.89 - 28:49.57] do nosso crente.
+[28:49.57 - 28:51.85] Eu, como disse, rapaziada, eu não estou na minha VPS,
+[28:51.85 - 28:54.37] não estou no meu Mac de trabalho, eu estou no meu Mac de casa.
+[28:54.37 - 28:56.41] Eu não sei se eu consigo acessar o meu CRM daqui.
+[28:57.37 - 29:01.07] Deixa eu ver se eu consigo.
+[29:01.07 - 29:06.15] Se tu conseguir acessar vai ser foda, eu vou fazer exatamente isso com o Cloud Code.
+[29:07.71 - 29:14.24] Deixa eu puxar aqui, deixa eu ver se eu consigo.
+[29:14.24 - 29:17.12] Dá a agência, não sei se eu consigo, talvez do app eu consiga, calma aí.
+[29:19.79 - 29:21.87] Eu vou tentar, eu pedi pro meu time me mandar aqui,
+[29:21.87 - 29:25.43] enquanto eles estão mandando eu vou adiantar a parte dos processos.
+[29:45.15 - 29:47.35] O crachê do nada.
+[29:49.71 - 29:52.79] Bom, deixa eu abrir pra dúvidas, rapaziada, nessa etapa então, por enquanto.
+[29:53.79 - 29:56.31] Vamos tirar dúvidas, alguém tem dúvida sobre tudo isso que eu expliquei agora?
+[30:00.78 - 30:03.46] Se vai ser disponibilizado o template,
+[30:03.46 - 30:05.78] ou se a gente vai fazer algo iocentro no Cloud Code?
+[30:07.10 - 30:09.50] Mano, é porque eu não consigo disponibilizar o template do Cloud Code,
+[30:09.50 - 30:13.26] porque não é um código, são muitos códigos.
+[30:14.98 - 30:18.38] Mas eu posso mostrar o ecossistema em si.
+[30:19.46 - 30:22.90] Exato, eu já pedi pro pessoal mandar aqui, eles mandaram, eu já mostro pra vocês.
+[30:23.14 - 30:24.14] Show de volta.
+[30:25.14 - 30:26.42] Posso perguntar aqui?
+[30:27.82 - 30:30.90] A outra dúvida que eu tenho é mais sobre armazenamento de dados, cara.
+[30:30.90 - 30:35.78] Eu acho que, por exemplo, o número que eu comprei americano,
+[30:36.50 - 30:38.98] porra, eu não tenho o chip físico dele, mas eu só tenho ele no WhatsApp,
+[30:38.98 - 30:41.22] se ele cair uma vez fodeu.
+[30:41.22 - 30:44.42] Como que tu diria hoje, por exemplo,
+[30:44.42 - 30:46.86] pra armazenar os dados, as conversas dos clientes?
+[30:46.86 - 30:50.02] Teria um jeito, porra, inteligente de segurar?
+[30:51.02 - 30:52.02] É o 17.
+[30:53.38 - 30:54.78] Mano, o CT é iCloud?
+[30:56.06 - 30:57.06] iCloud, sim.
+[30:57.86 - 31:01.94] Então, pessoal, se esse número cair e você colocar outro número,
+[31:01.94 - 31:03.42] ele vai puxar todas as conversas já.
+[31:04.14 - 31:07.30] Puxa todos os históricos, todos os números.
+[31:08.02 - 31:09.58] Eu coloco um backup diário no meu.
+[31:11.50 - 31:12.74] Tá perfeito, perfeito.
+[31:13.14 - 31:15.70] Eu acho que tudo WhatsApp Business tem essa função.
+[31:16.62 - 31:20.74] Dependendo se é Android ou iOS.
+[31:21.70 - 31:24.26] Justo. Eu não sei, eu falei porque eu...
+[31:24.26 - 31:26.18] Da uma vez que eu fiz do meu foi pelo iCloud, tá ligado?
+[31:26.90 - 31:30.30] Porque eu lembro que, mano, teve uma vez que eu tava na Tailândia,
+[31:30.30 - 31:33.06] aí um amigo meu, eu fui me emprestar meu celular pro amigo gravar no Jetski.
+[31:33.46 - 31:35.98] Moleque, quando ele foi me devolver, o sol afundou na água, assim.
+[31:36.86 - 31:37.38] E aí...
+[31:37.38 - 31:38.38] Caralho.
+[31:38.78 - 31:40.06] Ah, bosta, viado.
+[31:40.06 - 31:43.50] E aí, quando eu comprei o outro, tipo, já veio tudo, veio foto, veio tudo.
+[31:44.10 - 31:44.82] Só pelo iCloud.
+[31:44.82 - 31:46.30] Entendi, entendi, entendi.
+[31:46.86 - 31:47.86] Fechou, vou fazer assim.
+[31:51.09 - 31:52.65] Alguém tem mais alguma dúvida nessa parte?
+[31:53.37 - 31:54.85] Cara, eu tô com uma dúvida também.
+[31:55.69 - 31:56.09] Bora.
+[31:56.09 - 31:58.29] Você pode, você pode mostrar o...
+[31:59.25 - 32:00.89] Aquele funil de novo de No Show?
+[32:01.81 - 32:03.85] Posso, lógico. Deixa eu voltar aqui.
+[32:07.78 - 32:11.26] Isso é aquela parte ali de No Show, acho que é F1, né?
+[32:11.30 - 32:13.10] Isso, F1, F2.
+[32:13.10 - 32:16.50] Esse 2L e 2M, duas ligações, duas mensagens seguidas.
+[32:16.50 - 32:18.62] Como assim, ligações? Ligação rápida?
+[32:19.58 - 32:21.62] Mano, é tipo assim, ligou, o cara não atendeu, liga de novo.
+[32:22.62 - 32:23.06] Entendi.
+[32:23.06 - 32:24.06] Entendeu? Em seguida.
+[32:24.10 - 32:26.42] Você não para, tipo assim, não liga três vezes,
+[32:26.42 - 32:29.30] porque tem risco de tomar ban no WhatsApp, se você fizer isso muitas vezes.
+[32:30.06 - 32:31.82] Então liga duas vezes seguidas. O cara não atendeu.
+[32:32.90 - 32:33.18] Boa.
+[32:33.90 - 32:35.50] Você tem qual que dar, da apoiada, que é o seguinte.
+[32:35.50 - 32:37.30] Esse freestyle, ou nem de...
+[32:38.18 - 32:39.78] Que eu tô olhando de logo em prática, né?
+[32:41.18 - 32:42.62] Sim, vem pra prática.
+[32:42.62 - 32:44.30] Tipo assim, uma parada que eu quero que vocês entendam.
+[32:45.10 - 32:48.86] Com o Cloud Code, vamos ver o mundo ser aberto na hora de montar o CRM.
+[32:49.34 - 32:51.62] Cuidado para vocês não montarem mensagens repetitivas
+[32:52.22 - 32:53.70] ou mensagens em massa.
+[32:53.74 - 32:55.06] O ban do WhatsApp é muito fácil.
+[32:55.06 - 32:57.66] Eu tomei tipo papo de uns oito bans e até aprendeu dessa porra.
+[32:58.14 - 33:00.98] Então não mandem mensagens idênticas a todo mundo.
+[33:00.98 - 33:04.18] Por isso que a gente usa a API do chat GPT.
+[33:04.18 - 33:05.66] A gente tem uma API conectada com o chat GPT,
+[33:05.66 - 33:09.26] que o GPT ganha mensagens diferentes pro WhatsApp não suspeitar, tá ligado?
+[33:10.30 - 33:12.58] E cuidado que você não mandasse ao mesmo tempo,
+[33:12.58 - 33:14.70] porque se você mandasse pra todo mundo ao mesmo tempo, o número cai.
+[33:14.70 - 33:16.14] Eu te faço assim, de certeza.
+[33:16.14 - 33:20.22] Você coloca o tempo em média de 15 segundos, 30 segundos?
+[33:20.98 - 33:22.82] Mano, 5 segundos, 7 segundos por aí.
+[33:24.38 - 33:27.70] E você chega a usar a API oficial assim ou usa o WhatsApp como?
+[33:29.14 - 33:31.14] Do salvo da API do WhatsApp?
+[33:31.14 - 33:33.66] É. Só uso o API, que não é oficial.
+[33:35.42 - 33:37.94] O oficial você paga por mensagem enviada.
+[33:37.94 - 33:39.98] E pra você conseguir enviar uma mensagem em massa
+[33:39.98 - 33:42.98] sem essa mensagem tem que ser aprovada pelo meta.
+[33:42.98 - 33:45.42] Fora que é caro pra caralho, mano.
+[33:45.42 - 33:48.06] O API é o melhor que tem, na minha opinião.
+[33:48.06 - 33:50.42] Tipo, é barato, é R$ 100 por mês.
+[33:50.42 - 33:52.50] É ilimitado, tipo mano, bom pra caralho.
+[33:54.70 - 33:56.70] Eu uso pra tudo.
+[33:56.70 - 33:59.66] Tipo, a gente tem um sistema de relatório que manda a cada duas horas
+[33:59.66 - 34:02.70] um relatório pra mim de ads, de ligações, de tudo.
+[34:02.70 - 34:06.54] Com as QPIs atualizadas, tudo.
+[34:06.54 - 34:07.86] Porque quando você desenvolve...
+[34:07.86 - 34:10.90] Essa é a vantagem de você utilizar o Cloud Code pra montar o CRM.
+[34:10.90 - 34:13.10] Quando você monta um CRM pelo Cloud Code, o código é seu.
+[34:13.10 - 34:15.06] Então você pode fazer o que você quiser.
+[34:15.06 - 34:19.14] Então, por exemplo, no meu, eu consigo metrificar automaticamente a tudo.
+[34:19.14 - 34:21.54] Todas as equipes, tá ligado?
+[34:21.54 - 34:23.70] E aí eu consigo ter, por exemplo, uma atualização a cada duas horas
+[34:23.74 - 34:26.14] no meu WhatsApp, pessoal até.
+[34:26.14 - 34:27.54] Todas as QPIs atualizadas.
+[34:27.54 - 34:29.14] Assim que eu preciso fazer o calco.
+[34:29.14 - 34:33.94] Já saber no dia onde a gente tá errando, entendeu?
+[34:35.34 - 34:36.74] Deixa eu ver se o time mandou aqui.
+[34:36.74 - 34:40.92] Pera, mandou ainda não.
+[34:40.92 - 34:46.04] E o CRM, você demorou mais ou menos um tempo, um dia pra fazer ele todo?
+[34:48.40 - 34:51.88] Quatro dias até ficar redondo.
+[34:51.88 - 34:54.64] Porque eu sou, mano, eu sou foda.
+[34:54.64 - 34:56.84] Tipo, eu gosto da parada 100%.
+[34:56.84 - 34:59.40] Eu não mexo só no sistema, eu deixo o sistema 100% pessoal
+[34:59.48 - 35:01.36] principalmente no design, tá ligado?
+[35:01.36 - 35:02.48] Eu quero fazer algo que não é algo.
+[35:02.48 - 35:07.00] Tem algum MVT, por exemplo, a gente teria que fazer na unha
+[35:07.32 - 35:09.08] até conseguir integrar em sete.
+[35:09.08 - 35:11.48] É, porque no caso de vocês, mano, não tem problema que demore,
+[35:11.48 - 35:14.68] porque vocês no começo não vão ter um bilhão de leads igual recebo, tá ligado?
+[35:15.96 - 35:18.96] Então vocês podem fazer normal, tipo quatro dias ao mesmo tempo
+[35:18.96 - 35:20.56] que vai rodando a campanha.
+[35:20.56 - 35:23.60] E aí é bom que quando ficar prontos já vão ter alguns leads outros.
+[35:23.84 - 35:26.20] E aí você já pode pedir pro Cloud utilizar o ZAPI
+[35:26.60 - 35:29.08] pra puxar todos os números do WhatsApp e já organizar dentro do CRM.
+[35:29.88 - 35:32.68] A gente vai chegar a uma aula do Cloud Coding.
+[35:32.68 - 35:33.88] Foda, foda.
+[35:36.36 - 35:39.76] Beleza, nenhuma dúvida então aqui na parte do comercial, não mais.
+[35:40.92 - 35:43.24] Perfeito, eu vou esperar o time mandar quando eles mandam, deixa eu ver.
+[36:02.58 - 36:04.58] Vamos então agora para a parte operacional,
+[36:04.58 - 36:06.98] para vocês entenderem como que funciona o operacional.
+[36:06.98 - 36:09.62] Deixa eu só aumentar essa porra aqui, que está muito pequena.
+[36:20.00 - 36:22.16] Eu vou liberar isso aqui no final de tudo pra vocês.
+[36:23.00 - 36:25.92] Eu vou depois dar uma organizada com aqui no meu para ingressar
+[36:25.92 - 36:28.84] esse aqui pra vocês, pra vocês poderem ter acesso.
+[36:39.93 - 36:43.21] Bom, vamos para a parte operacional, deixa eu deixar mais isso aqui.
+[36:50.79 - 36:51.99] Beleza, depois eu vou organizar esse lado aqui.
+[36:51.99 - 36:56.16] Bora para os processos operacionais.
+[36:56.16 - 36:59.24] Mesma coisa, operacional também tem o CRM próprio
+[36:59.80 - 37:02.04] que a gente coloca todos os dados dos clientes, mas eu não vou enxergar
+[37:02.04 - 37:06.44] explicar o CRM agora porque acho que CRM para clientes só depois de uns 5, 7.
+[37:06.96 - 37:09.84] Então eu vou pela parte básica do processo operacional, certo?
+[37:11.04 - 37:13.80] Bom, vou partir do princípio que você está numa call de vendas
+[37:13.80 - 37:14.84] e o cara pagou.
+[37:14.84 - 37:17.00] O que acontece a partir do momento que o cara paga?
+[37:18.08 - 37:19.88] Como funciona? Conduziu a call.
+[37:19.88 - 37:24.12] Você vai enviar o link de checkout para o cliente, certo?
+[37:24.64 - 37:26.12] Link da WAP.
+[37:26.80 - 37:30.28] E aí como que a gente faz todo o sync com o cliente?
+[37:30.84 - 37:35.00] Quando o cara paga a WAP, ela dispara um webhook.
+[37:36.64 - 37:39.36] Eu sei que estou falando meio uma língua aleatória para o pessoal,
+[37:39.36 - 37:40.84] mas eu vou explicar todo o processo
+[37:40.84 - 37:42.72] e na logica logico vai clarificar para vocês.
+[37:43.44 - 37:46.56] O webhook é tipo um mensageiro que fala
+[37:46.84 - 37:49.48] todas as informações que o cara colocou lá no checkout
+[37:50.20 - 37:52.40] e manda para algum lugar.
+[37:52.40 - 37:56.04] E esse webhook ele chega para o nosso CRM.
+[37:57.08 - 37:58.88] Certo? Isso é que eu estou explicando como é o nosso,
+[37:58.88 - 38:00.60] mas não vamos precisar fazer isso agora,
+[38:00.60 - 38:02.56] mas só para vocês terem uma base de como funciona aqui dentro.
+[38:04.76 - 38:07.40] Então quando o cara paga, já cai aqui no nosso CRM.
+[38:07.80 - 38:10.64] O nosso CRM extrai esse webhook e converte uma mensagem
+[38:10.96 - 38:13.72] e já mostra o e-mail do cara e o plano ativado.
+[38:15.74 - 38:19.30] O plano selecionado mais o valor.
+[38:20.94 - 38:22.14] É isso que acontece.
+[38:23.26 - 38:25.66] Isso aqui fica salvo no nosso CRM.
+[38:25.66 - 38:29.86] Depois, enquanto é na call o meu Closer, ele tem uma funcionalidade.
+[38:29.90 - 38:32.58] Assim que o cliente paga o meu Closer ele faz o primeiro registro
+[38:32.98 - 38:35.10] do cliente dentro do nosso sistema.
+[38:35.10 - 38:38.50] Eu vou ensinar vocês a criarem todo esse sistema depois. Certo?
+[38:38.78 - 38:40.46] Porque vai ser necessário ter esse sistema.
+[38:40.46 - 38:42.86] Esse é que eu consigo enviar um arquivo que vocês só vão instalar.
+[38:43.78 - 38:46.10] Como funciona o Closer? Ele vai ter um formulário
+[38:46.94 - 38:49.82] e nesse formulário ele vai completar com todas as informações do cliente.
+[38:50.26 - 38:51.74] O nome do cliente.
+[38:53.14 - 38:58.86] O nome da empresa. Certo?
+[39:00.02 - 39:08.32] A data de entrada. O nicho do cliente.
+[39:13.08 - 39:15.36] E vai completar com tipo essas informações básicas.
+[39:16.16 - 39:18.48] Isso é o formulário que o Closer completa.
+[39:19.16 - 39:23.60] Em call o Closer também envia o formulário do cliente.
+[39:24.28 - 39:26.08] O que é o formulário do cliente?
+[39:26.08 - 39:28.24] O formulário onde o cliente coloca o e-mail dele.
+[39:28.24 - 39:30.20] Porque quando ele coloca o e-mail dele aqui
+[39:30.20 - 39:33.00] já bate com o nosso CRM aqui e ele já fica cincado.
+[39:33.64 - 39:35.64] Coloca o e-mail dele, o nome da empresa.
+[39:37.56 - 39:39.04] O nicho dele.
+[39:39.76 - 39:41.84] E aí começa a ficar legal o jogo. Coloca.
+[39:41.84 - 39:47.12] Coloca todos os serviços que ele presta.
+[39:47.96 - 39:49.68] Em detalhes ele tem que colocar lá.
+[39:49.68 - 39:55.78] Todos os serviços que ele presta.
+[39:55.78 - 40:02.53] O diferencial dele.
+[40:02.53 - 40:04.89] Alguma observação importante que ele tem que a gente saiba.
+[40:11.07 - 40:13.47] Ele coloca a logo dele.
+[40:14.83 - 40:16.27] Logo da empresa.
+[40:16.27 - 40:18.47] Caso ele não tenha logo a gente coloca tipo um
+[40:19.15 - 40:22.51] um check box que ele marca que ele não tem logo para a gente criar.
+[40:23.27 - 40:25.15] Certo? E aí quando por exemplo o logo dele
+[40:25.19 - 40:27.27] e tem um quadradinho que não tem um logo.
+[40:29.34 - 40:32.10] Quando ele tem essa ele clica nessa funcionalidade
+[40:32.10 - 40:34.02] que de não tem um logo o que acontece?
+[40:37.03 - 40:40.99] O nosso CRM abre o nosso formulário ele abre uma etapa
+[40:42.03 - 40:45.91] perguntando as cores que ele quer.
+[40:47.39 - 40:49.47] Na logo site etc.
+[40:50.11 - 40:52.43] E ele seleciona uma parede de cores.
+[40:52.43 - 40:56.39] E quando ele vai para o próximo a gente pede 12 fotos de serviços dele.
+[40:56.83 - 41:02.23] E três vídeos de serviços dele.
+[41:04.47 - 41:08.03] E aí quando a partir do momento que ele envia.
+[41:09.15 - 41:12.35] Vou colocar aqui a partir do momento que ele envia esse forms.
+[41:14.41 - 41:17.01] O Closer já vai ter enviado esse enviado.
+[41:18.09 - 41:20.61] Tudo se agrupa em um único lugar dentro do CRM.
+[41:21.25 - 41:23.89] Vai vir todo o registro do cliente.
+[41:34.20 - 41:38.16] E o que é interessante quando chega esse registro total
+[41:38.16 - 41:41.44] aqui do cliente o nosso CRM.
+[41:43.69 - 41:52.69] Ele envia para um agente do cloud executar tudo do cliente.
+[41:52.93 - 41:56.09] Então o agente do cloud ele já cria o site.
+[41:56.09 - 41:58.81] Em papo de 30 segundos cria o site.
+[41:59.53 - 42:02.93] Ele assim que cria o site hospeda da CloudFair.
+[42:04.53 - 42:07.77] É tipo uma plataforma que hospeda os maiores sites do mundo.
+[42:07.77 - 42:09.37] Eles hospedam tudo.
+[42:09.37 - 42:12.09] YouTube todas as empresas imaginam a CloudFair que hospeda.
+[42:12.85 - 42:16.25] E aí a CloudFair é muito pica rapaziada. Ela é de graça.
+[42:17.17 - 42:19.69] Você consegue hospedar até que em sites de graça lá dentro.
+[42:20.41 - 42:24.09] E ainda com o domínio. Então como faz ela hospeda e cria o domínio
+[42:24.65 - 42:26.41] baseado no nome da empresa.
+[42:26.41 - 42:31.25] Então vamos porque o nome da empresa do cara é Mendonça Florin.
+[42:31.33 - 42:33.45] Sei lá Mendonça Florin.
+[42:34.21 - 42:38.77] Ele vai criar o domínio Mendonça Florin.pages.dev.
+[42:38.93 - 42:40.97] Esse aqui é o final dele.
+[42:41.01 - 42:43.97] Então em 30 segundos ele cria o site atrás do template que a gente tem.
+[42:44.45 - 42:45.81] Com as fotos do cliente.
+[42:45.81 - 42:48.05] Se não tiver cria logo já coloca as cores que ele pediu.
+[42:48.61 - 42:51.17] Hospeda na CloudFair já cria o domínio e já deixa público.
+[42:52.77 - 42:56.09] Depois disso já cria também em 30 segundos.
+[42:57.37 - 43:01.81] Os 12 posts do Insta já com design e tudo pronto.
+[43:03.61 - 43:08.41] Os quatro destaques do Insta também já fica pronto.
+[43:15.82 - 43:27.66] Depois cria também os reviews que vão ser postados no GMB.
+[43:31.38 - 43:33.66] Se tiver logo já vai ter criado e vai ter vindo no arquivo.
+[43:34.26 - 43:36.38] Quando ele finaliza esses primeiros passos porque a gente
+[43:36.38 - 43:40.10] entrega só quatro coisas GMB Instagram site e logo.
+[43:40.38 - 43:43.58] Quando ele finaliza esses quatro ele pega cria uma pasta drive.
+[43:45.54 - 43:49.66] Dentro do drive do nosso Google com o nome da empresa do cliente.
+[43:50.10 - 43:54.94] Lá dentro ele coloca quatro arquivos mais ou menos que são fotos e vídeos.
+[43:56.50 - 43:58.86] São todos os fotos e vídeos que o cliente pediu lá no formulário.
+[43:59.46 - 44:06.59] Os reviews do GMB e por último os entregáveis.
+[44:07.75 - 44:10.91] E abaixo disso ele criou também de reuniões que sempre que a gente
+[44:10.91 - 44:13.67] for fazer uma reunião com o cliente vai ficar gravado e vai ficar os pedaços aqui.
+[44:13.99 - 44:15.19] Na aba de entregáveis.
+[44:16.99 - 44:21.51] Vem tudo o site em HTML caso ele queira depois mudar.
+[44:22.03 - 44:33.26] Os 12 posts do Instagram a logo.
+[44:38.12 - 44:39.24] E basicamente é isso.
+[44:43.04 - 44:57.50] Assim que ele cria isso o próprio agente do cloud pega e envia uma mensagem.
+[44:58.66 - 45:05.60] Para o nosso cliente com tudo pronto no WhatsApp.
+[45:06.20 - 45:08.60] O que acontece a partir desse momento apoiado muito importante.
+[45:10.65 - 45:14.41] E o cliente ele pede algum alguma alteração.
+[45:16.21 - 45:22.49] O cloud ele entende que o cliente pediu uma alteração e alerta o nosso grupo
+[45:23.13 - 45:32.42] operacional de execução e o cliente pediu alterações.
+[45:33.14 - 45:36.50] Porque eu não deixo o cloud fazer as alterações apoiado porque ainda tem
+[45:36.54 - 45:37.06] muito erro.
+[45:38.46 - 45:41.58] A gente está treinando o nosso agente do cloud tem uns dois três meses para
+[45:41.58 - 45:44.18] poder fazer a operação sozinho e ainda se ele começa alguns anos.
+[45:44.66 - 45:47.38] Então prefere que o grupo operacional resolva isso antes.
+[45:47.86 - 45:48.74] Ele alerta lá no grupo.
+[45:49.50 - 45:51.54] A gente tem um cargo aqui dentro que se chama.
+[45:52.86 - 45:54.78] GT Cloud que é o gestor de cloud.
+[45:56.34 - 45:57.30] Ele especialista nisso.
+[45:57.74 - 46:01.54] Ele vai lá no grupo do WhatsApp ver o que o cliente pediu.
+[46:02.34 - 46:05.86] E aí entra agora entra o nosso CRM operacional.
+[46:06.58 - 46:09.26] Lá no CRM operacional ele é dividido da seguinte maneira.
+[46:10.66 - 46:11.18] Tem aqui.
+[46:12.26 - 46:16.74] Hava de clientes certo.
+[46:18.54 - 46:20.10] Hava de dashboard geral.
+[46:21.62 - 46:22.58] O dashboard geral.
+[46:23.34 - 46:24.02] Clientes.
+[46:24.74 - 46:25.74] Equipiais.
+[46:29.30 - 46:30.66] Certo é dividido da seguinte maneira.
+[46:31.22 - 46:31.66] Paráclica.
+[46:32.22 - 46:35.42] Hava de dashboard são basicamente o resumo de quantos clientes sem ativo
+[46:35.46 - 46:38.58] quando saíram quando deram turn não vou nem aprofundar isso.
+[46:39.10 - 46:42.70] Na Hava de clientes vai ter lá exatamente todas as infos do cliente.
+[46:43.58 - 46:44.22] Vai ter tipo assim.
+[46:46.30 - 46:47.66] De uma maneira mais organizada.
+[46:53.00 - 46:55.32] Vai ter lá o nome do cliente vamos colocar aqui por exemplo.
+[46:55.80 - 46:56.08] Renan.
+[46:57.64 - 46:58.96] Da amendança Florian.
+[47:02.21 - 47:02.57] Certo.
+[47:03.77 - 47:06.37] E aí abaixo dele aqui vai ter a data.
+[47:06.97 - 47:07.53] Entrada.
+[47:08.85 - 47:09.29] E o nicho.
+[47:11.89 - 47:15.69] Aí é só o GT do Cloud clicar em cima.
+[47:16.53 - 47:18.09] Que vai abrir as infos do cliente.
+[47:19.29 - 47:21.17] E não só as informações do cliente.
+[47:22.05 - 47:25.45] A gente colocou uma conexão a gente fez uma API do Cloud que a gente
+[47:25.45 - 47:26.97] utiliza a chave API do Cloud.
+[47:27.65 - 47:29.33] Para o meu gestor de Cloud.
+[47:29.77 - 47:32.25] Ter acesso ao Cloud dentro do nosso próprio CRM.
+[47:32.89 - 47:34.25] Então ele também tem um chat.
+[47:34.73 - 47:35.13] Aqui.
+[47:35.65 - 47:36.81] Que é como se fosse o chat do Cloud.
+[47:42.02 - 47:44.18] E acima dele tem todos os entregáveis.
+[47:44.70 - 47:46.14] Ele consegue visualizar todos os entregáveis.
+[47:46.66 - 47:47.22] O Cloud fez.
+[47:47.78 - 47:48.62] Ele consegue visualizar.
+[47:49.54 - 47:49.74] Tudo.
+[48:01.20 - 48:04.88] E aí por exemplo ele clicou aqui viu as informações do cliente.
+[48:05.72 - 48:08.32] Viu todos o que já foi entregue.
+[48:09.08 - 48:09.32] E.
+[48:10.32 - 48:13.20] Acima que dos entregáveis vem a alteração.
+[48:13.60 - 48:14.32] Solicitada.
+[48:18.54 - 48:21.46] E aí o que o cara o meu GT de Cloud faz vem aqui no chat do Cloud.
+[48:22.14 - 48:22.98] Pede que é para alterar.
+[48:23.42 - 48:23.78] Altera.
+[48:24.30 - 48:25.38] Quando está 100 por cento.
+[48:26.06 - 48:26.86] Ele chega aqui.
+[48:27.50 - 48:30.42] Aqui tem um drop down que ele consegue clicar em cima de alteração.
+[48:30.82 - 48:31.94] Ele coloca resolvido.
+[48:32.38 - 48:34.38] E o Cloud avisa o cliente no grupo que foi resolvido.
+[48:35.46 - 48:36.54] A partir desse momento.
+[48:37.02 - 48:39.42] Que o cliente dá o OK que foi resolvido.
+[48:39.90 - 48:42.54] E o show está ótimo a gente pode seguir para o último passo.
+[48:42.98 - 48:44.10] É o passo do GMB.
+[48:44.70 - 48:46.22] Que é o passo dele liberar alguma negócio.
+[48:47.30 - 48:48.62] Dentro do próprio CRM.
+[48:48.98 - 48:50.18] Aqui na aba de entregáveis.
+[48:50.94 - 48:51.70] Tem uma aba.
+[48:52.14 - 48:54.66] Dentro dos entregáveis que ele fica tipo separado.
+[48:55.14 - 48:56.06] Abaixo tipo.
+[48:57.22 - 48:58.62] Como que eu vou colocar isso aqui do lado.
+[48:59.66 - 49:01.54] Tá ele fica tipo abaixo do chat do Cloud.
+[49:02.02 - 49:02.66] Imagina aqui embaixo.
+[49:03.02 - 49:04.02] Isso chama liberar.
+[49:04.54 - 49:06.14] GMB que é o passo mais complexo.
+[49:07.10 - 49:09.90] Quando o cliente ele dá um OK que está tudo certo.
+[49:10.82 - 49:12.86] Automaticamente essa essa etapa inicia.
+[49:12.90 - 49:13.82] Que que essa etapa faz.
+[49:14.30 - 49:17.38] Manda um tutorial para o nosso cliente de como liberar alguma negócio.
+[49:17.74 - 49:20.14] Ele manda o link da onde o cara tem que fazer o cadastro.
+[49:20.54 - 49:21.86] Manda um tutorial com print.
+[49:22.22 - 49:23.98] De todo o passo a passo que o cliente tem que seguir.
+[49:24.34 - 49:27.06] Manda um outro tutorial ensinando a fazer o vídeo de verificação.
+[49:27.58 - 49:28.66] E aí fica na mão do cliente.
+[49:29.66 - 49:32.10] Porque na moral é muito chato se ficar cobrando o cliente disso.
+[49:32.90 - 49:34.94] E aí quando o cliente libera o Google uma negócio.
+[49:35.42 - 49:36.90] Ele só passa o login para a gente.
+[49:37.30 - 49:38.18] A gente acessa.
+[49:38.66 - 49:42.58] E aí ainda assim a gente tem que fazer a otimização manual.
+[49:43.58 - 49:44.98] A otimização manual rapaziada.
+[49:45.82 - 49:47.90] Ela não é algo que vai ser para sempre.
+[49:48.54 - 49:51.74] Atualmente como que a gente faz a otimização da conta do nosso cliente.
+[49:51.78 - 49:53.26] Para ele pegar os primeiros rankings.
+[49:53.66 - 49:54.54] Ali do.
+[49:55.50 - 49:56.34] Do Google uma negócio.
+[49:56.38 - 49:57.26] Vou explicar para vocês.
+[49:58.26 - 50:00.90] A gente utiliza uma plataforma que se chama G.B.P.
+[50:01.94 - 50:04.56] Que é essa plataforma aqui.
+[50:08.20 - 50:09.00] Essa plataforma.
+[50:09.60 - 50:12.44] Quando você pega o acesso o login da conta do seu cliente.
+[50:12.48 - 50:15.88] Essa plataforma ela vai mostrar tudo que tem de incorreto.
+[50:16.24 - 50:19.20] E tudo que você tem que fazer para o seu cliente ranquear nas primeiras buscas do Google.
+[50:20.00 - 50:21.40] E aí você vai fazer tudo que ele pede.
+[50:21.64 - 50:23.28] É muito simples as otimizações.
+[50:24.24 - 50:26.80] E aí você agora vai chegar lá no grupo.
+[50:26.96 - 50:28.44] Depois de já ter feito as otimizações.
+[50:28.72 - 50:29.80] E vai falar para o cliente.
+[50:30.76 - 50:33.04] Cara olha só agora falta só você.
+[50:33.44 - 50:36.72] Pedir para os seus amigos e familiares colocarem os reviews e já vai começar a chegar aos clientes.
+[50:38.12 - 50:40.24] Ele criou uma média de 20 reviews.
+[50:40.52 - 50:41.04] O Cláudio.
+[50:41.44 - 50:44.48] Você vai pedir para o seu cliente postar uma média de três reviews.
+[50:45.12 - 50:45.76] Por semana.
+[50:46.12 - 50:46.92] É o que precisa.
+[50:47.72 - 50:48.24] Certo.
+[50:48.76 - 50:52.96] E aí se o seu cliente começar a conseguir postar três reviews por semana das que você criou.
+[50:53.28 - 50:55.76] Parabéns seu cliente vai ter um resultado fodido e um LTV grande.
+[50:56.20 - 50:57.04] Se ele não postar.
+[50:57.52 - 50:58.72] Como ele não vai ter resultado.
+[50:59.64 - 51:00.16] É batata.
+[51:00.92 - 51:04.60] E aí além disso apoiada além de ter que ele postar os três reviews.
+[51:05.12 - 51:08.60] Ainda no primeiro dia que vocês forem fazer a otimização vocês vão programar.
+[51:09.08 - 51:12.68] Doze postagens dentro do perfil dele para serem postadas a cada uma semana.
+[51:13.04 - 51:14.20] Quatro post por semana.
+[51:14.72 - 51:18.04] E quando ele postar as reviews você tem que expor essas reviews em menos de uma hora.
+[51:19.28 - 51:21.16] Ainda é manual esse processo.
+[51:22.44 - 51:24.00] Para nós aqui da nossa operação.
+[51:24.56 - 51:26.08] Acho que daqui dois dias já não vai ser mais.
+[51:26.40 - 51:26.80] Por que.
+[51:27.12 - 51:29.68] Tem um jeito de deixar essa otimização a resposta de review.
+[51:30.00 - 51:31.28] 100% automática.
+[51:31.88 - 51:32.36] E é como.
+[51:32.72 - 51:33.40] Utilizando.
+[51:33.72 - 51:34.64] Uma API.
+[51:35.12 - 51:36.00] Do GMB.
+[51:36.36 - 51:37.84] Uma API do Google é um negócio.
+[51:38.24 - 51:40.76] Porém essa API rapaziada ela não é liberada.
+[51:40.88 - 51:43.56] Para você simplesmente pegar lá a VPI e colocar dentro do cloud.
+[51:44.16 - 51:45.24] Você tem que enviar.
+[51:45.68 - 51:48.16] Uma solicitação para o Google.
+[51:48.52 - 51:50.48] Solicitando API e explicando o motivo.
+[51:52.24 - 51:53.80] Você tem que enviar todo o CRM.
+[51:54.32 - 51:56.76] Do seu só do seu operação para o Google aprovar.
+[51:57.68 - 52:00.20] Então é um pouquinho complexo de você conseguir.
+[52:00.76 - 52:03.92] Porém quando você consegue você vai ter um operacional 100% automático.
+[52:04.28 - 52:05.12] 100%.
+[52:05.72 - 52:08.40] E aí realmente não precisa fazer mais nada e dá para escalar os caras.
+[52:08.40 - 52:08.92] Seria um resultado.
+[52:11.92 - 52:13.88] Enrico é muita coisa para fazer.
+[52:14.44 - 52:15.04] De fato é.
+[52:15.48 - 52:16.76] Se você for montar o CRM.
+[52:17.16 - 52:20.24] Mas se você pegar o trecho dessa aula e enviar para o cloud code.
+[52:20.32 - 52:20.96] Ele faz sozinho.
+[52:21.08 - 52:23.80] Mas se você não quiser fazer com o cloud code e quiser fazer manual.
+[52:24.04 - 52:26.08] Eu vou dar o passo mais simples do mundo para vocês fazerem.
+[52:26.84 - 52:27.36] Se liga.
+[52:27.80 - 52:28.60] Cliente pagou.
+[52:29.20 - 52:29.84] Cliente pagou.
+[52:30.24 - 52:30.76] Vai mandar.
+[52:34.51 - 52:35.71] Missagem de boas vindas.
+[52:36.51 - 52:37.03] Depois disso.
+[52:37.83 - 52:45.98] Todas essas infos aqui que o cliente teria que completar no formulário.
+[52:46.62 - 52:50.02] Você pode fazer um formulário do Google Forms.
+[52:51.22 - 52:52.06] O cliente completou.
+[52:52.90 - 52:55.14] Você vai pegar o arquivo desse formulário.
+[52:55.54 - 52:56.54] Vai no cloud code.
+[52:57.62 - 52:58.14] Vai falar.
+[52:58.18 - 52:58.90] Um site.
+[52:59.90 - 53:01.50] Para o meu cliente.
+[53:02.82 - 53:03.82] Com essas.
+[53:05.10 - 53:06.50] E manda as.
+[53:07.42 - 53:08.42] Depois que ele criar.
+[53:09.30 - 53:10.02] Os pedido.
+[53:10.78 - 53:11.38] Na cláusula.
+[53:12.18 - 53:15.58] Pronto criou o site agora e depois pode vir falar agora.
+[53:17.90 - 53:19.26] Criou o insta.
+[53:20.14 - 53:20.98] E os post.
+[53:22.66 - 53:23.18] Depois.
+[53:23.90 - 53:24.42] Ele é caralho.
+[53:24.42 - 53:41.90] 11 postes. Depois, crie 20 reviews estratégicos. E aí por último, você vai lá no grupo do
+[53:41.90 - 53:48.74] cliente, manda tudo que você fez, cria uma pasta no drive, coloca tudo, cria uma pasta
+[53:48.74 - 53:49.74] no drive.
+[53:49.74 - 53:52.18] Você tem um exemplo de como seria esse review hoje?
+[53:52.18 - 53:59.10] Puta mano, o pior que fica com o meu gestor. Mano, é tipo assim, vou te dar um exemplo.
+[53:59.10 - 54:06.62] Ela fez um service de floor, certo? Que é piso. O review vai ser tipo assim. Contratei
+[54:06.62 - 54:14.14] o Gabriel, vamos dizer que seria o dono da empresa, para fazer um serviço de reparo de
+[54:14.14 - 54:27.90] piso aqui em Derriff. Ele foi muito atencioso, entregou antes do que a gente esperava. E
+[54:27.90 - 54:36.90] realmente ele tem o melhor tipo de serviço de pisos de Derriff.
+[54:36.90 - 54:43.42] Isso aí no caso é por conta, né? No caso o Claudio simularia um cliente para colocar
+[54:43.42 - 54:48.46] ali. Aí no caso não teria necessidade de ter várias contas do Google para fazer
+[54:48.46 - 54:49.46] esse...
+[54:49.46 - 54:54.42] Mano, quem vai colocar esse review é o nosso cliente. Você vai enviar um arquivo
+[54:55.18 - 54:59.62] vai pedir para mandar para os amigos e familiares postarem. Você nem se preocupa com isso.
+[54:59.62 - 55:04.66] E um detalhe que parece bobo, mas esse review dele é em português ou inglês?
+[55:04.66 - 55:09.98] Em inglês. Só que o que eu quero que vocês percebam, o Claudio já sabe fazer
+[55:09.98 - 55:15.34] isso, que ele é atualizado, mas toda hora eu falo o nome do Gabriel, eu falo toda
+[55:15.34 - 55:20.06] hora o tipo de serviço que eu fiz e onde que eu fiz, falo sobre ele sendo
+[55:20.06 - 55:23.38] atencioso, sobre o prazo que ele entregou e toda hora falando onde que eu fiz e
+[55:23.42 - 55:26.22] que ele tem o melhor serviço. Porque, por exemplo, se alguém for no Google e pesquisar
+[55:28.78 - 55:32.74] Best Florian Services in Derriff Beach. Vai aparecer aqui.
+[55:33.18 - 55:36.90] Melhor tipo de serviço de pis em Derriff Beach. O Google usa esse sink, tá ligado?
+[55:37.54 - 55:39.46] Para conseguir ranquear a pessoa.
+[55:39.46 - 55:41.94] Então é nesse estilo de review e review grande assim.
+[55:41.94 - 55:46.78] E se você conseguir, separa umas fotos, pede para o Claudio montar
+[55:46.78 - 55:48.86] esse review baseado nas fotos que ele mandou.
+[55:48.86 - 55:52.66] Porque quando a pessoa for postar, já coloca a foto, que agrega ainda mais valor.
+[55:53.50 - 56:00.58] E é basicamente isso, se você for fazer manual, é desse jeito, em vez de ter
+[56:00.58 - 56:03.66] todo esse processo automatizado que a gente tem, você faz de forma manual.
+[56:04.66 - 56:08.30] A minha recomendação inicialmente, fechou dois clientes, forma manual.
+[56:08.70 - 56:11.22] Quando eu estou tirando o terceiro cliente do segundo para o terceiro,
+[56:11.98 - 56:14.50] a gente vai entrar em uma próxima etapa agora que é a etapa de contratação.
+[56:14.50 - 56:26.02] Que é aí que eu acho que você deveria focar no CRM.
+[56:26.02 - 56:29.94] A última etapa do nosso vídeo da Troca a ideia agora
+[56:30.02 - 56:34.54] é a etapa, eu já vou passar por aqui, vou dar dessa outra nessa aqui.
+[56:34.54 - 56:37.10] É a etapa de contratação.
+[56:37.10 - 56:39.42] Eu vou falar exatamente dos cargos que você tem que contratar agora
+[56:39.62 - 56:45.30] para escalar a agência.
+[56:45.30 - 56:49.02] Agora, antes do fechamento dos dois clientes, a partir do terceiro?
+[56:49.02 - 56:52.42] Não, vou falar tipo agora, não que você contrata agora.
+[56:55.38 - 56:56.38] Bom, vamos lá.
+[56:56.38 - 56:59.02] Você fechou, assim minha opinião, você fechou um cliente
+[57:00.78 - 57:03.18] de 1.500 dólares para cima, o primeiro.
+[57:05.06 - 57:08.54] Eu já instantaneamente, instantaneamente
+[57:09.42 - 57:15.42] contrataria um gestor de tráfego, instantâneo, porque, mano,
+[57:15.82 - 57:19.38] isso é normal, já aventurei muita gente e a maior pior do pessoal
+[57:19.70 - 57:22.02] é assim que começa a rodar a operação e fechou os primeiros clientes.
+[57:22.46 - 57:26.06] Fica anoiado de não entregar resultado, tem que entregar o aparato em tempo.
+[57:26.90 - 57:29.66] Quando tu contrata um gestor de tráfego, ele vai fazer tudo.
+[57:29.74 - 57:31.86] Todo esse trampo aqui que você vai ter que fazer, ele vai fazer.
+[57:32.42 - 57:34.30] Eu já vou falar onde você acha esse gestor de tráfego.
+[57:35.18 - 57:38.98] Fechou mais um cliente.
+[57:39.14 - 57:40.34] Fechou mais um.
+[57:40.34 - 57:42.62] Eu contratarei agora um SDR, sênior.
+[57:43.58 - 57:45.70] Cara que é realmente bom.
+[57:45.70 - 57:47.90] Fechou mais um.
+[57:47.90 - 57:54.65] Você contrata um gestor de projetos, certo?
+[57:56.66 - 57:58.22] Fechou mais um.
+[57:58.22 - 58:00.02] Eu contrataria um designer,
+[58:00.02 - 58:02.54] apesar de não precisar mais um designer, que ele é o cara que vai
+[58:02.54 - 58:04.86] montar os templates de tudo.
+[58:04.86 - 58:07.18] E aí a gente vai tirando o peso do gestor.
+[58:07.18 - 58:11.97] Fechou mais um.
+[58:12.41 - 58:14.41] Fechou mais um.
+[58:14.41 - 58:20.53] CS, customer success.
+[58:24.81 - 58:28.73] E aí fechou mais um.
+[58:30.05 - 58:34.93] Ad, comercial.
+[58:34.93 - 58:38.80] Fechou mais um.
+[58:38.80 - 58:41.00] Outro gestor de tráfego. Por quê?
+[58:42.88 - 58:45.64] Você vai pegar o primeiro gestor de tráfego que você contratou
+[58:45.64 - 58:49.30] e vai tornar um gestor de cloud. Entendeu?
+[58:49.46 - 58:51.74] Ele vai deixar de ser um gestor de tráfego e vai virar um gestor de cloud,
+[58:51.78 - 58:55.14] porque ele já vai estar mexendo com o cloud há muito tempo.
+[58:55.14 - 58:58.38] Ele vai ter uma evolução e é esse contrato de gestor de tráfego.
+[58:58.74 - 59:03.82] E aí, por último, o contrato é um head operacional.
+[59:05.10 - 59:08.94] E aqui você dá uma operação 100% delegada com uma, duas, três,
+[59:08.94 - 59:11.42] quatro, cinco, seis, sete, oito, nove.
+[59:11.42 - 59:12.86] É bastante gente?
+[59:12.86 - 59:16.26] É. Só com uma operação dessa aqui, com nove pessoas assim,
+[59:16.86 - 59:20.34] ela fatura 400k até 500k mês.
+[59:21.34 - 59:26.10] Precisa de ter time de edição, mano, novos criativos, novas reações.
+[59:27.54 - 59:28.50] É que você não monta criativo.
+[59:28.50 - 59:30.42] Ah tá, é, se você for fazer.
+[59:30.42 - 59:32.02] É porque eu que gosto de talos meus, tá ligado?
+[59:32.02 - 59:33.62] Eu estou muito criterioso com isso.
+[59:33.62 - 59:36.66] Mas se você for testar muito criativo, sim, tá?
+[59:37.22 - 59:39.66] É porque, porra, é nesse ponto, viado, o teu único trampo
+[59:40.18 - 59:42.94] é analisar a métrica do comercial e gravar criativo.
+[59:44.02 - 59:47.22] Eu gosto de muito fazer como eu.
+[59:48.18 - 59:50.70] Faço toda a gestão de tráfego do comercial, de atrair livre.
+[59:51.26 - 59:54.70] Eu gosto de fazer tudo, viado, porque se tem algum erro sou eu.
+[59:55.22 - 59:57.26] Não tem como culpar algum terceiro.
+[59:57.26 - 60:00.34] Então, mano, eu penso na copo, eu gravo o criativo,
+[60:00.66 - 60:05.30] eu edito o criativo, porque eu já manjo de edição, e eu vou lá e posto.
+[60:05.54 - 60:07.94] Quando eu não edito, eu pego um freelancer tipo o Rian,
+[60:08.50 - 60:09.98] que é muito bom, e faço para ele editar.
+[60:09.98 - 60:11.38] Quando eu tenho que poder escrever, eu vou se petitar,
+[60:11.38 - 60:13.22] porque ele sabe muito de edição.
+[60:13.22 - 60:15.22] Para isso, eu gosto de fazer todo o trampo.
+[60:15.22 - 60:20.16] Obrigado. Porque eu posso fazer exatamente do jeito que eu quero
+[60:20.16 - 60:22.08] e não perder tempo pedindo uma alteração.
+[60:22.08 - 60:25.72] Ok. Então, essa seria a ordem de contratação que eu faria
+[60:26.32 - 60:28.60] para chegar a uma métrica de 400, 500, claro.
+[60:28.60 - 60:32.48] E para vocês calarem. Já, a gente, na realidade,
+[60:32.48 - 60:34.92] tem uma operação bem mais reduzida, tá ligado?
+[60:34.92 - 60:38.60] Hoje a gente não tem designer, porque a gente já tem literalmente tudo,
+[60:38.80 - 60:42.08] todos os templates prontos, então não há mais necessidade.
+[60:42.60 - 60:43.76] Não tem rede operacional,
+[60:43.76 - 60:46.28] porque na realidade não é uma rede operacional, é meu sócio.
+[60:46.32 - 60:47.72] Então não tem.
+[60:47.72 - 60:50.16] O operacional chegou a ficar tão redondo,
+[60:50.36 - 60:53.56] tão redondo o nosso, que meu sócio hoje nem está na operação direito.
+[60:53.88 - 60:55.92] Ele está focado em outras operações, sabe?
+[60:57.16 - 61:01.60] E o rede comercial, isso é eu, então também não tem, tá ligado?
+[61:01.60 - 61:06.79] Então a gente fica numa rede de seis pessoas, entendeu?
+[61:07.63 - 61:09.07] Entendi, mano.
+[61:09.91 - 61:11.95] Mas se eu quiser ter todo esse time aqui,
+[61:12.15 - 61:14.23] eu saio do faturamento que estou hoje e chego nisso.
+[61:14.23 - 61:15.27] Só que eu não falei.
+[61:15.27 - 61:17.11] Por que o gestor de Cláudio?
+[61:17.15 - 61:20.91] O que o gestor de Cláudio faria com o tempo a mais de operação?
+[61:21.87 - 61:25.91] Mano, o gestor de Cláudio, ele serve para pensar em melhorar toda a operação,
+[61:26.55 - 61:29.71] melhorar o resultado de cliente, automatizando todos os processos,
+[61:29.71 - 61:33.55] melhorar a automatização, melhorar todo o flow de toda a operação operacional,
+[61:33.55 - 61:37.47] deixar tudo mais automático e cada vez mais tentar
+[61:37.47 - 61:39.51] ir eliminando cada cargo operacional.
+[61:40.11 - 61:42.47] Mas o gestor de projeto tem esse mesmo trabalho, não tem não?
+[61:43.23 - 61:45.47] Não, o gestor de projetos ele gere todo o cliente.
+[61:46.23 - 61:49.23] Ele não gere só o Cláudio, então ele cuida do gestor de tráfego,
+[61:49.55 - 61:52.35] ele cuida do gestor de Cláudio, ele cuida do designer,
+[61:52.63 - 61:56.59] ele cuida do CS e o rede operacional, ele cuida do gestor de projetos.
+[61:57.43 - 61:59.07] Ah, tá, entendi.
+[61:59.07 - 62:00.07] Entendi.
+[62:02.59 - 62:04.03] Pode falar, Matheus.
+[62:04.79 - 62:06.71] Eu estava na Cláudio segunda, cara.
+[62:07.15 - 62:12.03] O seguinte, pro meu caso, eu já fiz a minha primeira venda.
+[62:12.71 - 62:15.35] Ontem eu tive duas reuniões, uma deu no show,
+[62:15.91 - 62:19.75] e outra eu vendi, eu vendi para outro cliente.
+[62:20.11 - 62:23.47] E aí, essa semana, eu já estou com a agenda 100% lotada,
+[62:23.47 - 62:25.79] pelo menos duas ou três reuniões por dia.
+[62:26.91 - 62:28.19] Excelente.
+[62:28.19 - 62:30.27] Só que eu não tenho time, eu estou sozinho.
+[62:30.27 - 62:33.31] Você recomenda eu pausar as campanhas, porque tipo assim,
+[62:33.31 - 62:36.39] se chegar mais leads, eu vou ter que marcar para semana que vem,
+[62:36.39 - 62:38.55] porque eu não tenho mais horários.
+[62:38.55 - 62:41.11] Você, tipo, o que você recomenda fazer agora?
+[62:41.11 - 62:43.19] Contratar mais uma pessoa ou sei lá.
+[62:44.03 - 62:44.71] Próximo passo.
+[62:44.71 - 62:47.35] Tu, você não consegue fazer mais três reuniões por dia, não?
+[62:48.51 - 62:50.67] Mano, eu não consigo, velho.
+[62:50.67 - 62:54.71] Não consigo porque, justamente porque eu já fechei dois, entendeu?
+[62:56.03 - 62:59.43] Mano, então, eu na sua posição, já contrataria um gestor de tráfego,
+[62:59.43 - 63:03.05] um SDR e um close.
+[63:03.05 - 63:05.05] Eu já tentaria automatizar 100% operacional.
+[63:06.77 - 63:09.17] É porque eu estou estruturando o.
+[63:09.17 - 63:11.61] O comercial, vale errado, perdão.
+[63:12.05 - 63:15.77] Eu estou estruturando o operacional no cloud, entendeu?
+[63:17.93 - 63:20.99] Quanto você está investindo por dia?
+[63:20.99 - 63:26.39] Cara, eu comecei na quinta-feira, foi 250.
+[63:26.83 - 63:29.67] Daí no sábado eu já fechei a primeira.
+[63:29.67 - 63:32.27] E aí quando foi domingo.
+[63:33.91 - 63:37.95] Tipo, a partir de domingo está vindo de 5 a 7 leads por dia.
+[63:38.95 - 63:41.55] Uma média de quantos por dia? 300, 400 reais?
+[63:42.95 - 63:43.87] Não, 250.
+[63:45.15 - 63:47.11] Essa possibilidade está muito boa.
+[63:47.11 - 63:48.39] Tá bom.
+[63:48.39 - 63:50.51] Mano, eu colocaria te pensar.
+[63:51.51 - 63:54.62] Quanto de caixa você tem?
+[63:54.62 - 63:57.22] Depende para para anúncio?
+[63:57.22 - 64:00.18] Não, para a empresa em si, no total, contando anúncio, operação, tudo.
+[64:01.02 - 64:03.90] Cara, vou colocar uns 20, 25.
+[64:03.90 - 64:07.06] Então eu farei o seguinte, ascensão.
+[64:07.06 - 64:12.08] Calma aí, se tu me lembra dela.
+[64:12.08 - 64:14.88] Eu contrataria um gestor de tráfego.
+[64:15.76 - 64:19.36] Certo, para ele tirar o seu peso operacional, porque você está mandando muito bem no comercial.
+[64:20.64 - 64:24.08] E além do gestor de tráfego, eu contrataria o design,
+[64:24.60 - 64:28.20] porque o gestor muitas vezes não vai conseguir entregar uma arte visual muito legal
+[64:28.20 - 64:30.40] para o cliente, apesar de você já ter no cloud.
+[64:31.28 - 64:34.76] Só que o design ele vai suprir justamente a dor visual do cliente.
+[64:34.76 - 64:37.08] Porque o cliente é visual, tá ligado?
+[64:37.08 - 64:41.16] E existe uma parada, um termo dentro do mundo operacional que se chama quick win, eu vou falar?
+[64:41.68 - 64:47.28] Não, o que vai definir, mano, se o seu cliente vai ficar satisfeito contigo
+[64:47.28 - 64:49.80] durante os três meses ou não, são os primeiros 14 dias de projeto.
+[64:51.20 - 64:54.48] Então ele tem que estar em êxtase nos primeiros 14 dias.
+[64:54.64 - 64:56.80] E a gente sabe que é quase impossível entregar um lead
+[64:56.80 - 64:59.04] nos primeiros 14 dias se o cliente não cooperar.
+[64:59.04 - 65:01.28] Então é o designer que faz essa função.
+[65:01.28 - 65:04.48] Ele vai entregar o melhor site possível, o melhor Instagram, as melhores reviews,
+[65:04.84 - 65:08.36] as melhores postagens do Google para o seu cliente ficar em êxtase, tá ligado?
+[65:09.04 - 65:12.44] Enquanto isso, o gestor de tráfego, ele vai cuidando de fazer todos os processos
+[65:12.44 - 65:15.40] dentro do cloud, todos os entregáveis, liberação de conta, tudo.
+[65:16.60 - 65:20.04] E eu também já contratarei um SDR, já contratarei esses três cargos num dia só.
+[65:20.68 - 65:23.24] Porque, mano, você está me falando de 5 a 7 leads.
+[65:23.72 - 65:26.16] Você consegue fazer no máximo três costos por dia.
+[65:26.16 - 65:29.84] Esse limite de três costos por dia é por alguma tarefa externa da tua vida
+[65:29.84 - 65:32.24] ou porque realmente está puxado operacional.
+[65:34.56 - 65:38.90] É por os dois, pelos dois no caso.
+[65:38.94 - 65:41.50] Então eu já contratarei um SDR também.
+[65:41.74 - 65:46.22] E aí o seu único foco a partir dos próximos dias vai ser fazer call, call.
+[65:47.86 - 65:50.30] E nenhuma hipótese, mano, você mata a campanha, você desativa a campanha.
+[65:50.30 - 65:52.10] Desativou é a pior cagada que você pode fazer.
+[65:52.10 - 65:54.98] O que você pode fazer é reduzir o orçamento para seis reais
+[65:55.86 - 65:58.86] porque você não perde a inteligência da campanha, tá ligado?
+[66:00.10 - 66:03.82] E aí você reduz no máximo, no máximo por dois dias, no máximo, irmão.
+[66:04.18 - 66:06.66] Se você reduzir mais dois dias a caminha, ela fica buro.
+[66:07.26 - 66:10.06] Eu reduzo o máximo dois dias você corrige tudo o que você quer corrigir, alinha tudo.
+[66:10.66 - 66:14.06] E uma sugestão minha, contratando você vai baixar esse aplicativo aqui,
+[66:14.06 - 66:16.46] é o Souwork, é um escritório virtual.
+[66:18.18 - 66:19.42] Já vou falar.
+[66:19.42 - 66:21.82] É, e nesse escritório virtual você consegue organizar tudo bonitinho.
+[66:22.26 - 66:24.58] Sala de reunião, você consegue ter sala de cada um.
+[66:25.38 - 66:26.86] E aí você vai ter uma gestão boa.
+[66:26.86 - 66:31.34] E se você não tiver com muito tempo para fazer o CRM dentro do cloud,
+[66:31.98 - 66:34.42] você já pode comprar um CRM próprio
+[66:34.46 - 66:36.98] para ser tipo uma mão na roda, que já vem com todas as funcionalidades
+[66:36.98 - 66:39.02] que eu mostrei pronto, que é o mandem.
+[66:39.02 - 66:40.66] Eu usava ele antes de ir para o cloud.
+[66:40.66 - 66:45.42] Ele custa 300 reais e aí ele tem todas as funcionalidades já prontas.
+[66:46.34 - 66:49.06] Tipo vai ser manual ainda para falar com o cloud, mas para organizar
+[66:49.06 - 66:52.70] e ter uma gestão melhor no primeiro mês, você pode utilizar o mandem.
+[66:54.58 - 66:56.74] Você tinha me recomendado o como também.
+[66:57.62 - 67:00.66] Como é para a parte comercial.
+[67:02.06 - 67:04.14] O mandem para operacional.
+[67:04.70 - 67:07.06] E esse cara, esse gestor de tráfego, última dúvida.
+[67:07.78 - 67:11.58] Ele ele seria mais um tipo um cara do operacional
+[67:11.58 - 67:14.34] do que um gestor de tráfego que fica ali só.
+[67:16.02 - 67:24.28] Você vai achar esse cara nesse site aqui.
+[67:24.28 - 67:26.20] Vai no Google pesquisa contrátil subido.
+[67:28.48 - 67:31.68] Abre aqui o contrátil subido e posta toda a vaga lá do Pedro Sobral.
+[67:32.60 - 67:36.20] Tem muito gestor que vai aceitar 500 reais e 2 mil irmão
+[67:36.20 - 67:37.72] e o cara vai entregar a vida.
+[67:38.04 - 67:41.08] Os primeiros gestores que eu contratei foi um bro de formiga Léo
+[67:41.08 - 67:42.48] que era muito bom mesmo.
+[67:42.48 - 67:44.92] Pagava dois mil para ele por mês.
+[67:44.92 - 67:47.92] Irmão ele estava todos os dias das oito da manhã às dez da noite no PC
+[67:47.92 - 67:51.16] e dando a vida é para entregar o resultado.
+[67:51.80 - 67:54.08] Tipo normalmente esses caras
+[67:54.08 - 67:56.92] não é tipo o cara que só quer fazer tráfego pago não.
+[67:57.00 - 67:58.32] Não não.
+[67:58.32 - 68:00.88] Tipo assim tu tem que ser estratégico na contratação.
+[68:00.92 - 68:03.04] Tu tem que olhar para o cara entender duas coisas.
+[68:03.04 - 68:05.28] Tu não vai contratar qualquer pessoa sabe.
+[68:06.12 - 68:07.80] Deixa eu até voltar aqui pra falar que eu vou explicar isso.
+[68:07.80 - 68:10.24] Quando se for contratar para contratar pessoas estratégicas
+[68:10.80 - 68:13.28] não vai ser o primeiro cara que apareça ali na frente.
+[68:13.28 - 68:16.80] Tu vai contratar o cara que se adapta ao seu perfil de empresa.
+[68:17.28 - 68:19.44] Seu perfil de empresa é o perfil que você está buscando gente
+[68:19.44 - 68:23.00] que vai ficar dois anos contigo um ano contigo e gente que busca crescimento
+[68:23.16 - 68:25.64] que busca se tornar sócio e busca se tornar bem inserido
+[68:25.64 - 68:27.56] através da tua empresa e não da própria empresa do cara
+[68:27.56 - 68:28.80] através dos próprios clientes.
+[68:28.80 - 68:30.88] É isso que você tem que deixar muito claro.
+[68:30.88 - 68:33.28] Quando tu vai contratar tu tem que fazer uma contratação
+[68:33.68 - 68:36.24] onde tu vai mostrar para o cara que o cara só vai se fuder
+[68:36.64 - 68:38.48] e depois de três seis meses o cara vai estar ganhando bem
+[68:38.48 - 68:39.84] e vai mudar completamente de vida.
+[68:39.84 - 68:42.36] Se o cara que topar se fuder por três seis meses esse é o cara.
+[68:42.88 - 68:45.44] Hoje todos os meus vendedores eles moram aqui em São Paulo.
+[68:45.80 - 68:47.32] Moram num puta prédio.
+[68:47.32 - 68:48.40] Todos eles vieram do interior.
+[68:48.40 - 68:49.20] Teve gente de brotas.
+[68:49.20 - 68:51.16] Teve gente que veio de Jundia todos fudidos.
+[68:51.64 - 68:53.64] Um menos três mil reais por mês era um CLT.
+[68:54.08 - 68:56.24] Falei mano eu vou ganhar menos três mil eu vou ganhar dois e quinhentos.
+[68:56.36 - 68:57.84] Vocês vão só se fuder.
+[68:57.84 - 68:59.60] Vamos viver na merda por três seis meses.
+[68:59.60 - 69:01.88] Mas eu prometo que muda a vida de vocês.
+[69:01.92 - 69:05.88] Hoje um deles se torna um sócio e ganha pelo menos setenta mil meses.
+[69:06.04 - 69:07.64] Para mais para bem mais.
+[69:07.64 - 69:12.76] E o outro que entrou entrou um vendedor na operação tem dois meses.
+[69:12.80 - 69:15.68] Ele serve de Jundia e está morando em São Paulo no mesmo apartamento que eu.
+[69:16.04 - 69:18.56] E só de comissão no último mês ele tirou mais seis mil.
+[69:18.56 - 69:22.52] Então eu acho que é você vende a ideia de que o cara vai ficar fudido
+[69:22.52 - 69:23.52] por muito tempo.
+[69:23.52 - 69:26.32] Mas se ele aceitar essa porra ele vai se tornar bem sucedido por você.
+[69:26.84 - 69:28.16] Através de você.
+[69:29.16 - 69:30.60] Isso é interessante por exemplo.
+[69:30.60 - 69:35.44] Eu já tenho um cara que está marcado para fazer uma entrevista com ele no sábado.
+[69:36.32 - 69:38.52] Ele seria basicamente o gestor de tráfego.
+[69:39.04 - 69:43.56] Você acha interessante tipo eu dar comissão para ele também ou não.
+[69:44.28 - 69:48.16] Se liga para senção isso é muito importante bom ponto que você trouxe comissão.
+[69:48.64 - 69:51.28] Eu quero que você se responda alguém sabe a diferença entre comissão e bonificação.
+[69:52.80 - 69:56.00] Se o cara ganha comissão ele é comissão e o cara é seu sócio.
+[69:58.20 - 70:00.92] Tá a resposta aí tu nunca dá comissão para ninguém que não seja sócio.
+[70:01.68 - 70:06.16] Certo comissão é sociedade em distribuição de lucros bonificação colaborador.
+[70:07.08 - 70:09.76] Você vai colocar a bonificação Matheus para ele em cima de meta.
+[70:10.56 - 70:14.88] Você pode pesquisar depois bonificação OTE é um tipo de bonificação
+[70:14.88 - 70:16.04] o cara ganha por meta.
+[70:16.04 - 70:18.88] Se a meta do cara é entregar 10 lides para o cliente
+[70:19.32 - 70:21.36] você vai colocar checkpoints em cima dessa meta.
+[70:21.36 - 70:22.64] Por exemplo a 10 lides.
+[70:22.64 - 70:26.16] Se ele bater 70% da meta ele ganha uma bonificação.
+[70:26.76 - 70:28.84] Se ele bater 100 ele ganha outro e a cada 10%
+[70:28.88 - 70:30.80] para cima da meta que ele entregar ele ganha outra bonificação.
+[70:31.68 - 70:32.88] Não é acumulativo.
+[70:32.88 - 70:35.68] É tipo no final dos 30 dias tu vê onde que ele está finalizou o mês
+[70:36.00 - 70:39.48] e ele entregou 100% da meta ele não vai ganhar a bonificação dos 70
+[70:39.48 - 70:41.72] mais do 100 ele vai ganhar só do 100.
+[70:41.72 - 70:44.36] A única que é acumulativa é a cada 10%.
+[70:46.60 - 70:49.24] Então fazer o OTE a não ser que o cara seja sócio.
+[70:52.64 - 70:56.32] E para subir para a sociedade você tem alguns modelos muito bons
+[70:56.36 - 70:59.76] como vest em partnership que são os melhores modelos para a sociedade
+[70:59.76 - 71:04.60] sociedade onde o cara realmente vai ter 50% ou 30, 20, 10, 5% de tudo
+[71:04.92 - 71:07.20] que for gerar na empresa.
+[71:08.00 - 71:10.32] Eu não colocaria ninguém que você não tem uma extrema confiança
+[71:10.32 - 71:12.16] e que você não tem nenhuma.
+[71:12.16 - 71:14.36] Pô tu não pode ter uma puga atrás da orelha do cara.
+[71:14.36 - 71:16.36] Tá ligado? Tem que conhecer o cara pelo menos por uns seis meses.
+[71:17.52 - 71:19.68] Deixa eu ver se consigo mostrar para vocês aqui como funciona.
+[71:21.32 - 71:25.48] Eu vou mostrar a tabela de metas que a gente tem aqui.
+[71:29.01 - 71:37.81] Olha isso aqui é a tabela de um dos meus amigos.
+[71:45.19 - 71:46.79] Travou só para mim?
+[71:46.79 - 71:48.59] Não, travou aqui também.
+[71:50.59 - 71:52.07] É o Claudio rodando no Nalo.
+[71:52.07 - 71:54.95] Só passar para vocês aqui eu estou com o braço ligado aqui
+[71:54.95 - 71:57.99] só passando para vocês que eu tenho uma agência de marketing aqui
+[71:58.39 - 72:00.63] e isso tem uma estrutura completa de tráfico pago
+[72:00.63 - 72:04.07] se vocês precisarem e quiser entrar em contato para a gente fazer parceria.
+[72:06.31 - 72:14.51] Beleza.
+[72:14.51 - 72:16.71] Mano tá foda velho meu Chrome tá crushando toda hora.
+[72:17.71 - 72:19.75] Não tenho ideia do porquê.
+[72:19.75 - 72:23.47] O Chrome não é que crusha mils, o meu também.
+[72:25.71 - 72:27.63] Deixa eu mostrar para vocês.
+[72:28.63 - 72:31.95] Isso aqui é a planilha de bonificação de um dos meus vendedores.
+[72:32.99 - 72:34.91] Isso aqui é uma planilha de iniciante.
+[72:34.91 - 72:37.83] Tipo assim isso aqui é para um vendedor Júnior tá ligado?
+[72:38.51 - 72:41.31] Se o cara fosse por exemplo um vendedor Sender o salário do cara ia começar
+[72:41.31 - 72:45.39] por exemplo aqui o fixe ia começar tipo sei lá em 8 mil se o cara fosse Sender.
+[72:45.79 - 72:47.71] Como ele é Júnior começa em dois.
+[72:47.71 - 72:50.91] Então por exemplo ele ganha dois mil de fixo e a comissão alvo do mês
+[72:50.91 - 72:52.27] dele é três mil reais.
+[72:52.27 - 72:56.03] A meta do mês um é 50 mil e aqui ele tem os checkpoints dele.
+[72:56.55 - 72:59.39] Então se ele bater 75 por cento da meta ele ganha mil reais.
+[72:59.83 - 73:03.27] Se ele bater 100 por cento ele ganha três e a cada 100 a cada 10 por cento
+[73:03.27 - 73:05.71] a mais ele ganha 500 a mais.
+[73:05.71 - 73:08.03] Entendeu? Aí que tem a calculadora.
+[73:08.03 - 73:10.55] Então por exemplo ele tem nove níveis tá vendo?
+[73:11.15 - 73:12.35] Nove levels.
+[73:12.39 - 73:15.83] Cada level que ele sobe aumenta o fixo dele e aumenta a meta dele.
+[73:16.95 - 73:19.63] Como que funciona o upgrade de salário aqui dentro da nossa operação?
+[73:20.11 - 73:21.51] Vou explicar.
+[73:21.51 - 73:25.27] O cara ele pode decidir a qualquer momento.
+[73:26.43 - 73:28.83] Se ele vai subir para o próximo nível não.
+[73:28.83 - 73:31.03] A qualquer momento não tipo assim se ele bater a meta do mês
+[73:31.71 - 73:33.51] abre a possibilidade de ele querer subir.
+[73:33.51 - 73:36.35] Ele tem o direito de querer de subir para o próximo nível
+[73:36.35 - 73:38.19] ou manter o mesmo nível que ele está.
+[73:38.19 - 73:40.67] É ele que decide por quê?
+[73:40.67 - 73:42.27] Esse aqui é o nível 1.
+[73:42.27 - 73:43.87] A meta dele é 50 mil.
+[73:43.87 - 73:45.79] Vamos supor que ele bateu 60 mil nesse mês.
+[73:46.71 - 73:48.71] Ele pode subir para o nível 2.
+[73:48.71 - 73:52.47] Porém se ele quiser subir para o nível 2 a meta dele vai para 100 mil reais.
+[73:53.11 - 73:54.63] O fixo vai para três.
+[73:54.63 - 73:56.47] Só que o seguinte ele não pode regredir.
+[73:57.39 - 74:01.23] Se ele subir para o nível 2 e ele não entregar 100 mil reais no mês
+[74:01.79 - 74:06.10] ele vai tomar o que a gente chama de yellow flag.
+[74:06.10 - 74:08.94] No mês seguinte ele ainda vai estar no nível 2.
+[74:09.78 - 74:11.38] E ele tem que bater 100 mil.
+[74:11.38 - 74:13.34] Se no mês que vem ele não bater 100 mil reais.
+[74:14.22 - 74:15.78] Ele é demitido e demitido.
+[74:15.78 - 74:18.46] Não assim já fica até uma dica aí para vocês não se furem.
+[74:19.14 - 74:20.74] Vocês não podem utilizar a palavra demissão.
+[74:21.82 - 74:25.54] Certo porque todo contrato que é PJ e que não é
+[74:26.46 - 74:28.98] como posso dizer CLT que não é carteira assinada
+[74:28.98 - 74:31.02] você não pode utilizar a palavra demissão.
+[74:31.02 - 74:33.38] Se vocês utilizarem a palavra demissão.
+[74:34.42 - 74:36.82] A qualquer momento que o cara estiver gravando
+[74:37.58 - 74:40.02] o cara pode entrar com um processo trabalhista em cima de você.
+[74:40.90 - 74:42.62] Eu tomei um processo trabalhista esses meses para trás
+[74:42.62 - 74:44.02] porque eu utilizei essa palavra.
+[74:44.02 - 74:46.50] Só por ter falado demissão.
+[74:46.50 - 74:47.86] Então você não pode utilizar demissão.
+[74:47.86 - 74:49.78] É rescisão.
+[74:49.78 - 74:51.06] Recisão.
+[74:51.06 - 74:52.14] Toma cuidado.
+[74:52.14 - 74:53.14] Que processo trabalhista.
+[74:53.14 - 74:55.46] Me fala Henrique. Também me lasquei com as dicas.
+[74:56.02 - 74:58.58] É uma pica velha isso aqui rapaziada.
+[74:59.02 - 74:59.98] Como é que pode né.
+[74:59.98 - 75:01.78] Justiça aqui do Brasil é complicado.
+[75:01.78 - 75:03.58] É ridículo ridículo ridículo.
+[75:03.58 - 75:04.74] Você fala demissão irmão já era?
+[75:04.74 - 75:05.74] Você se fudeu.
+[75:05.74 - 75:07.70] Então você só utiliza a palavra rescisão de contrato
+[75:07.70 - 75:09.62] porque PJ é contrato certo.
+[75:09.62 - 75:11.82] O cara pode falar não mas ele me obrigava a fazer reunião todo dia.
+[75:11.82 - 75:12.82] Não era demitido.
+[75:14.78 - 75:15.62] O cara foi demitido.
+[75:15.62 - 75:17.74] Fudeu eu vou só pagar uma indenização fodida pro cara.
+[75:17.74 - 75:19.66] Henrique você conseguiria.
+[75:19.66 - 75:21.42] Provavelmente você vai falar disso ainda.
+[75:21.42 - 75:24.78] Mas disponibilizar uma abordagem do SDR e uma abordagem do Closer.
+[75:24.78 - 75:26.82] Você vai se prender das páginas?
+[75:26.82 - 75:28.06] Com certeza.
+[75:28.06 - 75:29.06] Perfeito.
+[75:29.06 - 75:31.10] Não pera aí você falou o que?
+[75:31.10 - 75:32.90] Uma abordagem do SDR.
+[75:32.90 - 75:35.82] Como que ele qualifica o cliente e uma do Closer fechamento.
+[75:37.02 - 75:38.74] Mano tá na aula passada isso aí.
+[75:38.74 - 75:39.82] Tá perfeito.
+[75:39.82 - 75:41.58] Perfeito. Desculpa metal.
+[75:41.58 - 75:42.50] Relaxa macho.
+[75:42.54 - 75:44.10] Henrique do tempo que você não tava aqui.
+[75:44.10 - 75:47.34] Eu vendi meu peixe aqui igual não tinha conversado na última reunião.
+[75:47.82 - 75:50.66] Falei que eu tenho agência aqui e trabalho com um tráfico parque também.
+[75:51.54 - 75:53.62] Só deixando avisado pra você.
+[75:53.62 - 75:55.90] Não de boa de boa.
+[75:55.90 - 75:58.02] Enfim é isso aí por exemplo só para vocês entenderem.
+[75:58.02 - 76:01.90] Se o cara estiver no nível 1 e ele pescar 60 mil reais por exemplo.
+[76:02.54 - 76:04.90] Vou até colocar o número quebrado pra saber que funciona.
+[76:04.90 - 76:07.30] 62.400.
+[76:07.30 - 76:09.02] Ele vai receber 6 mil reais de fixo.
+[76:09.02 - 76:11.58] Fixo não fixo mais bom 2 mil do fixo.
+[76:11.62 - 76:16.14] Ele bateu a meta e bateu 125 por cento da meta com os bônus acumulados.
+[76:16.58 - 76:17.90] Ligar 6 mil reais.
+[76:19.90 - 76:22.86] Isso aqui é um simulador e é basicamente isso.
+[76:28.86 - 76:31.86] Beleza acho que aqui já deu para explicar legal para vocês.
+[76:32.10 - 76:37.16] Alguém tem alguma dúvida nessa parte aqui.
+[76:37.16 - 76:38.80] Não tranquilo.
+[76:38.80 - 76:41.60] Eu tenho uma dúvida aqui mas eu não sei se se enquadram nisso aí.
+[76:42.04 - 76:47.60] É será que dá para contratar alguém com o CLT com o CLT não
+[76:48.20 - 76:52.36] como um freelancer para testar ou o cara vai ter que se ferrar mesmo.
+[76:52.80 - 76:53.56] Para testar.
+[76:53.56 - 76:56.20] Apesar que eu achei por isso toda hora.
+[77:00.53 - 77:02.17] Bom deixa eu voltar aqui para o.
+[77:03.61 - 77:04.21] Pro Miro.
+[77:05.41 - 77:09.65] A gente anda a pergunta de novo e não entendeu não mancaio.
+[77:10.21 - 77:11.29] Ela já achou que não.
+[77:13.09 - 77:15.33] O Enrico deixa eu te fazer uma pergunta.
+[77:16.25 - 77:20.77] O cara vai ter que se ferrar no caso os caras a gente a gente vai ter que se ferrar
+[77:20.77 - 77:26.45] procurando alguém para trabalhar e contratar ele realmente na PJ
+[77:27.09 - 77:31.33] ou dá para a gente fazer como se fosse um freelancer testar a pessoa
+[77:31.37 - 77:33.93] porque nem todo funcionário é um funcionário.
+[77:35.13 - 77:37.41] A gente faz aqui dentro um período teste de 30 dias.
+[77:37.93 - 77:40.77] Hoje não há mais de 30 dias e fazem 15 dias porque o nosso processo de
+[77:40.77 - 77:43.65] contratação ficou mais rígido mas não comecei a fazer 30 dias.
+[77:44.13 - 77:47.05] Então a gente fazia quando você pega uma pessoa que está desesperada por
+[77:47.05 - 77:49.89] dinheiro não tipo assim não só desesperada por dinheiro mas uma pessoa
+[77:49.89 - 77:52.73] que ela é boa e ela precisa de dinheiro.
+[77:52.77 - 77:54.93] Essa pessoa aceita uma proposta que a gente fazia chegar para o cara.
+[77:55.53 - 77:58.85] Ele não tinha nenhum cliente nenhuma experiência mas ele era esperto
+[77:58.85 - 78:00.77] e tinha potencial para se turizar o dinheiro.
+[78:01.45 - 78:04.09] A gente faz um teste de 30 dias se você se encaixar no perfil
+[78:04.09 - 78:07.29] executar tudo que a gente está pedindo você entra com a gente.
+[78:07.37 - 78:09.81] E recebe o valor do seu fixo nesse mês.
+[78:10.29 - 78:13.33] Se nos próximos 30 dias a gente achar que você não se encaixou
+[78:14.13 - 78:16.49] faltando 10 dias para acabar os 30 dias a gente pode dar o prévio
+[78:16.49 - 78:18.93] que a gente não vai continuar e você não vai receber por esse mês.
+[78:20.41 - 78:23.77] Se o cara for bom ele vai topar se o cara for ruim e tiver realmente
+[78:23.81 - 78:25.13] só pensado em dinheiro ele vai existir.
+[78:25.85 - 78:28.53] Então é um formato bom e você consegue saber se o cara é bom ou ruim ou não.
+[78:29.05 - 78:29.53] Ponto em virgula.
+[78:32.29 - 78:35.37] Essa cola tem que ser gravada e tem que ter contrato assinado pelo
+[78:35.37 - 78:37.05] governo para se assinar pelo GOV.
+[78:37.37 - 78:39.29] Se você não fizer nenhum desses dois o cara vai entrar com o processo
+[78:39.29 - 78:40.01] trabalhista contigo.
+[78:40.53 - 78:41.85] Eu tomei um processo trabalhista desse.
+[78:42.69 - 78:45.81] Então façam isso porque na hora da contratação
+[78:45.81 - 78:47.01] o cara vai falar tudo o que você quer ouvir.
+[78:48.01 - 78:50.37] No final o cara não entregou porra nenhuma se vai tirar o cara
+[78:50.37 - 78:51.25] o cara vai foder a sua vida.
+[78:52.37 - 78:53.49] E tem advogados bons também.
+[78:54.49 - 78:57.17] Se alguém entrar numa pica aí dá um salve que eu tenho o melhor
+[78:57.17 - 78:58.61] advogado desse mercado possível.
+[78:58.61 - 79:01.29] É o mesmo advogado que eu uso é o mesmo advogado que a Alfa usa.
+[79:01.93 - 79:05.21] Então se alguém entrar numa grossa dessa aí dá um salve que eu passo.
+[79:06.05 - 79:09.37] Tá mas é outra coisa que eu acho que também vai se enquadrar nisso aí.
+[79:10.29 - 79:13.13] A gente vai ter que contratar o cara realmente igual a carteira digital
+[79:13.13 - 79:15.29] de trabalho o CLT vivo ali.
+[79:15.33 - 79:17.81] Não é PJ PJ contrato PJ.
+[79:18.77 - 79:19.85] Contrato PJ.
+[79:19.85 - 79:20.97] Ah tá.
+[79:20.97 - 79:25.33] Ele vai criar um PJ para ele e a gente vai contratar através do PJ
+[79:25.33 - 79:31.49] como precedor de serviço bacana já tirou que eu estava precisando de.
+[79:32.41 - 79:34.49] Por isso que você não fala da emissão
+[79:34.49 - 79:36.37] porque você fala da emissão se cria o vínculo trabalhista.
+[79:37.33 - 79:39.01] O que abre a brecha para o cara processar.
+[79:40.37 - 79:40.73] Correto.
+[79:40.73 - 79:43.46] Felizmente.
+[79:43.46 - 79:47.18] Tá bom.
+[79:47.22 - 79:50.14] Alguém ainda com mais alguma dúvida.
+[79:50.14 - 79:52.94] Deixa eu ver se o time mandou a gente.
+[79:52.94 - 79:54.78] O Henrique só para deixar claro que o cara
+[79:54.78 - 79:58.54] também vai disponibilizar por exemplo o contrato.
+[80:00.66 - 80:03.14] Entre outras coisas um pouco mais formais.
+[80:12.58 - 80:14.78] Desculpa me repete.
+[80:14.78 - 80:17.50] Eu vou disponibilizar contrato mas eu não posso
+[80:17.50 - 80:19.82] porque quem faz os contratos em escritório de advogacia
+[80:19.82 - 80:22.38] escritório deles tem uma um contrato que eu assinei com eles
+[80:22.38 - 80:24.06] que eu não posso passar contratos.
+[80:24.06 - 80:24.50] Legal.
+[80:24.50 - 80:29.14] Tu pode dar uma noção uma base do que deveria ter
+[80:29.14 - 80:32.53] ou não ter dentro do contrato.
+[80:32.53 - 80:36.21] Oda mano porque eu tenho contrato de jogo com os caras.
+[80:37.13 - 80:39.37] Mas tipo assim de forma.
+[80:39.73 - 80:43.09] Dá para entrar em contato depois cara quando você for fechar contrato
+[80:43.09 - 80:44.69] eu vou ver com eles depois isso daí.
+[80:44.69 - 80:47.01] É falar com os caras não é tão caro assim.
+[80:47.01 - 80:49.69] Tipo o Leon foi fechar com eles entendeu.
+[80:49.69 - 80:52.33] Mas é tipo eles colocam.
+[80:52.37 - 80:56.65] Não eu conheço os advogados eu sei que você sabe o que eu estou falando.
+[80:57.09 - 81:01.05] Eu sei que mas enfim tipo é só você.
+[81:02.29 - 81:06.65] Porra você ficou na situação de verda mas não não mas eu entendi.
+[81:08.29 - 81:09.77] É tipo o cara assinando que é o período do teste
+[81:09.77 - 81:12.85] que ele compreende tudo o que eu estou falando que ele não.
+[81:13.09 - 81:14.53] Justo justo.
+[81:15.29 - 81:16.57] Entendeu.
+[81:16.57 - 81:20.12] Sim sim sim eu vou ficar em paz.
+[81:20.12 - 81:24.86] Bom alguém com mais alguma dúvida.
+[81:24.90 - 81:27.66] Cara não acho que na verdade mais para frente
+[81:27.66 - 81:30.06] o Mateus podia falar alguma coisa que é o cara que está voando.
+[81:31.90 - 81:35.18] É Mateus vai abre a câmera e se expõe por público.
+[81:38.30 - 81:42.34] Pelo amor que eu estou me arrumando que eu tenho uma outra cal oito horas.
+[81:43.54 - 81:46.06] Se tem se tem meia hora eu tenho meia hora.
+[81:47.82 - 81:49.22] Para mim tá louco.
+[81:50.02 - 81:52.10] Como me passa a me fala qualificação desse jeito.
+[81:53.82 - 81:56.30] Deixa eu pegar aqui rapidão.
+[81:56.38 - 81:57.58] Fazer uma proposta.
+[81:58.98 - 82:00.98] O muro deixa eu ver aqui ó.
+[82:05.21 - 82:08.89] Dois anos Estados Unidos é remodeling.
+[82:10.37 - 82:12.41] E pensam na pintura.
+[82:13.73 - 82:19.37] Ele está fazendo o site e o Instagram dele mas por conta própria.
+[82:20.45 - 82:23.21] Depende de indicação nunca investiu nada para.
+[82:24.45 - 82:27.57] Para resolver isso nem com uma agência tráfego pago nem nada.
+[82:28.45 - 82:32.57] E ele tipo depende de indicação e quer tipo muito.
+[82:34.05 - 82:37.26] E ele fatura.
+[82:37.26 - 82:38.78] Gente eu pego sim.
+[82:38.78 - 82:41.22] Fatura de 15 a 20 por mês.
+[82:42.22 - 82:45.18] Quanto você vai ofertar para ele.
+[82:45.18 - 82:50.02] Mano eu vou ver qualquer tipo vou sentir na calma.
+[82:51.46 - 82:54.26] O objetivo é de três.
+[82:54.26 - 82:57.70] De cinco três mas eu vejo que.
+[82:58.10 - 83:01.86] Que o filho ali pelo filho mesmo é menos daí eu falo dá um céu.
+[83:02.70 - 83:06.34] Vou te soltar uma proposta.
+[83:06.34 - 83:11.18] Eu toco a qual se eu vender eu quero 50 por cento e eu vou vender sim com mil.
+[83:12.22 - 83:13.22] Fico com.
+[83:14.30 - 83:19.09] O que é isso agora.
+[83:22.04 - 83:23.56] Acho que ele ia pensar.
+[83:25.56 - 83:28.72] Agora eu vou ter que me virar para o cara andar no show aqui.
+[83:29.72 - 83:32.60] Se não aceitasse juntava todo mundo do grupo e bateu.
+[83:33.92 - 83:35.64] Não sei se você está doido.
+[83:39.52 - 83:41.84] Eu vou abrir como gravar em Ricão.
+[83:41.84 - 83:44.36] Não vou fazer aqui mas eu vou compartilhar mas elas vão compartei com ela.
+[83:46.28 - 83:49.00] Deixa eu ver se tem como eu.
+[83:49.00 - 83:52.52] Caralho os caras baniram o discórdia da pita ver se a gente fazia tudo o discórdia.
+[83:56.93 - 83:59.45] Deixa eu ver uma coisa aqui com o mundo.
+[83:59.45 - 84:01.89] Acho que dá para fazer pelo zoom compartilhar pelo zoom.
+[84:02.93 - 84:06.45] Mano eu queria uma parada rapaziada que eu não poderia estar disponibilizando ainda.
+[84:06.49 - 84:09.89] Mas em situações específicas que nem essa acho que rola.
+[84:23.78 - 84:26.74] Eu criei rapaziada eu vou soltar uma comunidade.
+[84:27.70 - 84:30.06] Vocês estão ligados acho que todo mundo que está ligado que eu tô criando aplicativo.
+[84:33.94 - 84:37.38] A gente fez um lançamento bem batendo um faturamento legal e a gente vai criar uma comunidade
+[84:37.38 - 84:42.22] onde basicamente vai ter um curso ensinando como que eu fiz todo o lançamento desde o zero
+[84:42.22 - 84:46.18] até como que eu cheguei nesse estado mas é um curso ensinando literalmente mostrando
+[84:46.18 - 84:49.02] e falando o passo a passo que eu fiz e vai ter uma comunidade.
+[84:49.66 - 84:53.82] Eu nunca vi ninguém fazendo aqui mas é uma comunidade que tem tudo.
+[84:54.02 - 84:57.18] Tem fórum tem alva de vendas tem hang de quem mais vendeu e tem col.
+[84:57.62 - 85:00.98] Onde dá para subir col dá para partilhar a tela dá para ligar a câmera tipo um discord.
+[85:01.74 - 85:05.70] E aí eu tô verificando que o time de tech aqui já está 100% funcionando.
+[85:06.26 - 85:10.02] Se tiver eu mando o link para vocês vocês se cadastram lá dentro.
+[85:10.54 - 85:13.50] Eu libero acesso de graça e eu compartilho pela por lá.
+[85:16.04 - 85:19.24] É que não está pronto ainda está tipo meio com os buis.
+[85:19.64 - 85:21.40] Mas se tiver a gente entra por lá.
+[85:21.40 - 85:23.28] Amarok olha essa autorização aí.
+[85:25.12 - 85:27.04] Só mostrar para vocês como está ficando.
+[85:27.04 - 85:28.12] Se liga.
+[85:31.06 - 85:33.66] Isso aqui por exemplo é a inicial.
+[85:33.66 - 85:37.02] Isso aqui seriam as alas é porque está meio seriam os primeiros passos
+[85:37.02 - 85:39.10] o cara teria que fazer na comunidade só que ainda não está pronto.
+[85:39.10 - 85:42.34] Está tipo textos aleatórios aqui e não vai se chamar tri.
+[85:43.06 - 85:47.78] Aqui mostra a sua posição dentro do ranking de quem que está mais dentro da comunidade.
+[85:48.34 - 85:51.50] A recorrência mensal que você está o curso.
+[85:52.34 - 85:55.46] Esses dois não vão mais existir as vendas que você fez.
+[85:56.14 - 86:01.02] Que cargo que você é a gente vai ter uma call por semana dentro dessa comunidade.
+[86:02.30 - 86:05.62] Aqui é tipo o fórum onde o pessoal vai trocar ideia vai comentar vai fazer post
+[86:05.62 - 86:08.86] então você pode postar pode perguntar pode fazer enquete se você quiser.
+[86:10.02 - 86:12.50] Aqui é onde o pessoal compartilha as vendas e é por aqui que suas vendas
+[86:12.50 - 86:14.70] são contabilizadas então sempre que você fizer uma venda
+[86:14.74 - 86:16.94] você vem que a gente está venda coloca o valor blá blá blá.
+[86:16.94 - 86:20.46] E você tem que comprovar que você vendeu com os nossos admes comprovando.
+[86:20.46 - 86:23.54] Você vai ser contabilizado dentro do teu.
+[86:24.78 - 86:27.74] Como fala dentro do seu do seu usuário.
+[86:28.50 - 86:31.98] E aqui por exemplo por exemplo a Sanina que eu venho aqui e vai do certo
+[86:32.46 - 86:35.66] assim que eu validar ela já vem aqui para a aba de vendas
+[86:35.74 - 86:39.06] já atualizando o perfil dela aba chat geral para vocês trocarem ideia.
+[86:39.74 - 86:43.54] Então ele fica exatamente que não esforça aqui que são os canais de voz.
+[86:44.50 - 86:47.06] Se conseguir entrar aqui como se fosse um discord mesmo abrir câmera
+[86:47.62 - 86:49.62] compartilhar a tela.
+[86:50.10 - 86:53.50] Tem as costas da semana o ranking de quem está mais vendendo.
+[86:54.26 - 86:57.02] Então é uma comunidade que a gente vai lançar e os membros que estão dentro.
+[86:57.58 - 87:00.34] Só que ainda tem tem bastante coisa para resolver.
+[87:00.90 - 87:02.90] Eu só estou vendo se.
+[87:02.90 - 87:05.46] Se realmente está funcionando 100% se tiver a gente já vai por lá.
+[87:06.38 - 87:16.32] Só tenta uma ligação rapidão.
+[87:16.32 - 87:18.40] Mas alguém chegou a fechar com um cliente.
+[87:21.45 - 87:22.73] Ainda não.
+[87:22.73 - 87:26.17] Ainda não fechei eu fechei dois irmão mas eu to me enbananando aqui
+[87:27.01 - 87:29.73] no processo só de entrega ainda se você acredita nisso.
+[87:30.33 - 87:32.01] Qual que é o chiquitinho mesmo que vocês estão pegando.
+[87:33.57 - 87:37.01] Mano eu consegui fechar 14997
+[87:37.85 - 87:41.85] e o outro que eu fechei foi 1497.
+[87:43.57 - 87:49.53] Tá bom o meu e de 1500 o primeiro foi 1500 e outro de 3000.
+[87:51.66 - 87:54.14] Esse que eu entrei ontem na comunidade
+[87:55.54 - 87:59.58] foi assim vocês chegaram a investir desde quando o Mateus começou a investir
+[87:59.58 - 88:01.62] foi que foi na quinta né.
+[88:01.62 - 88:04.74] Eu comecei na segunda mas foi tipo testando.
+[88:04.98 - 88:06.86] Daí a quinta tracionou.
+[88:06.86 - 88:09.90] Aí eu a partir de quinta foi 250 por dia.
+[88:11.26 - 88:14.06] Na sábado eu já fiz a primeira venda já daí.
+[88:15.26 - 88:21.15] Tu chegou a colocar enquanto o Mateus no geral até agora se fala.
+[88:23.31 - 88:24.31] Já vem.
+[88:26.11 - 88:28.23] Ou vocês estão rodando pela UPE mesmo né.
+[88:29.27 - 88:30.63] É o OPE.
+[88:32.63 - 88:35.43] O OPE é um icon verde não é?
+[88:36.51 - 88:38.39] O OPE é laranja.
+[88:38.39 - 88:39.43] Laranja.
+[88:39.43 - 88:40.95] Esse é o gateway né.
+[88:40.95 - 88:44.67] Isso chegou a dar uns 2000 mais ou menos.
+[88:47.18 - 88:48.70] Como assim 2000?
+[88:48.70 - 88:50.82] De geral de tráfego.
+[88:50.82 - 88:54.38] Não foi menos por menos.
+[88:55.94 - 89:00.14] Essa UPE aí tu fez na pessoa física pessoa jurídica aqui do Brasil de fora?
+[89:00.14 - 89:01.70] Fez quanto?
+[89:01.70 - 89:03.10] Só física mano.
+[89:03.10 - 89:04.10] Física né.
+[89:04.10 - 89:07.34] Na física vocês conseguem sonegar por mês até 50k viu galera.
+[89:08.38 - 89:09.74] É não tá só.
+[89:09.74 - 89:13.66] Aqui eu investi 1000 e 1500 até agora até hoje.
+[89:14.14 - 89:16.50] Só que hoje eu já diminui o orçamento porque se não.
+[89:17.50 - 89:18.66] Não estoura né.
+[89:18.66 - 89:21.58] Não é se não vou ter que marcar para semana que vem.
+[89:22.58 - 89:23.66] É isso que eu tenho.
+[89:23.66 - 89:26.26] E mano tu tá fazendo quantos criativos?
+[89:27.26 - 89:28.98] Tá rodando dois criativos só.
+[89:29.66 - 89:30.70] Legal, legal.
+[89:30.70 - 89:33.02] Você fez por conta própria ou foi no Arqats?
+[89:33.90 - 89:35.30] Não, eu gravei, eu gravei.
+[89:36.18 - 89:38.02] Você é mesmo o artista que foi posando também.
+[89:38.02 - 89:39.02] Gravei.
+[89:40.81 - 89:43.77] Aí o que mais performou para mim.
+[89:45.37 - 89:47.81] Foi um dos daqueles tipo.
+[89:48.45 - 89:49.57] Que era uma sala.
+[89:51.21 - 89:52.21] De transformação.
+[89:53.13 - 89:55.93] E o outro foi eu que escrevi mesmo.
+[89:56.65 - 89:57.65] A cópia do vídeo.
+[89:59.54 - 90:01.22] Eu apanhei muito no início mano.
+[90:01.22 - 90:04.34] Porque como eu estou acostumado a fazer criativo de venda aqui do Brasil.
+[90:04.34 - 90:05.34] O BR né.
+[90:05.58 - 90:07.58] Então a promessa inicial sempre é muito forte.
+[90:07.58 - 90:09.86] O Hulk ali está entoído com uma promessa forte.
+[90:10.18 - 90:11.86] Ele é totalmente outro mercado né.
+[90:12.66 - 90:13.66] É diferente mano.
+[90:14.66 - 90:17.34] Eu apanhei, esses dias eu tava conversando com o Henrico aí.
+[90:17.74 - 90:18.78] Aí ele me passou os bisos.
+[90:18.78 - 90:20.42] Mas no início eu apanhei no criativo.
+[90:21.22 - 90:22.10] Mano fantástico.
+[90:22.10 - 90:23.10] Parabéns a vocês.
+[90:23.86 - 90:28.30] Eu vou começar a rodar especificamente na terça-feira da semana que vem.
+[90:28.94 - 90:30.62] Ô Leon, mas eu vou te falar uma coisa irmão.
+[90:30.62 - 90:32.42] A melhor coisa que você faz é isso.
+[90:32.42 - 90:34.18] Eu mesmo aqui eu fui na loucura cara.
+[90:34.18 - 90:37.86] Porque é o seguinte ainda eu não consegui deixar 100% aliado.
+[90:37.86 - 90:39.74] Comercial, vendas, o que vai entregar.
+[90:39.74 - 90:41.02] Como vai entregar.
+[90:41.02 - 90:42.98] Eu ainda estou um pouco perdido nisso sabe.
+[90:43.34 - 90:44.34] Eu também.
+[90:44.62 - 90:46.26] Eu vou até rever algumas aulas aqui.
+[90:46.26 - 90:47.26] Porque é o seguinte irmão.
+[90:48.54 - 90:51.10] Eu dei o prazo para o cliente de entregar tudo para ele ali.
+[90:51.10 - 90:52.34] Dentro de cinco dias.
+[90:53.62 - 90:56.46] Senão eu devolvi o dinheiro.
+[90:56.46 - 90:58.30] Sabe a gente fez um contratozinho ali.
+[90:59.38 - 91:00.38] E aí o seguinte.
+[91:01.90 - 91:02.90] Você apanha irmão.
+[91:02.90 - 91:04.98] Igual essas coisas que o Henrico tá passando nessa aula aqui.
+[91:04.98 - 91:07.98] Se eu soubesse antes talvez seria até melhor para mim, entendeu?
+[91:08.98 - 91:10.14] É tudo novo também né?
+[91:11.10 - 91:12.10] Tudo.
+[91:13.14 - 91:14.54] Sobre a oferta aí que você falou.
+[91:15.10 - 91:16.02] Cara, mesma pegada.
+[91:16.02 - 91:17.62] Porque eu até falei com o Henrico.
+[91:17.62 - 91:19.02] Eu sou mais info produto né.
+[91:19.02 - 91:20.50] Rodo já tem um tempo já.
+[91:21.34 - 91:24.18] Cara, mesmo oferta agressiva aqui do Brasil.
+[91:24.18 - 91:25.82] Só traduzir que a galera lá.
+[91:26.50 - 91:27.70] Como é um baque né.
+[91:27.70 - 91:29.34] Se a gente prometendo para cacete.
+[91:29.34 - 91:30.94] A galera compra muito mais fácil né.
+[91:31.74 - 91:33.74] Não, eu estava com uma operação.
+[91:34.66 - 91:35.62] Que estava em dólar lá.
+[91:35.62 - 91:36.62] Só que era de nutra.
+[91:37.22 - 91:37.74] Tô ligado.
+[91:37.74 - 91:39.22] Tipo assim, é VSL e tudo mais.
+[91:39.22 - 91:40.78] Porra, mas isso aqui é muito diferente cara.
+[91:41.50 - 91:42.14] E aí.
+[91:42.14 - 91:42.66] É cara.
+[91:42.66 - 91:43.66] Estamos indo aí.
+[91:44.50 - 91:47.82] Mano, sabe que hora é a partir do fechamento velho.
+[91:48.14 - 91:49.46] Eu sou para fechar assim velho.
+[91:51.14 - 91:52.70] Mano, o negócio é o seguinte.
+[91:52.70 - 91:56.58] Eu acho que é porque você ainda não tem 100% de clareza ali.
+[91:56.58 - 91:57.26] Não é não?
+[91:57.26 - 91:59.54] Porque quando você sabe o processo todo é mais simples.
+[91:59.54 - 92:01.10] É que mano, vem de mercado financeiro velho.
+[92:01.10 - 92:01.62] É foda.
+[92:02.50 - 92:03.50] Ah, tô ligado.
+[92:03.50 - 92:05.30] É mudando de nicho assim da noite para o dia.
+[92:05.30 - 92:05.82] Tá ligado?
+[92:06.34 - 92:06.86] Toma aí.
+[92:07.62 - 92:09.78] Você é investidor de risco ou conservador?
+[92:10.50 - 92:11.82] Mano, de risco velho.
+[92:11.82 - 92:13.22] Vem de mercado cripto pai.
+[92:18.00 - 92:20.24] E agora compra bitcoin ou não?
+[92:20.24 - 92:20.76] Mano.
+[92:20.80 - 92:22.76] Espera que ele vai ter a queda de ajuste velho.
+[92:22.76 - 92:23.76] Aí você volta a comprar.
+[92:25.84 - 92:26.52] Mano, eu vou...
+[92:26.52 - 92:28.52] Pessoal, como é que foi a configuração da UOP de vocês?
+[92:29.64 - 92:31.72] Calma aí rapidão, vai rolar qual mesmo ô Matheus?
+[92:32.08 - 92:34.56] Então, eu vou sair da cauda, da cauda aqui.
+[92:34.56 - 92:37.32] Só para eu ligar para o cara para andar no show.
+[92:38.84 - 92:39.56] Fechou então.
+[92:39.56 - 92:41.12] Gente, Deus abençoe você.
+[92:41.12 - 92:43.72] Traz esse pênis para a gente ver o monstro em ação.
+[92:44.20 - 92:45.48] É mano, vocês estão na sorte aí.
+[92:45.48 - 92:48.20] Porque porra, eu tô sem nada para fazer as 8 horas.
+[92:48.20 - 92:50.04] Então, vamos de baixo.
+[92:50.08 - 92:52.52] Já dá uma dica aí para o cara andar no show.
+[92:52.52 - 92:53.48] O que eu faço agora?
+[92:53.48 - 92:54.20] Ligo mesmo?
+[92:56.39 - 92:57.35] Quer ter certeza?
+[92:57.35 - 92:59.07] Dá para ver para o cara visualizar a mensagem?
+[93:00.27 - 93:00.79] Não.
+[93:03.32 - 93:03.96] Vou fazer assim.
+[93:03.96 - 93:04.48] Calma aí.
+[93:05.20 - 93:06.20] Tire uma foto sua aí.
+[93:07.80 - 93:08.32] Selfie?
+[93:09.64 - 93:11.64] Selfie apontando para o computador.
+[93:12.04 - 93:12.68] Assim ó.
+[93:16.76 - 93:18.20] Montar um bagulhinho aqui.
+[93:20.11 - 93:21.91] Mano, você que vai fazer a calpa?
+[93:23.19 - 93:23.99] Não tem problema.
+[93:34.36 - 93:36.36] Vai ser o segundo que eu vou vender para o mentorado.
+[93:36.36 - 93:38.36] Já vendi para um esses dias aí.
+[93:44.70 - 93:47.50] Inclusive, rapaziada, sexta-feira a gente vai ter um jantar.
+[93:47.50 - 93:51.42] Quem quiser colar vai ser ali no hotel Tivoli.
+[93:52.78 - 93:56.62] Para qualquer pessoa que já adquiriu o produto meu, como vocês que estão aqui.
+[93:56.62 - 93:57.90] O valor é mil reais.
+[93:58.70 - 94:00.86] Está incluso já por todo o menu de degustação.
+[94:01.42 - 94:02.30] Vai um pessoal forte.
+[94:02.30 - 94:03.42] Quem quiser colar, dá um salve.
+[94:03.42 - 94:06.94] Vai ser sexta-feira acho que 19 horas.
+[94:07.90 - 94:09.98] Vão só 12 pessoas, que é do grupo, né?
+[94:10.46 - 94:10.94] Tipo, fechado.
+[94:10.94 - 94:12.62] Vai uma pessoa só que não é do grupo que é de fora.
+[94:15.98 - 94:16.62] Isso é chave.
+[94:20.15 - 94:24.87] Ô Enrico, deixa eu tirar uma dúvida com você a respeito da silêncio, mano.
+[94:25.51 - 94:28.63] Tem como entrar daqui um tempo, por exemplo?
+[94:28.63 - 94:30.07] Mesmo já tendo consumido...
+[94:32.50 - 94:37.06] Ou assim, daqui a 5 meses eu posso dar entrada para entrar na silêncio?
+[94:38.42 - 94:39.94] Mano, é porque lá não é...
+[94:40.34 - 94:41.38] Calma aí.
+[94:44.31 - 94:44.87] Porra, véi.
+[94:46.23 - 94:47.43] Pugou um barulho aqui, calma.
+[94:49.58 - 94:50.38] Você está ouvindo esse barulho?
+[94:51.18 - 94:52.94] Eu vou te mandar um whatsapp aí, ô Enrico.
+[94:53.34 - 94:55.18] É, mano, tem um barulho estranho aí, mano.
+[94:55.98 - 94:56.54] Calma aí.
+[95:01.38 - 95:02.34] Ei, casta.
+[95:12.38 - 95:13.26] Porra, essa, véi.
+[95:18.52 - 95:21.24] Calma aí, eu vou mutar, não vou ouvir vocês não só para parar esse barulho de merda.
+[95:59.80 - 96:01.16] Eu estava dando uma olhada aqui.
+[96:01.88 - 96:04.52] Ô Matheus, eu torrei aqui já 2k já, mano.
+[96:04.68 - 96:07.96] Por causa dos testes da oferta agressiva de início.
+[96:12.95 - 96:13.99] Você...
+[96:14.95 - 96:17.51] Começou com qual é o orçamento de cada campanha?
+[96:18.47 - 96:22.23] Comecei com 200 reais, consegui chegar aos primeiros vídeos.
+[96:22.79 - 96:24.87] Eu peguei e dobrei o orçamento.
+[96:25.35 - 96:26.95] Aí vinha uma demanda muito grande.
+[96:27.83 - 96:29.83] Aí até agora foi mais ou menos isso que eu gastei.
+[96:30.47 - 96:32.76] Entendi.
+[96:33.56 - 96:37.56] Eu comecei com menos, comecei com 100 reais cada anúncio.
+[96:38.20 - 96:44.30] Mano, domingo e segunda foi o dia que mais cai o vídeo, mano.
+[96:47.62 - 96:50.10] O meu único problema que está sendo é na responsa, cara.
+[96:50.10 - 96:52.10] Tem uma ideia do quanto eu consegui tracionar essa operação?
+[96:52.50 - 96:54.50] Não, eu não consegui para ninguém, sabe?
+[96:54.50 - 96:57.94] E aí eu estou demorando, eu não estou conseguindo responder rápido e dou uma evidência.
+[97:03.99 - 97:06.23] Quem aqui já tem essa ideia, RG? Me fala aí.
+[97:06.55 - 97:07.27] E gestor.
+[97:08.71 - 97:14.87] Mano, eu coloquei minha mulher para fazer o primeiro atendimento ali, você acredita?
+[97:15.51 - 97:17.35] Pô, foda que dá para fazer com...
+[97:17.35 - 97:20.87] É, eu queria fazer com a minha, só que a minha trabalha, eh, estuda, mano.
+[97:23.82 - 97:26.22] Moleque, a minha, a minha mulher que vai fazer para mim também.
+[97:26.22 - 97:27.74] Tu botando fé, eu vou contratar ela.
+[97:28.62 - 97:30.14] Então, mano, a minha mulher eu coloquei...
+[97:30.14 - 97:31.34] Vou encher o bolso dela, fi.
+[97:31.90 - 97:35.98] Porque os clientes, eles chegam ali sempre num horário bom.
+[97:35.98 - 97:37.26] Ela também estuda à noite.
+[97:37.90 - 97:42.38] Só que os clientes sempre chegam ali num horário bacana ali, então fica tranquilo para ela responder, sabe?
+[97:42.54 - 97:45.82] Para mim não chegou muito de isso que fora um horário padrão assim, não.
+[97:47.02 - 97:47.90] Aí, está me ouvindo?
+[97:48.86 - 97:49.50] Estou ouvindo.
+[97:50.38 - 97:52.94] Aí, eu consegui abrir uma versão abasada do CRM.
+[97:53.58 - 97:54.78] É porque ele não está pronto ainda.
+[97:55.74 - 97:57.50] Um do app que eu consegui falar.
+[97:57.90 - 98:01.02] Mas eu vou ter que mostrar para vocês, mas ele não está pronto, está bugado na realidade.
+[98:01.74 - 98:04.06] Mas dá para vocês verem mais ou menos como ele funciona.
+[98:04.46 - 98:05.10] Está vendo a tela aí?
+[98:12.26 - 98:12.82] Sim, sim.
+[98:14.02 - 98:14.58] Tô movendo.
+[98:14.58 - 98:15.22] O app chegou de novo.
+[98:15.46 - 98:16.90] Bacana, Victor, bacana.
+[98:17.30 - 98:17.78] Já era.
+[98:17.78 - 98:19.46] Apesar desse Google dele.
+[98:20.90 - 98:21.62] É louco.
+[98:21.62 - 98:22.74] Falou, enriu.
+[98:22.74 - 98:23.54] Valeu, brigadão.
+[98:24.98 - 98:25.78] O cara vazou.
+[98:26.58 - 98:28.66] Não, não, não, não, estava dando tchau aqui, é porque...
+[98:29.22 - 98:32.02] Eu estou saindo daqui da empresa aqui, eu sou dono de uma tabacaria, está ligado?
+[98:32.02 - 98:33.06] Deixa eu mostrar para vocês aqui.
+[98:34.74 - 98:35.62] Carai, cadê?
+[98:35.62 - 98:36.18] Mostrei.
+[98:38.31 - 98:39.19] Vou vim agora aqui, ó.
+[98:40.07 - 98:41.43] Mostrar aí a frente, está vendo?
+[98:41.83 - 98:42.63] Malouca, vai.
+[98:42.63 - 98:43.19] Malouca.
+[98:43.19 - 98:45.03] Caralho, que bacana que ele está, porra, velho.
+[98:46.15 - 98:48.23] Pera aí, como é que eu tiro essa borração aqui?
+[98:48.87 - 98:49.91] Aí, ó, olha lá.
+[98:49.91 - 98:52.95] Ele é o próprio Daniel Boracay, a gente não está sabendo.
+[98:53.91 - 98:55.03] Foda, onde que é essa aí?
+[98:55.03 - 98:56.23] Aqui, onde que é que você está de quezinho?
+[98:57.43 - 98:59.43] Irmão, ela fica aqui, você conhece?
+[98:59.83 - 99:01.27] Você conhece Goiás um pouco?
+[99:02.31 - 99:03.83] Nada, viado, zero, zero.
+[99:05.11 - 99:08.15] Fica dentro, fica aqui, Cristalina Goiás aqui.
+[99:09.51 - 99:11.91] É o local aqui onde eu tenho essa operação minha, sabe?
+[99:12.87 - 99:15.35] Oi, dá, tem bastante margem na tabacaria?
+[99:16.07 - 99:19.11] Mano, eu vou te falar um negócio, ela gira 250k a mês.
+[99:19.91 - 99:21.43] 250k a mês ela gira.
+[99:22.23 - 99:25.11] E eu tenho uma margem ali acima de 37%, mano.
+[99:25.43 - 99:26.39] O markup, né?
+[99:26.39 - 99:28.55] O markup meu é acima de 37%.
+[99:29.43 - 99:29.99] Tá bom.
+[99:30.63 - 99:32.15] Tá bom pro negócio físico ainda, tu.
+[99:32.87 - 99:33.51] É, ó.
+[99:33.99 - 99:35.19] Aí eu tô tentando.
+[99:35.19 - 99:36.95] Tem que dar tiro pra tudo que é lá, né, velho?
+[99:37.51 - 99:39.11] Eu ainda não cheguei no seu nível, então,
+[99:39.11 - 99:41.11] quando eu chegar no seu nível eu faço o que tem.
+[99:43.11 - 99:44.87] Oi, Henrique, eu te mandei a foto aí no WhatsApp.
+[99:45.91 - 99:47.59] É melhor a gente fazer outra, deixa eu pensar.
+[99:49.64 - 99:50.76] O cara não está te respondendo?
+[99:51.16 - 99:53.72] Henrique, posso te mandar a minha cópia no WhatsApp?
+[99:55.00 - 99:55.72] Manda aí.
+[99:57.90 - 100:00.22] Tá aqui não tá, mano, logo agora.
+[100:01.18 - 100:03.50] Eu vou fazer um aqui, vou montar um, calma.
+[100:23.24 - 100:25.00] Alô, tá o vídeo aqui?
+[100:26.52 - 100:27.08] Oi?
+[100:27.88 - 100:29.72] Ah tá, não vou, é que conectou do carro.
+[100:30.52 - 100:31.80] Agora tá de boa, tô ouvindo.
+[100:34.15 - 100:34.63] Boa.
+[100:35.03 - 100:36.07] Deixa eu ver se eu consigo pegar...
+[100:36.07 - 100:38.23] Puta, eu acho que não tem template aqui no...
+[100:39.19 - 100:40.23] No...
+[100:42.17 - 100:42.97] Calma aí, já sei.
+[100:42.97 - 100:43.93] Chave de template.
+[100:44.81 - 100:46.57] Caralho, faz muito tempo que eu não faço isso, velho.
+[100:49.61 - 100:52.41] E não tem template de voice.
+[100:53.21 - 100:54.73] Eu acho que não tem, não.
+[100:55.13 - 100:56.17] Isso, beleza.
+[101:01.27 - 101:04.71] Henrique, nesse início agora, eu queria só que você me passasse aqui.
+[101:04.71 - 101:07.43] Provo social ali, o que eu gostaria de criar mensagens,
+[101:07.43 - 101:10.55] como se fosse o cliente me mandando direto pelo WhatsApp ali,
+[101:10.55 - 101:11.75] pra mim tá passando,
+[101:11.75 - 101:13.75] pros novos links que estão chegando.
+[101:13.75 - 101:17.11] Você usa o que pra fazer essas mensagens fakes aí?
+[101:18.07 - 101:20.47] Calma aí, deixa eu colocar o fã, que se não, não dá pra ouvir.
+[101:23.21 - 101:26.57] Oi Henrique, eu vou ter que sair e entrar pelo celular.
+[101:26.57 - 101:28.57] Vai pedir aprovação de novo?
+[101:29.93 - 101:31.21] Vai, vai, vai, vai, aqui.
+[101:31.53 - 101:34.01] Fechou, vou quitar aqui a gente pelo celular.
+[101:34.81 - 101:35.53] Acho.
+[101:35.53 - 102:15.22] Vamos ver o que o GPT vai criar.
+[102:15.22 - 102:25.48] Vocês leram pra escrever?
+[102:25.48 - 102:27.48] Nem sei que porra é essa aqui, mano.
+[102:27.48 - 102:29.48] Word.
+[102:29.48 - 102:31.48] Do GPT. Vamos ver como que é.
+[102:33.48 - 102:35.48] É tipo o...
+[102:35.48 - 102:37.48] O hardware que caligente.
+[102:37.48 - 102:39.48] E o WhatsApp.
+[102:39.48 - 102:40.68] É, exato.
+[102:40.68 - 102:42.68] Mano, tá legal, tá legal.
+[102:43.64 - 102:44.68] Tá mesmo?
+[102:45.64 - 102:46.68] Tá, pô.
+[102:46.68 - 102:48.68] Valeu, GPT Contra.
+[102:48.68 - 102:50.68] E detalhe, mano.
+[102:50.68 - 102:52.68] Já deu uma oportunidade pro Codex?
+[102:52.68 - 102:54.68] Vem, cara.
+[102:54.68 - 102:56.68] Mano,
+[102:56.68 - 102:58.68] pesquisa um pouquinho mais, assim,
+[102:58.68 - 103:00.68] a minha familiaridade com o Encláudico já é muito maior,
+[103:00.68 - 103:02.68] mas o Codex,
+[103:02.68 - 103:04.68] por que que tem uma galera...
+[103:04.68 - 103:06.68] Só não vou falar o nome da empresa, mas tem uma empresa
+[103:06.68 - 103:08.68] fazendo todos os sistemas internos
+[103:08.68 - 103:10.68] com o Codex, que tu conhece.
+[103:10.68 - 103:13.99] Eu sei qual empresa, provavelmente.
+[103:13.99 - 103:15.99] Exatamente.
+[103:15.99 - 103:17.99] Isso, porra.
+[103:17.99 - 103:21.40] Mas é porque ele é mais barato?
+[103:21.40 - 103:23.40] Não, mano, o processamento dele,
+[103:23.40 - 103:25.40] tipo assim, a linha de raciocínio do Codex
+[103:25.40 - 103:27.40] tá muito foda.
+[103:27.40 - 103:29.40] A base é do Cloud, mano.
+[103:29.40 - 103:31.40] Melhor que do Cloud, né?
+[103:31.40 - 103:33.40] É, e é mais barato.
+[103:33.40 - 103:35.40] Se você quiser baratear o Cloud,
+[103:35.40 - 103:37.40] você consegue colocar a MiniMax,
+[103:37.40 - 103:39.40] acho que é assim que fala, que é mais chinesa,
+[103:39.40 - 103:41.40] pra o Cloud usar ela para processar
+[103:41.40 - 103:43.40] os dados.
+[103:43.40 - 103:45.40] E usar tipo o Cloud e o Codex
+[103:45.40 - 103:47.40] ao mesmo tempo no VSCode.
+[103:47.40 - 103:51.67] Já testaram?
+[103:51.67 - 104:13.03] Toma aí, só tenta uma ligação, rapaziada.
+[104:13.03 - 104:15.03] Ô, Mateusão, vai ter aquela
+[104:15.03 - 104:17.03] mesmo índio venda, irmão?
+[104:17.03 - 104:20.41] Mano, eu espero que sim, velho.
+[104:20.41 - 104:22.41] Beleza, eu tô aqui na guarda, então, aqui pra...
+[104:22.41 - 104:24.41] pra gente ver.
+[104:24.41 - 104:26.41] Todos esperamos que esse teu cliente
+[104:26.41 - 104:28.41] entre, ô, Mateus.
+[104:28.41 - 104:30.41] Ô, ô, Leon.
+[104:30.41 - 104:32.41] Deixa eu só te perguntar um negócio, irmão.
+[104:32.41 - 104:34.41] Só, você começa pela da empresa lá.
+[104:34.41 - 104:36.41] Aqueles vídeos lá que o Atus faz,
+[104:36.41 - 104:38.41] os vídeos ali é tudo
+[104:38.41 - 104:40.41] programadão, sabe, mano? Fala a verdade.
+[104:40.41 - 104:42.41] Como assim?
+[104:42.41 - 104:44.41] O último vídeo que ele lançou lá,
+[104:44.41 - 104:46.41] a vida de um CEO, aí do nada o cara
+[104:46.41 - 104:48.41] comprando uma GT-R lá, o cara vinha pra ele...
+[104:48.41 - 104:50.41] Tem lógica.
+[104:50.41 - 104:52.41] O cara aparecendo o relógio Ademar Piguet
+[104:52.41 - 104:54.41] pra ele lá no Valor do Paratec, mano.
+[104:54.41 - 104:56.41] Não, mano, é...
+[104:56.41 - 104:58.41] Não, não, é verdade. Pior que isso é verdade.
+[104:58.41 - 105:00.41] Hoje os bichos têm...
+[105:00.41 - 105:02.41] Não, eu tô te falando.
+[105:02.41 - 105:04.41] O Guguia,
+[105:04.41 - 105:06.41] o Bichinho é meu amigo de infância, tá ligado?
+[105:06.41 - 105:08.41] E aí o Atus...
+[105:08.41 - 105:10.41] É, não, antes dele ficar, porra,
+[105:10.41 - 105:12.41] podre de rico.
+[105:12.41 - 105:14.41] Outra vida.
+[105:14.41 - 105:16.41] Só que, mano,
+[105:16.41 - 105:18.41] hoje os caras, eles estão faturando
+[105:18.41 - 105:20.41] 6 milhões de meios aí.
+[105:20.41 - 105:22.41] Eles estão muito grandes, eles estão muito grandes.
+[105:22.41 - 105:24.41] Eles estão muito grandes.
+[105:24.41 - 105:26.41] Os bichos estão com 76
+[105:26.41 - 105:28.41] franquias aí.
+[105:28.41 - 105:30.41] Tá assim, absurdo.
+[105:30.41 - 105:32.41] Eu boto fé que o Leon tá falando
+[105:32.41 - 105:34.41] verdade, mano. Só que pensa,
+[105:34.41 - 105:36.41] se fosse mentira, você acha que o cara ia falar
+[105:36.41 - 105:38.41] na co-gravada? Não ia, mano.
+[105:38.41 - 105:40.41] Não ia.
+[105:40.41 - 105:42.41] Se fosse, se fosse, eu boto fé que é verdade,
+[105:42.41 - 105:44.41] tá ligado?
+[105:44.41 - 105:46.41] Não, quer ver? Vou mostrar uma parada pra vocês.
+[105:46.41 - 105:48.41] Aqui, ó, vou mostrar pra vocês.
+[105:48.41 - 105:50.41] Minha SDR é essa aqui, ó.
+[105:50.41 - 105:52.41] Aí sim, maluco.
+[105:52.41 - 105:54.41] Aí sim.
+[105:54.41 - 105:56.41] Já fiz o trato com a dona aqui.
+[105:56.41 - 105:58.41] Ela vai ser minha SDR de venda.
+[105:58.41 - 106:00.41] Ela que vai já mandar pra mim
+[106:00.41 - 106:02.41] pra ficar sublinha dela.
+[106:02.41 - 106:04.41] Ô, galera,
+[106:04.41 - 106:06.41] vocês conseguem ver minha tela, mano.
+[106:06.41 - 106:08.41] Vem aí.
+[106:08.41 - 106:10.41] Mandei. Ainda não.
+[106:10.41 - 106:12.41] Mandei.
+[106:12.41 - 106:14.41] Iniciar a transição?
+[106:14.41 - 106:16.41] Porra, tô vendo já? Tô vendo.
+[106:16.41 - 106:18.41] Ah, agora tá dando, pai.
+[106:18.41 - 106:20.41] Tá certo? A reportagem
+[106:20.41 - 106:22.41] da alfa
+[106:22.41 - 106:24.41] na Forbes, né? Não sei se vocês sabem,
+[106:24.41 - 106:26.41] mas ele já saiu na Forbes.
+[106:26.41 - 106:28.41] Caraca.
+[106:28.41 - 106:32.30] Ó, eu aqui, ó.
+[106:32.30 - 106:34.30] Esse de óculos aqui que tá com
+[106:34.30 - 106:36.30] a pulseira aqui.
+[106:36.30 - 106:38.30] Sou eu.
+[106:38.30 - 106:40.30] Oi, Leon. Ô, Leon,
+[106:40.30 - 106:42.30] conta a verdade pra nós. Por que você decidiu dar essa mudança
+[106:42.30 - 106:44.30] tão grande assim, mano? É pra montar o próprio negócio ou o quê?
+[106:44.30 - 106:46.30] Não, eu vou abrir
+[106:46.30 - 106:48.30] minha agência na gringa, pô.
+[106:48.30 - 106:50.30] Abre minha perna na gringa, sacou?
+[106:50.30 - 106:52.30] É porque, tipo assim,
+[106:52.30 - 106:54.30] se você não quiser, não precisa abrir
+[106:54.30 - 106:56.30] número, mas o báculo que eles falam
+[106:56.30 - 106:58.30] ganha muito bem, né, cara?
+[106:58.30 - 107:00.30] Mas ela tem uma possibilidade de crescer gigantesca, né?
+[107:00.30 - 107:02.30] Ganha, velho, ganha.
+[107:02.30 - 107:04.30] Tipo assim, coisa de
+[107:04.30 - 107:06.30] de um cara muito médio.
+[107:06.30 - 107:08.30] Isso eu estou falando de parte
+[107:08.30 - 107:10.30] comercial, né? Mas de um cara muito
+[107:10.30 - 107:12.30] médio ganhar coisa de 13.
+[107:12.30 - 107:14.30] Sacou? Caraca, 13?
+[107:14.30 - 107:16.30] Essa empresa aí é do mesmo
+[107:16.30 - 107:18.30] ramo aqui do Enrico?
+[107:18.30 - 107:20.30] Não, mano, é de restaurante.
+[107:20.30 - 107:22.30] A agência é de marketing pra restaurante.
+[107:22.30 - 107:24.30] Mas na gringa? Não, é um brasileiro,
+[107:24.30 - 107:26.30] pô. Eles são...
+[107:26.30 - 107:28.30] Eles têm hoje...
+[107:28.30 - 107:30.30] Mano, eles são um absurdo, pô.
+[107:30.30 - 107:32.30] Quem que vocês tiverem de dúvida, pode mandar lá no WhatsApp.
+[107:32.30 - 107:34.30] Os caras são muito fortes, velho.
+[107:34.30 - 107:36.30] Eles são muito fortes.
+[107:36.30 - 107:38.30] Muito, muito, muito fortes mesmo.
+[107:38.30 - 107:40.30] E a verdade, velho,
+[107:40.30 - 107:42.30] eles lançaram agora a Sino
+[107:42.30 - 107:44.30] e...
+[107:44.30 - 107:46.30] Já lançou já o Checkout Dezol?
+[107:46.30 - 107:48.30] Já, pô. O Enrico está usando até.
+[107:50.30 - 107:52.30] E aí os bichos
+[107:52.30 - 107:54.30] lançaram a Sino agora,
+[107:54.30 - 107:56.30] de capital inicial,
+[107:56.30 - 107:58.30] os bichos colocaram cinco milhões
+[107:58.30 - 108:00.30] e pra marcar
+[108:00.30 - 108:02.30] o início da trajetória, cada um comprou
+[108:02.30 - 108:04.30] um relógio de 500 mil, mano.
+[108:04.30 - 108:06.30] Caraca, que top, mano.
+[108:06.30 - 108:08.30] E aí tipo assim...
+[108:08.30 - 108:10.30] Não, eles estão assim, irmão...
+[108:10.30 - 108:12.30] Pessoal, de verdade, sem palavras,
+[108:12.30 - 108:14.30] os caras cresceram muito, mano.
+[108:14.30 - 108:16.30] Eles merecem tudo, irmão.
+[108:16.30 - 108:18.30] Os caras estão gigantescos,
+[108:18.30 - 108:20.30] gigantescos, gigantescos. O Enrico está ligado,
+[108:20.30 - 108:22.30] ele é amigo do Buguinho também.
+[108:22.30 - 108:24.30] Como que é pegar aqui pela metade, irmão?
+[108:24.30 - 108:26.30] Mano, é porque os moleques perguntaram
+[108:26.30 - 108:28.30] como é a vivência da Alfa lá, se os vídeos
+[108:28.30 - 108:30.30] são de verdade, se os relógios, os carros
+[108:30.30 - 108:32.30] são de verdade. Os caras são
+[108:32.30 - 108:34.30] absurdos, pô. Os caras são absurdos.
+[108:34.30 - 108:36.30] Eu conheci o Google
+[108:36.30 - 108:38.30] três, quatro anos atrás quando ele estava abrindo a Alfa.
+[108:40.30 - 108:42.30] É admirável
+[108:42.30 - 108:44.30] porque esses caras trabalham.
+[108:44.30 - 108:46.30] Não, os caras trabalham muito, pô.
+[108:46.30 - 108:48.30] Chegar oito horas
+[108:48.30 - 108:50.30] no escritório e sair dez horas da noite, pô.
+[108:52.30 - 108:54.30] Assim, mano, os caras é full business,
+[108:54.30 - 108:56.30] os caras é o trampo e os caras têm tesão nisso.
+[108:56.30 - 108:58.30] É, velho, os caras são muito fãs.
+[109:00.30 - 109:02.30] É lógico, tá ligado?
+[109:04.30 - 109:06.30] Realmente eles são muito pica.
+[109:06.30 - 109:08.30] E eles são muito vermelhos.
+[109:08.30 - 109:10.30] Não sei todos, mas o Google, por exemplo,
+[109:10.30 - 109:12.30] é muito vermelho.
+[109:12.30 - 109:14.30] Fuleque, eu andei no
+[109:14.30 - 109:16.30] 911 dele, rapaziada, quando ele lançou,
+[109:16.30 - 109:18.30] acho que um mês depois que ele comprou
+[109:18.30 - 109:20.30] isso, tava pura. Acho que
+[109:20.30 - 109:22.30] foi uma realidade. Mas, irmão,
+[109:22.30 - 109:24.30] que carro. Não sei se vocês já andaram
+[109:24.30 - 109:26.30] no 911, mas
+[109:26.30 - 109:28.30] puta que pariu, mano.
+[109:28.30 - 109:30.30] Inclusive foi dele, é absurdo, pô.
+[109:30.30 - 109:32.30] É absurdo.
+[109:32.30 - 109:34.30] Vocês aí foram os mais certos.
+[109:34.30 - 109:36.30] Eu fui o mais errado.
+[109:36.30 - 109:39.64] Eu entrei de penetra, assim.
+[109:39.64 - 109:41.64] Eu entrei de penetra no evento do
+[109:41.64 - 109:43.64] Mike Santos, cara.
+[109:43.64 - 109:45.64] Nossa!
+[109:45.64 - 109:47.64] Cara,
+[109:47.64 - 109:49.64] esse Mike Santos, o nome dele é famo.
+[109:49.64 - 109:51.64] Esse nome é famoso, mano. Mike Santos.
+[109:51.64 - 109:53.64] É um moreno careca
+[109:53.64 - 109:55.64] que
+[109:55.64 - 109:57.64] começou um podcast só da galera do
+[109:57.64 - 109:59.64] digital.
+[109:59.64 - 110:01.64] Ele deu o golpe do Ruiter, que safado.
+[110:01.64 - 110:03.64] Ah, pode pá, tô ligado quem quer.
+[110:03.64 - 110:05.64] Roubou todo mundo.
+[110:05.64 - 110:07.64] Foi muito engraçado na época.
+[110:07.64 - 110:09.64] Eles tem uns três anos.
+[110:09.64 - 110:11.64] Eu fui num, tipo assim,
+[110:11.64 - 110:13.64] eu queria tanto no evento dos caras,
+[110:13.64 - 110:15.64] era do Lucas, do Lucas Viana,
+[110:15.64 - 110:17.64] do Mike,
+[110:17.64 - 110:19.64] o João Castanheira tava lá também, só
+[110:19.64 - 110:21.64] os players da antiga. Quem é antiga o que vai saber.
+[110:21.64 - 110:23.64] Aí tava lotado de
+[110:23.64 - 110:25.64] players lá. Eu não tinha
+[110:25.64 - 110:27.64] dinheiro pra poder ir no evento. Aí eu pensei,
+[110:27.64 - 110:29.64] ah, eu, já que eu não tô fazendo nada,
+[110:29.64 - 110:31.64] vou tentar ir lá no evento, né, só pra ver
+[110:31.64 - 110:33.64] os carros mesmo que tava passando lá perto.
+[110:33.64 - 110:35.64] Aí eu vi o Mike Santos, assim,
+[110:35.64 - 110:37.64] moscando, assim, do lado de fora, eu falei,
+[110:37.64 - 110:39.64] mano, peraí, se dá pra pedir uma foto.
+[110:39.64 - 110:41.64] Aí ele foi,
+[110:41.64 - 110:43.64] me chamou e entrei no evento.
+[110:43.64 - 110:45.64] Sem um ticket de mil e nove, de mil e novecentos
+[110:45.64 - 110:47.64] e quantos. Eu não paguei o relógio e
+[110:47.64 - 110:49.64] entrei no time dos caras.
+[110:49.64 - 110:51.64] Troquei ideia com um monte de golpista,
+[110:51.64 - 110:53.64] um monte de cara
+[110:53.64 - 110:55.64] do Black, do Sete,
+[110:55.64 - 110:57.64] o pessoal que deu o golpe lá
+[110:57.64 - 110:59.64] na época lá, do nicho de
+[110:59.64 - 111:01.64] Ribeirice também, conheci uma porrada
+[111:01.64 - 111:03.64] de negro. Eu acertei um vídeo no meu
+[111:03.64 - 111:05.64] Insta, nessa madrugada,
+[111:05.64 - 111:07.64] falando sobre Black.
+[111:07.64 - 111:09.64] Moleque, eu postei o vídeo.
+[111:09.64 - 111:11.64] Três da manhã. Não.
+[111:11.64 - 111:13.64] Que horas é agora? Oito? Nove horas da noite ontem.
+[111:13.64 - 111:15.64] Ainda não deu nem um dia.
+[111:15.64 - 111:17.64] O vídeo estava com quarenta mil likes
+[111:17.64 - 111:19.64] no Insta.
+[111:19.64 - 111:21.64] Falei que tem roda Black e
+[111:21.64 - 111:23.64] tem dinheiro amosloado.
+[111:23.64 - 111:25.64] Moleque,
+[111:25.64 - 111:27.64] esse vídeo, tipo assim,
+[111:27.64 - 111:29.64] todos golpistas, mano,
+[111:29.64 - 111:31.64] todos, os caras ficam revoltados
+[111:31.64 - 111:33.64] com esse vídeo, cara, porque ele me ficou muito tempo atrás,
+[111:33.64 - 111:35.64] só repostei.
+[111:35.64 - 111:37.64] Você não soltou mentiga, não, Enrico.
+[111:37.64 - 111:39.64] Você não soltou mentiga, não. Todos, todos.
+[111:39.64 - 111:41.64] Manoel comentou, todos os caras, todos os caras.
+[111:41.64 - 111:43.64] Que engraçado, mano.
+[111:43.64 - 111:45.64] Que detalhe. Uma época atrás,
+[111:45.64 - 111:47.64] eu quase fui convencido
+[111:47.64 - 111:49.64] a pegar a mentoria do
+[111:49.64 - 111:51.64] Manoel. Quem me travou foi o Guguinha.
+[111:51.64 - 111:53.64] Guguinha falou, meu irmão.
+[111:53.64 - 111:55.64] Graças a Deus.
+[111:55.64 - 111:57.64] Toma no cu, velho.
+[111:57.64 - 111:59.64] Esse cara está tudo duro hoje em dia.
+[111:59.64 - 112:01.64] Vou passar uma visão aí.
+[112:01.64 - 112:03.64] Eu sei que a maioria é mais velho do que eu,
+[112:03.64 - 112:05.64] porém,
+[112:05.64 - 112:07.64] eu já me lasquei muito, entendeu?
+[112:07.64 - 112:09.64] E eu estou pagando o karma desse Black.
+[112:09.64 - 112:11.64] Entendeu? E olha que eu rodei um micho hot ainda.
+[112:11.64 - 112:13.64] Entendeu? Eu estou pagando agora.
+[112:13.64 - 112:15.64] E é o seguinte,
+[112:15.64 - 112:17.64] ou eu vou virar o game com
+[112:17.64 - 112:19.64] a estratégia do Enrico,
+[112:19.64 - 112:21.64] ou então eu vou me lascar
+[112:21.64 - 112:23.64] o resto da vida, entendeu?
+[112:23.64 - 112:25.64] Então, tipo assim,
+[112:25.64 - 112:27.64] eu estou tendo para corrigir agora,
+[112:27.64 - 112:29.64] agora eu vou conseguir para vocês.
+[112:29.64 - 112:31.64] Não entra nessa porra, não.
+[112:31.64 - 112:33.64] E muito menos em nicho de golpe,
+[112:33.64 - 112:35.64] de, por exemplo,
+[112:35.64 - 112:37.64] vender fogão a 199,
+[112:37.64 - 112:39.64] que isso o bicho vai pegar.
+[112:39.64 - 112:41.64] E eu não mexi com isso não, mano.
+[112:41.64 - 112:43.64] E, mano,
+[112:43.64 - 112:45.64] são duas pessoas hoje em dia,
+[112:45.64 - 112:47.64] três pessoas que são fortes em Black.
+[112:47.64 - 112:49.64] Black hoje em dia não funciona mais não, mano.
+[112:49.64 - 112:51.64] Enrico, eu mexo
+[112:51.64 - 112:53.64] com o ATC,
+[112:53.64 - 112:55.64] de empresa para o STT,
+[112:55.64 - 112:57.64] essas coisas.
+[112:57.64 - 112:59.64] E, cara,
+[112:59.64 - 113:01.64] quando você começa a crescer nesse mercado,
+[113:01.64 - 113:03.64] você começa a conhecer muita gente.
+[113:03.64 - 113:05.64] O que tem de gente
+[113:05.64 - 113:07.64] que se fudeu grande por conta disso,
+[113:07.64 - 113:09.64] e assim, não só no Brasil,
+[113:09.64 - 113:11.64] de fora, tipo,
+[113:11.64 - 113:13.64] de fora está tudo lascado por conta disso.
+[113:13.64 - 113:15.64] Porque, mano, o BO é grande,
+[113:15.64 - 113:17.64] que cai.
+[113:17.64 - 113:19.64] E tem muito player grande que roda
+[113:19.64 - 113:21.64] por baixo dos planos,
+[113:21.64 - 113:23.64] que dá nojo de ver, mano,
+[113:23.64 - 113:25.64] porque é famílias,
+[113:25.64 - 113:27.64] que só fica o bagulho.
+[113:27.64 - 113:29.64] Uma hora dá ruim, mano.
+[113:29.64 - 113:31.64] Uma hora conta chega.
+[113:31.64 - 113:33.64] Entendeu? Uma hora conta chega.
+[113:33.64 - 113:35.64] Eu só estou saindo desse nicho
+[113:35.64 - 113:37.64] por causa do vídeo do Enrico.
+[113:37.64 - 113:39.64] Entendeu? Não estou nem zoando.
+[113:39.64 - 113:41.64] Eu estou saindo desse nicho
+[113:41.64 - 113:43.64] pelo teu vídeo.
+[113:43.64 - 113:45.64] O que é o seguinte, o mercado está uma desgraça.
+[113:45.64 - 113:47.64] Hoje você tem que se atualizar sempre.
+[113:47.64 - 113:49.64] Agora...
+[113:49.64 - 113:51.64] É tipo assim,
+[113:51.64 - 113:53.64] Renan, deixa eu te falar.
+[113:53.64 - 113:55.64] Hoje,
+[113:55.64 - 113:57.64] o que estava acontecendo comigo,
+[113:57.64 - 113:59.64] beleza.
+[113:59.64 - 114:01.64] Fiz um carro hoje,
+[114:01.64 - 114:03.64] amanhã, mano, não faço
+[114:03.64 - 114:05.64] 10 pila. Aí o que acontece?
+[114:05.64 - 114:07.64] O erro é de quem? O erro é meu.
+[114:07.64 - 114:09.64] Porque a operação, o erro é meu.
+[114:09.64 - 114:11.64] Só que o seguinte,
+[114:11.64 - 114:13.64] cadê o dinheiro de ontem, mano?
+[114:13.64 - 114:15.64] Cadê? Entendeu?
+[114:15.64 - 114:17.64] Cadê? Você está caçando.
+[114:17.64 - 114:19.64] Aí você vai ver, eu não sou um cara
+[114:19.64 - 114:21.64] de balada, eu não sou um cara que come puta.
+[114:21.64 - 114:23.64] Entendeu?
+[114:23.64 - 114:25.64] Aí cadê meu dinheiro, mano?
+[114:25.64 - 114:27.64] Cadê, mano? Entendeu?
+[114:27.64 - 114:29.64] Será que é o mercado errado? É claro, pô.
+[114:29.64 - 114:31.64] Entendeu?
+[114:31.64 - 114:33.64] Enrico, mas uma parada que eu
+[114:33.64 - 114:35.64] percebi,
+[114:35.64 - 114:37.64] na nossa call de ontem,
+[114:37.64 - 114:39.64] já fiz vários metodes, igual eu te falei,
+[114:39.64 - 114:41.64] várias pessoas, enfim.
+[114:41.64 - 114:43.64] Eu entendendo que eu assisti
+[114:43.64 - 114:45.64] a primeira aula e a metade da segunda.
+[114:45.64 - 114:47.64] E essa de hoje.
+[114:47.64 - 114:49.64] Eu percebi que
+[114:49.64 - 114:51.64] ali, pelo menos de modo geral,
+[114:51.64 - 114:53.64] a mesma estratégia que você aplica
+[114:53.64 - 114:55.64] para o pessoal lá fora, você aplica aqui para a gente.
+[114:55.64 - 114:57.64] Então, cara,
+[114:57.64 - 114:59.64] é a primeira vez que eu vejo isso numa
+[114:59.64 - 115:01.64] mentoria, acompanhamento, tá ligado?
+[115:01.64 - 115:03.64] Da hora, mano.
+[115:03.64 - 115:05.64] Mas o objetivo foi o que eu falei na call
+[115:05.64 - 115:07.64] pra todo mundo, porque eu fiz call.
+[115:07.64 - 115:09.64] A ideia é que realmente faz todo mundo
+[115:09.64 - 115:11.64] ter resultado, porque eu não me beneficio,
+[115:11.64 - 115:13.64] momentaneamente agora,
+[115:13.64 - 115:15.64] mas eu já cheguei no nível que eu jogo
+[115:15.64 - 115:17.64] um jogo de longo prazo. Nada que é
+[115:17.64 - 115:19.64] momentâneo pra mim faz sentido agora.
+[115:19.64 - 115:21.64] A não ser que seja melhor, tá ligado?
+[115:21.64 - 115:23.64] Mas a longo prazo, irmão,
+[115:23.64 - 115:25.64] vai dar bom demais.
+[115:25.64 - 115:27.64] E a foto?
+[115:27.64 - 115:29.64] E a foto?
+[115:29.64 - 115:31.64] Ah, tô esperando o GPT. Eu...
+[115:31.64 - 115:33.64] Calma aí.
+[115:33.64 - 115:37.05] O Matheus, como o nome da tua empresa?
+[115:37.05 - 115:39.05] Torvani Company.
+[115:39.05 - 115:41.05] Como que é?
+[115:41.05 - 115:45.05] Torvani. T-U-R-V-A-N-I.
+[115:45.05 - 115:47.05] Você é de que cidade, irmão?
+[115:47.05 - 115:49.05] Mogi das Cruzes de São Paulo.
+[115:49.05 - 115:51.05] Ô, o nome do cliente como?
+[115:53.05 - 115:59.75] Paulo.
+[115:59.75 - 116:01.75] Fala aí.
+[116:01.75 - 116:11.37] Eu tô mostrando pra vocês o processo aqui.
+[116:13.37 - 116:15.37] Eu pedi pra ele gerar a template do bagulho.
+[116:15.37 - 116:17.37] O Zell é tipo um pixel lá fora, rapaziada.
+[116:17.37 - 116:19.37] Aí ele gerou...
+[116:19.37 - 116:21.37] Aí eu tô falando pra...
+[116:21.37 - 116:23.37] Aí ele gerou...
+[116:23.37 - 116:26.65] Não, caraca.
+[116:26.65 - 116:28.65] Mas...
+[116:28.65 - 116:32.89] Só por curiosidade.
+[116:32.89 - 116:43.88] Tentando passar a pena no chat IPT.
+[116:52.92 - 116:54.92] Só por curiosidade.
+[116:54.92 - 116:56.92] E ainda...
+[117:00.92 - 117:09.51] Que cara safado, velho.
+[117:09.51 - 117:11.51] Olha isso.
+[117:13.51 - 117:28.86] Galera, caiu aqui?
+[117:28.86 - 117:32.26] Isso aí é o que mesmo, Henrique?
+[117:32.26 - 117:34.26] Isso aqui é o que a gente vai fazer pro cara pagar o bagulho.
+[117:34.26 - 117:40.01] Qual que é o nome desse negócio aí, Zell?
+[117:46.01 - 118:15.78] Calma aí, rapaziada.
+[118:15.78 - 118:17.78] É, rapaziada, é isso aí, ó.
+[118:17.78 - 118:19.78] É a ligação a cada dois minutos.
+[118:19.78 - 118:24.41] Nossa, é louco.
+[118:24.41 - 118:26.41] Isso é louco que eu fui de noite até amanhã aqui, mano.
+[118:26.41 - 118:28.41] Se não alguém tava mais trabalhado nesse foder.
+[118:28.41 - 118:34.60] Ó, ficou chave, hein, vou mostrar pra vocês.
+[118:34.60 - 118:36.60] Cara, até ficou a mais, mano.
+[118:36.60 - 118:38.60] Ô, Henrique.
+[118:38.60 - 118:40.60] Oi.
+[118:40.60 - 118:42.60] Vou fazer uma pergunta antes que...
+[118:42.60 - 118:44.60] Antes que eu mande no privado de alguém.
+[118:44.60 - 118:46.60] É...
+[118:46.60 - 118:48.60] Aquele grupo não vai ficar disponível, né?
+[118:48.60 - 118:50.60] Vai, pô.
+[118:50.60 - 118:52.60] Vai.
+[118:54.60 - 118:56.60] Porque meu foco vai pra comunidade que eu tô criando, né?
+[118:56.60 - 118:58.60] Nessa aqui.
+[118:58.60 - 119:00.60] Certo. E se, por exemplo, eu tiver alguma dúvida
+[119:00.60 - 119:02.60] eu vou tentar rever as aulas e tal,
+[119:02.60 - 119:04.60] mas se não forçar nada,
+[119:04.60 - 119:08.52] como é que eu faço?
+[119:08.52 - 119:10.52] Vai, aí...
+[119:10.52 - 119:12.52] Você me dá um salve.
+[119:14.52 - 119:16.52] Aquele grupo que você tá falando do WhatsApp?
+[119:16.52 - 119:18.52] Isso.
+[119:18.52 - 119:20.52] Eu ia até perguntar isso também, se tem problema, por exemplo.
+[119:20.52 - 119:22.52] Tipo lá, eu, sei lá, eu e o Zaik e o Paulo
+[119:22.52 - 119:24.52] a gente vai fazer uma call.
+[119:24.52 - 119:26.52] Aí, sei lá, a gente vai junto.
+[119:26.52 - 119:28.52] Não tem problema isso não, né?
+[119:28.52 - 119:30.52] Não.
+[119:30.52 - 119:33.83] Eu quero entrar nesse bolo aí, viu?
+[119:33.83 - 119:35.83] Ah, bom, Renan.
+[119:35.83 - 119:37.83] Aceita eu o network aqui?
+[119:37.83 - 119:39.83] Ah, com certeza.
+[119:39.83 - 119:41.83] Vai, vambora, vambora.
+[119:41.83 - 119:43.83] Joga também que eu quero aprender, hein.
+[119:43.83 - 119:45.83] Chama eu, chama eu, chama eu.
+[119:45.83 - 119:47.83] Você falou meu nome, eu também quero.
+[119:47.83 - 119:49.83] Você falou meu nome, eu também quero.
+[119:49.83 - 119:51.83] Tá todo mundo aqui querendo aprender
+[119:51.83 - 119:53.83] e querendo fazer dinheiro, então
+[119:53.83 - 119:55.83] todo mundo tem que se auxiliar, pô.
+[119:55.83 - 119:57.83] Porque tem muita gente...
+[119:57.83 - 119:59.83] A maioria dos grupos de network é um sugando.
+[119:59.83 - 120:01.83] Tem que ir um auxiliando o outro, pô.
+[120:01.83 - 120:03.83] Um traficante tica disso.
+[120:03.83 - 120:05.83] É os caras que gostam de sugar mesmo, né?
+[120:05.83 - 120:07.83] Vamos salvando, velho.
+[120:07.83 - 120:09.83] Os caras sugam muito o polão, velho.
+[120:09.83 - 120:11.83] Foda, velho.
+[120:11.83 - 120:13.83] Ainda não, né, Henrique?
+[120:13.83 - 120:15.83] Ainda não?
+[120:15.83 - 120:17.83] Deixa os caras te sugarem.
+[120:17.83 - 120:19.83] Pessoal aqui do grupo é mais
+[120:19.83 - 120:24.17] de Minas e São Paulo, né?
+[120:24.17 - 120:26.17] Não, mano, eu sou de Minas.
+[120:26.17 - 120:28.17] Eu sou de Minas.
+[120:28.17 - 120:30.17] Paraná, mano, Paraná.
+[120:30.17 - 120:32.17] Agora vou mudar pro Inspiro Santo.
+[120:32.17 - 120:34.17] Eu gosto de ver a pedacalha.
+[120:34.17 - 120:36.17] Pessoal de Minas já deve ter vindo pra cá,
+[120:36.17 - 120:38.17] onde eu moro, a réu do Cabo.
+[120:38.17 - 120:40.17] Ah, isso aí é de Rã, mano.
+[120:40.17 - 120:42.17] É de Minas.
+[120:42.17 - 120:44.17] Só Mineira aqui.
+[120:44.17 - 120:46.17] Tem alguém de Paraná aí, pô?
+[120:46.17 - 120:48.17] Paranazinho?
+[120:48.17 - 120:50.17] Sim, mano, de Rocha.
+[120:50.17 - 120:52.17] Cara, é tudo muito acima, velho.
+[120:52.17 - 120:54.17] Henrique, cadê a rapaziada
+[120:54.17 - 120:56.17] que tava no início, cara?
+[120:56.17 - 120:58.17] Ah, irmão,
+[120:58.17 - 121:00.17] com a novidade.
+[121:00.00 - 121:03.70] É foda, hein? Os caras sumiu. Será que ninguém conseguiu...
+[121:04.40 - 121:07.80] Deve ter umas 20 pessoas nas primeiras call?
+[121:10.60 - 121:12.30] Não, não foi tudo, foram 12.
+[121:13.20 - 121:13.80] 12?
+[121:16.20 - 121:20.00] Começou segunda passada ou retrasada?
+[121:22.50 - 121:24.10] Vai ficar da hora esse bagulho, vai.
+[121:25.20 - 121:25.80] Mandei.
+[121:26.20 - 121:28.00] Ele mandou o arquivo, caralho!
+[121:28.70 - 121:31.20] Aí, ó, o cara abre achando que é...
+[121:32.60 - 121:33.90] Aí, ó, é assim que a gente passa.
+[121:36.20 - 121:38.10] Eu não tô nesse grupo aí, ô, Henrico.
+[121:38.90 - 121:40.40] Aí, deixa eu dicionar a verdade se não tá.
+[121:41.10 - 121:44.30] Esse... esse... esse PDF aí vale um K.
+[121:45.50 - 121:47.20] Esse PDF vale cinco mil dólares, pai.
+[121:49.40 - 121:51.00] Mano, se esse cara der no show, é...
+[121:51.60 - 121:52.90] Ele já deu, pai, a operação.
+[121:53.20 - 121:54.00] Já deu, já deu.
+[121:54.20 - 121:57.40] Não, mas qualquer coisa eu trago outro aqui que o cara fatura 50 mil.
+[121:58.40 - 122:00.20] Ele é o mais qualificado que tem dessa semana.
+[122:02.20 - 122:03.40] Liga pra ele agora, mano.
+[122:04.10 - 122:06.20] Tá todo mundo... tá todo mundo assistindo pra ele.
+[122:06.20 - 122:08.20] Vamos... vamos...
+[122:08.90 - 122:10.00] Vamos fazer um teste, calma.
+[122:13.10 - 122:13.90] Quer mandar me...
+[122:22.90 - 122:25.10] Pô, Henrico, não sei se você vai conhecer, cara, mas...
+[122:25.70 - 122:29.10] É, que eu tava vendo ontem, né, a diferença de contractor, subcontractor.
+[122:29.60 - 122:33.60] Aquele cara que é meio famosinho, assim, acho que ele é até de Minas.
+[122:34.10 - 122:37.30] Lá nos Estados Unidos, aquele Célio Ortiz, alguém conhece?
+[122:38.10 - 122:39.30] Não, por nome não.
+[122:39.50 - 122:41.90] Conheço, mano, o que foi preso agora pelo ICA.
+[122:42.70 - 122:43.70] É, mas ele é...
+[122:44.70 - 122:46.30] É, ele foi solto já.
+[122:47.40 - 122:49.20] Mas tipo assim, ele é nessa pegada, né?
+[122:49.20 - 122:52.20] Ele era o subcontractor, agora ele é o que faz a obra, né?
+[122:52.20 - 122:53.40] Exatamente, ele é o dono.
+[122:54.20 - 122:59.30] Pô, eu tava pensando, assim, a personificação da primeira aula lá que eu tava assistindo.
+[123:00.30 - 123:01.00] É exatamente...
+[123:01.00 - 123:01.60] Ô, Matheus.
+[123:04.00 - 123:04.50] Matheus.
+[123:04.80 - 123:05.30] Fala aí, mano.
+[123:06.00 - 123:07.20] Você consegue subir com o 8.6?
+[123:07.30 - 123:09.20] Que eu vou te passar um bagulho pra você mostrar na corre.
+[123:11.90 - 123:14.60] Subir qual 8.6 com o cliente?
+[123:14.60 - 123:16.90] Não, eu vou te mandar... não, não, eu vou te mostrar um bagulho.
+[123:18.40 - 123:18.90] Tá, fechou.
+[123:18.90 - 123:20.70] Eu vou liberar o acesso pra vocês da comunidade.
+[123:20.70 - 123:21.90] Eu vou deixar só...
+[123:23.50 - 123:24.10] Tranquilo.
+[123:24.10 - 123:27.10] Criar um cupom promocional pra vocês conseguirem acessar de graça.
+[123:29.10 - 123:32.90] É, como é que funciona essas parcerias aí, igual você tá fechando com o Matheus?
+[123:33.90 - 123:35.90] É um sorteio?
+[123:36.70 - 123:39.90] Irmão, entrega o resultado que eu vou te ajudar.
+[123:40.90 - 123:41.40] Fechou.
+[123:42.90 - 123:46.90] Ô, Leão, você tinha falado aí, eu até te mandei mensagem ontem, porque eu assisti a programação,
+[123:46.90 - 123:50.90] eu até te mandei mensagem ontem, porque eu assisti a primeira aula lá e você tinha falado alguma parada.
+[123:51.90 - 123:53.90] O cara que deu no show em mim.
+[123:53.90 - 123:55.90] Ô, moleque, perdão, velho, eu não vi.
+[123:56.90 - 124:00.90] É porque eu tenho, velho, eu tenho três celulares e eu tenho dois WhatsApps em cada, velho.
+[124:00.90 - 124:02.90] Já é aí, meu irmão.
+[124:02.90 - 124:08.90] É uma batalha, velho, pra eu conseguir olhar tudo, mas eu vou dar uma atenção lá.
+[124:10.90 - 124:12.90] Matheus, eu te mandei um link.
+[124:12.90 - 124:16.90] Entra nele e vloga nessa conta que eu te mandei, que é da privilégia de sua profissão, né?
+[124:17.90 - 124:19.90] O plano já liberou pra geral.
+[124:21.90 - 124:22.90] Como é?
+[124:29.90 - 124:32.90] Bom, tem feriado essa semana ontem, rapaz, é amanhã, né?
+[124:32.90 - 124:34.90] Segunda.
+[124:34.90 - 124:36.90] Segunda é feriado do quê?
+[124:36.90 - 124:38.90] 7 de setembro.
+[124:38.90 - 124:40.90] Dependência, né?
+[124:41.90 - 124:43.90] Nem sabia que era dia 7.
+[124:48.90 - 124:50.90] E aí, Trondona, vamos passar onde?
+[124:51.90 - 124:52.90] Passar em Real mesmo.
+[124:52.90 - 124:54.90] Vou passar trabalhando, né?
+[124:54.90 - 124:55.90] Com a família.
+[124:55.90 - 124:56.90] É louco, velho.
+[124:56.90 - 124:59.90] Será que dá pra comprar meu audio? Eu fico em casa também.
+[125:02.90 - 125:04.90] Mano, passei no Rio foi chave, mano.
+[125:04.90 - 125:06.90] Tirado no Rio é da hora pra caralho, mano.
+[125:07.90 - 125:13.90] Não, mas se eu colocar 20 contratos pra dentro, aí eu tô tranquilo.
+[125:15.90 - 125:17.90] A gente vai passar na Grécia, mano, esse ano.
+[125:21.90 - 125:23.90] Queria passar na Ásia, né?
+[125:23.90 - 125:26.90] Mas a gente conseguiu uma casa de graça lá, namorada do meu sócio.
+[125:26.90 - 125:28.90] Família dela tem casa lá, a gente vai pra lá.
+[125:28.90 - 125:30.90] Cara, eu criei pelo menos no Chile esse ano.
+[125:30.90 - 125:32.90] Eu não conheço o exterior ainda.
+[125:32.90 - 125:34.90] Mano, vai pra Argentina, velho.
+[125:34.90 - 125:35.90] É aqui do lado.
+[125:35.90 - 125:36.90] Uma hora e meia de voo.
+[125:36.90 - 125:37.90] Barato.
+[125:37.90 - 125:39.90] Ô, bariloche pra ir lá.
+[125:39.90 - 125:41.90] Lá onde você é fera também, velho.
+[125:41.90 - 125:42.90] Lá é bonito.
+[125:42.90 - 125:45.90] Rapaziadinha, eu vou criar um grupo aqui.
+[125:47.90 - 125:49.90] E vou adicionar apenas quem tiver na cal, né?
+[125:50.90 - 125:55.90] Porque se a gente chegou até aqui é porque provavelmente tá todo mundo aqui com o mesmo...
+[125:56.90 - 125:57.90] A mesma...
+[125:57.90 - 125:58.90] Como é que fala?
+[125:58.90 - 125:59.90] O mesmo propósito.
+[126:00.90 - 126:02.90] Não vou soltar no grupo não, entendeu?
+[126:04.90 - 126:05.90] O que vocês acham?
+[126:06.90 - 126:07.90] Pode ser, irmão.
+[126:08.90 - 126:13.90] Eu não sei vocês, mas até final de semana eu vou fechar o primeiro aí.
+[126:13.90 - 126:14.90] Não sei vocês.
+[126:14.90 - 126:18.90] Não, quem fechar o primeiro paga a coca.
+[126:20.90 - 126:21.90] É coca, pai.
+[126:23.90 - 126:24.90] Coke, né?
+[126:24.90 - 126:25.90] Ligadão, pai.
+[126:26.90 - 126:28.90] O que é que falou aí?
+[126:28.90 - 126:30.90] Pagar a coca aí.
+[126:30.90 - 126:32.90] Você se faz de desentendido, vai.
+[126:39.90 - 126:40.90] Caralho, né?
+[126:40.90 - 126:41.90] Vocês tomam alguma coisa pra trampar?
+[126:43.90 - 126:44.90] Vem, vão, você faz.
+[126:44.90 - 126:45.90] De 70.
+[126:45.90 - 126:46.90] Por ódio, mano.
+[126:46.90 - 126:48.90] Desgusto da menstruação financiera do Aula.
+[126:48.90 - 126:50.90] Só café e padala.
+[126:50.90 - 126:52.90] Vem falando de 30 e um soja.
+[126:52.90 - 126:54.90] Dependendo do dia, daí é 2.
+[126:55.90 - 126:56.90] Um monster de manga.
+[126:59.90 - 127:00.90] Enjoei, enjoei desse.
+[127:01.90 - 127:05.90] Tem que ser, no caso, ultimamente é só um tadala, um monster.
+[127:06.90 - 127:07.90] Vai se foder, mano.
+[127:07.90 - 127:09.90] Se eu tomar um tadala pra trabalhar a dar, não, velho.
+[127:09.90 - 127:10.90] Nossa, vai se foder.
+[127:10.90 - 127:11.90] É de bu de melancia, velho.
+[127:11.90 - 127:12.90] Melhor que tem, velho.
+[127:12.90 - 127:13.90] É de bu de melancia.
+[127:14.90 - 127:15.90] Você é louco?
+[127:15.90 - 127:16.90] Me lembra, mano, me lembra Vodk, mano.
+[127:16.90 - 127:17.90] É de bu de melancia.
+[127:17.90 - 127:18.90] Vodk.
+[127:18.90 - 127:19.90] Aí que é bom.
+[127:19.90 - 127:21.90] Me lembra essa bebida aqui.
+[127:22.90 - 127:23.90] Me lembra essa bebida aqui.
+[127:24.90 - 127:25.90] Moleque.
+[127:29.90 - 127:30.90] Vodk, não.
+[127:30.90 - 127:31.90] É de bu de melancia.
+[127:32.90 - 127:33.90] Essa bebida aqui.
+[127:35.90 - 127:36.90] É isso.
+[127:36.90 - 127:37.90] Essa é a boa.
+[127:37.90 - 127:38.90] Já experimentou?
+[127:38.90 - 127:39.90] Já.
+[127:40.90 - 127:41.90] Lógico.
+[127:41.90 - 127:42.90] Tá congelando.
+[127:43.90 - 127:44.90] Aí que, filho.
+[127:44.90 - 127:45.90] Olha o ponto do bagulho.
+[127:47.90 - 127:50.90] Rapaz, eu gosto também é licor 43 com limãozinho.
+[127:50.90 - 127:51.90] Fiz só os dois.
+[127:51.90 - 127:52.90] Aí.
+[127:53.90 - 127:54.90] Dá um gás.
+[127:54.90 - 127:55.90] Dá um gás.
+[127:55.90 - 127:56.90] Dá um gás.
+[127:57.90 - 127:58.90] Segredo.
+[127:58.90 - 127:59.90] Tá o Veinblass.
+[128:01.90 - 128:02.90] Tem sítota aqui em casa, mano.
+[128:04.90 - 128:05.90] Imagina.
+[128:06.90 - 128:07.90] Olha que brisa.
+[128:07.90 - 128:08.90] O meu eu pego esse aqui, ó.
+[128:08.90 - 128:10.90] Uma recomendação pra vocês que então.
+[128:11.90 - 128:12.90] É tipo o genérico do Veinblass.
+[128:13.90 - 128:14.90] É tipo é da mesma.
+[128:15.90 - 128:16.90] É da Taqueda, tá ligado?
+[128:16.90 - 128:17.90] Que é da mesma produtora.
+[128:18.90 - 128:19.90] Só que é o genérico, tá ligado?
+[128:20.90 - 128:21.90] Qual que é o nome, mano?
+[128:22.90 - 128:23.90] Ju Neve.
+[128:24.90 - 128:25.90] Ô, Henrico.
+[128:25.90 - 128:27.90] Toma ele em gota uma vez, mano.
+[128:27.90 - 128:28.90] Coloque em gota.
+[128:28.90 - 128:29.90] Pede pra...
+[128:29.90 - 128:30.90] Pô, eu já vi essa porra, Viânia.
+[128:31.90 - 128:32.90] Tipo, você vai na...
+[128:32.90 - 128:35.90] Você leva o remédio e vai naqueles lugares que fraciona.
+[128:35.90 - 128:36.90] E pede pra fazer em gota.
+[128:36.90 - 128:38.90] Mano, migoça é bom, velho.
+[128:38.90 - 128:39.90] Só que assim.
+[128:39.90 - 128:42.90] Você faz uma garrafinha e vai tomando durante o dia, tá ligado?
+[128:42.90 - 128:44.90] Você bota uma gotinha e vai tomar durante o dia.
+[128:44.90 - 128:45.90] Irmão.
+[128:45.90 - 128:46.90] Caralho, é isso.
+[128:46.90 - 128:47.90] É diferente, velho.
+[128:47.90 - 128:48.90] É diferente.
+[128:48.90 - 128:49.90] Ô, Henrico.
+[128:49.90 - 128:52.90] Quando eu vou pra SP, que eu tenho muita coisa pra fazer,
+[128:52.90 - 128:53.90] eu faço isso, mano.
+[128:53.90 - 128:54.90] Eu fico na garrafinha e vou tomando.
+[128:55.90 - 128:57.90] Dá um gás absurdo.
+[128:57.90 - 128:58.90] Dá um gás, Diogo.
+[128:58.90 - 128:59.90] Dá um gás.
+[128:59.90 - 129:00.90] Fala aí.
+[129:00.90 - 129:02.90] Como é que é o nome desse daí, de gota?
+[129:02.90 - 129:03.90] Tá entrando.
+[129:03.90 - 129:04.90] Só que...
+[129:04.90 - 129:05.90] Não deu pra entrar?
+[129:05.90 - 129:06.90] Não.
+[129:06.90 - 129:07.90] E aí eu tenho outra notícia.
+[129:07.90 - 129:10.90] O Marcio, que é o cara que fatura 50k, ele tá me respondendo aqui.
+[129:13.90 - 129:14.90] Boa, Matheus.
+[129:14.90 - 129:15.90] Boa, Matheus.
+[129:15.90 - 129:16.90] Puxa pra cá, Matheus.
+[129:17.90 - 129:18.90] Vou...
+[129:18.90 - 129:19.90] Calma aí, eu vou falar.
+[129:19.90 - 129:22.90] É que a dele tá agendada, sendo me vendo pra amanhã.
+[129:23.90 - 129:25.90] É o foda de antecipar qual, hein, Viado?
+[129:25.90 - 129:26.90] Cuidado com isso aí.
+[129:27.90 - 129:30.90] Então, e se eu falar que, tipo, tá tudo pronto e...
+[129:32.90 - 129:35.90] Mano, é que o foda de antecipar qual, que, tipo, assim...
+[129:35.90 - 129:36.90] Pega a visão.
+[129:36.90 - 129:39.90] Se o cara estiver no carro, voltando pra casa, ele vai topar fazer.
+[129:39.90 - 129:42.90] E se você fazer coca, o cara que tá no carro é perder venda.
+[129:42.90 - 129:43.90] Entendeu?
+[129:43.90 - 129:44.90] Então, cuidado.
+[129:44.90 - 129:46.90] Porque agora é tipo uma hora que eles estão voltando pra casa.
+[129:46.90 - 129:48.90] Sete horas, geralmente, eles são na estrada.
+[129:48.90 - 129:49.90] Então...
+[129:49.90 - 129:50.90] Tá no horário.
+[129:50.90 - 129:51.90] Vamos tirar uma coisa.
+[129:52.90 - 129:53.90] Pazes, eu vou precisar sair, hein.
+[129:53.90 - 129:54.90] Ó, tamo junto, hein.
+[129:59.90 - 130:02.90] Depois que quem for criar o grupo aí manda o link lá.
+[130:02.90 - 130:03.90] Que coisa imprevada.
+[130:03.90 - 130:04.90] Ô, Henrique, uma dúvida.
+[130:04.90 - 130:06.90] A calba de ficar gravada se apertar?
+[130:08.90 - 130:09.90] Vai, logo.
+[130:09.90 - 130:11.90] Porque assim, eu vou ter que sair também.
+[130:11.90 - 130:14.90] E daí eu tô enrolando aqui pra ver se eu assisto.
+[130:15.90 - 130:16.90] Aí você acha que dá?
+[130:16.90 - 130:17.90] Eu vou gravar.
+[130:17.90 - 130:18.90] Mano, se você quiser deixar...
+[130:18.90 - 130:19.90] Que horas que é essa call?
+[130:19.90 - 130:21.90] Você tem alguma outra, Matheus, hoje?
+[130:21.90 - 130:22.90] De não.
+[130:23.90 - 130:27.90] Vamos trocar o 8h30, a gente troca a ideia de a gente ver o que a gente faz.
+[130:28.90 - 130:30.90] Você conseguiu entrar no bagulho que eu te mandei?
+[130:32.90 - 130:34.90] Deu como o acesso incorreto.
+[130:34.90 - 130:35.90] Em meio ou sem incorreto.
+[130:40.90 - 130:43.90] E quem for criar o grupo lá, pode contar comigo, hein.
+[130:45.90 - 130:46.90] Manda essa aqui.
+[130:49.90 - 130:50.90] Bora, bora.
+[131:03.90 - 131:05.90] Eu vou chamar o Marcio aqui então, hein.
+[131:05.90 - 131:08.90] Aí, agora foi o que você mandou.
+[131:09.90 - 131:14.90] Henrique, contratar a gente e nesse cliente pra ser SDR vale a pena?
+[131:15.90 - 131:17.90] Boulder SDR é só contratar sênior.
+[131:18.90 - 131:19.90] Beleza.
+[131:20.90 - 131:21.90] Então está lá do grande dia.
+[131:22.90 - 131:25.90] E você tem alguma fonte onde a gente encontra?
+[131:25.90 - 131:27.90] Isso começa a seguinte.
+[131:28.90 - 131:30.90] Eu acho que é Rogério, o nome dele.
+[131:32.90 - 131:36.90] Ô, rapaziada, vou ter que sair aqui, mas do grupo lá pode contar comigo, hein.
+[131:36.90 - 131:38.90] E foi mal aí ter que sair no meio, velho.
+[131:38.90 - 131:39.90] Bora, bora.
+[131:40.90 - 131:41.90] É nós, estamos juntos, não.
+[131:41.90 - 131:42.90] Temos juntos.
+[131:42.90 - 131:43.90] Valeu, valeu.
+[131:44.90 - 131:45.90] Vou sair a sair pra vocês.
+[131:47.90 - 131:49.90] Consegui acessar, Henrique.
+[131:50.90 - 131:52.90] Ô, entra alguma coleta aí pra ver se está funcionando.
+[131:53.90 - 131:56.90] Entra em qualquer momento, a gente vai ver se vai funcionar.
+[132:07.90 - 132:10.90] Mas já tem uma, uma.
+[132:12.90 - 132:13.90] Só tem agendada pra mim.
+[132:27.90 - 132:29.90] Craste de novo, repete já.
+[132:29.90 - 132:33.90] Aqui só está aparecendo o call agendada, call de insight.
+[132:33.90 - 132:34.90] Só tem agendada pra mim.
+[132:36.90 - 132:38.90] Não está aparecendo o canal de voz, velho, não?
+[132:40.90 - 132:42.90] Tem uma aba chamada voz, está vendo?
+[132:44.90 - 132:45.90] Ah, tá.
+[132:46.90 - 132:47.90] Entra na call 01.
+[132:50.90 - 132:51.90] Vai entrar também.
+[132:52.90 - 132:53.90] Está me ouvindo?
+[132:53.90 - 132:54.90] Tô te ouvindo.
+[132:54.90 - 132:55.90] Tô ouvindo o mic aí.
+[133:00.90 - 133:01.90] Aí.
+[133:03.90 - 133:04.90] Tô te ouvindo.
+[133:06.90 - 133:08.90] Eu vou conectar aqui no computador.
+[133:12.90 - 133:13.90] Aí está me ouvindo agora.
+[133:13.90 - 133:14.90] Aí está me ouvindo agora.
+[133:34.90 - 133:36.90] Vá até aqui, vá até aqui, não dá pra sanar não.
+[133:36.90 - 133:37.90] Não, ainda não dá pra sanar.
+[133:37.90 - 133:38.90] Tá, for sure.
+[133:43.90 - 133:44.90] Ainda não deu.
+[133:51.90 - 133:55.90] O Enrico, a próxima de sexta-feira já é de entregável?
+[133:59.90 - 134:00.90] Sim.
+[134:00.90 - 134:02.90] Minha operação começa a rodar terça.
+[134:03.90 - 134:04.90] Boa.
+[134:07.90 - 134:09.90] Enrico, deixa eu perguntar sobre a questão dos heads.
+[134:09.90 - 134:15.14] sobre a questão do Zed, você já chegou a fazer um teste de, por exemplo, usar o Arcades
+[134:15.14 - 134:20.70] ou alguma pessoa gravando para simular uma calpe da pessoa falando que o produto funciona?
+[134:20.70 - 134:23.98] Tipo assim, pô, depois que eu conhecesse essa rapaziada, se eu fico...
+[134:23.98 - 134:27.10] Bom teste, nunca fiz, só vou fazer um teste.
+[134:27.10 - 134:28.10] Boa demais.
+[134:28.10 - 134:32.30] É, mano, na operação aqui que eu tô, mano, dá bom, viu?
+[134:32.30 - 134:33.90] Aí é só adaptar para o mercado.
+[134:40.90 - 134:43.70] Pazes, é isso. Acho que não tem muito mais o que a gente fazer, não.
+[134:43.70 - 134:46.30] Ô, Matheus, oitena e meia te mando um link para eu saber qual.
+[134:46.30 - 134:47.30] Realmente.
+[134:49.30 - 134:53.30] Mas, meu pessoal, valeu demais, brigadão pela aula.
+[134:53.30 - 134:56.30] Até sexta-feira, tamo junto demais, mano.
+[134:56.30 - 134:58.30] Vamos ver de cabeça aí.
+[134:58.30 - 135:00.30] Sexta-feira, seis dólares, rapaziada, padrão.
+[135:00.30 - 135:01.30] Valeu.
+[135:01.30 - 135:02.30] Tamo junto, Henrico, é nice.
+[135:02.30 - 135:03.30] Valeu.
+[135:05.30 - 135:06.30] Valeu.
+[135:10.30 - 135:13.30] É nós, rapaziada, tamo junto.
+[135:13.30 - 135:16.30] Matheusão, oitena e meia te mando o link.
+[135:16.30 - 135:20.30] Tá, daí eu posso chamar o cara para oitena e meia, então?
+[135:20.30 - 135:22.30] Não, vamos trocar a ideia antes.
+[135:22.30 - 135:23.30] Espera aí.
+[135:23.30 - 135:24.30] Tá, fechou.
+[135:24.30 - 135:25.30] Nice.

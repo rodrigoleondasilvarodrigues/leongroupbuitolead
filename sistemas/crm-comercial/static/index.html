@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CRM Comercial — Leon Group</title>
+<style>
+:root{--marfim:#F7F3EA;--branco:#FFFDF8;--preto:#171717;--laranja:#E65A19;--laranja-esc:#C44712;
+--laranja-pal:#F4D8C9;--areia:#E9E1D6;--cinza:#68645E}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,sans-serif;background:var(--marfim);color:var(--preto)}
+header{background:var(--preto);color:var(--marfim);padding:14px 22px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+header h1{font-size:16px;font-weight:600;letter-spacing:.02em}
+header h1 span{color:var(--laranja)}
+.aviso{margin-left:auto;font-size:12px;padding:4px 10px;border-radius:4px;background:var(--laranja-esc)}
+nav{display:flex;gap:2px;padding:0 22px;background:var(--areia);border-bottom:1px solid #d8cfc0}
+nav button{border:0;background:none;padding:11px 18px;cursor:pointer;font:inherit;font-size:13px;
+color:var(--cinza);border-bottom:2px solid transparent}
+nav button.on{color:var(--preto);border-bottom-color:var(--laranja);font-weight:600}
+.kpis{display:flex;gap:10px;padding:14px 22px;flex-wrap:wrap;background:var(--branco);border-bottom:1px solid var(--areia)}
+.kpi{background:var(--marfim);border:1px solid var(--areia);border-radius:6px;padding:9px 14px;min-width:112px}
+.kpi b{display:block;font-size:20px;line-height:1.2}
+.kpi span{font-size:11px;color:var(--cinza);text-transform:uppercase;letter-spacing:.04em}
+.alerta{background:var(--laranja-pal);border-left:3px solid var(--laranja);padding:9px 14px;border-radius:4px;font-size:12.5px;max-width:520px}
+main{padding:18px 22px 40px}
+.quadro{display:flex;gap:12px;overflow-x:auto;padding-bottom:12px;align-items:flex-start}
+.col{background:var(--branco);border:1px solid var(--areia);border-radius:8px;min-width:230px;max-width:230px;flex:0 0 auto}
+.col h3{font-size:12px;text-transform:uppercase;letter-spacing:.05em;padding:11px 13px;border-bottom:1px solid var(--areia);
+display:flex;justify-content:space-between;align-items:center;color:var(--cinza)}
+.col h3 em{font-style:normal;background:var(--areia);border-radius:10px;padding:1px 8px;font-size:11px;color:var(--preto)}
+.col .ativ{font-size:10.5px;color:var(--laranja-esc);padding:5px 13px;background:var(--laranja-pal);border-bottom:1px solid var(--areia)}
+.cards{padding:9px;display:flex;flex-direction:column;gap:7px;min-height:50px}
+.card{background:var(--marfim);border:1px solid var(--areia);border-radius:6px;padding:9px 11px;cursor:pointer;transition:.12s}
+.card:hover{border-color:var(--laranja);transform:translateY(-1px)}
+.card b{display:block;font-size:13px}
+.card small{color:var(--cinza);font-size:11.5px}
+.card .tempo{font-size:10.5px;color:var(--laranja-esc);margin-top:3px}
+button.acao{background:var(--laranja);color:#fff;border:0;border-radius:5px;padding:8px 14px;cursor:pointer;font:inherit;font-size:13px}
+button.acao:hover{background:var(--laranja-esc)}
+button.sec{background:var(--branco);color:var(--preto);border:1px solid var(--areia)}
+.painel{position:fixed;inset:0 0 0 auto;width:min(520px,100%);background:var(--branco);border-left:1px solid var(--areia);
+box-shadow:-8px 0 30px rgba(0,0,0,.09);overflow-y:auto;padding:22px;display:none;z-index:20}
+.painel.on{display:block}
+.painel h2{font-size:18px;margin-bottom:3px}
+.painel .fechar{position:absolute;top:16px;right:18px;border:0;background:none;font-size:22px;cursor:pointer;color:var(--cinza)}
+.painel section{margin-top:20px;padding-top:16px;border-top:1px solid var(--areia)}
+.painel h4{font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--cinza);margin-bottom:9px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:6px}
+.grid button{font-size:12px;padding:7px 9px;text-align:left;border:1px solid var(--areia);background:var(--marfim);
+border-radius:5px;cursor:pointer;font-family:inherit}
+.grid button:hover{border-color:var(--laranja);background:var(--laranja-pal)}
+.grid button.perigo{border-color:var(--laranja-esc);background:#fbe9e2}
+input,select,textarea{width:100%;padding:8px 10px;border:1px solid var(--areia);border-radius:5px;font:inherit;
+background:var(--marfim);margin-bottom:7px}
+label{font-size:11.5px;color:var(--cinza);display:block;margin-bottom:2px}
+.linha{font-size:12px;padding:6px 0;border-bottom:1px solid #f0ebe1;color:var(--cinza)}
+.linha b{color:var(--preto);font-weight:600}
+.vazio{color:var(--cinza);font-size:12px;padding:9px 13px}
+dialog{border:0;border-radius:10px;padding:24px;max-width:440px;width:92%;box-shadow:0 20px 60px rgba(0,0,0,.2)}
+dialog::backdrop{background:rgba(23,23,23,.45)}
+</style>
+</head>
+<body>
+<header>
+  <h1>LE<span>O</span>N GROUP · CRM Comercial</h1>
+  <div id="modo" class="aviso"></div>
+</header>
+
+<nav id="abas"></nav>
+<div class="kpis" id="kpis"></div>
+
+<main>
+  <div style="margin-bottom:14px"><button class="acao" onclick="dlgNovo.showModal()">+ Novo lead</button></div>
+  <div class="quadro" id="quadro"></div>
+</main>
+
+<div class="painel" id="painel"></div>
+
+<dialog id="dlgNovo">
+  <h3 style="margin-bottom:14px">Novo lead</h3>
+  <label>Nome</label><input id="n_nome" placeholder="Nome do contato">
+  <label>Telefone (com DDI)</label><input id="n_tel" placeholder="+1 617 555 0100">
+  <label>Empresa</label><input id="n_emp">
+  <label>Nicho</label>
+  <select id="n_nicho">
+    <option value="">—</option><option>Flooring</option><option>HVAC</option><option>Remodeling</option>
+    <option>Painting</option><option>Roofing</option><option>Cabinets</option><option>Gutter</option>
+    <option>Carpentry</option><option>Framing</option>
+  </select>
+  <label>Faturamento mensal declarado</label><input id="n_fat" placeholder="US$ 20-30k">
+  <div style="display:flex;gap:8px;margin-top:12px">
+    <button class="acao" onclick="criar()">Criar</button>
+    <button class="acao sec" onclick="dlgNovo.close()">Cancelar</button>
+  </div>
+  <p style="font-size:11.5px;color:var(--cinza);margin-top:12px">
+    Ao criar, o lead entra em <b>Super Hot</b> e a mensagem de boas-vindas dispara em 15-30s,
+    avisando que alguém liga em menos de 5 minutos. Ligue em <b>menos de 1 minuto</b>.</p>
+</dialog>
+
+<script>
+let D={}, abaAtual='leads_novos', leadAberto=null;
+const api=(u,o)=>fetch(u,o).then(r=>r.json());
+const horas=iso=>iso?((Date.now()-new Date(iso))/36e5):0;
+
+async function carregar(){
+  D=await api('/api/quadro');
+  document.getElementById('modo').textContent =
+    (D.modo_simulado?'MODO SIMULADO — sem Z-API':'PRODUÇÃO')+(D.numero_liberado?'':' · número em silêncio (7 dias)');
+  const rot={leads_novos:'Leads novos',agendamento:'Agendamento',nutricao:'Nutrição',recuperacao:'Recuperação'};
+  document.getElementById('abas').innerHTML=Object.keys(D.pipelines).map(p=>{
+    const n=D.leads.filter(l=>l.pipeline===p).length;
+    return `<button class="${p===abaAtual?'on':''}" onclick="abaAtual='${p}';render()">${rot[p]||p} (${n})</button>`}).join('');
+  render(); kpis();
+}
+
+function render(){
+  const cols=D.pipelines[abaAtual]||[];
+  document.getElementById('quadro').innerHTML=cols.map(c=>{
+    const ls=D.leads.filter(l=>l.pipeline===abaAtual&&l.coluna===c.coluna);
+    const a=D.ativacoes_por_coluna[c.coluna];
+    return `<div class="col"><h3>${c.rotulo}<em>${ls.length}</em></h3>
+      ${a?`<div class="ativ">${a} ativações/dia</div>`:''}
+      <div class="cards">${ls.length?ls.map(l=>{
+        const h=horas(l.entrou_coluna_em);
+        return `<div class="card" onclick="abrir(${l.id})">
+          <b>${l.nome}</b><small>${l.empresa||'—'}${l.nicho?' · '+l.nicho:''}</small>
+          <div class="tempo">${h<1?'agora há pouco':h.toFixed(0)+'h nesta coluna'}${h>=24?' · decai no próximo tick':''}</div>
+        </div>`}).join(''):'<div class="vazio">vazio</div>'}</div></div>`}).join('');
+}
+
+async function kpis(){
+  const k=await api('/api/kpis');
+  const rot={whatsapp:'No WhatsApp',ligacao_atendida:'Atenderam',call_marcada:'Calls marcadas',
+             call_comparecida:'Compareceram',call_fechada:'Fecharam'};
+  document.getElementById('kpis').innerHTML=
+    Object.entries(k.etapas).map(([e,v])=>`<div class="kpi"><b>${v}</b><span>${rot[e]||e}</span></div>`).join('')
+    + k.alertas.map(a=>`<div class="alerta"><b>${a.taxa}%</b> em ${a.transicao} — ${a.diagnostico}</div>`).join('');
+}
+
+async function abrir(id){
+  leadAberto=id;
+  const l=await api('/api/lead?id='+id);
+  const p=document.getElementById('painel'); p.classList.add('on');
+  const ativ=D.catalogo.map(c=>`<button class="${c.tipo==='comprovante_falso'?'perigo':''}"
+      title="${c.nota}" onclick="ativar('${c.tipo}')">${c.rotulo}</button>`).join('');
+  p.innerHTML=`
+   <button class="fechar" onclick="fechar()">×</button>
+   <h2>${l.nome}</h2>
+   <div style="color:var(--cinza);font-size:12.5px">${l.empresa||'—'} · ${l.telefone||''} ${l.nicho?'· '+l.nicho:''}</div>
+   <div style="margin-top:6px;font-size:12px"><b>${l.pipeline}</b> / ${l.coluna} ·
+     ${horas(l.entrou_coluna_em).toFixed(0)}h nesta coluna</div>
+
+   <section><h4>Ligação</h4>
+     <div style="display:flex;gap:7px;flex-wrap:wrap">
+       <button class="acao" onclick="ligacao(1)">Atendeu</button>
+       <button class="acao sec" onclick="ligacao(0)">Não atendeu</button>
+       <button class="acao sec" onclick="respondeu()">Respondeu mensagem</button>
+     </div>
+     <p style="font-size:11.5px;color:var(--cinza);margin-top:7px">
+       Nunca ligue 3× seguidas — o padrão é 2 e para. Melhor janela: 17h-22h (52% atendem).</p>
+   </section>
+
+   <section><h4>Ativações — ${D.ativacoes_por_coluna[l.coluna]||0}/dia nesta coluna</h4>
+     <div class="grid">${ativ}</div>
+     <p style="font-size:11.5px;color:var(--cinza);margin-top:8px">
+       Follow-up não é venda: proibido ofertar, promover ou fazer marketing de oferta.
+       O objetivo é só retomar o contato — a venda acontece na ligação.</p>
+     <div style="margin-top:9px">${(l.ativacoes||[]).slice(0,6).map(a=>
+       `<div class="linha"><b>${a.tipo}</b> · ${new Date(a.executada_em).toLocaleString('pt-BR')}</div>`).join('')||''}</div>
+   </section>
+
+   <section><h4>Qualificação BANT</h4>
+     ${l.roteiro_bant.map(r=>`<label title="${r.instrucao}">${r.campo} — ${r.instrucao.slice(0,64)}…</label>
+        <input id="q_${r.campo}" value="${l[r.campo]||''}">`).join('')}
+     <button class="acao" onclick="qualificar(1)">Salvar e marcar qualificado</button>
+     <button class="acao sec" onclick="qualificar(0)">Só salvar</button>
+   </section>
+
+   <section><h4>Agendar call</h4>
+     <input type="datetime-local" id="q_quando">
+     <button class="acao" onclick="agendar()">Agendar</button>
+     <p style="font-size:11.5px;color:var(--cinza);margin-top:7px">
+       Nunca mais de 2 dias à frente. Prioridade é o mesmo dia — sem horário hoje,
+       não marque: diga que retorna a ligação amanhã.</p>
+     <div style="margin-top:9px;font-size:12px">${l.ritual.map(r=>'• '+r).join('<br>')}</div>
+   </section>
+
+   <section><h4>Desfecho</h4>
+     <div style="display:flex;gap:7px;flex-wrap:wrap">
+       <button class="acao sec" onclick="mover('call_rolando','agendamento')">Entrou na call</button>
+       <button class="acao sec" onclick="mover('no_show','agendamento')">Não apareceu</button>
+       <button class="acao sec" onclick="desfecho('call_fechou')">Fechou</button>
+       <button class="acao sec" onclick="desfecho('recusou')">Recusou</button>
+     </div>
+   </section>
+
+   <section><h4>Histórico</h4>
+     ${(l.eventos||[]).slice(0,14).map(e=>`<div class="linha">
+       <b>${e.tipo}</b> ${e.para?'→ '+e.para:''} <span style="float:right">${new Date(e.criado_em).toLocaleString('pt-BR')}</span>
+       ${e.detalhe?'<br><span style="font-size:11.5px">'+e.detalhe.slice(0,140)+'</span>':''}</div>`).join('')}
+   </section>`;
+}
+
+const post=(u,b)=>api(u,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b)});
+const fechar=()=>{document.getElementById('painel').classList.remove('on');leadAberto=null};
+async function criar(){
+  const r=await post('/api/lead',{nome:n_nome.value,telefone:n_tel.value,empresa:n_emp.value,
+    nicho:n_nicho.value,faturamento_mensal:n_fat.value});
+  if(r.id){dlgNovo.close();n_nome.value=n_tel.value=n_emp.value=n_fat.value='';await carregar();abrir(r.id)}
+}
+async function ativar(t){await post('/api/ativacao',{id:leadAberto,tipo:t});abrir(leadAberto)}
+async function ligacao(a){await post('/api/ligacao',{id:leadAberto,atendeu:a});await carregar();abrir(leadAberto)}
+async function respondeu(){await post('/api/respondeu',{id:leadAberto});await carregar();abrir(leadAberto)}
+async function qualificar(q){
+  const g=c=>document.getElementById('q_'+c)?.value||'';
+  await post('/api/qualificar',{id:leadAberto,rapport:g('rapport'),budget:g('budget'),
+    authority:g('authority'),need:g('need'),timeline:g('timeline'),qualificado:q});
+  abrir(leadAberto);
+}
+async function agendar(){
+  const v=document.getElementById('q_quando').value;
+  if(!v)return alert('Escolha data e hora');
+  const r=await post('/api/agendar',{id:leadAberto,quando:new Date(v).toISOString()});
+  if(r.erro)return alert(r.erro);
+  await carregar();abrir(leadAberto);
+}
+async function mover(c,p){await post('/api/mover',{id:leadAberto,coluna:c,pipeline:p});await carregar();abrir(leadAberto)}
+async function desfecho(t){await post('/api/desfecho',{id:leadAberto,tipo:t});await carregar();abrir(leadAberto)}
+
+carregar(); setInterval(carregar,30000);
+</script>
+</body></html>

@@ -1,0 +1,25 @@
+name = "leon-group"
+main = "src/index.js"
+compatibility_date = "2026-09-01"
+
+# Banco D1 — crie com:  npx wrangler d1 create leon-group
+# e cole o database_id devolvido aqui embaixo.
+[[d1_databases]]
+binding = "DB"
+database_name = "leon-group"
+database_id = "becdb3aa-200d-4cfc-8048-729fd3432a67"
+
+[vars]
+NOME_AGENCIA = "Leon Group"
+
+# Segredos (NUNCA no arquivo — defina por linha de comando):
+#   npx wrangler secret put ADMIN_SENHA
+#   npx wrangler secret put SESSAO_SEGREDO
+#   npx wrangler secret put OPENAI_API_KEY     (opcional, melhora as reviews)
+#   npx wrangler secret put ZAPI_INSTANCIA     (opcional, WhatsApp)
+#   npx wrangler secret put ZAPI_TOKEN
+
+# Motor de automação: decaimento de 24h, cadência de confirmação,
+# máquina de no-show, nutrição e recuperação.
+[triggers]
+crons = ["*/15 * * * *"]

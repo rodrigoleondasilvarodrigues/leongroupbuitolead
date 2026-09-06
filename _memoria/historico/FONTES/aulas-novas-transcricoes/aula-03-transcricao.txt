@@ -1,0 +1,373 @@
+Speaker A: Bom, rapaziada, então sejam muito bem-vindos à aula 3. Nessa aula a gente vai programar os anúncios para o Facebook Ads, a gente vai estudar sobre script de ligação de qualificação, instalar apresentação de vendas, e vou mandar uma call de vendas para vocês. Vou falar sobre a técnica de vendas que a gente tá utilizando atualmente e como que a gente vai construir provas sociais dentro de todas as vendas. Fechou? Vou no meu mapa mental aqui compartilhar a tela para vocês, vou seguir naquele padrão que vocês já sabem. Vou falar de forma rápida, resumida e mastigada, mas com que vocês precisam saber. Se tiver dúvida, interrompe. E é isso, fechou? Bom, então voltando aqui para o nosso mapa mental, a gente tá exatamente aqui nesta etapa de programar os anúncios para segunda, que no caso vai ser agora para terça, certo? Deixa eu pegar aqui e já puxar aqui para o tema.
+
+Speaker B: Pronto.
+
+Speaker A: Bom, rapaziada, eu vou— eu peguei uma conta minha desativada aqui do Meta porque eu não rodo mais pelo Meta, eu rodo pela UOP, é que é o nosso gateway. Eu não vou ensinar vocês a subirem pela UOP porque vocês não vão conseguir subir pela UOP, porque para subir pela UOP precisa fazer um monte de verificação e vocês nunca nem venderam. Então vai ser mó dor de cabeça. Se vocês forem colocar um cartão dentro da UOP, você nunca tem rodado lá, eles já vão cobrar $10 por campanha que vocês criarem. Então Não acho que é uma boa ideia de início já começar a ensinar vocês a rodarem pelo WAP. Eu vou ensinar vocês a rodarem inicialmente pelo Meta mesmo e depois a gente futuramente migra para a WAP, ok? Bom, vou compartilhar a tela aqui do meu Facebook. Peguei uma conta até que eu já gastei um dinheirinho nela, gastei pouco na realidade, gastei uns R$100 mil só.
+
+Speaker C: Quando você quiser carregar, como é que tá rodando?
+
+Speaker A: Aí, ó, 100 milzinho, foi quase nada. Eu esperei bater 100k nessa conta, mas vamos lá que eu vou explicar para vocês o processo desde zero, toda a lógica por trás de quando a gente vai subir a campanha, etc. Bom, primeiro passo padrão, né, você vai lá no facebook.com, é isso, acho que todo mundo sabe, vem aqui em ver mais.
+
+Speaker C: Gerenciador de anúncio.
+
+Speaker A: A conta de anúncios, ela não precisa ser necessariamente antiga, mas é bom que vocês utilizem uma conta de algum familiar de vocês ou algo do tipo para, enfim, ter uma liberdade maior com o Facebook. Primeiro passo é clicar em criar a campanha. Você tem dois tipos de campanha para subir, tá? Campanha de engajamento e campanha de leads. Henrico, qual que é a melhor? Campanha de engajamento. Porque, rapaziada, presta atenção, leads, quando você seleciona o objetivo da campanha para leads, o que que o Meta vai entender? Ele tem que trazer todos os leads ao menor custo possível, o que significa que o cara ele pode assistir 2 segundos do criativo, entrar em contato, quanto o cara pode assistir 30 segundos, o cara pode assistir o criativo completo. E qual que é o problema? Para o lead chegar qualificado no teu WhatsApp e você conseguir fazer uma venda mais facilmente, O lead tem que assistir o criativo por mais tempo. Quanto mais tempo, maior o criativo é, e quanto mais tempo esse criativo retém o lead, mais qualificado ele chega até o WhatsApp. Por isso que é burrice tu fazer uma campanha, por isso que é burrice fazer um criativo de 10, 15, 20 segundos, um criativo estático, porque a taxa de leads desqualificados vai ser enorme. E quando a gente pega criativos no estilo do nosso, de 1 minuto, de 40, 50 segundos, a gente sobe um objetivo de leads, o meta vai começar a otimizar para leads que assistiram 10 segundos e entraram em contato, e vão ser os piores leads possíveis. Então, qual o tipo de campanha que a gente seleciona? O tipo de engajamento que vai fazer o lead engajar no criativo. E ao final desse criativo ali, mais ou menos 70, 80, 100% do criativo, ele entrar em contato, ou seja, sendo lead extremamente qualificado. Não adianta de nada tu ter um CPL barato, que é o custo por lead, sendo que esse lead é uma merda. Tu tem que ter um CPMQL, que significa custo por marketing qualified lead, ou seja, custo por lead qualificado bom. E além de ter um custo por lead qualificado bom, tem que ter um custo por aquisição de cliente bom. E o melhor tipo de campanha para alcançar esses dois tipos de métricas é a campanha de engajamento, tá? Clica em continuar, seleciona a opção de baixo, campanha de engajamento manual, continuar. E aí eu vou passar a nomenclatura que eu gosto de utilizar com vocês, tá bom? Primeira coisa, eu gosto de colocar, por exemplo, no começo da campanha o número de vendas. Então se ela teve uma venda, duas vendas, três vendas, sempre começo colocando isso no começo. Também colocar assim zero porque não teve nenhum. Depois o objetivo da campanha, não, o formato da campanha que vai ser CBO. Depois disso eu coloco um hífen e eu coloco a data do dia.
+
+Speaker C: Então, por exemplo, 28/08/2026, tá?
+
+Speaker A: E depois disso eu coloco aqui isso aqui. E aqui no meio disso eu posso colocar, por exemplo, para onde que vai essa campanha e o objetivo dela. Então, o objetivo dela é engajamento e ela vai para WhatsApp. E no final eu ainda gosto de colocar o nome da empresa referente, certo? Até aqui alguma dúvida? Todo mundo conseguiu produzir os criativos? Só para saber.
+
+Speaker D: Eu produzi, mas o criativo não ficou muito bom, que eu até mandei mensagem para o Rian e tal. Aí ele pediu até para você dar uma avaliada depois para poder trocar e fazer um novo.
+
+Speaker A: Beleza, a gente vai fazer isso no final.
+
+Speaker C: Show.
+
+Speaker A: Bom, basicamente é isso. Então a gente seleciona aqui o zero vendas, CBO 28/08. Não, hoje não é 28, não, hoje é dia 31. Engajamento WhatsApp e o nome da sua agência no final, certo? Como a gente tá selecionando o CBO aqui em cima, que seria o orçamento da campanha, a gente seleciona aqui a primeira opção. Eu gosto de colocar R$100 por criativo, certo? A nossa estrutura, ela sempre vai ser uma campanha, um conjunto e um criativo. Logo, R$100 por campanha, certo? Depois disso é só clicar aqui na aba de conjuntos. Aqui não tem erro, é só escrever conjunto, ele abre a versão de conjunto de 01 e o ad que a gente vai rodar. Ah, eu esqueci de colocar aqui no meio, eu gosto de colocar assim, ó, é de 01, tá?
+
+Speaker C: Ô, cacete! Antes do, depois aqui, aí, boa.
+
+Speaker A: Eu gosto de colocar assim, tá? Então aqui no conjunto eu vou colocar L01 também para linkar ele com o nosso, com a nossa campanha. Depois eu seleciono aqui a página do Facebook. Com a página do Facebook aqui, ele provavelmente vai estar destino automático, tu vai selecionar destino manual e vai centralizar no WhatsApp Business. Henrico, onde é que eu vou comprar um número americano igual que você tem agora? Vocês vão entrar no Telegram e comprar o número. Eu já ensinei você a comprar o número americano, eu não me lembro. Eu ensinei já?
+
+Speaker C: Não, ensinou sim.
+
+Speaker A: Não, ele deu uma puxada lá na primeira aula, mas não chegou a passar o fornecedor, nada.
+
+Speaker F: Você só comentou aí por cima na aula.
+
+Speaker C: Ah, eu já comprei.
+
+Speaker A: Ah, então eu vou repassar aqui, já que teve esse, esse erro de comunicação. Deixa eu compartilhar a tela aqui para vocês entenderem. Primeira coisa, vão ter que baixar o Telegram no computador de vocês. Quando baixar o Telegram, vocês vão acessar o link que eu vou deixar na área de membros, que é o link de acesso a um bot do Telegram, tá? Eu não sei por que não tá aparecendo aqui para compartilhar a tela do Telegram. Aí foi bom. Esse aqui é o bot do Telegram específico, o nome dele é Notes SNS, é o melhor que tem atualmente. E aí o que você vai fazer basicamente é vir aqui e digitar o seguinte comando: /start. Quando tu digitar /start, ele vai acontecer, ele vai gerar essa tela. Aí tu vai clicar nessa opção de recarga e vai clicar duas vezes no +10, +10, ou seja, tu vai adicionar mais ou menos R$30 na plataforma. Clica em recarregar, faz o pagamento que é via Pix e pronto. Quando você pagar, você digita novamente /start e aí já vai ter aqui seu saldo, certo? Eu tenho aqui R$16 de alguma outra vez que eu recarreguei. Depois vocês cliquem, vocês clicam em escolher país, vem e procura os Estados Unidos, clique em EUA, Estados Unidos, mostrar serviços nessa opção, vem até a última página, próxima página, próxima página, WhatsApp ele vai estar bem, cadê, cadê, cadê? Ele sempre tá aqui no finalzinho, ele sempre muda de lugar. Aqui, ó, WhatsApp. Você vai selecionar WhatsApp, vai selecionar qualquer operadora, opção 1. E como eu não tenho dinheiro aqui, ele vai dar saldo insuficiente. Mas quando você selecionar essa opção, vai vir uma mensagem nesse estilo aqui, tá? Que que você vai fazer? Tu vai copiar este número aqui de baixo. No seu celular você vai baixar WhatsApp Business e vai Lá no WhatsApp Business selecionar que é um número americano, que é o +1, né, o DDD, e vai colar esse número. Quando você colar e clicar em continuar, ele vai pedir um código que vai receber via SMS. E aí vai chegar desse jeito aqui, ó, esse vai ser recebido, Your WhatsApp Business Code, e vai dar o código. Aí você pega e coloca esse código dentro do WhatsApp Business, e aí show, a conta vai estar liberada. Dois pontos importantes: dificilmente vai funcionar de primeira. Então você vai colocar o número que ele gerou aqui, muitas vezes ele vai falar que esse número não existe, que esse número já tá em uso, e aí você vai clicar em cancelar. E quando você clicar em cancelar, você vai ser reembolsado, ele vai gerar outro número. E você tem que ir tentando, tentando, tentando, tentando, tentando até funcionar.
+
+Speaker C: Leva uns 10 minutinhos, tá?
+
+Speaker A: Quando funcionar, você não vai enviar mensagem para absolutamente nenhuma pessoa. Se você tentar enviar mensagem para alguma pessoa, no segundo seguinte a sua conta vai cair, vai ser banida. Então espera começar a chegar pessoas interessadas no anúncio. Para vocês começarem a enviar mensagem, certo? Senão a conta vai cair. E só depois de uma semana, com bastante gente chamando, vocês começam a fazer recuperação, manda mensagem, etc., certo? Depois disso, basta você linkar a sua página do Facebook com o seu número. E quando você linkar sua página do Facebook com seu número, já vai aparecer aqui dentro do Facebook Ads. Outra coisa, não necessariamente você precisar ir nas configurações da página, linkar, você vai chegar nessa tela aqui e vai ter um botão de conectar número.
+
+Speaker C: Né?
+
+Speaker A: E aí esse botão de conectar número, você vai colocar o número que você comprou e você vai receber um código dentro do próprio WhatsApp Business que você vai inserir aqui e já vai estar liberando esse número para você, certo? Seleciona somente WhatsApp, desativa Instagram, desativa o Messenger. Desce, pode deixar essa maximizar o número de conversas. Desce, desce, desce. Sempre programa para o dia seguinte, ou seja, dia 1 de setembro. Coloco para rodar sempre às 9 horas da manhã do Brasil e às 8 horas da manhã nos Estados Unidos. O fuso dos Estados Unidos tem exatamente 1 hora de distância.
+
+Speaker D: Então, por exemplo, agora no Brasil são 6:29 da tarde.
+
+Speaker A: E agora no horário dos Estados Unidos são 5:29. Lembrando que nos Estados Unidos você não fala 17 horas, você não fala 18 horas, você utiliza a nomenclatura de PM e AM. PM, em inglês PM, significa todos os horários do meio-dia até meia-noite, até 23:59. E da meia-noite até 23:59 a gente utiliza AM. Então se eu quiser falar 4 da manhã, eu falo 4 AM. Se eu quiser falar 11 da manhã, eu falo 4 AM. Se eu quiser falar meio-dia, eu falo 12 PM. Se eu quiser falar meia-noite, eu falo 12 AM. Se eu quiser falar 8 horas da noite, eu falo 8 PM. Se eu quiser falar 8:30, eu falo 8:30 PM. E assim segue. Se eu quiser falar 8:30 da manhã, 8:30 AM.
+
+Speaker C: Simples, certo?
+
+Speaker A: Selecionar aqui para o horário do Brasil, 9 horas da manhã, 8 horas nos Estados Unidos, tá? Aqui em controle de público, você vai trocar, vai clicar em editar. Vai incluir e vai digitar USA, que é USA, e já vai aparecer em primeira colocação Estados Unidos da América. Seleciona. É muito importante que tem que estar selecionado aqui como país, tem que ter aqui, ó, país na subscrição. Vem aqui no Brasil, nos três pontinhos, excluir localização. Na aba de incluir aqui na esquerda, coloca excluir e coloca o Alasca. E aí clica aqui em excluir, certo? Depois clica nesse xizinho aqui que o público foi atualizado. Em idade mínima, clique editar, coloca aqui 25 anos. Aqui em idiomas, você vai clicar em editar e vai colocar português Brasil, certo? Em público Advantage, você vai clicar em sugestão de público. Você vai clicar aqui em idade, editar, e vai colocar de 25 até 55 anos. Gêneros, você vai editar, vai colocar somente homens. Certo, vai descer, descer, descer, descer, descer, descer, descer, descer. Onde tiver aqui Controles da Conta, nenhum, você vai clicar em Mostrar mais configurações. E aqui você vai clicar em Plataformas e vai desativar WhatsApp. A gente não quer que o nosso anúncio apareça no WhatsApp. E vai desativar o Wellness Network. Vai clicar aqui nessa setinha dos feeds e vai desativar notificação do Facebook, página inicial do Explorar, Facebook Marketplace e vai deixar somente essas 4 opções marcadas. E a gente vai ter finalizado aqui a nossa configuração dentro do conjunto de anúncios. Depois disso, basta você vir aqui na última etapa, que é o criativo. Eu gosto de nomear de Ad 01, tá bem fácil, e tudo conectado, certo? Aqui onde está escrito usar post existente, você coloca criar anúncio. Lembrando, sempre utilizando a mesma página Instagram da agência de vocês. Vem aqui em configurar criativo. Anúncio em vídeo. Selecionei qualquer criativo. Essa conta, como eu disse, ela é antiga, então vai ter criativo mais antigo meu aqui. Cliquei avançar. O texto que vocês vão colocar é esse daqui que eu vou pegar agora. Calma aí, aqui. Aqui esse texto eu vou deixar ele disponível na nossa área de membros, tá? Vou até dar um zoomzinho para vocês conseguirem ler, certo? Aqui onde está o título eu gosto de colocar 5/5, seria tipo avaliação, e no final eu coloco uma estrela de emoji. Clicou avançar. Aqui eu deixo tudo desabilitado. Avançar. Aqui em aprimoramentos eu desativo tudo e o único que eu deixo ativado é retoques de vídeos.
+
+Speaker C: Concluir.
+
+Speaker A: Perfeito. Feito isso, pode descer, descer, descer, descer. Aqui em enviar mensagem pelo WhatsApp você pode deixar, tá? Desce mais um pouco. Onde tá conversas, você vai vir aqui em criar modelo, vai selecionar o de cima. Se no seu pulgar e o formulário ele continuar aparecendo no de cima, é só você clicar no de baixo e clicar no de cima, que é para ficar igual ao meu.
+
+Speaker C: Avançar.
+
+Speaker A: Troca aqui de Olá, posso ter mais informações sobre isso? E coloca Olá, gostaria de saber mais sobre o programa de marketing de vocês. Vai dar quase 80. Aí clica aqui, pode clicar em salvar e está pronto o criativo para subir. Para você conseguir subir os outros, você vem aqui nos três pontinhos, clica em duplicar. Duplica a campanha. E aí, o que que você vai fazer? Quando você deu, eu não consigo duplicar porque essa conta tá desativada, mas quando você duplicar a campanha, ele vai liberar, ele vai aparecer outras telas aqui embaixo. Que você vai fazer é muito fácil. Se for o criativo 2, você vai trocar de ad para 02, conjunto ad 02, em anúncio ad 02. Vai vir aqui em alterar seleções, vai colocar seu novo criativo. E presta atenção, quando eu clicar nesse, ele não vai deselecionar o outro. Então cliquei, ainda tá selecionado. Aí você clica em cima do antigo para ele deixar somente o novo selecionado. Avançar, avançar, avançar, avançar e concluir. Quando você terminar de fazer tudo, basta você clicar na campanha, na primeira, segurar o Shift no seu teclado e clicar na última campanha. E depois disso é só clicar em publicar e ser feliz, tá? Então essa é basicamente a estrutura que a gente utiliza atualmente aqui para subir anúncios dentro do Facebook Ads.
+
+Speaker C: Aqui na nossa empresa, certo?
+
+Speaker A: Alguém tem alguma dúvida?
+
+Speaker C: Não, não, zero dúvida.
+
+Speaker B: Quanto tempo vocês deixam rodando a campanha para validar o criativo?
+
+Speaker C: 3 dias mais ou menos, tá?
+
+Speaker A: Porque como é muito pouco, R$100, é que na realidade, tipo assim, cara, é muito feeling, né? Mas se no primeiro dia já deu mais de R$100, eu não trouxe lead, eu já mato. Se ficou assim, gastou 100, não trouxe lead, eu mato. Se no primeiro dia trouxe lead, eu deixo. No segundo lead abaixar pelo menos aí para no mínimo R$70, eu deixo. Senão eu mato. E no terceiro dia, o custo por lead tem que estar entre R$20 até R$50 no máximo. Passou de R$50, pode matar, certo? Bom, voltando aqui para nossa tela, então é muito fácil programar os anúncios. Basta seguir o tutorial. Pode falar, Paulo, sobre o anúncio.
+
+Speaker D: Repete, por favor, como é que seria os orçamentos para quem tem baixo custo, para quem tem caixa pequeno, igual eu tô com R$1.000 só para poder investir.
+
+Speaker A: Aí, cara, eu colocaria R$200 por dia, eu colocaria R$200 por dia e testaria 2 criativos. Entendeu? Duas campanhas diferentes, dois diferentes, R$100 por campanha.
+
+Speaker D: Fechou, fechou.
+
+Speaker A: Boa, deu para entender aqui?
+
+Speaker D: Deu, deu para entender. Boa, boa.
+
+Speaker A: Bom, bora para a próxima etapa, que é o script de ligação. Que eu quero que vocês entendam: quando ele chega, rapaziada, tem que ter um processo muito bem definido do momento que ele chega até a hora que ele compra. E aí eu vou trazer aqui para vocês todo esse script que a gente utiliza em ligação para ficar bem claro para vocês. Deixa eu puxar aqui. Bom, atualmente a gente utiliza um método para fazer toda a qualificação do lead, que ela é muito famosa, que se chama Bunch. Alguém já ouviu falar?
+
+Speaker C: Alguém? Não? Beleza. BUNCH, ela tem essas traduções: budget, authority, need, timeline.
+
+Speaker A: E o que significa? É um método onde você descobre se o cara tem o dinheiro para te pagar e o quanto que ele fatura, que é a partir disso, se ele realmente é o dono da empresa, o decisor final, ou ele é sócio, ou se ele precisa da esposa para tomar uma decisão final, ou ele precisa sei lá, de um sócio, de um cachorro, foda-se, ele tem que entrar na call com o que é o decisor final sempre. Need é a parte que ele realmente precisa do serviço, ele tá ali só por curiosidade. E timeline é para saber quando que ele quer fechar isso, algo que ele quer fechar imediato, algo que ele tá planejando para daqui 2, 3 meses, para você não perder tempo e nem gastar energia com lead merda. Só vai fazer call com lead bom, tá? E aí, antes disso, vem uma etapa que a gente chama de rapport, que é basicamente o quebra-gelo. Onde basicamente você gera conexão. Lembra na primeira aula que eu expliquei que venda é gerar conexão com o lead? Você parecer um amigo, um consultor que tá induzindo ele ao caminho certo, não o contrário, tá? Então é muito importante essa aba do rapport. Para isso eu desenvolvi um script de ligação muito, muito bem feito que vocês vão poder simplesmente copiar e utilizar na operação de vocês. Eu tô só pegando ele aqui, puxando aqui para o Miro, porque eu tinha montado ele no Inviscon, mas eu não vou fazer pelo Inviscon não, tá? Se você colocar assim todos, boa. E aqui, rapaziada, depois eu vou liberar para vocês, tá?
+
+Speaker F: Eu colocar aqui o Boa, certo.
+
+Speaker A: Aí o próximo etapa, próximo etapa, eu já vou no link, eu já vou colocar a definição de cada uma aqui do lado, vocês entenderiam, lógico. Aí foi bom. A estrutura que a gente utiliza aqui é muito fácil. Aqui nessa primeira etapa da ligação seria equivalente ao rapport, certo? Deixa eu jogar aqui, já pequenininho. Essa primeira etapa aqui ela é referente ao rapport. E quanto melhor o seu rapport for, mais vendas vocês terão. Depois a gente vai puxar para área de budget. Acho que até aqui tá bom. Aí daqui a gente vai puxar para área de budget. Seria o primeiro B. E aí ele encaixa nessa aba até o show. Dá para descer um pouquinho mais aqui.
+
+Speaker C: Aí, beleza.
+
+Speaker A: Depois do budget, que que vem? O A, que é para saber se o cara é o dono mesmo da empresa. Aí não há, a gente vem aqui só nessa primeira etapa.
+
+Speaker C: Calma aí, deixa eu puxar daqui.
+
+Speaker A: Aí, porra, isso aqui é a parte do Authority, mas é uma merda trazer do Imisco, rapaziada. É um outro, é uma outra plataforma, é uma merda para trazer para o meu. A plataforma é boa, mas para trazer para cá é foda. Aí depois vem o need, que é para saber se o cara realmente tá querendo fazer. E aí, for the last one, se quiser, a gente entra com o timeline, que é para saber se o cara realmente, ou ele tem interesse, ou tipo é algo que ele quer fazer no futuro. E bem pequenininha na realidade, mano. Tá bugando, Bruno. Como é, rapaziada? Ó, essa etapa aqui inclusive é aqui, ó. Aí por último, como eu disse, né, mano? Acabei que inverti as ordens. Beleza, aí por último veio o agendamento. Esse agendamento aqui eu vou falar para vocês, vocês vão ter que gastar um pouquinho ainda aí, mas ele é bem de boa, bem de boa. É que é uma confirmação só da, basicamente, do agendamento da call. Bom, fazendo o funil de uma forma mais veloz aqui com vocês, eu vou explicar um pouco melhor. Eu vou ficar até de pé, rapaziada, porque vai ficar mais fácil de eu explicar essa parte de vendas aqui, eles vão conseguir entender melhor. Só subir a mesa aqui. Foi mal essa confusão na hora de passar para cá. Bom, vamos lá então. Seguinte, começa da seguinte maneira: pelo rapaz conectando com o lead. Eu vou ligar como se tivesse alguém falando comigo para vocês entenderem como funciona e vou ir dando algumas dicas. Eu começo assim: fala, Pedro. Aí, no caso, só para vocês entenderem, é porque eu já queria fazer no flow automático, mas eu vou ir parando para vocês entenderem. Rapaziada, venda não pode parecer venda. Então, quando você vai fazer o primeiro contato com o lead, tu não tem que chegar naquele entusiasmo absurdo. Porra, tu não vai ligar para o teu parceiro e vai começar falando super entusiasmado com o cara. Jamais tu vai fazer isso. Então pega a dica da call de vendas. Call de vendas é exatamente igual você trocar ideia com alguma mina. É idêntico, idêntico, não tem diferença. Porra, tu vai chegar e vai começar a conversar com a mina na primeira ligação. Vamos supor, tu respondeu o stories da mina, começou a trocar ideia com ela, aí beleza, a mina passou o número. Aí tu fala, pô, vou te ligar hoje para a gente conversar. O nome da mina é Gabriela, sei lá. Aí tu começa a ligação falando assim, e aí, Gabriela, como que você tá? Nem fodendo, porra, tu não começa assim. Como que tu começa? E aí, Gabi, tudo bem? Tipo, de uma forma mais natural. Pensa que é a mesma coisa, é exatamente igual a esse tipo de conversão que você tem que ter na ligação de vendas.
+
+Speaker C: Tá?
+
+Speaker A: Então vou fazer toda a ligação completa para você entender como funciona.
+
+Speaker C: Alô, Pedro?
+
+Speaker A: Fala, Pedro, beleza? Pedro, aqui é o especialista em vendas da Fericompany, cara. Meu nome é João Pedro, tô retornando sua mensagem, interessado no nosso programa Leads Every Day, você lembra?
+
+Speaker C: Boa, Pedro.
+
+Speaker A: O objetivo dessa conversa, cara, entender de forma bem rápida assim se o nosso programa Leads Every Day de fato faz sentido para sua empresa.
+
+Speaker D: Fechou.
+
+Speaker C: Boa, Pedro.
+
+Speaker A: Qual o nome da sua empresa, cara? Alves Remodeling.
+
+Speaker C: Boa.
+
+Speaker A: Posso assumir que ela trabalha, você trabalha na área de remodelo, né, pelo nome Alves Remodeling, na área de remodelo. Boa. Trabalha alguma área específica de remodelo? Kit remodeling, remodelo. Legal, legal. E você tá localizado em que estado, cidade, cara? Tampa, na Flórida. Porra, Tampa na Flórida é bom demais, mano. Tô direto aí, direto aí. Eu gosto do calor, né, cara? E é o clima da Flórida, é bom demais. Me lembra o Brasil. Tô tanto tempo aqui, cara, que já perdi a noção, velho.
+
+Speaker F: Boa.
+
+Speaker A: Mas aí, Pedrão, como que tem das vendas aí? Foi boa nos últimos 30 dias? Como que foi? Mais ou menos?
+
+Speaker C: Certo.
+
+Speaker A: Por que, cara? Você acha que é mais ou menos temporada, né? Final de ano é foda, ligado, cara? É foda. Mas dá para dar um jeito, cara. Nos últimos 30 dias conseguiu faturar mais de $10.000?
+
+Speaker C: Bem mais. Boa. Uns 30.
+
+Speaker A: Ah, entendi. Uns 25 a 30 mil. Boa, legal. Boa, Pedrão! E faz tempo que você tá na América, cara? 4 anos? Porra, cara, eu tô aqui há 6, que minha família tem empresa de construção, então cheguei aqui junto com eles. E curte aqui, cara? Tem saudade do Brasil?
+
+Speaker C: Entendi.
+
+Speaker A: E Pedrão, me fala uma coisa, velho, você acha que você realmente precisa desse tipo de serviço que a gente faz, que basicamente é trazer mais clientes para você sem que você precise investir em tráfego pago, utilizando um método orgânico assim, cara, que basicamente a gente pega o que o americano mais valoriza na hora de fechar um serviço contigo, que são as reviews, né? A gente sabe que americano sempre gosta de olhar reviews antes de fechar com a gente e usar desse item, que é justamente esse gosto deles, para conseguir alavancar você nas buscas do Google e trazer clientes para você de forma orgânica. Você acha que é algo que você precisa agora conseguir fechar mais serviços particulares, talvez diminuir a tua dependência de um contratista? Você acha que é algo que você precisa para agora?
+
+Speaker C: É? Boa, legal.
+
+Speaker A: E cara, essa call que a gente vai fazer, nessa ligação que a gente vai fazer, eu vou te apresentar um plano personalizado mesmo, sabe, cara? Algo que vai ser montado a dedo para ti. Então realmente posso contar que você realmente tem interesse em melhorar essa parte da tua empresa, algo que você quer fazer para agora.
+
+Speaker C: É isso mesmo, né? Boa.
+
+Speaker A: Bom, Pedro, você tá falando comigo, o João Pedro aqui da Fiori Company, e basicamente quem vai conduzir essa call contigo vai ser o Henrico, e ele tem disponibilidade hoje entre os horários 6 PM e 8 PM. Vai durar ali mais ou menos 40 minutos a ligação. Qual que fica melhor para ti? Nenhum dos dois? 7:30 funciona? Das 7:30 às 8:30, mais ou menos?
+
+Speaker C: Pode ser?
+
+Speaker A: Não, fechou. Ó, tá com o celular na mão, né, o Pedro? Beleza. Pedro, faz o seguinte, coloca a ligação no viva-voz, por favor.
+
+Speaker C: Colocou? Boa.
+
+Speaker A: Abre a nossa conversa no WhatsApp aí agora. Conseguiu abrir?
+
+Speaker C: Show!
+
+Speaker A: Eu tô te enviando a confirmação da nossa reunião, verifica se vai chegar.
+
+Speaker C: Chegou? Boa!
+
+Speaker A: Eu vou só te pedir que você encaminhe o seu email agora aqui no chat do WhatsApp para eu poder linkar com o nosso invite no Google Agenda. Consegue mandar para mim?
+
+Speaker C: Boa!
+
+Speaker A: Enquanto você vai escrevendo aí, Pedro, só para te explicar que a nossa call ela vai ser realizada via Google Meet, tá? Caso você não tenha aplicativo, é só ir na App Store e pesquisar Google Meet, Meet de reunião, M-E-E-T. Certo, baixar o aplicativo, não precisa criar conta, e eu vou te encaminhar um link aqui pelo WhatsApp. Faltando exatamente 5 minutos para a nossa call, o Henrico já vai estar na sala te esperando com o plano que a gente vai montar agora nas próximas horas para te apresentar.
+
+Speaker C: Combinado?
+
+Speaker A: Bom, meu irmão, posso contar com a tua presença mesmo? Porque eu vou pedir para os meus meninos aqui, eu pedi para o Léo, para o Guilherme, para o Gustavo começarem a preparar o plano. A gente vai fazer uma pesquisa um pouco mais profunda sobre a Always Wear Modeling, a gente conseguir entender um pouco mais sobre a tua empresa. Posso contar contigo mesmo? É o horário que realmente você consegue comparecer, porque eu não posso ter furo na agenda, meu irmão, que a nossa agenda ela tá bem corrida. Bom, então assim, eu vou te ligando para a gente poder ir continuando mantendo contato. Qualquer dúvida tu pode me ligar aqui no WhatsApp. Faltando 5 minutos eu te envio o link aqui da nossa ligação, fechou? Prazerzão, Pedro. Fica com Deus, qualquer coisa me liga.
+
+Speaker C: Abraço, rapaziada.
+
+Speaker A: E eu quero que vocês percebam, eu não segui o script especificamente. O script, ele é uma base, não é um robô que você vai, não é tipo um prompt que você tem que ler e executar como se fosse um robô. É uma âncora da onde que você tá até você chegar no lead. E essa ligação, ela é uma das partes mais importantes do seu funil. Não adianta de nada tu ter um puta criativo bom, uma puta call de vendas boa, se tua call de qualificação, a tua call de agendamento é uma merda. A tua call de agendamento, ela tem que ser Excelente. Tem que ser a melhor parte da tua, do teu funil por completo. Então o lead, ele caiu. Primeira coisa, ligar em menos de 1 minuto, tá? O lead entrou no seu WhatsApp, você tem que estar com o celular na mão para ligar em menos de 1 minuto. Venda é velocidade. E você tem que pensar no nosso público, porra. Pensa no lead ali que tá nos Estados Unidos, pensa no cara que ele é pintor, certo? Aí é 4 da tarde, deu um intervalo aí, ele pegou ali o celular 2 minutos com música, apareceu o anúncio. O time dele clicar para entrar em contato e enviar mensagem é papo de 1 minuto, 2 minutos depois ele já ter deixado o celular de canto e subir lá na obra para pintar parede. Isso é 4 da tarde. Aí beleza, 6 horas, 6:30, ele acaba a obra ali, né, tá voltando para casa, mais 1 hora e meia de estrada, chega em casa umas 8:30, 9 horas, morto destruído. Começa a chegar um número aleatório que ele nem sabe quem que é, spamando ligação. Você acha mesmo que ele vai atender? Nem fudendo. Então o contato ele tem que ser em menos de 1 minuto, e se não for você vai perder a porra da venda, tá bom? Isso assim, isso é primordial, é indiscutível, né, todo esse processo. E basicamente é isso, não tem erro. Este é o tipo de ligação que você faz e ela é bem, bem tranquila mesmo de fazer, certo? Alguém tem alguma dúvida nessa etapa? Não, zero dúvidas. Zero dúvidas.
+
+Speaker B: Boa. Só uma pergunta aí: tem horário certo de deixar ligadas as campanhas ou você sempre deixa 24 horas?
+
+Speaker A: 24 horas. Só que assim, tem uma janela, né, do horário que os vídeos chegam usualmente. Usualmente é das 7 da manhã até meio-dia e das 5 da tarde para frente. Melhor horário para ligar quando o lead não atende em menos de 1 minuto sempre é das 5 horas até as 10 horas da noite. Tem 52% de taxa de atendimento baseado em mais de, sei lá, 10 mil ligações que a gente já fez. E o horário quente é das 5 às 10 e das 7 às 11 da manhã, os melhores horários para ligar. De tarde é uma merda, ninguém atende, tá? Mas não que você vai deixar de ligar, mandar mensagem. E outra coisa, se o lead não atendeu no primeiro dia, não atendeu no segundo dia, Você não vai ficar tentando mandar mensagem, tentando recuperar uma venda. Ou quando você manda uma mensagem assim, quando ele não responde, a gente chama de follow-up, né, que é você fazer um follow, né, chamar o cara, ativar o cara de novo. Follow-up é uma ativação. Aqui dentro da nossa empresa, cada um dos nossos SDRs, que é o cara que trabalha conosco na parte comercial, que tem justamente essa função de apenas ligar, qualificar e agendar call e fazer follow-up, ele é proibido de tentar vender na mensagem do WhatsApp, ofertar, tentar vir na call, é negativo. O nosso SDR tem que fazer 10 ativações por dia por lead. Então vamos supor que eu cheguei, vamos supor que o João Pedro entrou em contato com a gente hoje e amanhã, até lá passou tipo 15 horas, ele não atendeu. No dia seguinte, meu SDR tem que fazer 10 ativações. O que que é ativação? Ativação pode ser ligação, pode ser um áudio de visualização única, pode ser uma mensagem, pode ser um emoji, pode ser uma figurinha. Mas sempre assim tentando retornar contato, não tentando vender. A gente manda muita figurinha, né, engraçada, manda fingindo que fez um pagamento para o cara falso e para o cara abrir, ver que a gente mandou alguma coisa, mas na realidade, tipo assim, fingir que eles mandam pagamento para o cara, ele mandou um comprovante, aí quando abre, o cara abre o comprovante, uma foto nossa, torna para o cara responder.
+
+Speaker C: Maneiras descontraídas de retornar contato, certo? Show! Boa, é isso.
+
+Speaker A: Bom, agora sobre a parte aqui, duas partes interessantes que eu quero falar para vocês. Sobre essa aqui, instalar a apresentação de vendas no cloud, eu vou gravar um vídeo no meu PC ensinando a instalar. Não vou ensinar em call não, porque é um passo que eu acho que ele tem que ser um pouco mais gravado e tem que ser aula gravada. Isso aí não acho que aula vai ficar bom fazer isso não. Tem que ter corte, é um processo que se eu for fazer em call vai demorar muito de esperar o cloud carregar. Então vou gravar hoje de noite para vocês instalando a apresentação de vendas e vou encaminhar para vocês amanhã. E até nem conseguiria mandar hoje para vocês porque meu cloud bateu o limite por completo de todos hoje, reinicia só amanhã também. Então não tem como nem fazer nada hoje, só amanhã eu consigo mandar para vocês isso. Mas vocês podem subir a campanha normalmente, marcar a call ali por umas, começar a marcar a call amanhã a partir das 7 da noite que não tem problema. Sobre as técnicas de vendas, eu separei 4 materiais que eu gravei para vocês. Eu gravei um material ensinando e treinando uma closer do absoluto zero, certo? Onde eu mostro todo o processo do zero até o avançado treinando closer. Separei call de vendas, peguei uma call de vendas um pouco mais antiga minha, só que uma call de vendas muito interessante porque ela mostra todos os estilos de downsales que eu faço. Então eu peguei o lead mais fodido que existia na face da terra, tipo, que eu sabia que o cara ganhava tipo, sei lá, $3.000 por mês. Eu sabia que o cara não ia fechar um ticket alto nem fodendo, só que eu peguei esse lead especialmente para poder gravar para vocês essa call. Tem alguns meses e ela é muito boa essa call, porque, mano, o cara realmente era muito fodido de grana. Então eu mostro como que eu faço downsell desde o topo lá do ticket mais alto até chegar num ticket de $300, o que vocês não são, vocês não precisam vender nesse valor, é ridículo $300. Mas eu já peguei esse de propósito para poder ensinar vocês todas as técnicas de vendas. E outra coisa, já vai agregar outra, porque as provas sociais que vocês vão colocar na apresentação de vendas já vão estar linkadas na apresentação de vendas do arquivo que eu vou disponibilizar. Para vocês. Então já facilitei todo o processo para vocês. Então para hoje, o que que vocês precisam fazer? Programar os anúncios para amanhã, ou na minha opinião, programar para quarta-feira, que seria mais seguro porque daria um dia de estudo para vocês. Vou encaminhar na aula, na aula não, na área de membros também, quando ficar disponível, vai ter 4 aulas anexadas, 5 aulas anexadas. A primeira aula ensinando como instalar apresentação de vendas que vocês vão utilizar na reunião de vendas no cloud, e as outras 4 aulas sobre técnicas de vendas, certo? Para vocês conseguirem, que é um material que vocês podem falar, que vocês podem anotar, que vocês podem enfim revisar, para a gente conseguir ter um desempenho melhor durante todo o trajeto de vocês.
+
+Speaker C: Fechou?
+
+Speaker A: Eu vou pegar agora esses últimos minutos que a gente tem, né? Lógico, sempre faço isso e abrir para tirar dúvidas. Fechou então?
+
+Speaker C: Podem tirar dúvidas, fique à vontade.
+
+Speaker D: Tem uma dúvida aqui rapidinho.
+
+Speaker C: Bora para cima!
+
+Speaker D: Você contou na última, na primeira call, na verdade, que tem um link que fica disponível no Instagram do perfil. É aquela dali que é apresentação de vendas? Tem uma bio, uma biografia. Você tinha só contado, você não tinha explicado. No link da bio tem um perfil, tipo, como é que fala, tipo um domínio onde que fica com as informações da agência.
+
+Speaker A: Aquilo daí é feito com o Cláudio, é feito com o Cláudio, só uma página de vendas. Mano, a gente nem utiliza mais hoje em dia. Tipo, é porque assim, tem que entender que o brasileiro vai entrar com ele, ele nem vai entrar no Instagram muitas vezes, ele só vai chamar assim direto você no WhatsApp. A gente colocou mais para fechar venda high ticket de tipo $10.000, $15.000, que é o cara vai ter que pedir 1, 2 dias para pensar, aí mostra para sócio, aí mostra o site, o caralho.
+
+Speaker C: Mas acho que não tem necessidade de vocês perderem tempo montando isso agora não, tá?
+
+Speaker D: Então no momento não precisa adicionar nenhum link no perfil.
+
+Speaker A: Mano, vocês podem adicionar um link de WE, tipo assim, vai no Google e pesquisa assim gerador de link WhatsApp, coloca uma mensagem igual a gente colocou ali no Facebook: olá, gostaria de saber mais sobre o programa de marketing de vocês. Para o cara ser direcionado para o WhatsApp, aí eu acho super válido.
+
+Speaker D: Você acha bacana fazer tipo algum destaque de prova social de clientes que fecharam ou não?
+
+Speaker A: Eles aonde?
+
+Speaker C: No Instagram?
+
+Speaker D: No Instagram, mano.
+
+Speaker A: Eu acho interessante se você quiser criar um destaque de aba, tem uma aba chamada Customers no Instagram da Fiori, que é agência.
+
+Speaker D: E basicamente, quando for apresentar, aí tipo gravar assim um vídeo de alguém falando o resultado, até paga mesmo só para alguém gravar o áudio para fazer isso.
+
+Speaker A: Acho interessante, mano, mas eu não gravaria um vídeo falando da Permetron, eu colocaria simplesmente fotos de empresas. Criaria empresa aí, umas 10, 15 empresas, colocaria nos destaques.
+
+Speaker D: Certo, só pedir para o GPT fazer. Fechou. E tem outra coisa, eu queria saber sobre aquelas opções lá do— porra, deu uma escafada aqui, deixa eu tentar lembrar aqui. É, mano, era sobre as informações que ficam lá no perfil do Facebook, entendeu? Eu não sei se alguém tinha comentado ontem, mas eu tinha perguntado lá sobre o WhatsApp, ele ficar disponível no Facebook, mas é na página ou somente no anúncio?
+
+Speaker A: Mano, eu ensinei isso no meio do processo ali da campanha. Que quando você tá subindo um criativo, na hora que você tá na aba de conjunto, na hora que você seleciona a página do Facebook e os destinos, se você não tiver o WhatsApp vinculado, vai aparecer conectar conta. Aí você clica em conectar conta, coloca o número que você comprou, né, do WhatsApp, e você vai receber um código no seu WhatsApp. Coloca esse código no Facebook e pronto.
+
+Speaker D: Correto. Não, fechou então.
+
+Speaker C: Boa.
+
+Speaker A: Se tiver dúvida, só resta aula que eu ensinei ali no meio.
+
+Speaker D: Fechou, fechou. Ela já vai ficar disponível rapidinho, será, ou vai demorar a noite?
+
+Speaker A: Amanhã, amanhã a partir das 2 horas. Já avisando vocês que vai ter um delay porque meu cloud bateu todos os limites e já tem um plano mais pica, mano. Eu gastei 33 milhões de tokens esse mês, rapaziada. 200 horas seguidas nos últimos 22 dias.
+
+Speaker D: Está falando de call no Meet?
+
+Speaker A: Não, tô falando que Mano, área de membros, a terceira aula vai estar disponível amanhã a partir das 2 horas.
+
+Speaker D: Não, fechou, fechou.
+
+Speaker C: Boa, bora, próxima dúvida, cara.
+
+Speaker B: Acho que foi bem completo. Agora, querendo ou não, tem que aplicar. É muita coisa na prática, né?
+
+Speaker E: 100%.
+
+Speaker A: As dúvidas vão dar uma conforme a prática.
+
+Speaker B: Essa abordagem de vendas suas Qual que é a taxa de finalização dela? Você tem alguma média disso seguindo esse script seu?
+
+Speaker A: De leads que chegam para que fecham?
+
+Speaker B: Isso.
+
+Speaker A: 18%, uma média. Se você bater 18%, tá excelente.
+
+Speaker B: Você acha que automatizar tudo seria melhor? Você acha que não dá certo?
+
+Speaker A: Não tem como, é impossível automatizar uma externa, impossível. No começo de vocês é impossível. Tem umas IAs aí que custam tipo R$7.000 por mês, que aí dá, mas duvido que alguém vai desembolsar 7 pau aí. Igual, eu tenho um formato mais fácil de você automatizar isso, é você contratar um SDR, que é o que eu faria se eu tivesse muito caixa na minha posição. Na posição zero, contrataria um SDR sênior, não é nenhum júnior, sênior, que tu vai pagar 3, 4K de fixo para o cara, mais comissão para o cara por mês, bonificação no caso, né?
+
+Speaker B: Certo, igual eu que tenho uma gente de ar aqui. Você acha que é uma boa colocar ele para ir conversando, pelo menos o primeiro contato?
+
+Speaker A: Já terceiro, e muito difícil treinar, fazer algo bom de fato. É foda, já esse público é foda. Talvez para fazer follow-up é interessante, mas esse início eu ainda falaria para ser você, para você entender como funciona, e depois se você conseguir automatizar. Mas eu faria de forma enxuta através de contratação.
+
+Speaker C: Deixaria a empresa 100% delegada.
+
+Speaker B: Valeu, Henrique. Minha dúvida era essa.
+
+Speaker C: É nós, monstro.
+
+Speaker F: Ô Henrique, qual que é o salário de mercado aí de um SDR, Júlio, mano? E como é que funciona essa questão da comissão que você falou? É por vendas? Depois que for passar pelo closer que você Decide se a pessoa consegue ou não a comissão.
+
+Speaker C: Júnior ou sênior?
+
+Speaker A: Júnior. Júnior, tu vai pagar uns R$1.500 a R$2.000 por mês mais comissão.
+
+Speaker D: Como é que são?
+
+Speaker A: A gente faz uma comissão que chama comissão OTE. Comissão não, bonificação OTE. Existe uma diferença, rapaziada.
+
+Speaker C: Presta atenção.
+
+Speaker A: Comissão é para sociedade, bonificação é para colaborador. A partir do momento que você dá qualquer tipo de porcentagem para qualquer colaborador dentro da empresa, ele deixa de ser um colaborador e vira um sócio. Então, se você fala que o closer tem 10% da venda, ele é um sócio. Se o gestor de tráfego agora tem 5% de cada cliente que ele gerencia, ele é um sócio. Então você nunca dá comissão, você dá bonificação. E as bonificações, a gente utiliza um modelo super famoso, que você— muito famoso, que você pode pesquisar no YouTube caso você não entenda muito bem, que se chama O que que seria bonificação? Que é basicamente o seguinte, é dividido em checkpoints. Então vamos supor que a meta do mês é R$100 mil, o vendedor lá, o closer, tem que vender R$100 mil. O closer, ele vai ter um salário ali, velho, colocar um salário aleatório, o cara vai ganhar de fixo R$5 mil mais as bonificações. Se a meta é R$100 mil, quando ele bater 70% da meta— não, vou deixar mais fácil. A meta do mês é R$100 mil, Chegou no dia 31, fechou o mês. Por exemplo, hoje fechou o mês, eu vou aí olhar o vendedor Júnior. A meta dele era R$100 mil. São 3 checkpoints que a gente utiliza: 70% da meta, 100% da meta e 110% da meta. Se ele bateu 70% da meta dos R$100 mil, ele ganha uma comissão. Se ele bateu 100% da meta, ele ganha uma outra comissão. E a cada 10% a mais da meta que ele bate, ele ganha uma outra comissão. Não é acumulativo, é tipo assim: se ele bateu 70%, ele ganha uma comissão. Se ele bater 100%, ele vai ganhar outra comissão. Não acumula de 70 a 100, passa a acumular a partir de 10%. A cada 10% a mais que ele bate da meta, ele vai ganhando uma comissão. Como que é feita essa comissão, mano? É, calma, eu pegar todos os teus custos no final da DRE, pegar todos os custos, tudo, mano, todos os custos, e colocar uma margem que para você fique entre 83 e 85% e ver qual comissão fica viável. Pode colocar que, tipo assim, sei lá, se a meta é R$100 mil, quando ele bater 70% da meta ele pode ganhar tipo R$1.300, sei lá. Quando ele bater 100%, ele ganha R$2.000, e a cada 10% a mais ele ganha tipo R$500, algo do tipo assim.
+
+Speaker F: Então, entendi. Pelo que eu vi aqui na área de membro, você vai explicar isso melhor, sei lá, nas próximas aulas, que na última, se não me engano, na penúltima.
+
+Speaker A: Então é mais para última.
+
+Speaker F: Ah, entendi. Então isso também tá tudo incluso nessa questão das porcentagens.
+
+Speaker C: Sim, fechou. Valeu, é nós.
+
+Speaker B: Henrique, uma pergunta sincera: compensa mesmo colocar um closing?
+
+Speaker C: Caralho, mano, presta atenção.
+
+Speaker A: Você não precisa saber vender muito bem, mano, só no comecinho para levantar caixa. Primeira coisa que eu faria, se eu tivesse, sei lá, R$50 mil caixa a mais, contrataria alguma empresa para achar vendedor. Eu tenho uma empresa, chama Ricardo, o nome dele, se eu não me engano. Faz tempo que eu não falo com ele. Ele tem contato com diversas empresas que treinam vendedores. Você contrata um closer bom, viado, que você não, que você não tá— vamos supor que você não vai roubar esse closer de outra agência, que é um closer que tá procurando emprego e ele é sênior, tu vai pagar entre R$5.000 a R$8.000 a R$10.000 fixo por mês para o cara. E um closer que tu vai roubar de uma outra agência, que é geralmente o que o pessoal faz, né, o cara tá dando muito bem, tu vai pagar uns R$15.000 a R$17.000 de fixo. É um valor alto para caralho, é, mano. Só que o cara te traz muito retorno, tipo, a taxa de conversão do cara gira em 30%, 33%, até 40%, né? Então pensa aí, se tu contrata um SDR, um closer, tu tem uma operação que gira no automático. Chega anúncio, o SDR atende, qualifica, marca para o closer, closer vende. E teu foco vira administração, expansão e gestão.
+
+Speaker B: No início, quando você não tem um SDR, como é que você faz para jogar essa bola de um para outro aí, igual você fez no script?
+
+Speaker A: Mano, é só fingir que foi outra pessoa. O cara não vai lembrar da tua voz na ligação, viu? Tipo, da ligação para o Google Meet.
+
+Speaker C: Perfeito, perfeito.
+
+Speaker B: Acho que do meu lado é só isso aí. Você vai dar uma analisada nos criativos hoje, não vai?
+
+Speaker A: Bora, tem que ser rápido. Então Quem quiser mostrar criativo, só leve em consideração o seguinte: vão mostrar os criativos, vão mostrar os criativos, estão se expondo para o resto do grupo. Então essa aula vai ficar gravada, pelo menos pense que vocês mostrando criativo tem chance de alguém clonar vocês, só para vocês não depois não arrumarem treta entre vocês mesmo. Mas quiser mostrar, acha?
+
+Speaker D: Então, se fosse mostrar, teria direito a ajuste ou ia lançar do mesmo jeito que tá?
+
+Speaker A: Você mostrar, eu vou te falar onde você tá errando, tá?
+
+Speaker D: Que eu sei que o meu tá errado, cara.
+
+Speaker A: Mostra aí, bora, tá?
+
+Speaker D: Calma aí.
+
+Speaker A: Oi, Henrique, tá conseguindo me ouvir?
+
+Speaker F: Sim, quando você fala de SDR, por acaso um SDR feminino, né, tem uma taxa de conversão?
+
+Speaker A: Você travou, mas tem uma taxa de conversão maior, sim. Só que o problema é você achar mais daí, pô. Alô, ele que caiu mesmo.
+
+Speaker E: Esse empresário de construção saiu de $20.000 por mês e que há mais de 3 anos já estava travado nisso. Para os últimos 30 dias, fazer mais de $60 mil. E detalhe, sem investir em tráfego pago, não contratou agência de marketing. E esse aqui é o Leandro, dono da North Peak Construction, mas chegou nesse número usando esse aplicativo aqui, Daily Lead System. Esse mecanismo sabe captar clientes e entregar na sua mão, onde o único trabalho que você tem é fechar a casa do cliente. E melhor, sem gastar $1 em tráfego pago. Mas se você quiser saber mais e testar esse mecanismo, é só tocar aqui embaixo e chamar no WhatsApp, que eles irão te ligar em até 20 minutos para testar ao vivo esse mecanismo.
+
+Speaker A: Mano, você não assistiu direito aula dos criativos, impossível. Tipo assim, eu passei 4 ganchos diferentes que eu uso e você não fez nenhum dos 4 igual. Você misturou os copos, tá ligado?
+
+Speaker C: Tá confuso.
+
+Speaker A: Porra, esse empresário da construção saiu de mais de 20 mil, por exemplo, esse empresário de construção saiu de $20 mil por mês que ele fazia mais de 3 anos, tô usando o seu estilo, tá, para nos últimos 30 dias ele fazer mais de $80 mil. E detalhe, cara, ele não investiu $1 sequer em tráfego pago. Esse aqui é o Leandro, ele é dono da Red Bull Company. O mano, eu dei esses ganchos, sabe. E outra coisa, você provavelmente não usou a voz que eu falei para vocês usarem no Orkets, que eu mostro lá dentro da aula. Essa voz tem nada a ver. E você provavelmente não usou o speech-to-speech, que é a função que você grava o áudio e coloca para o cara replicar teu áudio na voz dele. Então, tipo, rever a aula dos criativos, que é aula 2, e replica igual, mano, porque tipo tá muito bem explicado. Eu acho que se você estudar um pouquinho mais a aula vai dar bom. Falta um pouquinho mais, tá ligado? Você pegar o que eu passei e não querer inventar a roda.
+
+Speaker C: No marketing você não inventa, tu pega o que tá dando bom e melhora, tá ligado?
+
+Speaker D: Fechou. É realmente, eu executei o que eu vi, porém eu vi a aula, esse trecho dessa aula umas 4 vezes para reaplicar e pensei que não podia ser copiado 100%. Então falta muita coisa para ajustar ali ainda, bastante coisa. Mas eu queria saber se tinha alguma coisa que tava perto de chegar ali, mas pelo visto não.
+
+Speaker A: Isso aí vai, mano, você misturou as coisas. Falou fechar a casa do cliente, que fechar a casa do cliente? O cara fechar a obra.
+
+Speaker B: Uma pergunta, Henrico, baseado no criativo dele aí, eu posso editar, colocar legenda, colocar algumas imagens interativas durante a edição ali?
+
+Speaker C: O que que você me fala, mano?
+
+Speaker A: Edição super simples, cara, tipo uma legenda pequena, com fundo neutro. E se for colocar vídeos, vídeos dinâmicos no fundo aparecendo sobre construção, contexto em cima, sem muito corte, sem muita edição, sem muitas falas rápidas, edição simples, parece um Reels.
+
+Speaker C: Beleza, valeu, é nós.
+
+Speaker F: O Henrique, o que que você acha de no início do vídeo o Hulk ser um pouco mais trabalhado na questão da edição, mano? Eu tava querendo fazer esse Mano, eu acho que é ruim.
+
+Speaker A: Já testei. Acho que quanto mais não for melhor.
+
+Speaker F: Entendi.
+
+Speaker C: Beleza, é por mim, mano.
+
+Speaker A: Rapaziada, mais alguma dúvida?
+
+Speaker F: É isso, é isso.
+
+Speaker A: Márcia, então é isso. Ó, quarta-feira a gente tem a nossa próxima call, pode colocar na agenda de vocês aí, 18 horas. E quarta a gente fala sobre as últimas etapas. Deixa eu marcar aqui na minha agenda já.
+
+Speaker F: Aqui, mano, só para saber, a questão dos entregáveis você vai passar quando?
+
+Speaker A: Nessa próxima aula.
+
+Speaker F: Ah, beleza, boa demais, tamo junto.
+
+Speaker A: Fechou, rapaziada, então é isso. Fiquem com Deus, próxima aula é nós e vamos embora.
+
+Speaker D: Rapidão aqui, é só uma dúvida aqui que eu tinha e esqueci de perguntar. Esse treinamento vai ficar disponível para a gente rever mesmo depois de— ah não, fechou, bacana.
+
+Speaker C: Beleza, é isso, rapaziada.
+
+Speaker A: Vamos embora então, tamo junto, fiquem com Deus, hein. É nós, valeu, valeu, valeu, indicão!

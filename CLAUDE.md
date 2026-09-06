@@ -113,3 +113,90 @@ Quando o usuário pedir skill nova:
 4. Se a skill precisar de arquivos de apoio (templates, exemplos),
    criar dentro da pasta da skill
 5. Seguir o fluxo da skill-creator nativa do Claude Code
+
+---
+
+# Leon Group — Built to Lead.
+
+Agência enxuta de geração de leads (metodologia LeadsEveryDay) para brasileiros donos ou operadores de empresas de construção e home services nos EUA. Ajuda quem já sabe executar o serviço a construir presença, organização e aquisição suficientes para competir e liderar — marca, Google Business Profile, landing page, conteúdo, aquisição e processo comercial. Fundador opera sozinho hoje; planeja trazer a namorada pra ajudar em alguma frente futuramente.
+
+## Identidade oficial (não recriar — só usar)
+
+- Nome: **Leon Group** · Slogan: **Built to Lead.**
+- Símbolo obrigatório: cabeça de leão integrada à letra **O** de LEON — nunca usar versão sem o leão
+- Logo pronto em `identidade/logo.png` (fundo escuro: `identidade/logo-fundo-escuro.png`); kit completo (22 arquivos: horizontal, vertical, monocromático, ícones, favicon, aplicações) em `identidade/brand-kit/`
+- E-mail `leongroup.builtolead@gmail.com` · Instagram `@leongroup.builtolead` · YouTube criado e descrito
+- Paleta para peças **novas**: marfim `#F7F3EA`, preto `#171717`, laranja `#E65A19` (escuro `#C44712`) — ver `identidade/design-guide.md` pra paleta completa. O brand kit oficial em si usa preto `#161616`/laranja `#E15818`: **não recolorir os arquivos existentes**, só as peças futuras seguem a paleta nova.
+- Direção estética: sofisticada, clara, bastante espaço negativo, laranja só como ênfase. Evitar 3D, brilho, excesso de ornamento, aparência genérica de IA.
+
+## Público e mercado
+
+Contractors e empresas de construção/home services nos EUA, foco em brasileiros. Nichos: Remodeling, Flooring, Painting, Cabinets, Roofing, Gutters, HVAC. Prioridade geográfica inicial: **Massachusetts e Boston**. Recorte comercial prioritário dentro desses nichos ainda **não confirmado** — não decidir por conta própria, perguntar ao usuário quando isso for relevante pra uma entrega.
+
+## Estrutura de pastas
+
+- `sistemas/` — **sistemas operacionais construídos e testados** (rodam com `python3`, sem dependências):
+  `crm-comercial/` (porta 8770, 4 pipelines + automações) e `02-entrega/` (porta 8771, cadastro do
+  cliente + geração de site/reviews/Instagram + régua dos 14 dias). Índice em `sistemas/README.md`.
+- `_memoria/` — quem é a agência, tom de voz, foco atual (`empresa.md`, `preferencias.md`, `estrategia.md`)
+- `_memoria/historico/` — **fonte de verdade histórica**: estado consolidado, decisões de marca, pendências, aulas/hotseat estudados, credenciais (sem senhas reais), conversa completa, inventário. Consultar antes de perguntar algo que pode já estar decidido ali.
+- `_memoria/historico/exploracoes-visuais/` — naming e identidades **descartados** (Valdieri, Leoni, Leone Group, variantes A/B/C/E de logo/paleta, 28 logos iniciais). Puramente histórico — nunca usar como identidade atual, nunca restaurar esses nomes. Pasta pesada (~180MB de imagens): considerar manter fora do git (ver nota em Segurança e higiene).
+- `identidade/` — brand kit oficial + design guide (marca **atual**, pronta pra uso)
+- `marketing/redes-sociais/` — ativos já publicados por canal (`youtube/`, `instagram/`, `facebook/`, `materiais-gerais/` — WhatsApp, LinkedIn, X, assinatura, guias). A existência da arte **não confirma** que a conta/canal foi configurado — ver estado real em `_memoria/estrategia.md`.
+- `clientes/`, `briefings/`, `propostas/` — criadas sob demanda quando surgir o primeiro cliente real
+- `saidas/`, `dados/`, `scripts/` — conforme convenção padrão do MazyOS
+
+## Fonte de verdade (nessa ordem)
+
+1. Pedido mais recente do usuário na conversa atual
+2. `_memoria/estrategia.md` e `_memoria/historico/ESTADO-ATUAL.md` / `DECISOES-DE-MARCA.md`
+3. Ativos oficiais em `identidade/` e `marketing/redes-sociais/`
+4. `_memoria/historico/CONVERSA-COMPLETA.md` (só pra recuperar formulação exata de algo que não esteja nos documentos consolidados)
+
+## Antes de criar qualquer peça nova
+
+Inspecionar o que já existe em `identidade/` e `marketing/redes-sociais/` — **não recriar logo, posts, kits ou Stories já concluídos**. Se a tarefa parecer já entregue, avisar o usuário e perguntar se quer mesmo refazer.
+
+## Estado da operação
+
+Lista completa e atualizável em `_memoria/estrategia.md` (seção "Estado da marca") e `_memoria/historico/PENDENCIAS-E-PROXIMOS-PASSOS.md`. Resumo: identidade, brand kit, e-mail, Instagram, YouTube e duas séries de posts + 42 Stories estão **prontos e publicados**. Facebook, WhatsApp Business, Meta Business Suite, oferta comercial por escrito, landing page, proposta/contrato e primeiro cliente real estão **pendentes**.
+
+Passo a passo operacional completo (criativos, campanha, qualificação, CRM, contratação) em `_memoria/playbook-operacao.md` — inclui um aviso jurídico sobre classificação de colaborador PJ que precisa de validação profissional antes de aplicar.
+
+Depois de qualquer entrega que mude esse estado (canal configurado, oferta definida, cliente fechado), atualizar `_memoria/estrategia.md` — não deixar a lista de pendências desatualizada.
+
+## Integridade — regra não negociável
+
+Nunca declarar cliente inexistente como real, nunca inventar depoimento, avaliação, localização, equipe ou resultado, nunca reutilizar mídia sem licença, nunca prometer faturamento ou posição no Google sem base verificável. Mockup/demonstração só vale rotulado como tal. Prova social real só depois de um primeiro trabalho pago e documentado.
+
+Motivo: o material de origem (aulas + hotseat estudados, ver `_memoria/historico/AULAS-E-HOTSEAT.md`) inclui táticas enganosas de terceiros — casos fake, depoimento encenado, prints manipulados, falsa presença nos EUA, pressão de venda sem tempo de decisão. Ficam registradas como histórico estudado, **nunca como processo operacional da Leon Group**.
+
+## Regra editorial (correção confirmada do usuário)
+
+Posts e conteúdo público falam com a **dor do público-cliente** (contractors/home services) — nunca explicam ou citam o conteúdo das aulas estudadas. As aulas são estratégia interna de bastidor, não pauta de post.
+
+## Segurança e higiene do repositório
+
+- Nunca armazenar senha, token, chave de API ou dado de pagamento em qualquer arquivo do projeto — usar gerenciador de senhas externo. Ver `_memoria/historico/CREDENCIAIS-E-SEGURANCA.md`.
+- `_memoria/historico/exploracoes-visuais/` é grande (~180MB de imagens descartadas). Antes de rodar `/salvar` pela primeira vez, considerar excluir essa pasta do git (adicionar ao `.gitignore`) pra não inflar o repositório — os arquivos continuam preservados localmente.
+
+## Tom de voz
+
+Ainda não calibrado com exemplo real — ver `_memoria/preferencias.md`. Direção geral confirmada: confiante, direto, profissional, claro, próximo de contractors brasileiros nos EUA. Evitar: "vamos juntos!", emoji em email formal, "caro cliente", jargão de guru ("alavancar", "sinergia").
+
+## Idioma
+
+Colaboração com o usuário em português, simples e direto. Peças voltadas ao mercado americano (posts, site, anúncios) em inglês quando for o idioma do público-alvo.
+
+## Ferramentas conectadas
+
+- [ ] Notion
+- [ ] Gmail
+- [ ] Google Calendar
+- [ ] Canva
+- [ ] Meta Ads
+- [ ] Google Ads
+- [ ] WhatsApp (captação/atendimento)
+- [ ] CRM (acompanhamento dos leads)
+
+*(Marcar conforme for instalando os MCPs)*
