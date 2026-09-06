@@ -31,3 +31,6 @@ _memoria/historico/exploracoes-visuais/
 # Prints e vídeos de curso pago de terceiro (conteúdo com direito autoral — não versionar)
 _memoria/historico/FONTES/aulas-novas-prints/
 _memoria/historico/FONTES/aulas-novas-videos/
+
+# cache do wrangler (id da conta e projeto, gerado a cada deploy)
+.wrangler/
