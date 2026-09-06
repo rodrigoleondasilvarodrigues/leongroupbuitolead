@@ -16,7 +16,12 @@ const parseData = (v) => {
 };
 const horasDesde = (v) => { const d = parseData(v); return d ? (Date.now() - d) / 3600000 : 0; };
 const MIN_FOTOS = 11;   // mesmo mínimo que o formulário exige na tela
-const TETO_LOTE = 500;  // leads processados por rodada do cron, por etapa
+const TETO_LOTE = 500;
+/* Origens do site público autorizadas a mandar lead para o CRM.
+   Acrescentar aqui o domínio próprio quando existir. */
+const ORIGENS_SITE = [
+  "https://leon-group-site.pages.dev",
+];  // leads processados por rodada do cron, por etapa
 
 // O público está nos EUA (prioridade Massachusetts/Boston). O Worker roda em UTC,
 // então sem isto uma mensagem de follow-up dispara 3h da manhã no fuso do lead —
@@ -65,6 +70,7 @@ export default {
     const url = new URL(req.url);
     const p = url.pathname;
     const ip = req.headers.get("CF-Connecting-IP") || "0.0.0.0";
+    const origem = req.headers.get("Origin") || "";
 
     try {
       // Sites dos clientes NÃO são servidos aqui — vão 100% para o Vercel,
@@ -148,6 +154,48 @@ export default {
               .bind(c.id, `${m.marco} [${m.quem}]`, m.dia, agora()).run();
         }
         return json({ ok: true });
+      }
+
+      // ───────── público: formulário do site da agência ─────────
+      // O site (leon-group-site.pages.dev) manda o contato para cá antes de
+      // abrir o WhatsApp. Assim o lead existe no CRM mesmo se a pessoa fechar
+      // a aba sem mandar a mensagem — que é a maior parte de quem preenche.
+      if (p === "/api/site-lead") {
+        const cabecalhos = {
+          "Access-Control-Allow-Origin": ORIGENS_SITE.includes(origem) ? origem : ORIGENS_SITE[0],
+          "Access-Control-Allow-Methods": "POST, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type",
+          "Access-Control-Max-Age": "86400",
+        };
+        if (req.method === "OPTIONS") return new Response(null, { status: 204, headers: cabecalhos });
+        if (req.method !== "POST") return json({ erro: "método" }, 405, cabecalhos);
+        if (!ORIGENS_SITE.includes(origem)) return json({ erro: "origem não permitida" }, 403, cabecalhos);
+        if (await A.bloqueadoPorTentativas(env, ip, "site"))
+          return json({ erro: "muitas tentativas" }, 429, cabecalhos);
+
+        const b = await req.json().catch(() => ({}));
+        if (b.site_web) return json({ ok: true }, 200, cabecalhos);   // isca de robô: aceita e ignora
+        const corta = (v, n) => String(v ?? "").trim().slice(0, n);
+        const nome = corta(b.nome, 80), tel = corta(b.telefone, 30);
+        if (!nome || !tel) {
+          await A.registrarTentativa(env, ip, false, "site");
+          return json({ erro: "nome e telefone são obrigatórios" }, 400, cabecalhos);
+        }
+        const n = agora();
+        const obs = [
+          b.papel ? `Papel: ${corta(b.papel, 60)}` : "",
+          b.hoje ? `Cliente hoje chega por: ${corta(b.hoje, 60)}` : "",
+          b.cidade ? `Onde atende: ${corta(b.cidade, 60)}` : "",
+          b.idioma ? `Idioma do site: ${corta(b.idioma, 4)}` : "",
+        ].filter(Boolean).join(" · ");
+        const r = await env.DB.prepare(
+          `INSERT INTO leads (nome,telefone,empresa,nicho,origem,observacoes,
+           criado_em,entrou_coluna_em,atualizado_em) VALUES (?,?,?,?,?,?,?,?,?)`
+        ).bind(nome, tel, corta(b.empresa, 90) || null, corta(b.servico, 40) || null,
+               `site:${corta(b.origem || b.fonte, 40) || "direto"}`, obs || null, n, n, n).run();
+        await ev(env.DB, { lead_id: r.meta.last_row_id, tipo: "criado",
+                           para: "leads_novos/super_hot", detalhe: "veio do site da agência" });
+        return json({ ok: true, id: r.meta.last_row_id }, 200, cabecalhos);
       }
 
       // ───────── login ─────────

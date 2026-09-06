@@ -1,0 +1,684 @@
+<!doctype html>
+<html lang="pt-BR" data-idioma="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Leon Group — Built to Lead.</title>
+<meta name="description" content="Leon Group ajuda brasileiros donos de empresa de construção e home services nos Estados Unidos a sair da indicação e ter fluxo previsível de cliente novo. Sem tráfego pago, sem license.">
+<link rel="icon" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/simbolo.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Leon Group — Built to Lead.">
+<meta property="og:description" content="Presença, aquisição e processo comercial para contractors brasileiros nos Estados Unidos.">
+<meta property="og:image" content="assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════ paleta ═══════════════════════
+   Fonte: identidade/design-guide.md. Nada fora dessa lista. */
+:root{
+  --marfim:#F7F3EA; --branco:#FFFDF8; --preto:#171717;
+  --laranja:#E65A19; --laranja-esc:#C44712; --laranja-pal:#F4D8C9;
+  --areia:#E9E1D6; --cinza:#68645E;
+  --escuro:#171717; --escuro-2:#1F1E1C; --escuro-3:#2A2825;
+  --borda-esc:rgba(247,243,234,.14);
+  --max:1180px;
+  --t:cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font:400 17px/1.65 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  color:var(--preto); background:var(--marfim);
+  overflow-x:hidden; -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--laranja);color:#fff}
+
+h1,h2,h3,.dsp{font-family:"Inter Tight",Inter,sans-serif;font-weight:700;letter-spacing:-.025em;line-height:1.04}
+h1{font-size:clamp(2.5rem,6.4vw,5.1rem)}
+h2{font-size:clamp(2rem,4.4vw,3.4rem)}
+h3{font-size:clamp(1.15rem,1.7vw,1.45rem);letter-spacing:-.015em;line-height:1.25}
+p{max-width:64ch}
+
+.env{max-width:var(--max);margin:0 auto;padding:0 26px}
+section{position:relative}
+.sec{padding:clamp(76px,10vw,140px) 0}
+
+/* faixas escuras — o contraste dramático, sem escurecer o site inteiro */
+.escuro{background:var(--escuro);color:var(--marfim)}
+.escuro p{color:rgba(247,243,234,.72)}
+.escuro .rotulo{color:rgba(247,243,234,.5)}
+
+.rotulo{
+  font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--cinza);display:flex;align-items:center;gap:10px;margin-bottom:22px;
+}
+.rotulo::before{content:"";width:26px;height:1px;background:var(--laranja);flex:none}
+.lar{color:var(--laranja)}
+
+/* ═══════════════════════ header ═══════════════════════ */
+header{
+  position:fixed;inset:0 0 auto;z-index:60;
+  padding:20px 0;transition:padding .3s var(--t),background .3s var(--t),box-shadow .3s var(--t);
+}
+header.grudado{
+  padding:11px 0;background:rgba(23,23,23,.92);
+  backdrop-filter:saturate(1.4) blur(14px);box-shadow:0 1px 0 var(--borda-esc);
+}
+.barra{display:flex;align-items:center;gap:22px}
+.marca{display:flex;align-items:center;gap:11px;flex:none}
+.marca img{height:31px;width:auto;transition:height .3s var(--t)}
+header.grudado .marca img{height:26px}
+nav.menu{display:flex;gap:28px;margin-left:auto;font-size:14.5px;font-weight:500}
+nav.menu a{color:rgba(247,243,234,.74);transition:color .2s;position:relative;padding:4px 0}
+nav.menu a::after{
+  content:"";position:absolute;left:0;right:100%;bottom:0;height:1.5px;
+  background:var(--laranja);transition:right .3s var(--t);
+}
+nav.menu a:hover{color:var(--marfim)}
+nav.menu a:hover::after{right:0}
+
+/* botão de idioma — pedido explícito: tem que ser óbvio */
+.idioma{
+  display:flex;flex:none;border:1px solid var(--borda-esc);border-radius:999px;
+  padding:3px;background:rgba(247,243,234,.06);
+}
+.idioma button{
+  border:0;background:transparent;color:rgba(247,243,234,.62);cursor:pointer;
+  font:600 12.5px/1 Inter,sans-serif;letter-spacing:.06em;padding:8px 13px;
+  border-radius:999px;transition:all .25s var(--t);
+}
+.idioma button.on{background:var(--laranja);color:#fff}
+.idioma button:not(.on):hover{color:var(--marfim)}
+
+.btn{
+  display:inline-flex;align-items:center;gap:10px;flex:none;
+  background:var(--laranja);color:#fff;border:0;border-radius:999px;cursor:pointer;
+  font:600 15px/1 Inter,sans-serif;padding:15px 26px;
+  transition:transform .25s var(--t),background .25s var(--t),box-shadow .25s var(--t);
+}
+.btn:hover{background:var(--laranja-esc);transform:translateY(-2px);box-shadow:0 10px 26px rgba(230,90,25,.3)}
+.btn:active{transform:translateY(0)}
+.btn.pq{padding:11px 20px;font-size:14px}
+.btn.vaz{background:transparent;border:1px solid var(--borda-esc);color:var(--marfim)}
+.btn.vaz:hover{background:rgba(247,243,234,.09);box-shadow:none;border-color:rgba(247,243,234,.32)}
+.btn.escuro-cheio{background:var(--preto)}
+.btn.escuro-cheio:hover{background:#000;box-shadow:0 10px 26px rgba(23,23,23,.24)}
+.btn svg{width:17px;height:17px;flex:none}
+
+.hamb{display:none;background:transparent;border:0;cursor:pointer;padding:8px;flex:none}
+.hamb span{display:block;width:22px;height:1.8px;background:var(--marfim);margin:4.4px 0;transition:.3s var(--t)}
+
+/* ═══════════════════════ hero ═══════════════════════ */
+.hero{
+  background:var(--escuro);color:var(--marfim);
+  min-height:min(100svh,940px);display:flex;align-items:center;
+  padding:150px 0 84px;overflow:hidden;
+}
+/* brilho laranja atrás do conteúdo — a única "luz" do site */
+.hero::before{
+  content:"";position:absolute;top:-28%;right:-12%;width:74vw;height:74vw;max-width:900px;max-height:900px;
+  background:radial-gradient(circle,rgba(230,90,25,.19),rgba(230,90,25,.05) 42%,transparent 68%);
+  pointer-events:none;
+}
+.hero::after{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background-image:linear-gradient(var(--borda-esc) 1px,transparent 1px),linear-gradient(90deg,var(--borda-esc) 1px,transparent 1px);
+  background-size:78px 78px;
+  mask-image:radial-gradient(ellipse 90% 62% at 50% 40%,#000 28%,transparent 76%);
+  -webkit-mask-image:radial-gradient(ellipse 90% 62% at 50% 40%,#000 28%,transparent 76%);
+}
+.hero .env{position:relative;z-index:2}
+.selo-hero{
+  display:inline-flex;align-items:center;gap:9px;
+  border:1px solid var(--borda-esc);border-radius:999px;padding:8px 16px 8px 12px;
+  font-size:13px;font-weight:500;color:rgba(247,243,234,.78);margin-bottom:32px;
+  background:rgba(247,243,234,.04);
+}
+.selo-hero .ponto{
+  width:7px;height:7px;border-radius:50%;background:var(--laranja);flex:none;
+  box-shadow:0 0 0 0 rgba(230,90,25,.6);animation:pulso 2.6s infinite;
+}
+@keyframes pulso{
+  0%{box-shadow:0 0 0 0 rgba(230,90,25,.55)}
+  70%{box-shadow:0 0 0 12px rgba(230,90,25,0)}
+  100%{box-shadow:0 0 0 0 rgba(230,90,25,0)}
+}
+.hero h1{max-width:17ch}
+.hero h1 .lar{display:inline-block}
+.hero .sub{font-size:clamp(1.05rem,1.55vw,1.3rem);color:rgba(247,243,234,.74);margin:30px 0 40px;max-width:56ch}
+.acoes{display:flex;flex-wrap:wrap;gap:13px;align-items:center}
+.sob-btn{font-size:13.5px;color:rgba(247,243,234,.48);margin-top:20px}
+
+/* revelação palavra por palavra */
+.rev-linha{display:block;overflow:hidden}
+.rev-p{display:inline-block;transform:translateY(102%);opacity:0}
+.pronto .rev-p{transform:translateY(0);opacity:1;transition:transform .9s var(--t),opacity .9s var(--t)}
+
+/* números honestos do hero */
+.tres{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:64px;
+  border-top:1px solid var(--borda-esc);
+}
+.tres div{padding:24px 22px 0}
+.tres b{
+  font-family:"Inter Tight",Inter,sans-serif;font-size:clamp(1.9rem,3.4vw,2.7rem);
+  font-weight:700;letter-spacing:-.03em;display:block;line-height:1;
+}
+.tres span{font-size:13.5px;color:rgba(247,243,234,.56);display:block;margin-top:9px}
+
+/* ═══════════════════════ marquee de nichos ═══════════════════════ */
+.faixa{background:var(--laranja);color:#fff;padding:17px 0;overflow:hidden;position:relative}
+.trilho{display:flex;width:max-content;animation:desliza 42s linear infinite}
+.trilho span{
+  font-family:"Inter Tight",Inter,sans-serif;font-weight:600;font-size:15px;
+  letter-spacing:.03em;padding:0 26px;white-space:nowrap;display:flex;align-items:center;gap:26px;
+}
+.trilho span::after{content:"";width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.55);flex:none}
+@keyframes desliza{to{transform:translateX(-50%)}}
+.faixa:hover .trilho{animation-play-state:paused}
+
+/* ═══════════════════════ blocos ═══════════════════════ */
+.duas{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(38px,6vw,88px);align-items:start}
+.dor{list-style:none;display:grid;gap:2px;margin-top:38px}
+.dor li{
+  display:flex;gap:18px;align-items:flex-start;padding:22px 0;
+  border-top:1px solid var(--areia);
+}
+.dor li:last-child{border-bottom:1px solid var(--areia)}
+.dor .n{
+  font-family:"Inter Tight",Inter,sans-serif;font-weight:700;font-size:13px;
+  color:var(--laranja);flex:none;width:26px;padding-top:4px;letter-spacing:.04em;
+}
+.dor strong{display:block;font-size:17.5px;font-weight:600;margin-bottom:5px;letter-spacing:-.01em}
+.dor p{font-size:15.5px;color:var(--cinza);max-width:52ch}
+
+/* história — editorial */
+.hist{max-width:760px}
+.hist p{font-size:clamp(1.05rem,1.5vw,1.24rem);line-height:1.68;margin-bottom:26px;max-width:none}
+.hist p:first-of-type{font-size:clamp(1.2rem,1.9vw,1.5rem);line-height:1.5;font-weight:500;letter-spacing:-.015em}
+.hist p .lar{font-weight:600}
+.assin{
+  margin-top:44px;padding-top:26px;border-top:1px solid var(--areia);
+  display:flex;align-items:center;gap:15px;
+}
+.assin img{height:34px;width:auto;opacity:.9}
+.assin div{font-size:14px;color:var(--cinza);line-height:1.45}
+.assin b{display:block;color:var(--preto);font-weight:600;font-size:14.5px}
+
+/* serviços — cards escuros com foco no hover */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(288px,1fr));gap:1px;margin-top:56px}
+.card{
+  background:var(--escuro-2);padding:34px 30px 32px;position:relative;overflow:hidden;
+  transition:background .35s var(--t);
+}
+.card::before{
+  content:"";position:absolute;inset:0 auto 0 0;width:2px;background:var(--laranja);
+  transform:scaleY(0);transform-origin:top;transition:transform .45s var(--t);
+}
+.card:hover{background:var(--escuro-3)}
+.card:hover::before{transform:scaleY(1)}
+.card .ic{
+  width:42px;height:42px;border-radius:11px;background:rgba(230,90,25,.14);
+  display:flex;align-items:center;justify-content:center;margin-bottom:22px;
+  transition:background .35s var(--t),transform .35s var(--t);
+}
+.card:hover .ic{background:var(--laranja);transform:translateY(-3px)}
+.card .ic svg{width:21px;height:21px;stroke:var(--laranja);transition:stroke .35s var(--t)}
+.card:hover .ic svg{stroke:#fff}
+.card h3{margin-bottom:11px}
+.card p{font-size:15.5px;color:rgba(247,243,234,.66);max-width:none}
+.card .tag{
+  display:inline-block;margin-top:18px;font-size:11.5px;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;color:rgba(247,243,234,.4);
+}
+
+/* método — passos grudados */
+.metodo{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(38px,6vw,80px);align-items:start}
+.metodo .fixo{position:sticky;top:118px}
+.passos{display:grid;gap:2px;counter-reset:p}
+.passo{
+  border-top:1px solid var(--areia);padding:30px 0;display:flex;gap:22px;align-items:flex-start;
+  counter-increment:p;
+}
+.passo:last-child{border-bottom:1px solid var(--areia)}
+.passo::before{
+  content:"0" counter(p);
+  font-family:"Inter Tight",Inter,sans-serif;font-weight:700;font-size:14px;
+  color:var(--laranja);flex:none;padding-top:5px;letter-spacing:.04em;
+}
+.passo h3{margin-bottom:8px}
+.passo p{font-size:15.5px;color:var(--cinza)}
+.passo .prazo{
+  display:inline-block;margin-top:12px;font-size:12px;font-weight:600;
+  background:var(--laranja-pal);color:var(--laranja-esc);padding:5px 11px;border-radius:999px;
+}
+
+/* o que não fazemos — honestidade como diferencial */
+.nao{background:var(--branco);border:1px solid var(--areia);border-radius:14px;padding:clamp(28px,4vw,44px);margin-top:60px}
+.nao ul{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px 34px;margin-top:24px}
+.nao li{display:flex;gap:12px;align-items:flex-start;font-size:15.5px;color:var(--cinza)}
+.nao li svg{width:17px;height:17px;flex:none;stroke:var(--laranja);margin-top:4px}
+
+/* FAQ */
+.faq{max-width:840px;margin-top:52px}
+.faq details{border-top:1px solid var(--areia)}
+.faq details:last-of-type{border-bottom:1px solid var(--areia)}
+.faq summary{
+  cursor:pointer;list-style:none;padding:25px 46px 25px 0;position:relative;
+  font-family:"Inter Tight",Inter,sans-serif;font-weight:600;font-size:clamp(1.02rem,1.5vw,1.2rem);
+  letter-spacing:-.012em;line-height:1.35;transition:color .2s;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:hover{color:var(--laranja)}
+.faq summary::after{
+  content:"";position:absolute;right:6px;top:34px;width:12px;height:12px;
+  border-right:1.8px solid var(--laranja);border-bottom:1.8px solid var(--laranja);
+  transform:rotate(45deg);transition:transform .3s var(--t);
+}
+.faq details[open] summary::after{transform:rotate(225deg)}
+.faq .resp{padding:0 52px 28px 0;color:var(--cinza);font-size:16px;animation:abre .4s var(--t)}
+.faq .resp p+p{margin-top:14px}
+@keyframes abre{from{opacity:0;transform:translateY(-7px)}to{opacity:1;transform:none}}
+
+/* CTA final */
+.cta-final{background:var(--escuro);color:var(--marfim);text-align:center;overflow:hidden}
+.cta-final::before{
+  content:"";position:absolute;left:50%;bottom:-46%;width:96vw;height:70vw;max-width:1000px;max-height:700px;
+  transform:translateX(-50%);pointer-events:none;
+  background:radial-gradient(circle,rgba(230,90,25,.2),transparent 62%);
+}
+.cta-final .env{position:relative;z-index:2}
+.cta-final h2{max-width:20ch;margin:0 auto}
+.cta-final p{margin:26px auto 38px;color:rgba(247,243,234,.72)}
+.cta-final .simb{width:54px;margin:0 auto 30px;opacity:.95}
+
+/* rodapé */
+footer{background:var(--escuro-2);color:rgba(247,243,234,.6);padding:56px 0 34px;font-size:14.5px}
+footer .topo{display:flex;flex-wrap:wrap;gap:30px;justify-content:space-between;align-items:flex-start}
+footer img{height:29px;width:auto;margin-bottom:15px}
+footer a:hover{color:var(--laranja)}
+footer .canais{display:flex;flex-direction:column;gap:9px}
+footer .base{
+  margin-top:40px;padding-top:22px;border-top:1px solid var(--borda-esc);
+  display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;font-size:13px;
+  color:rgba(247,243,234,.42);
+}
+
+/* ═══════════════════════ escolha de idioma na abertura ═══════════════════════ */
+.porta{
+  position:fixed;inset:0;z-index:200;background:var(--escuro);
+  display:flex;align-items:center;justify-content:center;padding:26px;
+  animation:surge .5s var(--t);
+}
+.porta[hidden]{display:none}
+@keyframes surge{from{opacity:0}to{opacity:1}}
+.porta.saindo{animation:sai .45s var(--t) forwards}
+@keyframes sai{to{opacity:0;visibility:hidden}}
+.porta .cx{text-align:center;max-width:460px;width:100%}
+.porta img{height:46px;width:auto;margin:0 auto 34px}
+.porta .tit{
+  font-family:"Inter Tight",Inter,sans-serif;font-weight:600;font-size:20px;
+  color:var(--marfim);letter-spacing:-.015em;margin-bottom:8px;
+}
+.porta .sub2{font-size:14.5px;color:rgba(247,243,234,.55);margin-bottom:32px}
+.porta .escolhas{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.porta .escolhas button{
+  background:rgba(247,243,234,.05);border:1px solid var(--borda-esc);color:var(--marfim);
+  border-radius:13px;padding:26px 16px;cursor:pointer;
+  font:600 17px/1.2 "Inter Tight",Inter,sans-serif;letter-spacing:-.01em;
+  transition:all .28s var(--t);
+}
+.porta .escolhas button:hover{
+  border-color:var(--laranja);background:rgba(230,90,25,.13);transform:translateY(-3px);
+}
+.porta .escolhas .band{display:block;font-size:26px;margin-bottom:11px;line-height:1}
+.porta .escolhas small{display:block;font-size:12.5px;font-weight:500;color:rgba(247,243,234,.5);margin-top:6px}
+
+/* ═══════════════════════ formulário -> WhatsApp ═══════════════════════ */
+.modal{
+  position:fixed;inset:0;z-index:150;background:rgba(23,23,23,.72);
+  backdrop-filter:blur(5px);display:flex;align-items:flex-start;justify-content:center;
+  padding:26px;overflow-y:auto;animation:surge .3s var(--t);
+}
+.modal[hidden]{display:none}
+.modal .painel{
+  background:var(--branco);border-radius:17px;padding:clamp(26px,4vw,40px);
+  max-width:530px;width:100%;margin:auto;position:relative;
+  animation:sobe .42s var(--t);
+}
+@keyframes sobe{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+.modal .x{
+  position:absolute;top:15px;right:15px;width:34px;height:34px;border-radius:50%;
+  border:0;background:var(--areia);cursor:pointer;font-size:19px;line-height:1;color:var(--cinza);
+  transition:.2s;
+}
+.modal .x:hover{background:var(--laranja);color:#fff}
+.modal h3{font-size:clamp(1.35rem,2.4vw,1.75rem);margin-bottom:9px}
+.modal .intro{font-size:15px;color:var(--cinza);margin-bottom:26px}
+.campo{margin-bottom:16px}
+.campo label{display:block;font-size:13.5px;font-weight:600;margin-bottom:6px}
+.campo label .op{font-weight:400;color:var(--cinza)}
+.campo input,.campo select,.campo textarea{
+  width:100%;padding:13px 14px;border:1px solid var(--areia);border-radius:9px;
+  font:400 16px/1.4 Inter,sans-serif;background:var(--marfim);color:var(--preto);
+  transition:border-color .2s,box-shadow .2s;
+}
+.campo input:focus,.campo select:focus,.campo textarea:focus{
+  outline:0;border-color:var(--laranja);box-shadow:0 0 0 3px rgba(230,90,25,.13);
+}
+.campo textarea{min-height:76px;resize:vertical}
+.campo select{appearance:none;cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2368645E' stroke-width='2.4'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 13px center;background-size:17px;padding-right:40px;
+}
+.dupla{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.erro-c{border-color:var(--laranja-esc)!important;background:#fdf2ec!important}
+.msg-erro{font-size:13px;color:var(--laranja-esc);margin-top:5px;display:none}
+.msg-erro.ver{display:block}
+.mel{position:absolute;left:-9999px;opacity:0;height:0;width:0}
+.modal .btn{width:100%;justify-content:center;margin-top:8px}
+.previa{
+  background:var(--marfim);border:1px dashed var(--areia);border-radius:10px;
+  padding:14px 15px;margin-top:18px;font-size:13px;color:var(--cinza);line-height:1.55;
+}
+.previa b{display:block;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--laranja);margin-bottom:7px;font-weight:600}
+.previa .txt{white-space:pre-wrap;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;color:var(--preto)}
+
+/* botão flutuante de WhatsApp */
+.flut{
+  position:fixed;right:20px;bottom:20px;z-index:70;
+  display:flex;align-items:center;gap:10px;
+  background:#25D366;color:#fff;border:0;border-radius:999px;cursor:pointer;
+  padding:14px 20px;font:600 14.5px/1 Inter,sans-serif;
+  box-shadow:0 8px 26px rgba(37,211,102,.35);
+  transform:translateY(90px);opacity:0;transition:all .45s var(--t);
+}
+.flut.ver{transform:translateY(0);opacity:1}
+.flut:hover{background:#1eb355;transform:translateY(-3px)}
+.flut svg{width:20px;height:20px;flex:none}
+
+/* ═══════════════════════ revelação na rolagem ═══════════════════════ */
+.ap{opacity:0;transform:translateY(26px);transition:opacity .8s var(--t),transform .8s var(--t)}
+.ap.dentro{opacity:1;transform:none}
+.ap[data-atraso="1"]{transition-delay:.09s}
+.ap[data-atraso="2"]{transition-delay:.18s}
+.ap[data-atraso="3"]{transition-delay:.27s}
+.ap[data-atraso="4"]{transition-delay:.36s}
+.ap[data-atraso="5"]{transition-delay:.45s}
+
+/* barra de progresso da leitura */
+.prog{position:fixed;inset:0 0 auto;height:2.5px;z-index:80;background:transparent}
+.prog i{display:block;height:100%;width:0;background:var(--laranja);transition:width .1s linear}
+
+@media (max-width:900px){
+  .duas,.metodo{grid-template-columns:1fr}
+  .metodo .fixo{position:static}
+  nav.menu{
+    position:fixed;inset:0;background:var(--escuro);flex-direction:column;
+    justify-content:center;align-items:center;gap:26px;font-size:22px;
+    transform:translateX(100%);transition:transform .4s var(--t);z-index:55;
+  }
+  nav.menu.aberto{transform:none}
+  nav.menu a{color:var(--marfim);font-family:"Inter Tight",Inter,sans-serif;font-weight:600}
+  .hamb{display:block;order:3;position:relative;z-index:58}
+  .hamb.x span:nth-child(1){transform:translateY(6.2px) rotate(45deg)}
+  .hamb.x span:nth-child(2){opacity:0}
+  .hamb.x span:nth-child(3){transform:translateY(-6.2px) rotate(-45deg)}
+  .idioma{order:2;margin-left:auto}
+  .barra{gap:12px}
+  .tres{grid-template-columns:1fr;border-top:0}
+  .tres div{border-top:1px solid var(--borda-esc);padding:20px 0 0}
+  .dupla{grid-template-columns:1fr}
+  header .btn.pq{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .ap{opacity:1;transform:none}
+  .rev-p{transform:none;opacity:1}
+}
+</style>
+</head>
+<body>
+
+<div class="prog"><i id="prog"></i></div>
+
+<!-- ══ escolha de idioma na abertura ══ -->
+<div class="porta" id="porta" hidden>
+  <div class="cx">
+    <img src="assets/logo-branca.png" alt="Leon Group">
+    <div class="tit" id="porta-tit">Escolha seu idioma</div>
+    <div class="sub2" id="porta-sub">Choose your language</div>
+    <div class="escolhas">
+      <button type="button" data-idi="pt"><span class="band">🇧🇷</span>Português<small>Brasil</small></button>
+      <button type="button" data-idi="en"><span class="band">🇺🇸</span>English<small>United States</small></button>
+    </div>
+  </div>
+</div>
+
+<header id="topo">
+  <div class="env barra">
+    <a href="#" class="marca" aria-label="Leon Group"><img src="assets/logo-branca.png" alt="Leon Group"></a>
+    <nav class="menu" id="menu">
+      <a href="#historia" data-t="nav_historia">História</a>
+      <a href="#servicos" data-t="nav_servicos">Serviços</a>
+      <a href="#metodo" data-t="nav_metodo">Como funciona</a>
+      <a href="#faq" data-t="nav_faq">Dúvidas</a>
+    </nav>
+    <div class="idioma" role="group" aria-label="Idioma / Language">
+      <button type="button" data-idi="pt" class="on">PT</button>
+      <button type="button" data-idi="en">EN</button>
+    </div>
+    <button class="btn pq" type="button" data-abrir data-fonte="header" data-t="cta_curto">Falar agora</button>
+    <button class="hamb" id="hamb" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ══ hero ══ -->
+<section class="hero" id="hero">
+  <div class="env">
+    <div class="selo-hero ap"><span class="ponto"></span><span data-t="hero_selo">Para brasileiros na construção nos Estados Unidos</span></div>
+    <h1 id="h1"></h1>
+    <p class="sub ap" data-atraso="2" data-t="hero_sub"></p>
+    <div class="acoes ap" data-atraso="3">
+      <button class="btn" type="button" data-abrir data-fonte="hero">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2m5.8 14c-.25.7-1.45 1.33-2 1.38-.55.05-1.05.25-3.55-.9s-3.9-3.8-4-3.97c-.1-.18-.68-1.13-.68-2.15 0-1.03.55-1.53.73-1.73.18-.2.4-.25.53-.25s.28 0 .4.01c.13.01.3-.05.48.35.18.4.6 1.48.65 1.58.05.1.08.23.01.35-.06.13-.13.2-.25.33-.13.13-.2.2-.3.35-.1.15-.2.3-.1.5.1.2.48.83 1.03 1.35.7.65 1.3.88 1.5.98.2.1.33.08.45-.05.13-.13.53-.6.68-.8.15-.2.3-.18.5-.1.2.07 1.25.58 1.48.7.23.13.38.18.43.28.05.1.05.6-.2 1.3"/></svg>
+        <span data-t="cta_principal">Falar com a Leon Group</span>
+      </button>
+      <a class="btn vaz" href="#metodo" data-t="cta_secundario">Ver como funciona</a>
+    </div>
+    <p class="sob-btn ap" data-atraso="4" data-t="hero_micro"></p>
+    <div class="tres">
+      <div class="ap" data-atraso="2"><b>5</b><span data-t="num_1"></span></div>
+      <div class="ap" data-atraso="3"><b>20</b><span data-t="num_2"></span></div>
+      <div class="ap" data-atraso="4"><b>9</b><span data-t="num_3"></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ marquee de nichos ══ -->
+<div class="faixa" aria-hidden="true"><div class="trilho" id="trilho"></div></div>
+
+<!-- ══ a dor ══ -->
+<section class="sec" id="problema">
+  <div class="env duas">
+    <div>
+      <div class="rotulo ap" data-t="rot_problema">O problema</div>
+      <h2 class="ap" data-atraso="1" data-t="prob_titulo"></h2>
+    </div>
+    <div>
+      <p class="ap" data-atraso="1" data-t="prob_texto"></p>
+      <ul class="dor" id="lista-dor"></ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══ história ══ -->
+<section class="sec" id="historia" style="background:var(--branco);border-top:1px solid var(--areia);border-bottom:1px solid var(--areia)">
+  <div class="env">
+    <div class="rotulo ap" data-t="rot_historia">A Leon Group</div>
+    <div class="hist" id="hist"></div>
+    <div class="assin ap">
+      <img src="assets/logo.png" alt="Leon Group">
+      <div><b data-t="assin_nome">Leon Group</b><span data-t="assin_papel"></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ serviços ══ -->
+<section class="sec escuro" id="servicos">
+  <div class="env">
+    <div class="rotulo ap" data-t="rot_servicos">Serviços</div>
+    <h2 class="ap" data-atraso="1" data-t="serv_titulo"></h2>
+    <p class="ap" data-atraso="2" style="margin-top:22px" data-t="serv_sub"></p>
+    <div class="cards" id="cards"></div>
+  </div>
+</section>
+
+<!-- ══ método ══ -->
+<section class="sec" id="metodo">
+  <div class="env metodo">
+    <div class="fixo">
+      <div class="rotulo ap" data-t="rot_metodo">Como funciona</div>
+      <h2 class="ap" data-atraso="1" data-t="met_titulo"></h2>
+      <p class="ap" data-atraso="2" style="margin-top:20px;font-size:16px;color:var(--cinza)" data-t="met_sub"></p>
+      <button class="btn escuro-cheio ap" data-atraso="3" type="button" data-abrir data-fonte="metodo" style="margin-top:28px" data-t="cta_curto2">Falar agora</button>
+    </div>
+    <div class="passos" id="passos"></div>
+  </div>
+</section>
+
+<!-- ══ o que não fazemos ══ -->
+<section class="sec" style="padding-top:0">
+  <div class="env">
+    <div class="nao ap">
+      <div class="rotulo" data-t="rot_nao">Transparência</div>
+      <h3 data-t="nao_titulo"></h3>
+      <ul id="lista-nao"></ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FAQ ══ -->
+<section class="sec" id="faq" style="background:var(--branco);border-top:1px solid var(--areia)">
+  <div class="env">
+    <div class="rotulo ap" data-t="rot_faq">Dúvidas</div>
+    <h2 class="ap" data-atraso="1" data-t="faq_titulo"></h2>
+    <div class="faq" id="lista-faq"></div>
+  </div>
+</section>
+
+<!-- ══ CTA final ══ -->
+<section class="sec cta-final">
+  <div class="env">
+    <img src="assets/simbolo.png" alt="" class="simb ap">
+    <h2 class="ap" data-atraso="1" data-t="fim_titulo"></h2>
+    <p class="ap" data-atraso="2" data-t="fim_sub"></p>
+    <div class="ap" data-atraso="3">
+      <button class="btn" type="button" data-abrir data-fonte="rodape">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2m5.8 14c-.25.7-1.45 1.33-2 1.38-.55.05-1.05.25-3.55-.9s-3.9-3.8-4-3.97c-.1-.18-.68-1.13-.68-2.15 0-1.03.55-1.53.73-1.73.18-.2.4-.25.53-.25s.28 0 .4.01c.13.01.3-.05.48.35.18.4.6 1.48.65 1.58.05.1.08.23.01.35-.06.13-.13.2-.25.33-.13.13-.2.2-.3.35-.1.15-.2.3-.1.5.1.2.48.83 1.03 1.35.7.65 1.3.88 1.5.98.2.1.33.08.45-.05.13-.13.53-.6.68-.8.15-.2.3-.18.5-.1.2.07 1.25.58 1.48.7.23.13.38.18.43.28.05.1.05.6-.2 1.3"/></svg>
+        <span data-t="cta_principal2">Falar com a Leon Group</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="env">
+    <div class="topo">
+      <div>
+        <img src="assets/logo-branca.png" alt="Leon Group">
+        <p style="font-size:14px;max-width:34ch;color:rgba(247,243,234,.5)" data-t="pe_frase"></p>
+      </div>
+      <div class="canais">
+        <b style="color:var(--marfim);font-size:13px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin-bottom:4px" data-t="pe_contato">Contato</b>
+        <a href="mailto:leongroup.builtolead@gmail.com">leongroup.builtolead@gmail.com</a>
+        <a href="https://www.instagram.com/leongroup.builtolead/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.youtube.com/@leongroup-builtolead" target="_blank" rel="noopener">YouTube</a>
+      </div>
+      <div class="canais">
+        <b style="color:var(--marfim);font-size:13px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin-bottom:4px" data-t="pe_atende">Atendemos</b>
+        <span data-t="pe_regiao"></span>
+      </div>
+    </div>
+    <div class="base">
+      <span>© <span id="ano"></span> Leon Group · Built to Lead.</span>
+      <span data-t="pe_nota"></span>
+    </div>
+  </div>
+</footer>
+
+<button class="flut" id="flut" type="button" data-abrir data-fonte="flutuante">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2m5.8 14c-.25.7-1.45 1.33-2 1.38-.55.05-1.05.25-3.55-.9s-3.9-3.8-4-3.97c-.1-.18-.68-1.13-.68-2.15 0-1.03.55-1.53.73-1.73.18-.2.4-.25.53-.25s.28 0 .4.01c.13.01.3-.05.48.35.18.4.6 1.48.65 1.58.05.1.08.23.01.35-.06.13-.13.2-.25.33-.13.13-.2.2-.3.35-.1.15-.2.3-.1.5.1.2.48.83 1.03 1.35.7.65 1.3.88 1.5.98.2.1.33.08.45-.05.13-.13.53-.6.68-.8.15-.2.3-.18.5-.1.2.07 1.25.58 1.48.7.23.13.38.18.43.28.05.1.05.6-.2 1.3"/></svg>
+  <span data-t="flut_texto">WhatsApp</span>
+</button>
+
+<!-- ══ formulário rápido -> WhatsApp ══ -->
+<div class="modal" id="modal" hidden>
+  <div class="painel" role="dialog" aria-modal="true" aria-labelledby="modal-tit">
+    <button class="x" type="button" id="fechar" aria-label="Fechar">×</button>
+    <h3 id="modal-tit" data-t="form_titulo"></h3>
+    <p class="intro" data-t="form_intro"></p>
+    <form id="form" novalidate>
+      <input class="mel" type="text" name="site_web" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="campo">
+        <label for="f_nome" data-t="f_nome">Seu nome</label>
+        <input id="f_nome" name="nome" autocomplete="name" required>
+        <div class="msg-erro" data-t="f_obrig"></div>
+      </div>
+      <div class="dupla">
+        <div class="campo">
+          <label for="f_empresa" data-t="f_empresa">Nome da empresa</label>
+          <input id="f_empresa" name="empresa" autocomplete="organization" required>
+          <div class="msg-erro" data-t="f_obrig"></div>
+        </div>
+        <div class="campo">
+          <label for="f_tel" data-t="f_tel">WhatsApp</label>
+          <input id="f_tel" name="telefone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+1 617 000 0000" required>
+          <div class="msg-erro" data-t="f_obrig"></div>
+        </div>
+      </div>
+      <div class="campo">
+        <label for="f_servico" data-t="f_servico">Qual serviço você faz</label>
+        <select id="f_servico" name="servico" required></select>
+        <div class="msg-erro" data-t="f_obrig"></div>
+      </div>
+      <div class="dupla">
+        <div class="campo">
+          <label for="f_cidade" data-t="f_cidade">Cidade e estado</label>
+          <input id="f_cidade" name="cidade" placeholder="Boston, MA" required>
+          <div class="msg-erro" data-t="f_obrig"></div>
+        </div>
+        <div class="campo">
+          <label for="f_papel" data-t="f_papel">Você é</label>
+          <select id="f_papel" name="papel" required></select>
+          <div class="msg-erro" data-t="f_obrig"></div>
+        </div>
+      </div>
+      <div class="campo">
+        <label for="f_hoje" data-t="f_hoje">Como você consegue cliente hoje</label>
+        <select id="f_hoje" name="hoje" required></select>
+        <div class="msg-erro" data-t="f_obrig"></div>
+      </div>
+      <div class="previa">
+        <b data-t="previa_rot">O que vai no WhatsApp</b>
+        <span class="txt" id="previa"></span>
+      </div>
+      <button class="btn" type="submit" id="enviar">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2m5.8 14c-.25.7-1.45 1.33-2 1.38-.55.05-1.05.25-3.55-.9s-3.9-3.8-4-3.97c-.1-.18-.68-1.13-.68-2.15 0-1.03.55-1.53.73-1.73.18-.2.4-.25.53-.25s.28 0 .4.01c.13.01.3-.05.48.35.18.4.6 1.48.65 1.58.05.1.08.23.01.35-.06.13-.13.2-.25.33-.13.13-.2.2-.3.35-.1.15-.2.3-.1.5.1.2.48.83 1.03 1.35.7.65 1.3.88 1.5.98.2.1.33.08.45-.05.13-.13.53-.6.68-.8.15-.2.3-.18.5-.1.2.07 1.25.58 1.48.7.23.13.38.18.43.28.05.1.05.6-.2 1.3"/></svg>
+        <span data-t="f_enviar">Abrir o WhatsApp</span>
+      </button>
+      <p style="font-size:12.5px;color:var(--cinza);text-align:center;margin-top:13px" data-t="f_nota"></p>
+    </form>
+  </div>
+</div>
+
+<script src="conteudo.js"></script>
+<script src="site.js"></script>
+</body>
+</html>
