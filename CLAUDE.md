@@ -182,7 +182,9 @@ Posts e conteúdo público falam com a **dor do público-cliente** (contractors/
 
 ## Tom de voz
 
-Ainda não calibrado com exemplo real — ver `_memoria/preferencias.md`. Direção geral confirmada: confiante, direto, profissional, claro, próximo de contractors brasileiros nos EUA. Evitar: "vamos juntos!", emoji em email formal, "caro cliente", jargão de guru ("alavancar", "sinergia").
+Ainda não calibrado com exemplo real, ver `_memoria/preferencias.md`. Direção geral confirmada: confiante, direto, profissional, claro, próximo de contractors brasileiros nos EUA. Evitar: "vamos juntos!", emoji em email formal, "caro cliente", jargão de guru ("alavancar", "sinergia").
+
+**Nada de travessão (o tracinho longo) separando frase.** Regra permanente do usuário (2026-09-06), vale em todo texto: site, post, proposta, email e nas próprias respostas do Claude. Usar vírgula, dois-pontos, ponto ou parêntese. Hífen de palavra composta continua normal.
 
 ## Idioma
 

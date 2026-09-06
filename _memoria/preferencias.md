@@ -9,6 +9,11 @@ Ainda não definido — sem exemplo de escrita real coletado no `/instalar` (per
 
 ## O que evitar
 
+- **Travessão (o tracinho longo) separando frase, em QUALQUER texto.** Regra
+  permanente, dada em 2026-09-06: fica feio e denuncia texto de IA. Vale pra
+  site, post, proposta, email e pras respostas do Claude na conversa. Usar
+  vírgula, dois-pontos, ponto ou parêntese no lugar. Hífen de palavra composta
+  ("pré-venda", "follow-up") continua normal.
 - "Vamos juntos!"
 - Emoji em email formal
 - "Caro cliente"

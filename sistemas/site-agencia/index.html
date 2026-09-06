@@ -3,18 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Leon Group — Built to Lead.</title>
-<meta name="description" content="Leon Group ajuda brasileiros donos de empresa de construção e home services nos Estados Unidos a sair da indicação e ter fluxo previsível de cliente novo. Sem tráfego pago, sem license.">
+<title>Leon Group · Built to Lead.</title>
+<meta name="description" content="Leon Group ajuda brasileiros donos de empresa de construção e home services nos Estados Unidos a sair da indicação e ter fluxo previsível de cliente novo. Built to Lead.">
 <link rel="icon" href="assets/favicon.png">
 <link rel="apple-touch-icon" href="assets/simbolo.png">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Leon Group — Built to Lead.">
+<meta property="og:title" content="Leon Group · Built to Lead.">
 <meta property="og:description" content="Presença, aquisição e processo comercial para contractors brasileiros nos Estados Unidos.">
 <meta property="og:image" content="assets/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
 /* ═══════════════════════ paleta ═══════════════════════
    Fonte: identidade/design-guide.md. Nada fora dessa lista. */
@@ -26,6 +26,8 @@
   --borda-esc:rgba(247,243,234,.14);
   --max:1180px;
   --t:cubic-bezier(.22,.61,.36,1);
+  /* posição do leão de fundo, controlada por site.js */
+  --lx:74vw; --ly:38vh; --lr:-6deg; --ls:1.1; --lo:.13;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
@@ -44,11 +46,13 @@ h2{font-size:clamp(2rem,4.4vw,3.4rem)}
 h3{font-size:clamp(1.15rem,1.7vw,1.45rem);letter-spacing:-.015em;line-height:1.25}
 p{max-width:64ch}
 
-.env{max-width:var(--max);margin:0 auto;padding:0 26px}
+/* .env carrega o conteúdo e fica SEMPRE acima do leão de fundo (z 2).
+   Sem esse z-index o símbolo passaria por cima do texto. */
+.env{max-width:var(--max);margin:0 auto;padding:0 26px;position:relative;z-index:3}
 section{position:relative}
 .sec{padding:clamp(76px,10vw,140px) 0}
 
-/* faixas escuras — o contraste dramático, sem escurecer o site inteiro */
+/* faixas escuras: o contraste dramático, sem escurecer o site inteiro */
 .escuro{background:var(--escuro);color:var(--marfim)}
 .escuro p{color:rgba(247,243,234,.72)}
 .escuro .rotulo{color:rgba(247,243,234,.5)}
@@ -59,6 +63,29 @@ section{position:relative}
 }
 .rotulo::before{content:"";width:26px;height:1px;background:var(--laranja);flex:none}
 .lar{color:var(--laranja)}
+
+/* ═══════════════════════ leão de fundo ═══════════════════════
+   Fica numa camada fixa em z-index 2: acima do fundo das seções e
+   abaixo de todo conteúdo (.env em z 3). Assim o símbolo aparece
+   forte no fundo sem nunca atravessar o texto.
+   A posição vem de site.js, seção por seção, conforme a rolagem. */
+.leao{position:fixed;inset:0;z-index:2;pointer-events:none;overflow:hidden}
+.leao img,.leao .brilho{
+  position:absolute;left:0;top:0;
+  transform:translate3d(var(--lx),var(--ly),0) translate(-50%,-50%) rotate(var(--lr)) scale(var(--ls));
+  transition:transform 1.15s var(--t),opacity 1s linear;
+  will-change:transform,opacity;
+}
+.leao img{
+  width:min(44vw,540px);height:auto;
+  opacity:var(--lo);
+  filter:saturate(1.3) contrast(1.06);
+}
+.leao .brilho{
+  width:min(66vw,780px);height:min(66vw,780px);border-radius:50%;
+  background:radial-gradient(circle,rgba(230,90,25,.55),rgba(230,90,25,.16) 44%,transparent 70%);
+  opacity:calc(var(--lo) * 1.35);
+}
 
 /* ═══════════════════════ header ═══════════════════════ */
 header{
@@ -73,7 +100,12 @@ header.grudado{
 .marca{display:flex;align-items:center;gap:11px;flex:none}
 .marca img{height:31px;width:auto;transition:height .3s var(--t)}
 header.grudado .marca img{height:26px}
-nav.menu{display:flex;gap:28px;margin-left:auto;font-size:14.5px;font-weight:500}
+/* slogan colado na marca, o pedido de tê-lo em todo lugar começa aqui */
+.marca .lema{
+  font:700 10.5px/1 "Inter Tight",Inter,sans-serif;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--laranja);padding-left:12px;border-left:1px solid var(--borda-esc);flex:none;
+}
+nav.menu{display:flex;gap:26px;margin-left:auto;font-size:14.5px;font-weight:500}
 nav.menu a{color:rgba(247,243,234,.74);transition:color .2s;position:relative;padding:4px 0}
 nav.menu a::after{
   content:"";position:absolute;left:0;right:100%;bottom:0;height:1.5px;
@@ -82,7 +114,7 @@ nav.menu a::after{
 nav.menu a:hover{color:var(--marfim)}
 nav.menu a:hover::after{right:0}
 
-/* botão de idioma — pedido explícito: tem que ser óbvio */
+/* botão de idioma: pedido explícito, tem que ser óbvio */
 .idioma{
   display:flex;flex:none;border:1px solid var(--borda-esc);border-radius:999px;
   padding:3px;background:rgba(247,243,234,.06);
@@ -119,10 +151,9 @@ nav.menu a:hover::after{right:0}
   min-height:min(100svh,940px);display:flex;align-items:center;
   padding:150px 0 84px;overflow:hidden;
 }
-/* brilho laranja atrás do conteúdo — a única "luz" do site */
 .hero::before{
   content:"";position:absolute;top:-28%;right:-12%;width:74vw;height:74vw;max-width:900px;max-height:900px;
-  background:radial-gradient(circle,rgba(230,90,25,.19),rgba(230,90,25,.05) 42%,transparent 68%);
+  background:radial-gradient(circle,rgba(230,90,25,.16),rgba(230,90,25,.04) 42%,transparent 68%);
   pointer-events:none;
 }
 .hero::after{
@@ -132,7 +163,6 @@ nav.menu a:hover::after{right:0}
   mask-image:radial-gradient(ellipse 90% 62% at 50% 40%,#000 28%,transparent 76%);
   -webkit-mask-image:radial-gradient(ellipse 90% 62% at 50% 40%,#000 28%,transparent 76%);
 }
-.hero .env{position:relative;z-index:2}
 .selo-hero{
   display:inline-flex;align-items:center;gap:9px;
   border:1px solid var(--borda-esc);border-radius:999px;padding:8px 16px 8px 12px;
@@ -150,7 +180,14 @@ nav.menu a:hover::after{right:0}
 }
 .hero h1{max-width:17ch}
 .hero h1 .lar{display:inline-block}
-.hero .sub{font-size:clamp(1.05rem,1.55vw,1.3rem);color:rgba(247,243,234,.74);margin:30px 0 40px;max-width:56ch}
+/* slogan em carimbo, logo abaixo da headline */
+.lema-carimbo{
+  display:inline-flex;align-items:center;gap:12px;margin-top:26px;
+  font:700 12px/1 "Inter Tight",Inter,sans-serif;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--laranja);
+}
+.lema-carimbo::before,.lema-carimbo::after{content:"";width:24px;height:1px;background:rgba(230,90,25,.5)}
+.hero .sub{font-size:clamp(1.05rem,1.55vw,1.3rem);color:rgba(247,243,234,.74);margin:22px 0 38px;max-width:56ch}
 .acoes{display:flex;flex-wrap:wrap;gap:13px;align-items:center}
 .sob-btn{font-size:13.5px;color:rgba(247,243,234,.48);margin-top:20px}
 
@@ -172,13 +209,16 @@ nav.menu a:hover::after{right:0}
 .tres span{font-size:13.5px;color:rgba(247,243,234,.56);display:block;margin-top:9px}
 
 /* ═══════════════════════ marquee de nichos ═══════════════════════ */
-.faixa{background:var(--laranja);color:#fff;padding:17px 0;overflow:hidden;position:relative}
-.trilho{display:flex;width:max-content;animation:desliza 42s linear infinite}
+.faixa{background:var(--laranja);color:#fff;padding:17px 0;overflow:hidden;position:relative;z-index:3}
+.trilho{display:flex;width:max-content;animation:desliza 46s linear infinite}
 .trilho span{
   font-family:"Inter Tight",Inter,sans-serif;font-weight:600;font-size:15px;
   letter-spacing:.03em;padding:0 26px;white-space:nowrap;display:flex;align-items:center;gap:26px;
 }
 .trilho span::after{content:"";width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.55);flex:none}
+/* o slogan entra no meio dos nichos, em preto pra saltar no laranja */
+.trilho .slg{color:var(--preto);font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+.trilho .slg::after{background:rgba(23,23,23,.45)}
 @keyframes desliza{to{transform:translateX(-50%)}}
 .faixa:hover .trilho{animation-play-state:paused}
 
@@ -197,7 +237,7 @@ nav.menu a:hover::after{right:0}
 .dor strong{display:block;font-size:17.5px;font-weight:600;margin-bottom:5px;letter-spacing:-.01em}
 .dor p{font-size:15.5px;color:var(--cinza);max-width:52ch}
 
-/* história — editorial */
+/* história, editorial */
 .hist{max-width:760px}
 .hist p{font-size:clamp(1.05rem,1.5vw,1.24rem);line-height:1.68;margin-bottom:26px;max-width:none}
 .hist p:first-of-type{font-size:clamp(1.2rem,1.9vw,1.5rem);line-height:1.5;font-weight:500;letter-spacing:-.015em}
@@ -209,8 +249,9 @@ nav.menu a:hover::after{right:0}
 .assin img{height:34px;width:auto;opacity:.9}
 .assin div{font-size:14px;color:var(--cinza);line-height:1.45}
 .assin b{display:block;color:var(--preto);font-weight:600;font-size:14.5px}
+.assin span{color:var(--laranja);font-weight:600;letter-spacing:.04em}
 
-/* serviços — cards escuros com foco no hover */
+/* serviços: cards escuros com foco no hover */
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(288px,1fr));gap:1px;margin-top:56px}
 .card{
   background:var(--escuro-2);padding:34px 30px 32px;position:relative;overflow:hidden;
@@ -236,8 +277,36 @@ nav.menu a:hover::after{right:0}
   display:inline-block;margin-top:18px;font-size:11.5px;font-weight:600;letter-spacing:.1em;
   text-transform:uppercase;color:rgba(247,243,234,.4);
 }
+/* o card de tráfego pago é a última etapa: a etiqueta avisa */
+.card.fim .tag{color:var(--laranja)}
 
-/* método — passos grudados */
+/* ═══════════════════════ funções na conta ═══════════════════════ */
+.funcoes{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(266px,1fr));
+  gap:1px;margin-top:52px;background:var(--areia);
+}
+.fn{
+  background:var(--branco);padding:26px 24px 26px;position:relative;
+  transition:background .3s var(--t);
+}
+.fn:hover{background:var(--marfim)}
+.fn .nb{
+  font-family:"Inter Tight",Inter,sans-serif;font-size:12px;font-weight:700;
+  color:var(--laranja);letter-spacing:.1em;display:block;margin-bottom:13px;
+}
+.fn h3{font-size:1.06rem;margin-bottom:8px}
+.fn p{font-size:14.5px;color:var(--cinza);max-width:none;line-height:1.6}
+.fn::after{
+  content:"";position:absolute;inset:auto 0 0 0;height:2px;background:var(--laranja);
+  transform:scaleX(0);transform-origin:left;transition:transform .4s var(--t);
+}
+.fn:hover::after{transform:scaleX(1)}
+.func-nota{
+  margin-top:34px;padding:22px 26px;border-left:2px solid var(--laranja);
+  background:var(--branco);font-size:15.5px;color:var(--cinza);max-width:78ch;
+}
+
+/* método: passos grudados */
 .metodo{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(38px,6vw,80px);align-items:start}
 .metodo .fixo{position:sticky;top:118px}
 .passos{display:grid;gap:2px;counter-reset:p}
@@ -257,12 +326,17 @@ nav.menu a:hover::after{right:0}
   display:inline-block;margin-top:12px;font-size:12px;font-weight:600;
   background:var(--laranja-pal);color:var(--laranja-esc);padding:5px 11px;border-radius:999px;
 }
+.passo.fim .prazo{background:var(--laranja);color:#fff}
 
-/* o que não fazemos — honestidade como diferencial */
-.nao{background:var(--branco);border:1px solid var(--areia);border-radius:14px;padding:clamp(28px,4vw,44px);margin-top:60px}
-.nao ul{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px 34px;margin-top:24px}
-.nao li{display:flex;gap:12px;align-items:flex-start;font-size:15.5px;color:var(--cinza)}
-.nao li svg{width:17px;height:17px;flex:none;stroke:var(--laranja);margin-top:4px}
+/* ═══════════════════════ faixa do slogan ═══════════════════════ */
+.lema-faixa{background:var(--escuro);color:var(--marfim);padding:clamp(56px,8vw,104px) 0;text-align:center;overflow:hidden}
+.lema-faixa .simb{width:52px;margin:0 auto 26px;opacity:.95}
+.lema-faixa .dsp{font-size:clamp(2.4rem,8.4vw,6.4rem);letter-spacing:-.04em;line-height:.94}
+.lema-faixa .dsp i{font-style:normal;color:var(--laranja)}
+.lema-faixa small{
+  display:block;margin-top:20px;font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;
+  color:rgba(247,243,234,.42);
+}
 
 /* FAQ */
 .faq{max-width:840px;margin-top:52px}
@@ -285,29 +359,31 @@ nav.menu a:hover::after{right:0}
 .faq .resp p+p{margin-top:14px}
 @keyframes abre{from{opacity:0;transform:translateY(-7px)}to{opacity:1;transform:none}}
 
-/* CTA final */
-.cta-final{background:var(--escuro);color:var(--marfim);text-align:center;overflow:hidden}
-.cta-final::before{
-  content:"";position:absolute;left:50%;bottom:-46%;width:96vw;height:70vw;max-width:1000px;max-height:700px;
-  transform:translateX(-50%);pointer-events:none;
-  background:radial-gradient(circle,rgba(230,90,25,.2),transparent 62%);
+/* ═══════════════════════ contato: formulário na página ═══════════════════════ */
+.contato{background:var(--escuro);color:var(--marfim);overflow:hidden}
+.ct-grade{display:grid;grid-template-columns:1fr 1.04fr;gap:clamp(36px,5vw,72px);align-items:start}
+.ct-lema{
+  display:inline-flex;align-items:center;gap:11px;margin-bottom:20px;
+  font:700 11.5px/1 "Inter Tight",Inter,sans-serif;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--laranja);
 }
-.cta-final .env{position:relative;z-index:2}
-.cta-final h2{max-width:20ch;margin:0 auto}
-.cta-final p{margin:26px auto 38px;color:rgba(247,243,234,.72)}
-.cta-final .simb{width:54px;margin:0 auto 30px;opacity:.95}
+.ct-lema::before{content:"";width:22px;height:1px;background:rgba(230,90,25,.5)}
+.contato h2{max-width:19ch}
+.contato .sub{margin-top:22px;font-size:16.5px;color:rgba(247,243,234,.7)}
+.ct-pontos{list-style:none;display:grid;gap:0;margin-top:34px}
+.ct-pontos li{padding:19px 0;border-top:1px solid var(--borda-esc);display:flex;gap:15px}
+.ct-pontos li:last-child{border-bottom:1px solid var(--borda-esc)}
+.ct-pontos svg{width:19px;height:19px;flex:none;stroke:var(--laranja);margin-top:3px}
+.ct-pontos strong{display:block;font-size:16px;font-weight:600;margin-bottom:4px;letter-spacing:-.01em}
+.ct-pontos p{font-size:14.5px;color:rgba(247,243,234,.6);max-width:46ch}
 
-/* rodapé */
-footer{background:var(--escuro-2);color:rgba(247,243,234,.6);padding:56px 0 34px;font-size:14.5px}
-footer .topo{display:flex;flex-wrap:wrap;gap:30px;justify-content:space-between;align-items:flex-start}
-footer img{height:29px;width:auto;margin-bottom:15px}
-footer a:hover{color:var(--laranja)}
-footer .canais{display:flex;flex-direction:column;gap:9px}
-footer .base{
-  margin-top:40px;padding-top:22px;border-top:1px solid var(--borda-esc);
-  display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;font-size:13px;
-  color:rgba(247,243,234,.42);
+/* a caixa clara do formulário, sentada na seção escura */
+.cx-form{
+  background:var(--branco);color:var(--preto);border-radius:18px;
+  padding:clamp(24px,3vw,36px);box-shadow:0 34px 80px rgba(0,0,0,.34);
 }
+.cx-form h3{margin-bottom:9px}
+.cx-form .intro{font-size:14.5px;color:var(--cinza);margin-bottom:24px}
 
 /* ═══════════════════════ escolha de idioma na abertura ═══════════════════════ */
 .porta{
@@ -320,7 +396,11 @@ footer .base{
 .porta.saindo{animation:sai .45s var(--t) forwards}
 @keyframes sai{to{opacity:0;visibility:hidden}}
 .porta .cx{text-align:center;max-width:460px;width:100%}
-.porta img{height:46px;width:auto;margin:0 auto 34px}
+.porta img{height:46px;width:auto;margin:0 auto 14px}
+.porta .lema-porta{
+  font:700 11px/1 "Inter Tight",Inter,sans-serif;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--laranja);margin-bottom:32px;
+}
 .porta .tit{
   font-family:"Inter Tight",Inter,sans-serif;font-weight:600;font-size:20px;
   color:var(--marfim);letter-spacing:-.015em;margin-bottom:8px;
@@ -339,7 +419,11 @@ footer .base{
 .porta .escolhas .band{display:block;font-size:26px;margin-bottom:11px;line-height:1}
 .porta .escolhas small{display:block;font-size:12.5px;font-weight:500;color:rgba(247,243,234,.5);margin-top:6px}
 
-/* ═══════════════════════ formulário -> WhatsApp ═══════════════════════ */
+/* ═══════════════════════ formulário ═══════════════════════
+   Existe UM formulário só, e ele mora na seção de contato.
+   Quando alguém clica num CTA do topo, site.js MOVE o mesmo
+   formulário pra dentro do modal e devolve depois. Um formulário,
+   uma validação, uma prévia: nada de dois estados divergindo. */
 .modal{
   position:fixed;inset:0;z-index:150;background:rgba(23,23,23,.72);
   backdrop-filter:blur(5px);display:flex;align-items:flex-start;justify-content:center;
@@ -355,14 +439,13 @@ footer .base{
 .modal .x{
   position:absolute;top:15px;right:15px;width:34px;height:34px;border-radius:50%;
   border:0;background:var(--areia);cursor:pointer;font-size:19px;line-height:1;color:var(--cinza);
-  transition:.2s;
+  transition:.2s;z-index:2;
 }
 .modal .x:hover{background:var(--laranja);color:#fff}
-.modal h3{font-size:clamp(1.35rem,2.4vw,1.75rem);margin-bottom:9px}
+.modal h3{font-size:clamp(1.35rem,2.4vw,1.75rem);margin-bottom:9px;padding-right:40px}
 .modal .intro{font-size:15px;color:var(--cinza);margin-bottom:26px}
 .campo{margin-bottom:16px}
 .campo label{display:block;font-size:13.5px;font-weight:600;margin-bottom:6px}
-.campo label .op{font-weight:400;color:var(--cinza)}
 .campo input,.campo select,.campo textarea{
   width:100%;padding:13px 14px;border:1px solid var(--areia);border-radius:9px;
   font:400 16px/1.4 Inter,sans-serif;background:var(--marfim);color:var(--preto);
@@ -371,23 +454,38 @@ footer .base{
 .campo input:focus,.campo select:focus,.campo textarea:focus{
   outline:0;border-color:var(--laranja);box-shadow:0 0 0 3px rgba(230,90,25,.13);
 }
-.campo textarea{min-height:76px;resize:vertical}
 .campo select{appearance:none;cursor:pointer;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2368645E' stroke-width='2.4'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
   background-repeat:no-repeat;background-position:right 13px center;background-size:17px;padding-right:40px;
 }
+/* o WhatsApp vem primeiro e vem destacado: é o único campo que
+   permite retomar contato se a pessoa desistir no meio */
+.campo.primeiro{
+  background:linear-gradient(180deg,rgba(230,90,25,.07),transparent);
+  border:1px solid var(--laranja-pal);border-radius:12px;padding:15px 15px 14px;margin-bottom:18px;
+}
+.campo.primeiro input{background:#fff;border-color:var(--laranja)}
+.dica{display:flex;gap:8px;font-size:12.5px;color:var(--cinza);margin-top:8px;line-height:1.5}
+.dica svg{width:14px;height:14px;flex:none;stroke:var(--laranja);margin-top:3px}
 .dupla{display:grid;grid-template-columns:1fr 1fr;gap:13px}
 .erro-c{border-color:var(--laranja-esc)!important;background:#fdf2ec!important}
 .msg-erro{font-size:13px;color:var(--laranja-esc);margin-top:5px;display:none}
 .msg-erro.ver{display:block}
 .mel{position:absolute;left:-9999px;opacity:0;height:0;width:0}
-.modal .btn{width:100%;justify-content:center;margin-top:8px}
+#form .btn{width:100%;justify-content:center;margin-top:8px}
 .previa{
   background:var(--marfim);border:1px dashed var(--areia);border-radius:10px;
   padding:14px 15px;margin-top:18px;font-size:13px;color:var(--cinza);line-height:1.55;
 }
 .previa b{display:block;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--laranja);margin-bottom:7px;font-weight:600}
 .previa .txt{white-space:pre-wrap;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;color:var(--preto)}
+/* aviso discreto quando o preenchimento parcial já foi guardado */
+.salvo{
+  font-size:12.5px;color:var(--laranja-esc);margin-top:10px;display:none;
+  align-items:center;gap:7px;
+}
+.salvo.ver{display:flex}
+.salvo svg{width:14px;height:14px;flex:none;stroke:var(--laranja-esc)}
 
 /* botão flutuante de WhatsApp */
 .flut{
@@ -401,6 +499,22 @@ footer .base{
 .flut.ver{transform:translateY(0);opacity:1}
 .flut:hover{background:#1eb355;transform:translateY(-3px)}
 .flut svg{width:20px;height:20px;flex:none}
+
+/* rodapé */
+footer{background:var(--escuro-2);color:rgba(247,243,234,.6);padding:56px 0 34px;font-size:14.5px}
+footer .topo{display:flex;flex-wrap:wrap;gap:30px;justify-content:space-between;align-items:flex-start}
+footer img{height:29px;width:auto;margin-bottom:11px}
+footer .lema-pe{
+  font:700 10.5px/1 "Inter Tight",Inter,sans-serif;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--laranja);margin-bottom:14px;
+}
+footer a:hover{color:var(--laranja)}
+footer .canais{display:flex;flex-direction:column;gap:9px}
+footer .base{
+  margin-top:40px;padding-top:22px;border-top:1px solid var(--borda-esc);
+  display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;font-size:13px;
+  color:rgba(247,243,234,.42);
+}
 
 /* ═══════════════════════ revelação na rolagem ═══════════════════════ */
 .ap{opacity:0;transform:translateY(26px);transition:opacity .8s var(--t),transform .8s var(--t)}
@@ -416,11 +530,11 @@ footer .base{
 .prog i{display:block;height:100%;width:0;background:var(--laranja);transition:width .1s linear}
 
 @media (max-width:900px){
-  .duas,.metodo{grid-template-columns:1fr}
+  .duas,.metodo,.ct-grade{grid-template-columns:1fr}
   .metodo .fixo{position:static}
   nav.menu{
     position:fixed;inset:0;background:var(--escuro);flex-direction:column;
-    justify-content:center;align-items:center;gap:26px;font-size:22px;
+    justify-content:center;align-items:center;gap:24px;font-size:21px;
     transform:translateX(100%);transition:transform .4s var(--t);z-index:55;
   }
   nav.menu.aberto{transform:none}
@@ -431,10 +545,13 @@ footer .base{
   .hamb.x span:nth-child(3){transform:translateY(-6.2px) rotate(-45deg)}
   .idioma{order:2;margin-left:auto}
   .barra{gap:12px}
+  .marca .lema{display:none}
   .tres{grid-template-columns:1fr;border-top:0}
   .tres div{border-top:1px solid var(--borda-esc);padding:20px 0 0}
   .dupla{grid-template-columns:1fr}
   header .btn.pq{display:none}
+  .leao img{width:76vw}
+  .leao .brilho{width:96vw;height:96vw}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -448,10 +565,17 @@ footer .base{
 
 <div class="prog"><i id="prog"></i></div>
 
+<!-- ══ leão da marca no fundo: posição controlada pela rolagem ══ -->
+<div class="leao" id="leao" aria-hidden="true">
+  <div class="brilho"></div>
+  <img src="assets/simbolo.png" alt="">
+</div>
+
 <!-- ══ escolha de idioma na abertura ══ -->
 <div class="porta" id="porta" hidden>
   <div class="cx">
     <img src="assets/logo-branca.png" alt="Leon Group">
+    <div class="lema-porta">Built to Lead.</div>
     <div class="tit" id="porta-tit">Escolha seu idioma</div>
     <div class="sub2" id="porta-sub">Choose your language</div>
     <div class="escolhas">
@@ -463,10 +587,14 @@ footer .base{
 
 <header id="topo">
   <div class="env barra">
-    <a href="#" class="marca" aria-label="Leon Group"><img src="assets/logo-branca.png" alt="Leon Group"></a>
+    <a href="#" class="marca" aria-label="Leon Group, Built to Lead.">
+      <img src="assets/logo-branca.png" alt="Leon Group">
+      <span class="lema">Built to Lead.</span>
+    </a>
     <nav class="menu" id="menu">
       <a href="#historia" data-t="nav_historia">História</a>
       <a href="#servicos" data-t="nav_servicos">Serviços</a>
+      <a href="#funcoes" data-t="nav_funcoes">O time</a>
       <a href="#metodo" data-t="nav_metodo">Como funciona</a>
       <a href="#faq" data-t="nav_faq">Dúvidas</a>
     </nav>
@@ -484,6 +612,7 @@ footer .base{
   <div class="env">
     <div class="selo-hero ap"><span class="ponto"></span><span data-t="hero_selo">Para brasileiros na construção nos Estados Unidos</span></div>
     <h1 id="h1"></h1>
+    <div class="lema-carimbo ap" data-atraso="1">Built to Lead.</div>
     <p class="sub ap" data-atraso="2" data-t="hero_sub"></p>
     <div class="acoes ap" data-atraso="3">
       <button class="btn" type="button" data-abrir data-fonte="hero">
@@ -496,12 +625,12 @@ footer .base{
     <div class="tres">
       <div class="ap" data-atraso="2"><b>5</b><span data-t="num_1"></span></div>
       <div class="ap" data-atraso="3"><b>20</b><span data-t="num_2"></span></div>
-      <div class="ap" data-atraso="4"><b>9</b><span data-t="num_3"></span></div>
+      <div class="ap" data-atraso="4"><b>12</b><span data-t="num_3"></span></div>
     </div>
   </div>
 </section>
 
-<!-- ══ marquee de nichos ══ -->
+<!-- ══ marquee de nichos + slogan ══ -->
 <div class="faixa" aria-hidden="true"><div class="trilho" id="trilho"></div></div>
 
 <!-- ══ a dor ══ -->
@@ -540,8 +669,19 @@ footer .base{
   </div>
 </section>
 
+<!-- ══ funções que trabalham na conta ══ -->
+<section class="sec" id="funcoes">
+  <div class="env">
+    <div class="rotulo ap" data-t="rot_funcoes">O time por trás</div>
+    <h2 class="ap" data-atraso="1" data-t="func_titulo"></h2>
+    <p class="ap" data-atraso="2" style="margin-top:20px;color:var(--cinza)" data-t="func_sub"></p>
+    <div class="funcoes" id="lista-funcoes"></div>
+    <p class="func-nota ap" data-t="func_nota"></p>
+  </div>
+</section>
+
 <!-- ══ método ══ -->
-<section class="sec" id="metodo">
+<section class="sec" id="metodo" style="background:var(--branco);border-top:1px solid var(--areia)">
   <div class="env metodo">
     <div class="fixo">
       <div class="rotulo ap" data-t="rot_metodo">Como funciona</div>
@@ -553,19 +693,17 @@ footer .base{
   </div>
 </section>
 
-<!-- ══ o que não fazemos ══ -->
-<section class="sec" style="padding-top:0">
+<!-- ══ faixa do slogan ══ -->
+<section class="lema-faixa">
   <div class="env">
-    <div class="nao ap">
-      <div class="rotulo" data-t="rot_nao">Transparência</div>
-      <h3 data-t="nao_titulo"></h3>
-      <ul id="lista-nao"></ul>
-    </div>
+    <img src="assets/simbolo.png" alt="" class="simb ap">
+    <div class="dsp ap" data-atraso="1">Built <i>to Lead.</i></div>
+    <small class="ap" data-atraso="2">Leon Group</small>
   </div>
 </section>
 
 <!-- ══ FAQ ══ -->
-<section class="sec" id="faq" style="background:var(--branco);border-top:1px solid var(--areia)">
+<section class="sec" id="faq">
   <div class="env">
     <div class="rotulo ap" data-t="rot_faq">Dúvidas</div>
     <h2 class="ap" data-atraso="1" data-t="faq_titulo"></h2>
@@ -573,17 +711,88 @@ footer .base{
   </div>
 </section>
 
-<!-- ══ CTA final ══ -->
-<section class="sec cta-final">
-  <div class="env">
-    <img src="assets/simbolo.png" alt="" class="simb ap">
-    <h2 class="ap" data-atraso="1" data-t="fim_titulo"></h2>
-    <p class="ap" data-atraso="2" data-t="fim_sub"></p>
-    <div class="ap" data-atraso="3">
-      <button class="btn" type="button" data-abrir data-fonte="rodape">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2m5.8 14c-.25.7-1.45 1.33-2 1.38-.55.05-1.05.25-3.55-.9s-3.9-3.8-4-3.97c-.1-.18-.68-1.13-.68-2.15 0-1.03.55-1.53.73-1.73.18-.2.4-.25.53-.25s.28 0 .4.01c.13.01.3-.05.48.35.18.4.6 1.48.65 1.58.05.1.08.23.01.35-.06.13-.13.2-.25.33-.13.13-.2.2-.3.35-.1.15-.2.3-.1.5.1.2.48.83 1.03 1.35.7.65 1.3.88 1.5.98.2.1.33.08.45-.05.13-.13.53-.6.68-.8.15-.2.3-.18.5-.1.2.07 1.25.58 1.48.7.23.13.38.18.43.28.05.1.05.6-.2 1.3"/></svg>
-        <span data-t="cta_principal2">Falar com a Leon Group</span>
-      </button>
+<!-- ══ contato: o formulário mora aqui ══ -->
+<section class="sec contato" id="contato">
+  <div class="env ct-grade">
+    <div>
+      <div class="ct-lema ap">Built to Lead.</div>
+      <h2 class="ap" data-atraso="1" data-t="ct_titulo"></h2>
+      <p class="sub ap" data-atraso="2" data-t="ct_sub"></p>
+      <ul class="ct-pontos" id="lista-pontos"></ul>
+    </div>
+
+    <div class="cx-form ap" data-atraso="1" id="casa-form">
+      <h3 data-t="ct_form_tit">Preencha aqui</h3>
+      <p class="intro" data-t="ct_form_sub"></p>
+
+      <!-- ÚNICO formulário do site. site.js move este mesmo nó pra dentro
+           do modal quando alguém clica num CTA do topo, e devolve depois. -->
+      <form id="form" novalidate>
+        <input class="mel" type="text" name="site_web" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+        <div class="campo primeiro">
+          <label for="f_tel" data-t="f_tel">Seu WhatsApp</label>
+          <input id="f_tel" name="telefone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+1 617 000 0000" required>
+          <div class="msg-erro" data-t="f_obrig"></div>
+          <div class="dica">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>
+            <span data-t="f_tel_dica"></span>
+          </div>
+        </div>
+
+        <div class="dupla">
+          <div class="campo">
+            <label for="f_nome" data-t="f_nome">Seu nome</label>
+            <input id="f_nome" name="nome" autocomplete="name" required>
+            <div class="msg-erro" data-t="f_obrig"></div>
+          </div>
+          <div class="campo">
+            <label for="f_empresa" data-t="f_empresa">Nome da empresa</label>
+            <input id="f_empresa" name="empresa" autocomplete="organization" required>
+            <div class="msg-erro" data-t="f_obrig"></div>
+          </div>
+        </div>
+
+        <div class="campo">
+          <label for="f_servico" data-t="f_servico">Qual serviço você faz</label>
+          <select id="f_servico" name="servico" required></select>
+          <div class="msg-erro" data-t="f_obrig"></div>
+        </div>
+
+        <div class="dupla">
+          <div class="campo">
+            <label for="f_cidade" data-t="f_cidade">Cidade e estado</label>
+            <input id="f_cidade" name="cidade" placeholder="Boston, MA" required>
+            <div class="msg-erro" data-t="f_obrig"></div>
+          </div>
+          <div class="campo">
+            <label for="f_papel" data-t="f_papel">Você é</label>
+            <select id="f_papel" name="papel" required></select>
+            <div class="msg-erro" data-t="f_obrig"></div>
+          </div>
+        </div>
+
+        <div class="campo">
+          <label for="f_hoje" data-t="f_hoje">Como o cliente chega hoje</label>
+          <select id="f_hoje" name="hoje" required></select>
+          <div class="msg-erro" data-t="f_obrig"></div>
+        </div>
+
+        <div class="previa">
+          <b data-t="previa_rot">O que vai no WhatsApp</b>
+          <span class="txt" id="previa"></span>
+        </div>
+
+        <button class="btn" type="submit" id="enviar">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2m5.8 14c-.25.7-1.45 1.33-2 1.38-.55.05-1.05.25-3.55-.9s-3.9-3.8-4-3.97c-.1-.18-.68-1.13-.68-2.15 0-1.03.55-1.53.73-1.73.18-.2.4-.25.53-.25s.28 0 .4.01c.13.01.3-.05.48.35.18.4.6 1.48.65 1.58.05.1.08.23.01.35-.06.13-.13.2-.25.33-.13.13-.2.2-.3.35-.1.15-.2.3-.1.5.1.2.48.83 1.03 1.35.7.65 1.3.88 1.5.98.2.1.33.08.45-.05.13-.13.53-.6.68-.8.15-.2.3-.18.5-.1.2.07 1.25.58 1.48.7.23.13.38.18.43.28.05.1.05.6-.2 1.3"/></svg>
+          <span data-t="f_enviar">Abrir o WhatsApp</span>
+        </button>
+        <p style="font-size:12.5px;color:var(--cinza);text-align:center;margin-top:13px" data-t="f_nota"></p>
+        <div class="salvo" id="salvo">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+          <span id="salvo-txt"></span>
+        </div>
+      </form>
     </div>
   </div>
 </section>
@@ -593,6 +802,7 @@ footer .base{
     <div class="topo">
       <div>
         <img src="assets/logo-branca.png" alt="Leon Group">
+        <div class="lema-pe">Built to Lead.</div>
         <p style="font-size:14px;max-width:34ch;color:rgba(247,243,234,.5)" data-t="pe_frase"></p>
       </div>
       <div class="canais">
@@ -618,63 +828,13 @@ footer .base{
   <span data-t="flut_texto">WhatsApp</span>
 </button>
 
-<!-- ══ formulário rápido -> WhatsApp ══ -->
+<!-- ══ modal: recebe o formulário emprestado quando o CTA do topo é clicado ══ -->
 <div class="modal" id="modal" hidden>
   <div class="painel" role="dialog" aria-modal="true" aria-labelledby="modal-tit">
     <button class="x" type="button" id="fechar" aria-label="Fechar">×</button>
     <h3 id="modal-tit" data-t="form_titulo"></h3>
     <p class="intro" data-t="form_intro"></p>
-    <form id="form" novalidate>
-      <input class="mel" type="text" name="site_web" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <div class="campo">
-        <label for="f_nome" data-t="f_nome">Seu nome</label>
-        <input id="f_nome" name="nome" autocomplete="name" required>
-        <div class="msg-erro" data-t="f_obrig"></div>
-      </div>
-      <div class="dupla">
-        <div class="campo">
-          <label for="f_empresa" data-t="f_empresa">Nome da empresa</label>
-          <input id="f_empresa" name="empresa" autocomplete="organization" required>
-          <div class="msg-erro" data-t="f_obrig"></div>
-        </div>
-        <div class="campo">
-          <label for="f_tel" data-t="f_tel">WhatsApp</label>
-          <input id="f_tel" name="telefone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+1 617 000 0000" required>
-          <div class="msg-erro" data-t="f_obrig"></div>
-        </div>
-      </div>
-      <div class="campo">
-        <label for="f_servico" data-t="f_servico">Qual serviço você faz</label>
-        <select id="f_servico" name="servico" required></select>
-        <div class="msg-erro" data-t="f_obrig"></div>
-      </div>
-      <div class="dupla">
-        <div class="campo">
-          <label for="f_cidade" data-t="f_cidade">Cidade e estado</label>
-          <input id="f_cidade" name="cidade" placeholder="Boston, MA" required>
-          <div class="msg-erro" data-t="f_obrig"></div>
-        </div>
-        <div class="campo">
-          <label for="f_papel" data-t="f_papel">Você é</label>
-          <select id="f_papel" name="papel" required></select>
-          <div class="msg-erro" data-t="f_obrig"></div>
-        </div>
-      </div>
-      <div class="campo">
-        <label for="f_hoje" data-t="f_hoje">Como você consegue cliente hoje</label>
-        <select id="f_hoje" name="hoje" required></select>
-        <div class="msg-erro" data-t="f_obrig"></div>
-      </div>
-      <div class="previa">
-        <b data-t="previa_rot">O que vai no WhatsApp</b>
-        <span class="txt" id="previa"></span>
-      </div>
-      <button class="btn" type="submit" id="enviar">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2m5.8 14c-.25.7-1.45 1.33-2 1.38-.55.05-1.05.25-3.55-.9s-3.9-3.8-4-3.97c-.1-.18-.68-1.13-.68-2.15 0-1.03.55-1.53.73-1.73.18-.2.4-.25.53-.25s.28 0 .4.01c.13.01.3-.05.48.35.18.4.6 1.48.65 1.58.05.1.08.23.01.35-.06.13-.13.2-.25.33-.13.13-.2.2-.3.35-.1.15-.2.3-.1.5.1.2.48.83 1.03 1.35.7.65 1.3.88 1.5.98.2.1.33.08.45-.05.13-.13.53-.6.68-.8.15-.2.3-.18.5-.1.2.07 1.25.58 1.48.7.23.13.38.18.43.28.05.1.05.6-.2 1.3"/></svg>
-        <span data-t="f_enviar">Abrir o WhatsApp</span>
-      </button>
-      <p style="font-size:12.5px;color:var(--cinza);text-align:center;margin-top:13px" data-t="f_nota"></p>
-    </form>
+    <div id="vaga-form"></div>
   </div>
 </div>
 

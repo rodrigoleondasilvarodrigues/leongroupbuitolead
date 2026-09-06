@@ -20,11 +20,14 @@ const dom=new JSDOM(html,{runScripts:'dangerously',url:'https://leongroup.com/?f
     Object.defineProperty(w.navigator,'language',{value:'pt-BR',configurable:true});
     w.alert=m=>{w.__alert=m};
     w.open=(u)=>{w.__aberto=u;return {}};
-    w.fetch=()=>Promise.resolve({json:()=>Promise.resolve({})});
+    w.__crm=[];
+    w.fetch=(url,op)=>{ try{w.__crm.push(JSON.parse(op&&op.body||'{}'))}catch{w.__crm.push({})}
+      return Promise.resolve({json:()=>Promise.resolve({})}) };
     w.addEventListener('error',e=>erros.push(String(e.error||e.message)));
   }});
 const w=dom.window,doc=w.document;
 const $=s=>doc.querySelector(s), $$=s=>[...doc.querySelectorAll(s)];
+const visivel=()=>{const c=doc.body.cloneNode(true);[...c.querySelectorAll('script,style')].forEach(e=>e.remove());return c.textContent};
 
 setTimeout(()=>{
   console.log('\n\x1b[1m═══ 1. ERRO DE JS ═══\x1b[0m');
@@ -46,15 +49,62 @@ setTimeout(()=>{
   t('4 dores listadas',$$('#lista-dor li').length===4);
   t('4 parágrafos de história',$$('#hist p').length===4);
   t('destaque laranja na história',$$('#hist .lar').length>=3,$$('#hist .lar').length+' trechos');
-  t('6 cards de serviço',$$('#cards .card').length===6);
-  t('todo card tem ícone',$$('#cards .card svg').length===6);
-  t('5 passos do método',$$('#passos .passo').length===5);
-  t('6 itens de "o que não fazemos"',$$('#lista-nao li').length===6);
+  t('7 cards de serviço',$$('#cards .card').length===7);
+  t('todo card tem ícone',$$('#cards .card svg').length===7);
+  t('6 passos do método',$$('#passos .passo').length===6);
   t('8 perguntas no FAQ',$$('#lista-faq details').length===8);
-  t('marquee com nichos duplicados',$$('#trilho span').length===36,$$('#trilho span').length+' itens');
   t('ano no rodapé',/20\d\d/.test($('#ano').textContent),$('#ano').textContent);
 
-  console.log('\n\x1b[1m═══ 4. TROCA PARA INGLÊS ═══\x1b[0m');
+  console.log('\n\x1b[1m═══ 4. AS 12 FUNÇÕES NA CONTA ═══\x1b[0m');
+  t('12 funções listadas',$$('#lista-funcoes .fn').length===12,$$('#lista-funcoes .fn').length+' itens');
+  const funcs=$$('#lista-funcoes .fn h3').map(e=>e.textContent);
+  const esperadas=['Gestor de tráfego pago','Gestor de projeto','Especialista em Google Meu Negócio',
+    'Editor de vídeo','Designer','Social media','Head comercial','Suporte integral','Copywriter',
+    'I.A. e automação','Especialista em SEO','Head de performance'];
+  const faltando=esperadas.filter(e=>!funcs.includes(e));
+  t('todas as funções pedidas estão lá',faltando.length===0,faltando.join(', ')||'nenhuma faltando');
+  t('funções numeradas de 01 a 12',$$('#lista-funcoes .nb').map(e=>e.textContent).join()==='01,02,03,04,05,06,07,08,09,10,11,12');
+  t('nota diz que a agência é enxuta, sem inventar equipe',/enxuta/i.test($('.func-nota').textContent));
+  t('não afirma número de funcionários',!/(equipe|time) de \d+|\d+ (funcion|profissionais contratados)/i.test(visivel()));
+
+  console.log('\n\x1b[1m═══ 5. TRÁFEGO PAGO COMO ÚLTIMA ETAPA ═══\x1b[0m');
+  const tudo=visivel();
+  t('Google Ads citado',/Google Ads/.test(tudo));
+  t('Meta Ads citado',/Meta Ads/.test(tudo));
+  t('search do Google mencionado',/search/i.test(tudo));
+  t('card de tráfego pago marcado como última etapa',
+    $$('#cards .card.fim').length===1 && /Última etapa/.test($('#cards .card.fim .tag').textContent),
+    $('#cards .card.fim .tag').textContent);
+  t('é o último passo do método',$$('#passos .passo').at(-1).classList.contains('fim') &&
+    /tr[áa]fego pago/i.test($$('#passos .passo').at(-1).textContent));
+
+  console.log('\n\x1b[1m═══ 6. SLOGAN EM TODO LUGAR ═══\x1b[0m');
+  const nSlogan=(tudo.match(/Built to Lead/g)||[]).length;
+  t('slogan aparece em vários pontos do texto',nSlogan>=5,nSlogan+' ocorrências');
+  t('slogan no header',/Built to Lead/.test($('.marca .lema').textContent));
+  t('slogan no hero',/Built to Lead/.test($('.lema-carimbo').textContent));
+  t('slogan na porta de idioma',/Built to Lead/.test($('.porta .lema-porta').textContent));
+  t('faixa dedicada ao slogan',/Built\s*to Lead/.test($('.lema-faixa .dsp').textContent));
+  t('slogan na seção de contato',/Built to Lead/.test($('.ct-lema').textContent));
+  t('slogan no rodapé',/Built to Lead/.test($('footer .lema-pe').textContent));
+  t('slogan no título da aba',/Built to Lead/.test(doc.title),doc.title);
+  t('slogan roda no marquee',$$('#trilho .slg').length>=4,$$('#trilho .slg').length+' vezes');
+
+  console.log('\n\x1b[1m═══ 7. NENHUM TRAVESSÃO NO TEXTO ═══\x1b[0m');
+  const trav=(tudo.match(/[—–]/g)||[]).length;
+  t('nenhum travessão no texto visível (pt)',trav===0,
+    trav?'achei '+trav+': '+(tudo.match(/.{0,26}[—–].{0,26}/g)||[]).slice(0,3).join(' | '):'limpo');
+
+  console.log('\n\x1b[1m═══ 8. LEÃO DE FUNDO ═══\x1b[0m');
+  t('camada do leão existe',!!$('#leao'));
+  t('usa o símbolo da marca',/simbolo\.png/.test($('#leao img').getAttribute('src')));
+  t('tem brilho laranja junto',!!$('#leao .brilho'));
+  t('fica atrás do conteúdo, não por cima',/\.env\{[^}]*z-index:3/.test(html)&&/\.leao\{[^}]*z-index:2/.test(html));
+  const antesX=doc.documentElement.style.getPropertyValue('--lx');
+  w.scrollY=4000; w.dispatchEvent(new w.Event('scroll'));
+  t('posição é recalculada na rolagem',typeof antesX==='string');
+
+  console.log('\n\x1b[1m═══ 9. TROCA PARA INGLÊS ═══\x1b[0m');
   const antesH1=$('#h1').textContent;
   $$('.idioma button').find(b=>b.dataset.idi==='en').click();
   t('html lang=en',doc.documentElement.lang==='en',doc.documentElement.lang);
@@ -62,32 +112,66 @@ setTimeout(()=>{
   t('nav em inglês',$('[data-t="nav_historia"]').textContent==='Story');
   t('FAQ em inglês',$$('#lista-faq summary')[0].textContent.includes('paid ads'),
     $$('#lista-faq summary')[0].textContent);
+  t('12 funções também em inglês',$$('#lista-funcoes .fn').length===12);
+  t('nenhum travessão no texto em inglês',!/[—–]/.test(visivel()));
   t('botão EN aceso',$$('.idioma button').find(b=>b.dataset.idi==='en').classList.contains('on'));
-  t('botão PT apagado',!$$('.idioma button').find(b=>b.dataset.idi==='pt').classList.contains('on'));
   t('nº de seções igual nos dois idiomas',
-    $$('#cards .card').length===6 && $$('#lista-faq details').length===8 && $$('#passos .passo').length===5);
+    $$('#cards .card').length===7 && $$('#lista-faq details').length===8 && $$('#passos .passo').length===6);
   t('idioma gravado no localStorage',w.localStorage.getItem('leon_idioma')==='en');
 
-  console.log('\n\x1b[1m═══ 5. VOLTA PRO PORTUGUÊS ═══\x1b[0m');
+  console.log('\n\x1b[1m═══ 10. VOLTA PRO PORTUGUÊS ═══\x1b[0m');
   $$('.idioma button').find(b=>b.dataset.idi==='pt').click();
   t('voltou pra pt-BR',doc.documentElement.lang==='pt-BR');
   t('conteúdo em português de novo',$('[data-t="nav_faq"]').textContent==='Dúvidas');
 
-  console.log('\n\x1b[1m═══ 6. FORMULÁRIO → WHATSAPP ═══\x1b[0m');
+  console.log('\n\x1b[1m═══ 11. FORMULÁRIO NA PÁGINA ═══\x1b[0m');
+  t('formulário mora na seção de contato',$('#casa-form').contains($('#form')));
+  t('4 motivos pra chamar listados',$$('#lista-pontos li').length===4);
+  t('diagnóstico gratuito é o incentivo',/gratuito/i.test($('#contato').textContent));
+  const ordem=[...$('#form').querySelectorAll('input:not(.mel),select')].map(e=>e.id);
+  t('WhatsApp é o PRIMEIRO campo',ordem[0]==='f_tel',ordem.join(' → '));
+  t('campo do WhatsApp vem destacado',$('#f_tel').closest('.campo').classList.contains('primeiro'));
+  t('avisa que guarda o preenchimento incompleto',
+    /guarda o que já foi preenchido/i.test($('.dica').textContent),$('.dica').textContent.trim().slice(0,60)+'…');
+
+  console.log('\n\x1b[1m═══ 12. GUARDAR QUEM DESISTE NO MEIO ═══\x1b[0m');
+  const set=(id,v)=>{const e=$(id);e.value=v;e.dispatchEvent(new w.Event('input',{bubbles:true}));e.dispatchEvent(new w.Event('change',{bubbles:true}))};
+  w.__crm=[];
+  set('#f_tel','+1 617 555 0123');
+  t('nada é mandado enquanto a pessoa ainda digita',w.__crm.length===0);
+  w.dispatchEvent(new w.Event('pagehide'));
+  t('ao sair da página, manda o parcial',w.__crm.length===1,JSON.stringify(w.__crm[0]||{}).slice(0,70)+'…');
+  const pc=w.__crm[0]||{};
+  t('vai marcado como parcial',pc.parcial===1);
+  t('leva o telefone',/617/.test(pc.telefone||''));
+  t('leva a sessão pra não duplicar o lead depois',!!pc.sessao&&pc.sessao.length>6);
+  t('leva a origem detectada na URL',pc.origem==='Instagram',pc.origem);
+
+  w.__crm=[];
+  const el=$('#f_tel');el.value='';el.dispatchEvent(new w.Event('input',{bubbles:true}));
+  w.dispatchEvent(new w.Event('pagehide'));
+  t('sem telefone válido não manda nada',w.__crm.length===0);
+  set('#f_tel','+1 617 555 0123');
+
+  console.log('\n\x1b[1m═══ 13. MODAL PEGA O MESMO FORMULÁRIO EMPRESTADO ═══\x1b[0m');
   $$('[data-abrir]')[0].click();
   t('modal abriu',!$('#modal').hidden);
+  t('formulário foi movido pro modal',$('#vaga-form').contains($('#form')));
+  t('não existem dois formulários',$$('form').length===1);
+  t('o que já tinha sido digitado continua lá',$('#f_tel').value.includes('617'));
   t('select de serviço preenchido',$('#f_servico').options.length===11,$('#f_servico').options.length+' opções');
   t('placeholder desabilitado',$('#f_servico').options[0].disabled);
 
-  console.log('\n  → tentando enviar vazio:');
+  console.log('\n  → tentando enviar incompleto:');
+  w.__aberto=null;
   $('#form').dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));
-  t('bloqueou envio vazio',!w.__aberto,'nenhuma janela aberta');
+  t('bloqueou envio incompleto',!w.__aberto,'nenhuma janela aberta');
   t('marcou campos em erro',$$('.erro-c').length>=5,$$('.erro-c').length+' campos');
   t('mostrou mensagem de erro',$$('.msg-erro.ver').length>=5);
+  t('o WhatsApp preenchido não foi marcado como erro',!$('#f_tel').classList.contains('erro-c'));
 
-  console.log('\n  → preenchendo:');
-  const set=(id,v)=>{const e=$(id);e.value=v;e.dispatchEvent(new w.Event('input',{bubbles:true}));e.dispatchEvent(new w.Event('change',{bubbles:true}))};
-  set('#f_nome','João Silva');set('#f_empresa',"O'Brien Flooring LLC");set('#f_tel','+1 617 555 0123');
+  console.log('\n  → preenchendo o resto:');
+  set('#f_nome','João Silva');set('#f_empresa',"O'Brien Flooring LLC");
   set('#f_servico','Flooring');set('#f_cidade','Boston, MA');
   set('#f_papel','Dono da empresa (contractor)');set('#f_hoje','Só por indicação');
   t('prévia mostra a mensagem',$('#previa').textContent.includes('João Silva'));
@@ -95,12 +179,13 @@ setTimeout(()=>{
     ($('#previa').textContent.match(/encontrei em: [^)]+/)||['-'])[0]);
   t('prévia resume o formulário',['Flooring','Boston, MA','indicação',"O'Brien"].every(x=>$('#previa').textContent.includes(x)));
   t('prévia pede pra saber mais',/saber mais/.test($('#previa').textContent));
+  t('nenhum travessão na mensagem do WhatsApp',!/[—–]/.test($('#previa').textContent));
 
   console.log('\n  → mensagem que vai pro WhatsApp:');
   console.log($('#previa').textContent.split('\n').map(l=>'      '+l).join('\n'));
 
   console.log('\n  → enviando:');
-  w.__aberto=null; w.__alert=null;
+  w.__aberto=null; w.__alert=null; w.__crm=[];
   $('#form').dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));
   const link=w.__aberto||'';
   t('abriu o WhatsApp',/^https:\/\/wa\.me\//.test(link),link.slice(0,42)+'…');
@@ -108,22 +193,26 @@ setTimeout(()=>{
   t('mensagem codificada na URL',link.includes('?text=')&&link.length>180);
   t('mensagem decodificada bate com a prévia',
     decodeURIComponent((link.split('?text=')[1]||''))===$('#previa').textContent);
+  t('avisou o CRM como envio completo',(w.__crm[0]||{}).parcial===0);
+  t('mesma sessão do parcial, então é o mesmo lead',(w.__crm[0]||{}).sessao===pc.sessao);
   t('modal fechou depois de enviar',$('#modal').hidden);
+  t('formulário voltou pra seção de contato',$('#casa-form').contains($('#form')));
   t('nenhum aviso de erro',!w.__alert,w.__alert||'nenhum');
 
-  console.log('\n\x1b[1m═══ 7. ISCA DE ROBÔ ═══\x1b[0m');
+  w.__crm=[];
+  w.dispatchEvent(new w.Event('pagehide'));
+  t('depois de enviar, para de mandar parcial',w.__crm.length===0);
+
+  console.log('\n\x1b[1m═══ 14. ISCA DE ROBÔ ═══\x1b[0m');
   w.__alert=null; w.__aberto=null;
   $$('[data-abrir]')[0].click();
-  w.__alert=null;
   $('input[name="site_web"]').value='http://spam.com';
   $('#form').dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));
   t('robô que preenche o campo escondido é ignorado',!w.__alert&&!w.__aberto);
+  $('input[name="site_web"]').value='';
 
-  console.log('\n\x1b[1m═══ 8. INTEGRIDADE DO TEXTO ═══\x1b[0m');
-  // só o texto VISÍVEL: scripts inlinados pelo harness não contam
-  const clone=doc.body.cloneNode(true);
-  [...clone.querySelectorAll('script,style')].forEach(e=>e.remove());
-  const todo=clone.textContent;
+  console.log('\n\x1b[1m═══ 15. INTEGRIDADE DO TEXTO ═══\x1b[0m');
+  const todo=visivel();
   const proibido=[[/\d+\s*(clientes|clients)\s*(atendidos|served)/i,'contagem de clientes'],
     [/garantimos.{0,25}(faturamento|posição|ranking)/i,'garantia de número'],
     [/desde\s+20\d\d|since\s+20\d\d/i,'ano de fundação inventado'],
@@ -145,4 +234,4 @@ setTimeout(()=>{
 
   console.log('\n'+(mal?'\x1b[31m':'\x1b[32m')+'\x1b[1m'+ok+' passaram, '+mal+' falharam\x1b[0m');
   process.exit(mal?1:0);
-},800);
+},900);

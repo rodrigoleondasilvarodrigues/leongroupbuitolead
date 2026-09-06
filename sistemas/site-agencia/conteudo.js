@@ -1,12 +1,19 @@
 /* ═══════════════════════════════════════════════════════════════════
-   Conteúdo do site da Leon Group — português e inglês.
+   Conteúdo do site da Leon Group, em português e inglês.
 
    REGRA QUE VALE POR CIMA DE TUDO AQUI (CLAUDE.md, "Integridade"):
    nada neste arquivo pode afirmar cliente, depoimento, avaliação,
    localização, equipe ou resultado que não exista e não seja verificável.
    A Leon Group é nova. O texto vende o MÉTODO e a CLAREZA, nunca um
    histórico inventado. Quando houver caso real, com nome e número
-   documentados, ele entra aqui — não antes.
+   documentados, ele entra aqui, não antes.
+
+   A seção "Funções" descreve FUNÇÕES EXECUTADAS na conta do cliente,
+   nunca uma contagem de funcionários. É a formulação verdadeira para
+   uma agência enxuta e não vira alegação de equipe inventada.
+
+   REGRA DE ESCRITA: nada de travessão neste arquivo. Use vírgula,
+   dois-pontos, ponto ou parêntese. Pedido explícito do usuário.
 
    Para editar o texto do site, é só mexer neste arquivo.
    ═══════════════════════════════════════════════════════════════════ */
@@ -16,19 +23,26 @@
    Brasil:  55 + DDD + número   ->  "5531999999999"
    EUA:     1  + área + número  ->  "16170000000"
 
-   ⚠ PROVISÓRIO — número brasileiro (61, Brasília), em uso até o número
+   ⚠ PROVISÓRIO: número brasileiro (61, Brasília), em uso até o número
      americano legítimo existir. Quando trocar, mude SÓ esta linha e
-     republique: nenhum outro arquivo referencia o número.
+     republique. Nenhum outro arquivo referencia o número.
 
    Deixar como "" faz o botão avisar para usar o e-mail, em vez de abrir
    uma conversa com número errado.                                       */
 const WHATSAPP = "5561998629189";
 
-/* Endpoint opcional do CRM. Preenchido, cada formulário enviado também
-   nasce como lead em "Leads novos / Super Hot" no CRM — assim nenhum
-   contato se perde se a pessoa desistir antes de mandar a mensagem.
+/* Endpoint do CRM. Preenchido, cada formulário enviado também nasce como
+   lead em "Leads novos / Super Hot" no CRM, e o formulário abandonado no
+   meio vira lead parcial (ver PARCIAL_MS abaixo).
    Vazio = o site funciona igual, só não registra no CRM.                */
 const CRM_ENDPOINT = "https://leon-group.leongroup.workers.dev/api/site-lead";
+
+/* Quanto tempo sem digitar antes de guardar o preenchimento incompleto.
+   Só dispara depois que o WhatsApp estiver preenchido: sem telefone não
+   há como chamar de volta, e guardar não serviria pra nada.             */
+const PARCIAL_MS = 2500;
+
+const SLOGAN = "Built to Lead.";
 
 const NICHOS = [
   "Flooring", "Hardwood", "Tile", "Painting", "Remodeling", "Kitchen",
@@ -45,13 +59,15 @@ const T = {
 
     nav_historia: "História",
     nav_servicos: "Serviços",
+    nav_funcoes: "O time",
     nav_metodo: "Como funciona",
     nav_faq: "Dúvidas",
+    nav_contato: "Falar agora",
 
     cta_curto: "Falar agora",
     cta_curto2: "Falar agora",
     cta_principal: "Falar com a Leon Group",
-    cta_principal2: "Falar com a Leon Group",
+    cta_principal2: "Quero o diagnóstico gratuito",
     cta_secundario: "Ver como funciona",
     flut_texto: "WhatsApp",
 
@@ -63,7 +79,7 @@ const T = {
 
     num_1: "dias úteis para sua presença estar no ar",
     num_2: "avaliações no Google como meta do trimestre",
-    num_3: "nichos de construção atendidos",
+    num_3: "funções trabalhando na sua conta",
 
     rot_problema: "O problema",
     prob_titulo: "Indicação é boa. Mas indicação não é canal de venda.",
@@ -81,10 +97,10 @@ const T = {
 
     rot_historia: "A Leon Group",
     hist: [
-      "A Leon Group nasceu de uma conta que não fecha: brasileiro na construção civil nos Estados Unidos fatura bem, executa bem, tem cliente satisfeito — e ainda assim não sabe de onde vem o trabalho do mês que vem.",
-      "Quem administra a obra e quem executa a obra vivem do mesmo lugar: indicação. Nenhum dos dois tem canal de venda próprio. Não é falta de competência técnica, é falta de estrutura comercial — e estrutura comercial é uma coisa que se constrói.",
+      "A Leon Group nasceu de uma conta que não fecha: brasileiro na construção civil nos Estados Unidos fatura bem, executa bem, tem cliente satisfeito, e ainda assim não sabe de onde vem o trabalho do mês que vem.",
+      "Quem administra a obra e quem executa a obra vivem do mesmo lugar: indicação. Nenhum dos dois tem canal de venda próprio. Não é falta de competência técnica, é falta de estrutura comercial, e estrutura comercial é uma coisa que se constrói.",
       "É essa a brecha que a Leon Group ocupa. Não vendemos visibilidade solta nem post bonito. Construímos as três coisas que fazem cliente novo chegar sem depender de indicação: ~presença que passa confiança~, ~aquisição que traz gente pedindo orçamento~ e ~processo comercial que não deixa lead esfriar~.",
-      "Somos uma agência nova, e preferimos dizer isso do que inventar história. Você não vai encontrar aqui depoimento encenado, número que não dá pra conferir nem foto de obra que não é nossa. Quando existir caso real, com nome e resultado documentado, ele vai estar nesta página — e não antes.",
+      "Somos uma agência nova, e preferimos dizer isso do que inventar história. O nome carrega o que a gente quer entregar: ~Built to Lead~, construído para liderar. Não pra aparecer, não pra postar bonito, mas pra colocar a sua empresa na frente na sua região.",
     ],
     assin_nome: "Leon Group",
     assin_papel: "Built to Lead.",
@@ -106,71 +122,105 @@ const T = {
        "Roteiro, momento e acompanhamento para pedir avaliação de cliente real depois de cada obra entregue. Reputação se constrói com cliente que existe.",
        "Reputação"],
       ["insta", "Conteúdo e Instagram",
-       "Doze publicações e quatro destaques com linha editorial definida — feitos para o dono de casa entender o que você faz e por que confiar.",
+       "Doze publicações e quatro destaques com linha editorial definida, feitos para o dono de casa entender o que você faz e por que confiar.",
        "Autoridade"],
       ["aquisicao", "Aquisição e processo comercial",
-       "Campanha, atendimento no WhatsApp, qualificação e CRM com régua de follow-up. Lead que chega e não é trabalhado é dinheiro jogado fora.",
+       "Atendimento no WhatsApp, qualificação e CRM com régua de follow-up. Lead que chega e não é trabalhado é dinheiro jogado fora.",
        "Motor"],
+      ["ads", "Tráfego pago: Google Ads e Meta Ads",
+       "Search no Google Ads e campanha no Meta Ads. Entra por último de propósito: anúncio em cima de presença fraca e sem follow-up é o jeito mais caro de não vender nada.",
+       "Última etapa"],
     ],
 
+    /* ─── funções executadas na conta (NÃO é contagem de funcionários) ─── */
+    rot_funcoes: "O time por trás",
+    func_titulo: "Doze funções trabalhando na sua conta",
+    func_sub: "Uma empresa de construção não precisa contratar doze profissionais diferentes. Precisa que essas doze funções sejam executadas com método. É isso que entra no contrato.",
+    funcoes: [
+      ["Gestor de projeto",
+       "Cronograma, prazo e responsável por cada entrega. Você sabe o que está sendo feito e quando fica pronto."],
+      ["Head comercial",
+       "Desenha o processo de venda: o que perguntar, quando ligar, como conduzir até o fechamento."],
+      ["Especialista em Google Meu Negócio",
+       "Perfil, categoria, área de atendimento, serviços e fotos. É a peça que decide se você aparece na busca da sua cidade."],
+      ["Especialista em SEO",
+       "Estrutura do site, palavra-chave, página por serviço e por região. Aparecer sem pagar por clique é o que segura o custo lá embaixo."],
+      ["Copywriter",
+       "Texto do site, do anúncio, do perfil e da mensagem. Em inglês, no jeito que o cliente americano lê e entende."],
+      ["Designer",
+       "Marca, identidade, peça de anúncio e material do perfil. O primeiro filtro do cliente é visual, e ele julga em segundos."],
+      ["Social media",
+       "Linha editorial, calendário e publicação. Perfil parado passa a mesma mensagem que perfil que não existe."],
+      ["Editor de vídeo",
+       "Corte, legenda e formato vertical a partir da obra que você já filma no celular. Vídeo de obra real converte mais que imagem de banco."],
+      ["I.A. e automação",
+       "Resposta imediata, qualificação e follow-up sem esquecimento. O que é repetitivo vira máquina e para de depender de memória."],
+      ["Head de performance",
+       "Lê o número: quanto custa o lead, quantos viram orçamento, quantos viram obra. Sem isso, investir em anúncio é achismo caro."],
+      ["Gestor de tráfego pago",
+       "Google Ads em search e Meta Ads. Só entra na última etapa, quando presença e processo já estão de pé."],
+      ["Suporte integral",
+       "Canal direto em português, do primeiro dia ao fim do contrato. Sem fila, sem ticket e sem intermediário."],
+    ],
+    func_nota: "A Leon Group é enxuta de propósito. Quem executa se apoia em processo, ferramenta e automação para cobrir essas funções sem inchar o custo, e esse custo menor é o que faz o preço fechar pra você. Você contrata resultado, não crachá.",
+
     rot_metodo: "Como funciona",
-    met_titulo: "Cinco etapas, sem mistério",
+    met_titulo: "Seis etapas, sem mistério",
     met_sub: "A ordem importa: presença antes de anúncio, anúncio antes de escala. Pular etapa é o jeito mais rápido de gastar sem retorno.",
     passos: [
       ["Diagnóstico", "Ligação curta pra entender o que você faz, onde atende, como o cliente chega hoje e o que dá pra melhorar primeiro. Se não fizer sentido, a gente fala na hora.", ""],
       ["Marca e presença", "Identidade, perfil e Google Business Profile no ar. É a base: sem isso, todo dólar de anúncio vaza.", "5 dias úteis"],
       ["Site e conteúdo", "Página em inglês publicada, doze posts e quatro destaques prontos, com a sua obra e a sua região.", "Mesma janela"],
-      ["Aquisição", "Campanha no ar, lead cai direto no WhatsApp. A regra é ligar em menos de um minuto — velocidade fecha mais que argumento.", "Contínuo"],
+      ["Aquisição", "Lead cai direto no WhatsApp. A regra é ligar em menos de um minuto: velocidade fecha mais que argumento.", "Contínuo"],
       ["Processo comercial", "CRM com régua de temperatura e follow-up. Nenhum lead sai do funil sem dizer explicitamente que não quer.", "Contínuo"],
-    ],
-
-    rot_nao: "Transparência",
-    nao_titulo: "O que a gente não faz",
-    naos: [
-      "Não inventamos depoimento nem avaliação de cliente que não existe",
-      "Não prometemos faturamento nem posição no Google — ninguém pode",
-      "Não usamos foto de obra que não é sua",
-      "Não vendemos por mensagem: a conversa que decide é por ligação",
-      "Não atendemos house cleaning, carpet cleaning ou window tint",
-      "Não pressionamos: você tem tempo pra decidir",
+      ["Tráfego pago", "Aí sim: Google Ads em search e Meta Ads. É a última etapa de propósito. Com presença no ar, site convertendo e follow-up rodando, o mesmo dólar de anúncio rende muito mais.", "Última etapa"],
     ],
 
     rot_faq: "Dúvidas",
     faq_titulo: "O que perguntam antes de começar",
     faq: [
       ["Preciso investir em tráfego pago?",
-       "Não é obrigatório, e é justamente esse o ponto. A base do trabalho — marca, Google Business Profile, site, avaliação e conteúdo — traz cliente pela busca local e pela sua presença, sem você colocar dinheiro em anúncio. Quando fizer sentido acelerar com campanha, a gente monta junto e você decide."],
+       "Não é obrigatório, e é justamente esse o ponto. A base do trabalho (marca, Google Business Profile, site, avaliação e conteúdo) traz cliente pela busca local e pela sua presença, sem você colocar dinheiro em anúncio. Google Ads e Meta Ads entram na última etapa, quando já existe estrutura pra sustentar o investimento, e você decide se quer."],
       ["Preciso de license?",
        "Não para o que a gente constrói. O Google Local Service Ads exige licença, e é exatamente por isso que ele fica de fora do caminho principal. Presença, busca local e conteúdo funcionam sem license."],
       ["Em quanto tempo eu vejo resultado?",
-       "Sua presença fica no ar em até cinco dias úteis depois do formulário preenchido — isso é prazo, não estimativa. Já quando entra o primeiro cliente novo, honestamente, depende da sua região, do seu nicho e da concorrência. Quem te promete data pra isso está adivinhando."],
+       "Sua presença fica no ar em até cinco dias úteis depois do formulário preenchido, e isso é prazo, não estimativa. Já quando entra o primeiro cliente novo, honestamente, depende da sua região, do seu nicho e da concorrência. Quem te promete data pra isso está adivinhando."],
       ["Com quais serviços vocês trabalham?",
        "Flooring (hardwood, tile, vinyl, laminate, carpet, escada, epóxi), painting, remodeling, cabinets, carpentry, roofing, gutters, HVAC e framing. Ficamos fora de house cleaning, carpet cleaning e window tint: o ticket não cobre o custo de aquisição, e a gente prefere dizer isso do que aceitar e não entregar."],
       ["Quanto custa?",
        "O preço sai depois do diagnóstico, porque depende do que você já tem e do que precisa ser construído. Não tem pacote fechado na prateleira e não tem cobrança escondida. Você recebe escopo, prazo e valor por escrito antes de decidir qualquer coisa."],
       ["Vocês garantem resultado?",
-       "Garantimos método, execução e transparência: você sabe o que está sendo feito, quando e por quê. Faturamento e posição no Google não dependem só de nós — dependem do mercado, da sua região e da sua operação. Quem garante número está vendendo, não trabalhando."],
+       "Garantimos método, execução e transparência: você sabe o que está sendo feito, quando e por quê. Faturamento e posição no Google não dependem só de nós, dependem do mercado, da sua região e da sua operação. Quem garante número está vendendo, não trabalhando."],
       ["Eu não falo inglês. É problema?",
-       "Nenhum. O atendimento com você é todo em português. O material que vai pro seu cliente — site, perfil, conteúdo, anúncio — é feito em inglês, no padrão que o cliente americano espera ler."],
+       "Nenhum. O atendimento com você é todo em português. O material que vai pro seu cliente (site, perfil, conteúdo, anúncio) é feito em inglês, no padrão que o cliente americano espera ler."],
       ["Vocês estão nos Estados Unidos?",
        "A operação é remota e o atendimento é em português. Preferimos deixar isso claro em vez de fingir endereço americano: o que importa é o material que chega ao seu cliente estar no padrão de lá, e é assim que a gente faz."],
     ],
 
-    fim_titulo: "Vamos ver se faz sentido",
-    fim_sub: "Uma ligação curta, sem apresentação de vendas. Você conta como está hoje, a gente diz o que dá pra fazer — e se não for pra você, falamos na hora.",
-
-    pe_frase: "Presença, aquisição e processo comercial para construção e home services nos Estados Unidos.",
-    pe_contato: "Contato",
-    pe_atende: "Atendemos",
-    pe_regiao: "Prioridade em Massachusetts e Boston · Estados Unidos",
-    pe_nota: "Agência nova. Nenhum caso publicado ainda — quando houver, com nome e número, estará aqui.",
+    /* ─── seção final: formulário na página, com incentivo real ─── */
+    rot_contato: "Falar com a gente",
+    ct_titulo: "Comece pelo diagnóstico gratuito",
+    ct_sub: "A gente olha o seu Google Business Profile, o seu site e as suas avaliações e devolve por escrito o que está travando cliente novo de chegar. Sem custo e sem compromisso. Se depois disso você quiser tocar sozinho, o material é seu do mesmo jeito.",
+    ct_pontos: [
+      ["Diagnóstico por escrito, sem custo",
+       "O que está faltando na sua presença, em ordem de prioridade, com o que dá pra corrigir sozinho."],
+      ["Ligação curta, sem apresentação de venda",
+       "Você conta como está hoje. Se não for pra você, a gente fala na hora e ninguém perde tempo."],
+      ["Escopo, prazo e preço por escrito",
+       "Antes de você decidir qualquer coisa. Sem cobrança escondida e sem pressão."],
+      ["Poucas contas ao mesmo tempo",
+       "A agência é enxuta de propósito, então o diagnóstico segue por ordem de chegada."],
+    ],
+    ct_form_tit: "Preencha aqui",
+    ct_form_sub: "Leva menos de um minuto. No final, abre o WhatsApp com a mensagem já escrita e você lê antes de enviar.",
 
     /* ── formulário ── */
     form_titulo: "Antes de abrir o WhatsApp",
-    form_intro: "Cinco campos rápidos. A gente já chega na conversa sabendo do que se trata, e você não repete nada.",
+    form_intro: "Sete campos rápidos. A gente já chega na conversa sabendo do que se trata, e você não repete nada.",
     f_nome: "Seu nome",
     f_empresa: "Nome da empresa",
     f_tel: "Seu WhatsApp",
+    f_tel_dica: "Começa por aqui. Se você parar no meio do formulário, a gente guarda o que já foi preenchido e chama no WhatsApp. Nada de lista e nada de spam.",
     f_servico: "Qual serviço você faz",
     f_cidade: "Cidade e estado",
     f_papel: "Você é",
@@ -179,6 +229,8 @@ const T = {
     f_enviar: "Abrir o WhatsApp",
     f_nota: "Abre a conversa com a mensagem já escrita. Você lê antes de enviar.",
     previa_rot: "O que vai no WhatsApp",
+    f_vazio: "(não informado)",
+    f_salvo: "Contato guardado. Se você sair agora, a gente chama no WhatsApp.",
 
     opt_servico: ["Flooring", "Painting", "Remodeling", "Cabinets", "Carpentry",
                   "Roofing", "Gutters", "HVAC", "Framing", "Outro"],
@@ -186,6 +238,15 @@ const T = {
     opt_hoje: ["Só por indicação", "Indicação e redes sociais", "Já invisto em anúncio",
                "Não tenho processo nenhum", "Estou começando agora"],
     opt_placeholder: "Selecione",
+
+    fim_titulo: "Vamos ver se faz sentido",
+    fim_sub: "Uma ligação curta, sem apresentação de vendas. Você conta como está hoje, a gente diz o que dá pra fazer, e se não for pra você, falamos na hora.",
+
+    pe_frase: "Presença, aquisição e processo comercial para construção e home services nos Estados Unidos.",
+    pe_contato: "Contato",
+    pe_atende: "Atendemos",
+    pe_regiao: "Prioridade em Massachusetts e Boston · Estados Unidos",
+    pe_nota: "Agência nova. Nenhum caso publicado ainda. Quando houver, com nome e número, estará aqui.",
 
     /* mensagem que sai no WhatsApp */
     wa: (d) =>
@@ -210,13 +271,15 @@ Quero saber mais sobre o que a Leon Group pode fazer pela minha empresa.`,
 
     nav_historia: "Story",
     nav_servicos: "Services",
+    nav_funcoes: "The team",
     nav_metodo: "How it works",
     nav_faq: "FAQ",
+    nav_contato: "Talk to us",
 
     cta_curto: "Talk to us",
     cta_curto2: "Talk to us",
     cta_principal: "Talk to Leon Group",
-    cta_principal2: "Talk to Leon Group",
+    cta_principal2: "Get the free assessment",
     cta_secundario: "See how it works",
     flut_texto: "WhatsApp",
 
@@ -227,7 +290,7 @@ Quero saber mais sobre o que a Leon Group pode fazer pela minha empresa.`,
 
     num_1: "business days to put your presence online",
     num_2: "Google reviews as the quarterly target",
-    num_3: "construction trades served",
+    num_3: "roles working on your account",
 
     rot_problema: "The problem",
     prob_titulo: "Referrals are good. But a referral is not a sales channel.",
@@ -240,15 +303,15 @@ Quero saber mais sobre o que a Leon Group pode fazer pela minha empresa.`,
       ["The ad that converts best requires a license",
        "Google Local Service Ads requires a license most Brazilian contractors don't have. That closes off the most direct channel."],
       ["Anyone who searches your company finds nothing",
-       "American customers look up the name before they call. No website, no Google Business Profile, no reviews — they pick someone else."],
+       "American customers look up the name before they call. No website, no Google Business Profile, no reviews, and they pick someone else."],
     ],
 
     rot_historia: "Leon Group",
     hist: [
-      "Leon Group started from a number that doesn't add up: Brazilians in construction in the United States bill well, do good work, keep customers happy — and still have no idea where next month's job is coming from.",
-      "The one who runs the job and the one who does the job both live off the same thing: referrals. Neither has a sales channel of their own. It isn't a lack of skill, it's a lack of commercial structure — and commercial structure is something you build.",
+      "Leon Group started from a number that doesn't add up: Brazilians in construction in the United States bill well, do good work, keep customers happy, and still have no idea where next month's job is coming from.",
+      "The one who runs the job and the one who does the job both live off the same thing: referrals. Neither has a sales channel of their own. It isn't a lack of skill, it's a lack of commercial structure, and commercial structure is something you build.",
       "That's the gap Leon Group fills. We don't sell vague visibility or pretty posts. We build the three things that bring new customers without depending on referrals: ~presence that earns trust~, ~acquisition that brings people asking for estimates~ and ~a sales process that doesn't let leads go cold~.",
-      "We're a new agency, and we'd rather say that than invent a history. You won't find staged testimonials here, numbers you can't verify, or photos of work that isn't ours. When there's a real case, with a name and documented results, it will be on this page — and not before.",
+      "We're a new agency, and we'd rather say that than invent a history. The name carries what we set out to deliver: ~Built to Lead~. Not built to look good, not built to post nicely, but built to put your company out in front in your area.",
     ],
     assin_nome: "Leon Group",
     assin_papel: "Built to Lead.",
@@ -270,70 +333,102 @@ Quero saber mais sobre o que a Leon Group pode fazer pela minha empresa.`,
        "Script, timing and follow-through to ask real customers for a review after every job delivered. Reputation is built with customers who actually exist.",
        "Reputation"],
       ["insta", "Content and Instagram",
-       "Twelve posts and four highlights on a defined editorial line — made so homeowners understand what you do and why they should trust you.",
+       "Twelve posts and four highlights on a defined editorial line, made so homeowners understand what you do and why they should trust you.",
        "Authority"],
       ["aquisicao", "Acquisition and sales process",
-       "Campaign, WhatsApp handling, qualification and a CRM with a follow-up cadence. A lead that arrives and isn't worked is money thrown away.",
+       "WhatsApp handling, qualification and a CRM with a follow-up cadence. A lead that arrives and isn't worked is money thrown away.",
        "Engine"],
+      ["ads", "Paid traffic: Google Ads and Meta Ads",
+       "Google Ads search campaigns and Meta Ads. It comes last on purpose: advertising on top of weak presence with no follow-up is the most expensive way to sell nothing.",
+       "Last stage"],
     ],
 
+    rot_funcoes: "The team behind it",
+    func_titulo: "Twelve roles working on your account",
+    func_sub: "A construction company doesn't need to hire twelve different professionals. It needs those twelve roles executed with method. That's what the contract covers.",
+    funcoes: [
+      ["Project manager",
+       "Schedule, deadline and an owner for every deliverable. You know what's being done and when it lands."],
+      ["Head of sales",
+       "Designs the sales process: what to ask, when to call, how to carry a lead through to closing."],
+      ["Google Business Profile specialist",
+       "Profile, category, service area, services and photos. This is the piece that decides whether you show up in your city's search."],
+      ["SEO specialist",
+       "Site structure, keywords, a page per service and per area. Showing up without paying per click is what keeps the cost down."],
+      ["Copywriter",
+       "Website, ad, profile and message copy. In English, the way an American customer actually reads and understands it."],
+      ["Designer",
+       "Brand, identity, ad creative and profile assets. The customer's first filter is visual, and they judge in seconds."],
+      ["Social media",
+       "Editorial line, calendar and publishing. A dormant profile sends the same signal as no profile at all."],
+      ["Video editor",
+       "Cuts, captions and vertical format from the job footage you already shoot on your phone. Real job video converts better than stock."],
+      ["AI and automation",
+       "Instant replies, qualification and follow-up that never forgets. Anything repetitive becomes a machine instead of relying on memory."],
+      ["Head of performance",
+       "Reads the numbers: cost per lead, how many turn into estimates, how many turn into jobs. Without that, ad spend is expensive guesswork."],
+      ["Paid traffic manager",
+       "Google Ads search and Meta Ads. Only enters at the last stage, once presence and process are standing."],
+      ["Full client support",
+       "A direct line in Portuguese, from day one to the end of the contract. No queue, no ticket, no middleman."],
+    ],
+    func_nota: "Leon Group is lean on purpose. Whoever executes leans on process, tooling and automation to cover these roles without inflating cost, and that lower cost is what makes the price work for you. You are buying the outcome, not the headcount.",
+
     rot_metodo: "How it works",
-    met_titulo: "Five steps, no mystery",
+    met_titulo: "Six steps, no mystery",
     met_sub: "Order matters: presence before ads, ads before scale. Skipping a step is the fastest way to spend with nothing to show.",
     passos: [
       ["Diagnosis", "A short call to understand what you do, where you work, how customers reach you today and what's worth fixing first. If it isn't a fit, we say so right there.", ""],
       ["Brand and presence", "Identity, profile and Google Business Profile live. This is the foundation: without it, every ad dollar leaks.", "5 business days"],
       ["Website and content", "Your English page published, twelve posts and four highlights ready, with your work and your area.", "Same window"],
-      ["Acquisition", "Campaign live, leads land straight in WhatsApp. The rule is to call in under a minute — speed closes more than argument.", "Ongoing"],
+      ["Acquisition", "Leads land straight in WhatsApp. The rule is to call in under a minute: speed closes more than argument.", "Ongoing"],
       ["Sales process", "A CRM with temperature tracking and follow-up. No lead leaves the funnel without explicitly saying no.", "Ongoing"],
-    ],
-
-    rot_nao: "Transparency",
-    nao_titulo: "What we don't do",
-    naos: [
-      "We don't invent testimonials or reviews from customers who don't exist",
-      "We don't promise revenue or Google rankings — nobody can",
-      "We don't use photos of work that isn't yours",
-      "We don't sell over text: the conversation that decides happens on a call",
-      "We don't serve house cleaning, carpet cleaning or window tint",
-      "We don't pressure you: you get time to decide",
+      ["Paid traffic", "Now Google Ads search and Meta Ads. It's the last stage on purpose. With presence live, a site that converts and follow-up running, the same ad dollar goes much further.", "Last stage"],
     ],
 
     rot_faq: "FAQ",
     faq_titulo: "What people ask before starting",
     faq: [
       ["Do I need to spend on paid ads?",
-       "Not required, and that's exactly the point. The foundation — brand, Google Business Profile, website, reviews and content — brings customers through local search and your own presence, without you putting money into ads. When it makes sense to accelerate with a campaign, we build it together and you decide."],
+       "Not required, and that's exactly the point. The foundation (brand, Google Business Profile, website, reviews and content) brings customers through local search and your own presence, without you putting money into ads. Google Ads and Meta Ads come in at the last stage, once there's structure to support the spend, and you decide whether you want it."],
       ["Do I need a license?",
        "Not for what we build. Google Local Service Ads requires one, which is precisely why it isn't the main path here. Presence, local search and content work without a license."],
       ["How long until I see results?",
-       "Your presence is live within five business days of the form being filled in — that's a deadline, not an estimate. When the first new customer comes in, honestly, depends on your area, your trade and your competition. Anyone giving you a date for that is guessing."],
+       "Your presence is live within five business days of the form being filled in, and that's a deadline, not an estimate. When the first new customer comes in, honestly, depends on your area, your trade and your competition. Anyone giving you a date for that is guessing."],
       ["Which trades do you work with?",
        "Flooring (hardwood, tile, vinyl, laminate, carpet, staircase, epoxy), painting, remodeling, cabinets, carpentry, roofing, gutters, HVAC and framing. We stay out of house cleaning, carpet cleaning and window tint: the ticket doesn't cover the cost of acquisition, and we'd rather say so than take it on and underdeliver."],
       ["How much does it cost?",
        "Pricing comes after the diagnosis, because it depends on what you already have and what needs to be built. No off-the-shelf package and no hidden fees. You get scope, timeline and price in writing before you decide anything."],
       ["Do you guarantee results?",
-       "We guarantee method, execution and transparency: you know what's being done, when and why. Revenue and Google rankings don't depend on us alone — they depend on the market, your area and your operation. Anyone guaranteeing a number is selling, not working."],
+       "We guarantee method, execution and transparency: you know what's being done, when and why. Revenue and Google rankings don't depend on us alone, they depend on the market, your area and your operation. Anyone guaranteeing a number is selling, not working."],
       ["I don't speak English. Is that a problem?",
-       "Not at all. Everything with you is in Portuguese. The material that reaches your customer — website, profile, content, ads — is produced in English, at the standard an American customer expects to read."],
+       "Not at all. Everything with you is in Portuguese. The material that reaches your customer (website, profile, content, ads) is produced in English, at the standard an American customer expects to read."],
       ["Are you based in the United States?",
        "The operation is remote and we work with you in Portuguese. We'd rather be upfront about that than fake an American address: what matters is that the material reaching your customer meets the standard there, and that's how we build it."],
     ],
 
-    fim_titulo: "Let's see if it's a fit",
-    fim_sub: "A short call, no sales deck. You tell us where things stand, we tell you what can be done — and if it isn't for you, we'll say so right there.",
-
-    pe_frase: "Presence, acquisition and sales process for construction and home services in the United States.",
-    pe_contato: "Contact",
-    pe_atende: "We serve",
-    pe_regiao: "Massachusetts and Boston first · United States",
-    pe_nota: "New agency. No published case yet — when there is one, with a name and numbers, it will be here.",
+    rot_contato: "Talk to us",
+    ct_titulo: "Start with the free assessment",
+    ct_sub: "We look at your Google Business Profile, your website and your reviews, and send back in writing what's blocking new customers from reaching you. No cost, no strings. If you'd rather run with it yourself afterwards, the material is yours all the same.",
+    ct_pontos: [
+      ["A written assessment, at no cost",
+       "What's missing from your presence, in priority order, including what you can fix on your own."],
+      ["A short call, no sales deck",
+       "You tell us where things stand. If it isn't for you, we say so right there and nobody wastes time."],
+      ["Scope, timeline and price in writing",
+       "Before you decide anything. No hidden fees and no pressure."],
+      ["Few accounts at a time",
+       "The agency is lean on purpose, so assessments go in the order they arrive."],
+    ],
+    ct_form_tit: "Fill it in here",
+    ct_form_sub: "Takes under a minute. At the end it opens WhatsApp with the message already written, and you read it before sending.",
 
     form_titulo: "Before opening WhatsApp",
-    form_intro: "Five quick fields. We come into the conversation already knowing what it's about, and you don't repeat yourself.",
+    form_intro: "Seven quick fields. We come into the conversation already knowing what it's about, and you don't repeat yourself.",
     f_nome: "Your name",
     f_empresa: "Company name",
     f_tel: "Your WhatsApp",
+    f_tel_dica: "Start here. If you stop halfway through, we keep what you already filled in and reach out on WhatsApp. No lists, no spam.",
     f_servico: "What trade do you work in",
     f_cidade: "City and state",
     f_papel: "You are",
@@ -342,6 +437,8 @@ Quero saber mais sobre o que a Leon Group pode fazer pela minha empresa.`,
     f_enviar: "Open WhatsApp",
     f_nota: "Opens the chat with the message already written. You read it before sending.",
     previa_rot: "What goes to WhatsApp",
+    f_vazio: "(not provided)",
+    f_salvo: "Contact saved. If you leave now, we'll reach out on WhatsApp.",
 
     opt_servico: ["Flooring", "Painting", "Remodeling", "Cabinets", "Carpentry",
                   "Roofing", "Gutters", "HVAC", "Framing", "Other"],
@@ -349,6 +446,15 @@ Quero saber mais sobre o que a Leon Group pode fazer pela minha empresa.`,
     opt_hoje: ["Referrals only", "Referrals and social media", "I already run ads",
                "No process at all", "Just getting started"],
     opt_placeholder: "Select",
+
+    fim_titulo: "Let's see if it's a fit",
+    fim_sub: "A short call, no sales deck. You tell us where things stand, we tell you what can be done, and if it isn't for you, we'll say so right there.",
+
+    pe_frase: "Presence, acquisition and sales process for construction and home services in the United States.",
+    pe_contato: "Contact",
+    pe_atende: "We serve",
+    pe_regiao: "Massachusetts and Boston first · United States",
+    pe_nota: "New agency. No published case yet. When there is one, with a name and numbers, it will be here.",
 
     wa: (d) =>
 `Hi! I came from the Leon Group website${d.origem ? ` (found it on: ${d.origem})` : ""}.

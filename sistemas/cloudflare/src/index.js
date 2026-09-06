@@ -173,28 +173,86 @@ export default {
         if (await A.bloqueadoPorTentativas(env, ip, "site"))
           return json({ erro: "muitas tentativas" }, 429, cabecalhos);
 
-        const b = await req.json().catch(() => ({}));
+        // sendBeacon manda text/plain (não sabe fazer preflight): por isso
+        // lemos o corpo como texto e parseamos à mão, sem exigir o header.
+        const b = await req.text().then((t) => JSON.parse(t || "{}")).catch(() => ({}));
         if (b.site_web) return json({ ok: true }, 200, cabecalhos);   // isca de robô: aceita e ignora
+
         const corta = (v, n) => String(v ?? "").trim().slice(0, n);
+        const parcial = !!b.parcial;
         const nome = corta(b.nome, 80), tel = corta(b.telefone, 30);
-        if (!nome || !tel) {
+        const sessao = corta(b.sessao, 40) || null;
+        const digitos = tel.replace(/\D/g, "").length;
+
+        // PARCIAL = alguém começou a preencher e ainda não enviou. Só vale
+        // com telefone utilizável: sem telefone não há como chamar de volta,
+        // e guardar o resto não serviria pra nada. Falha em silêncio (200),
+        // porque isso não é erro de quem está digitando.
+        if (parcial) {
+          if (!sessao || digitos < 8) return json({ ok: true, ignorado: true }, 200, cabecalhos);
+        } else if (!nome || !tel) {
           await A.registrarTentativa(env, ip, false, "site");
           return json({ erro: "nome e telefone são obrigatórios" }, 400, cabecalhos);
         }
+
         const n = agora();
         const obs = [
+          parcial ? "FORMULÁRIO INCOMPLETO no site: contato guardado pra retomar" : "",
           b.papel ? `Papel: ${corta(b.papel, 60)}` : "",
           b.hoje ? `Cliente hoje chega por: ${corta(b.hoje, 60)}` : "",
           b.cidade ? `Onde atende: ${corta(b.cidade, 60)}` : "",
           b.idioma ? `Idioma do site: ${corta(b.idioma, 4)}` : "",
         ].filter(Boolean).join(" · ");
+        const origemLead = `site:${corta(b.origem || b.fonte, 40) || "direto"}`;
+
+        // Mesma sessão do site = mesmo lead. Quem parou no meio e voltou
+        // depois atualiza a própria linha, não cria uma segunda.
+        const existente = sessao
+          ? await env.DB.prepare("SELECT id FROM leads WHERE sessao_site=?").bind(sessao).first()
+          : null;
+
+        if (existente) {
+          // Só grava campo que veio preenchido: um parcial posterior mais
+          // curto não pode apagar o que já tinha sido capturado antes.
+          const mudar = { telefone: tel, nome, empresa: corta(b.empresa, 90),
+                          nicho: corta(b.servico, 40) };
+          const chaves = Object.keys(mudar).filter((k) => mudar[k]);
+          chaves.push("observacoes", "origem", "atualizado_em");
+          const valores = chaves.map((k) => (
+            k === "observacoes" ? (obs || null) :
+            k === "origem" ? origemLead :
+            k === "atualizado_em" ? n : mudar[k]));
+          await env.DB.prepare(
+            `UPDATE leads SET ${chaves.map((k) => k + "=?").join(",")} WHERE id=?`
+          ).bind(...valores, existente.id).run();
+          await ev(env.DB, { lead_id: existente.id,
+                             tipo: parcial ? "site_parcial" : "site_completou",
+                             para: "leads_novos/super_hot",
+                             detalhe: parcial ? "atualizou o formulário incompleto"
+                                              : "terminou o formulário do site" });
+          return json({ ok: true, id: existente.id, atualizado: true }, 200, cabecalhos);
+        }
+
+        // Linha nova. Parcial tem teto próprio por IP para não virar porta
+        // de inundação do banco: 8 novos por IP a cada 15 min. Quem passa
+        // do teto recebe 200 e some, sem mensagem de erro na tela.
+        if (parcial && await A.bloqueadoPorTentativas(env, ip, "site-parcial")) {
+          console.log("site-lead: teto de parciais atingido", ip);
+          return json({ ok: true, ignorado: true }, 200, cabecalhos);
+        }
         const r = await env.DB.prepare(
-          `INSERT INTO leads (nome,telefone,empresa,nicho,origem,observacoes,
-           criado_em,entrou_coluna_em,atualizado_em) VALUES (?,?,?,?,?,?,?,?,?)`
-        ).bind(nome, tel, corta(b.empresa, 90) || null, corta(b.servico, 40) || null,
-               `site:${corta(b.origem || b.fonte, 40) || "direto"}`, obs || null, n, n, n).run();
-        await ev(env.DB, { lead_id: r.meta.last_row_id, tipo: "criado",
-                           para: "leads_novos/super_hot", detalhe: "veio do site da agência" });
+          `INSERT INTO leads (nome,telefone,empresa,nicho,origem,observacoes,sessao_site,
+           criado_em,entrou_coluna_em,atualizado_em) VALUES (?,?,?,?,?,?,?,?,?,?)`
+        ).bind(nome || "Site (formulário incompleto)", tel,
+               corta(b.empresa, 90) || null, corta(b.servico, 40) || null,
+               origemLead, obs || null, sessao, n, n, n).run();
+        // registrarTentativa alimenta o mesmo contador do teto acima
+        if (parcial) await A.registrarTentativa(env, ip, false, "site-parcial");
+        await ev(env.DB, { lead_id: r.meta.last_row_id,
+                           tipo: parcial ? "site_parcial" : "criado",
+                           para: "leads_novos/super_hot",
+                           detalhe: parcial ? "começou o formulário e ainda não enviou"
+                                            : "veio do site da agência" });
         return json({ ok: true, id: r.meta.last_row_id }, 200, cabecalhos);
       }
 
