@@ -727,7 +727,7 @@ const UF_NOME={MA:'Massachusetts',NY:'New York',NJ:'New Jersey',CT:'Connecticut'
 // Tira a UF de um texto solto: "Boston, MA", "boston ma", "Marlborough - MA"
 function ufDe(txt){
   const t=String(txt||'').toUpperCase();
-  const m=t.match(/(?:^|[,\s\-\/])([A-Z]{2})(?:$|[,\s\-\.\/])/g);
+  const m=t.match(/(?:^|[,\\s\\-\\/])([A-Z]{2})(?:$|[,\\s\\-\\.\\/])/g);
   if(m) for(let i=m.length-1;i>=0;i--){
     const uf=m[i].replace(/[^A-Z]/g,''); if(UF[uf]) return uf;
   }
@@ -736,7 +736,7 @@ function ufDe(txt){
 }
 // Fuso de um lead/cliente: override manual > estado > cidade
 function fusoDe(reg){
-  if(reg&&reg.fuso&&/^[A-Za-z]+\/[A-Za-z_]+$/.test(reg.fuso)) return {tz:reg.fuso,uf:'',manual:true};
+  if(reg&&reg.fuso&&/^[A-Za-z]+\\/[A-Za-z_]+$/.test(reg.fuso)) return {tz:reg.fuso,uf:'',manual:true};
   const uf=ufDe(reg&&reg.estado)||ufDe(reg&&reg.cidade)||ufDe(reg&&reg.observacoes);
   return uf?{tz:UF[uf],uf,manual:false}:{tz:'',uf:'',manual:false};
 }
@@ -830,7 +830,7 @@ function tique(){
 function blocoRelogio(reg,rotulo){
   const f=fusoDe(reg);
   const onde=[reg.cidade,reg.estado].filter(Boolean).join(', ')
-    || (reg.observacoes||'').match(/Onde atende:\s*([^·]+)/)?.[1]?.trim() || '';
+    || (reg.observacoes||'').match(/Onde atende:\\s*([^·]+)/)?.[1]?.trim() || '';
   if(!f.tz) return '<div class="rel-card"><span class="rc-rot">'+esc(rotulo)+'</span>'
     +'<span class="rc-nada">Sem cidade ou estado preenchido, então não dá pra saber o fuso. '
     +'Preencha o estado (sigla de 2 letras, ex: MA) e o relógio local aparece aqui.</span></div>';

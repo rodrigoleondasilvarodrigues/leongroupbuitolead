@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 # Publica a Leon Group na Cloudflare. Rode DEPOIS de `npx wrangler login`.
 set -euo pipefail
+# Nenhum deploy sem os testes: uma regex quebrada dentro de template string
+# já derrubou o admin inteiro em produção, e node --check não pega isso.
+./testes/rodar.sh
+
 cd "$(dirname "$0")"
 W="npx --yes wrangler@3"
 

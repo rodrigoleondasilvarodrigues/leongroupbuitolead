@@ -9,5 +9,10 @@
     "db:aplicar": "wrangler d1 execute leon-group --remote --file=schema.sql",
     "db:local": "wrangler d1 execute leon-group --local --file=schema.sql"
   },
-  "devDependencies": { "wrangler": "^3.90.0" }
+  "devDependencies": {
+    "wrangler": "^3.90.0"
+  },
+  "dependencies": {
+    "jsdom": "^29.1.1"
+  }
 }

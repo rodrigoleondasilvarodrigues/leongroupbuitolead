@@ -139,7 +139,7 @@ em até <b>5 dias úteis</b>. Vamos te avisando a cada etapa.</div>
 async function enviar(){
   const v=id=>document.getElementById(id).value.trim();
   const e=document.getElementById('erro');e.style.display='none';
-  const fotos=v('fotos').split('\n').map(s=>s.trim()).filter(Boolean);
+  const fotos=v('fotos').split('\\n').map(s=>s.trim()).filter(Boolean);
   const faltando=[];
   if(!v('nome_dono'))faltando.push('seu nome');
   if(!v('telefone'))faltando.push('telefone');
@@ -162,7 +162,7 @@ async function enviar(){
       servicos:v('servicos'),faz:v('faz'),nao_faz:v('nao_faz'),diferencial:v('diferencial'),
       observacoes:v('observacoes'),tem_logo:document.getElementById('tem_logo').checked,
       logo_url:v('logo_url'),cores:v('cores'),fotos,
-      videos:v('videos').split('\n').map(s=>s.trim()).filter(Boolean)})});
+      videos:v('videos').split('\\n').map(s=>s.trim()).filter(Boolean)})});
   const j=await r.json();
   if(j.ok){document.getElementById('form').style.display='none';
     document.getElementById('prog').style.display='none';
