@@ -122,3 +122,40 @@ um objeto de dados limpo, com o texto em inglês vindo da IA a partir do
 briefing em português.
 
 Testar com o Ribeiro antes de usar em cliente real.
+
+## 6. Marcos e entregáveis não conversam
+
+Achado pelo usuário durante o teste: "o que significa estar pendente se já
+foi entregue?"
+
+No fim do teste o painel dizia **entrega completa** (11 de 11 marcos) com
+dois dos quatro entregáveis ainda em `pendente` (Google Meu Negócio e Logo)
+e um em `em_producao` (Instagram).
+
+São dois controles paralelos que não se falam:
+
+- **Marcos**: os 11 passos da cadência. Marcados à mão, um a um
+- **Entregáveis**: os 4 artefatos e seu estado. Manuais, com duas exceções
+  automáticas: gerar move `site` e `instagram` para `em_producao`, e colar a
+  URL do Vercel move `site` para `entregue`. `gmb` e `logo` nunca mudam
+  sozinhos, e `instagram` nunca chega a `entregue`
+
+O risco: fechar a entrega de um cliente sem o Google Meu Negócio existir, que
+é justamente a peça de maior retorno da entrega. O sistema não avisa nada.
+
+**Correção proposta, em duas partes:**
+
+1. `entrega_completa` passa a exigir marcos concluídos **E** os quatro
+   entregáveis em `entregue` ou `aprovado`. Hoje ela olha só os marcos
+2. O painel mostra qual entregável está travando o fechamento
+
+Opcional, avaliar: marcar o marco correspondente mover o entregável junto.
+O mapa é direto:
+
+    marco "Site no ar e link enviado"       -> entregável site
+    marco "Logo entregue"                   -> entregável logo
+    marcos "12 posts" e "4 destaques"       -> entregável instagram
+    marco "GMB otimizado"                   -> entregável gmb
+
+Risco dessa parte: automatizar demais faz o operador marcar sem fazer. A
+parte 1 é mais segura, porque trava sem tirar a decisão da mão dele.
