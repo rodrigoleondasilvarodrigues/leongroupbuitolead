@@ -85,9 +85,66 @@ label{font-size:11.5px;color:var(--cinza);display:block;margin-bottom:2px}
 font-size:12px;word-break:break-all;margin-bottom:8px}
 dialog{border:0;border-radius:10px;padding:24px;max-width:460px;width:93%;box-shadow:0 20px 60px rgba(0,0,0,.2)}
 dialog::backdrop{background:rgba(23,23,23,.45)}
+
+/* ─────────── relógio das duas praças ───────────
+   O sistema decide três coisas pelo relógio de Massachusetts: a janela de
+   contato (8h-21h), a contagem dos 5 dias úteis e o dia da semana. Quem opera
+   está no Brasil. Sem os dois fusos na tela, marcar call vira adivinhação. */
+.relogio{display:flex;align-items:stretch;gap:0;background:#111;color:var(--marfim);
+  border-bottom:1px solid #2a2a2a;overflow-x:auto}
+.rel-praca{display:flex;flex-direction:column;justify-content:center;gap:2px;
+  padding:12px 22px;border-right:1px solid #262626;flex:none;cursor:pointer;
+  background:none;border-top:0;border-left:0;border-bottom:0;color:inherit;text-align:left;
+  font:inherit;transition:background .18s}
+.rel-praca:hover{background:#1a1a1a}
+.rel-praca.on{background:#1c1a17}
+.rel-praca.on.ma{box-shadow:inset 3px 0 0 var(--laranja)}
+.rel-praca.on.bsb{box-shadow:inset 3px 0 0 #5fa8d3}
+.rel-cid{font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:#8a8580}
+.rel-praca.on .rel-cid{color:var(--marfim)}
+.rel-praca.on.ma .rel-cid{color:var(--laranja)}
+.rel-praca.on.bsb .rel-cid{color:#5fa8d3}
+.rel-hora{font:700 15px/1 ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-variant-numeric:tabular-nums;letter-spacing:.02em;color:#b8b3ab}
+.rel-praca.on .rel-hora{font-size:34px;color:#fff;letter-spacing:-.01em}
+.rel-dia{font-size:11px;color:#8a8580;text-transform:capitalize}
+.rel-praca.on .rel-dia{font-size:12.5px;color:#c9c4bb}
+.rel-fuso{font:600 9.5px/1 ui-monospace,monospace;letter-spacing:.1em;color:#6e6a63}
+/* estado da janela de contato: é regra do motor, não enfeite */
+.rel-estado{display:flex;flex-direction:column;justify-content:center;gap:4px;
+  padding:12px 22px;flex:1;min-width:210px}
+.rel-badge{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:700;
+  letter-spacing:.09em;text-transform:uppercase;align-self:flex-start;
+  padding:5px 11px;border-radius:99px}
+.rel-badge.aberta{background:rgba(45,106,79,.22);color:#6bbf8f}
+.rel-badge.fechada{background:rgba(196,71,18,.2);color:#f08a58}
+.rel-badge i{width:7px;height:7px;border-radius:50%;background:currentColor;flex:none}
+.rel-nota{font-size:11px;color:#8a8580;line-height:1.4}
+.rel-dif{font:600 10.5px/1 ui-monospace,monospace;color:#6e6a63;letter-spacing:.05em}
+.rel-idi{display:flex;align-items:center;padding:0 18px;flex:none;gap:3px;border-left:1px solid #262626}
+.rel-idi button{background:none;border:1px solid #333;color:#8a8580;cursor:pointer;
+  font:700 10.5px/1 inherit;letter-spacing:.09em;padding:6px 10px;border-radius:99px}
+.rel-idi button.on{background:var(--marfim);color:var(--preto);border-color:var(--marfim)}
+@media (max-width:820px){
+  .rel-praca{padding:10px 15px}.rel-praca.on .rel-hora{font-size:26px}
+  .rel-estado{padding:10px 15px;min-width:170px}.rel-idi{padding:0 12px}
+}
 </style></head><body>
 <header><b>LE<span>O</span>N GROUP · Admin</b><span class="selo" id="selo">Comercial</span>
   <button class="sair" onclick="fetch('/api/logout',{method:'POST'}).then(()=>location.href='/login')">sair</button></header>
+<div class="relogio" id="relogio">
+  <button class="rel-praca ma" type="button" data-praca="ma" id="p_ma"></button>
+  <button class="rel-praca bsb" type="button" data-praca="bsb" id="p_bsb"></button>
+  <div class="rel-estado">
+    <span class="rel-badge" id="rel_badge"></span>
+    <span class="rel-nota" id="rel_nota"></span>
+    <span class="rel-dif" id="rel_dif"></span>
+  </div>
+  <div class="rel-idi">
+    <button type="button" data-relidi="pt">PT</button>
+    <button type="button" data-relidi="en">EN</button>
+  </div>
+</div>
 <div class="setores" id="setores"></div>
 <div class="faixa"></div>
 <nav id="abas"></nav>
@@ -330,8 +387,15 @@ async function abrirCliente(id){
          \${c.formulario_em?' <span style="color:var(--verde)">✓ respondido — link consumido</span>':' <span style="color:var(--laranja-esc)">aguardando resposta</span>'}</div>
         \${c.formulario_em?'<button class="acao sec" onclick="novoToken()">Gerar link novo</button>':''}\`
        :'<div class="link" style="color:var(--cinza)">Formulário travado — marque contrato e pagamento acima.</div>'}
-     \${c.site_publicado?\`<div class="link"><b>Site publicado:</b><br><a href="/site/\${esc(c.slug)}" target="_blank">\${base}/site/\${esc(c.slug)}</a></div>\`:''}
-     <a class="acao sec" style="display:inline-block;text-decoration:none;padding:8px 15px" href="/api/exportar?id=\${c.id}">Baixar entrega (.txt)</a>
+     \${c.vercel_url?\`<div class="link"><b>Site publicado:</b><br><a href="\${esc(c.vercel_url)}" target="_blank">\${esc(c.vercel_url)}</a></div>\`:''}
+     <label>Grupo do WhatsApp com o cliente</label>
+     <div style="display:flex;gap:7px"><input id="d_grupo" value="\${esc(c.grupo_whatsapp)}"
+       placeholder="https://chat.whatsapp.com/..." style="flex:1">
+       <button class="acao sec" onclick="salvarGrupo()">Salvar</button></div>
+     \${c.grupo_whatsapp
+       ?\`<p style="font-size:12px;margin-top:5px"><a href="\${esc(c.grupo_whatsapp)}" target="_blank">abrir o grupo ↗</a></p>\`
+       :'<p style="font-size:11.5px;color:var(--laranja-esc);margin-top:5px">Crie o grupo assim que o formulário chegar. É o marco 1 da entrega.</p>'}
+     <a class="acao sec" style="display:inline-block;text-decoration:none;padding:8px 15px;margin-top:11px" href="/api/exportar?id=\${c.id}">Baixar entrega (.txt)</a>
    </section>
    <section><h4>Dados do cliente</h4>
      <label>Nome do dono (repetido nas reviews)</label><input id="e_nome_dono" value="\${esc(c.nome_dono)}">
@@ -456,7 +520,7 @@ async function salvarCliente(){await post('/api/cliente-editar',{id:aberto,nome_
   cor_destaque:V('e_cor_destaque'),fotos_novas:V('e_fotos').split('\\n').map(s=>s.trim()).filter(Boolean)});
   await carregar();abrirCliente(aberto)}
 async function gerar(){const r=await post('/api/gerar',{id:aberto,qtd_reviews:+V('g_qtd')});
-  if(r.erro)return alert(r.erro);alert('Gerado: '+r.gerado.join(', ')+'\\n\\nSite: '+r.site_url);
+  if(r.erro)return alert(r.erro);alert('Gerado: '+r.gerado.join(', ')+'\\n\\n'+(r.proximo||''));
   await carregar();abrirCliente(aberto)}
 // bloco de contrato reaproveitado no painel do cliente
 function l_contrato(c){
@@ -514,6 +578,7 @@ async function excluir(tipo,id){
 }
 const salvarResultado=()=>post('/api/resultado',{id:aberto,leads:+V('d_leads')}).then(carregar).then(()=>abrirCliente(aberto));
 const salvarVercel=()=>post('/api/vercel-url',{id:aberto,url:V('d_vercel')}).then(carregar).then(()=>abrirCliente(aberto));
+const salvarGrupo=()=>post('/api/cliente-editar',{id:aberto,grupo_whatsapp:V('d_grupo')}).then(carregar).then(()=>abrirCliente(aberto));
 async function renovar(){if(!confirm('Renovar por mais 3 meses?'))return;
   await post('/api/renovar',{id:aberto});await carregar();abrirCliente(aberto)}
 const liberar=(qual,v)=>post('/api/liberar-formulario',{id:aberto,[qual]:v}).then(carregar).then(()=>abrirCliente(aberto));
@@ -522,5 +587,77 @@ async function novoToken(){if(!confirm('Gerar link novo? O atual deixa de funcio
 const statusEnt=(eid,s)=>post('/api/entregavel',{eid,status:s}).then(carregar);
 const marco=(mid,v)=>post('/api/marco',{mid,concluido:v}).then(()=>abrirCliente(aberto));
 const revPost=(rid,v)=>post('/api/review-postada',{rid,postada:v}).then(()=>abrirCliente(aberto));
+/* ─────────────── relógio das duas praças ───────────────
+   Massachusetts é a base de decisão do sistema: a janela de contato (8h-21h),
+   a contagem dos 5 dias úteis e o dia da semana saem desse fuso. Brasília é
+   onde o operador está. Clicar numa praça faz dela a principal.            */
+const PRACAS={
+  ma: {tz:'America/New_York',  pt:'Massachusetts', en:'Massachusetts', paisPt:'Estados Unidos', paisEn:'United States'},
+  bsb:{tz:'America/Sao_Paulo', pt:'Brasília',      en:'Brasilia',      paisPt:'Brasil',         paisEn:'Brazil'},
+};
+let relPraca='ma', relIdi='pt';
+try{ relPraca=localStorage.getItem('leon_rel_praca')||'ma'; relIdi=localStorage.getItem('leon_rel_idi')||'pt'; }catch(e){}
+if(!PRACAS[relPraca]) relPraca='ma';
+if(relIdi!=='pt'&&relIdi!=='en') relIdi='pt';
+
+const relLoc=()=>relIdi==='pt'?'pt-BR':'en-US';
+// hora do dia (0-23) num fuso qualquer, sem depender do fuso da máquina
+function horaEm(tz,d){
+  const p=new Intl.DateTimeFormat('en-US',{timeZone:tz,hour12:false,hour:'2-digit',minute:'2-digit'}).formatToParts(d);
+  return {h:+p.find(x=>x.type==='hour').value%24, m:+p.find(x=>x.type==='minute').value};
+}
+function pintarPraca(chave,d){
+  const P=PRACAS[chave], el=document.getElementById('p_'+chave), on=chave===relPraca;
+  const hora=new Intl.DateTimeFormat(relLoc(),{timeZone:P.tz,hour:'2-digit',minute:'2-digit',
+    second:'2-digit',hour12:relIdi==='en'}).format(d);
+  const dia=new Intl.DateTimeFormat(relLoc(),{timeZone:P.tz,weekday:'long',day:'2-digit',
+    month:'long'}).format(d);
+  let sig='';
+  try{ sig=new Intl.DateTimeFormat('en-US',{timeZone:P.tz,timeZoneName:'short'})
+    .formatToParts(d).find(x=>x.type==='timeZoneName').value; }catch(e){}
+  el.className='rel-praca '+chave+(on?' on':'');
+  el.title=(relIdi==='pt'?'Ver ':'Show ')+P[relIdi];
+  el.innerHTML='<span class="rel-cid">'+esc(P[relIdi])+' · '+esc(P[relIdi==='pt'?'paisPt':'paisEn'])+'</span>'
+    +'<span class="rel-hora">'+esc(hora)+'</span>'
+    +'<span class="rel-dia">'+esc(dia)+'</span>'
+    +(on?'<span class="rel-fuso">'+esc(sig)+'</span>':'');
+}
+function tique(){
+  const d=new Date();
+  pintarPraca('ma',d); pintarPraca('bsb',d);
+
+  // janela de contato: a MESMA regra do motor de automação (8h-21h em NY)
+  const ny=horaEm(PRACAS.ma.tz,d), aberta=ny.h>=8&&ny.h<21;
+  const b=document.getElementById('rel_badge');
+  b.className='rel-badge '+(aberta?'aberta':'fechada');
+  b.innerHTML='<i></i>'+(relIdi==='pt'
+    ?(aberta?'Janela de contato aberta':'Janela de contato fechada')
+    :(aberta?'Contact window open':'Contact window closed'));
+  const faltam=aberta?(21-ny.h-1)*60+(60-ny.m):((ny.h<8?8-ny.h:32-ny.h)*60-ny.m);
+  const hh=Math.floor(faltam/60), mm=faltam%60;
+  document.getElementById('rel_nota').textContent = relIdi==='pt'
+    ? (aberta?'Fecha em '+hh+'h'+String(mm).padStart(2,'0')+' · nada é enviado das 21h às 8h em Massachusetts'
+             :'Abre em '+hh+'h'+String(mm).padStart(2,'0')+' · o motor segura as mensagens até lá')
+    : (aberta?'Closes in '+hh+'h'+String(mm).padStart(2,'0')+' · nothing is sent between 9 PM and 8 AM in Massachusetts'
+             :'Opens in '+hh+'h'+String(mm).padStart(2,'0')+' · the engine holds messages until then');
+
+  // diferença entre as praças, recalculada sempre (horário de verão muda isso)
+  const a=horaEm(PRACAS.ma.tz,d), c=horaEm(PRACAS.bsb.tz,d);
+  let dif=(c.h*60+c.m)-(a.h*60+a.m);
+  if(dif>720)dif-=1440; if(dif<-720)dif+=1440;
+  const dh=Math.abs(dif)/60, sinal=dif>=0?'+':'-';
+  document.getElementById('rel_dif').textContent = relIdi==='pt'
+    ? 'Brasília '+sinal+dh+'h em relação a Massachusetts'
+    : 'Brasilia '+sinal+dh+'h vs Massachusetts';
+
+  document.querySelectorAll('[data-relidi]').forEach(x=>
+    x.classList.toggle('on',x.dataset.relidi===relIdi));
+}
+document.querySelectorAll('[data-praca]').forEach(x=>x.addEventListener('click',()=>{
+  relPraca=x.dataset.praca; try{localStorage.setItem('leon_rel_praca',relPraca)}catch(e){} tique();}));
+document.querySelectorAll('[data-relidi]').forEach(x=>x.addEventListener('click',()=>{
+  relIdi=x.dataset.relidi; try{localStorage.setItem('leon_rel_idi',relIdi)}catch(e){} tique();}));
+tique(); setInterval(tique,1000);
+
 carregar();setInterval(()=>{if(!aberto)carregar()},60000);
 </script></body></html>`;

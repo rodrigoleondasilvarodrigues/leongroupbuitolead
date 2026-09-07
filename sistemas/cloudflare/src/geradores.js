@@ -209,6 +209,7 @@ ${zap ? `<a class="zap" href="https://wa.me/${zap}" aria-label="WhatsApp">✆</a
 // Cadência de entrega — criada quando o CLIENTE responde o formulário.
 // Prazo máximo: 5 DIAS ÚTEIS (fim de semana não conta).
 export const CADENCIA = [
+  { dia: 1, marco: "Grupo do WhatsApp criado com o cliente",      quem: "agência" },
   { dia: 1, marco: "Site no ar e link enviado ao cliente",        quem: "agência" },
   { dia: 1, marco: "Logo entregue (se o cliente não tinha)",      quem: "agência" },
   { dia: 2, marco: "12 posts do Instagram entregues",             quem: "agência" },

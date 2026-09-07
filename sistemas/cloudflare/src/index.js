@@ -61,8 +61,9 @@ const CATALOGO = [
   ["foto_unica","Foto de visualização única"],["figurinha","Figurinha"],["emoji","Emoji"],
   ["mensagem","Mensagem de texto"],["video_unico","Vídeo de visualização única"],
   ["status_mencao","Menção em status"],
-  // ⚠️ engodo — incluída por decisão explícita do usuário (ver README)
-  ["comprovante_falso","Comprovante de PIX falso ⚠️"],
+  // ⚠️ engodo — mantida por decisão explícita do usuário (ver README).
+  // PIX não existe nos EUA: contractor brasileiro por lá recebe por Zelle.
+  ["comprovante_falso","Comprovante de Zelle falso ⚠️"],
 ];
 
 export default {
@@ -505,7 +506,8 @@ async function apiAdmin(p, req, env) {
   }
   if (p === "/api/cliente-editar") {
     const permitidos = ["nome_dono","cidade","estado","telefone","servicos","diferencial","observacoes",
-                        "cores","nicho","email","valor_pago","cor_primaria","cor_destaque","tem_logo"];
+                        "cores","nicho","email","valor_pago","cor_primaria","cor_destaque","tem_logo",
+                        "grupo_whatsapp"];
     // Só grava o que veio no corpo. Antes gravava TODOS os campos com `?? null`,
     // então cada clique em "Salvar" no painel do cliente apagava nicho, e-mail,
     // valor_pago, cores e tem_logo — a tela de edição nem manda esses campos.
@@ -693,19 +695,56 @@ async function apiAdmin(p, req, env) {
     return json({ ok: true, renovacao_em: base.toISOString() });
   }
 
+  // A "pasta de entrega" do 5º dia útil, num arquivo só. É o que o cliente
+  // recebe na reunião de entrega, então tem que abrir sozinho: onde está cada
+  // coisa, o que é dele, o que ele precisa fazer.
   if (p === "/api/exportar") {
     const id = url.searchParams.get("id");
     const c = await D.prepare("SELECT * FROM clientes WHERE id=?").bind(id).first();
-    const revs = (await D.prepare("SELECT * FROM reviews WHERE cliente_id=?").bind(id).all()).results;
-    const ps = (await D.prepare("SELECT * FROM posts WHERE cliente_id=? ORDER BY tipo DESC,ordem").bind(id).all()).results;
+    if (!c) return json({ erro: "cliente não encontrado" }, 404);
+    const [qr, qp, qe, ql] = await D.batch([
+      D.prepare("SELECT * FROM reviews WHERE cliente_id=?").bind(id),
+      D.prepare("SELECT * FROM posts WHERE cliente_id=? ORDER BY tipo DESC,ordem").bind(id),
+      D.prepare("SELECT tipo,status,url FROM entregaveis WHERE cliente_id=?").bind(id),
+      D.prepare("SELECT caminho FROM midias WHERE cliente_id=? AND tipo='logo'").bind(id),
+    ]);
+    const revs = qr.results, ps = qp.results;
+    const ent = (t) => (qe.results.find((e) => e.tipo === t) || {}).url || "";
+    const risca = (t) => `${t} ${".".repeat(Math.max(2, 22 - t.length))}`;
+    const linha = (rot, val) => `  ${risca(rot)} ${val || "(pendente)"}`;
+    // o site do cliente é publicado no Vercel. A rota /site/<slug> NÃO existe:
+    // mandar o cliente para lá era entregar um link que cai na tela de login.
     const txt = [
-      `ENTREGA — ${c.empresa}`, "=".repeat(70), "",
-      `Cliente: ${c.nome_dono || c.nome_contato}`, `Cidade: ${c.cidade || ""}, ${c.estado || ""}`,
-      `Site: /site/${c.slug}`, "", "=".repeat(70),
-      `REVIEWS (${revs.length}) — quem posta é o CLIENTE. Ritmo: 3 por semana.`, "=".repeat(70), "",
-      ...revs.map((r, i) => `--- REVIEW ${i+1} (${r.servico||""})${r.foto_ref?` — anexar foto: ${r.foto_ref}`:""} ---\n${r.texto}\n`),
-      "=".repeat(70), "INSTAGRAM", "=".repeat(70), "",
+      `ENTREGA · ${(c.empresa || "").toUpperCase()}`,
+      "Leon Group · Built to Lead.",
+      "=".repeat(70), "",
+      "CONTATO", "",
+      linha("Cliente", c.nome_dono || c.nome_contato),
+      linha("Empresa", c.empresa),
+      linha("Cidade", [c.cidade, c.estado].filter(Boolean).join(", ")),
+      linha("Telefone", c.telefone),
+      linha("Grupo do WhatsApp", c.grupo_whatsapp),
+      "", "O QUE FOI ENTREGUE", "",
+      linha("Site", c.vercel_url),
+      linha("Google Meu Negócio", ent("gmb")),
+      linha("Instagram", ent("instagram")),
+      linha("Logo", ent("logo") || (ql.results[0] || {}).caminho),
+      "",
+      "  O acesso do Instagram e do Google Meu Negócio fica com você.",
+      "  A Leon Group não guarda senha nenhuma.",
+      "", "=".repeat(70),
+      `REVIEWS (${revs.length}). Quem posta é o cliente. Ritmo: 3 por semana.`,
+      "=".repeat(70), "",
+      ...revs.map((r, i) => `--- REVIEW ${i+1} (${r.servico||""})${r.foto_ref?` · anexar foto: ${r.foto_ref}`:""} ---\n${r.texto}\n`),
+      "=".repeat(70), "INSTAGRAM · 12 POSTS + 4 DESTAQUES", "=".repeat(70), "",
       ...ps.map(x => `[${x.tipo.toUpperCase()} ${x.ordem}] ${x.titulo}\n${x.brief}\n`),
+      "=".repeat(70), "O QUE VOCÊ FAZ A PARTIR DE AGORA", "=".repeat(70), "",
+      "  1. Postar as reviews no ritmo combinado, sem acumular tudo num dia",
+      "  2. Publicar os 12 posts e montar os 4 destaques no Instagram",
+      "  3. Manter o Google Meu Negócio atualizado: foto de obra nova toda semana",
+      "  4. Responder lead no mesmo dia. Velocidade fecha mais que argumento",
+      "  5. Qualquer dúvida, fala no grupo do WhatsApp",
+      "",
     ].join("\n");
     return new Response(txt, { headers: {
       "Content-Type": "text/plain; charset=utf-8",
