@@ -215,8 +215,12 @@ export default {
         if (existente) {
           // Só grava campo que veio preenchido: um parcial posterior mais
           // curto não pode apagar o que já tinha sido capturado antes.
+          const brutaU = corta(b.cidade, 80);
+          const ufU = (brutaU.match(/(?:^|[,\s\-])([A-Za-z]{2})\s*$/) || [])[1] || "";
+          const cidU = ufU ? brutaU.replace(/(?:^|[,\s\-])[A-Za-z]{2}\s*$/, "").replace(/[,\s\-]+$/, "") : brutaU;
           const mudar = { telefone: tel, nome, empresa: corta(b.empresa, 90),
-                          nicho: corta(b.servico, 40) };
+                          nicho: corta(b.servico, 40),
+                          cidade: cidU, estado: ufU.toUpperCase() };
           const chaves = Object.keys(mudar).filter((k) => mudar[k]);
           chaves.push("observacoes", "origem", "atualizado_em");
           const valores = chaves.map((k) => (
@@ -241,12 +245,18 @@ export default {
           console.log("site-lead: teto de parciais atingido", ip);
           return json({ ok: true, ignorado: true }, 200, cabecalhos);
         }
+        // "Boston, MA" chega num campo só: separa a sigla do estado, que é o
+        // que o relógio local do card usa para achar o fuso.
+        const bruta = corta(b.cidade, 80);
+        const uf = (bruta.match(/(?:^|[,\s\-])([A-Za-z]{2})\s*$/) || [])[1] || "";
+        const cid = uf ? bruta.replace(/(?:^|[,\s\-])[A-Za-z]{2}\s*$/, "").replace(/[,\s\-]+$/, "") : bruta;
         const r = await env.DB.prepare(
           `INSERT INTO leads (nome,telefone,empresa,nicho,origem,observacoes,sessao_site,
-           criado_em,entrou_coluna_em,atualizado_em) VALUES (?,?,?,?,?,?,?,?,?,?)`
+           cidade,estado,criado_em,entrou_coluna_em,atualizado_em) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)`
         ).bind(nome || "Site (formulário incompleto)", tel,
                corta(b.empresa, 90) || null, corta(b.servico, 40) || null,
-               origemLead, obs || null, sessao, n, n, n).run();
+               origemLead, obs || null, sessao,
+               cid || null, uf.toUpperCase() || null, n, n, n).run();
         // registrarTentativa alimenta o mesmo contador do teto acima
         if (parcial) await A.registrarTentativa(env, ip, false, "site-parcial");
         await ev(env.DB, { lead_id: r.meta.last_row_id,
@@ -448,6 +458,23 @@ async function apiAdmin(p, req, env) {
       await mover(D, l, "responderam", "leads_novos", `respondeu (voltou de ${l.pipeline})`);
     return json({ ok: true });
   }
+  // Localização do lead. Alimenta o relógio local do card: sem cidade e
+  // estado não há como saber a hora de quem vai atender o telefone.
+  if (p === "/api/lead-editar") {
+    const permitidos = ["cidade", "estado", "fuso", "nome", "empresa", "telefone", "email", "nicho"];
+    const campos = permitidos.filter((c) => corpo[c] !== undefined);
+    if (!campos.length) return json({ erro: "nada a alterar" }, 400);
+    // fuso só entra se for um identificador IANA plausível; lixo vira NULL
+    const limpa = (c) => {
+      const v = String(corpo[c] ?? "").trim();
+      if (c === "fuso") return /^[A-Za-z]+\/[A-Za-z_+\-]+$/.test(v) ? v : null;
+      if (c === "estado") return v.toUpperCase().slice(0, 2) || null;
+      return v.slice(0, 120) || null;
+    };
+    await D.prepare(`UPDATE leads SET ${campos.map((c) => c + "=?").join(",")},atualizado_em=? WHERE id=?`)
+      .bind(...campos.map(limpa), agora(), corpo.id).run();
+    return json({ ok: true });
+  }
   if (p === "/api/qualificar") {
     await D.prepare(`UPDATE leads SET rapport=?,budget=?,authority=?,need=?,timeline=?,qualificado=?,atualizado_em=? WHERE id=?`)
       .bind(corpo.rapport||null,corpo.budget||null,corpo.authority||null,corpo.need||null,
@@ -507,7 +534,7 @@ async function apiAdmin(p, req, env) {
   if (p === "/api/cliente-editar") {
     const permitidos = ["nome_dono","cidade","estado","telefone","servicos","diferencial","observacoes",
                         "cores","nicho","email","valor_pago","cor_primaria","cor_destaque","tem_logo",
-                        "grupo_whatsapp"];
+                        "grupo_whatsapp","fuso"];
     // Só grava o que veio no corpo. Antes gravava TODOS os campos com `?? null`,
     // então cada clique em "Salvar" no painel do cliente apagava nicho, e-mail,
     // valor_pago, cores e tem_logo — a tela de edição nem manda esses campos.
@@ -780,13 +807,15 @@ async function criarClienteDoLead(D, lead, valorPago) {
   const r = await D.prepare(
     `INSERT INTO clientes (slug,nome_contato,empresa,nicho,data_entrada,email,telefone,valor_pago,
      formulario_token,renovacao_em,lead_origem_id,tipo_contrato,valor_contrato,duracao_meses,
-     renovacao_automatica,servicos_extras,valor_extras,criado_em,atualizado_em)
-     VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`
+     renovacao_automatica,servicos_extras,valor_extras,cidade,estado,fuso,criado_em,atualizado_em)
+     VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`
   ).bind(s, lead.nome || "", lead.empresa || lead.nome || "", lead.nicho || null, n,
          lead.email || null, lead.telefone || null, valorPago || null, t,
          renov.toISOString(), lead.id, lead.tipo_contrato || null, lead.valor_contrato || null,
          meses, lead.renovacao_automatica || 0, lead.servicos_extras || null,
-         lead.valor_extras || null, n, n).run();
+         lead.valor_extras || null,
+         // a localização vem com o lead: o relógio do card do cliente já nasce certo
+         lead.cidade || null, lead.estado || null, lead.fuso || null, n, n).run();
   const id = r.meta.last_row_id;
   for (const [tipo] of G.ENTREGAVEIS)
     await D.prepare("INSERT INTO entregaveis (cliente_id,tipo,atualizado_em) VALUES (?,?,?)")

@@ -83,6 +83,28 @@ label{font-size:11.5px;color:var(--cinza);display:block;margin-bottom:2px}
 .nota{background:var(--laranja-pal);border-left:3px solid var(--laranja);padding:10px 13px;border-radius:4px;font-size:12.5px;margin:10px 0}
 .link{background:var(--marfim);border:1px dashed var(--areia);padding:9px 11px;border-radius:5px;
 font-size:12px;word-break:break-all;margin-bottom:8px}
+/* ── relógio local de cada lead/cliente ──
+   Quem opera está em Brasília. Quem atende o telefone está em Massachusetts,
+   na Flórida ou na Califórnia. Ligar às 6h da manhã do cara queima o lead. */
+.rel-card{background:var(--preto);color:var(--marfim);border-radius:7px;
+  padding:12px 14px;margin-bottom:12px;display:grid;gap:2px}
+.rel-card .rc-rot{font-size:9px;letter-spacing:.16em;text-transform:uppercase;
+  font-weight:700;color:#8a8580;display:flex;gap:8px;align-items:baseline}
+.rel-card .rc-rot b{color:var(--laranja);font-weight:700;letter-spacing:.06em;
+  text-transform:none;font-size:10.5px;margin-left:auto}
+.rel-card .rc-hora{font:700 27px/1.05 ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.rel-card .rc-dia{font-size:11.5px;color:#c9c4bb;text-transform:capitalize}
+.rel-card .rc-vs{margin-top:7px;padding-top:7px;border-top:1px solid #2a2a2a;
+  font-size:11px;color:#8a8580;display:flex;flex-wrap:wrap;gap:4px 10px}
+.rel-card .rc-vs b{color:#c9c4bb;font-weight:600;
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-variant-numeric:tabular-nums}
+.rel-card .rc-ok{font-size:10.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+  margin-top:6px;display:inline-flex;align-items:center;gap:6px}
+.rel-card .rc-ok.bom{color:#6bbf8f} .rel-card .rc-ok.ruim{color:#f08a58}
+.rel-card .rc-ok i{width:6px;height:6px;border-radius:50%;background:currentColor;flex:none}
+.rel-card .rc-nada{font-size:11.5px;color:#8a8580;line-height:1.45}
+.rel-card .rc-dupla{font-size:10px;color:#6e6a63;margin-top:5px;line-height:1.4}
 dialog{border:0;border-radius:10px;padding:24px;max-width:460px;width:93%;box-shadow:0 20px 60px rgba(0,0,0,.2)}
 dialog::backdrop{background:rgba(23,23,23,.45)}
 
@@ -121,6 +143,12 @@ dialog::backdrop{background:rgba(23,23,23,.45)}
 .rel-badge i{width:7px;height:7px;border-radius:50%;background:currentColor;flex:none}
 .rel-nota{font-size:11px;color:#8a8580;line-height:1.4}
 .rel-dif{font:600 10.5px/1 ui-monospace,monospace;color:#6e6a63;letter-spacing:.05em}
+/* seletor da praça americana: o público está espalhado pelos EUA */
+.rel-sel{background:#000;color:var(--laranja);border:1px solid #333;border-radius:5px;
+  font:700 9.5px/1 inherit;letter-spacing:.11em;text-transform:uppercase;
+  padding:4px 6px;cursor:pointer;max-width:172px}
+.rel-sel:hover{border-color:var(--laranja)}
+.rel-praca:not(.on) .rel-sel{color:#8a8580;letter-spacing:.14em}
 .rel-idi{display:flex;align-items:center;padding:0 18px;flex:none;gap:3px;border-left:1px solid #262626}
 .rel-idi button{background:none;border:1px solid #333;color:#8a8580;cursor:pointer;
   font:700 10.5px/1 inherit;letter-spacing:.09em;padding:6px 10px;border-radius:99px}
@@ -133,8 +161,18 @@ dialog::backdrop{background:rgba(23,23,23,.45)}
 <header><b>LE<span>O</span>N GROUP · Admin</b><span class="selo" id="selo">Comercial</span>
   <button class="sair" onclick="fetch('/api/logout',{method:'POST'}).then(()=>location.href='/login')">sair</button></header>
 <div class="relogio" id="relogio">
-  <button class="rel-praca ma" type="button" data-praca="ma" id="p_ma"></button>
-  <button class="rel-praca bsb" type="button" data-praca="bsb" id="p_bsb"></button>
+  <div class="rel-praca eua" data-praca="eua" id="p_eua">
+    <select class="rel-sel" id="rel_cidade" aria-label="Praça nos Estados Unidos"></select>
+    <span class="rel-hora" id="h_eua">--:--:--</span>
+    <span class="rel-dia" id="d_eua"></span>
+    <span class="rel-fuso" id="f_eua"></span>
+  </div>
+  <div class="rel-praca bsb" data-praca="bsb" id="p_bsb">
+    <span class="rel-cid" id="c_bsb"></span>
+    <span class="rel-hora" id="h_bsb">--:--:--</span>
+    <span class="rel-dia" id="d_bsb"></span>
+    <span class="rel-fuso" id="f_bsb"></span>
+  </div>
   <div class="rel-estado">
     <span class="rel-badge" id="rel_badge"></span>
     <span class="rel-nota" id="rel_nota"></span>
@@ -294,6 +332,17 @@ async function abrirLead(id){
    <h2 style="font-size:18px">\${esc(l.nome)}</h2>
    <div style="color:var(--cinza);font-size:12.5px">\${esc(l.empresa||'—')} · \${esc(l.telefone)}</div>
    <div style="font-size:12px;margin-top:5px"><b>\${esc(l.pipeline)}</b> / \${esc(l.coluna)} · \${hrs(l.entrou_coluna_em).toFixed(0)}h aqui</div>
+   \${blocoRelogio(l,'Hora do lead')}
+   <section><h4>Onde o lead está</h4>
+     <div style="display:flex;gap:8px"><div style="flex:2"><label>Cidade</label>
+       <input id="q_cidade" value="\${esc(l.cidade)}" placeholder="Boston"></div>
+       <div style="flex:1"><label>Estado (sigla)</label>
+       <input id="q_estado" value="\${esc(l.estado)}" placeholder="MA" maxlength="2"></div></div>
+     <label>Fuso manual (só se o mapa errar)</label>
+     <input id="q_fuso" value="\${esc(l.fuso)}" placeholder="America/New_York">
+     <button class="acao sec" onclick="salvarLocal()">Salvar localização</button>
+     <p style="font-size:11.5px;color:var(--cinza);margin-top:6px">
+       O estado define o fuso do relógio acima. Sem ele, não há como saber a hora do cara.</p></section>
    <section><h4>Ligação</h4><div style="display:flex;gap:7px;flex-wrap:wrap">
      <button class="acao" onclick="lig(1)">Atendeu</button>
      <button class="acao sec" onclick="lig(0)">Não atendeu</button>
@@ -362,6 +411,7 @@ async function abrirCliente(id){
   p.innerHTML=\`<button class="x" onclick="fechar()">×</button>
    <h2 style="font-size:18px">\${esc(c.empresa)}</h2>
    <div style="color:var(--cinza);font-size:12.5px">\${esc(c.nome_contato)} · dia \${c.dias}\${c.valor_pago?' · '+esc(c.valor_pago):''}</div>
+   \${blocoRelogio(c,'Hora do cliente')}
    \${c.entrega_iniciada_em?
      \`<div class="nota" style="\${c.dias_uteis>5?'background:#fbe4e0;border-left-color:#c0392b':''}">
        Entrega: <b>dia \${c.dias_uteis} de \${c.prazo_maximo} úteis</b>
@@ -410,6 +460,10 @@ async function abrirCliente(id){
        <input type="color" id="e_cor_primaria" value="\${esc(c.cor_primaria||'#1B4965')}"></div>
        <div style="flex:1"><label>Cor de destaque</label>
        <input type="color" id="e_cor_destaque" value="\${esc(c.cor_destaque||'#F6AE2D')}"></div></div>
+     <label>Fuso manual (só se o mapa errar o estado)</label>
+     <div style="display:flex;gap:7px"><input id="d_fuso" value="\${esc(c.fuso)}"
+       placeholder="America/New_York" style="flex:1">
+       <button class="acao sec" onclick="salvarFusoCli()">Salvar</button></div>
      <label>Fotos adicionais (uma URL por linha)</label><textarea id="e_fotos"></textarea>
      <p style="font-size:11.5px;color:var(--cinza)">\${(c.midias||[]).length} fotos cadastradas</p>
      <button class="acao" onclick="salvarCliente()">Salvar</button></section>
@@ -579,6 +633,9 @@ async function excluir(tipo,id){
 const salvarResultado=()=>post('/api/resultado',{id:aberto,leads:+V('d_leads')}).then(carregar).then(()=>abrirCliente(aberto));
 const salvarVercel=()=>post('/api/vercel-url',{id:aberto,url:V('d_vercel')}).then(carregar).then(()=>abrirCliente(aberto));
 const salvarGrupo=()=>post('/api/cliente-editar',{id:aberto,grupo_whatsapp:V('d_grupo')}).then(carregar).then(()=>abrirCliente(aberto));
+const salvarLocal=()=>post('/api/lead-editar',{id:aberto,cidade:V('q_cidade'),
+  estado:V('q_estado').toUpperCase(),fuso:V('q_fuso')}).then(carregar).then(()=>abrirLead(aberto));
+const salvarFusoCli=()=>post('/api/cliente-editar',{id:aberto,fuso:V('d_fuso')}).then(carregar).then(()=>abrirCliente(aberto));
 async function renovar(){if(!confirm('Renovar por mais 3 meses?'))return;
   await post('/api/renovar',{id:aberto});await carregar();abrirCliente(aberto)}
 const liberar=(qual,v)=>post('/api/liberar-formulario',{id:aberto,[qual]:v}).then(carregar).then(()=>abrirCliente(aberto));
@@ -587,77 +644,209 @@ async function novoToken(){if(!confirm('Gerar link novo? O atual deixa de funcio
 const statusEnt=(eid,s)=>post('/api/entregavel',{eid,status:s}).then(carregar);
 const marco=(mid,v)=>post('/api/marco',{mid,concluido:v}).then(()=>abrirCliente(aberto));
 const revPost=(rid,v)=>post('/api/review-postada',{rid,postada:v}).then(()=>abrirCliente(aberto));
-/* ─────────────── relógio das duas praças ───────────────
-   Massachusetts é a base de decisão do sistema: a janela de contato (8h-21h),
-   a contagem dos 5 dias úteis e o dia da semana saem desse fuso. Brasília é
-   onde o operador está. Clicar numa praça faz dela a principal.            */
-const PRACAS={
-  ma: {tz:'America/New_York',  pt:'Massachusetts', en:'Massachusetts', paisPt:'Estados Unidos', paisEn:'United States'},
-  bsb:{tz:'America/Sao_Paulo', pt:'Brasília',      en:'Brasilia',      paisPt:'Brasil',         paisEn:'Brazil'},
+/* ═══════════════════ RELÓGIOS ═══════════════════
+   Três fusos importam nesta operação:
+   1. Brasília, onde o operador está
+   2. a praça americana escolhida no topo (padrão Boston/MA)
+   3. a cidade de CADA lead e de CADA cliente, dentro do card
+
+   O terceiro é o que evita o erro caro: ligar 6h da manhã do cara queima
+   o lead. O mapa estado->fuso resolve, com override manual pros estados
+   cortados por dois fusos.                                              */
+
+// Praças americanas onde há concentração de brasileiro na construção.
+const EUA = [
+  ["Boston, MA",        "America/New_York"],
+  ["New York, NY",      "America/New_York"],
+  ["Newark, NJ",        "America/New_York"],
+  ["Bridgeport, CT",    "America/New_York"],
+  ["Philadelphia, PA",  "America/New_York"],
+  ["Washington, DC",    "America/New_York"],
+  ["Miami, FL",         "America/New_York"],
+  ["Orlando, FL",       "America/New_York"],
+  ["Atlanta, GA",       "America/New_York"],
+  ["Chicago, IL",       "America/Chicago"],
+  ["Houston, TX",       "America/Chicago"],
+  ["Dallas, TX",        "America/Chicago"],
+  ["Nashville, TN",     "America/Chicago"],
+  ["Denver, CO",        "America/Denver"],
+  ["Phoenix, AZ",       "America/Phoenix"],
+  ["Las Vegas, NV",     "America/Los_Angeles"],
+  ["Los Angeles, CA",   "America/Los_Angeles"],
+  ["San Francisco, CA", "America/Los_Angeles"],
+  ["Seattle, WA",       "America/Los_Angeles"],
+];
+const TZ_BSB='America/Sao_Paulo';
+
+// Estado -> fuso predominante. Os marcados em DUPLO são cortados por dois
+// fusos: o mapa usa o mais populoso e a tela avisa que pode estar errado.
+const UF={
+  CT:'America/New_York',DE:'America/New_York',DC:'America/New_York',GA:'America/New_York',
+  ME:'America/New_York',MD:'America/New_York',MA:'America/New_York',NH:'America/New_York',
+  NJ:'America/New_York',NY:'America/New_York',NC:'America/New_York',OH:'America/New_York',
+  PA:'America/New_York',RI:'America/New_York',SC:'America/New_York',VT:'America/New_York',
+  VA:'America/New_York',WV:'America/New_York',
+  FL:'America/New_York',MI:'America/New_York',IN:'America/New_York',KY:'America/New_York',
+  AL:'America/Chicago',AR:'America/Chicago',IL:'America/Chicago',IA:'America/Chicago',
+  LA:'America/Chicago',MN:'America/Chicago',MS:'America/Chicago',MO:'America/Chicago',
+  OK:'America/Chicago',WI:'America/Chicago',
+  TX:'America/Chicago',TN:'America/Chicago',KS:'America/Chicago',NE:'America/Chicago',
+  ND:'America/Chicago',SD:'America/Chicago',
+  CO:'America/Denver',MT:'America/Denver',NM:'America/Denver',UT:'America/Denver',
+  WY:'America/Denver',ID:'America/Boise',
+  AZ:'America/Phoenix',
+  CA:'America/Los_Angeles',WA:'America/Los_Angeles',
+  NV:'America/Los_Angeles',OR:'America/Los_Angeles',
+  AK:'America/Anchorage',HI:'Pacific/Honolulu',
 };
-let relPraca='ma', relIdi='pt';
-try{ relPraca=localStorage.getItem('leon_rel_praca')||'ma'; relIdi=localStorage.getItem('leon_rel_idi')||'pt'; }catch(e){}
-if(!PRACAS[relPraca]) relPraca='ma';
+const UF_DUPLO=['FL','TX','TN','IN','KY','MI','KS','NE','ND','SD','OR','ID','NV','AZ'];
+const UF_NOME={MA:'Massachusetts',NY:'New York',NJ:'New Jersey',CT:'Connecticut',FL:'Florida',
+  GA:'Georgia',TX:'Texas',CA:'California',IL:'Illinois',PA:'Pennsylvania',AZ:'Arizona',
+  NV:'Nevada',CO:'Colorado',WA:'Washington',TN:'Tennessee',NH:'New Hampshire',RI:'Rhode Island',
+  MD:'Maryland',VA:'Virginia',NC:'North Carolina',OH:'Ohio',MI:'Michigan',UT:'Utah'};
+
+// Tira a UF de um texto solto: "Boston, MA", "boston ma", "Marlborough - MA"
+function ufDe(txt){
+  const t=String(txt||'').toUpperCase();
+  const m=t.match(/(?:^|[,\s\-\/])([A-Z]{2})(?:$|[,\s\-\.\/])/g);
+  if(m) for(let i=m.length-1;i>=0;i--){
+    const uf=m[i].replace(/[^A-Z]/g,''); if(UF[uf]) return uf;
+  }
+  for(const uf in UF_NOME) if(t.includes(UF_NOME[uf].toUpperCase())) return uf;
+  return '';
+}
+// Fuso de um lead/cliente: override manual > estado > cidade
+function fusoDe(reg){
+  if(reg&&reg.fuso&&/^[A-Za-z]+\/[A-Za-z_]+$/.test(reg.fuso)) return {tz:reg.fuso,uf:'',manual:true};
+  const uf=ufDe(reg&&reg.estado)||ufDe(reg&&reg.cidade)||ufDe(reg&&reg.observacoes);
+  return uf?{tz:UF[uf],uf,manual:false}:{tz:'',uf:'',manual:false};
+}
+
+let relPraca='eua', relIdi='pt', relCidade=0;
+try{
+  relPraca=localStorage.getItem('leon_rel_praca')||'eua';
+  relIdi=localStorage.getItem('leon_rel_idi')||'pt';
+  relCidade=+(localStorage.getItem('leon_rel_cidade')||0)||0;
+}catch(e){}
+if(relPraca!=='eua'&&relPraca!=='bsb') relPraca='eua';
 if(relIdi!=='pt'&&relIdi!=='en') relIdi='pt';
+if(!EUA[relCidade]) relCidade=0;
 
 const relLoc=()=>relIdi==='pt'?'pt-BR':'en-US';
-// hora do dia (0-23) num fuso qualquer, sem depender do fuso da máquina
+const T2=(pt,en)=>relIdi==='pt'?pt:en;
+
 function horaEm(tz,d){
   const p=new Intl.DateTimeFormat('en-US',{timeZone:tz,hour12:false,hour:'2-digit',minute:'2-digit'}).formatToParts(d);
   return {h:+p.find(x=>x.type==='hour').value%24, m:+p.find(x=>x.type==='minute').value};
 }
-function pintarPraca(chave,d){
-  const P=PRACAS[chave], el=document.getElementById('p_'+chave), on=chave===relPraca;
-  const hora=new Intl.DateTimeFormat(relLoc(),{timeZone:P.tz,hour:'2-digit',minute:'2-digit',
-    second:'2-digit',hour12:relIdi==='en'}).format(d);
-  const dia=new Intl.DateTimeFormat(relLoc(),{timeZone:P.tz,weekday:'long',day:'2-digit',
-    month:'long'}).format(d);
-  let sig='';
-  try{ sig=new Intl.DateTimeFormat('en-US',{timeZone:P.tz,timeZoneName:'short'})
-    .formatToParts(d).find(x=>x.type==='timeZoneName').value; }catch(e){}
-  el.className='rel-praca '+chave+(on?' on':'');
-  el.title=(relIdi==='pt'?'Ver ':'Show ')+P[relIdi];
-  el.innerHTML='<span class="rel-cid">'+esc(P[relIdi])+' · '+esc(P[relIdi==='pt'?'paisPt':'paisEn'])+'</span>'
-    +'<span class="rel-hora">'+esc(hora)+'</span>'
-    +'<span class="rel-dia">'+esc(dia)+'</span>'
-    +(on?'<span class="rel-fuso">'+esc(sig)+'</span>':'');
+const fmtHora=(tz,d,seg)=>new Intl.DateTimeFormat(relLoc(),{timeZone:tz,hour:'2-digit',
+  minute:'2-digit',...(seg?{second:'2-digit'}:{}),hour12:relIdi==='en'}).format(d);
+const fmtDia=(tz,d)=>new Intl.DateTimeFormat(relLoc(),{timeZone:tz,weekday:'long',day:'2-digit',month:'long'}).format(d);
+function sigla(tz,d){
+  try{ return new Intl.DateTimeFormat('en-US',{timeZone:tz,timeZoneName:'short'})
+    .formatToParts(d).find(x=>x.type==='timeZoneName').value; }catch(e){ return ''; }
+}
+// diferença em horas de tz contra Brasília (positivo = Brasília na frente)
+function difBsb(tz,d){
+  const a=horaEm(tz,d), c=horaEm(TZ_BSB,d);
+  let m=(c.h*60+c.m)-(a.h*60+a.m);
+  if(m>720)m-=1440; if(m<-720)m+=1440;
+  return m/60;
+}
+const sinalDif=v=>(v>=0?'+':'-')+Math.abs(v)+'h';
+
+/* ── faixa do topo ── */
+function montarSelect(){
+  const sel=document.getElementById('rel_cidade');
+  sel.innerHTML=EUA.map(([n],i)=>'<option value="'+i+'"'+(i===relCidade?' selected':'')+'>'+esc(n)+'</option>').join('');
+  sel.addEventListener('change',()=>{
+    relCidade=+sel.value; try{localStorage.setItem('leon_rel_cidade',relCidade)}catch(e){}
+    relPraca='eua'; try{localStorage.setItem('leon_rel_praca','eua')}catch(e){}
+    tique();
+  });
+  sel.addEventListener('click',e=>e.stopPropagation());
 }
 function tique(){
   const d=new Date();
-  pintarPraca('ma',d); pintarPraca('bsb',d);
+  const tzEua=EUA[relCidade][1];
 
-  // janela de contato: a MESMA regra do motor de automação (8h-21h em NY)
-  const ny=horaEm(PRACAS.ma.tz,d), aberta=ny.h>=8&&ny.h<21;
+  document.getElementById('p_eua').className='rel-praca eua'+(relPraca==='eua'?' on':'');
+  document.getElementById('p_bsb').className='rel-praca bsb'+(relPraca==='bsb'?' on':'');
+  document.getElementById('h_eua').textContent=fmtHora(tzEua,d,true);
+  document.getElementById('d_eua').textContent=fmtDia(tzEua,d);
+  document.getElementById('f_eua').textContent=relPraca==='eua'?sigla(tzEua,d):'';
+  document.getElementById('c_bsb').textContent=T2('Brasília · Brasil','Brasilia · Brazil');
+  document.getElementById('h_bsb').textContent=fmtHora(TZ_BSB,d,true);
+  document.getElementById('d_bsb').textContent=fmtDia(TZ_BSB,d);
+  document.getElementById('f_bsb').textContent=relPraca==='bsb'?sigla(TZ_BSB,d):'';
+
+  // A janela do MOTOR é sempre Nova York: é o que está no código do cron.
+  // Se a praça escolhida estiver em outro fuso, a tela diz as duas coisas,
+  // pra não dar a entender que o motor segue a cidade selecionada.
+  const ny=horaEm('America/New_York',d), aberta=ny.h>=8&&ny.h<21;
   const b=document.getElementById('rel_badge');
   b.className='rel-badge '+(aberta?'aberta':'fechada');
-  b.innerHTML='<i></i>'+(relIdi==='pt'
-    ?(aberta?'Janela de contato aberta':'Janela de contato fechada')
-    :(aberta?'Contact window open':'Contact window closed'));
+  b.innerHTML='<i></i>'+T2(aberta?'Janela do motor aberta':'Janela do motor fechada',
+                           aberta?'Engine window open':'Engine window closed');
   const faltam=aberta?(21-ny.h-1)*60+(60-ny.m):((ny.h<8?8-ny.h:32-ny.h)*60-ny.m);
-  const hh=Math.floor(faltam/60), mm=faltam%60;
-  document.getElementById('rel_nota').textContent = relIdi==='pt'
-    ? (aberta?'Fecha em '+hh+'h'+String(mm).padStart(2,'0')+' · nada é enviado das 21h às 8h em Massachusetts'
-             :'Abre em '+hh+'h'+String(mm).padStart(2,'0')+' · o motor segura as mensagens até lá')
-    : (aberta?'Closes in '+hh+'h'+String(mm).padStart(2,'0')+' · nothing is sent between 9 PM and 8 AM in Massachusetts'
-             :'Opens in '+hh+'h'+String(mm).padStart(2,'0')+' · the engine holds messages until then');
+  const quanto=Math.floor(faltam/60)+'h'+String(faltam%60).padStart(2,'0');
+  const mesmoFuso=horaEm(tzEua,d).h===ny.h;
+  document.getElementById('rel_nota').textContent=
+    T2((aberta?'Fecha em '+quanto:'Abre em '+quanto)+' · o motor usa Nova York (8h-21h)'
+        +(mesmoFuso?'':', não '+EUA[relCidade][0]),
+       (aberta?'Closes in '+quanto:'Opens in '+quanto)+' · the engine uses New York (8am-9pm)'
+        +(mesmoFuso?'':', not '+EUA[relCidade][0]));
+  const dif=difBsb(tzEua,d);
+  document.getElementById('rel_dif').textContent=
+    T2('Brasília está '+sinalDif(dif)+' em relação a '+EUA[relCidade][0],
+       'Brasilia is '+sinalDif(dif)+' vs '+EUA[relCidade][0]);
 
-  // diferença entre as praças, recalculada sempre (horário de verão muda isso)
-  const a=horaEm(PRACAS.ma.tz,d), c=horaEm(PRACAS.bsb.tz,d);
-  let dif=(c.h*60+c.m)-(a.h*60+a.m);
-  if(dif>720)dif-=1440; if(dif<-720)dif+=1440;
-  const dh=Math.abs(dif)/60, sinal=dif>=0?'+':'-';
-  document.getElementById('rel_dif').textContent = relIdi==='pt'
-    ? 'Brasília '+sinal+dh+'h em relação a Massachusetts'
-    : 'Brasilia '+sinal+dh+'h vs Massachusetts';
-
-  document.querySelectorAll('[data-relidi]').forEach(x=>
-    x.classList.toggle('on',x.dataset.relidi===relIdi));
+  document.querySelectorAll('[data-relidi]').forEach(x=>x.classList.toggle('on',x.dataset.relidi===relIdi));
+  atualizarCards(d);
 }
+
+/* ── relógio dentro do card do lead/cliente ──
+   O HTML é montado uma vez por abertura de painel; o texto é atualizado a
+   cada segundo pelo mesmo tique, achando os nós por classe.            */
+function blocoRelogio(reg,rotulo){
+  const f=fusoDe(reg);
+  const onde=[reg.cidade,reg.estado].filter(Boolean).join(', ')
+    || (reg.observacoes||'').match(/Onde atende:\s*([^·]+)/)?.[1]?.trim() || '';
+  if(!f.tz) return '<div class="rel-card"><span class="rc-rot">'+esc(rotulo)+'</span>'
+    +'<span class="rc-nada">Sem cidade ou estado preenchido, então não dá pra saber o fuso. '
+    +'Preencha o estado (sigla de 2 letras, ex: MA) e o relógio local aparece aqui.</span></div>';
+  return '<div class="rel-card rel-vivo" data-tz="'+esc(f.tz)+'">'
+    +'<span class="rc-rot">'+esc(rotulo)+'<b class="rc-onde">'+esc(onde||f.uf)+'</b></span>'
+    +'<span class="rc-hora"></span><span class="rc-dia"></span>'
+    +'<span class="rc-vs"></span><span class="rc-ok"></span>'
+    +(!f.manual&&UF_DUPLO.includes(f.uf)
+      ?'<span class="rc-dupla">'+esc(f.uf)+' tem mais de um fuso. Usei o mais populoso. '
+       +'Se estiver errado, grave o fuso certo no campo abaixo.</span>':'')
+    +'</div>';
+}
+function atualizarCards(d){
+  document.querySelectorAll('.rel-vivo').forEach(el=>{
+    const tz=el.dataset.tz; if(!tz) return;
+    const q=c=>el.querySelector('.'+c);
+    q('rc-hora').textContent=fmtHora(tz,d,false);
+    q('rc-dia').textContent=fmtDia(tz,d);
+    const dif=difBsb(tz,d);
+    q('rc-vs').innerHTML=T2('Você em Brasília: ','You in Brasilia: ')
+      +'<b>'+esc(fmtHora(TZ_BSB,d,false))+'</b> ('+sinalDif(dif)+')'
+      +' &nbsp;·&nbsp; '+esc(sigla(tz,d));
+    const h=horaEm(tz,d).h, bom=h>=8&&h<21;
+    const ok=q('rc-ok');
+    ok.className='rc-ok '+(bom?'bom':'ruim');
+    ok.innerHTML='<i></i>'+T2(bom?'Bom horário para ligar':'Fora de hora, não ligue agora',
+                              bom?'Good time to call':'Off hours, do not call now');
+  });
+}
+
 document.querySelectorAll('[data-praca]').forEach(x=>x.addEventListener('click',()=>{
   relPraca=x.dataset.praca; try{localStorage.setItem('leon_rel_praca',relPraca)}catch(e){} tique();}));
 document.querySelectorAll('[data-relidi]').forEach(x=>x.addEventListener('click',()=>{
   relIdi=x.dataset.relidi; try{localStorage.setItem('leon_rel_idi',relIdi)}catch(e){} tique();}));
-tique(); setInterval(tique,1000);
+montarSelect(); tique(); setInterval(tique,1000);
 
 carregar();setInterval(()=>{if(!aberto)carregar()},60000);
 </script></body></html>`;
