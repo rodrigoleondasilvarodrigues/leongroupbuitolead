@@ -1,30 +1,30 @@
-// Geradores dos entregáveis — Leon Group
+// Geradores dos entregáveis · Leon Group
 // Anatomia das reviews e pautas dos posts vieram das aulas 01-04 (ver
 // _memoria/historico/ESPECIFICACOES-SISTEMAS.md).
 
 const ABERTURAS = [
   "I had been looking for a reliable {s} contractor in {c} for months before I found {d}.",
-  "After getting three quotes for {s} here in {c}, I decided to go with {d} — best decision I made.",
+  "After getting three quotes for {s} here in {c}, I decided to go with {d}, and it was the best decision I made.",
   "We needed {s} done at our home in {c} and a neighbor recommended {d}.",
   "I want to leave an honest review about the {s} work {d} did for us in {c}.",
   "Finding a good {s} company in {c} is not easy. {d} changed that for us.",
   "This is my second project with {d} and once again the {s} work in {c} was flawless.",
 ];
 const ATENDIMENTO = [
-  "{d} was extremely attentive from the very first call — answered every question without rushing me.",
+  "{d} was extremely attentive from the very first call and answered every question without rushing me.",
   "What stood out was the communication. {d} kept me updated every single day of the project.",
   "{d} showed up exactly when he said he would, which is rare around {c}.",
   "The whole crew was respectful and clean, and {d} personally checked the work at the end of each day.",
   "I never had to chase {d} for an update. He was always one step ahead.",
 ];
 const PRAZO = [
-  "The job was finished ahead of the schedule we agreed on — {d} delivered earlier than we expected.",
+  "The job was finished ahead of the schedule we agreed on. {d} delivered earlier than we expected.",
   "They finished the {s} faster than promised and without cutting any corners.",
   "{d} gave me a timeline and beat it. That never happens with contractors.",
   "Project came in on budget and ahead of the deadline.",
 ];
 const QUALIDADE = [
-  "The quality of the {s} is exactly what we hoped for — the finish is clean and professional.",
+  "The quality of the {s} is exactly what we hoped for. The finish is clean and professional.",
   "You can tell {d} takes pride in the work. Every detail of the {s} was done right.",
   "Our neighbors here in {c} have already asked who did our {s}.",
   "The result completely changed the space. The {s} looks better than the photos we were shown.",
@@ -33,7 +33,7 @@ const FECHAMENTOS = [
   "If you need {s} in {c}, call {d}. Best {s} service in {c}, hands down.",
   "I recommend {d} to anyone in {c} looking for {s}. Best {s} contractor in {c}.",
   "Hands down the best {s} company in {c}. Thank you, {d}!",
-  "Do yourself a favor and hire {d} — the best {s} in {c} by far.",
+  "Do yourself a favor and hire {d}. Best {s} in {c} by far.",
   "Five stars. Best {s} team in {c} and I will use {d} again.",
 ];
 
@@ -107,7 +107,7 @@ Return ONLY a JSON array of strings.`;
 
 // ── 12 posts + 4 destaques ────────────────────────────────────────────────
 export const PAUTAS = [
-  ["Antes e depois", "Mostrar a transformação de um projeto real. A foto faz o trabalho — legenda curta."],
+  ["Antes e depois", "Mostrar a transformação de um projeto real. A foto faz o trabalho, legenda curta."],
   ["O processo por dentro", "Como o serviço é executado, etapa por etapa. Gera confiança de quem sabe fazer."],
   ["Material que a gente usa", "Comparar materiais e explicar a escolha. Posiciona como especialista."],
   ["Erro comum que sai caro", "Um erro que o dono da casa comete e o prejuízo que gera."],
@@ -115,7 +115,7 @@ export const PAUTAS = [
   ["A equipe", "Quem executa. Rosto humano vende mais que logo."],
   ["Cliente satisfeito", "Depoimento real, com autorização. Sem encenação."],
   ["Detalhe do acabamento", "Close no detalhe que separa o trabalho bem feito do mal feito."],
-  ["Região atendida", "Quais cidades atende — reforça SEO local e filtra lead ruim."],
+  ["Região atendida", "Quais cidades atende: reforça SEO local e filtra lead ruim."],
   ["Dúvida frequente", "A pergunta que todo cliente faz antes de fechar, respondida direto."],
   ["Projeto concluído", "Entrega final com o resultado em destaque."],
   ["Como pedir um orçamento", "Chamada para ação clara, com o caminho do contato."],
@@ -162,7 +162,7 @@ export function gerarSite(c, fotos = []) {
   return `<!doctype html>
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>${empresa} — ${principal} in ${cidade}, ${estado}</title>
+<title>${empresa} · ${principal} in ${cidade}, ${estado}</title>
 <meta name="description" content="${empresa}: ${esc(svc.slice(0,4).join(", "))} in ${cidade}, ${estado}. Free estimate. ${dif.slice(0,90)}">
 <style>
 :root{--c:${cor};--a:${cor2};--t:#1a1a1a}
@@ -193,7 +193,7 @@ footer{background:#111;color:#999;padding:30px 24px;text-align:center;font-size:
 <section><h2>Our Services</h2><div class="grid">${cards}</div></section>
 ${fotos.length ? `<section><h2>Recent Projects</h2><div class="gal">${gal}</div></section>` : ""}
 <section><h2>Why ${empresa}</h2><div class="grid">
-<article class="s"><h3>On Schedule</h3><p>We finish when we say we will — most projects ahead of schedule.</p></article>
+<article class="s"><h3>On Schedule</h3><p>We finish when we say we will. Most projects ahead of schedule.</p></article>
 <article class="s"><h3>Clear Communication</h3><p>${dono || "The owner"} keeps you updated at every stage.</p></article>
 <article class="s"><h3>Local to ${cidade}</h3><p>We know the homes, the codes and the neighborhoods here.</p></article>
 </div></section>
@@ -206,7 +206,7 @@ ${zap ? `<a class="zap" href="https://wa.me/${zap}" aria-label="WhatsApp">✆</a
 </body></html>`;
 }
 
-// Cadência de entrega — criada quando o CLIENTE responde o formulário.
+// Cadência de entrega, criada quando o CLIENTE responde o formulário.
 // Prazo máximo: 5 DIAS ÚTEIS (fim de semana não conta).
 export const CADENCIA = [
   { dia: 1, marco: "Grupo do WhatsApp criado com o cliente",      quem: "agência" },
@@ -223,10 +223,10 @@ export const CADENCIA = [
 ];
 export const PRAZO_MAXIMO_DIAS = 5;
 
-// Soma dias ÚTEIS a partir de uma data — sábado e domingo não contam.
+// Soma dias ÚTEIS a partir de uma data: sábado e domingo não contam.
 // Dia da semana no fuso do cliente (EUA), não em UTC. Formulário respondido
 // domingo 20h em Boston é segunda 01h em UTC: contando em UTC o prazo caía na
-// segunda seguinte em vez da sexta — 3 dias de diferença no que foi prometido.
+// segunda seguinte em vez da sexta, 3 dias de diferença no que foi prometido.
 const DIAS = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 export function diaDaSemanaEUA(quando) {
   const r = new Intl.DateTimeFormat("en-US", {

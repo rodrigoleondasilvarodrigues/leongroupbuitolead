@@ -19,7 +19,7 @@ border-radius:4px;font-size:14px;margin-bottom:14px;display:none}
 
 export const LOGIN_HTML = `<!doctype html><html lang="pt-BR"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Leon Group — Acesso</title><style>${ESTILO}
+<title>Leon Group · Acesso</title><style>${ESTILO}
 body{display:flex;align-items:center;justify-content:center;padding:24px}
 .cx{background:var(--branco);border:1px solid var(--areia);border-radius:12px;
 padding:38px 34px;width:100%;max-width:390px;box-shadow:0 4px 24px rgba(0,0,0,.05)}
@@ -49,7 +49,7 @@ export function formularioHTML(cliente, token) {
   const emp = String(cliente.empresa || "").replace(/[<>"]/g, "");
   return `<!doctype html><html lang="pt-BR"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>${emp} — Formulário de onboarding</title><style>${ESTILO}
+<title>${emp} · Formulário de onboarding</title><style>${ESTILO}
 .wrap{max-width:660px;margin:0 auto;padding:32px 22px 60px}
 header{background:var(--preto);color:var(--marfim);padding:20px 22px;margin:-32px -22px 28px}
 header b{font-size:17px}header b span{color:var(--laranja)}
@@ -69,7 +69,7 @@ border-bottom:1px solid var(--areia);margin:-28px -22px 22px;padding-left:22px;z
 <h2>Bem-vindo, ${emp}</h2>
 <p class="intro">Estas informações são o que a gente precisa para montar seu site, seu Instagram
 e seu Google Meu Negócio. Leva cerca de 15 minutos. Quanto mais detalhe você der, melhor fica
-a entrega — e mais qualificado é o cliente que chega até você.</p>
+a entrega, e mais qualificado é o cliente que chega até você.</p>
 <div class="prog" id="prog">Campos obrigatórios marcados com <span class="obg">*</span></div>
 <div class="erro" id="erro"></div>
 <div class="ok" id="ok"><b>Recebemos tudo!</b><br>Sua entrega começa agora e fica pronta
@@ -94,7 +94,7 @@ em até <b>5 dias úteis</b>. Vamos te avisando a cada etapa.</div>
   </div>
   <p class="dica">A cidade principal é a que usamos para te posicionar nas buscas do Google.</p>
   <label>Todas as cidades e regiões que você atende <span class="obg">*</span></label>
-  <textarea id="localizacoes" placeholder="Framingham, Natick, Ashland, Marlborough, Worcester — até 30 milhas"></textarea>
+  <textarea id="localizacoes" placeholder="Framingham, Natick, Ashland, Marlborough, Worcester, até 30 milhas"></textarea>
   <p class="dica">Liste tudo. Isso define onde seu perfil aparece e evita chamada de lugar que você não vai.</p>
 </fieldset>
 
@@ -106,7 +106,7 @@ em até <b>5 dias úteis</b>. Vamos te avisando a cada etapa.</div>
   <textarea id="faz" placeholder="Instalo e restauro piso de madeira em casa residencial, do preparo do contrapiso ao acabamento"></textarea>
   <label>O que você <b>não</b> faz <span class="obg">*</span></label>
   <textarea id="nao_faz" placeholder="Não faço obra comercial, não faço demolição, não trabalho com carpete"></textarea>
-  <p class="dica">Isso é tão importante quanto o que você faz — evita perder tempo com quem
+  <p class="dica">Isso é tão importante quanto o que você faz: evita perder tempo com quem
   procura serviço que você não presta.</p>
   <label>O que te diferencia dos concorrentes <span class="obg">*</span></label>
   <textarea id="diferencial" placeholder="Equipe própria, limpeza garantida no fim de cada dia, garantia de 2 anos"></textarea>
@@ -121,11 +121,11 @@ em até <b>5 dias úteis</b>. Vamos te avisando a cada etapa.</div>
 </fieldset>
 
 <fieldset><legend>5 · Fotos e vídeos do seu trabalho</legend>
-  <label>Links das fotos — precisamos de <b>pelo menos 11</b> <span class="obg">*</span></label>
+  <label>Links das fotos, precisamos de <b>pelo menos 11</b> <span class="obg">*</span></label>
   <textarea id="fotos" placeholder="https://...&#10;https://...&#10;uma por linha" style="min-height:150px"></textarea>
   <p class="dica">Fotos dos seus serviços prontos, de preferência boas e bem iluminadas.
-  Suba no Google Drive ou Dropbox, deixe o link público e cole aqui — uma por linha.</p>
-  <label>Links dos vídeos — de 1 a 3</label>
+  Suba no Google Drive ou Dropbox, deixe o link público e cole aqui, uma por linha.</p>
+  <label>Links dos vídeos, de 1 a 3</label>
   <textarea id="videos" placeholder="https://...&#10;uma por linha"></textarea>
   <p class="dica">Vídeo curto do trabalho sendo feito ou do resultado. Ajuda muito no anúncio.</p>
   <label>Alguma observação importante que a gente precise saber</label>
@@ -182,7 +182,7 @@ export function aguardandoHTML(c) {
   if (!c.pagamento_confirmado) falta.push("confirmação do pagamento");
   return `<!doctype html><html lang="pt-BR"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>${emp} — Aguardando liberação</title><style>${ESTILO}
+<title>${emp} · Aguardando liberação</title><style>${ESTILO}
 body{display:flex;align-items:center;justify-content:center;padding:24px}
 .cx{background:var(--branco);border:1px solid var(--areia);border-radius:12px;padding:36px 32px;max-width:440px;text-align:center}
 h1{font-size:19px;margin-bottom:10px}h1 span{color:var(--laranja)}
@@ -201,7 +201,7 @@ export function jaRespondidoHTML(c) {
   const emp = String(c.empresa || "").replace(/[<>"]/g, "");
   return `<!doctype html><html lang="pt-BR"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>${emp} — Formulário já respondido</title><style>${ESTILO}
+<title>${emp} · Formulário já respondido</title><style>${ESTILO}
 body{display:flex;align-items:center;justify-content:center;padding:24px}
 .cx{background:var(--branco);border:1px solid var(--areia);border-radius:12px;padding:36px 32px;max-width:440px;text-align:center}
 h1{font-size:19px;margin-bottom:10px}h1 span{color:var(--laranja)}

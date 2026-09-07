@@ -1,6 +1,6 @@
 export const ADMIN_HTML = `<!doctype html><html lang="pt-BR"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Leon Group — Admin</title><style>
+<title>Leon Group · Admin</title><style>
 :root{--marfim:#F7F3EA;--branco:#FFFDF8;--preto:#171717;--laranja:#E65A19;--laranja-esc:#C44712;
 --laranja-pal:#F4D8C9;--areia:#E9E1D6;--cinza:#68645E;--verde:#2d6a4f;
 /* comercial = laranja da marca · operacional = azul-petróleo */
@@ -303,7 +303,7 @@ function render(){
     call_comparecida:'Compareceram',call_fechada:'Fecharam'};
   const kpis=\`<div class="kpis">\${Object.entries(k.etapas).map(([e,v])=>
     \`<div class="kpi"><b>\${v}</b><span>\${rotK[e]||e}</span></div>\`).join('')}
-    \${k.alertas.map(a=>\`<div class="alerta"><b>\${a.taxa}%</b> em \${a.transicao} — \${a.diagnostico}</div>\`).join('')}</div>\`;
+    \${k.alertas.map(a=>\`<div class="alerta"><b>\${a.taxa}%</b> em \${a.transicao} · \${a.diagnostico}</div>\`).join('')}</div>\`;
 
   if(setor==='operacional'){
     c.innerHTML=kpis+\`<div style="margin-bottom:14px"><button class="acao" onclick="dlgCli.showModal()">+ Cliente fechado</button></div>\`
@@ -338,7 +338,7 @@ function render(){
       \${a?\`<div class="ativ">\${a} ativações/dia</div>\`:''}
       <div class="cards">\${ls.length?ls.map(l=>{const h=hrs(l.entrou_coluna_em);
         return \`<div class="card" onclick="abrirLead(\${l.id})"><b>\${esc(l.nome)}</b>
-          <small>\${esc(l.empresa||'—')}\${l.nicho?' · '+esc(l.nicho):''}</small>
+          <small>\${esc(l.empresa||'sem empresa')}\${l.nicho?' · '+esc(l.nicho):''}</small>
           <div class="t">\${h<1?'agora há pouco':h.toFixed(0)+'h aqui'}\${h>=24?' · decai no próximo ciclo':''}</div>
         </div>\`}).join(''):'<div style="color:var(--cinza);font-size:12px;padding:8px 12px">vazio</div>'}</div></div>\`}).join('')}</div>\`;
 }
@@ -349,32 +349,22 @@ async function abrirLead(id){
   const p=document.getElementById('painel');p.classList.add('on');
   p.innerHTML=\`<button class="x" onclick="fechar()">×</button>
    <h2 style="font-size:18px">\${esc(l.nome)}</h2>
-   <div style="color:var(--cinza);font-size:12.5px">\${esc(l.empresa||'—')} · \${esc(l.telefone)}</div>
+   <div style="color:var(--cinza);font-size:12.5px">\${esc(l.empresa||'sem empresa')} · \${esc(l.telefone)}</div>
    <div style="font-size:12px;margin-top:5px"><b>\${esc(l.pipeline)}</b> / \${esc(l.coluna)} · \${hrs(l.entrou_coluna_em).toFixed(0)}h aqui</div>
    \${blocoRelogio(l,'Hora do lead')}
-   <section><h4>Onde o lead está</h4>
-     <div style="display:flex;gap:8px"><div style="flex:2"><label>Cidade</label>
-       <input id="q_cidade" value="\${esc(l.cidade)}" placeholder="Boston"></div>
-       <div style="flex:1"><label>Estado (sigla)</label>
-       <input id="q_estado" value="\${esc(l.estado)}" placeholder="MA" maxlength="2"></div></div>
-     <label>Fuso manual (só se o mapa errar)</label>
-     <input id="q_fuso" value="\${esc(l.fuso)}" placeholder="America/New_York">
-     <button class="acao sec" onclick="salvarLocal()">Salvar localização</button>
-     <p style="font-size:11.5px;color:var(--cinza);margin-top:6px">
-       O estado define o fuso do relógio acima. Sem ele, não há como saber a hora do cara.</p></section>
    <section><h4>Ligação</h4><div style="display:flex;gap:7px;flex-wrap:wrap">
      <button class="acao" onclick="lig(1)">Atendeu</button>
      <button class="acao sec" onclick="lig(0)">Não atendeu</button>
      <button class="acao sec" onclick="resp()">Respondeu mensagem</button></div>
      <p style="font-size:11.5px;color:var(--cinza);margin-top:6px">
        Nunca 3 ligações seguidas. Melhor janela: 17h-22h (52% atendem).</p></section>
-   <section><h4>Ativações — \${D.ativacoes[l.coluna]||0}/dia</h4>
+   <section><h4>Ativações · \${D.ativacoes[l.coluna]||0}/dia</h4>
      <div class="grid">\${D.catalogo.map(([t,r])=>
        \`<button class="\${t==='comprovante_falso'?'perigo':''}" onclick="ativ('\${t}')">\${r}</button>\`).join('')}</div>
      <p style="font-size:11.5px;color:var(--cinza);margin-top:7px">
-       Follow-up não é venda. Proibido ofertar — a venda acontece na ligação.</p></section>
+       Follow-up não é venda. Proibido ofertar: a venda acontece na ligação.</p></section>
    <section><h4>Qualificação BANT</h4>
-     <label>Rapport (ponto de conexão — reusado no follow de no-show)</label><input id="q_rapport" value="\${esc(l.rapport)}">
+     <label>Rapport (ponto de conexão, reusado no follow de no-show)</label><input id="q_rapport" value="\${esc(l.rapport)}">
      <label>Budget (ancorar em US$10 mil)</label><input id="q_budget" value="\${esc(l.budget)}">
      <label>Authority (é o decisor? estará na call?)</label><input id="q_authority" value="\${esc(l.authority)}">
      <label>Need</label><input id="q_need" value="\${esc(l.need)}">
@@ -384,13 +374,20 @@ async function abrirLead(id){
    <section><h4>Agendar call</h4><input type="datetime-local" id="q_quando">
      <button class="acao" onclick="agendar()">Agendar</button>
      <p style="font-size:11.5px;color:var(--cinza);margin-top:6px">
-       Nunca mais de 2 dias à frente. Sem horário hoje? Não marque — diga que retorna a ligação amanhã.</p></section>
+       Nunca mais de 2 dias à frente. Sem horário hoje? Não marque: diga que retorna a ligação amanhã.</p></section>
+   <section><h4>Mover</h4><div style="display:flex;gap:6px;flex-wrap:wrap">
+     <button class="acao sec" onclick="mv('call_rolando','agendamento')">Entrou na call</button>
+     <button class="acao sec" onclick="mv('no_show','agendamento')">Não apareceu</button>
+     <button class="acao" onclick="mv('fechou','agendamento')">Fechou a venda ✓</button>
+     <button class="acao sec" onclick="mv('recusou','agendamento')">Recusou</button></div>
+     <p style="font-size:11.5px;color:var(--cinza);margin-top:6px">
+       Ao marcar "Fechou", os dados do lead viram um cliente no operacional automaticamente.</p></section>
    <section><h4>Contrato</h4>
      <label>Modelo de cobrança</label>
      <select id="k_tipo">
-       <option value="">— não definido —</option>
-       <option value="TCV" \${l.tipo_contrato==='TCV'?'selected':''}>TCV — valor total em pagamento único</option>
-       <option value="MRR" \${l.tipo_contrato==='MRR'?'selected':''}>MRR — mensalidade recorrente</option>
+       <option value="">não definido</option>
+       <option value="TCV" \${l.tipo_contrato==='TCV'?'selected':''}>TCV · valor total em pagamento único</option>
+       <option value="MRR" \${l.tipo_contrato==='MRR'?'selected':''}>MRR · mensalidade recorrente</option>
      </select>
      <div style="display:flex;gap:8px">
        <div style="flex:1"><label id="k_lbl">Valor</label><input id="k_valor" value="\${esc(l.valor_contrato)}" placeholder="US$ 2.500"></div>
@@ -402,24 +399,27 @@ async function abrirLead(id){
      <label>Valor do extra</label><input id="k_valor_extras" value="\${esc(l.valor_extras)}">
      <button class="acao" onclick="salvarContrato()">Salvar contrato</button>
      <p style="font-size:11.5px;color:var(--cinza);margin-top:6px">
-       Preencha antes de marcar "Fechou" — esses dados vão junto pro operacional,
+       Preencha antes de marcar "Fechou": esses dados vão junto pro operacional,
        para a equipe saber o que esperar do contrato.</p>
    </section>
-   <section><h4>Mover</h4><div style="display:flex;gap:6px;flex-wrap:wrap">
-     <button class="acao sec" onclick="mv('call_rolando','agendamento')">Entrou na call</button>
-     <button class="acao sec" onclick="mv('no_show','agendamento')">Não apareceu</button>
-     <button class="acao" onclick="mv('fechou','agendamento')">Fechou a venda ✓</button>
-     <button class="acao sec" onclick="mv('recusou','agendamento')">Recusou</button></div>
+   <section><h4>Onde o lead está</h4>
+     <div style="display:flex;gap:8px"><div style="flex:2"><label>Cidade</label>
+       <input id="q_cidade" value="\${esc(l.cidade)}" placeholder="Boston"></div>
+       <div style="flex:1"><label>Estado (sigla)</label>
+       <input id="q_estado" value="\${esc(l.estado)}" placeholder="MA" maxlength="2"></div></div>
+     <label>Fuso manual (só se o mapa errar)</label>
+     <input id="q_fuso" value="\${esc(l.fuso)}" placeholder="America/New_York">
+     <button class="acao sec" onclick="salvarLocal()">Salvar localização</button>
      <p style="font-size:11.5px;color:var(--cinza);margin-top:6px">
-       Ao marcar "Fechou", os dados do lead viram um cliente no operacional automaticamente.</p></section>
+       O estado define o fuso do relógio acima. Sem ele, não há como saber a hora do cara.</p></section>
+   <section><h4>Histórico</h4>\${(l.eventos||[]).slice(0,12).map(e=>
+     \`<div class="linha"><span><b>\${esc(e.tipo)}</b> \${e.para?'→ '+esc(e.para):''}
+      <br><small style="color:var(--cinza)">\${new Date(e.criado_em).toLocaleString('pt-BR')}</small></span></div>\`).join('')}</section>
    <section><h4>Zona de risco</h4>
      <button class="acao" style="background:#c0392b" onclick="excluir('lead',\${l.id})">Excluir este lead</button>
      <p style="font-size:11.5px;color:var(--cinza);margin-top:6px">
        Apaga o lead e todo o histórico dele. Não tem como desfazer.</p>
-   </section>
-   <section><h4>Histórico</h4>\${(l.eventos||[]).slice(0,12).map(e=>
-     \`<div class="linha"><span><b>\${esc(e.tipo)}</b> \${e.para?'→ '+esc(e.para):''}
-      <br><small style="color:var(--cinza)">\${new Date(e.criado_em).toLocaleString('pt-BR')}</small></span></div>\`).join('')}</section>\`;
+   </section>\`;
 }
 
 async function abrirCliente(id){
@@ -434,7 +434,7 @@ async function abrirCliente(id){
    \${c.entrega_iniciada_em?
      \`<div class="nota" style="\${c.dias_uteis>5?'background:#fbe4e0;border-left-color:#c0392b':''}">
        Entrega: <b>dia \${c.dias_uteis} de \${c.prazo_maximo} úteis</b>
-       \${c.dias_uteis>5?' — <b>ATRASADA</b>':''}. Prazo final: \${c.prazo_final?new Date(c.prazo_final).toLocaleDateString('pt-BR'):'—'}</div>\`
+       \${c.dias_uteis>5?', <b>ATRASADA</b>':''}. Prazo final: \${c.prazo_final?new Date(c.prazo_final).toLocaleDateString('pt-BR'):'sem prazo'}</div>\`
      :'<div class="nota">A cadência de 5 dias úteis começa quando o cliente responder o formulário.</div>'}
    \${c.dias_para_renovar!==null?
      \`<div class="nota" style="\${c.dias_para_renovar<=21?'':'background:var(--areia);border-left-color:var(--cinza)'}">
@@ -453,9 +453,9 @@ async function abrirCliente(id){
    <section><h4>Links</h4>
      \${(c.contrato_assinado&&c.pagamento_confirmado)?
        \`<div class="link"><b>Formulário do cliente:</b><br>\${base}/f/\${esc(c.formulario_token)}
-         \${c.formulario_em?' <span style="color:var(--verde)">✓ respondido — link consumido</span>':' <span style="color:var(--laranja-esc)">aguardando resposta</span>'}</div>
+         \${c.formulario_em?' <span style="color:var(--verde)">✓ respondido, link consumido</span>':' <span style="color:var(--laranja-esc)">aguardando resposta</span>'}</div>
         \${c.formulario_em?'<button class="acao sec" onclick="novoToken()">Gerar link novo</button>':''}\`
-       :'<div class="link" style="color:var(--cinza)">Formulário travado — marque contrato e pagamento acima.</div>'}
+       :'<div class="link" style="color:var(--cinza)">Formulário travado. Marque contrato e pagamento acima.</div>'}
      \${c.vercel_url?\`<div class="link"><b>Site publicado:</b><br><a href="\${esc(c.vercel_url)}" target="_blank">\${esc(c.vercel_url)}</a></div>\`:''}
      <label>Grupo do WhatsApp com o cliente</label>
      <div style="display:flex;gap:7px"><input id="d_grupo" value="\${esc(c.grupo_whatsapp)}"
@@ -465,6 +465,14 @@ async function abrirCliente(id){
        ?\`<p style="font-size:12px;margin-top:5px"><a href="\${esc(c.grupo_whatsapp)}" target="_blank">abrir o grupo ↗</a></p>\`
        :'<p style="font-size:11.5px;color:var(--laranja-esc);margin-top:5px">Crie o grupo assim que o formulário chegar. É o marco 1 da entrega.</p>'}
      <a class="acao sec" style="display:inline-block;text-decoration:none;padding:8px 15px;margin-top:11px" href="/api/exportar?id=\${c.id}">Baixar entrega (.txt)</a>
+   </section>
+   <section><h4>Informações do formulário</h4>
+     \${c.formulario_em?\`
+       <div class="linha"><span><b>Tempo de mercado:</b> \${esc(c.tempo_mercado)}</span></div>
+       <div class="linha"><span><b>Atende:</b> \${esc(c.localizacoes)}</span></div>
+       <div class="linha"><span><b>Faz:</b> \${esc(c.faz)}</span></div>
+       <div class="linha"><span><b>NÃO faz:</b> \${esc(c.nao_faz)}</span></div>\`
+       :'<p style="color:var(--cinza);font-size:12.5px">Aguardando o cliente responder.</p>'}
    </section>
    <section><h4>Dados do cliente</h4>
      <label>Nome do dono (repetido nas reviews)</label><input id="e_nome_dono" value="\${esc(c.nome_dono)}">
@@ -486,49 +494,13 @@ async function abrirCliente(id){
      <label>Fotos adicionais (uma URL por linha)</label><textarea id="e_fotos"></textarea>
      <p style="font-size:11.5px;color:var(--cinza)">\${(c.midias||[]).length} fotos cadastradas</p>
      <button class="acao" onclick="salvarCliente()">Salvar</button></section>
-   <section><h4>Dashboard do cliente</h4>
-     <div class="kpis" style="margin-bottom:10px">
-       <div class="kpi"><b>\${c.dias_uteis??'—'}</b><span>dia útil de 5</span></div>
-       <div class="kpi"><b>\${(c.marcos||[]).filter(m=>m.concluido).length}/\${(c.marcos||[]).length}</b><span>marcos</span></div>
-       <div class="kpi"><b>\${(c.reviews||[]).filter(r=>r.postada).length}/\${(c.reviews||[]).length}</b><span>reviews postadas</span></div>
-       <div class="kpi"><b>\${(c.midias||[]).filter(m=>m.tipo==='foto').length}</b><span>fotos</span></div>
-       <div class="kpi"><b>\${(c.midias||[]).filter(m=>m.tipo==='video').length}</b><span>vídeos</span></div>
-       <div class="kpi"><b>\${c.leads_recebidos||0}</b><span>leads entregues</span></div>
-     </div>
-     <label>Leads que o cliente já recebeu (para a conversa de renovação)</label>
-     <div style="display:flex;gap:7px"><input type="number" id="d_leads" value="\${c.leads_recebidos||0}" style="flex:1">
-       <button class="acao sec" onclick="salvarResultado()">Salvar</button></div>
-   </section>
-   <section><h4>Site — deploy manual no Vercel</h4>
-     \${c.site_html?\`
-       <a class="acao" style="display:inline-block;text-decoration:none;padding:8px 15px" href="/api/baixar-site?id=\${c.id}">Baixar index.html</a>
-       <p style="font-size:11.5px;color:var(--cinza);margin:8px 0">
-         Suba esse arquivo no Vercel (vercel.com → Add New → Project → arraste a pasta),
-         depois cole a URL aqui embaixo.</p>
-       <label>URL publicada no Vercel</label>
-       <div style="display:flex;gap:7px"><input id="d_vercel" value="\${esc(c.vercel_url)}" placeholder="https://empresa.vercel.app" style="flex:1">
-         <button class="acao sec" onclick="salvarVercel()">Salvar</button></div>
-       \${c.vercel_url?\`<p style="font-size:12px;margin-top:5px"><a href="\${esc(c.vercel_url)}" target="_blank">abrir site do cliente ↗</a></p>\`:''}\`
-       :'<p style="color:var(--cinza);font-size:12.5px">Gere os entregáveis primeiro.</p>'}
-   </section>
    <section><h4>Mídias do cliente (\${(c.midias||[]).length})</h4>
      \${(c.midias||[]).length?\`<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(78px,1fr));gap:6px">
        \${(c.midias||[]).map(m=>m.tipo==='foto'
          ?\`<a href="\${esc(m.caminho)}" target="_blank"><img src="\${esc(m.caminho)}" style="width:100%;height:66px;object-fit:cover;border-radius:5px;border:1px solid var(--areia)"></a>\`
          :\`<a href="\${esc(m.caminho)}" target="_blank" style="display:flex;align-items:center;justify-content:center;height:66px;background:var(--marfim);border:1px solid var(--areia);border-radius:5px;font-size:11px;text-decoration:none;color:var(--preto)">\${esc(m.tipo)}</a>\`
        ).join('')}</div>\`
-       :'<p style="color:var(--cinza);font-size:12.5px">Nenhuma mídia — vem do formulário do cliente.</p>'}
-   </section>
-   <section><h4>Informações do formulário</h4>
-     \${c.formulario_em?\`
-       <div class="linha"><span><b>Tempo de mercado:</b> \${esc(c.tempo_mercado)}</span></div>
-       <div class="linha"><span><b>Atende:</b> \${esc(c.localizacoes)}</span></div>
-       <div class="linha"><span><b>Faz:</b> \${esc(c.faz)}</span></div>
-       <div class="linha"><span><b>NÃO faz:</b> \${esc(c.nao_faz)}</span></div>\`
-       :'<p style="color:var(--cinza);font-size:12.5px">Aguardando o cliente responder.</p>'}
-   </section>
-   <section><h4>Contrato</h4>
-     \${l_contrato(c)}
+       :'<p style="color:var(--cinza);font-size:12.5px">Nenhuma mídia ainda. Ela vem do formulário do cliente.</p>'}
    </section>
    <section><h4>Gerar entregáveis</h4>
      <label>Quantidade de reviews</label><input type="number" id="g_qtd" value="20">
@@ -540,23 +512,51 @@ async function abrirCliente(id){
      <select onchange="statusEnt(\${e.id},this.value)" style="width:auto;margin:0">
        \${['pendente','em_producao','entregue','aprovado'].map(s=>\`<option \${e.status===s?'selected':''}>\${s}</option>\`).join('')}
      </select><span><b>\${((D.entregaveis.find(y=>y[0]===e.tipo)||[])[1])||e.tipo}</b></span></div>\`).join('')}</section>
-   <section><h4>Cadência de entrega — máximo 5 dias</h4>\${(c.marcos||[]).map(m=>\`<div class="linha \${m.concluido?'feito':''}">
-     <input type="checkbox" \${m.concluido?'checked':''} onchange="marco(\${m.id},this.checked)">
-     <span>\${esc(m.marco)} <small style="color:var(--cinza)">· dia \${m.prazo_dias}</small></span></div>\`).join('')}</section>
+   <section><h4>Site · deploy manual no Vercel</h4>
+     \${c.site_html?\`
+       <a class="acao" style="display:inline-block;text-decoration:none;padding:8px 15px" href="/api/baixar-site?id=\${c.id}">Baixar index.html</a>
+       <p style="font-size:11.5px;color:var(--cinza);margin:8px 0">
+         Suba esse arquivo no Vercel (vercel.com → Add New → Project → arraste a pasta),
+         depois cole a URL aqui embaixo.</p>
+       <label>URL publicada no Vercel</label>
+       <div style="display:flex;gap:7px"><input id="d_vercel" value="\${esc(c.vercel_url)}" placeholder="https://empresa.vercel.app" style="flex:1">
+         <button class="acao sec" onclick="salvarVercel()">Salvar</button></div>
+       \${c.vercel_url?\`<p style="font-size:12px;margin-top:5px"><a href="\${esc(c.vercel_url)}" target="_blank">abrir site do cliente ↗</a></p>\`:''}\`
+       :'<p style="color:var(--cinza);font-size:12.5px">Gere os entregáveis primeiro.</p>'}
+   </section>
+   <section><h4>Instagram</h4>\${(c.posts||[]).map(x=>
+     \`<div class="linha"><span><b>\${x.tipo==='destaque'?'★':x.ordem}</b> \${esc(x.titulo)}</span></div>\`).join('')
+     ||'<p style="color:var(--cinza);font-size:12.5px">Gere os entregáveis.</p>'}</section>
    <section><h4>Reviews (\${(c.reviews||[]).filter(r=>r.postada).length}/\${(c.reviews||[]).length} postadas)</h4>
      \${(c.reviews||[]).length?'<p style="font-size:12px;color:var(--cinza);margin-bottom:8px">Quem posta é o <b>cliente</b>. Ritmo: 3 por semana.</p>':''}
      \${(c.reviews||[]).slice(0,5).map(r=>\`<div class="rev"><small>
        <input type="checkbox" \${r.postada?'checked':''} onchange="revPost(\${r.id},this.checked)" style="width:auto">
        \${esc(r.servico)}</small>\${esc(r.texto)}</div>\`).join('')}
      \${(c.reviews||[]).length>5?\`<p style="font-size:12px;color:var(--cinza)">…e mais \${c.reviews.length-5} no arquivo.</p>\`:''}</section>
+   <section><h4>Cadência de entrega · máximo 5 dias</h4>\${(c.marcos||[]).map(m=>\`<div class="linha \${m.concluido?'feito':''}">
+     <input type="checkbox" \${m.concluido?'checked':''} onchange="marco(\${m.id},this.checked)">
+     <span>\${esc(m.marco)} <small style="color:var(--cinza)">· dia \${m.prazo_dias}</small></span></div>\`).join('')}</section>
+   <section><h4>Contrato</h4>
+     \${l_contrato(c)}
+   </section>
+   <section><h4>Dashboard do cliente</h4>
+     <div class="kpis" style="margin-bottom:10px">
+       <div class="kpi"><b>\${c.dias_uteis??'0'}</b><span>dia útil de 5</span></div>
+       <div class="kpi"><b>\${(c.marcos||[]).filter(m=>m.concluido).length}/\${(c.marcos||[]).length}</b><span>marcos</span></div>
+       <div class="kpi"><b>\${(c.reviews||[]).filter(r=>r.postada).length}/\${(c.reviews||[]).length}</b><span>reviews postadas</span></div>
+       <div class="kpi"><b>\${(c.midias||[]).filter(m=>m.tipo==='foto').length}</b><span>fotos</span></div>
+       <div class="kpi"><b>\${(c.midias||[]).filter(m=>m.tipo==='video').length}</b><span>vídeos</span></div>
+       <div class="kpi"><b>\${c.leads_recebidos||0}</b><span>leads entregues</span></div>
+     </div>
+     <label>Leads que o cliente já recebeu (para a conversa de renovação)</label>
+     <div style="display:flex;gap:7px"><input type="number" id="d_leads" value="\${c.leads_recebidos||0}" style="flex:1">
+       <button class="acao sec" onclick="salvarResultado()">Salvar</button></div>
+   </section>
    <section><h4>Zona de risco</h4>
      <button class="acao" style="background:#c0392b" onclick="excluir('cliente',\${c.id})">Excluir este cliente</button>
      <p style="font-size:11.5px;color:var(--cinza);margin-top:6px">
        Apaga o cliente, entregáveis, reviews, posts, marcos e mídias. Não tem como desfazer.</p>
-   </section>
-   <section><h4>Instagram</h4>\${(c.posts||[]).map(x=>
-     \`<div class="linha"><span><b>\${x.tipo==='destaque'?'★':x.ordem}</b> \${esc(x.titulo)}</span></div>\`).join('')
-     ||'<p style="color:var(--cinza);font-size:12.5px">Gere os entregáveis.</p>'}</section>\`;
+   </section>\`;
 }
 
 function irPara(s){
@@ -584,6 +584,23 @@ async function agendar(){const v=V('q_quando');if(!v)return alert('Escolha data 
   const r=await post('/api/agendar',{id:aberto,quando:new Date(v).toISOString()});
   if(r.erro)return alert(r.erro);await carregar();abrirLead(aberto)}
 async function mv(col,pip){
+  // O usuário pediu Mover ACIMA de Contrato, porque mover é o que ele faz o
+  // dia inteiro. O efeito colateral é ficar fácil clicar em "Fechou" sem ter
+  // preenchido o contrato, e os dados do contrato são copiados pro cliente
+  // exatamente nesse clique. Quem não preencheu tem que redigitar do outro
+  // lado. Então a ordem é a que ele pediu, com um aviso na única transição
+  // em que isso importa.
+  if(col==='fechou'){
+    const l=(D.leads||[]).find(x=>x.id===aberto)||{};
+    if(!l.tipo_contrato||!l.valor_contrato){
+      const falta=[!l.tipo_contrato?'modelo de cobrança':'',!l.valor_contrato?'valor':'']
+        .filter(Boolean).join(' e ');
+      if(!confirm('O contrato está sem '+falta+'.\\n\\n'
+        +'Esses dados são copiados pro cliente agora, neste clique. Fechando '
+        +'assim, você vai ter que digitar de novo no operacional.\\n\\n'
+        +'Fechar mesmo assim?')) return;
+    }
+  }
   const r=await post('/api/mover',{id:aberto,coluna:col,pipeline:pip});
   if(r.aviso){alert(r.aviso);setor='operacional';aba='todos';await carregar();return abrirCliente(r.cliente_id)}
   await carregar();abrirLead(aberto);
@@ -600,7 +617,7 @@ async function gerar(){const r=await post('/api/gerar',{id:aberto,qtd_reviews:+V
 function l_contrato(c){
   const tcv=c.tipo_contrato==='TCV', mrr=c.tipo_contrato==='MRR';
   return \`<div class="nota" style="background:var(--op-claro);border-left-color:var(--op)">
-    \${c.tipo_contrato?\`<b>\${esc(c.tipo_contrato)}</b> — \${tcv?'pagamento único':'mensalidade recorrente'}
+    \${c.tipo_contrato?\`<b>\${esc(c.tipo_contrato)}</b> · \${tcv?'pagamento único':'mensalidade recorrente'}
       · \${esc(c.valor_contrato)||'valor não informado'}
       · \${c.duracao_meses||3} meses
       \${c.renovacao_automatica?' · renova automático':' · sem renovação automática'}
@@ -609,9 +626,9 @@ function l_contrato(c){
   </div>
   <label>Modelo</label>
   <select id="kc_tipo">
-    <option value="">— não definido —</option>
-    <option value="TCV" \${tcv?'selected':''}>TCV — pagamento único</option>
-    <option value="MRR" \${mrr?'selected':''}>MRR — mensalidade</option>
+    <option value="">não definido</option>
+    <option value="TCV" \${tcv?'selected':''}>TCV · pagamento único</option>
+    <option value="MRR" \${mrr?'selected':''}>MRR · mensalidade</option>
   </select>
   <div style="display:flex;gap:8px">
     <div style="flex:1"><label>Valor</label><input id="kc_valor" value="\${esc(c.valor_contrato)}"></div>
@@ -640,7 +657,7 @@ async function excluir(tipo,id){
     'Isso apaga '+(tipo==='lead'?'o lead':'o cliente')+' "'+nome+'" e todo o histórico dele.\\n'+
     'Não tem como desfazer.\\n\\nPara confirmar, digite EXCLUIR:');
   if(digitado===null)return;
-  if(digitado.trim()!=='EXCLUIR')return alert('Não apaguei nada — você precisa digitar EXCLUIR exatamente.');
+  if(digitado.trim()!=='EXCLUIR')return alert('Não apaguei nada. Você precisa digitar EXCLUIR exatamente.');
   let r=await post('/api/excluir',{tipo,id,confirmacao:'EXCLUIR'});
   if(r.erro&&r.erro.includes('virou o cliente')){
     if(!confirm(r.erro+'\\n\\nApagar os dois?'))return;
