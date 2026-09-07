@@ -534,7 +534,8 @@ async function abrirCliente(id){
      <label>Quantidade de reviews</label><input type="number" id="g_qtd" value="20">
      <button class="acao" onclick="gerar()">Gerar site + reviews + Instagram</button>
      <p style="font-size:11.5px;color:var(--cinza);margin-top:6px">
-       O site vai ao ar em \${base}/site/\${esc(c.slug)} na hora.</p></section>
+       Gera o HTML do site, as reviews e os briefs do Instagram. O site NÃO vai ao ar
+       sozinho: baixe o index.html na seção abaixo e publique no Vercel.</p></section>
    <section><h4>Entregáveis</h4>\${(c.entregaveis||[]).map(e=>\`<div class="linha">
      <select onchange="statusEnt(\${e.id},this.value)" style="width:auto;margin:0">
        \${['pendente','em_producao','entregue','aprovado'].map(s=>\`<option \${e.status===s?'selected':''}>\${s}</option>\`).join('')}
