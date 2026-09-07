@@ -163,6 +163,17 @@ export default {
               "INSERT INTO marcos (cliente_id,marco,prazo_dias,criado_em) VALUES (?,?,?,?)")
               .bind(c.id, `${m.marco} [${m.quem}]`, m.dia, agora()).run();
         }
+        // Checklist de otimização: nasce junto com os marcos. A entrega não
+        // fecha enquanto os itens obrigatórios não estiverem marcados.
+        const temChk = await env.DB.prepare(
+          "SELECT COUNT(*) AS n FROM checklist WHERE cliente_id=?").bind(c.id).first();
+        if (!(temChk?.n)) {
+          const n2 = agora();
+          for (let i = 0; i < G.CHECKLIST.length; i += 20)
+            await env.DB.batch(G.CHECKLIST.slice(i, i + 20).map(([area, item, obr, det], j) =>
+              env.DB.prepare(`INSERT INTO checklist (cliente_id,area,item,detalhe,obrigatorio,ordem,criado_em)
+                              VALUES (?,?,?,?,?,?,?)`).bind(c.id, area, item, det, obr, i + j, n2)));
+        }
         return json({ ok: true });
       }
 
@@ -334,13 +345,14 @@ async function apiAdmin(p, req, env) {
     // uma esperando a outra): 5 clientes = 27 idas ao banco = 3,5s de espera,
     // e crescia linear. Agora são 6 consultas agregadas em batch, custo constante.
     // o batch do painel e o dos KPIs são independentes: vão em paralelo, não em fila
-    const [[qL, qC, qEnt, qRev, qMk, qMd], kpisPainel] = await Promise.all([
+    const [[qL, qC, qEnt, qRev, qMk, qChk, qMd], kpisPainel] = await Promise.all([
       D.batch([
         D.prepare("SELECT * FROM leads WHERE arquivado=0 ORDER BY entrou_coluna_em DESC"),
         D.prepare("SELECT * FROM clientes WHERE arquivado=0 ORDER BY id DESC"),
         D.prepare("SELECT id,tipo,status,url,cliente_id FROM entregaveis"),
         D.prepare("SELECT cliente_id, COUNT(*) t, SUM(postada) p FROM reviews GROUP BY cliente_id"),
         D.prepare("SELECT cliente_id, COUNT(*) t, SUM(concluido) c FROM marcos GROUP BY cliente_id"),
+        D.prepare("SELECT cliente_id, COUNT(*) t, SUM(feito) f FROM checklist WHERE obrigatorio=1 GROUP BY cliente_id"),
         D.prepare("SELECT cliente_id, tipo, COUNT(*) n FROM midias GROUP BY cliente_id, tipo"),
       ]),
       kpis(D),
@@ -348,13 +360,14 @@ async function apiAdmin(p, req, env) {
     const leads = qL.results, cls = qC.results;
 
     // indexa os agregados por cliente_id antes de costurar
-    const ents = new Map(), revs = new Map(), mks = new Map(), mds = new Map();
+    const ents = new Map(), revs = new Map(), mks = new Map(), mds = new Map(), chks = new Map();
     for (const e of qEnt.results) {
       if (!ents.has(e.cliente_id)) ents.set(e.cliente_id, []);
       ents.get(e.cliente_id).push({ id: e.id, tipo: e.tipo, status: e.status, url: e.url });
     }
     for (const r of qRev.results) revs.set(r.cliente_id, r);
     for (const m of qMk.results) mks.set(m.cliente_id, m);
+    for (const k of qChk.results) chks.set(k.cliente_id, k);
     for (const x of qMd.results) {
       if (!mds.has(x.cliente_id)) mds.set(x.cliente_id, {});
       mds.get(x.cliente_id)[x.tipo] = x.n;
@@ -376,7 +389,13 @@ async function apiAdmin(p, req, env) {
       c.reviews_total = r?.t || 0; c.reviews_postadas = r?.p || 0;
       const mk = mks.get(c.id);
       c.marcos_total = mk?.t || 0; c.marcos_feitos = mk?.c || 0;
-      c.entrega_completa = c.marcos_total > 0 && c.marcos_feitos >= c.marcos_total;
+      const ck = chks.get(c.id);
+      c.chk_total = ck?.t || 0; c.chk_feitos = ck?.f || 0;
+      const entOk = c.entregaveis.filter((e) => ["entregue", "aprovado"].includes(e.status)).length;
+      c.ent_total = c.entregaveis.length; c.ent_feitos = entOk;
+      c.entrega_completa = c.marcos_total > 0 && c.marcos_feitos >= c.marcos_total
+        && c.chk_total > 0 && c.chk_feitos >= c.chk_total
+        && c.ent_total > 0 && entOk >= c.ent_total;
       // atrasado só vale se o prazo passou E a entrega ainda não terminou
       c.atrasado = c.dias_uteis !== null && c.dias_uteis > G.PRAZO_MAXIMO_DIAS && !c.entrega_completa;
       c.midias = mds.get(c.id) || {};
@@ -528,13 +547,28 @@ async function apiAdmin(p, req, env) {
     c.prazo_maximo = G.PRAZO_MAXIMO_DIAS;
     // as 5 listas vão num round-trip só. E os marcos já vêm nessa leva:
     // antes a tabela marcos era consultada duas vezes na mesma requisição.
-    const TABS = ["entregaveis", "reviews", "posts", "marcos", "midias"];
+    const TABS = ["entregaveis", "reviews", "posts", "marcos", "midias", "checklist"];
     const res = await D.batch(TABS.map((t) =>
-      D.prepare(`SELECT * FROM ${t} WHERE cliente_id=? ORDER BY id`).bind(id)));
+      D.prepare(`SELECT * FROM ${t} WHERE cliente_id=? ORDER BY ${t === "checklist" ? "ordem" : "id"}`).bind(id)));
     TABS.forEach((t, i) => { c[t] = res[i].results; });
     const total = c.marcos.length, feitos = c.marcos.filter((m) => m.concluido).length;
     c.marcos_total = total; c.marcos_feitos = feitos;
-    c.entrega_completa = total > 0 && feitos >= total;
+    // A entrega só fecha com as TRÊS coisas prontas. Antes olhava só os
+    // marcos, e dava pra declarar entrega completa com o Google Business
+    // Profile ainda pendente, que é a peça de maior retorno do pacote.
+    const obr = c.checklist.filter((k) => k.obrigatorio);
+    c.chk_total = obr.length;
+    c.chk_feitos = obr.filter((k) => k.feito).length;
+    const entOk = c.entregaveis.filter((e) => ["entregue", "aprovado"].includes(e.status)).length;
+    c.ent_total = c.entregaveis.length; c.ent_feitos = entOk;
+    c.entrega_completa = total > 0 && feitos >= total
+      && obr.length > 0 && c.chk_feitos >= obr.length
+      && c.ent_total > 0 && entOk >= c.ent_total;
+    c.trava_entrega = [
+      feitos < total ? `${total - feitos} marco(s)` : "",
+      c.chk_feitos < obr.length ? `${obr.length - c.chk_feitos} item(ns) do checklist` : "",
+      entOk < c.ent_total ? `${c.ent_total - entOk} entregável(is)` : "",
+    ].filter(Boolean).join(" · ");
     c.atrasado = c.dias_uteis !== null && c.dias_uteis > G.PRAZO_MAXIMO_DIAS && !c.entrega_completa;
     const rv = parseData(c.renovacao_em);
     c.dias_para_renovar = rv ? Math.ceil((rv - Date.now()) / 86400000) : null;
@@ -721,6 +755,11 @@ async function apiAdmin(p, req, env) {
   if (p === "/api/entregavel") {
     await D.prepare("UPDATE entregaveis SET status=?,url=?,nota=?,atualizado_em=? WHERE id=?")
       .bind(corpo.status, corpo.url || null, corpo.nota || null, agora(), corpo.eid).run();
+    return json({ ok: true });
+  }
+  if (p === "/api/checklist") {
+    await D.prepare("UPDATE checklist SET feito=?,feito_em=? WHERE id=? AND cliente_id=?")
+      .bind(corpo.feito ? 1 : 0, corpo.feito ? agora() : null, corpo.cid, corpo.id).run();
     return json({ ok: true });
   }
   if (p === "/api/marco") {

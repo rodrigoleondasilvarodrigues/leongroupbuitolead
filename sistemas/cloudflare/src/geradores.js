@@ -261,3 +261,108 @@ export const ENTREGAVEIS = [
   ["gmb", "Google Meu Negócio"], ["site", "Site"],
   ["instagram", "Instagram (12 posts + 4 destaques)"], ["logo", "Logo"],
 ];
+
+/* ═══════════════════════ CHECKLIST DE OTIMIZAÇÃO ═══════════════════════
+   Nasce junto com os marcos, quando o cliente responde o formulário.
+   A entrega NÃO fecha enquanto os itens obrigatórios não estiverem feitos.
+
+   Cada item tem um "detalhe" que é o passo a passo. A ideia é que quem
+   executa não precise lembrar de nada nem procurar tutorial: está aqui.
+
+   ⚠ Google Meu Negócio e Google Business Profile são O MESMO produto. O
+   Google renomeou em 2021. Aqui é tratado como uma área só: "gbp".
+
+   obrigatorio: 0 = recomendado, não trava a entrega.               */
+export const CHECKLIST = [
+  // ───────────── GOOGLE BUSINESS PROFILE ─────────────
+  ["gbp", "Perfil verificado pelo Google", 1,
+   "Sem verificação o perfil não aparece na busca nem no mapa. O Google pede cartão postal, vídeo ou telefone, e ele escolhe qual. Vídeo costuma sair no mesmo dia: grave o veículo com a marca, a ferramenta e a fachada ou o material, sem cortes. Este item trava todos os outros: comece por ele."],
+  ["gbp", "Nome do negócio exatamente igual ao do site e dos documentos", 1,
+   "Se a LLC é 'Ribeiro Hardwood Flooring LLC', é isso que vai. NUNCA enfie palavra-chave no nome (tipo 'Ribeiro Hardwood Flooring Boston Best Floors'). Isso é violação explícita das diretrizes e é o motivo número 1 de suspensão de perfil de contractor."],
+  ["gbp", "Categoria principal certa, a mais específica que existir", 1,
+   "'Flooring contractor' e não 'Contractor'. 'Hardwood floor refinishing service' se for o carro-chefe. A categoria principal é o que mais pesa no ranqueamento local: escolher genérico joga fora a maior alavanca gratuita que existe."],
+  ["gbp", "Categorias secundárias preenchidas", 0,
+   "Até 9. Uma por serviço real que ele presta. Não invente categoria que ele não atende: gera lead ruim e reclamação."],
+  ["gbp", "Área de atendimento configurada, sem endereço público", 1,
+   "Contractor que vai até a casa do cliente é 'service area business'. Marque as cidades atendidas e ESCONDA o endereço. Deixar o endereço residencial visível é violação e expõe a casa dele. Use as cidades que ele listou no formulário."],
+  ["gbp", "Telefone local, o mesmo que está no site", 1,
+   "Número com DDD da região. O mesmo dígito por dígito no perfil, no site e no Instagram. Divergência de telefone entre as fontes derruba a confiança do Google no negócio."],
+  ["gbp", "Site do cliente apontado no perfil", 1,
+   "Cole a URL do Vercel no campo Website. Este é metade do 'conectar o site ao Google': o perfil aponta pro site."],
+  ["gbp", "Link do perfil colocado no site", 1,
+   "A outra metade. Pegue o link curto do perfil (Compartilhar, no painel do GBP) e ponha no rodapé do site, com um botão 'See our reviews on Google'. Os dois apontando um pro outro é o que fecha a ligação entre eles."],
+  ["gbp", "Horário de funcionamento preenchido", 1,
+   "Inclusive sábado. Perfil sem horário aparece como 'horário não informado' e perde clique pra quem tem."],
+  ["gbp", "Descrição de 750 caracteres escrita", 1,
+   "Em inglês. Cite os serviços principais e 3 ou 4 cidades atendidas, de forma natural. Não repita a mesma palavra dez vezes: o Google entende contexto e repetição forçada não ajuda."],
+  ["gbp", "Serviços cadastrados um a um, com descrição", 1,
+   "Não deixe só a categoria. Cadastre 'Hardwood installation', 'Hardwood refinishing', 'Tile installation' etc, cada um com duas linhas. É o que faz o perfil aparecer em busca de serviço específico."],
+  ["gbp", "Fotos: logo, capa e no mínimo 10 de obra", 1,
+   "Use as fotos que o cliente mandou no formulário. Foto de banco de imagem em perfil de contractor é percebida na hora e destrói a confiança. Adicione foto do veículo com a marca e da equipe, se houver."],
+  ["gbp", "Atributos preenchidos, principalmente idioma", 0,
+   "Marque 'Speaks Portuguese' e 'Identifies as Latino-owned' se ele quiser. Para o público brasileiro nos Estados Unidos isso é filtro de escolha, não enfeite."],
+  ["gbp", "Perguntas e respostas semeadas", 0,
+   "O próprio dono pode publicar pergunta e responder. Coloque 3 a 5 que ele ouve toda semana: quanto tempo leva, se dá garantia, se atende tal cidade, se faz orçamento grátis. Aparece direto na busca."],
+  ["gbp", "Processo de avaliação entregue e explicado ao cliente", 1,
+   "Link direto de avaliação, mensagem-modelo em inglês, e o momento certo de pedir: na entrega da obra, com o cliente na frente do resultado. Avaliação é o ativo de maior retorno do perfil."],
+  ["gbp", "Nenhuma avaliação fabricada, em hipótese nenhuma", 1,
+   "Avaliação inventada suspende o perfil e, desde 2024, a regra da FTC prevê multa civil que alcança quem fornece, não só quem publica. Um perfil suspenso é o pior dano possível para um prestador local. Confirme que o cliente entendeu isso."],
+
+  // ───────────── SITE ─────────────
+  ["site", "Nome, área de atendimento e telefone idênticos aos do perfil", 1,
+   "É o que o pessoal de SEO local chama de NAP consistente. Qualquer divergência entre site e perfil enfraquece os dois. Confira caractere por caractere."],
+  ["site", "Telefone clicável fixo no topo, visível no celular", 1,
+   "Link 'tel:' de verdade, não texto. A maior parte do tráfego de contractor é celular e a ação é ligar. Botão de ligar que exige rolar a página perde a ligação."],
+  ["site", "Uma seção ou página por serviço principal", 1,
+   "Com o termo que a pessoa realmente digita: 'hardwood floor refinishing', não 'nossos serviços'. Cada serviço com título próprio."],
+  ["site", "Todas as cidades atendidas escritas no site", 1,
+   "Como texto indexável, não como imagem. As cidades que o cliente listou no formulário são a maior alavanca de SEO local que ele tem. Se ele deu 10 cidades e o site não cita nenhuma, o trabalho está pela metade."],
+  ["site", "schema.org LocalBusiness em JSON-LD", 1,
+   "Bloco de dados estruturados com nome, telefone, área atendida, serviços e horário, mais 'sameAs' apontando pro perfil do Google. É o que ajuda o buscador a entender que site e perfil são o mesmo negócio."],
+  ["site", "Título e descrição próprios em cada página", 1,
+   "Título com serviço e cidade. Descrição que dá vontade de clicar, não uma lista de palavras."],
+  ["site", "Formulário de orçamento que chega em algum lugar", 1,
+   "Defina ANTES de publicar para onde vai: WhatsApp do cliente, e-mail, ou o CRM. Formulário que não entrega em lugar nenhum é o erro mais caro e mais silencioso desta lista."],
+  ["site", "Fotos reais de obra, com antes e depois", 1,
+   "Só as fotos do cliente. Antes e depois é o formato que mais converte em obra."],
+  ["site", "HTTPS ativo e site abrindo rápido no celular", 1,
+   "O Vercel já entrega HTTPS. Teste a velocidade no celular, em rede móvel, não no Wi-Fi do escritório."],
+  ["site", "Google Search Console verificado", 1,
+   "É onde você vê o que as pessoas digitaram pra chegar no site. Sem isso você não tem como provar resultado na conversa de renovação."],
+  ["site", "Avaliações do Google aparecendo no site", 0,
+   "Depois que existirem avaliações reais. Nunca antes, e nunca inventadas."],
+  ["site", "Selo de licença e seguro", 0,
+   "Só se o cliente realmente tiver. Se tiver, é dos elementos que mais aumentam confiança nos Estados Unidos."],
+
+  // ───────────── INSTAGRAM ─────────────
+  ["instagram", "Bio com serviço e cidade em inglês", 1,
+   "A bio é o resultado de busca dentro do Instagram. 'Hardwood flooring · Framingham, MA' funciona melhor que uma frase bonita."],
+  ["instagram", "Link do site na bio", 1,
+   "Apontando pro site no Vercel. Se um dia tiver domínio próprio, troque aqui também. O Instagram é onde muita gente descobre o negócio, e um perfil sem link manda a pessoa embora sem caminho nenhum."],
+  ["instagram", "Botão de contato configurado", 1,
+   "Converta a conta para perfil profissional (Configurações, Conta, Mudar para conta profissional) e preencha telefone e e-mail. Isso libera os botões de Ligar e Mensagem no topo do perfil, que é como o dono de casa fala com ele sem sair do aplicativo."],
+  ["instagram", "12 posts publicados", 1,
+   "Os briefs saem prontos na geração. Perfil com 3 posts passa a mesma mensagem que perfil vazio."],
+  ["instagram", "4 destaques montados com capa", 1,
+   "Antes e depois, serviços, região atendida e depoimentos reais."],
+  ["instagram", "Login e senha ficam COM O CLIENTE", 1,
+   "A agência nunca guarda credencial de cliente. Se você precisou entrar para configurar, confirme que ele trocou a senha depois e que tem o acesso na mão dele."],
+
+  // ───────────── LOGO ─────────────
+  ["logo", "Arquivo entregue em PNG com fundo transparente", 1,
+   "Três arquivos no mínimo: a principal em PNG transparente, uma versão para fundo claro e uma para fundo escuro. Fundo escuro importa porque o Instagram e o site usam faixas pretas, e logo preta em fundo preto some."],
+  ["logo", "Logo aplicada nos três lugares", 1,
+   "Site, perfil do Google e Instagram, na mesma versão. Marca diferente em cada canal parece empresa diferente."],
+  ["logo", "Arquivos originais entregues ao cliente", 1,
+   "Ele é o dono da marca dele. Mande a pasta com todos os formatos."],
+
+  // ───────────── GERAL ─────────────
+  ["geral", "Grupo de WhatsApp criado e link salvo no CRM", 1,
+   "Toda a comunicação da entrega passa por ali. Sem um lugar único, a conversa se espalha e ninguém sabe o que foi decidido."],
+  ["geral", "Nenhuma senha do cliente guardada pela agência", 1,
+   "Confirme que Instagram, Google e domínio estão em nome dele, com acesso dele. Se a agência sair, ele fica com tudo."],
+  ["geral", "Pasta de entrega enviada", 1,
+   "O arquivo de entrega com tudo: links, reviews, briefs e os próximos passos dele."],
+  ["geral", "Reunião de entrega feita, com o cliente vendo a tela", 1,
+   "Mostre o perfil, o site e o Instagram funcionando. Entrega enviada por mensagem e não apresentada é entrega que o cliente não sabe que recebeu."],
+];

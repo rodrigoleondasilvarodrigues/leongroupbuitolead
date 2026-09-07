@@ -78,6 +78,26 @@ label{font-size:11.5px;color:var(--cinza);display:block;margin-bottom:2px}
 .linha{font-size:12.5px;padding:6px 0;border-bottom:1px solid #f2ede4;display:flex;gap:8px;align-items:flex-start}
 .linha.feito{color:var(--cinza);text-decoration:line-through}
 .linha input[type=checkbox]{width:auto;margin:3px 0 0}
+/* ── checklist de otimização ── */
+.chk-barra{height:6px;background:var(--areia);border-radius:99px;overflow:hidden;margin:8px 0 4px}
+.chk-barra i{display:block;height:100%;background:var(--op);transition:width .4s}
+.chk-barra.pronto i{background:var(--verde)}
+.chk-area{margin-top:14px}
+.chk-area>b{font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--op);
+  display:flex;gap:8px;align-items:baseline}
+.chk-area>b em{font-style:normal;margin-left:auto;color:var(--cinza);letter-spacing:0;
+  text-transform:none;font-size:11px;font-weight:400}
+.chk-item{display:grid;grid-template-columns:auto 1fr;gap:9px;padding:8px 0;
+  border-bottom:1px solid #f2ede4}
+.chk-item input{width:auto;margin:3px 0 0}
+.chk-item .t{font-size:12.5px;font-weight:600;line-height:1.35}
+.chk-item.ok .t{color:var(--cinza);text-decoration:line-through;font-weight:400}
+.chk-item .obg{color:var(--laranja);font-weight:700}
+.chk-item .d{font-size:11.5px;color:var(--cinza);line-height:1.5;margin-top:3px}
+.chk-item.ok .d{display:none}
+.trava{background:#fbe4e0;border-left:3px solid #c0392b;padding:10px 13px;border-radius:4px;
+  font-size:12.5px;margin-top:10px}
+.trava b{color:#c0392b}
 .rev{background:var(--marfim);border:1px solid var(--areia);border-radius:6px;padding:10px;margin-bottom:7px;font-size:12.5px}
 .rev small{color:var(--cinza);display:block;margin-bottom:3px}
 .nota{background:var(--laranja-pal);border-left:3px solid var(--laranja);padding:10px 13px;border-radius:4px;font-size:12.5px;margin:10px 0}
@@ -536,6 +556,7 @@ async function abrirCliente(id){
    <section><h4>Cadência de entrega · máximo 5 dias</h4>\${(c.marcos||[]).map(m=>\`<div class="linha \${m.concluido?'feito':''}">
      <input type="checkbox" \${m.concluido?'checked':''} onchange="marco(\${m.id},this.checked)">
      <span>\${esc(m.marco)} <small style="color:var(--cinza)">· dia \${m.prazo_dias}</small></span></div>\`).join('')}</section>
+   <section><h4>Checklist de otimização</h4>\${l_checklist(c)}</section>
    <section><h4>Contrato</h4>
      \${l_contrato(c)}
    </section>
@@ -613,6 +634,39 @@ async function salvarCliente(){await post('/api/cliente-editar',{id:aberto,nome_
 async function gerar(){const r=await post('/api/gerar',{id:aberto,qtd_reviews:+V('g_qtd')});
   if(r.erro)return alert(r.erro);alert('Gerado: '+r.gerado.join(', ')+'\\n\\n'+(r.proximo||''));
   await carregar();abrirCliente(aberto)}
+/* Checklist de otimização, agrupado por área.
+   O "detalhe" de cada item é o passo a passo: quem executa não precisa
+   lembrar de nada. Some quando o item é marcado, pra lista não virar
+   parede de texto depois de pronta.                                   */
+const AREAS_CHK={gbp:'Google Business Profile',site:'Site',instagram:'Instagram',
+                 logo:'Logo',geral:'Geral'};
+function l_checklist(c){
+  const lista=c.checklist||[];
+  if(!lista.length) return '<p style="color:var(--cinza);font-size:12.5px">'
+    +'O checklist nasce quando o cliente responde o formulário.</p>';
+  const obr=lista.filter(k=>k.obrigatorio), fei=obr.filter(k=>k.feito).length;
+  const pct=obr.length?Math.round(100*fei/obr.length):0;
+  const pronto=fei>=obr.length;
+  let h='<div style="font-size:12.5px"><b>'+fei+' de '+obr.length+'</b> itens obrigatórios'
+    +(pronto?' <span style="color:var(--verde)">· tudo pronto</span>':'')+'</div>'
+    +'<div class="chk-barra '+(pronto?'pronto':'')+'"><i style="width:'+pct+'%"></i></div>';
+  if(c.trava_entrega) h+='<div class="trava">A entrega não fecha ainda. Falta: <b>'
+    +esc(c.trava_entrega)+'</b></div>';
+  for(const a in AREAS_CHK){
+    const itens=lista.filter(k=>k.area===a); if(!itens.length) continue;
+    const o=itens.filter(k=>k.obrigatorio), f=o.filter(k=>k.feito).length;
+    h+='<div class="chk-area"><b>'+esc(AREAS_CHK[a])+'<em>'+f+'/'+o.length+'</em></b>'
+      +itens.map(k=>'<label class="chk-item '+(k.feito?'ok':'')+'">'
+        +'<input type="checkbox" '+(k.feito?'checked':'')
+        +' onchange="chk('+k.id+',this.checked)">'
+        +'<span><span class="t">'+esc(k.item)
+        +(k.obrigatorio?' <span class="obg">*</span>':' <small style="color:var(--cinza);font-weight:400">(recomendado)</small>')
+        +'</span><span class="d">'+esc(k.detalhe||'')+'</span></span></label>').join('')
+      +'</div>';
+  }
+  return h;
+}
+
 // bloco de contrato reaproveitado no painel do cliente
 function l_contrato(c){
   const tcv=c.tipo_contrato==='TCV', mrr=c.tipo_contrato==='MRR';
@@ -680,6 +734,7 @@ async function novoToken(){if(!confirm('Gerar link novo? O atual deixa de funcio
   await post('/api/novo-token-formulario',{id:aberto});await carregar();abrirCliente(aberto)}
 const statusEnt=(eid,s)=>post('/api/entregavel',{eid,status:s}).then(carregar);
 const marco=(mid,v)=>post('/api/marco',{mid,concluido:v}).then(()=>abrirCliente(aberto));
+const chk=(id,v)=>post('/api/checklist',{id,cid:aberto,feito:v}).then(carregar).then(()=>abrirCliente(aberto));
 const revPost=(rid,v)=>post('/api/review-postada',{rid,postada:v}).then(()=>abrirCliente(aberto));
 /* ═══════════════════ RELÓGIOS ═══════════════════
    Três fusos importam nesta operação:
