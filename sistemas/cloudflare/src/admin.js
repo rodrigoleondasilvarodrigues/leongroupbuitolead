@@ -262,6 +262,13 @@ const api=(u,o)=>fetch(u,o).then(r=>r.json());
 const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 const post=(u,b)=>api(u,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b)});
 const hrs=i=>i?((Date.now()-new Date(i))/36e5):0;
+/* Contratado e recebido são números diferentes. Mostrar um valor solto sem
+   dizer qual é dos dois é como se contava faturamento que ainda não entrou. */
+const dinheiro=c=>{
+  if(c.pagamento_confirmado&&c.valor_pago) return ' · <b>'+esc(c.valor_pago)+'</b> recebido';
+  if(c.valor_contrato) return ' · '+esc(c.valor_contrato)+' <span style="color:var(--laranja-esc)">a receber</span>';
+  return '';
+};
 let D={},setor='comercial',aba='leads_novos',aberto=null,tipoAberto=null;
 // sub-visões do operacional — filtram a mesma lista de clientes
 const VISOES_OP={
@@ -349,7 +356,7 @@ function render(){
             :x.atrasado?'<b style="color:#c0392b">ENTREGA ATRASADA</b>'
             :x.renovacao_perto?'<b style="color:var(--laranja-esc)">renova em '+x.dias_para_renovar+'d</b>'
             :x.dias+' dias'}</span></div>
-          <div class="meta">\${esc(x.nome_contato)}\${x.nicho?' · '+esc(x.nicho):''}\${x.valor_pago?' · '+esc(x.valor_pago):''}
+          <div class="meta">\${esc(x.nome_contato)}\${x.nicho?' · '+esc(x.nicho):''}\${dinheiro(x)}
             \${x.reviews_total?' · '+x.reviews_postadas+'/'+x.reviews_total+' reviews':''}
             \${x.marcos_total?' · '+x.marcos_feitos+'/'+x.marcos_total+' marcos':''}
             \${x.midias&&x.midias.foto?' · '+x.midias.foto+' fotos':''}
@@ -458,7 +465,7 @@ async function abrirCliente(id){
   const base=location.origin;
   p.innerHTML=\`<button class="x" onclick="fechar()">×</button>
    <h2 style="font-size:18px">\${esc(c.empresa)}</h2>
-   <div style="color:var(--cinza);font-size:12.5px">\${esc(c.nome_contato)} · dia \${c.dias}\${c.valor_pago?' · '+esc(c.valor_pago):''}</div>
+   <div style="color:var(--cinza);font-size:12.5px">\${esc(c.nome_contato)} · dia \${c.dias}\${dinheiro(c)}</div>
    \${blocoRelogio(c,'Hora do cliente')}
    \${(()=>{const[t,d]=c.proximo_passo||['',''];return t?\`<div class="passo-agora \${c.entrega_completa?'fim':''}">
      <div class="r">\${c.entrega_completa?'Situação':'O que fazer agora'}</div>

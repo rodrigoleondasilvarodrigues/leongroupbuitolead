@@ -13,3 +13,6 @@ node testes/admin.mjs
 echo
 echo "── fusos horários ──"
 node testes/fusos.js
+echo
+echo "── contratado x recebido ──"
+node testes/valor-recebido.js

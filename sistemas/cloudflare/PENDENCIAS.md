@@ -36,7 +36,7 @@ fuso do lead enquanto ele digita. Algo como:
 Os dados já existem: `fusoDe(lead)` no admin.js devolve o fuso, e a função
 `difBsb` já calcula a diferença.
 
-## 3. valor_pago preenchido antes do pagamento
+## 3. valor_pago preenchido antes do pagamento ✅ RESOLVIDO, ver item 8
 
 Na virada de lead para cliente, `criarClienteDoLead` grava
 `valor_pago = corpo.valor_pago || lead.valor_contrato`. No teste, o cliente
@@ -163,26 +163,30 @@ parte 1 é mais segura, porque trava sem tirar a decisão da mão dele.
 
 ---
 
-## 7. Mensagem no GRUPO do WhatsApp (ainda aberta)
+## 7. Mensagem no grupo do WhatsApp
 
-Hoje o sistema manda para o telefone do cliente, no privado. Não consegue
-mandar para o grupo.
+Fora da lista por enquanto, a pedido do usuário: ele ainda não contratou a
+Z-API e vai voltar nesse assunto depois. Fica registrado só o diagnóstico,
+para não ter que redescobrir:
 
-O campo `grupo_whatsapp` guarda o **link de convite**
-(`chat.whatsapp.com/XXXX`). A Z-API não envia para link de convite: ela envia
-para o **ID do grupo**, que é outro identificador. São coisas diferentes e o
-sistema só tem uma delas.
+O campo `grupo_whatsapp` guarda o LINK DE CONVITE (`chat.whatsapp.com/XXXX`).
+A Z-API não envia para link de convite, ela envia para o ID do grupo, que é
+outro identificador. Resolver exige guardar o ID, e provavelmente buscar a
+lista de grupos da instância conectada para o operador escolher numa lista
+em vez de digitar.
 
-**Para resolver:**
-1. Guardar o ID do grupo, não só o link. A Z-API tem endpoint que lista os
-   grupos da instância conectada: dá pra buscar e deixar o operador escolher
-   numa lista, em vez de digitar
-2. Confirmar o formato exato do identificador na documentação deles no
-   momento de configurar, porque isso muda entre provedores
-3. Avisar o cliente NO GRUPO a cada etapa da entrega concluída. Hoje ele só
-   recebe a cobrança do formulário e depois silêncio até o fim. É justamente
-   o que faz o grupo valer a pena
+## 8. valor_pago antes do pagamento ✅ RESOLVIDO em 2026-09-07
 
-## 8. valor_pago antes do pagamento (ainda aberta, item 3 acima)
+Eram dois números tratados como um só. Agora estão separados:
 
-Continua pendente. Ver item 3.
+    valor_contrato = CONTRATADO, o que foi combinado no fechamento
+    valor_pago     = RECEBIDO, dinheiro que entrou de verdade
+
+- A virada de lead para cliente não grava mais `valor_pago`. Na virada nada
+  entrou ainda
+- `valor_pago` nasce quando a chave de pagamento confirmado é ligada,
+  sugerido pelo valor do contrato e editável
+- Desligar a chave zera o `valor_pago`: pagamento não confirmado não conta
+  como receita
+- A tela mostra os dois estados de forma diferente: `6900 a receber` em
+  laranja, ou `6900 recebido` em negrito

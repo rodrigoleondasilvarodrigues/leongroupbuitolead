@@ -447,9 +447,14 @@ async function apiAdmin(p, req, env) {
     if (corpo.coluna === "fechou") {
       const ja = await D.prepare("SELECT id FROM clientes WHERE lead_origem_id=?").bind(l.id).first();
       if (!ja) {
-        // valor_pago é dinheiro que ENTROU. O budget do BANT é só o que o lead
-        // disse que podia gastar na qualificação — nunca deve virar receita.
-        const novo = await criarClienteDoLead(D, l, corpo.valor_pago || l.valor_contrato || null);
+        // Dois números diferentes, e confundir os dois vira faturamento
+        // fantasma:
+        //   valor_contrato = CONTRATADO, o que foi combinado
+        //   valor_pago     = RECEBIDO, dinheiro que entrou de verdade
+        // Na virada nada entrou ainda: o pagamento só é confirmado depois,
+        // na chave do portão. Copiar o contratado pra cá fazia o cliente
+        // nascer marcado como pago sem ninguém ter pagado nada.
+        const novo = await criarClienteDoLead(D, l, corpo.valor_pago || null);
         await ev(D, { lead_id: l.id, cliente_id: novo.id, tipo: "convertido",
                       detalhe: `virou cliente #${novo.id} (${novo.slug})` });
         return json({ ok: true, cliente_id: novo.id, slug: novo.slug,
@@ -674,7 +679,18 @@ async function apiAdmin(p, req, env) {
     // destrava o formulário do cliente: contrato assinado e/ou pagamento confirmado
     const campos = [], vals = [];
     if ("contrato" in corpo) { campos.push("contrato_assinado=?", "contrato_em=?"); vals.push(corpo.contrato ? 1 : 0, corpo.contrato ? agora() : null); }
-    if ("pagamento" in corpo) { campos.push("pagamento_confirmado=?", "pagamento_em=?"); vals.push(corpo.pagamento ? 1 : 0, corpo.pagamento ? agora() : null); }
+    if ("pagamento" in corpo) {
+      campos.push("pagamento_confirmado=?", "pagamento_em=?");
+      vals.push(corpo.pagamento ? 1 : 0, corpo.pagamento ? agora() : null);
+      // É AQUI que o dinheiro entra, e só aqui. Ligando a chave, o recebido
+      // nasce sugerido pelo contratado e fica editável. Desligando, ele é
+      // zerado: pagamento não confirmado não pode contar como receita.
+      const at = await D.prepare("SELECT valor_contrato,valor_pago FROM clientes WHERE id=?")
+        .bind(corpo.id).first();
+      if (corpo.pagamento) {
+        if (!at?.valor_pago && at?.valor_contrato) { campos.push("valor_pago=?"); vals.push(at.valor_contrato); }
+      } else { campos.push("valor_pago=?"); vals.push(null); }
+    }
     if (!campos.length) return json({ erro: "nada a alterar" }, 400);
     await D.prepare(`UPDATE clientes SET ${campos.join(",")},atualizado_em=? WHERE id=?`)
       .bind(...vals, agora(), corpo.id).run();
