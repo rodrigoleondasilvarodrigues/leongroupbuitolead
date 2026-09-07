@@ -564,6 +564,28 @@ async function apiAdmin(p, req, env) {
     c.entrega_completa = total > 0 && feitos >= total
       && obr.length > 0 && c.chk_feitos >= obr.length
       && c.ent_total > 0 && entOk >= c.ent_total;
+    /* O QUE FAZER AGORA. O painel tem 14 seções e nenhuma dizia por onde
+       começar. Esta é a única pergunta que importa ao abrir o cliente. */
+    const temSite = !!c.site_html, temPosts = c.posts.length > 0;
+    c.proximo_passo =
+      !c.contrato_assinado || !c.pagamento_confirmado
+        ? ["Marque contrato e pagamento", "É o portão. Sem os dois, o formulário do cliente nem abre."]
+      : !c.formulario_em
+        ? ["Mande o link do formulário", "Está na seção Links. Sem ele preencher, não há material pra trabalhar e o prazo nem começa."]
+      : !c.grupo_whatsapp
+        ? ["Crie o grupo no WhatsApp e cole o link", "Marco 1 da entrega. É onde toda a comunicação vai passar."]
+      : !temSite || !temPosts
+        ? ["Gere os entregáveis", "Um clique produz o site, as reviews e os briefs do Instagram."]
+      : !c.vercel_url
+        ? ["Publique o site no Vercel", "Baixe o index.html, suba no Vercel e cole a URL de volta aqui."]
+      : c.chk_feitos < c.chk_total
+        ? [`Trabalhe o checklist: faltam ${c.chk_total - c.chk_feitos}`, "Cada item tem o passo a passo junto. Comece pelo Google Business Profile, é o que mais move o ponteiro."]
+      : feitos < total
+        ? [`Marque os marcos: faltam ${total - feitos}`, "A cadência dos 5 dias úteis."]
+      : entOk < c.ent_total
+        ? ["Feche os entregáveis", "Marque cada um como entregue na seção Entregáveis."]
+      : ["Entrega concluída", "Atualize os leads recebidos todo mês, é o número da conversa de renovação."];
+
     c.trava_entrega = [
       feitos < total ? `${total - feitos} marco(s)` : "",
       c.chk_feitos < obr.length ? `${obr.length - c.chk_feitos} item(ns) do checklist` : "",

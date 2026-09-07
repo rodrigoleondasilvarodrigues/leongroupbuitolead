@@ -98,6 +98,15 @@ label{font-size:11.5px;color:var(--cinza);display:block;margin-bottom:2px}
 .trava{background:#fbe4e0;border-left:3px solid #c0392b;padding:10px 13px;border-radius:4px;
   font-size:12.5px;margin-top:10px}
 .trava b{color:#c0392b}
+/* o próximo passo, no topo do card do cliente */
+.passo-agora{background:var(--preto);color:var(--marfim);border-radius:8px;
+  padding:13px 16px;margin:12px 0 4px}
+.passo-agora .r{font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:#8a8580;font-weight:700;margin-bottom:5px}
+.passo-agora b{display:block;font-size:15px;line-height:1.25;color:#fff}
+.passo-agora span{display:block;font-size:12px;color:#c9c4bb;margin-top:5px;line-height:1.5}
+.passo-agora.fim{background:#1e4d38}
+.passo-agora.fim .r{color:#8fd0ae}
 .rev{background:var(--marfim);border:1px solid var(--areia);border-radius:6px;padding:10px;margin-bottom:7px;font-size:12.5px}
 .rev small{color:var(--cinza);display:block;margin-bottom:3px}
 .nota{background:var(--laranja-pal);border-left:3px solid var(--laranja);padding:10px 13px;border-radius:4px;font-size:12.5px;margin:10px 0}
@@ -451,6 +460,9 @@ async function abrirCliente(id){
    <h2 style="font-size:18px">\${esc(c.empresa)}</h2>
    <div style="color:var(--cinza);font-size:12.5px">\${esc(c.nome_contato)} · dia \${c.dias}\${c.valor_pago?' · '+esc(c.valor_pago):''}</div>
    \${blocoRelogio(c,'Hora do cliente')}
+   \${(()=>{const[t,d]=c.proximo_passo||['',''];return t?\`<div class="passo-agora \${c.entrega_completa?'fim':''}">
+     <div class="r">\${c.entrega_completa?'Situação':'O que fazer agora'}</div>
+     <b>\${esc(t)}</b><span>\${esc(d)}</span></div>\`:''})()}
    \${c.entrega_iniciada_em?
      \`<div class="nota" style="\${c.dias_uteis>5?'background:#fbe4e0;border-left-color:#c0392b':''}">
        Entrega: <b>dia \${c.dias_uteis} de \${c.prazo_maximo} úteis</b>
@@ -554,7 +566,7 @@ async function abrirCliente(id){
        \${esc(r.servico)}</small>\${esc(r.texto)}</div>\`).join('')}
      \${(c.reviews||[]).length>5?\`<p style="font-size:12px;color:var(--cinza)">…e mais \${c.reviews.length-5} no arquivo.</p>\`:''}</section>
    <section><h4>Cadência de entrega · máximo 5 dias</h4>\${(c.marcos||[]).map(m=>\`<div class="linha \${m.concluido?'feito':''}">
-     <input type="checkbox" \${m.concluido?'checked':''} onchange="marco(\${m.id},this.checked)">
+     <input type="checkbox" \${m.concluido?'checked':''} onchange="marco(\${m.id},this.checked,this)">
      <span>\${esc(m.marco)} <small style="color:var(--cinza)">· dia \${m.prazo_dias}</small></span></div>\`).join('')}</section>
    <section><h4>Checklist de otimização</h4>\${l_checklist(c)}</section>
    <section><h4>Contrato</h4>
@@ -647,18 +659,18 @@ function l_checklist(c){
   const obr=lista.filter(k=>k.obrigatorio), fei=obr.filter(k=>k.feito).length;
   const pct=obr.length?Math.round(100*fei/obr.length):0;
   const pronto=fei>=obr.length;
-  let h='<div style="font-size:12.5px"><b>'+fei+' de '+obr.length+'</b> itens obrigatórios'
+  let h='<div id="chk_res" style="font-size:12.5px"><b>'+fei+' de '+obr.length+'</b> itens obrigatórios'
     +(pronto?' <span style="color:var(--verde)">· tudo pronto</span>':'')+'</div>'
-    +'<div class="chk-barra '+(pronto?'pronto':'')+'"><i style="width:'+pct+'%"></i></div>';
-  if(c.trava_entrega) h+='<div class="trava">A entrega não fecha ainda. Falta: <b>'
-    +esc(c.trava_entrega)+'</b></div>';
+    +'<div class="chk-barra '+(pronto?'pronto':'')+'"><i id="chk_bar" style="width:'+pct+'%"></i></div>'
+    +'<div class="trava"'+(c.trava_entrega?'':' style="display:none"')+'>'
+    +'A entrega não fecha ainda. Falta: <b id="trava_txt">'+esc(c.trava_entrega||'')+'</b></div>';
   for(const a in AREAS_CHK){
     const itens=lista.filter(k=>k.area===a); if(!itens.length) continue;
     const o=itens.filter(k=>k.obrigatorio), f=o.filter(k=>k.feito).length;
     h+='<div class="chk-area"><b>'+esc(AREAS_CHK[a])+'<em>'+f+'/'+o.length+'</em></b>'
       +itens.map(k=>'<label class="chk-item '+(k.feito?'ok':'')+'">'
         +'<input type="checkbox" '+(k.feito?'checked':'')
-        +' onchange="chk('+k.id+',this.checked)">'
+        +' onchange="chk('+k.id+',this.checked,this)">'
         +'<span><span class="t">'+esc(k.item)
         +(k.obrigatorio?' <span class="obg">*</span>':' <small style="color:var(--cinza);font-weight:400">(recomendado)</small>')
         +'</span><span class="d">'+esc(k.detalhe||'')+'</span></span></label>').join('')
@@ -733,8 +745,49 @@ const liberar=(qual,v)=>post('/api/liberar-formulario',{id:aberto,[qual]:v}).the
 async function novoToken(){if(!confirm('Gerar link novo? O atual deixa de funcionar.'))return;
   await post('/api/novo-token-formulario',{id:aberto});await carregar();abrirCliente(aberto)}
 const statusEnt=(eid,s)=>post('/api/entregavel',{eid,status:s}).then(carregar);
-const marco=(mid,v)=>post('/api/marco',{mid,concluido:v}).then(()=>abrirCliente(aberto));
-const chk=(id,v)=>post('/api/checklist',{id,cid:aberto,feito:v}).then(carregar).then(()=>abrirCliente(aberto));
+/* Marcar item NÃO redesenha o painel.
+   Antes chamava abrirCliente(), que remonta tudo e joga a rolagem pro topo:
+   você marcava um item lá embaixo e era atirado pra cima, parecendo que o
+   item tinha sumido. Agora o DOM é atualizado no lugar e a lista de trás
+   recarrega em segundo plano.                                            */
+async function marco(mid,v,el){
+  const linha=el&&el.closest('.linha'); if(linha) linha.classList.toggle('feito',v);
+  await post('/api/marco',{mid,concluido:v});
+  recontar(); carregar();
+}
+async function chk(id,v,el){
+  const item=el&&el.closest('.chk-item'); if(item) item.classList.toggle('ok',v);
+  await post('/api/checklist',{id,cid:aberto,feito:v});
+  recontar(); carregar();
+}
+// recalcula contadores, barra e aviso de trava direto do que está na tela
+function recontar(){
+  const itens=[...document.querySelectorAll('.chk-item')];
+  if(!itens.length) return;
+  const obr=itens.filter(i=>i.querySelector('.obg'));
+  const fei=obr.filter(i=>i.classList.contains('ok')).length;
+  const pct=obr.length?Math.round(100*fei/obr.length):0;
+  const b=document.getElementById('chk_res');
+  if(b) b.innerHTML='<b>'+fei+' de '+obr.length+'</b> itens obrigatórios'
+    +(fei>=obr.length?' <span style="color:var(--verde)">· tudo pronto</span>':'');
+  const barra=document.getElementById('chk_bar');
+  if(barra){ barra.style.width=pct+'%';
+    barra.parentElement.classList.toggle('pronto',fei>=obr.length); }
+  document.querySelectorAll('.chk-area').forEach(a=>{
+    const o=[...a.querySelectorAll('.chk-item')].filter(i=>i.querySelector('.obg'));
+    const f=o.filter(i=>i.classList.contains('ok')).length;
+    const em=a.querySelector('b em'); if(em) em.textContent=f+'/'+o.length;
+  });
+  const mk=[...document.querySelectorAll('.linha input[type=checkbox]')];
+  const mkF=mk.filter(x=>x.checked).length;
+  const t=document.getElementById('trava_txt');
+  if(t){
+    const falta=[ mk.length-mkF ? (mk.length-mkF)+' marco(s)' : '',
+                  obr.length-fei ? (obr.length-fei)+' item(ns) do checklist' : '' ].filter(Boolean);
+    t.parentElement.style.display = falta.length ? '' : 'none';
+    t.textContent = falta.join(' · ');
+  }
+}
 const revPost=(rid,v)=>post('/api/review-postada',{rid,postada:v}).then(()=>abrirCliente(aberto));
 /* ═══════════════════ RELÓGIOS ═══════════════════
    Três fusos importam nesta operação:
