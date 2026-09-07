@@ -32,6 +32,15 @@ function horaLocalEUA(quando = new Date()) {
   return Number(h) % 24;
 }
 const janelaDeContato = () => { const h = horaLocalEUA(); return h >= 8 && h < 21; };
+// O operador está no Brasil. Lembrete de tarefa segue o horário DELE, não o
+// do lead: resumo do dia chegando 4h da manhã não serve pra nada.
+function horaLocalBrasil(quando = new Date()) {
+  const h = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/Sao_Paulo", hour: "numeric", hour12: false }).format(quando);
+  return Number(h) % 24;
+}
+const diaBrasil = (quando = new Date()) => new Intl.DateTimeFormat("en-CA", {
+  timeZone: "America/Sao_Paulo", year: "numeric", month: "2-digit", day: "2-digit" }).format(quando);
 const json = (o, s = 200, h = {}) => new Response(JSON.stringify(o), {
   status: s, headers: { "Content-Type": "application/json; charset=utf-8", ...h },
 });
@@ -617,6 +626,39 @@ async function apiAdmin(p, req, env) {
       .bind(t, agora(), corpo.id).run();
     return json({ ok: true, formulario_token: t });
   }
+  // Número do operador e liga/desliga dos avisos. Não é credencial: é um
+  // telefone, e fica no banco justamente para poder ser trocado na tela.
+  if (p === "/api/config" && req.method === "GET") {
+    return json({
+      meu_whatsapp: await cfg(D, "meu_whatsapp"),
+      avisos_ligados: (await cfg(D, "avisos_ligados", "1")) === "1",
+      hora_resumo: await cfg(D, "hora_resumo", "8"),
+      zapi: !!(env.ZAPI_INSTANCIA && env.ZAPI_TOKEN),
+      openai: !!env.OPENAI_API_KEY,
+    });
+  }
+  if (p === "/api/config" && req.method === "POST") {
+    if (corpo.meu_whatsapp !== undefined)
+      await setCfg(D, "meu_whatsapp", String(corpo.meu_whatsapp).replace(/\D/g, "").slice(0, 20));
+    if (corpo.avisos_ligados !== undefined)
+      await setCfg(D, "avisos_ligados", corpo.avisos_ligados ? "1" : "0");
+    if (corpo.hora_resumo !== undefined)
+      await setCfg(D, "hora_resumo",
+        String(Math.min(23, Math.max(0, Number.parseInt(corpo.hora_resumo, 10) || 0))));
+    return json({ ok: true });
+  }
+  // Teste do canal: manda uma mensagem de verdade para o próprio número.
+  if (p === "/api/testar-whatsapp") {
+    const r = await avisarOperador(D, env, "teste",
+      "Teste da Leon Group. Se você recebeu isso, o CRM está falando com o seu WhatsApp.");
+    return json(r.erro ? { erro: r.erro } : { ok: true, enviada: r.enviada });
+  }
+  // Roda o motor agora, sem esperar os 15 minutos do cron. Serve para testar
+  // e para forçar o resumo do dia. Protegida por sessão como todo o resto.
+  if (p === "/api/rodar-motor") {
+    const r = await motorAutomacao(env);
+    return json({ ok: true, falhas: r.falhas });
+  }
   if (p === "/api/encerrar-sessoes") {
     const v = await A.invalidarTodasSessoes(env);
     return json({ ok: true, versao: v });
@@ -833,27 +875,64 @@ async function mover(D, lead, coluna, pipeline, motivo) {
     .bind(pipe, coluna, agora(), agora(), lead.id).run();
   await ev(D, { lead_id: lead.id, tipo: "moveu", de: `${lead.pipeline}/${lead.coluna}`, para: `${pipe}/${coluna}`, detalhe: motivo });
 }
-async function msg(D, env, lead_id, tipo, texto) {
+// ── config: chave/valor no banco, editável na tela ──
+async function cfg(D, chave, padrao = "") {
+  const r = await D.prepare("SELECT valor FROM config WHERE chave=?").bind(chave).first();
+  return r?.valor ?? padrao;
+}
+async function setCfg(D, chave, valor) {
+  await D.prepare("INSERT INTO config (chave,valor) VALUES (?,?) ON CONFLICT(chave) DO UPDATE SET valor=?")
+    .bind(chave, String(valor), String(valor)).run();
+}
+
+/* ── envio pelo WhatsApp, um caminho só ──
+   Antes só existia envio para LEAD. Cliente do operacional e lembrete de
+   tarefa para o operador não tinham como sair. Agora os três passam por
+   aqui, e tudo fica registrado na tabela mensagens com o erro, quando há. */
+async function envio(D, env, { telefone, texto, tipo, lead_id = null, cliente_id = null, variar: comIA = true }) {
   let final = texto;
-  if (env.OPENAI_API_KEY) final = await variar(texto, env.OPENAI_API_KEY);
+  if (comIA && env.OPENAI_API_KEY) final = await variar(texto, env.OPENAI_API_KEY);
+  const numero = String(telefone || "").replace(/\D/g, "");
   let enviada = null, erro = null;
-  if (env.ZAPI_INSTANCIA && env.ZAPI_TOKEN) {
-    const l = await D.prepare("SELECT telefone FROM leads WHERE id=?").bind(lead_id).first();
+  if (!numero) erro = "sem número cadastrado";
+  else if (!env.ZAPI_INSTANCIA || !env.ZAPI_TOKEN) erro = "modo simulado (sem Z-API)";
+  else {
     try {
       const r = await fetch(`https://api.z-api.io/instances/${env.ZAPI_INSTANCIA}/token/${env.ZAPI_TOKEN}/send-text`, {
         method: "POST",
         headers: { "Content-Type": "application/json", ...(env.ZAPI_CLIENT_TOKEN ? { "Client-Token": env.ZAPI_CLIENT_TOKEN } : {}) },
-        body: JSON.stringify({ phone: (l?.telefone || "").replace(/\D/g, ""), message: final }),
+        body: JSON.stringify({ phone: numero, message: final }),
       });
       // fetch só lança em falha de rede: HTTP 401/403/500 voltam como resposta
-      // normal. Sem esta checagem, erro da Z-API virava "enviada com sucesso"
-      // e a operação parecia funcionar sem nenhuma mensagem chegar ao lead.
+      // normal. Sem esta checagem, erro da Z-API virava "enviada com sucesso".
       if (r.ok) enviada = agora();
       else erro = `Z-API HTTP ${r.status}: ${(await r.text().catch(() => "")).slice(0, 200)}`;
     } catch (e) { erro = e.message; }
-  } else { erro = "modo simulado (sem Z-API)"; }
-  await D.prepare("INSERT INTO mensagens (lead_id,direcao,tipo,conteudo,criada_em,enviada_em,erro) VALUES (?,?,?,?,?,?,?)")
-    .bind(lead_id, "enviada", tipo, final, agora(), enviada, erro).run();
+  }
+  await D.prepare("INSERT INTO mensagens (lead_id,cliente_id,direcao,tipo,conteudo,criada_em,enviada_em,erro) VALUES (?,?,?,?,?,?,?,?)")
+    .bind(lead_id, cliente_id, "enviada", tipo, final, agora(), enviada, erro).run();
+  return { enviada, erro };
+}
+
+// mensagem para um CLIENTE do operacional
+async function msgCliente(D, env, cliente_id, tipo, texto) {
+  const c = await D.prepare("SELECT telefone FROM clientes WHERE id=?").bind(cliente_id).first();
+  return envio(D, env, { telefone: c?.telefone, texto, tipo, cliente_id });
+}
+
+/* lembrete de tarefa para o OPERADOR.
+   Nunca varia o texto pela IA: aqui a mensagem é uma lista de tarefas, e
+   reescrever lista de tarefa é o jeito mais rápido de perder informação. */
+async function avisarOperador(D, env, tipo, texto) {
+  const numero = await cfg(D, "meu_whatsapp");
+  const ligado = (await cfg(D, "avisos_ligados", "1")) === "1";
+  if (!ligado) return { erro: "avisos desligados na tela" };
+  return envio(D, env, { telefone: numero, texto, tipo, variar: false });
+}
+
+async function msg(D, env, lead_id, tipo, texto) {
+  const l = await D.prepare("SELECT telefone FROM leads WHERE id=?").bind(lead_id).first();
+  return envio(D, env, { telefone: l?.telefone, texto, tipo, lead_id });
 }
 async function variar(texto, key) {
   try {
@@ -1024,6 +1103,104 @@ async function motorAutomacao(env) {
         : "Faz um tempo que a gente falou. Se ainda faz sentido conversar, me chama que eu te mostro como está funcionando.");
     });
   }
+
+  // ═══════════ OPERACIONAL: o lado que antes não mandava nada ═══════════
+
+  /* ── cobrança do formulário ──
+     Cliente que pagou, recebeu o link e não respondeu é entrega parada:
+     o prazo de 5 dias úteis não começa até ele preencher. Duas cobranças,
+     em 24h e em 72h, e para. Depois disso é ligação, não mensagem.       */
+  const travados = (await D.prepare(
+    `SELECT id,empresa,nome_contato,telefone,contrato_em,pagamento_em FROM clientes
+     WHERE arquivado=0 AND formulario_em IS NULL
+       AND contrato_assinado=1 AND pagamento_confirmado=1 LIMIT ${TETO_LOTE}`).all()).results;
+  for (const c of travados) await seguro(`formulário cliente ${c.id}`, async () => {
+    const desde = c.pagamento_em || c.contrato_em;
+    if (!desde) return;
+    const horas = h(desde);
+    const etapa = horas >= 72 ? "form_cobranca_72h" : horas >= 24 ? "form_cobranca_24h" : null;
+    if (!etapa) return;
+    if (await D.prepare("SELECT 1 FROM mensagens WHERE cliente_id=? AND tipo=?").bind(c.id, etapa).first()) return;
+    if (!janelaDeContato()) return;
+    await msgCliente(D, env, c.id, etapa, etapa === "form_cobranca_24h"
+      ? `Oi ${c.nome_contato || ""}! Passando pra lembrar do formulário. É por ali que a gente pega as fotos das suas obras e os dados pra montar tudo. O prazo de 5 dias úteis começa a contar do seu envio, então quanto antes você mandar, antes fica no ar.`
+      : `Oi ${c.nome_contato || ""}! O formulário ainda está aberto esperando você. Se estiver com dificuldade em alguma parte, me chama aqui que eu preencho junto contigo por chamada, leva 10 minutos.`);
+    await ev(D, { cliente_id: c.id, tipo: etapa, detalhe: `formulário sem resposta há ${Math.floor(horas)}h` });
+  });
+
+  /* ── resumo diário de tarefas para o operador ──
+     Uma mensagem por dia, no horário que ele escolher, no fuso DELE. Um
+     aviso por tarefa viraria dezenas de mensagens e ele desligaria tudo.  */
+  await seguro("resumo diário", async () => {
+    const numero = await cfg(D, "meu_whatsapp");
+    if (!numero) return;                                  // nada configurado ainda
+    if ((await cfg(D, "avisos_ligados", "1")) !== "1") return;
+    // "0" é hora válida. Number("0")||8 devolvia 8 e a meia-noite era
+    // impossível de configurar, sem nenhum aviso.
+    const bruto = await cfg(D, "hora_resumo", "8");
+    const alvo = /^([01]?\d|2[0-3])$/.test(bruto) ? Number(bruto) : 8;
+    if (horaLocalBrasil() !== alvo) return;                // só na hora marcada
+    const marca = `resumo@${diaBrasil()}`;                 // uma vez por dia, só
+    if (await D.prepare("SELECT 1 FROM mensagens WHERE tipo=?").bind(marca).first()) return;
+
+    const [qCall, qQuentes, qForm, qAtraso, qRenov, qNoShow] = await D.batch([
+      D.prepare(`SELECT nome,empresa,call_agendada_para,cidade,estado FROM leads
+                 WHERE arquivado=0 AND pipeline='agendamento' AND coluna='call_agendado'
+                   AND call_agendada_para IS NOT NULL ORDER BY call_agendada_para LIMIT 20`),
+      D.prepare(`SELECT COUNT(*) n FROM leads WHERE arquivado=0 AND pipeline='leads_novos'
+                   AND coluna IN ('responderam','super_hot')`),
+      D.prepare(`SELECT empresa FROM clientes WHERE arquivado=0 AND formulario_em IS NULL
+                   AND contrato_assinado=1 AND pagamento_confirmado=1 LIMIT 10`),
+      D.prepare(`SELECT empresa,entrega_iniciada_em FROM clientes
+                 WHERE arquivado=0 AND entrega_iniciada_em IS NOT NULL LIMIT 40`),
+      D.prepare(`SELECT empresa,renovacao_em FROM clientes
+                 WHERE arquivado=0 AND renovacao_em IS NOT NULL LIMIT 40`),
+      D.prepare(`SELECT COUNT(*) n FROM leads WHERE arquivado=0 AND pipeline='agendamento'
+                   AND coluna IN ('no_show','no_show_f1','no_show_f2')`),
+    ]);
+
+    // entrega atrasada: passou dos 5 dias úteis e ainda tem marco aberto
+    const abertos = new Map();
+    for (const m of (await D.prepare(
+      `SELECT cliente_id, COUNT(*) t, SUM(concluido) c FROM marcos GROUP BY cliente_id`).all()).results)
+      abertos.set(m.cliente_id, (m.t || 0) - (m.c || 0));
+    const atrasados = qAtraso.results.filter((c) =>
+      G.diasUteisDesde(parseData(c.entrega_iniciada_em)) > G.PRAZO_MAXIMO_DIAS);
+    const renovando = qRenov.results.filter((c) => {
+      const d = parseData(c.renovacao_em);
+      return d && (d - Date.now()) / 86400000 <= 21;
+    });
+
+    const L = [`Bom dia. Resumo de ${new Date().toLocaleDateString("pt-BR", { timeZone: "America/Sao_Paulo" })}:`, ""];
+    if (qCall.results.length) {
+      L.push("CALLS AGENDADAS");
+      for (const c of qCall.results) {
+        const q = parseData(c.call_agendada_para);
+        const hb = q ? new Intl.DateTimeFormat("pt-BR", { timeZone: "America/Sao_Paulo",
+          day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" }).format(q) : "?";
+        const onde = [c.cidade, c.estado].filter(Boolean).join(", ");
+        L.push(`- ${c.nome}${c.empresa ? ` (${c.empresa})` : ""}: ${hb} no seu horário${onde ? ` · ele está em ${onde}` : ""}`);
+      }
+      L.push("");
+    }
+    const quentes = qQuentes.results[0]?.n || 0;
+    const noshow = qNoShow.results[0]?.n || 0;
+    if (quentes || noshow) {
+      L.push("COMERCIAL");
+      if (quentes) L.push(`- ${quentes} lead(s) quente(s) esperando ligação`);
+      if (noshow) L.push(`- ${noshow} lead(s) na máquina de no-show`);
+      L.push("");
+    }
+    if (qForm.results.length || atrasados.length || renovando.length) {
+      L.push("OPERACIONAL");
+      for (const c of qForm.results) L.push(`- ${c.empresa}: formulário ainda não respondido`);
+      for (const c of atrasados) L.push(`- ${c.empresa}: ENTREGA ATRASADA, ${abertos.get(c.id) || 0} marco(s) aberto(s)`);
+      for (const c of renovando) L.push(`- ${c.empresa}: renovação chegando`);
+      L.push("");
+    }
+    if (L.length <= 2) L.push("Nada pendente hoje. Aproveita e prospecta.");
+    await avisarOperador(D, env, marca, L.join("\n").trim());
+  });
 
   if (falhas.length) console.log(`motorAutomacao: ${falhas.length} falha(s) isolada(s) — ${falhas.slice(0, 20).join(" | ")}`);
   return { falhas: falhas.length };

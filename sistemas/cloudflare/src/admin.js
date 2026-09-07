@@ -159,7 +159,8 @@ dialog::backdrop{background:rgba(23,23,23,.45)}
 }
 </style></head><body>
 <header><b>LE<span>O</span>N GROUP · Admin</b><span class="selo" id="selo">Comercial</span>
-  <button class="sair" onclick="fetch('/api/logout',{method:'POST'}).then(()=>location.href='/login')">sair</button></header>
+  <button class="sair" id="btn_zap" onclick="abrirConfig()" style="margin-left:auto">WhatsApp</button>
+  <button class="sair" onclick="fetch('/api/logout',{method:'POST'}).then(()=>location.href='/login')" style="margin-left:14px">sair</button></header>
 <div class="relogio" id="relogio">
   <div class="rel-praca eua" data-praca="eua" id="p_eua">
     <select class="rel-sel" id="rel_cidade" aria-label="Praça nos Estados Unidos"></select>
@@ -205,6 +206,24 @@ dialog::backdrop{background:rgba(23,23,23,.45)}
   <div style="display:flex;gap:8px;margin-top:10px">
     <button class="acao" onclick="criarCliente()">Cadastrar</button>
     <button class="acao sec" onclick="dlgCli.close()">Cancelar</button></div></dialog>
+
+<dialog id="dlgCfg"><h3 style="margin-bottom:5px">WhatsApp do CRM</h3>
+  <p style="font-size:12px;color:var(--cinza);margin-bottom:14px">
+    Lembrete de tarefa vem pra cá. Mensagem pra lead e pra cliente sai daqui.</p>
+  <div id="cfg_estado"></div>
+  <label>Meu WhatsApp (com código do país, só dígitos)</label>
+  <input id="cfg_num" placeholder="5561999999999" inputmode="tel">
+  <p style="font-size:11.5px;color:var(--cinza);margin:4px 0 10px">
+    Brasil: 55 + DDD + número · EUA: 1 + área + número</p>
+  <label>Hora do resumo diário (seu horário, Brasília)</label>
+  <input id="cfg_hora" type="number" min="0" max="23" value="8">
+  <div class="linha" style="margin-top:10px"><input type="checkbox" id="cfg_lig">
+    <label for="cfg_lig" style="margin:0">Mandar avisos e resumo</label></div>
+  <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap">
+    <button class="acao" onclick="salvarConfig()">Salvar</button>
+    <button class="acao sec" onclick="testarZap()">Mandar teste agora</button>
+    <button class="acao sec" onclick="dlgCfg.close()">Fechar</button></div>
+  <p id="cfg_msg" style="font-size:12px;margin-top:11px"></p></dialog>
 
 <script>
 const api=(u,o)=>fetch(u,o).then(r=>r.json());
@@ -847,6 +866,39 @@ document.querySelectorAll('[data-praca]').forEach(x=>x.addEventListener('click',
 document.querySelectorAll('[data-relidi]').forEach(x=>x.addEventListener('click',()=>{
   relIdi=x.dataset.relidi; try{localStorage.setItem('leon_rel_idi',relIdi)}catch(e){} tique();}));
 montarSelect(); tique(); setInterval(tique,1000);
+
+/* ── configuração do canal de WhatsApp ── */
+async function abrirConfig(){
+  const c=await api('/api/config');
+  document.getElementById('cfg_num').value=c.meu_whatsapp||'';
+  document.getElementById('cfg_hora').value=c.hora_resumo||'8';
+  document.getElementById('cfg_lig').checked=!!c.avisos_ligados;
+  const pill=(ok,rot)=>'<span class="pill '+(ok?'ok':'')+'" style="margin-right:6px">'+rot+'</span>';
+  document.getElementById('cfg_estado').innerHTML=
+    '<div style="margin-bottom:13px">'
+    +pill(c.zapi,c.zapi?'Z-API conectada':'Z-API NÃO configurada')
+    +pill(c.openai,c.openai?'IA varia o texto':'sem IA, texto fixo')+'</div>'
+    +(c.zapi?'':'<div class="nota" style="margin-bottom:13px">Sem a Z-API nada é enviado de verdade: '
+      +'o sistema grava a mensagem no histórico com o aviso "modo simulado". '
+      +'O passo a passo pra ligar está no PLAYBOOK.md.</div>');
+  document.getElementById('cfg_msg').textContent='';
+  dlgCfg.showModal();
+}
+async function salvarConfig(){
+  const r=await post('/api/config',{meu_whatsapp:V('cfg_num'),hora_resumo:V('cfg_hora'),
+    avisos_ligados:document.getElementById('cfg_lig').checked});
+  const m=document.getElementById('cfg_msg');
+  m.style.color=r.erro?'#c0392b':'var(--verde)';
+  m.textContent=r.erro||'Salvo.';
+}
+async function testarZap(){
+  const m=document.getElementById('cfg_msg');
+  m.style.color='var(--cinza)'; m.textContent='Mandando...';
+  await post('/api/config',{meu_whatsapp:V('cfg_num')});
+  const r=await api('/api/testar-whatsapp',{method:'POST',headers:{'Content-Type':'application/json'},body:'{}'});
+  m.style.color=r.erro?'#c0392b':'var(--verde)';
+  m.textContent=r.erro?('Não saiu: '+r.erro):'Mandei. Confere teu WhatsApp.';
+}
 
 carregar();setInterval(()=>{if(!aberto)carregar()},60000);
 </script></body></html>`;
