@@ -339,6 +339,160 @@ denunciado.
 
 ---
 
+## 6b. Integrar o WhatsApp: passo a passo
+
+Hoje o sistema roda em modo simulado: grava a mensagem no histórico e não manda
+nada. Este é o caminho para ligar de verdade.
+
+### Passo 1. Entender que precisa de uma ponte
+
+O WhatsApp não deixa um sistema qualquer mandar mensagem direto. Você precisa de um
+intermediário, e existem dois caminhos:
+
+| | API oficial (Meta) | Z-API e similares |
+|---|---|---|
+| Como conecta | conta verificada na Meta | lê o QR code do WhatsApp normal |
+| Custo | grátis até 1000 conversas de serviço por mês, depois por conversa | cerca de R$100 por mês |
+| Burocracia | verificação de empresa e template aprovado para iniciar conversa | nenhuma |
+| Risco de bloqueio | baixo | existe, é uso não oficial |
+| Prazo para começar | dias | minutos |
+
+**O sistema está construído para a Z-API.** É a escolha de quem precisa começar hoje.
+O risco fica registrado: a Meta pode bloquear o número, porque a Z-API não é canal
+oficial. Se um dia o volume justificar, migrar para a API oficial mexe em um arquivo
+só (a função `envio` em `src/index.js`).
+
+### Passo 2. Usar um número dedicado
+
+**Nunca conecte o seu número pessoal.** Se a Meta bloquear, você perde o WhatsApp
+pessoal junto. Use um chip separado, ou o número americano quando ele existir.
+
+### Passo 3. Criar a instância na Z-API
+
+1. Entre em `z-api.io` e crie a conta
+2. Crie uma **instância** (é a linha que vai falar pelo sistema)
+3. Abra a instância: aparece um **QR code**
+4. No celular do número dedicado: WhatsApp, **Aparelhos conectados**,
+   **Conectar aparelho**, e leia o QR
+5. Copie o **ID da instância** e o **Token**
+6. Se a sua conta tiver **Client-Token** (segurança da conta), copie também
+
+O celular precisa ficar com internet. Se ele desconectar, o envio para de funcionar
+e o sistema passa a registrar o erro no histórico.
+
+### Passo 4. Gravar os segredos
+
+Nunca em arquivo do projeto, nunca no git:
+
+```bash
+cd sistemas/cloudflare
+npx wrangler secret put ZAPI_INSTANCIA
+npx wrangler secret put ZAPI_TOKEN
+npx wrangler secret put ZAPI_CLIENT_TOKEN   # só se a sua conta tiver
+npx wrangler deploy
+```
+
+### Passo 5. Configurar o seu número na tela
+
+No admin, botão **WhatsApp** no cabeçalho:
+
+- **Meu WhatsApp**: com código do país, só dígitos. Brasil `55` + DDD + número
+- **Hora do resumo diário**: no seu horário de Brasília
+- **Mandar avisos e resumo**: liga e desliga
+- **Mandar teste agora**: dispara uma mensagem de verdade para o seu número
+
+O painel mostra em cima se a Z-API está conectada. Se o teste falhar, o erro exato
+aparece ali (QR desconectado, token errado, número mal formatado).
+
+### Passo 6. Opcional, a IA que varia o texto
+
+```bash
+npx wrangler secret put OPENAI_API_KEY
+```
+
+Sem ela o texto é fixo. Com ela, cada mensagem sai reescrita mantendo a intenção.
+Isso importa de verdade: **mandar o mesmo texto para trinta pessoas é o que faz o
+número ser marcado como spam.**
+
+O **resumo de tarefas nunca passa pela IA**, de propósito: reescrever lista de tarefa
+é o jeito mais rápido de perder informação.
+
+### O que passa a sair sozinho
+
+| Para quem | Quando | O que |
+|---|---|---|
+| Lead | ao entrar no CRM | boas-vindas, avisando que você liga em 5 minutos |
+| Lead | T-24h, T-8h, T-4h, T-2h, T-1h da call | confirmação, texto variado |
+| **Você** | T-30min da call | **tarefa de ligar**, com o roteiro pronto |
+| Lead | 3h, 24h e 48h depois do no-show | a máquina de no-show, 2 textos por etapa |
+| Lead | a cada 7 dias em nutrição | lembrete leve |
+| Lead | a cada 14 dias em recuperação | reativação |
+| **Cliente** | 24h e 72h depois do pagamento sem formulário | cobrança do formulário |
+| **Você** | uma vez por dia, na hora que escolher | resumo com tudo que precisa de você |
+
+As linhas em negrito são as que não existiam antes.
+
+### O resumo diário, como ele chega
+
+```
+Bom dia. Resumo de 07/09/2026:
+
+CALLS AGENDADAS
+- Marcos Ribeiro (Ribeiro Hardwood Flooring LLC): 07/09 15:00 no seu horário
+  · ele está em Framingham, MA
+
+COMERCIAL
+- 3 lead(s) quente(s) esperando ligação
+- 1 lead(s) na máquina de no-show
+
+OPERACIONAL
+- Silva Flooring: formulário ainda não respondido
+- Dias Tile: ENTREGA ATRASADA, 4 marco(s) aberto(s)
+- Lima Cabinets: renovação chegando
+```
+
+Se não houver nada pendente, ele diz isso e pronto. Um resumo por dia, nunca dois.
+
+### O que NÃO sai, e é de propósito
+
+- **Nada fora de 8h às 21h** no fuso de quem vai receber. Mensagem de madrugada é o
+  caminho mais curto para o número ser denunciado
+- **Só duas cobranças de formulário.** Depois disso é ligação, não mensagem
+- **Um resumo por dia.** Um aviso por tarefa viraria dezenas de mensagens e você
+  desligaria tudo na primeira semana
+- **Nunca três mensagens seguidas** para a mesma pessoa
+
+### Como conferir se está funcionando
+
+Abra qualquer lead ou cliente e olhe o histórico de mensagens. Cada uma mostra:
+
+- o texto que saiu (já variado pela IA, se estiver ligada)
+- a hora em que saiu
+- e, quando não saiu, **o erro exato**
+
+Os erros que você vai ver:
+
+| Erro | O que fazer |
+|---|---|
+| `modo simulado (sem Z-API)` | os segredos não estão gravados, volte ao passo 4 |
+| `sem número cadastrado` | o lead ou cliente está sem telefone |
+| `Z-API HTTP 401` | token errado ou expirado |
+| `Z-API HTTP 4xx` com "disconnected" | o celular caiu, releia o QR |
+| `avisos desligados na tela` | a chave no painel de WhatsApp está desligada |
+
+Para forçar o motor sem esperar os 15 minutos do cron, existe a rota autenticada
+`/api/rodar-motor`.
+
+### Custo mensal
+
+| Item | Quanto |
+|---|---|
+| Z-API | cerca de R$100 |
+| OpenAI (variação de texto) | centavos no volume inicial |
+| Cloudflare (Worker, D1, cron) | grátis nesse volume |
+
+---
+
 ## 7. Os KPIs e o diagnóstico
 
 No topo aparecem cinco números: **No WhatsApp, Atenderam, Calls marcadas,

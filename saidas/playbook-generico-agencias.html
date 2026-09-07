@@ -1,0 +1,546 @@
+<title>Do Anúncio à Renovação</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Literata:opsz,wght@7..72,400;7..72,600&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --pap:#F5F6F3; --pap2:#FCFDFB; --pap3:#EAECE6;
+  --tin:#14171A; --tin2:#3E443F; --tin3:#71776F;
+  --lin:#DADCD4; --lin2:#C2C5BA;
+  --com:#8C2F39; --com-f:#F6E8E9;
+  --ope:#2C5545; --ope-f:#E4EDE7;
+  --al:#8A5A00; --al-f:#F7EEDC;
+  --disp:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --cor:Literata,Georgia,serif;
+  --mn:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --pap:#101210; --pap2:#171A17; --pap3:#1E211E;
+  --tin:#EDEFEA; --tin2:#BFC4BC; --tin3:#8B9189;
+  --lin:#282C28; --lin2:#3A3F3A;
+  --com:#E58A93; --com-f:#2A1416;
+  --ope:#7FBFA0; --ope-f:#12211A;
+  --al:#D9A441; --al-f:#241C0C;
+}}
+:root[data-theme="dark"]{
+  --pap:#101210; --pap2:#171A17; --pap3:#1E211E;
+  --tin:#EDEFEA; --tin2:#BFC4BC; --tin3:#8B9189;
+  --lin:#282C28; --lin2:#3A3F3A;
+  --com:#E58A93; --com-f:#2A1416;
+  --ope:#7FBFA0; --ope-f:#12211A;
+  --al:#D9A441; --al-f:#241C0C;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--pap);color:var(--tin);font:400 16.5px/1.66 var(--cor)}
+h1,h2,h3{font-family:var(--disp);font-weight:800;letter-spacing:-.022em;line-height:1.1;
+  text-wrap:balance;margin:0}
+p{margin:0;max-width:64ch}
+code{font-family:var(--mn);font-size:.85em;background:var(--pap3);padding:.1em .36em;
+  border-radius:3px;border:1px solid var(--lin)}
+
+/* ── capa ── */
+.capa{border-bottom:3px solid var(--tin);padding:46px 0 26px;margin-bottom:8px}
+.capa .kicker{font-family:var(--disp);font-weight:600;font-size:11px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--com);margin-bottom:16px}
+.capa h1{font-size:clamp(2.2rem,6vw,4rem);max-width:22ch}
+.capa .lede{margin-top:18px;font-size:18px;color:var(--tin2);max-width:56ch}
+.capa .meta{margin-top:22px;display:flex;flex-wrap:wrap;gap:6px 26px;
+  font-family:var(--mn);font-size:11.5px;color:var(--tin3)}
+
+/* ── casca com goteira de números ──
+   Os números SÃO o playbook, então ganham coluna própria. */
+.bloco{display:grid;grid-template-columns:118px minmax(0,1fr);gap:0 30px;
+  padding:26px 0;border-bottom:1px solid var(--lin)}
+.got{font-family:var(--mn);font-size:11.5px;line-height:1.55;color:var(--tin3);
+  text-align:right;padding-top:4px;display:flex;flex-direction:column;gap:5px}
+.got b{font-family:var(--disp);font-size:26px;font-weight:800;color:var(--tin);
+  letter-spacing:-.03em;line-height:1}
+.got .rot{font-family:var(--disp);font-size:9.5px;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--tin3)}
+.mio{min-width:0;display:flex;flex-direction:column;gap:11px}
+.mio h3{font-size:1.16rem}
+
+/* ── partes ── */
+.parte{margin-top:52px}
+.parte>.tit{display:flex;align-items:baseline;gap:13px;border-top:3px solid var(--tin);
+  padding-top:15px;margin-bottom:4px}
+.parte>.tit .np{font-family:var(--mn);font-size:12px;font-weight:600;color:var(--tin3)}
+.parte>.tit h2{font-size:clamp(1.45rem,3vw,2.05rem)}
+.parte>.intro{color:var(--tin2);font-size:16.5px;margin:10px 0 6px;max-width:62ch}
+.parte.c>.tit{border-top-color:var(--com)} .parte.c>.tit .np{color:var(--com)}
+.parte.o>.tit{border-top-color:var(--ope)} .parte.o>.tit .np{color:var(--ope)}
+.fase{display:inline-flex;align-items:center;gap:7px;font-family:var(--disp);font-size:10px;
+  font-weight:600;letter-spacing:.15em;text-transform:uppercase;padding:4px 9px;border-radius:3px}
+.fase.c{background:var(--com-f);color:var(--com)}
+.fase.o{background:var(--ope-f);color:var(--ope)}
+
+/* ── tabelas ── */
+.rolo{overflow-x:auto;border:1px solid var(--lin);border-radius:4px;background:var(--pap2)}
+table{border-collapse:collapse;width:100%;font-family:var(--disp);font-size:13.5px;font-weight:600}
+th{text-align:left;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--tin3);
+  padding:9px 12px;border-bottom:1px solid var(--lin2);white-space:nowrap;font-weight:600}
+td{padding:9px 12px;border-bottom:1px solid var(--lin);vertical-align:top;
+  color:var(--tin2);font-weight:400}
+tr:last-child td{border-bottom:0}
+td:first-child{color:var(--tin);font-weight:600}
+td.n,th.n{font-family:var(--mn);font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* ── escada com números na lateral ── */
+.esc{list-style:none;padding:0;margin:0;display:flex;flex-direction:column}
+.esc li{display:grid;grid-template-columns:74px 1fr;gap:16px;padding:10px 0;
+  border-bottom:1px dotted var(--lin2)}
+.esc li:last-child{border-bottom:0}
+.esc .q{font-family:var(--mn);font-size:12px;font-weight:600;color:var(--com);text-align:right;padding-top:2px}
+.parte.o .esc .q{color:var(--ope)}
+.esc b{font-family:var(--disp);font-size:14.5px;display:block}
+.esc p{font-size:14.5px;color:var(--tin2);margin-top:2px}
+
+/* ── régua de temperatura ── */
+.reg{display:grid;grid-template-columns:repeat(6,1fr);border:1px solid var(--lin);border-radius:4px;overflow:hidden}
+.reg div{padding:12px 6px;text-align:center;color:#fff;border-right:1px solid rgba(255,255,255,.14)}
+.reg div:last-child{border-right:0}
+.reg b{display:block;font-family:var(--disp);font-size:10px;font-weight:600;letter-spacing:.05em;
+  text-transform:uppercase;line-height:1.2}
+.reg span{display:block;font-family:var(--mn);font-size:17px;font-weight:600;margin-top:6px}
+.reg small{display:block;font-family:var(--disp);font-size:8.5px;letter-spacing:.1em;
+  text-transform:uppercase;opacity:.72;margin-top:1px}
+.g0{background:#2C5545} .g1{background:#7A2630} .g2{background:#8C3A2E}
+.g3{background:#8A5A2B} .g4{background:#5F6355} .g5{background:#454B52}
+
+/* ── caixas ── */
+.cx{border-left:3px solid var(--al);background:var(--al-f);padding:14px 17px;border-radius:0 4px 4px 0}
+.cx .rot{font-family:var(--disp);font-size:10px;font-weight:600;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--al);margin-bottom:5px}
+.cx p{font-size:15px}
+.reto{border:1px solid var(--lin);border-left:3px solid var(--ope);background:var(--pap2);
+  padding:15px 18px;border-radius:0 4px 4px 0}
+.reto .rot{font-family:var(--disp);font-size:10px;font-weight:600;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--ope);margin-bottom:6px}
+blockquote{margin:0;padding-left:16px;border-left:2px solid var(--lin2);font-style:italic;
+  color:var(--tin2);font-size:15.5px}
+ul.lis{margin:0;padding-left:19px;color:var(--tin2);font-size:15.5px}
+ul.lis li{margin:4px 0}
+.nao-faz{list-style:none;padding:0;margin:0;display:grid;gap:9px}
+.nao-faz li{display:grid;grid-template-columns:16px 1fr;gap:11px;font-size:15.5px;color:var(--tin2)}
+.nao-faz li::before{content:"";width:9px;height:2px;background:var(--com);margin-top:12px}
+
+.pe{margin-top:56px;border-top:3px solid var(--tin);padding-top:18px;
+  font-family:var(--disp);font-size:13.5px;color:var(--tin3);display:flex;
+  flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+.tema{background:none;border:1px solid var(--lin2);color:var(--tin2);font:600 10.5px/1 var(--disp);
+  letter-spacing:.1em;text-transform:uppercase;padding:7px 12px;border-radius:99px;cursor:pointer}
+.pag{max-width:960px;margin:0 auto;padding:0 26px 80px}
+@media (max-width:760px){
+  .bloco{grid-template-columns:1fr;gap:12px}
+  .got{text-align:left;flex-direction:row;align-items:baseline;gap:11px;flex-wrap:wrap;padding-top:0}
+  .reg{grid-template-columns:repeat(3,1fr)}
+  .esc li{grid-template-columns:1fr;gap:3px}
+  .esc .q{text-align:left}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+:focus-visible{outline:2px solid var(--com);outline-offset:2px}
+</style>
+
+<div class="pag">
+
+<div class="capa">
+  <div class="kicker">Playbook operacional para agência de geração de leads</div>
+  <h1>Do anúncio à renovação</h1>
+  <p class="lede">O método inteiro em duas fases, com os prazos, os gatilhos e os números que decidem cada passo. Escrito a partir de um sistema em produção, não de teoria.</p>
+  <div class="meta">
+    <span>2 fases · 4 pipelines · 11 marcos</span>
+    <span>ciclo de entrega: 5 dias úteis</span>
+    <button class="tema" id="tema" type="button">Tema</button>
+  </div>
+</div>
+
+<div class="parte">
+  <div class="tit"><span class="np">00</span><h2>A régua que organiza tudo</h2></div>
+  <p class="intro">Se você só levar uma coisa deste documento, leve esta. A confusão operacional de quase toda agência pequena vem de misturar as duas fases num funil só.</p>
+  <div class="bloco">
+    <div class="got"><span class="rot">a divisão</span></div>
+    <div class="mio">
+      <p><span class="fase c">Comercial</span> cuida de quem <strong>ainda não pagou</strong>.</p>
+      <p><span class="fase o">Operacional</span> cuida de quem <strong>já pagou</strong>.</p>
+      <p>São dois sistemas com regras opostas. No comercial o inimigo é o tempo: lead esfria, call fura, quem não é trabalhado morre. No operacional o inimigo é o escopo: prazo estoura, entrega incha, cliente não sabe o que está acontecendo.</p>
+      <p>A passagem entre as duas é <strong>um evento único e datado</strong>: o pagamento. Antes dele, ninguém do operacional trabalha. Depois dele, ninguém do comercial cobra nada.</p>
+    </div>
+  </div>
+  <div class="bloco">
+    <div class="got"><span class="rot">por que separar</span></div>
+    <div class="mio">
+      <div class="cx">
+        <div class="rot">O erro que isso evita</div>
+        <p>Sem essa régua, você começa a produzir para quem ainda não assinou (e trabalha de graça) ou continua vendendo para quem já é cliente (e não entrega). Os dois acontecem por não haver um marco explícito de virada.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="parte c">
+  <div class="tit"><span class="np">01</span><h2>Fase comercial</h2></div>
+  <p class="intro">Quatro pipelines, não um. Cada um tem uma pergunta diferente, e por isso uma cadência diferente.</p>
+
+  <div class="bloco">
+    <div class="got"><b>4</b><span class="rot">pipelines</span></div>
+    <div class="mio">
+      <div class="rolo"><table>
+        <thead><tr><th>Pipeline</th><th>A pergunta que ele responde</th><th>Frequência</th></tr></thead>
+        <tbody>
+          <tr><td>Leads novos</td><td>quem chegou e ainda não marcou call</td><td>várias vezes ao dia</td></tr>
+          <tr><td>Agendamento</td><td>quem tem call marcada, e quem furou</td><td>todo dia</td></tr>
+          <tr><td>Nutrição</td><td>quem esfriou sem nunca dizer não</td><td>uma vez por semana</td></tr>
+          <tr><td>Recuperação</td><td>quem sumiu depois de furar</td><td>uma vez por semana</td></tr>
+        </tbody>
+      </table></div>
+      <p>Nutrição e recuperação existem para uma razão só: <strong>lead não morre, lead esfria.</strong> Sem esses dois baldes, todo contato que não fechou no primeiro ciclo é perdido para sempre.</p>
+    </div>
+  </div>
+
+  <div class="bloco">
+    <div class="got"><b>24h</b><span class="rot">decaimento</span></div>
+    <div class="mio">
+      <h3>A régua de temperatura</h3>
+      <p>Dentro de "leads novos", seis estados. A cada 24 horas parado no mesmo estado, o lead <strong>cai uma casa automaticamente</strong>. O número é quantas tentativas de contato aquele estado pede por dia.</p>
+      <div class="reg">
+        <div class="g0"><b>Responderam</b><span>0</span><small>é ligar, não escrever</small></div>
+        <div class="g1"><b>Super Hot</b><span>10</span><small>por dia</small></div>
+        <div class="g2"><b>Hot</b><span>7</span><small>por dia</small></div>
+        <div class="g3"><b>Warm</b><span>5</span><small>por dia</small></div>
+        <div class="g4"><b>Cold</b><span>3</span><small>por dia</small></div>
+        <div class="g5"><b>Super Cold</b><span>2</span><small>por dia</small></div>
+      </div>
+      <p>Chegando ao fim da régua sem resposta, o lead sai para nutrição. Para <strong>subir</strong>, ele precisa responder: aí volta ao topo, venha de onde vier.</p>
+      <p>O ganho real da automação aqui não é economizar clique. É que <strong>a régua não tem dia ruim.</strong> Ela não esquece, não se distrai e não decide que hoje não vale a pena.</p>
+    </div>
+  </div>
+
+  <div class="bloco">
+    <div class="got"><b>9</b><span class="rot">tipos de contato</span></div>
+    <div class="mio">
+      <h3>Ativação não é venda</h3>
+      <p>Dez tentativas por dia no mesmo canal, com o mesmo formato, é perseguição. O catálogo existe para variar o estímulo: ligação, áudio, áudio de visualização única, foto de visualização única, figurinha, emoji, mensagem de texto, vídeo de visualização única e menção em status.</p>
+      <div class="reto">
+        <div class="rot">A regra que não se quebra</div>
+        <p>Ativação nunca faz oferta. Ela existe para gerar resposta, e a venda acontece na ligação. Follow-up que vende por escrito treina o lead a decidir sem falar com você, e ele decide não.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bloco">
+    <div class="got"><b>5</b><span class="rot">campos de qualificação</span></div>
+    <div class="mio">
+      <h3>Qualificação</h3>
+      <p>Cinco campos preenchidos <strong>durante</strong> a ligação, não depois: ponto de conexão pessoal, orçamento declarado, poder de decisão, necessidade real e prazo.</p>
+      <p>O ponto de conexão pessoal parece o mais mole e é o mais útil: ele é o que você reusa no follow-up de quem furou a call. Follow-up genérico é ignorado; follow-up que lembra a obra que o cara citou é respondido.</p>
+      <div class="cx">
+        <div class="rot">Cuidado de contabilidade</div>
+        <p>O orçamento declarado na qualificação <strong>não é receita</strong> e nunca deve virar número de faturamento no sistema. É uma frase dita numa ligação. Misturar os dois infla a previsão e te faz tomar decisão de contratação em cima de dinheiro que não existe.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bloco">
+    <div class="got"><b>2</b><span class="rot">dias, no máximo</span></div>
+    <div class="mio">
+      <h3>A regra do agendamento</h3>
+      <p>Call marcada para mais de dois dias à frente <strong>vira no-show</strong>. O interesse decai mais rápido que a agenda. Se não há vaga em dois dias, o certo é retornar a ligação amanhã, não marcar para sexta.</p>
+      <p>Vale travar isso no sistema, não só combinar. Regra que depende de disciplina humana sob pressão de meta não sobrevive ao fim do mês.</p>
+    </div>
+  </div>
+
+  <div class="bloco">
+    <div class="got"><span class="rot">no-show</span><b>3h</b><span class="rot">e depois 24h, 24h, 72h</span></div>
+    <div class="mio">
+      <h3>A máquina de no-show</h3>
+      <p>Furar call é o evento mais comum do funil e o menos processado. Ele merece uma máquina, não improviso.</p>
+      <ul class="esc">
+        <li><span class="q">3h</span><div><b>Primeira sequência</b><p>Duas mensagens, <strong>com textos diferentes</strong>. Uma reconhece o que atravessou, a outra pede uma resposta objetiva.</p></div></li>
+        <li><span class="q">+24h</span><div><b>Segunda sequência</b><p>Duas mensagens. Aqui o tom muda: você avisa que vai encerrar o contato.</p></div></li>
+        <li><span class="q">+24h</span><div><b>Encerramento</b><p>Uma mensagem. Firme, sem agressão, deixando a porta aberta.</p></div></li>
+        <li><span class="q">+72h</span><div><b>Vai para recuperação</b><p>Entra na régua de 14 dias em vez de virar estado terminal.</p></div></li>
+      </ul>
+      <div class="reto">
+        <div class="rot">O detalhe que decide se funciona</div>
+        <p>Duas variações de texto por etapa, nunca o mesmo texto duas vezes. Mandar a mesma mensagem repetida é o comportamento que faz o número ser classificado como spam, e aí você perde o canal inteiro, não só o lead.</p>
+      </div>
+      <p>Se o lead responder em qualquer ponto, a máquina para. E nunca três ligações seguidas.</p>
+    </div>
+  </div>
+
+  <div class="bloco">
+    <div class="got"><b>&lt;1min</b><span class="rot">para ligar</span></div>
+    <div class="mio">
+      <h3>A única meta de velocidade que importa</h3>
+      <p>Lead que chega precisa de ligação em menos de um minuto. Não é otimização, é a diferença entre falar com alguém que acabou de pensar no assunto e falar com alguém que já esqueceu.</p>
+      <p>Velocidade fecha mais que argumento. Um roteiro mediano em um minuto ganha de um roteiro excelente em duas horas.</p>
+    </div>
+  </div>
+</div>
+
+<div class="parte o">
+  <div class="tit"><span class="np">02</span><h2>A virada</h2></div>
+  <p class="intro">Um evento, três consequências automáticas. Se qualquer uma delas for manual, ela vai ser esquecida.</p>
+  <div class="bloco">
+    <div class="got"><b>3</b><span class="rot">consequências</span></div>
+    <div class="mio">
+      <ul class="esc">
+        <li><span class="q">01</span><div><b>O cliente nasce no operacional</b><p>Com todos os dados que o comercial já tinha. Ninguém redigita nada, porque redigitar é onde o dado se perde.</p></div></li>
+        <li><span class="q">02</span><div><b>A data de renovação é calculada</b><p>No mesmo instante. Renovação que você calcula depois é renovação que chega em cima da hora.</p></div></li>
+        <li><span class="q">03</span><div><b>Os entregáveis nascem em branco</b><p>Lista fixa, sempre a mesma. É o que impede escopo de virar conversa.</p></div></li>
+      </ul>
+      <p>Vale manter o vínculo entre o cliente e o lead de origem. É o que permite responder depois: <em>de qual canal vieram os clientes que renovaram?</em> Sem esse vínculo, a pergunta não tem resposta.</p>
+    </div>
+  </div>
+</div>
+
+<div class="parte o">
+  <div class="tit"><span class="np">03</span><h2>Fase operacional</h2></div>
+  <p class="intro">Aqui o inimigo muda. Não é mais o tempo do lead, é o escopo e a expectativa.</p>
+
+  <div class="bloco">
+    <div class="got"><b>2</b><span class="rot">chaves do portão</span></div>
+    <div class="mio">
+      <h3>Nada começa sem as duas</h3>
+      <p>Contrato assinado <strong>e</strong> pagamento confirmado. Enquanto faltar uma, o formulário de onboarding do cliente fica travado e ninguém produz nada.</p>
+      <p>Isso não é desconfiança, é o que protege as duas partes: o cliente não recebe cobrança de material que não pediu, e você não trabalha de graça em quem desistiu no meio.</p>
+    </div>
+  </div>
+
+  <div class="bloco">
+    <div class="got"><b>1</b><span class="rot">formulário, uso único</span></div>
+    <div class="mio">
+      <h3>O onboarding é um link, não uma reunião</h3>
+      <p>Um link só, que morre depois de respondido. Ele pede o que você não consegue inventar: nome do dono, cidade e região atendida, serviços que faz, <strong>serviços que NÃO faz</strong>, tempo de mercado, diferencial, e fotos de obra.</p>
+      <div class="reto">
+        <div class="rot">Os dois campos que ninguém coloca e deveria</div>
+        <p><strong>O que ele não faz</strong> é o campo que mais economiza dinheiro depois: sem ele, a campanha atrai orçamento que o cliente não atende, e a culpa cai em você.</p>
+        <p><strong>Um mínimo obrigatório de fotos.</strong> Defina um número e valide no servidor, não no navegador. Sem foto de obra real, tudo o que você produzir vai parecer de banco de imagem, e o cliente americano percebe.</p>
+      </div>
+      <div class="cx">
+        <div class="rot">Detalhe técnico que evita entrega quebrada</div>
+        <p>O envio precisa ser atômico: valide tudo antes de queimar o link. Formulário enviado incompleto que consome o token deixa o cliente sem poder reenviar, e a entrega começa a contar sem material nenhum.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bloco">
+    <div class="got"><b>5</b><span class="rot">dias úteis</span></div>
+    <div class="mio">
+      <h3>O relógio começa no formulário</h3>
+      <p>Não no fechamento, não no pagamento: <strong>no envio do formulário</strong>. É o único momento em que você tem tudo o que precisa para trabalhar, e é o único prazo que você pode prometer com honestidade.</p>
+      <p>Duas armadilhas de cálculo, as duas já custaram entrega atrasada de verdade:</p>
+      <ul class="lis">
+        <li><strong>Dia útil, não dia corrido.</strong> Sábado e domingo não contam</li>
+        <li><strong>No fuso do cliente, não no do servidor.</strong> Formulário respondido domingo às 20h em Boston é segunda 01h em UTC. Contando errado, o prazo cai três dias depois do que foi prometido</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="bloco">
+    <div class="got"><b>11</b><span class="rot">marcos</span></div>
+    <div class="mio">
+      <h3>A cadência de entrega</h3>
+      <p>Cada marco tem dia previsto e <strong>responsável nomeado</strong>. A coluna de responsável é o que resolve a discussão de "eu estava esperando você".</p>
+      <div class="rolo"><table>
+        <thead><tr><th class="n">Dia</th><th>Marco</th><th>Quem</th></tr></thead>
+        <tbody>
+          <tr><td class="n">1</td><td>Grupo de comunicação criado com o cliente</td><td>agência</td></tr>
+          <tr><td class="n">1</td><td>Site no ar e link enviado</td><td>agência</td></tr>
+          <tr><td class="n">1</td><td>Identidade visual entregue, se ele não tinha</td><td>agência</td></tr>
+          <tr><td class="n">2</td><td>Conteúdo do mês entregue</td><td>agência</td></tr>
+          <tr><td class="n">2</td><td>Destaques do perfil entregues</td><td>agência</td></tr>
+          <tr><td class="n">3</td><td>Processo de avaliação entregue e explicado</td><td>agência</td></tr>
+          <tr><td class="n">3</td><td>Tutorial do perfil de busca local enviado</td><td>agência</td></tr>
+          <tr><td class="n">4</td><td>Acesso ao perfil de busca local liberado</td><td><strong>cliente</strong></td></tr>
+          <tr><td class="n">4</td><td>Perfil otimizado: categoria, serviços, área, fotos</td><td>agência</td></tr>
+          <tr><td class="n">5</td><td>Pasta de entrega completa enviada</td><td>agência</td></tr>
+          <tr><td class="n">5</td><td>Reunião de entrega realizada</td><td>ambos</td></tr>
+        </tbody>
+      </table></div>
+      <p>O marco do dia 1 que quase todo mundo esquece é o <strong>canal de comunicação</strong>. Sem um lugar único e combinado, a conversa se espalha em três aplicativos e ninguém sabe o que foi decidido.</p>
+      <p>Repare que <strong>um marco é do cliente</strong>. Deixar isso explícito muda a conversa quando a entrega atrasa por falta de acesso.</p>
+    </div>
+  </div>
+
+  <div class="bloco">
+    <div class="got"><span class="rot">avaliações</span></div>
+    <div class="mio">
+      <h3>Reputação, do jeito que sustenta auditoria</h3>
+      <p>Avaliação em plataforma de busca local é o ativo de maior retorno da entrega, e é também onde há mais atalho oferecido no mercado. O atalho não vale o risco: desde 2024 a regra da FTC nos Estados Unidos prevê multa civil por avaliação fabricada, e a responsabilidade alcança <strong>quem fornece</strong>, não só quem publica. A plataforma, em paralelo, suspende o perfil. Perfil suspenso é a pior coisa que pode acontecer com um prestador de serviço local, e o prejuízo é do seu cliente.</p>
+      <p>O que entregar no lugar, e que dá o mesmo resultado num prazo maior:</p>
+      <ul class="lis">
+        <li>O <strong>link direto de avaliação</strong> do perfil dele, encurtado, pronto para colar</li>
+        <li>Uma <strong>mensagem-modelo</strong> no idioma do cliente final, curta, para ele mandar</li>
+        <li>O <strong>momento certo de pedir</strong>: na entrega da obra, com o cliente na frente do resultado, não dias depois</li>
+        <li>Uma <strong>meta de ritmo</strong> combinada, para a curva parecer orgânica, porque ela é</li>
+        <li>Um <strong>acompanhamento</strong> de quantas foram pedidas e quantas entraram, que é o número da reunião de renovação</li>
+      </ul>
+      <div class="reto">
+        <div class="rot">O argumento comercial que isso te dá</div>
+        <p>Dizer ao prospect "nós não fabricamos avaliação, e vou te explicar por quê" é um diferencial de venda em um mercado onde quase todo concorrente oferece o contrário. Você está vendendo para alguém que já foi enganado antes.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bloco">
+    <div class="got"><b>21</b><span class="rot">dias de antecedência</span></div>
+    <div class="mio">
+      <h3>Renovação começa no primeiro dia</h3>
+      <p>A data de renovação nasce junto com o cliente, e o alerta abre 21 dias antes. Renovação tratada na semana do vencimento é renegociação de preço; tratada com três semanas é conversa sobre resultado.</p>
+      <p>E ela só é uma conversa sobre resultado se você tiver <strong>o número</strong>. Registre todo mês quantos contatos o cliente recebeu. É o único dado que sustenta a renovação sem desconto.</p>
+    </div>
+  </div>
+</div>
+
+<div class="parte">
+  <div class="tit"><span class="np">04</span><h2>Os cinco números e o diagnóstico</h2></div>
+  <p class="intro">Cinco contagens bastam para saber onde a operação está furando. A conclusão de cada uma é diferente, e é por isso que medir só o total não serve.</p>
+  <div class="bloco">
+    <div class="got"><b>40%</b><span class="rot">o limite</span></div>
+    <div class="mio">
+      <div class="rolo"><table>
+        <thead><tr><th>Passagem</th><th>Quando fica fraca, o problema é</th></tr></thead>
+        <tbody>
+          <tr><td>Chegou → atendeu a ligação</td><td>o <strong>criativo do anúncio</strong>. Está atraindo quem não quer falar</td></tr>
+          <tr><td>Atendeu → marcou call</td><td>a <strong>abordagem na ligação</strong></td></tr>
+          <tr><td>Marcou → compareceu</td><td>a <strong>qualificação</strong>. Não gerou valor suficiente para valer a hora</td></tr>
+          <tr><td>Compareceu → fechou</td><td>o <strong>fechamento</strong>. Na maior parte dos casos, é aqui</td></tr>
+        </tbody>
+      </table></div>
+      <p>Abaixo de 40% numa passagem, acende o alerta. Com <strong>menos de cinco casos na etapa</strong>, não acende nada: com um ou dois, qualquer taxa é ruído, e alerta em cima de ruído vira acusação sem base.</p>
+      <div class="cx">
+        <div class="rot">O pré-requisito que quase sempre falta</div>
+        <p>Esses números só existem se três registros forem feitos com disciplina: <strong>toda ligação</strong> (inclusive as não atendidas), <strong>o começo de cada call</strong>, e <strong>cada fechamento</strong>. Se um deles for pulado, o painel fica em zero e o diagnóstico aponta o culpado errado com convicção total.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="parte">
+  <div class="tit"><span class="np">05</span><h2>O que a máquina faz sozinha</h2></div>
+  <p class="intro">Cinco rotinas, rodando em ciclo curto. Nenhuma delas é inteligente, e é justamente por isso que funcionam: não têm dia ruim.</p>
+  <div class="bloco">
+    <div class="got"><b>15min</b><span class="rot">o ciclo</span></div>
+    <div class="mio">
+      <ul class="esc">
+        <li><span class="q">01</span><div><b>Decaimento de temperatura</b><p>Rebaixa quem está parado há 24h.</p></div></li>
+        <li><span class="q">02</span><div><b>Confirmação de call</b><p>Sequência em T-24h, T-8h, T-4h, T-2h e T-1h.</p></div></li>
+        <li><span class="q">03</span><div><b>Máquina de no-show</b><p>A escada da parte 01.</p></div></li>
+        <li><span class="q">04</span><div><b>Nutrição e recuperação</b><p>A cada 7 e a cada 14 dias.</p></div></li>
+        <li><span class="q">05</span><div><b>Cobrança de onboarding</b><p>Cliente pago que não respondeu o formulário, em 24h e 72h. Duas e para.</p></div></li>
+      </ul>
+      <div class="reto">
+        <div class="rot">Três decisões de projeto que fazem diferença</div>
+        <p><strong>Em T-30min não mande mensagem, gere uma tarefa de ligar.</strong> A meia hora antes da call é o momento de maior perda, e ela se resolve com voz, não com texto.</p>
+        <p><strong>Trave a janela de horário no fuso de quem recebe.</strong> Se o servidor roda em UTC e o cliente está em Boston, o follow-up dispara às 3 da manhã. Uma vez.</p>
+        <p><strong>Isole a falha por registro.</strong> Uma exceção em um contato não pode abortar o ciclo inteiro. E registre o erro em log: rotina que falha em silêncio pode estar parada há semanas sem ninguém notar.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="parte">
+  <div class="tit"><span class="np">06</span><h2>Ligar o canal de mensagem</h2></div>
+  <p class="intro">A automação só existe de verdade quando as mensagens saem. Duas rotas, com trocas diferentes.</p>
+  <div class="bloco">
+    <div class="got"><span class="rot">a escolha</span></div>
+    <div class="mio">
+      <div class="rolo"><table>
+        <thead><tr><th></th><th>API oficial da plataforma</th><th>Ponte não oficial</th></tr></thead>
+        <tbody>
+          <tr><td>Como conecta</td><td>conta de empresa verificada</td><td>lê o código do aplicativo comum</td></tr>
+          <tr><td>Custo</td><td>faixa gratuita, depois por conversa</td><td>mensalidade fixa baixa</td></tr>
+          <tr><td>Burocracia</td><td>verificação e modelo de mensagem aprovado</td><td>nenhuma</td></tr>
+          <tr><td>Risco de bloqueio</td><td>baixo</td><td>existe, é uso fora dos termos</td></tr>
+          <tr><td>Prazo para começar</td><td>dias</td><td>minutos</td></tr>
+        </tbody>
+      </table></div>
+      <p>Comece pela ponte se o volume é baixo e você precisa validar o processo. Migre para a oficial quando o canal virar receita. Isole o envio numa função só, e a migração vira uma tarde de trabalho em vez de um refactor.</p>
+      <div class="cx">
+        <div class="rot">Não negociável</div>
+        <p><strong>Número dedicado.</strong> Nunca o pessoal. Bloqueio na ponte não oficial leva o número, e com ele todas as suas conversas.</p>
+      </div>
+    </div>
+  </div>
+  <div class="bloco">
+    <div class="got"><b>1</b><span class="rot">resumo por dia</span></div>
+    <div class="mio">
+      <h3>Lembrete para o operador</h3>
+      <p>Quem opera precisa ser avisado, mas <strong>um aviso por tarefa é o caminho garantido para tudo ser silenciado na primeira semana</strong>. Um resumo por dia, no horário e no fuso de quem lê, com o que precisa de decisão: calls do dia, quem está esperando ligação, quem está na máquina de no-show, onboarding parado, entrega atrasada e renovação chegando.</p>
+      <p>E o resumo nunca passa por reescrita automática. Lista de tarefa reescrita perde informação.</p>
+    </div>
+  </div>
+  <div class="bloco">
+    <div class="got"><span class="rot">variação</span></div>
+    <div class="mio">
+      <h3>Por que variar o texto não é vaidade</h3>
+      <p>Mandar a mesma mensagem literal para trinta pessoas é o padrão que os sistemas antispam procuram. Variar mantendo a intenção é o que preserva o canal. Vale usar geração automática só para isso, com uma instrução dura: <strong>nunca fazer oferta</strong>.</p>
+      <p>E registre toda mensagem com o resultado do envio. Chamada de rede só falha em queda de rede: erro de autenticação volta como resposta normal. Sem verificar o código de retorno, erro vira "enviado com sucesso" e a operação parece funcionar sem uma única mensagem chegando.</p>
+    </div>
+  </div>
+</div>
+
+<div class="parte c">
+  <div class="tit"><span class="np">07</span><h2>O que não fazer</h2></div>
+  <p class="intro">Cada item aqui é um atalho que circula no mercado e cobra caro depois. Vale escrever a sua lista e colar na parede.</p>
+  <div class="bloco">
+    <div class="got"><span class="rot">a lista</span></div>
+    <div class="mio">
+      <ul class="nao-faz">
+        <li>Fabricar avaliação, depoimento ou caso de sucesso. Multa civil, perfil suspenso, e o prejuízo é do cliente</li>
+        <li>Simular documento financeiro para forçar abertura de mensagem</li>
+        <li>Usar foto de obra de terceiro como se fosse do cliente</li>
+        <li>Prometer faturamento ou posição em busca. Ninguém controla os dois</li>
+        <li>Fingir endereço ou presença local que não existe</li>
+        <li>Vender por mensagem escrita. A conversa que decide é por voz</li>
+        <li>Pressionar por decisão na mesma ligação</li>
+        <li>Aceitar nicho cujo ticket não paga o custo de aquisição, e descobrir depois</li>
+      </ul>
+      <div class="reto">
+        <div class="rot">Por que isso é vantagem competitiva, não freio</div>
+        <p>Seu prospect provavelmente já contratou alguém que fez pelo menos três dos itens acima. Ser a agência que explica por que não faz, e mostra o que faz no lugar, é diferenciação real num mercado onde todo mundo promete a mesma coisa.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="parte o">
+  <div class="tit"><span class="np">08</span><h2>Em que ordem construir</h2></div>
+  <p class="intro">Errar a ordem é o jeito mais rápido de gastar meses em ferramenta e não ter operação.</p>
+  <div class="bloco">
+    <div class="got"><span class="rot">sequência</span></div>
+    <div class="mio">
+      <ul class="esc">
+        <li><span class="q">01</span><div><b>A entrega, primeiro</b><p>Antes de qualquer CRM. Entregue os dois primeiros clientes à mão, com uma lista de marcos num documento. Você vai descobrir o escopo real, e escopo real é o que você não consegue projetar de cabeça.</p></div></li>
+        <li><span class="q">02</span><div><b>A régua de prazo</b><p>Fixe o ciclo em dias úteis e cumpra duas vezes. Prazo que você já cumpriu é a única promessa comercial que não é aposta.</p></div></li>
+        <li><span class="q">03</span><div><b>O portão de contrato e pagamento</b><p>Custa uma tarde e é o que impede trabalho de graça.</p></div></li>
+        <li><span class="q">04</span><div><b>Os cinco números</b><p>Uma planilha basta. O diagnóstico de gargalo vale mais que qualquer painel bonito.</p></div></li>
+        <li><span class="q">05</span><div><b>O CRM, na virada do 2º para o 3º cliente</b><p>Antes disso o volume não justifica, e você vai automatizar um processo que ainda vai mudar.</p></div></li>
+        <li><span class="q">06</span><div><b>A automação de mensagem</b><p>Por último. Automatizar um processo que você ainda não executou à mão é automatizar o erro.</p></div></li>
+      </ul>
+      <div class="cx">
+        <div class="rot">O resumo em uma frase</div>
+        <p>Processo à mão primeiro, sistema depois. O sistema não conserta processo ruim: ele executa processo ruim mais rápido e em mais gente.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pe">
+  <span>Playbook operacional · fase comercial e fase de entrega</span>
+  <span>Extraído de um sistema em produção</span>
+</div>
+</div>
+
+<script>
+(function(){
+  var b=document.getElementById('tema');
+  function atual(){
+    var s=document.documentElement.getAttribute('data-theme');
+    if(s) return s;
+    return matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+  }
+  b.addEventListener('click',function(){
+    document.documentElement.setAttribute('data-theme', atual()==='dark'?'light':'dark');
+  });
+})();
+</script>
