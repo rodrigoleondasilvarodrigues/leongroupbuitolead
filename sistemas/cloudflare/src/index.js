@@ -625,7 +625,12 @@ async function apiAdmin(p, req, env) {
     const fotos = qf.results.map((m) => m.caminho);
     const feito = [];
     if (corpo.site !== false) {
-      const site = G.gerarSite(c, fotos);
+      // reviews postadas entram no site. Nunca as não postadas: o site só
+      // mostra o que existe de verdade no perfil do Google.
+      const jaPostadas = (await D.prepare(
+        "SELECT texto,servico FROM reviews WHERE cliente_id=? AND postada=1 LIMIT 3")
+        .bind(id).all()).results;
+      const site = G.gerarSite(c, fotos, jaPostadas.map((r) => ({ ...r, postada: 1 })));
       // guarda o HTML; a publicação é manual no Vercel
       await D.batch([
         D.prepare("UPDATE clientes SET site_html=?,atualizado_em=? WHERE id=?").bind(site, agora(), id),

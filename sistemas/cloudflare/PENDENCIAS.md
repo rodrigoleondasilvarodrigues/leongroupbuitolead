@@ -3,7 +3,7 @@
 Anotadas no meio do teste para não interromper o fluxo. Fazer depois que
 o teste terminar.
 
-## 1. Ordem das seções no card do lead
+## 1. Ordem das seções no card do lead ✅ FEITO
 
 **Pedido do usuário:** hoje a seção **Contrato** aparece antes de **Mover**.
 Inverter: Mover primeiro, Contrato depois.
@@ -50,7 +50,7 @@ já evita de propósito com o budget do BANT, mas escapou aqui.
 pagamento confirmado for ligada, usando o valor do contrato como sugestão
 editável.
 
-## 4. Travessões nas páginas públicas
+## 4. Travessões nas páginas públicas ✅ FEITO
 
 `src/paginas.js` é anterior à regra de não usar travessão. Pelo menos três:
 - título da página de espera: "<empresa> — Aguardando liberação"
@@ -59,7 +59,7 @@ editável.
 
 Varrer o arquivo inteiro.
 
-## 5. RECONSTRUIR o site do cliente (o item grande)
+## 5. RECONSTRUIR o site do cliente ✅ FEITO em 2026-09-07
 
 Pedido do usuário durante o teste: "será que conseguimos melhorar o site do
 cliente? Deixar muito melhor mesmo, sem algo tão simples e montar como se
@@ -123,7 +123,7 @@ briefing em português.
 
 Testar com o Ribeiro antes de usar em cliente real.
 
-## 6. Marcos e entregáveis não conversam
+## 6. Marcos e entregáveis não conversam ✅ FEITO, o checklist trava a entrega
 
 Achado pelo usuário durante o teste: "o que significa estar pendente se já
 foi entregue?"
@@ -159,3 +159,30 @@ O mapa é direto:
 
 Risco dessa parte: automatizar demais faz o operador marcar sem fazer. A
 parte 1 é mais segura, porque trava sem tirar a decisão da mão dele.
+
+
+---
+
+## 7. Mensagem no GRUPO do WhatsApp (ainda aberta)
+
+Hoje o sistema manda para o telefone do cliente, no privado. Não consegue
+mandar para o grupo.
+
+O campo `grupo_whatsapp` guarda o **link de convite**
+(`chat.whatsapp.com/XXXX`). A Z-API não envia para link de convite: ela envia
+para o **ID do grupo**, que é outro identificador. São coisas diferentes e o
+sistema só tem uma delas.
+
+**Para resolver:**
+1. Guardar o ID do grupo, não só o link. A Z-API tem endpoint que lista os
+   grupos da instância conectada: dá pra buscar e deixar o operador escolher
+   numa lista, em vez de digitar
+2. Confirmar o formato exato do identificador na documentação deles no
+   momento de configurar, porque isso muda entre provedores
+3. Avisar o cliente NO GRUPO a cada etapa da entrega concluída. Hoje ele só
+   recebe a cobrança do formulário e depois silêncio até o fim. É justamente
+   o que faz o grupo valer a pena
+
+## 8. valor_pago antes do pagamento (ainda aberta, item 3 acima)
+
+Continua pendente. Ver item 3.
