@@ -5,17 +5,36 @@ Construídos a partir das 311 especificações extraídas das 4 aulas da mentori
 
 ## O que roda hoje
 
-| # | Sistema | Pasta | Porta | Estado |
-|---|---|---|---|---|
-| 1 | CRM Comercial | `crm-comercial/` | 8770 | ✅ testado |
-| 2 | Operação de Entrega | `02-entrega/` | 8771 | ✅ testado |
-
-Os dois rodam com `python3 <arquivo>.py`, sem instalar nada — stdlib + SQLite.
-Podem rodar ao mesmo tempo (portas diferentes).
+| Sistema | Pasta | Onde | Estado |
+|---|---|---|---|
+| **Aplicação única** (CRM + caixa + entrega) | `cloudflare/` | [leon-group.leongroup.workers.dev](https://leon-group.leongroup.workers.dev) | no ar, 402 asserções |
+| Site da agência | `site-agencia/` | [leon-group-site.pages.dev](https://leon-group-site.pages.dev) | no ar, 96 verificações |
 
 ```bash
-cd sistemas/crm-comercial && python3 crm.py      # → localhost:8770
-cd sistemas/02-entrega    && python3 entrega.py  # → localhost:8771
+cd sistemas/cloudflare
+./testes/rodar.sh      # antes de todo deploy
+npx wrangler deploy
+```
+
+Documentação: `cloudflare/README.md` (como usar), `cloudflare/PENDENCIAS.md`
+(estado e dívida técnica), `cloudflare/testes/README.md` (o que cada teste impede).
+
+## Histórico: as versões locais em Python
+
+| # | Sistema | Pasta | Porta |
+|---|---|---|---|
+| 1 | CRM Comercial | `crm-comercial/` | 8770 |
+| 2 | Operação de Entrega | `02-entrega/` | 8771 |
+
+Foram o primeiro corte, e a aplicação Cloudflare **substituiu as duas**. Ficam
+aqui porque a rastreabilidade das 311 especificações passa por elas.
+
+⚠ **Não desenvolver nessas pastas.** O que está no ar é `cloudflare/`, e mudança
+feita aqui não chega a lugar nenhum.
+
+```bash
+cd sistemas/crm-comercial && python3 crm.py      # localhost:8770
+cd sistemas/02-entrega    && python3 entrega.py  # localhost:8771
 ```
 
 ## A divisão entre os dois

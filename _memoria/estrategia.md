@@ -12,20 +12,50 @@ Empresa nova, começando do zero (fase 0→1). Fundador sozinho, montando venda,
 
 Vender + montar estrutura própria + entregar pros clientes, tudo sozinho. Playbook operacional já consolidado em `_memoria/playbook-operacao.md` (transcrito das 4 aulas da mentoria, versão nova). Faltam 3 aulas ainda não liberadas, atualizar quando saírem.
 
-## Sistemas construídos (2026-09-05)
+## O sistema no ar (atualizado em 2026-09-09)
 
-Dois sistemas prontos e testados em `sistemas/`, feitos a partir das 311 especificações extraídas das
-4 aulas (`_memoria/historico/ESPECIFICACOES-SISTEMAS.md`):
+**https://leon-group.leongroup.workers.dev** (Cloudflare Workers + D1 + R2, código em
+`sistemas/cloudflare/`). Aplicação única, protegida por senha, que substituiu os dois
+sistemas locais em Python. Motor de automação por cron a cada 15 minutos.
 
-- **CRM Comercial** (`sistemas/crm-comercial/`, porta 8770): 4 pipelines com decaimento automático de
-  24h, cadência de confirmação de call, máquina de no-show, KPIs com diagnóstico de gargalo, Z-API e
-  variação de mensagem por IA. Todas as automações testadas.
-- **Operação de Entrega** (`sistemas/02-entrega/`, porta 8771): cadastro do cliente fechado,
-  formulário, geração do site (Cloudflare Pages), das 20 reviews estratégicas em inglês e dos briefs
-  dos 12 posts + 4 destaques, mais a régua dos 14 dias.
+Os dois sistemas antigos (`sistemas/crm-comercial/` e `sistemas/02-entrega/`, portas
+8770 e 8771) ficam como histórico. **Não são mais o que roda.**
 
-Ordem de uso recomendada pela própria aula: começar pela entrega manual (sistema 2); ligar o CRM
-comercial só na transição do 2º para o 3º cliente.
+O que o sistema faz hoje:
+
+- **Comercial:** 4 pipelines com decaimento de 24h, cadência de confirmação de call,
+  máquina de no-show, nutrição e recuperação. Relógio do fuso de cada lead no card.
+- **Dashboard:** funil de verdade (largura proporcional, altura constante), com a
+  conversão de cada passagem, o gargalo apontado e as saídas laterais (fechou na call,
+  fechou no follow-up, recusou, perdido). Diagnóstico determinístico sempre, mais botão
+  de análise por IA. Com menos de 5 leads numa etapa ele se cala e diz que se calou.
+- **Caixa:** entradas e saídas em dólar E real ao mesmo tempo, cada lançamento com a
+  cotação do dia em que aquele dinheiro se moveu. Navegação por mês, gasto por
+  categoria, extrato por dia, custo fixo mensal. Separa **lucro nos clientes** de
+  **saldo do caixa**, que são perguntas diferentes.
+- **Entrega:** cadastro do cliente fechado, formulário de onboarding com upload direto
+  do celular (R2), geração do site + 20 reviews + briefs dos 12 posts e 4 destaques,
+  checklist de otimização de 40 itens com passo a passo, cadência de 5 dias úteis,
+  portão de conclusão explícito e fechamento antecipado por frase digitada.
+- **Logo:** prompt JSON para o gpt-image-2 montado a partir do briefing do cliente.
+
+Suíte de testes em **402 asserções** (`sistemas/cloudflare/testes/rodar.sh`). Rodar
+antes de todo deploy.
+
+Ordem de uso recomendada pela própria aula: começar pela entrega manual; ligar o
+CRM comercial só na transição do 2º para o 3º cliente.
+
+### Dívida técnica conhecida, em ordem de importância
+
+1. **A auditoria adversarial parou no achado 7 de 32** e agora há superfície nova no
+   ar: upload público, rota de mídia pública e três rotas que chamam API externa.
+   Vale uma segunda rodada antes de operar com volume.
+2. **Nada limpa o R2.** Apagar cliente apaga os arquivos dele; **arquivar não**. Sem
+   alerta de uso dos 10 GB grátis. Vídeo come rápido: 40 MB cada, 5 por cliente.
+3. **Vídeo acima de 95 MB** não sobe: o corpo de requisição do Worker para em 100 MB
+   no plano grátis.
+
+Detalhe de tudo em `sistemas/cloudflare/PENDENCIAS.md`.
 
 ## Site da agência (2026-09-06, revisado no mesmo dia)
 
@@ -56,6 +86,36 @@ WhatsApp com mensagem pronta e **também cria o lead no CRM** (rota `/api/site-l
 - Seção "Transparência / O que a gente não faz" foi **removida** a pedido do usuário.
   As afirmações honestas continuam no FAQ, na história e na nota do rodapé.
 
+## Próxima frente: aquisição (pendente, definido em 2026-09-09)
+
+Três coisas, nesta ordem, e nenhuma delas depende do sistema (que já está pronto):
+
+**1. Produzir os criativos, todos.** Os **20 roteiros já estão escritos** e prontos para
+a ferramenta: 16 com ator de IA e 4 para o Rodrigo gravar. Fonte de verdade em
+`marketing/anuncios/roteiros-20.json`, documento montado em
+`saidas/Leon-Group-20-Roteiros-de-Anuncio.pdf`. Cada roteiro tem um prompt único,
+copiável de uma vez, com o storyboard embaixo.
+Falta: **gerar os 16 vídeos com ator de IA, gravar os 4 do Rodrigo, editar e legendar.**
+Sem criativo pronto não há campanha, e o criativo é a primeira coisa que o diagnóstico
+do funil acusa quando a conversão de entrada está baixa.
+
+**2. Pegar o número americano.** Pela via legítima (Google Voice, OpenPhone ou linha
+real), **nunca** pelo método da aula, que ensina comprar número por bot do Telegram para
+simular presença nos EUA. Decisão já tomada em 2026-09-05, ver abaixo.
+Trava três coisas ao mesmo tempo: o site ainda usa um WhatsApp brasileiro provisório
+(`5561998629189`), o WhatsApp Business não pode ser configurado sem ele, e ligar para
+lead americano de número brasileiro derruba a taxa de atendimento.
+
+**3. Tráfego pago, do começo ao fim.** Página do Facebook, Meta Business Suite conectado
+(pixel, dataset, conta de anúncios), campanha montada, orçamento definido, e a régua de
+acompanhamento ligada no dashboard do CRM.
+⚠ Lembrar da decisão de posicionamento: **para o cliente**, tráfego pago é a última
+etapa do método, e o site diz isso. Isso vale para a entrega dos clientes, não para a
+aquisição da própria agência, que é o caso aqui.
+
+**O que não está no caminho:** o sistema. CRM, caixa, entrega, upload e site estão
+prontos e testados. O gargalo agora é criativo, número e campanha.
+
 ## Decisões tomadas
 
 - **Número de atendimento nos EUA (2026-09-05):** será obtido pela via legítima (Google Voice,
@@ -74,6 +134,10 @@ Nenhum prazo definido ainda.
 
 **Concluído:** naming e slogan (Leon Group / Built to Lead.), identidade visual (preto + laranja, leão no O), brand kit completo, e-mail, Instagram e YouTube criados, kit visual do YouTube, duas séries de 12 posts publicadas, 42 Stories + destaques em 6 abas.
 
-**Pendente/sem confirmação:** página do Facebook, WhatsApp Business configurado, número de atendimento legítimo nos EUA (o site usa provisoriamente um número brasileiro), conexão no Meta Business Suite (pixel/dataset/conta de anúncios), oferta principal por escrito (escopo/preço/prazo), recorte comercial prioritário dentro de construction/home services, apresentação comercial, proposta/contrato/cobrança/onboarding, 5 criativos de aquisição, campanha inicial, sistema de acompanhamento de funil, primeiro cliente real, primeiro case com depoimento verificável.
+**Feito depois disso:** site da agência no ar, sistema completo no ar (CRM, caixa, entrega, upload), **20 roteiros de anúncio escritos**, e o sistema de acompanhamento de funil (é o dashboard do CRM).
+
+**Pendente:** os 20 criativos **produzidos** (roteiro escrito não é criativo pronto), número de atendimento legítimo nos EUA, WhatsApp Business, página do Facebook, Meta Business Suite (pixel/dataset/conta de anúncios), campanha inicial, oferta principal por escrito (escopo/preço/prazo), recorte comercial prioritário dentro de construction/home services, apresentação comercial, proposta/contrato/cobrança/onboarding, domínio próprio, primeiro cliente real, primeiro case com depoimento verificável.
+
+As três primeiras frentes estão detalhadas na seção "Próxima frente: aquisição".
 
 **Regra de integridade (não negociável):** nunca declarar cliente inexistente como real, nunca inventar depoimento/avaliação/localização/equipe/resultado, nunca reutilizar mídia sem licença, nunca prometer faturamento ou posição no Google sem base verificável. Mockups/demonstrações só valem rotulados como tal. Prova social real só depois do primeiro trabalho pago e documentado.

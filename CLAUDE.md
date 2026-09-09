@@ -135,9 +135,14 @@ Contractors e empresas de construção/home services nos EUA, foco em brasileiro
 
 ## Estrutura de pastas
 
-- `sistemas/` — **sistemas operacionais construídos e testados** (rodam com `python3`, sem dependências):
-  `crm-comercial/` (porta 8770, 4 pipelines + automações) e `02-entrega/` (porta 8771, cadastro do
-  cliente + geração de site/reviews/Instagram + régua dos 14 dias). Índice em `sistemas/README.md`.
+- `sistemas/cloudflare/`: **o sistema que roda de verdade**, no ar em
+  `https://leon-group.leongroup.workers.dev` (Workers + D1 + R2). CRM comercial, dashboard com
+  funil, caixa em dólar e real, operação de entrega e upload de mídia, tudo numa aplicação só.
+  Suíte de **402 asserções** em `testes/rodar.sh`: rodar antes de todo deploy. Estado e dívida
+  técnica em `sistemas/cloudflare/PENDENCIAS.md`.
+- `sistemas/crm-comercial/` e `sistemas/02-entrega/`: versões locais em `python3`, **substituídas**
+  pela aplicação Cloudflare. Ficam como histórico, não são o que roda. Não desenvolver nelas.
+- `sistemas/site-agencia/`: site público da agência (Cloudflare Pages). Índice em `sistemas/README.md`.
 - `_memoria/` — quem é a agência, tom de voz, foco atual (`empresa.md`, `preferencias.md`, `estrategia.md`)
 - `_memoria/historico/` — **fonte de verdade histórica**: estado consolidado, decisões de marca, pendências, aulas/hotseat estudados, credenciais (sem senhas reais), conversa completa, inventário. Consultar antes de perguntar algo que pode já estar decidido ali.
 - `_memoria/historico/exploracoes-visuais/` — naming e identidades **descartados** (Valdieri, Leoni, Leone Group, variantes A/B/C/E de logo/paleta, 28 logos iniciais). Puramente histórico — nunca usar como identidade atual, nunca restaurar esses nomes. Pasta pesada (~180MB de imagens): considerar manter fora do git (ver nota em Segurança e higiene).
