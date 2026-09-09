@@ -234,6 +234,47 @@ const T = {
     planos_duvida: "Não sabe qual serve para você?",
     planos_duvida_cta: "Pede o diagnóstico gratuito",
     planos_duvida_txt: "A gente olha o seu Google, o seu site e as suas avaliações, escreve o que encontrou e te manda. Sem custo, e é seu mesmo que você não contrate nada.",
+
+    /* ══════════════ PERÍODOS, para /planosv2 ══════════════
+       O padrão da Kairon: cada plano com três períodos, e quanto mais longo o
+       compromisso, menor a mensalidade.
+
+       Guardo o TOTAL e os MESES, e a mensalidade é calculada dividindo. Se eu
+       guardasse a mensalidade escrita à mão, um dia ela deixaria de multiplicar
+       de volta pro total e a página mostraria uma conta que não fecha, na frente
+       do cliente, no meio da call.
+
+       O que cada período ACRESCENTA está escrito, porque o escopo do plano é
+       majoritariamente a construção inicial: vender 12 meses sem dizer o que
+       acontece do mês 4 ao 12 seria vender ar.                              */
+    planos_periodos: [
+      // [plano, [ [meses, total, o que os meses extras incluem], ... ] ]
+      ["Presença Local", [
+        [3, 2500, "A construção completa mais 3 meses de acompanhamento no WhatsApp."],
+        [6, 4500, "Mais 3 meses de acompanhamento, e uma rodada nova de 20 avaliações no 4º mês."],
+        [12, 8000, "Acompanhamento o ano todo, 20 avaliações novas por trimestre e revisão do perfil a cada 3 meses."],
+      ]],
+      ["Presença + Conteúdo", [
+        [3, 4500, "A construção completa, mais 8 posts por mês e o relatório mensal."],
+        [6, 8000, "O mesmo ritmo por 6 meses, com uma página nova de serviço no 4º mês."],
+        [12, 14000, "O ano todo, com uma página nova de serviço por trimestre."],
+      ]],
+      ["Aquisição", [
+        [3, 7500, "A construção completa, o conteúdo mensal e as campanhas montadas e gerenciadas."],
+        [6, 13500, "Seis meses de gestão, com teste de criativo a cada mês."],
+        [12, 24000, "O ano todo de gestão, com escala do que estiver funcionando."],
+      ]],
+    ],
+    v2_titulo: "Escolha o plano e o prazo",
+    v2_sub: "O plano define o que você recebe. O prazo define quanto tempo a gente fica junto, e quanto mais longo, menor a mensalidade. O primeiro plano é o que resolve o que dói agora.",
+    v2_rot_periodo: ["Trimestral", "Semestral", "Anual"],
+    v2_meses: "meses",
+    v2_por_mes: "por mês",
+    v2_total: "total",
+    v2_economia: "economia de",
+    v2_inclui: "O que o prazo acrescenta",
+    v2_entrega: "O que está incluído no plano",
+    v2_melhor: "Melhor custo por mês",
     rot_faq: "Dúvidas",
     faq_titulo: "O que perguntam antes de começar",
     faq: [
@@ -489,6 +530,34 @@ Quero saber mais sobre o que a Leon Group pode fazer pela minha empresa.`,
     planos_duvida: "Not sure which one fits you?",
     planos_duvida_cta: "Get the free diagnosis",
     planos_duvida_txt: "We look at your Google, your site and your reviews, write up what we found, and send it to you. No cost, and it is yours even if you never hire us.",
+
+    planos_periodos: [
+      ["Local Presence", [
+        [3, 2500, "The full build plus 3 months of support on WhatsApp."],
+        [6, 4500, "Three more months of support, and a fresh batch of 20 reviews in month 4."],
+        [12, 8000, "Support all year, 20 new reviews every quarter, and a profile review every 3 months."],
+      ]],
+      ["Presence + Content", [
+        [3, 4500, "The full build, plus 8 posts a month and the monthly report."],
+        [6, 8000, "The same pace for 6 months, with a new service page in month 4."],
+        [12, 14000, "All year, with a new service page every quarter."],
+      ]],
+      ["Acquisition", [
+        [3, 7500, "The full build, the monthly content, and campaigns built and managed."],
+        [6, 13500, "Six months of management, with a creative test every month."],
+        [12, 24000, "A full year of management, scaling whatever is working."],
+      ]],
+    ],
+    v2_titulo: "Pick the plan and the term",
+    v2_sub: "The plan defines what you get. The term defines how long we work together, and the longer it runs, the lower the monthly. The first plan is the one that fixes what hurts today.",
+    v2_rot_periodo: ["Quarterly", "Semiannual", "Annual"],
+    v2_meses: "months",
+    v2_por_mes: "per month",
+    v2_total: "total",
+    v2_economia: "you save",
+    v2_inclui: "What the term adds",
+    v2_entrega: "What the plan includes",
+    v2_melhor: "Best monthly rate",
     rot_faq: "FAQ",
     faq_titulo: "What people ask before starting",
     faq: [

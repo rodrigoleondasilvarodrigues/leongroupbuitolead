@@ -228,11 +228,45 @@ alguém vier de `/planos` para o formulário. **Ele não mexe em `#f_servico`**,
 que é o ofício do contractor: escrever nome de plano num select de ofício
 gravaria um valor que não existe entre as opções.
 
+## A proposta com valores: `/planosv2`
+
+O mesmo conteúdo de `/planos`, no formato da **Kairon**: cada plano com **três
+prazos** (trimestral, semestral, anual), mensal e total em cada, e quanto mais
+longo o compromisso, menor a mensalidade.
+
+```
+https://leon-group-site.pages.dev/planosv2
+https://leon-group-site.pages.dev/planosv2?idi=en
+```
+
+| Plano | 3 meses | 6 meses | 12 meses |
+|---|---|---|---|
+| Presença Local | US$ 833/mês · 2.500 | US$ 750/mês · 4.500 | US$ 667/mês · 8.000 |
+| Presença + Conteúdo | US$ 1.500/mês · 4.500 | US$ 1.333/mês · 8.000 | US$ 1.167/mês · 14.000 |
+| Aquisição | US$ 2.500/mês · 7.500 | US$ 2.250/mês · 13.500 | US$ 2.000/mês · 24.000 |
+
+Duas decisões do conteúdo, e nenhuma é descuido:
+
+**A mensalidade não é guardada, é calculada.** `planos_periodos` guarda o
+**total** e os **meses**, e a página divide. Mensalidade escrita à mão um dia
+deixa de multiplicar de volta pro total, e a conta não fecha na frente do
+cliente, no meio da call. O teste confere os nove casos.
+
+**O prazo diz o que acrescenta.** O escopo é do plano e aparece uma vez, não
+repetido por prazo. Cada prazo explica o que os meses extras incluem, porque o
+escopo é majoritariamente construção inicial: vender 12 meses sem dizer o que
+acontece do mês 4 ao 12 seria vender ar.
+
+`/planos` e `/planosv2` coexistem de propósito: a primeira é a versão simples
+de um prazo, a segunda é a matriz. Escolha na hora da call qual serve melhor
+para o lead. As duas leem o **mesmo** `conteudo.js`.
+
 ## Testes
 
 ```bash
-node sistemas/site-agencia/teste.js          # a home, 102 verificações
-node sistemas/site-agencia/teste-planos.js   # /planos, 43 verificações
+node sistemas/site-agencia/teste.js            # a home, 102 verificações
+node sistemas/site-agencia/teste-planos.js     # /planos, 43 verificações
+node sistemas/site-agencia/teste-planosv2.js   # /planosv2, 39 verificações
 ```
 
 ## Publicar uma alteração
