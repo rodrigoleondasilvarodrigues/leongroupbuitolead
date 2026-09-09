@@ -162,6 +162,41 @@ Para mudar qualquer texto, edite `conteudo.js`: os dois idiomas ficam lado a lad
 do usuário: fica feio e denuncia texto de IA. Use vírgula, dois-pontos, ponto ou
 parêntese. O `teste.js` falha se aparecer um, em qualquer dos dois idiomas.
 
+## A seção de Planos
+
+Três planos, e o **primeiro é o alvo**. Os outros dois ancoram.
+
+A ancoragem funciona pelo **enquadramento**, não pelo preço: o selo dos planos
+2 e 3 diz "Para depois", não "Recomendado". Eles não são melhores, são de outro
+momento. Contractor que ainda não aparece no Google não precisa de gestão de
+tráfego, precisa existir primeiro, e o subtítulo da seção diz isso na cara.
+
+Isso é o inverso do padrão de tabela de preço, onde o plano do meio ou o de
+cima leva o destaque. Aqui o plano 1 é a escolha óbvia por maturidade, e o
+cliente não sente que está comprando a versão pobre.
+
+| | Plano | Preço | Selo | Botão |
+|---|---|---|---|---|
+| 1 | Presença Local | US$ 2.500 fechado | Comece por aqui | laranja, cheio |
+| 2 | Presença + Conteúdo | a partir de US$ 4.500 | Para depois | contorno |
+| 3 | Aquisição | a partir de US$ 7.500 | Para depois | contorno |
+
+**Os três são entregáveis de verdade.** Plano de vitrine que a agência não sabe
+executar seria promessa falsa, e cai na regra de integridade.
+
+⚠ **Não vender o plano Aquisição** antes de a agência ter rodado a primeira
+campanha dela. Por isso o preço é "a partir de" e não fechado.
+
+Conteúdo em `conteudo.js`, na chave `planos` de cada idioma. Cada plano é
+`[nome, total, mensal, prazo, descrição, [itens], "alvo"|"depois"]`. O
+renderizador está em `site.js`, e o selo, a cor do botão e o "a partir de" saem
+todos do último campo.
+
+Clicar num plano preenche `#f_plano`, um campo escondido do formulário, e o CRM
+grava isso na observação do lead. **Não mexe em `#f_servico`**, que é o ofício
+dele: escrever nome de plano num select de ofício gravaria um valor que não
+existe entre as opções.
+
 ## Publicar uma alteração
 
 ```bash

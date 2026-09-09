@@ -424,6 +424,7 @@ export default {
         const n = agora();
         const obs = [
           parcial ? "FORMULÁRIO INCOMPLETO no site: contato guardado pra retomar" : "",
+          b.plano ? `PLANO QUE ELE CLICOU: ${corta(b.plano, 60)}` : "",
           b.papel ? `Papel: ${corta(b.papel, 60)}` : "",
           b.hoje ? `Cliente hoje chega por: ${corta(b.hoje, 60)}` : "",
           b.cidade ? `Onde atende: ${corta(b.cidade, 60)}` : "",

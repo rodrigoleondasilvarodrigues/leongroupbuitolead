@@ -136,7 +136,22 @@ primeiro anúncio subir.
 
 - [x] Apresentação comercial: é o roteiro em `propostas/oferta-na-call.md`. Se
       quiser slides depois, eles saem dele, mas a call não depende de slide.
-- [ ] Proposta em modelo, com o escopo do item 1.
+- [x] **Proposta: três planos no site**, no ar em
+      `leon-group-site.pages.dev/#planos`. Feito em 2026-09-09, no padrão que o
+      usuário pediu (o mesmo da Kairon), mas com o **incentivo invertido**: o
+      plano mais barato é o alvo, e os outros dois ancoram.
+      A ancoragem funciona pelo enquadramento, não pelo preço: os planos 2 e 3
+      não são apresentados como melhores, e sim como **depois**. Contractor que
+      não aparece no Google não precisa de gestão de tráfego, precisa existir
+      primeiro. Assim o plano 1 é a escolha óbvia por maturidade.
+      Presença Local US$ 2.500 · Presença + Conteúdo a partir de US$ 4.500 ·
+      Aquisição a partir de US$ 7.500. Os três são entregáveis de verdade.
+      Clicar num plano registra qual foi, e isso chega no CRM na observação do
+      lead. 19 verificações novas em `teste.js` (115 no total).
+      ⚠ **NÃO VENDER o plano Aquisição** antes de ter rodado a primeira
+      campanha da própria agência. Vender gestão de tráfego sem nunca ter
+      subido uma campanha é o tipo de promessa que a regra de integridade
+      proíbe. É por isso que o preço dele é "a partir de".
 - [x] **Contrato, com preenchimento pelo cliente e aceite eletrônico.** Feito em
       2026-09-09. O operador gera o link no card, manda pro cliente, ele
       preenche os dados legais dele, lê o contrato já preenchido na tela e
