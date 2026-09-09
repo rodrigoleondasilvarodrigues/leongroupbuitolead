@@ -61,7 +61,6 @@ const T = {
     nav_servicos: "Serviços",
     nav_funcoes: "O time",
     nav_metodo: "Como funciona",
-    nav_planos: "Planos",
     nav_faq: "Dúvidas",
     nav_contato: "Falar agora",
 
@@ -332,7 +331,6 @@ Quero saber mais sobre o que a Leon Group pode fazer pela minha empresa.`,
     nav_servicos: "Services",
     nav_funcoes: "The team",
     nav_metodo: "How it works",
-    nav_planos: "Plans",
     nav_faq: "FAQ",
     nav_contato: "Talk to us",
 

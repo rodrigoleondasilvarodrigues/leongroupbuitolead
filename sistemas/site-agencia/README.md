@@ -162,7 +162,34 @@ Para mudar qualquer texto, edite `conteudo.js`: os dois idiomas ficam lado a lad
 do usuário: fica feio e denuncia texto de IA. Use vírgula, dois-pontos, ponto ou
 parêntese. O `teste.js` falha se aparecer um, em qualquer dos dois idiomas.
 
-## A seção de Planos
+## A página de Planos: `/planos`
+
+**Não fica na home, e não está no Google.** Preço na vitrine vira objeção antes
+da conversa: o contractor compara número sem contexto, não sabe que o
+diagnóstico é gratuito nem que o plano de cima é para depois, e sai.
+
+A página existe para ser **apresentada na call**, depois de o diagnóstico ter
+sido mostrado. Aí o número tem contexto.
+
+```
+https://leon-group-site.pages.dev/planos          (português)
+https://leon-group-site.pages.dev/planos?idi=en   (já em inglês)
+```
+
+O que a mantém discreta:
+
+- `noindex, nofollow, noarchive` no `<head>`
+- **nenhum link** para ela em lugar nenhum do site
+- mesmo domínio do site, o que preserva a credibilidade na hora de mandar
+
+O `teste.js` da home agora verifica a **ausência** dos planos lá, inclusive que
+não sobrou nenhum preço em dólar na página. Se um dia a seção voltar para a
+home sem querer, o teste falha.
+
+O conteúdo **não está duplicado**: a página carrega o mesmo `conteudo.js` da
+home e lê `T[idioma].planos`. Duas tabelas de preço divergem, e no dia em que
+divergirem alguém fecha por um preço que não existe. Por isso não há nenhum
+valor escrito no HTML de `/planos`, e o teste confere isso.
 
 Três planos, e o **primeiro é o alvo**. Os outros dois ancoram.
 
@@ -192,10 +219,21 @@ Conteúdo em `conteudo.js`, na chave `planos` de cada idioma. Cada plano é
 renderizador está em `site.js`, e o selo, a cor do botão e o "a partir de" saem
 todos do último campo.
 
-Clicar num plano preenche `#f_plano`, um campo escondido do formulário, e o CRM
-grava isso na observação do lead. **Não mexe em `#f_servico`**, que é o ofício
-dele: escrever nome de plano num select de ofício gravaria um valor que não
-existe entre as opções.
+O botão de cada plano abre o WhatsApp **já dizendo qual plano**. Se o link for
+mandado em vez de apresentado na tela, o clique chega com contexto em vez de um
+"oi" solto. O número sai do `conteudo.js`, não escrito na página.
+
+O campo escondido `#f_plano` continua no formulário da home, para o dia em que
+alguém vier de `/planos` para o formulário. **Ele não mexe em `#f_servico`**,
+que é o ofício do contractor: escrever nome de plano num select de ofício
+gravaria um valor que não existe entre as opções.
+
+## Testes
+
+```bash
+node sistemas/site-agencia/teste.js          # a home, 102 verificações
+node sistemas/site-agencia/teste-planos.js   # /planos, 43 verificações
+```
 
 ## Publicar uma alteração
 

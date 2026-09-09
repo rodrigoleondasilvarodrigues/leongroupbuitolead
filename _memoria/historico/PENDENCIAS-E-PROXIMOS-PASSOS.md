@@ -136,10 +136,15 @@ primeiro anúncio subir.
 
 - [x] Apresentação comercial: é o roteiro em `propostas/oferta-na-call.md`. Se
       quiser slides depois, eles saem dele, mas a call não depende de slide.
-- [x] **Proposta: três planos no site**, no ar em
-      `leon-group-site.pages.dev/#planos`. Feito em 2026-09-09, no padrão que o
-      usuário pediu (o mesmo da Kairon), mas com o **incentivo invertido**: o
-      plano mais barato é o alvo, e os outros dois ancoram.
+- [x] **Proposta: três planos numa página própria**, no ar em
+      **`leon-group-site.pages.dev/planos`** (e `?idi=en` para inglês).
+      Feito em 2026-09-09, no padrão que o usuário pediu (o mesmo da Kairon),
+      mas com o **incentivo invertido**: o plano mais barato é o alvo, e os
+      outros dois ancoram.
+      ⚠ **Fora da home e fora do Google** (`noindex`, sem link nenhum
+      apontando para ela), por decisão do usuário: preço na vitrine vira
+      objeção antes da conversa. É para ser apresentada NA CALL, depois do
+      diagnóstico.
       A ancoragem funciona pelo enquadramento, não pelo preço: os planos 2 e 3
       não são apresentados como melhores, e sim como **depois**. Contractor que
       não aparece no Google não precisa de gestão de tráfego, precisa existir

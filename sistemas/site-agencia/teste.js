@@ -211,54 +211,29 @@ setTimeout(()=>{
   t('robô que preenche o campo escondido é ignorado',!w.__alert&&!w.__aberto);
   $('input[name="site_web"]').value='';
 
-  console.log('\n\x1b[1m═══ 15. PLANOS ═══\x1b[0m');
-  /* O primeiro plano é o alvo. Os outros dois ancoram e são entregáveis de
-     verdade. O que este bloco impede: a ancoragem inverter sozinha (o plano
-     caro roubando o destaque) e o clique num plano estragar o select de
-     ofício, que é outra coisa. */
-  const planos=$$('.plano');
-  t('os três planos desenharam', planos.length===3, planos.length+' planos');
-  t('só um é o alvo', $$('.plano.alvo').length===1);
-  t('e o alvo é o PRIMEIRO, o mais barato',
-    planos[0].classList.contains('alvo'),
-    planos.map(p=>p.querySelector('h3').textContent).join(' · '));
-  t('o alvo diz "comece por aqui"',/Comece por aqui/i.test($('.plano.alvo .selo').textContent),
-    $('.plano.alvo .selo').textContent);
-  t('os outros dois dizem "para depois", não "melhor"',
-    $$('.plano.depois .selo').every(e=>/Para depois/i.test(e.textContent)));
-  t('só o alvo tem preço fechado; os outros dizem "a partir de"',
-    !$('.plano.alvo .partir') && $$('.plano.depois .partir').length===2);
-  t('o alvo custa 2.500',/2\.500/.test($('.plano.alvo .num').textContent),
-    $('.plano.alvo .num').textContent);
-  t('os preços sobem da esquerda para a direita', (()=>{
-    const n=planos.map(p=>parseFloat(p.querySelector('.num').textContent.replace(/\./g,'')));
-    return n[0]<n[1]&&n[1]<n[2]})(),
-    planos.map(p=>p.querySelector('.num').textContent).join(' < '));
-  t('cada plano lista o que entrega',
-    planos.every(p=>p.querySelectorAll('li').length>=5),
-    planos.map(p=>p.querySelectorAll('li').length+' itens').join(' · '));
-  t('cada plano tem botão', $$('.plano .bt').length===3);
-  t('as três notas de transparência aparecem', $$('.planos-notas p').length===3);
-  t('a nota de agência nova está em destaque', !!$('.planos-notas p.nova'));
-  t('diz que não recebe percentual sobre a verba de anúncio',
-    /não recebe percentual sobre a verba/i.test($('#planos-notas').textContent));
-  t('diz que o valor mensal não é mensalidade',
-    /não uma mensalidade/i.test($('#planos-notas').textContent));
-  t('oferece o diagnóstico gratuito para quem não sabe escolher',
-    /diagnóstico gratuito/i.test($('#planos-duvida').textContent));
-  t('o menu tem link para planos', !!$('a[href="#planos"]'));
+  console.log('\n\x1b[1m═══ 15. OS PLANOS NÃO ESTÃO NA HOME ═══\x1b[0m');
+  /* Preço na vitrine vira objeção antes da conversa: o contractor compara
+     número sem contexto, não sabe que o diagnóstico é gratuito nem que o plano
+     de cima é para depois, e sai. A tabela vive em /planos, para ser
+     apresentada na call. Este bloco impede ela voltar para a home sem querer. */
+  t('nenhuma seção de planos na home', !$('#planos') && !$('.plano'));
+  t('nenhum preço em dólar na home', !/US\$\s*[\d.,]+/.test(visivel()),
+    (visivel().match(/US\$\s*[\d.,]+/) || ['nenhum'])[0]);
+  t('o menu não tem link para planos', !$('a[href="#planos"]'));
+  t('e nada aponta para /planos a partir da home',
+    $$('a[href*="planos"]').length === 0);
+  /* O conteúdo dos planos CONTINUA no conteudo.js: é a página /planos que
+     consome. Se ele sumisse daqui, a página nova quebraria.
 
-  /* O clique registra o plano num campo próprio. Antes eu tinha ligado no
-     #f_servico, que é o OFÍCIO dele: escrever o nome de um plano ali gravaria
-     um valor que não existe entre as opções do select. */
-  const antesOficio=$('#f_servico').value;
-  $$('.plano.alvo .bt')[0].click();
-  t('clicar no plano registra qual foi, em campo próprio',
-    $('#f_plano').value.length>0, $('#f_plano').value);
-  t('e NÃO estraga o select de ofício', $('#f_servico').value===antesOficio,
-    'ofício segue "'+$('#f_servico').value+'"');
-  t('o campo do plano é escondido, porque não é pergunta',
-    $('#f_plano').type==='hidden');
+     Lido do ARQUIVO e não de w.T: `const T` no topo de um script clássico não
+     vira propriedade de window, então o teste não consegue alcançar de fora. */
+  const CONT = new Function(fs.readFileSync(path.join(RAIZ,'conteudo.js'),'utf8')
+    + '; return {T:T, WHATSAPP:WHATSAPP};')();
+  t('mas o conteúdo dos planos segue disponível para /planos',
+    CONT.T.pt.planos.length === 3 && CONT.T.en.planos.length === 3,
+    CONT.T.pt.planos.length + ' em pt, ' + CONT.T.en.planos.length + ' em en');
+  t('o campo escondido do plano segue no formulário, para quem vier de /planos',
+    !!$('#f_plano') && $('#f_plano').type === 'hidden');
 
   console.log('\n\x1b[1m═══ 16. INTEGRIDADE DO TEXTO ═══\x1b[0m');
   const todo=visivel();

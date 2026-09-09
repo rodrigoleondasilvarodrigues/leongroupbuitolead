@@ -252,64 +252,6 @@ nav.menu a:hover::after{right:0}
 .assin span{color:var(--laranja);font-weight:600;letter-spacing:.04em}
 
 /* serviços: cards escuros com foco no hover */
-/* ══ planos ══
-   Três colunas no desktop, empilhadas no celular com o ALVO em primeiro.
-   O plano alvo é o único que ganha peso: borda laranja, fundo próprio e o
-   selo. Os outros dois ficam sóbrios de propósito, para não competir. */
-.planos{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px;
-  align-items:start}
-.plano{background:var(--branco);border:1px solid var(--areia);border-radius:14px;
-  padding:26px 24px 24px;display:flex;flex-direction:column;gap:0;position:relative}
-.plano.alvo{border:2px solid var(--laranja);padding:25px 23px 23px;
-  box-shadow:0 4px 24px rgba(230,90,25,.09)}
-.plano .selo{position:absolute;top:-11px;left:23px;background:var(--laranja);color:#fff;
-  font:800 10.5px/1 inherit;letter-spacing:.11em;text-transform:uppercase;
-  padding:6px 11px;border-radius:99px}
-.plano.depois .selo{background:var(--areia);color:var(--cinza)}
-.plano h3{font-size:20px;letter-spacing:-.02em;margin:6px 0 0}
-.plano .prazo{font:600 11px/1 inherit;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--cinza);margin-top:7px}
-.plano .valor{display:flex;align-items:baseline;gap:7px;margin:16px 0 2px;flex-wrap:wrap}
-.plano .valor .cifra{font-size:15px;font-weight:600;color:var(--cinza)}
-.plano .valor .num{font-size:38px;font-weight:800;letter-spacing:-.035em;line-height:1}
-.plano.alvo .valor .num{color:var(--laranja-esc)}
-.plano .valor .partir{font:600 11px/1 inherit;letter-spacing:.08em;text-transform:uppercase;
-  color:var(--cinza);width:100%;margin-bottom:-6px}
-.plano .dividido{font-size:12.5px;color:var(--cinza);margin-bottom:16px}
-.plano .desc{font-size:14px;line-height:1.55;color:var(--cinza);
-  padding-bottom:18px;border-bottom:1px solid var(--areia);margin-bottom:18px}
-.plano ul{list-style:none;padding:0;margin:0 0 22px;display:flex;flex-direction:column;
-  gap:10px;flex:1}
-.plano li{font-size:13.7px;line-height:1.5;padding-left:22px;position:relative}
-.plano li::before{content:"";position:absolute;left:0;top:.44em;width:11px;height:6px;
-  border-left:2px solid var(--laranja);border-bottom:2px solid var(--laranja);
-  transform:rotate(-45deg)}
-.plano.depois li::before{border-color:var(--cinza)}
-.plano .bt{display:block;text-align:center;text-decoration:none;border-radius:8px;
-  padding:14px 18px;font-weight:700;font-size:14.5px;transition:.16s}
-.plano.alvo .bt{background:var(--laranja);color:#fff}
-.plano.alvo .bt:hover{background:var(--laranja-esc)}
-.plano.depois .bt{background:var(--marfim);color:var(--preto);border:1px solid var(--areia)}
-.plano.depois .bt:hover{border-color:var(--laranja);color:var(--laranja-esc)}
-.planos-notas{display:flex;flex-direction:column;gap:9px;margin-top:26px}
-.planos-notas p{font-size:12.8px;line-height:1.55;color:var(--cinza);
-  padding-left:15px;border-left:2px solid var(--areia);margin:0;max-width:70ch}
-.planos-notas p.nova{border-left-color:var(--laranja)}
-.planos-duvida{margin-top:34px;background:var(--escuro);color:var(--marfim);
-  border-radius:14px;padding:28px 30px;display:flex;gap:24px;align-items:center;
-  flex-wrap:wrap}
-.planos-duvida .txt{flex:1;min-width:260px}
-.planos-duvida b{display:block;font-size:19px;letter-spacing:-.015em;margin-bottom:7px}
-.planos-duvida span{font-size:14px;line-height:1.55;opacity:.78}
-.planos-duvida a{background:var(--laranja);color:#fff;text-decoration:none;
-  border-radius:8px;padding:14px 24px;font-weight:700;font-size:14.5px;
-  white-space:nowrap;transition:.16s}
-.planos-duvida a:hover{background:var(--laranja-esc)}
-@media (max-width:900px){
-  .planos{grid-template-columns:1fr;gap:22px}
-  .plano.alvo{order:-1}
-  .plano .valor .num{font-size:34px}
-}
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(288px,1fr));gap:1px;margin-top:56px}
 .card{
   background:var(--escuro-2);padding:34px 30px 32px;position:relative;overflow:hidden;
@@ -654,7 +596,6 @@ footer .base{
       <a href="#servicos" data-t="nav_servicos">Serviços</a>
       <a href="#funcoes" data-t="nav_funcoes">O time</a>
       <a href="#metodo" data-t="nav_metodo">Como funciona</a>
-      <a href="#planos" data-t="nav_planos">Planos</a>
       <a href="#faq" data-t="nav_faq">Dúvidas</a>
     </nav>
     <div class="idioma" role="group" aria-label="Idioma / Language">
@@ -762,21 +703,9 @@ footer .base{
 </section>
 
 <!-- ══ FAQ ══ -->
-<!-- ══ planos ══
-     O primeiro plano é o alvo. Os outros dois ancoram, e são entregáveis de
-     verdade. O enquadramento é de MATURIDADE, não de qualidade: eles não são
-     melhores, são depois. -->
-<section class="sec" id="planos">
-  <div class="env">
-    <div class="rotulo ap" data-t="rot_planos">Planos</div>
-    <h2 class="ap" data-atraso="1" data-t="planos_titulo"></h2>
-    <p class="ap" data-atraso="2" style="margin-top:22px;max-width:56ch" data-t="planos_sub"></p>
-    <div class="planos" id="planos-lista"></div>
-    <div class="planos-notas" id="planos-notas"></div>
-    <div class="planos-duvida ap" id="planos-duvida"></div>
-  </div>
-</section>
-
+<!-- Os planos NÃO ficam aqui. Preço na home vira objeção antes da conversa:
+     o contractor compara número sem contexto e sai. A tabela vive em /planos,
+     fora do menu e com noindex, para ser apresentada na call. -->
 <section class="sec" id="faq">
   <div class="env">
     <div class="rotulo ap" data-t="rot_faq">Dúvidas</div>

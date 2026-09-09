@@ -152,57 +152,6 @@ function montarListas(t) {
       ${prazo ? `<span class="prazo">${esc(prazo)}</span>` : ""}</div>
     </div>`).join("");
 
-  /* ══ planos ══
-     O plano marcado como "alvo" é o único que ganha o selo laranja e o botão
-     cheio. Os outros dois ficam sóbrios de propósito: o objetivo é ancorar,
-     não competir com o plano que a gente quer vender.
-
-     O botão leva pro formulário da própria página, com o plano já escolhido,
-     em vez de abrir o WhatsApp direto: assim o lead entra no CRM mesmo se
-     desistir de mandar a mensagem. */
-  $("#planos-lista").innerHTML = t.planos.map(([nome, total, mes, prazo, desc, itens, tipo], i) => {
-    const alvo = tipo === "alvo";
-    return `
-    <article class="plano ${tipo} ap" data-atraso="${Math.min(i + 1, 5)}">
-      <span class="selo">${esc(alvo ? t.planos_alvo : t.planos_depois)}</span>
-      <h3>${esc(nome)}</h3>
-      <div class="prazo">${esc(prazo)}</div>
-      <div class="valor">
-        ${alvo ? "" : `<span class="partir">${esc(t.planos_partir)}</span>`}
-        <span class="cifra">US$</span><span class="num">${esc(total)}</span>
-      </div>
-      <div class="dividido">${esc(mes)} ${esc(t.planos_mes)} ${esc(t.planos_total ? "· " + total + " " + t.planos_total : "")}</div>
-      <p class="desc">${esc(desc)}</p>
-      <ul>${itens.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
-      <a class="bt" href="#contato" data-plano="${esc(nome)}">${esc(t.planos_cta)}</a>
-    </article>`;
-  }).join("");
-
-  $("#planos-notas").innerHTML = [
-    ["nova", t.planos_nota_nova],
-    ["", t.planos_nota_pgto],
-    ["", t.planos_nota_verba],
-  ].map(([cls, txt]) => `<p class="${cls}">${esc(txt)}</p>`).join("");
-
-  $("#planos-duvida").innerHTML = `
-    <div class="txt"><b>${esc(t.planos_duvida)}</b>
-      <span>${esc(t.planos_duvida_txt)}</span></div>
-    <a href="#contato">${esc(t.planos_duvida_cta)}</a>`;
-
-  /* Clicar num plano leva ao formulário e deixa registrado QUAL plano ele
-     escolheu, num campo escondido. Sem isso, o lead chega no CRM sem a
-     informação mais útil que ele acabou de dar.
-
-     NÃO mexe em #f_servico: aquele select é o OFÍCIO dele (flooring,
-     painting), e escrever o nome de um plano ali gravaria um valor que não
-     existe entre as opções. */
-  document.querySelectorAll("#planos-lista .bt").forEach((b) => {
-    b.addEventListener("click", () => {
-      const alvo = $("#f_plano");
-      if (alvo) alvo.value = b.dataset.plano || "";
-    });
-  });
-
   $("#lista-faq").innerHTML = t.faq.map(([q, a], i) => `
     <details class="ap" data-atraso="${Math.min(i % 3 + 1, 5)}">
       <summary>${esc(q)}</summary>
