@@ -116,6 +116,11 @@ aquisição da própria agência, que é o caso aqui.
 **O que não está no caminho:** o sistema. CRM, caixa, entrega, upload e site estão
 prontos e testados. O gargalo agora é criativo, número e campanha.
 
+**A fila completa e priorizada** está em
+`_memoria/historico/PENDENCIAS-E-PROXIMOS-PASSOS.md`, ordenada por importância e
+urgência, com o que já foi feito marcado. É a lista para trabalhar; esta seção
+aqui é só o resumo das três frentes.
+
 ## Decisões tomadas
 
 - **Número de atendimento nos EUA (2026-09-05):** será obtido pela via legítima (Google Voice,
