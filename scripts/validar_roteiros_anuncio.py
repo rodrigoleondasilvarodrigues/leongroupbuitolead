@@ -25,7 +25,7 @@ def des(s):
     return "".join(c for c in unicodedata.normalize("NFD", s) if unicodedata.category(c) != "Mn").lower()
 
 def campos(r):
-    for k in ("titulo","hook_resumo","script_arcads","headline_estatica","legenda_meta","cta","filtro_ator","audio","integridade"):
+    for k in ("titulo","hook_resumo","script_arcads","prompt_arcads","headline_estatica","legenda_meta","cta","filtro_ator","audio","integridade"):
         v = r.get(k)
         if isinstance(v, str) and v.strip(): yield k, v
     for i, b in enumerate(r.get("broll") or []):
@@ -114,7 +114,9 @@ def checar(r):
 
     # proibicoes
     for c, t in campos(r):
-        if c in ("integridade", "filtro_ator", "audio") or c.startswith("verificar"): continue
+        # prompt_arcads carrega a secao NUNCA, que enuncia as regras em vez de viola-las;
+        # a fala em si ja e conferida por script_arcads, que vive dentro dele
+        if c in ("integridade", "filtro_ator", "audio", "prompt_arcads") or c.startswith("verificar"): continue
         dt = des(t)
         for rx, nome in PROIBIDO:
             for m in re.finditer(rx, dt):
@@ -136,6 +138,22 @@ def checar(r):
                 p.append(f"valor {m.group().strip()} sem fonte no frame e sem entrada em verificar, em {campo}")
             elif not local:
                 p.append(f"valor {m.group().strip()} sem linha de fonte no proprio frame, em {campo}")
+
+    # prompt unico: as tres secoes que o usuario pediu, e a fala verbatim dentro dele
+    pa = r.get("prompt_arcads") or ""
+    if not pa:
+        p.append("sem prompt_arcads")
+    else:
+        for sec in ("QUEM", "ONDE", "O QUE FALA"):
+            if sec not in pa: p.append(f"prompt_arcads sem a secao {sec}")
+        if sc and sc.strip() not in pa:
+            p.append("o script nao esta dentro do prompt_arcads")
+
+    # a fala de cada bloco tem que existir no script, senao o storyboard saiu de sincronia
+    for i, b in enumerate(sb):
+        f = (b.get("fala") or "").strip()
+        if f and sc and f not in sc:
+            p.append(f"storyboard[{i}].fala nao existe no script: {f[:60]!r}")
 
     # broll com origem
     for i, b in enumerate(r.get("broll") or []):

@@ -26,23 +26,34 @@ if (erros.length) console.log(erros.slice(0, 3));
 // estrutura
 t("20 cartoes", d.querySelectorAll(".roteiro").length === 20);
 t("20 caixas de script em destaque", d.querySelectorAll(".cx.destaque").length === 20);
-t("3 passos por cartao", [...d.querySelectorAll(".roteiro")].every(e => e.querySelectorAll(".passo").length === 3));
+t("um prompt copiavel por cartao", [...d.querySelectorAll(".roteiro")].every(e => e.querySelectorAll(".cx.destaque").length === 1));
+t("nada de passos", d.querySelectorAll(".passo").length === 0);
+t("prompt traz quem, onde e fala", [...d.querySelectorAll(".cx.destaque .txt")].every(e =>
+  /QUEM/.test(e.textContent) && /ONDE/.test(e.textContent) && /O QUE FALA/.test(e.textContent)));
 t("todo cartao tem storyboard", [...d.querySelectorAll(".roteiro")].every(e => e.querySelector("table.sb")));
-t("todo cartao tem botao de copiar no script",
+t("todo prompt tem botao de copiar",
   [...d.querySelectorAll(".cx.destaque")].every(e => e.querySelector(".copiar")));
+t("personagem com nome nos roteiros de IA",
+  dados.filter(r => r.tipo === "ia").filter(r => /\b(Wilson|Cleiton|Edinaldo|Jailson|Robson|Denilson|Valdir|Nilson|Gilmar|Adriano|Josimar|Fabiano|Wanderson|Sidnei|Marcos|Denise)\b/.test(r.script_arcads)).length >= 14);
 t("storyboard tem 4 colunas", [...d.querySelectorAll("table.sb thead tr")].every(r => r.children.length === 4));
 
-// o script na tela e identico ao do JSON
+// o prompt na tela e identico ao do JSON, pra copia sair fiel
 const caixas = [...d.querySelectorAll(".roteiro .cx.destaque .txt")].map(e => e.textContent.trim());
-t("script da tela bate com o JSON", dados.every((r, i) => caixas[i] === r.script_arcads.trim()));
+t("prompt da tela bate com o JSON", dados.every((r, i) => caixas[i] === r.prompt_arcads.trim()));
+t("o script vive dentro do prompt", dados.every(r => r.prompt_arcads.includes(r.script_arcads.trim())));
 
 // tetos
 t("todo script dentro do teto", dados.every(r => r.script_arcads.length <= (r.numero === 20 ? 400 : 600)));
 t("contagem exibida bate", dados.every(r => html.includes(`${r.script_arcads.length} caracteres`)));
 
-// b-roll: um bloco por plano
-t("planos de b-roll batem com o JSON",
-  [...d.querySelectorAll(".roteiro")].every((e, i) => e.querySelectorAll(".plano").length === dados[i].broll.length));
+// a fala do storyboard tem que existir no script, senao saiu de sincronia
+t("toda fala do storyboard esta no script",
+  dados.every(r => r.storyboard.every(b => r.script_arcads.includes(b.fala.trim()))));
+t("storyboard cobre a duracao", dados.every(r => {
+  const fim = r.storyboard.at(-1).t.split("-")[1].split(":");
+  return Math.abs((+fim[0] * 60 + +fim[1]) - r.duracao_seg) <= 2;
+}));
+t("nenhum prompt de b-roll solto", d.querySelectorAll(".plano").length === 0);
 
 // ICP na abertura falada
 const icp = /subcontractor|empres[áa]rio da constru[çc][ãa]o|home service/i;

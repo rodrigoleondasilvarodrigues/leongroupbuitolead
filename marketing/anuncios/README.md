@@ -17,16 +17,22 @@ realmente aceitam. Dezesseis com ator de IA, quatro gravados pelo Rodrigo.
 Saídas em `saidas/`: `roteiros-anuncios.html` (artefato),
 `roteiros-anuncios-impressao.html` e `Leon-Group-20-Roteiros-de-Anuncio.pdf`.
 
-## Como o Arcads funciona de verdade
+## O formato
 
-Isso define o formato do documento inteiro.
+**Um prompt por roteiro.** Um bloco só, copiável de uma vez: QUEM é a pessoa,
+ONDE ela está, O QUE FALA palavra por palavra, e o que NUNCA pode aparecer.
+Abaixo dele, o storyboard daquele prompt. Nada mais sai daqui pra ferramenta.
 
-**Você não descreve o ator.** Clica em `Add Actors` e escolhe numa biblioteca
-de mais de trezentos, filtrando por gênero, idade e cenário. Por isso cada
-roteiro traz um **filtro de busca**, não uma descrição física.
+A seção QUEM já traz o filtro da biblioteca do Arcads (`Add Actors`, gênero,
+idade, cenário), porque lá você escolhe o ator em vez de descrever. A seção
+O QUE FALA é o que vai no campo de script.
 
-**O único campo de texto é o script**, com contador de caracteres e duração
-estimada. O teto depende do modelo:
+**Os dezesseis atores são pessoas diferentes em lugares diferentes**, de
+trinta e um a quarenta e sete anos, em garagem, picape, obra, depósito e
+cozinha em reforma. Dezesseis vídeos com o mesmo rosto na mesma parede
+saturam o público em uma semana.
+
+**Teto de caracteres por modelo:**
 
 | Modelo | Teto | Para |
 |---|---|---|
@@ -40,8 +46,8 @@ respiro e **uma geração só**, sem emenda. O roteiro 20 cabe em 400.
 **Áudio em `Settings > Audio > Speech to Speech`**, nunca Text to Speech.
 Grava a própria voz com os respiros no lugar e a ferramenta troca a voz.
 
-**B-roll** usa os modelos visuais que o próprio Arcads embute (Sora 2 Pro,
-Veo 3.1, Kling 2.6). Seedance funciona igual. Um prompt por plano, em inglês.
+**Os planos de apoio vivem na coluna Imagem do storyboard**, não em prompts
+separados. Se for gerar algum, a descrição da célula já serve de prompt.
 
 ## Montar de novo
 
@@ -75,10 +81,15 @@ presença nos Estados Unidos. Isso não entrou:
   com o cartão na mão pagando cinco mil dólares, perguntar "você tá no Brasil?"
   e desistir. O risco é comercial antes de ser ético.
 
-A concretude que o pedido buscava entrou por outro caminho: cidade real, ofício
-nomeado, valor de mercado com fonte, cena específica. A história é a **do
-espectador**, em segunda pessoa, e os personagens de ilustração descrevem o
-mercado (o contractor que repassa, o dono da casa), nunca um cliente da agência.
+A concretude entrou por outro caminho: cada anúncio conta a história de uma
+pessoa com nome, ofício e cidade. Wilson instala piso em Waltham, Cleiton faz
+banheiro entre Everett e Malden, Sidnei tem seis avaliações contra duzentas e
+quatorze do concorrente.
+
+Esses personagens **ilustram o problema do mercado**, e a agência entra depois.
+Nenhum deles é apresentado como cliente da Leon Group nem dá depoimento, que é
+exatamente o que separa dramatização de testemunho fabricado. O campo
+`verificar` de cada roteiro repete essa regra, para não se perder na edição.
 
 ## Antes da primeira leva
 

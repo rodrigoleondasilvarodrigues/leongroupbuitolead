@@ -32,62 +32,43 @@ def caixa(rotulo, texto, extra="", mono=True, copiavel=True, meta=""):
     return (f'<div class="{cls}"><header><span>{e(rotulo)}</span>{mt}{bt}</header>'
             f'<div class="txt{" m" if mono else ""}">{marcar(texto)}</div></div>')
 
-def passo(n, titulo, conteudo):
-    return (f'<div class="passo"><div class="pcab"><span class="pn">{n}</span>'
-            f'<h5>{e(titulo)}</h5></div>{conteudo}</div>')
-
 def cartao(r, impressao=False):
     ia = r["tipo"] == "ia"
     chars = len(r["script_arcads"])
     teto = 400 if r["numero"] == 20 else 600
     aviso = "" if chars <= teto else f'<div class="alerta">Script com {chars} caracteres, acima do teto de {teto}. Cortar antes de gerar.</div>'
 
-    # passo 1
-    if ia:
-        cfg = (f'<dl class="cfg">'
-               f'<dt>Modelo</dt><dd>{e(r["modelo_arcads"])}</dd>'
-               f'<dt>Ator</dt><dd>{marcar(r["filtro_ator"])}</dd>'
-               f'<dt>Áudio</dt><dd>{marcar(r["audio"])}</dd></dl>')
-        p1 = passo(1, "No Arcads", cfg + aviso
-                   + caixa("Script, cole no campo de texto", r["script_arcads"], "destaque",
-                           meta=f"{chars} caracteres · teto {teto}"))
-    else:
-        cfg = (f'<dl class="cfg">'
-               f'<dt>Quem</dt><dd>{marcar(r["filtro_ator"])}</dd>'
-               f'<dt>Áudio</dt><dd>{marcar(r["audio"])}</dd></dl>')
-        p1 = passo(1, "Você grava", cfg + aviso
-                   + caixa("O que falar", r["script_arcads"], "destaque",
-                           meta=f"{chars} caracteres"))
+    modelo = (r["modelo_arcads"] or "").split(".")[0].split("(")[0].strip()
+    cfg = (f'<dl class="cfg">'
+           f'<dt>Modelo</dt><dd>{e(modelo)}</dd>'
+           f'<dt>Áudio</dt><dd>Speech to Speech, em Settings &gt; Audio. Você grava a própria voz com os respiros no lugar e a ferramenta troca a voz.</dd>'
+           f'<dt>Script</dt><dd>{chars} caracteres, teto de {teto}. Cabe em uma geração só.</dd>'
+           f'</dl>') if ia else (
+           f'<dl class="cfg">'
+           f'<dt>Quem grava</dt><dd>Você, Rodrigo, em primeira pessoa.</dd>'
+           f'<dt>Fala</dt><dd>{chars} caracteres, cerca de {r["duracao_seg"]} segundos com respiro. Não decore, leia duas vezes e fale com suas palavras.</dd>'
+           f'</dl>')
 
-    # passo 2
-    planos = ""
-    for b in r["broll"]:
-        gerado = "grava" not in (b["origem"] or "").lower()
-        planos += (f'<div class="plano"><div class="pq">{e(b["quando"])}'
-                   f'<span class="org">{e(b["origem"])}</span></div>'
-                   + caixa("Prompt" if gerado else "Instrução", b["prompt"], mono=gerado) + "</div>")
-    p2 = passo(2, "B-roll, um prompt por plano", planos)
+    prompt = caixa("O prompt, cole inteiro", r["prompt_arcads"], "destaque",
+                   meta=f"{len(r['prompt_arcads'])} caracteres")
 
-    # passo 3
     linhas = "".join(
         f'<tr><td class="tt">{e(b["t"])}</td><td>{marcar(b["imagem"])}</td>'
         f'<td class="te">{marcar(b["tela"])}</td><td class="fl">{marcar(b["fala"])}</td></tr>'
         for b in r["storyboard"])
-    p3 = passo(3, "Montagem",
-               f'<div class="campo"><div class="rot2">Headline na tela</div>'
-               f'<div class="valor">{marcar(r["headline_estatica"])}</div></div>'
-               f'<div class="sbwrap"><table class="sb"><thead><tr>'
-               f'<th class="c1">Tempo</th><th class="c2">Imagem</th><th class="c3">Na tela</th><th class="c4">Fala</th>'
-               f'</tr></thead><tbody>{linhas}</tbody></table></div>')
+    sb = (f'<h5 class="pt">Storyboard</h5>'
+          f'<div class="sbwrap"><table class="sb"><thead><tr>'
+          f'<th class="c1">Tempo</th><th class="c2">Imagem</th><th class="c3">Na tela</th><th class="c4">Fala</th>'
+          f'</tr></thead><tbody>{linhas}</tbody></table></div>')
 
-    ver = ("".join(f"<li>{marcar(x)}</li>" for x in r.get("verificar") or []))
-    fim = (caixa("Primary text no Meta", r["legenda_meta"], mono=False)
-           + f'<div class="nota"><b>CTA</b> {marcar(r["cta"])}</div>'
-           + f'<div class="nota"><b>Integridade</b> {marcar(r["integridade"])}</div>'
-           + (f'<div class="nota at"><b>Conferir antes de subir</b><ul class="li">{ver}</ul></div>' if ver else ""))
+    ver = "".join(f"<li>{marcar(x)}</li>" for x in r.get("verificar") or [])
+    fim_ = (caixa("Primary text no Meta", r["legenda_meta"], mono=False)
+            + f'<div class="nota"><b>CTA</b> {marcar(r["cta"])}</div>'
+            + f'<div class="nota"><b>Integridade</b> {marcar(r["integridade"])}</div>'
+            + (f'<div class="nota at"><b>Conferir antes de subir</b><ul class="li">{ver}</ul></div>' if ver else ""))
 
-    corpo = f'<div class="corpo">{p1}{p2}{p3}<div class="fecho">{fim}</div></div>'
-    selo = ("Ator de IA" if ia else "Você grava")
+    corpo = f'<div class="corpo">{cfg}{aviso}{prompt}{sb}<div class="fecho">{fim_}</div></div>'
+    selo = "Ator de IA" if ia else "Você grava"
     cab = (f'<div class="num">{r["numero"]:02d}</div>'
            f'<div class="tcab"><h3>{e(r["titulo"])}</h3><p>{marcar(r["hook_resumo"])}</p></div>'
            f'<div class="selos"><span class="selo {"ia" if ia else "rod"}">{selo}</span>'
@@ -98,6 +79,7 @@ def cartao(r, impressao=False):
         return f'<section class="rot"><div class="cab">{cab}</div>{corpo}</section>'
     return (f'<details class="roteiro" data-tipo="{e(r["tipo"])}" data-grupo="{e(r["grupo"])}">'
             f'<summary>{cab}</summary>{corpo}</details>')
+
 
 # ------------------------------------------------------------------ estilo
 TOKENS = """
@@ -198,7 +180,9 @@ th.c1{width:78px} th.c2{width:32%} th.c3{width:26%}
 td.tt{font-family:var(--mono); font-size:11.5px; color:var(--laranja); white-space:nowrap; font-weight:500}
 td.te{font-family:var(--mono); font-size:11.5px; color:var(--fumo); line-height:1.5}
 td.fl{font-weight:500}
-.fecho{border-top:1px solid var(--linha); padding-top:18px; margin-top:6px}
+h5.pt{font-family:var(--mono); font-size:10.5px; letter-spacing:.13em; text-transform:uppercase;
+  color:var(--laranja); margin:24px 0 9px; font-weight:500}
+.fecho{border-top:1px solid var(--linha); padding-top:18px; margin-top:20px}
 """
 
 # ------------------------------------------------------------------ secoes fixas
@@ -206,35 +190,38 @@ FERRAMENTA_SEC = """
 <section id="ferramenta">
   <div class="env">
     <div class="rot">Parte três</div>
-    <h2 class="tit">Onde cada pedaço vai</h2>
+    <h2 class="tit">Um prompt, um storyboard</h2>
     <div class="leitura">
-      <p>O erro da primeira versão foi entregar um bloco só de prompt. No Arcads isso não existe: você <b>não descreve o ator</b>, você clica em <span class="mono">Add Actors</span> e escolhe numa biblioteca de mais de trezentos, filtrando por gênero, idade e cenário. O único campo de texto que existe é o do script.</p>
-      <p>Então cada roteiro aqui vem partido em três, na ordem em que você vai executar.</p>
-    </div>
-
-    <div class="tl">
-      <div class="tl-l"><time>Passo 1</time><div><b>No Arcads.</b> Escolhe o modelo, filtra o ator na biblioteca, põe o áudio em Speech to Speech e cola o script no campo de texto. Um botão de copiar, um campo de destino.</div></div>
-      <div class="tl-l"><time>Passo 2</time><div><b>B-roll.</b> Um prompt por plano, em inglês, para os modelos visuais. O Arcads já tem Sora 2 Pro, Veo 3.1 e Kling 2.6 embutidos, então dá para fazer tudo lá dentro. Seedance funciona igual se preferir.</div></div>
-      <div class="tl-l"><time>Passo 3</time><div><b>Montagem.</b> O storyboard com o que aparece, o texto na tela e a fala de cada bloco. É o que você entrega pro editor, ou executa você mesmo.</div></div>
-    </div>
-
-    <h3 class="sub2">Os três modelos do Arcads e o teto de cada um</h3>
-    <div class="leitura">
-      <p>O campo de script mostra a contagem de caracteres e a duração estimada. Cada modelo tem uma faixa em que funciona bem, e passar do teto é o que quebra a geração.</p>
-    </div>
-    <div class="grade">
-      <div><h5>Omnihuman 1.5</h5><p>Até <strong>400 caracteres</strong>. O mais expressivo, com gesto de corpo inteiro. Bom para peça curta de retargeting.</p></div>
-      <div><h5>Audio Driven</h5><p>Até <strong>600 caracteres</strong>, 45 segundos ou mais. É onde a maioria destes roteiros roda.</p></div>
-      <div><h5>Arcads 1.0</h5><p><strong>1500 caracteres ou mais</strong>, 30 a 45 segundos. Para script longo, que aqui a gente evitou de propósito.</p></div>
-    </div>
-    <div class="leitura">
-      <p>Todos os scripts deste documento foram escritos para caber em <b>600 caracteres</b>, que dá por volta de 40 a 45 segundos falados com respiro. Isso significa <b>uma geração só</b>, sem precisar dividir em duas e emendar na edição. A contagem exata aparece no cabeçalho de cada script.</p>
-      <p>Se precisar esticar, o Arcads estica: gera outro clipe com o mesmo ator, mesmo modelo e mesma voz e você junta na edição. Para os modelos visuais existe o <span class="mono">Take Snapshot</span>, que continua a cena a partir de um frame. O limite dessa continuação é de trinta segundos de entrada para trinta e sete de saída.</p>
+      <p>Cada roteiro tem <b>um bloco só</b> pra copiar. Quem é a pessoa, onde ela está, o que ela fala. Nada além disso precisa sair daqui pra ferramenta.</p>
+      <p>Abaixo do prompt vem o storyboard daquele prompt: o que aparece na tela em cada trecho, o texto sobreposto e a fala correspondente. É o mapa da edição, não é coisa pra colar em lugar nenhum.</p>
     </div>
 
     <div class="regra">
-      <div class="cab">O que o Enrico manda e a ferramenta suporta</div>
-      <p>Em <span class="mono">Settings &gt; Audio</span> existem Text to Speech e Speech to Speech. Use <b>Speech to Speech</b>: você grava a própria voz lendo o script com os respiros no lugar e a ferramenta troca pela voz do personagem. Texto lido pela máquina sai com entonação errada, e esse público percebe.</p>
+      <div class="cab">No Arcads</div>
+      <p>Você escolhe o ator em <span class="mono">Add Actors</span>, filtrando por gênero, idade e cenário. A seção QUEM do prompt diz exatamente o filtro e o tipo de cara procurar. A seção ONDE orienta a escolha do cenário do ator. A seção O QUE FALA é o texto que vai no campo de script, palavra por palavra.</p>
+    </div>
+
+    <h3 class="sub2">O teto de caracteres</h3>
+    <div class="leitura">
+      <p>O campo de script tem contador e mostra a duração estimada. Cada modelo aguenta um tamanho:</p>
+    </div>
+    <div class="grade">
+      <div><h5>Omnihuman 1.5</h5><p>Até <strong>400 caracteres</strong>. O mais expressivo, com gesto de corpo inteiro.</p></div>
+      <div><h5>Audio Driven</h5><p>Até <strong>600 caracteres</strong>, 45 segundos ou mais. É onde estes roteiros rodam.</p></div>
+      <div><h5>Arcads 1.0</h5><p><strong>1500 caracteres ou mais</strong>. Para script longo, evitado aqui de propósito.</p></div>
+    </div>
+    <div class="leitura">
+      <p>Todos os scripts cabem em 600 caracteres, o que dá 40 a 45 segundos falados com respiro e <b>uma geração só</b>, sem emenda na edição. O roteiro 20 cabe em 400.</p>
+    </div>
+
+    <div class="regra">
+      <div class="cab">Áudio</div>
+      <p>Em <span class="mono">Settings &gt; Audio</span>, escolha <b>Speech to Speech</b>, nunca Text to Speech. Você grava a própria voz lendo o script com os respiros no lugar e a ferramenta troca pela voz do ator. Texto lido pela máquina sai com entonação errada, e esse público percebe na hora.</p>
+    </div>
+
+    <h3 class="sub2">Dezesseis pessoas, não uma</h3>
+    <div class="leitura">
+      <p>Os dezesseis atores de IA são gente diferente em lugares diferentes, de propósito: idades de trinta e um a quarenta e sete, garagem, picape, obra, depósito, cozinha em reforma. Dezesseis vídeos com o mesmo rosto na mesma parede saturam o público em uma semana.</p>
     </div>
   </div>
 </section>
