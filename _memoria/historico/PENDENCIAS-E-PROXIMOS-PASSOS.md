@@ -35,9 +35,15 @@ barato da lista (um dia de decisão) e o que desbloqueia mais coisa.
       ou HVAC (apontado na aula como o de cliente com mais dinheiro). A decisão
       está em aberto desde o começo e agora trava o criativo e a segmentação da
       campanha. **É sua, não minha:** os dois caminhos são defensáveis.
-- [ ] Escrever problema, promessa responsável e mecanismo da oferta.
-- [ ] Definir entregáveis e o que fica **fora** do escopo.
-- [ ] Definir prazo, o que o cliente precisa fazer, e como aprova.
+- [x] **Escrever a oferta como ela é feita na call.** Feito em 2026-09-09:
+      `propostas/oferta-na-call.md` (fonte de verdade) e a página para abrir no
+      celular durante a call. Traz a estrutura de 40 minutos em 6 blocos, o
+      escopo, o preço recomendado, o degrau de baixo e as 6 objeções com
+      resposta honesta. **Falta você confirmar o preço e o nicho.**
+- [x] Entregáveis e o que fica fora do escopo (estão no roteiro, e batem com o
+      que o sistema realmente entrega: site, GBP, 20 reviews, 12 posts + 4
+      destaques, logo, 5 dias úteis).
+- [x] Prazo, o que o cliente faz e como aprova (bloco 05 e "Depois do sim").
 - [ ] Definir preço, entrada, recorrência e política de cancelamento.
       ⚠ **O link do WHOP está limitado a US$ 2.500 por cobrança.** Se o preço
       passar disso, ou o teto sobe, ou a venda vira parcelada, ou o meio de
@@ -128,7 +134,8 @@ houver contrato nem forma de cobrar, o dinheiro não entra e a credibilidade vai
 junto. Não precisa estar pronto antes do criativo, mas precisa estar antes de o
 primeiro anúncio subir.
 
-- [ ] Apresentação comercial (a que roda na call).
+- [x] Apresentação comercial: é o roteiro em `propostas/oferta-na-call.md`. Se
+      quiser slides depois, eles saem dele, mas a call não depende de slide.
 - [ ] Proposta em modelo, com o escopo do item 1.
 - [ ] Contrato. ⚠ O `playbook-operacao.md` tem um aviso jurídico sobre
       classificação de colaborador PJ que precisa de validação profissional
