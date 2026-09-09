@@ -7,12 +7,19 @@ Antes de executar um item, confira se o usuário o concluiu fora da conversa.
 > separa a Leon Group do primeiro cliente pago é oferta escrita, número
 > americano, criativo produzido e campanha no ar. Nessa ordem.
 
-## Comece hoje pelos itens 2 e 3, e trabalhe no 1
+## Comece hoje pelo item 2, e trabalhe no 1
 
-Os itens **2** (número) e **3** (Meta) dependem de terceiro: pedido, verificação,
-aprovação de meio de pagamento. São 30 minutos de trabalho seu e possivelmente
-dias de espera. Disparar os dois hoje e usar o dia no item 1 economiza uma
-semana de fila.
+O item **2** (número americano) é o único que depende de terceiro: pedido,
+verificação, às vezes portabilidade. É meia hora de trabalho seu e possivelmente
+dias de espera. Disparar hoje e usar o dia no item 1 economiza a fila.
+
+O item **3** encolheu para uma página do Facebook, porque Instagram, BM, conta de
+anúncios e pagamento já existem. É meia hora, sem espera.
+
+**O item 4 (criativos) não deve começar antes do 1.** Não é preciosismo de ordem:
+o Arcads cobra por geração, não tem teste grátis e não devolve dinheiro por
+resultado ruim. Gerar vídeo antes de a oferta e o nicho estarem decididos é a
+forma mais provável de queimar os $110.
 
 ---
 
@@ -32,6 +39,9 @@ barato da lista (um dia de decisão) e o que desbloqueia mais coisa.
 - [ ] Definir entregáveis e o que fica **fora** do escopo.
 - [ ] Definir prazo, o que o cliente precisa fazer, e como aprova.
 - [ ] Definir preço, entrada, recorrência e política de cancelamento.
+      ⚠ **O link do WHOP está limitado a US$ 2.500 por cobrança.** Se o preço
+      passar disso, ou o teto sobe, ou a venda vira parcelada, ou o meio de
+      cobrança muda. Decidir isso junto com o preço, não depois de fechar.
 - [ ] Definir as métricas de processo e de resultado, sem prometer faturamento
       nem posição no Google.
 
@@ -56,35 +66,60 @@ minuto". Ligar para dono de casa americano de número brasileiro derruba a taxa
 de atendimento, que é a primeira conversão do funil. Hoje o funil vazaria no
 primeiro degrau por causa do prefixo do telefone.
 
-## 3. A conta de anúncios da Meta
+## 3. A página do Facebook
 
-**Por que agora:** também tem espera de terceiro, e a que costuma dar problema.
-Conta nova é sinalizada, verificação de negócio leva dias, e recusa de meio de
-pagamento é comum. Deixar para depois do criativo pronto é o jeito clássico de
-perder uma semana com tudo pronto na mão.
+**Só isso.** Confirmado pelo usuário em 2026-09-09: Instagram, Business Manager,
+conta de anúncios e meio de pagamento **já existem e funcionam**. O que faltava
+neste item era quase tudo, e não é mais.
 
 - [ ] Criar a página da Leon Group no Facebook.
-- [ ] Conectar Instagram e Facebook na Meta Business Suite.
-- [ ] Criar conta de anúncios, cadastrar meio de pagamento e **confirmar que foi
-      aceito**.
-- [ ] Instalar pixel e dataset, e testar que o evento de conversão chega.
-- [ ] Organizar acessos e permissões.
+- [ ] Ligar a página na BM e no Instagram que já existem.
+- [ ] Conferir que o pixel/dataset dispara o evento de conversão do site.
 
-## 4. Produzir os 20 criativos
+## 4. Produzir os criativos, em lote pequeno
 
-**Por que aqui:** é o maior volume de trabalho da lista e está no caminho crítico
-da campanha. Vem depois do item 1 porque, se a oferta ou o nicho mudarem, o
-roteiro muda com eles.
+**Correção de 2026-09-09:** a versão anterior deste item dizia "gerar os 16
+vídeos com ator de IA". **Não cabe no orçamento** e foi escrita sem checar a
+economia da ferramenta.
 
-- [ ] Reler os 20 roteiros contra a oferta decidida no item 1 e ajustar o que
-      não bater.
-- [ ] Gerar os **16 vídeos com ator de IA** (um prompt por roteiro, copiável de
-      uma vez, em `marketing/anuncios/roteiros-20.json`).
-- [ ] Gravar os **4 roteiros do Rodrigo**.
+### A economia do Arcads, apurada
+
+| Fato | Consequência |
+|---|---|
+| $110/mês = plano Starter = **10 vídeos** | 16 não cabem. Precisaria do Creator, $220 |
+| ~$11 por vídeo, nos dois planos | cada tentativa custa dinheiro |
+| 800 créditos por **minuto, por ator**, minuto arredondado **para cima** | roteiro de 61s custa o dobro de um de 59s |
+| **Não existe teste grátis** | a primeira avaliação de qualidade custa os $110 |
+| Reembolso só nas primeiras 24h **e com zero crédito usado** | gerou um vídeo, fechou a porta |
+| "Não gostei do resultado" **não é reembolsável** | só falha técnica devolve crédito |
+
+Conferido: **os 20 roteiros falam entre 29 e 42 segundos**, então nenhum estoura
+o minuto e nenhum custa dobrado. Esse risco está descartado.
+
+Com re-rolls (e vai precisar: pronúncia, ritmo, ator que não combina), $110
+rendem na prática **3 ou 4 anúncios usáveis**, não 10.
+
+### A ordem que protege o dinheiro
+
+- [ ] **Gravar os 4 roteiros seus primeiro. Custa zero.** São os de tipo
+      `gravado` (17 a 20). Se a mensagem não funciona com você na frente da
+      câmera, não vai funcionar com ator de IA. Isso valida a mensagem sem
+      gastar um dólar.
+- [ ] **Decidir a oferta e o nicho (item 1) antes de assinar.** Gerar vídeo e
+      depois mudar preço ou nicho significa regerar tudo a $11 cada, sem
+      reembolso.
+- [ ] Assinar e **olhar a ferramenta antes de gerar nada**: biblioteca de atores,
+      filtro, fluxo. Se não servir, o reembolso de 24h ainda está aberto.
+- [ ] **Gerar 1 vídeo.** Conferir pronúncia, ritmo, se o ator combina com o
+      público (contractor brasileiro nos EUA), e se o resultado presta.
+- [ ] Só então gerar **3 ou 4** dos roteiros mais fortes. Não os 16.
 - [ ] Editar, legendar e exportar nos formatos da campanha.
 
-Roteiro escrito não é criativo pronto. Hoje existem 20 roteiros e **zero vídeos**.
-Documento montado em `saidas/Leon-Group-20-Roteiros-de-Anuncio.pdf`.
+Não são necessários 16 criativos para começar. São necessários 3 ou 4 para achar
+um que funcione, e depois escalar o que ganhou.
+
+Fonte de verdade dos roteiros: `marketing/anuncios/roteiros-20.json`. Documento
+montado: `saidas/Leon-Group-20-Roteiros-de-Anuncio.pdf`.
 
 ## 5. Proposta, contrato e cobrança
 
@@ -98,7 +133,9 @@ primeiro anúncio subir.
 - [ ] Contrato. ⚠ O `playbook-operacao.md` tem um aviso jurídico sobre
       classificação de colaborador PJ que precisa de validação profissional
       antes de ser aplicado.
-- [ ] Forma de cobrança que funcione para cliente nos EUA (Wise, Zelle, gateway).
+- [ ] Forma de cobrança para cliente nos EUA. **O WHOP já está funcionando**,
+      com link limitado a US$ 2.500 por cobrança (confirmado em 2026-09-09).
+      Resolver o teto se o preço passar disso.
 - [ ] Roteiro de onboarding: o que acontece nas primeiras 24h depois do pagamento.
 
 ## 6. Subir a campanha

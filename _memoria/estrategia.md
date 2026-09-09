@@ -95,7 +95,10 @@ a ferramenta: 16 com ator de IA e 4 para o Rodrigo gravar. Fonte de verdade em
 `marketing/anuncios/roteiros-20.json`, documento montado em
 `saidas/Leon-Group-20-Roteiros-de-Anuncio.pdf`. Cada roteiro tem um prompt único,
 copiável de uma vez, com o storyboard embaixo.
-Falta: **gerar os 16 vídeos com ator de IA, gravar os 4 do Rodrigo, editar e legendar.**
+Falta produzir os vídeos, **em lote pequeno**: o Arcads cobra $110 por 10 vídeos, não tem
+teste grátis, e "não gostei do resultado" não é reembolsável. Gravar primeiro os 4 do
+Rodrigo (custa zero), depois 1 no Arcads para conferir, depois 3 ou 4. Economia da
+ferramenta apurada na fila operacional.
 Sem criativo pronto não há campanha, e o criativo é a primeira coisa que o diagnóstico
 do funil acusa quando a conversão de entrada está baixa.
 
@@ -106,9 +109,12 @@ Trava três coisas ao mesmo tempo: o site ainda usa um WhatsApp brasileiro provi
 (`5561998629189`), o WhatsApp Business não pode ser configurado sem ele, e ligar para
 lead americano de número brasileiro derruba a taxa de atendimento.
 
-**3. Tráfego pago, do começo ao fim.** Página do Facebook, Meta Business Suite conectado
-(pixel, dataset, conta de anúncios), campanha montada, orçamento definido, e a régua de
-acompanhamento ligada no dashboard do CRM.
+**3. Tráfego pago.** Confirmado em 2026-09-09 que Instagram, Business Manager, conta de
+anúncios e meio de pagamento **já existem e funcionam**. Falta só a **página do Facebook**,
+mais a campanha montada, o orçamento definido e a régua de acompanhamento no dashboard.
+
+**Cobrança:** o **WHOP já funciona**, com link limitado a **US$ 2.500 por cobrança**. Esse
+teto é entrada da decisão de preço no item 1, não um detalhe para depois.
 ⚠ Lembrar da decisão de posicionamento: **para o cliente**, tráfego pago é a última
 etapa do método, e o site diz isso. Isso vale para a entrega dos clientes, não para a
 aquisição da própria agência, que é o caso aqui.
