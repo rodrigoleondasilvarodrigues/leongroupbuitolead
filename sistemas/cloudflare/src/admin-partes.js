@@ -95,6 +95,23 @@ export const CSS_PARTES = `
 .mn .x:hover{background:#c0392b}
 .mn.subindo{opacity:.45}
 .mn .pc{position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--laranja);width:0}
+/* ── contrato ── */
+.ct-ok{background:#e5f0e9;border:1px solid #bcd9c8;border-left:3px solid var(--verde);
+  border-radius:0 7px 7px 0;padding:11px 14px;margin-bottom:10px}
+.ct-ok b{display:block;font-size:12.5px;color:var(--verde);margin-bottom:3px}
+.ct-ok span{font-size:11.5px;color:var(--cinza);line-height:1.5;display:block}
+.ct-dados{background:var(--marfim);border:1px solid var(--areia);border-radius:7px;
+  padding:11px 14px;margin-top:11px}
+.ct-dados b{display:block;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--cinza);margin-bottom:4px}
+.ct-dados span{font-size:12.5px;line-height:1.55;display:block}
+.ct-legal{background:var(--laranja-pal);border-left:3px solid var(--laranja-esc);
+  border-radius:0 5px 5px 0;padding:10px 13px;margin-top:12px;font-size:11.5px;
+  line-height:1.5}
+.ct-legal b{display:block;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--laranja-esc);margin-bottom:4px}
+.ct-legal code{font:11px ui-monospace,monospace;background:var(--branco);
+  padding:1px 4px;border-radius:3px}
 /* ── entradas: o dinheiro que caiu na conta ── */
 .ent-topo{display:grid;grid-template-columns:1fr 1fr;gap:12px;background:var(--preto);
   color:var(--marfim);border-radius:9px;padding:15px 17px;margin-bottom:12px}
@@ -327,6 +344,74 @@ async function apagarEntrada(id){
   const r=await post('/api/entrada',{cliente_id:aberto,id:id,apagar:true});
   if(r.erro) return alert(r.erro);
   marcarDashSujo(); await carregar(); abrirCliente(aberto);
+}
+
+/* ═══════════ 1c. CONTRATO ═══════════
+   O contrato é a PRIMEIRA coisa que o cliente toca no sistema, antes do
+   onboarding. O fluxo: gerar o link, mandar, ele preenche os dados legais dele,
+   lê o texto inteiro e aceita. O aceite liga a chave de contrato assinado
+   sozinho, e a partir daí a chave fica travada: mexer nela à mão contradiria
+   uma prova de aceite registrada. */
+function l_contrato_link(c, base){
+  const aceito = !!c.contrato_aceito_em;
+  const temDados = !!c.razao_social;
+  let h = '';
+
+  if(aceito){
+    h += '<div class="ct-ok"><b>Aceito pelo cliente</b>'
+      + '<span>' + esc(c.contrato_aceito_nome) + ' &middot; '
+      + esc(new Date(c.contrato_aceito_em).toLocaleString('pt-BR'))
+      + '<br>versão ' + esc(c.contrato_versao)
+      + ' &middot; impressão ' + esc(String(c.contrato_hash||'').slice(0,16)) + '...'
+      + '</span></div>';
+  } else if(!c.contrato_token){
+    h += '<p style="font-size:12.5px;color:var(--cinza);margin-bottom:9px">'
+      + 'Gere o link e mande pro cliente. Ele preenche os dados legais, lê o contrato '
+      + 'inteiro na tela e aceita. O aceite liga a chave de contrato assinado sozinho.</p>'
+      + '<button class="acao" onclick="gerarContrato()">Gerar link do contrato</button>';
+  } else {
+    h += '<div class="link"><b>Link do contrato:</b><br>' + esc(base) + '/c/'
+      + esc(c.contrato_token)
+      + (temDados
+        ? ' <span style="color:var(--laranja-esc)">dados preenchidos, aguardando aceite</span>'
+        : ' <span style="color:var(--cinza)">aguardando o cliente preencher</span>')
+      + '</div>'
+      + '<button class="acao sec" onclick="copiarContrato()">Copiar link</button>'
+      + '<button class="acao sec" style="margin-left:7px" onclick="gerarContrato(1)">Gerar link novo</button>';
+  }
+
+  if(temDados){
+    h += '<div class="ct-dados"><b>Dados que o cliente informou</b>'
+      + '<span>' + esc(c.razao_social) + (c.tipo_entidade?' ('+esc(c.tipo_entidade)+')':'')
+      + '<br>' + esc([c.endereco,c.endereco_cidade,c.endereco_estado,c.endereco_zip]
+          .filter(Boolean).join(', '))
+      + (c.email_contrato?'<br>'+esc(c.email_contrato):'')
+      + '</span></div>'
+      + '<a class="acao sec" style="display:inline-block;text-decoration:none;padding:8px 15px;'
+      + 'margin-top:10px" href="/api/baixar-contrato?id='+c.id+'">Baixar o contrato (.txt)</a>';
+  }
+
+  h += '<div class="ct-legal"><b>Minuta, não parecer jurídico</b>'
+    + 'O texto foi escrito a partir do escopo real do sistema, por quem não é advogado. '
+    + 'Prestador no Brasil, cliente nos Estados Unidos, aceite eletrônico e foro precisam '
+    + 'de revisão profissional antes de este contrato valer contra alguém. '
+    + 'O detalhe do que revisar está no topo de <code>src/contrato.js</code>.</div>';
+  return h;
+}
+
+async function gerarContrato(trocar){
+  if(trocar && !confirm('Gerar link novo? O link atual deixa de funcionar.')) return;
+  const r=await post('/api/gerar-contrato',{id:aberto});
+  if(r.erro) return alert(r.erro);
+  await carregar(); abrirCliente(aberto);
+}
+function copiarContrato(){
+  const c=CLI_ABERTO; if(!c||!c.contrato_token) return;
+  const url=location.origin+'/c/'+c.contrato_token;
+  if(navigator.clipboard) navigator.clipboard.writeText(url)
+    .then(()=>alert('Link copiado:\\n\\n'+url))
+    .catch(()=>prompt('Copie o link:',url));
+  else prompt('Copie o link:',url);
 }
 
 /* ═══════════ 2. LOGO ═══════════ */

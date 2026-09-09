@@ -137,9 +137,18 @@ primeiro anúncio subir.
 - [x] Apresentação comercial: é o roteiro em `propostas/oferta-na-call.md`. Se
       quiser slides depois, eles saem dele, mas a call não depende de slide.
 - [ ] Proposta em modelo, com o escopo do item 1.
-- [ ] Contrato. ⚠ O `playbook-operacao.md` tem um aviso jurídico sobre
-      classificação de colaborador PJ que precisa de validação profissional
-      antes de ser aplicado.
+- [x] **Contrato, com preenchimento pelo cliente e aceite eletrônico.** Feito em
+      2026-09-09. O operador gera o link no card, manda pro cliente, ele
+      preenche os dados legais dele, lê o contrato já preenchido na tela e
+      aceita digitando o nome completo. O aceite grava a prova (nome, data,
+      origem, versão e o hash SHA-256 do texto exato) e **liga sozinho a chave
+      de contrato assinado**. Texto em `src/contrato.js`, 15 cláusulas, 54
+      asserções de teste.
+      ⚠ **É MINUTA, escrita por quem não é advogado.** Precisa de revisão
+      profissional em quatro pontos, listados no topo de `src/contrato.js`:
+      lei aplicável e foro (prestador no Brasil, cliente nos EUA), validade do
+      aceite eletrônico, imposto e remessa, e a classificação de colaborador PJ
+      (esta última já tinha aviso no `playbook-operacao.md`).
 - [ ] Forma de cobrança para cliente nos EUA. **O WHOP já está funcionando**,
       com link limitado a US$ 2.500 por cobrança (confirmado em 2026-09-09).
       Resolver o teto se o preço passar disso.

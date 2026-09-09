@@ -512,9 +512,16 @@ async function abrirCliente(id){
    <section><h4>Entradas · o que caiu na conta</h4>
      \${l_entradas(c)}
    </section>
+   <section><h4>Contrato</h4>
+     \${l_contrato_link(c, base)}
+   </section>
    <section><h4>Liberação do formulário</h4>
      <div class="linha"><input type="checkbox" \${c.contrato_assinado?'checked':''}
-       onchange="liberar('contrato',this.checked)"><span><b>Contrato assinado</b></span></div>
+       \${c.contrato_aceito_em?'disabled':''}
+       onchange="liberar('contrato',this.checked)"><span><b>Contrato assinado</b>
+       \${c.contrato_aceito_em
+         ? '<br><small style="color:var(--verde)">aceito pelo cliente, a chave fica travada</small>'
+         : ''}</span></div>
      <div class="linha"><input type="checkbox" \${c.pagamento_confirmado?'checked':''}
        onchange="liberar('pagamento',this.checked)"><span><b>Pagamento confirmado</b></span></div>
      <p style="font-size:11.5px;color:var(--cinza);margin-top:7px">

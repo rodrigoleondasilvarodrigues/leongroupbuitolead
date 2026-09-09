@@ -20,6 +20,9 @@ echo
 echo "── contratado x recebido ──"
 node testes/valor-recebido.js
 echo
+echo "── o contrato e a prova do aceite ──"
+node testes/contrato.js
+echo
 echo "── as fotos que vão para o site ──"
 node testes/fotos-do-site.js
 echo

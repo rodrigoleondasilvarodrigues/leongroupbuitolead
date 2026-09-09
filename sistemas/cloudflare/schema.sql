@@ -175,6 +175,18 @@ CREATE TABLE IF NOT EXISTS checklist (
   criado_em TEXT NOT NULL
 );
 
+-- ─────────────── CONTRATO: dados do cliente e prova do aceite ───────────────
+-- Ver migracao-13. O cliente preenche os dados legais no link público, lê o
+-- contrato já preenchido e aceita. O aceite liga `contrato_assinado`.
+-- O endereço daqui é o do CONTRATO, e fica separado de cidade/estado, que são
+-- a área de atendimento e alimentam o SEO local: misturar os dois colocaria o
+-- endereço residencial dele no site.
+--   razao_social, tipo_entidade, endereco, endereco_cidade, endereco_estado,
+--   endereco_zip, email_contrato, contrato_token, contrato_enviado_em,
+--   contrato_aceito_em, contrato_aceito_nome, contrato_aceito_ip,
+--   contrato_aceito_agente, contrato_versao, contrato_hash
+-- (colunas da tabela clientes, declaradas na migração)
+
 -- ─────────────── CAIXA: o dinheiro dos dois lados ───────────────
 -- Ver migracao-11 e migracao-12 para o porquê de cada tabela. Em resumo: um
 -- campo só não responde "quanto entrou na empresa" para contrato mensal, e a
@@ -236,6 +248,7 @@ CREATE INDEX IF NOT EXISTS ix_ent_data ON entradas(recebido_em);
 CREATE INDEX IF NOT EXISTS ix_sai_data ON saidas(pago_em);
 CREATE INDEX IF NOT EXISTS ix_sai_cli  ON saidas(cliente_id);
 CREATE INDEX IF NOT EXISTS ix_sai_cat  ON saidas(categoria, pago_em);
+CREATE INDEX IF NOT EXISTS ix_cli_ctoken ON clientes(contrato_token);
 CREATE INDEX IF NOT EXISTS ix_chk  ON checklist(cliente_id, area);
 CREATE INDEX IF NOT EXISTS ix_arq  ON arquivos(cliente_id, destino);
 CREATE UNIQUE INDEX IF NOT EXISTS ix_arq_chave ON arquivos(chave);

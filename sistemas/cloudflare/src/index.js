@@ -3,6 +3,9 @@ import * as G from "./geradores.js";
 import * as A from "./auth.js";
 import * as M from "./marca.js";
 import * as Arq from "./arquivos.js";
+import * as Ct from "./contrato.js";
+import { contratoFormHTML, contratoLerHTML, contratoAceitoHTML,
+         contratoIndisponivelHTML } from "./pagina-contrato.js";
 import * as F from "./funil.js";
 import { promptLogo, faltaNoBriefing, refinarComIA } from "./logo-prompt.js";
 import { ADMIN_HTML } from "./admin.js";
@@ -106,6 +109,96 @@ export default {
 
       // Sites dos clientes NÃO são servidos aqui — vão 100% para o Vercel,
       // com deploy manual. O admin baixa o index.html em /api/baixar-site.
+      /* ═════════ público: o contrato ═════════
+         Vem ANTES do formulário de onboarding no fluxo: o cliente aceita o
+         contrato, o pagamento é confirmado, e só então o onboarding abre.
+         O aceite aqui liga a chave `contrato_assinado`, que é metade do
+         portão que o sistema já tinha. */
+      if (p.startsWith("/c/")) {
+        const t = p.slice(3).replace(/\/$/, "");
+        const c = await env.DB.prepare("SELECT * FROM clientes WHERE contrato_token=?")
+          .bind(t).first();
+        if (!c) return html(contratoIndisponivelHTML(
+          "Este link de contrato não existe ou foi substituído por um novo."), 404);
+        // já aceito: mostra a via dele, não deixa aceitar de novo
+        if (c.contrato_aceito_em)
+          return html(contratoAceitoHTML(c, Ct.textoContrato(c)));
+        // sem os dados legais ainda, ou ele pediu para voltar e corrigir
+        const querEditar = url.searchParams.get("editar") === "1";
+        if (!c.razao_social || querEditar) return html(contratoFormHTML(c, t));
+        return html(contratoLerHTML(c, t, Ct.textoContrato(c)));
+      }
+      if (p.startsWith("/api/contrato-dados/") && req.method === "POST") {
+        const t = p.slice(20);
+        if (await A.bloqueadoPorTentativas(env, ip, "contrato"))
+          return json({ erro: "Muitas tentativas. Aguarde." }, 429);
+        const c = await env.DB.prepare(
+          "SELECT id,contrato_aceito_em FROM clientes WHERE contrato_token=?").bind(t).first();
+        if (!c) { await A.registrarTentativa(env, ip, false, "contrato");
+                  return json({ erro: "link inválido" }, 404); }
+        if (c.contrato_aceito_em)
+          return json({ erro: "Este contrato já foi aceito e não pode mais ser alterado." }, 409);
+        const b = await req.json().catch(() => ({}));
+        const corta = (v, n) => String(v ?? "").trim().slice(0, n);
+        const campos = {
+          razao_social: corta(b.razao_social, 160),
+          tipo_entidade: corta(b.tipo_entidade, 40),
+          nome_dono: corta(b.nome_dono, 120),
+          email_contrato: corta(b.email_contrato, 160),
+          endereco: corta(b.endereco, 160),
+          endereco_cidade: corta(b.endereco_cidade, 80),
+          endereco_estado: corta(b.endereco_estado, 2).toUpperCase(),
+          endereco_zip: corta(b.endereco_zip, 12),
+        };
+        const falta = Object.entries(campos).filter(([, v]) => !v).map(([k]) => k);
+        if (falta.length) return json({ erro: "Faltam campos: " + falta.join(", ") }, 400);
+        if (!campos.email_contrato.includes("@")) return json({ erro: "E-mail inválido." }, 400);
+        await env.DB.prepare(`UPDATE clientes SET razao_social=?,tipo_entidade=?,nome_dono=?,
+          email_contrato=?,endereco=?,endereco_cidade=?,endereco_estado=?,endereco_zip=?,
+          atualizado_em=? WHERE id=?`)
+          .bind(...Object.values(campos), agora(), c.id).run();
+        await ev(env.DB, { cliente_id: c.id, tipo: "contrato_preenchido",
+                           detalhe: "cliente preencheu os dados legais" });
+        return json({ ok: true });
+      }
+      if (p.startsWith("/api/contrato-aceitar/") && req.method === "POST") {
+        const t = p.slice(22);
+        if (await A.bloqueadoPorTentativas(env, ip, "contrato"))
+          return json({ erro: "Muitas tentativas. Aguarde." }, 429);
+        const c = await env.DB.prepare("SELECT * FROM clientes WHERE contrato_token=?")
+          .bind(t).first();
+        if (!c) { await A.registrarTentativa(env, ip, false, "contrato");
+                  return json({ erro: "link inválido" }, 404); }
+        if (c.contrato_aceito_em) return json({ erro: "Este contrato já foi aceito." }, 409);
+        if (!c.razao_social) return json({ erro: "Preencha seus dados antes de aceitar." }, 400);
+        const b = await req.json().catch(() => ({}));
+        const nome = String(b.nome ?? "").trim().slice(0, 120);
+        if (!b.li) return json({ erro: "Marque a confirmação de leitura." }, 400);
+        if (nome.length < 5 || !nome.includes(" "))
+          return json({ erro: "Digite seu nome completo, com sobrenome." }, 400);
+
+        /* O hash é do texto que o SERVIDOR gera agora, com os mesmos dados que
+           foram exibidos. É o que permite provar, depois, com qual redação
+           exata a pessoa concordou. */
+        const texto = Ct.textoContrato({ ...c, contrato_aceito_em: null });
+        const hash = await Ct.hashDoTexto(texto);
+        const n = agora();
+        /* A condição no WHERE é a trava: dois cliques simultâneos no botão não
+           gravam dois aceites com horas diferentes. */
+        const gravou = await env.DB.prepare(`UPDATE clientes SET contrato_aceito_em=?,
+          contrato_aceito_nome=?,contrato_aceito_ip=?,contrato_aceito_agente=?,
+          contrato_versao=?,contrato_hash=?,contrato_assinado=1,contrato_em=?,
+          atualizado_em=? WHERE id=? AND contrato_aceito_em IS NULL`)
+          .bind(n, nome, ip, String(req.headers.get("User-Agent") || "").slice(0, 250),
+                Ct.VERSAO_CONTRATO, hash, n, n, c.id).run();
+        if (!gravou.meta.changes) return json({ erro: "Este contrato já foi aceito." }, 409);
+        await ev(env.DB, { cliente_id: c.id, tipo: "contrato_aceito",
+                           detalhe: `${nome} aceitou a versão ${Ct.VERSAO_CONTRATO}` });
+        await avisarOperador(env.DB, env, "contrato_aceito",
+          `${c.empresa} aceitou o contrato. Confirme o pagamento para liberar o formulário.`);
+        return json({ ok: true });
+      }
+
       // ───────── público: formulário do cliente ─────────
       if (p.startsWith("/f/")) {
         const t = p.slice(3).replace(/\/$/, "");
@@ -744,7 +837,14 @@ async function apiAdmin(p, req, env) {
              ? ` Ficou registrado que ${c.portao.forcada_pendencias.length} grupo(s) estavam abertos na hora.`
              : " O portão estava cumprido na hora do clique.")]
       : !c.contrato_assinado || !c.pagamento_confirmado
-        ? ["Marque contrato e pagamento", "É o portão. Sem os dois, o formulário do cliente nem abre."]
+        /* Nomeia só o que FALTA. Com o contrato já aceito pelo cliente, pedir
+           para "marcar contrato" manda o operador procurar o que já está feito. */
+        ? [!c.contrato_assinado && !c.pagamento_confirmado ? "Marque contrato e pagamento"
+           : !c.contrato_assinado ? "Falta o contrato"
+           : "Confirme o pagamento",
+           c.contrato_aceito_em
+             ? "O cliente já aceitou o contrato. Falta confirmar o pagamento para o formulário abrir."
+             : "É o portão. Sem os dois, o formulário do cliente nem abre."]
       : !c.formulario_em
         ? ["Mande o link do formulário", "Está na seção Links. Sem ele preencher, não há material pra trabalhar e o prazo nem começa."]
       : !c.grupo_whatsapp
@@ -880,6 +980,31 @@ async function apiAdmin(p, req, env) {
     await D.prepare(`UPDATE clientes SET ${campos.join(",")},atualizado_em=? WHERE id=?`)
       .bind(...vals, agora(), corpo.id).run();
     return json({ ok: true });
+  }
+  /* Gera o link do contrato. Chamar de novo troca o token, que é o jeito de
+     invalidar um link mandado para o e-mail errado. Depois de aceito, não
+     gera mais: o aceite ficaria órfão do link que o produziu. */
+  if (p === "/api/gerar-contrato") {
+    const c = await D.prepare("SELECT contrato_aceito_em FROM clientes WHERE id=?")
+      .bind(corpo.id).first();
+    if (!c) return json({ erro: "cliente não encontrado" }, 404);
+    if (c.contrato_aceito_em)
+      return json({ erro: "Contrato já aceito. Gerar link novo apagaria o vínculo com o aceite." }, 409);
+    const t = token();
+    await D.prepare("UPDATE clientes SET contrato_token=?,contrato_enviado_em=?,atualizado_em=? WHERE id=?")
+      .bind(t, agora(), agora(), corpo.id).run();
+    return json({ ok: true, contrato_token: t });
+  }
+  if (p === "/api/baixar-contrato") {
+    const id = url.searchParams.get("id");
+    const c = await D.prepare("SELECT * FROM clientes WHERE id=?").bind(id).first();
+    if (!c) return json({ erro: "cliente não encontrado" }, 404);
+    if (!c.razao_social)
+      return json({ erro: "O cliente ainda não preencheu os dados do contrato." }, 400);
+    const nome = `contrato-${c.slug || c.id}${c.contrato_aceito_em ? "-aceito" : "-minuta"}.txt`;
+    return new Response(Ct.textoContrato(c), { headers: {
+      "Content-Type": "text/plain; charset=utf-8",
+      "Content-Disposition": `attachment; filename="${nome}"` } });
   }
   if (p === "/api/novo-token-formulario") {
     // gera link novo (o antigo é de uso único e já morreu)
