@@ -267,7 +267,7 @@ const T = {
     ],
     v2_titulo: "Escolha o plano e o prazo",
     v2_sub: "O plano define o que você recebe. O prazo define quanto tempo a gente fica junto, e quanto mais longo, menor a mensalidade. O primeiro plano é o que resolve o que dói agora.",
-    v2_rot_periodo: ["Trimestral", "Semestral", "Anual"],
+    rot_periodo: ["Trimestral", "Semestral", "Anual"],
     v2_meses: "meses",
     v2_por_mes: "por mês",
     v2_total: "total",
@@ -275,6 +275,49 @@ const T = {
     v2_inclui: "O que o prazo acrescenta",
     v2_entrega: "O que está incluído no plano",
     v2_melhor: "Melhor custo por mês",
+
+    /* ══════════════ /planosv3, no layout da Kairon ══════════════
+       Copiado do layout de kairon-assessoria.vercel.app/planos, medido no CSS
+       real dela: `.plans-grid` em 3 colunas a partir de 960px, o premium com
+       card escuro e faixa, o do meio com borda de destaque, e uma seção de
+       preços POR PLANO com 3 colunas de periodicidade.
+
+       ⚠ ANCORAGEM NO MAIOR, ao contrário de /planos e /planosv2. Aqui o
+       Aquisição é o destacado, exatamente como o Kairós é lá.
+
+       v3_destaque: "" | "borda" | "escuro"  (o tratamento visual do card)     */
+    /* Do print: o herói é escuro com constelação, o menu é fixo com âncora por
+       plano, e o cartão DESTACADO em cada faixa de preço é escolhido a dedo
+       (na Kairon: Silver nenhum, Gold o do meio, Kairós o primeiro), não o
+       mais barato. v3_featured guarda o índice, ou null. */
+    v3_featured: [null, 1, 0],
+    v3_nav: ["Planos", "Presença", "Conteúdo", "Aquisição"],
+    v3_nav_cta: "Falar com a Leon Group",
+    v3_hero_pill: "Escolha o plano ideal para o seu negócio",
+    v3_hero_h1: ["Planos", "Leon Group"],
+    v3_hero_lead: "Três formas de colocar a metodologia LeadsEveryDay pra rodar no seu negócio: presença, conteúdo e aquisição aplicados com estratégia. Escolha o plano que encaixa no seu momento.",
+    v3_hero_bt1: "Conhecer os planos",
+    v3_hero_bt2: "Falar com a Leon Group",
+    v3_hero_scroll: "Arraste para baixo",
+    v3_eyebrow: "Escolha o plano ideal",
+    v3_titulo: "Escolha o plano ideal para o seu negócio",
+    v3_lead: "Do essencial pra existir no Google até a operação completa de aquisição, com a Leon Group dentro do jogo.",
+    v3_ver: "Ver preços",
+    v3_eyebrow_precos: "Escolha a periodicidade ideal",
+    v3_precos_de: "Planos",
+    v3_por_mes: "por mês",
+    v3_total: "Valor total:",
+    v3_parcelas: "Em até {n}x no cartão",
+    v3_nota: "Os valores acima já incluem tudo que está listado no plano. Não há taxa de setup, taxa de plataforma nem comissão sobre resultado.",
+    v3_cta_titulo: "Na dúvida entre dois planos?",
+    v3_cta_txt: "Chama a gente no WhatsApp. A gente olha o momento do seu negócio e te fala, com sinceridade, qual plano faz sentido. Sem empurrar o mais caro.",
+    v3_cta_bt: "Falar no WhatsApp",
+    v3_cta_msg: "Olá! Vi os planos da Leon Group e quero ajuda pra escolher o ideal pro meu negócio.",
+    v3_faixa: "Indicado para quem quer volume",
+    v3_subs: ["", "Perfeito para quem já aparece e quer sair na frente.",
+              "Indicado para quem quer volume."],
+    v3_destaque: ["", "borda", "escuro"],
+    v3_verba: "+ verba de anúncio à parte, paga direto ao Google e à Meta",
     rot_faq: "Dúvidas",
     faq_titulo: "O que perguntam antes de começar",
     faq: [
@@ -550,7 +593,7 @@ Quero saber mais sobre o que a Leon Group pode fazer pela minha empresa.`,
     ],
     v2_titulo: "Pick the plan and the term",
     v2_sub: "The plan defines what you get. The term defines how long we work together, and the longer it runs, the lower the monthly. The first plan is the one that fixes what hurts today.",
-    v2_rot_periodo: ["Quarterly", "Semiannual", "Annual"],
+    rot_periodo: ["Quarterly", "Semiannual", "Annual"],
     v2_meses: "months",
     v2_por_mes: "per month",
     v2_total: "total",
@@ -558,6 +601,35 @@ Quero saber mais sobre o que a Leon Group pode fazer pela minha empresa.`,
     v2_inclui: "What the term adds",
     v2_entrega: "What the plan includes",
     v2_melhor: "Best monthly rate",
+
+    v3_featured: [null, 1, 0],
+    v3_nav: ["Plans", "Presence", "Content", "Acquisition"],
+    v3_nav_cta: "Talk to Leon Group",
+    v3_hero_pill: "Pick the right plan for your business",
+    v3_hero_h1: ["Leon Group", "Plans"],
+    v3_hero_lead: "Three ways to put the LeadsEveryDay method to work in your business: presence, content and acquisition applied with strategy. Pick the plan that fits where you are now.",
+    v3_hero_bt1: "See the plans",
+    v3_hero_bt2: "Talk to Leon Group",
+    v3_hero_scroll: "Scroll down",
+    v3_eyebrow: "Pick the right plan",
+    v3_titulo: "Pick the right plan for your business",
+    v3_lead: "From the essentials to exist on Google to a full acquisition operation, with Leon Group in the game.",
+    v3_ver: "See prices",
+    v3_eyebrow_precos: "Pick the right term",
+    v3_precos_de: "Plan",
+    v3_por_mes: "per month",
+    v3_total: "Total:",
+    v3_parcelas: "Up to {n} installments",
+    v3_nota: "The prices above already include everything listed in the plan. There is no setup fee, no platform fee and no commission on results.",
+    v3_cta_titulo: "Torn between two plans?",
+    v3_cta_txt: "Message us on WhatsApp. We look at where your business is right now and tell you honestly which plan makes sense. No pushing the expensive one.",
+    v3_cta_bt: "Message on WhatsApp",
+    v3_cta_msg: "Hi! I saw the Leon Group plans and I'd like help picking the right one for my business.",
+    v3_faixa: "For those who want volume",
+    v3_subs: ["", "Perfect for those already visible who want to pull ahead.",
+              "For those who want volume."],
+    v3_destaque: ["", "borda", "escuro"],
+    v3_verba: "+ ad budget separate, paid straight to Google and Meta",
     rot_faq: "FAQ",
     faq_titulo: "What people ask before starting",
     faq: [

@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- ═══════════════════════════════════════════════════════════════════
+     /planosv3, NO LAYOUT DA KAIRON
+
+     Medido no CSS real de kairon-assessoria.vercel.app/planos e conferido nos
+     prints que o usuário mandou. A estrutura, na ordem:
+
+       1. MENU FIXO      Planos · <plano> · <plano> · <plano>, centralizado,
+                         com o botão de WhatsApp à direita
+       2. HERÓI ESCURO   fundo com constelação, pílula com ponto verde,
+                         título gigante com a segunda palavra em accent,
+                         lead, dois botões, e a dica de rolagem embaixo
+       3. OS PLANOS      cabeçalho CENTRALIZADO (eyebrow, h2, lead) e
+                         .plans-grid em 3 colunas a partir de 960px
+                           card 1: cinza claro, sem destaque
+                           card 2: branco com borda 2px accent
+                           card 3: escuro com FAIXA accent no topo
+                         cada um com "Ver preços ->" no fim
+       4. PREÇOS         uma seção POR PLANO, cabeçalho centralizado, e
+                         .price-grid em 3 colunas a partir de 900px.
+                         O card destacado é escolhido A DEDO por plano
+                         (na Kairon: nenhum / o do meio / o primeiro),
+                         não o mais barato.
+                         A seção do plano maior tem FUNDO ESCURO.
+       5. FAIXA FINAL    fundo accent, "Na dúvida entre dois planos?"
+
+     A ÚNICA coisa que não copiei: o azul #1c20ff da Kairon. O accent aqui é o
+     laranja da Leon Group, porque a página é da Leon Group e o brand kit já
+     está entregue. Trocar é uma linha: --accent e --accent-ink.
+
+     Fora da home e fora do Google, como /planos e /planosv2.
+     ═══════════════════════════════════════════════════════════════════ -->
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>Leon Group · Planos</title>
+<link rel="icon" href="../assets/favicon.png">
+<link rel="apple-touch-icon" href="../assets/simbolo.png">
+<meta name="theme-color" content="#171717">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Tokens no mesmo formato da Kairon, com o accent da Leon Group. */
+:root{
+  --bg:#ffffff;
+  --bg-soft:#f7f8f8;
+  --border-2:#e9eaea;
+  --text:#121212;
+  --text-strong:#050505;
+  --muted:#454545;
+  --accent:#E65A19;
+  --accent-ink:#C44712;
+  --accent-luz:#F5814C;
+  --dark:#171717;
+  --dark-2:#22242a;
+  --radius-card:34px;
+  --radius-btn:12px;
+  --radius-pill:100px;
+  --shadow:rgba(0,0,0,.15) 0 4px 9px 0,rgba(0,0,0,.13) 0 17px 17px -8px;
+  --shadow-accent:0 20px 45px -18px rgba(230,90,25,.5);
+  --font-head:'Onest',ui-sans-serif,system-ui,sans-serif;
+  --font-body:'Inter','Onest',ui-sans-serif,system-ui,sans-serif;
+  --container:1180px;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{font-family:var(--font-body);font-size:16px;line-height:1.6;background:var(--bg);
+color:var(--text);-webkit-font-smoothing:antialiased}
+h1,h2,h3,.h1,.h2,.h3{font-family:var(--font-head);font-weight:600;letter-spacing:-.03em;
+line-height:1.08;color:var(--text-strong);text-wrap:balance}
+.h1{font-size:clamp(2.6rem,7vw,5.2rem);letter-spacing:-.04em}
+.h2{font-size:clamp(2rem,4.2vw,3.25rem)}
+.h3{font-size:1.6rem;letter-spacing:-.02em}
+.lead{font-size:clamp(1.05rem,1.6vw,1.25rem);color:var(--muted);line-height:1.55}
+.container{width:100%;max-width:var(--container);margin:0 auto;padding:0 24px}
+.section{padding:112px 0}
+@media (max-width:640px){.section{padding:68px 0}}
+.eyebrow{display:inline-block;font-family:var(--font-body);font-size:12px;font-weight:600;
+letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+/* No print, o cabeçalho de seção é CENTRALIZADO, não alinhado à esquerda. */
+.sec-head{max-width:62ch;margin:0 auto;text-align:center}
+.sec-head .h2{margin-top:14px}
+.sec-head .lead{margin-top:20px}
+
+/* botões */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;
+font-family:var(--font-body);font-weight:600;font-size:15px;padding:15px 26px;
+border-radius:var(--radius-btn);border:1px solid transparent;text-decoration:none;
+cursor:pointer;transition:.25s var(--ease)}
+.btn-ghost{background:#fff;color:var(--text-strong);border-color:var(--border-2)}
+.btn-ghost:hover{border-color:#d5d6d6;background:var(--bg-soft)}
+.btn-accent{background:var(--accent);color:#fff}
+.btn-accent:hover{background:var(--accent-ink)}
+.btn-dark{background:var(--dark);color:#fff}
+.btn-dark:hover{background:#000}
+.btn-glass{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.28);
+backdrop-filter:blur(6px)}
+.btn-glass:hover{background:rgba(255,255,255,.2)}
+.btn-escuro{background:var(--dark-2);color:#fff;border-color:rgba(255,255,255,.16)}
+.btn-escuro:hover{background:#2c2f36}
+.btn-block{width:100%}
+
+/* ══ 1. menu fixo ══ */
+.nav{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.86);
+backdrop-filter:blur(12px);border-bottom:1px solid var(--border-2)}
+.nav .container{display:flex;align-items:center;gap:18px;padding-top:14px;padding-bottom:14px}
+.marca{font-family:var(--font-head);font-weight:800;font-size:16px;letter-spacing:-.01em;
+text-decoration:none;color:var(--text-strong);flex:none}
+.marca span{color:var(--accent)}
+.nav-links{display:flex;gap:26px;margin:0 auto}
+.nav-links a{font-size:14.5px;font-weight:500;color:var(--muted);text-decoration:none;
+transition:.2s}
+.nav-links a:hover{color:var(--accent)}
+.nav .btn{padding:11px 20px;font-size:14px;border-radius:var(--radius-pill);flex:none}
+.idi{display:flex;gap:4px;flex:none}
+.idi button{background:#fff;border:1px solid var(--border-2);color:var(--muted);
+cursor:pointer;font-family:var(--font-body);font-weight:600;font-size:11px;
+letter-spacing:.09em;padding:8px 12px;border-radius:var(--radius-pill)}
+.idi button.on{background:var(--dark);color:#fff;border-color:var(--dark)}
+@media (max-width:860px){.nav-links{display:none}.nav .btn{display:none}}
+
+/* ══ 2. herói escuro com constelação ══ */
+.hero{position:relative;background:var(--dark);color:#fff;overflow:hidden;
+padding:clamp(72px,11vw,132px) 0 clamp(56px,8vw,96px);text-align:center}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:.5}
+.hero .container{position:relative;z-index:2}
+.pill{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.09);
+border:1px solid rgba(255,255,255,.16);border-radius:var(--radius-pill);
+padding:11px 22px;font-size:14.5px;font-weight:500;color:#fff}
+.pill i{width:9px;height:9px;border-radius:50%;background:#5fd68a;flex:none}
+.hero .h1{color:#fff;margin-top:34px}
+.hero .h1 em{font-style:normal;color:var(--accent-luz)}
+.hero .lead{color:rgba(255,255,255,.72);margin:26px auto 0;max-width:56ch}
+.hero-bts{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:38px}
+.hero-scroll{margin-top:clamp(48px,7vw,86px);display:flex;flex-direction:column;
+align-items:center;gap:12px;color:rgba(255,255,255,.5)}
+.hero-scroll .mouse{width:24px;height:38px;border:1.5px solid rgba(255,255,255,.35);
+border-radius:14px;position:relative}
+.hero-scroll .mouse::after{content:"";position:absolute;left:50%;top:8px;width:3px;height:6px;
+border-radius:3px;background:rgba(255,255,255,.6);transform:translateX(-50%);
+animation:rola 1.8s var(--ease) infinite}
+@keyframes rola{0%{opacity:0;top:8px}30%{opacity:1}70%{opacity:1;top:20px}100%{opacity:0;top:20px}}
+.hero-scroll span{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase}
+
+/* ══ 3. os três planos, em colunas ══ */
+.plans-grid{display:grid;grid-template-columns:1fr;gap:20px;margin-top:52px}
+@media (min-width:960px){.plans-grid{grid-template-columns:repeat(3,1fr)}}
+.plan{border-radius:var(--radius-card);background:var(--bg-soft);
+border:1px solid var(--border-2);overflow:hidden;display:flex;flex-direction:column;
+transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.plan:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.plan-body{padding:34px;display:flex;flex-direction:column;flex:1}
+.plan-name{font-size:1.6rem}
+.plan-sub{margin-top:10px;font-size:14.5px;color:var(--muted)}
+.plan-list{margin-top:26px;display:flex;flex-direction:column;gap:15px;list-style:none;flex:1}
+.plan-list li{display:flex;gap:12px;align-items:flex-start;font-size:14.5px;
+line-height:1.5;color:var(--text)}
+.plan-list li svg{flex-shrink:0;width:19px;height:19px;margin-top:2px;color:var(--accent)}
+.plan .btn{margin-top:30px}
+.plan--borda{background:#fff;border:2px solid var(--accent)}
+.plan--escuro{background:var(--dark);border-color:var(--dark)}
+.plan--escuro .plan-name{color:#fff}
+.plan--escuro .plan-sub{color:rgba(255,255,255,.65)}
+.plan--escuro .plan-list li{color:rgba(255,255,255,.78)}
+.plan--escuro .plan-list li svg{color:var(--accent-luz)}
+.plan-ribbon{background:var(--accent);color:#fff;text-align:center;font-size:13.5px;
+font-weight:600;letter-spacing:.02em;padding:13px 18px}
+
+/* ══ 4. uma seção de preços por plano ══ */
+.pricing{background:var(--bg-soft)}
+.pricing--branco{background:#fff}
+.pricing--dark{background:var(--dark);color:#fff}
+.pricing--dark .h2{color:#fff}
+.pricing--dark .lead{color:rgba(255,255,255,.65)}
+.price-grid{display:grid;grid-template-columns:1fr;gap:20px;margin-top:52px}
+@media (min-width:900px){.price-grid{grid-template-columns:repeat(3,1fr)}}
+.price-card{border-radius:var(--radius-card);background:#fff;border:1px solid var(--border-2);
+padding:38px 34px;text-align:center;display:flex;flex-direction:column;
+transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.price-card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.price-card.featured{border:2px solid var(--accent);box-shadow:var(--shadow-accent)}
+.pricing--dark .price-card{background:var(--dark-2);border-color:rgba(255,255,255,.1)}
+.pricing--dark .price-card.featured{border:2px solid var(--accent)}
+.price-period{font-family:var(--font-head);font-weight:600;font-size:1.3rem;
+letter-spacing:-.02em;color:var(--text-strong)}
+.pricing--dark .price-period{color:#fff}
+.price-value{margin-top:18px;font-family:var(--font-head);font-weight:600;
+letter-spacing:-.03em;font-size:clamp(2rem,3.4vw,2.6rem);color:var(--accent);line-height:1}
+.pricing--dark .price-value{color:var(--accent-luz)}
+.price-per{display:block;margin-top:10px;font-family:var(--font-body);font-weight:500;
+font-size:13px;letter-spacing:0;color:var(--muted)}
+.pricing--dark .price-per{color:rgba(255,255,255,.55)}
+.price-meta{margin-top:20px;display:flex;flex-direction:column;gap:6px;font-size:14.5px;
+color:var(--muted)}
+.pricing--dark .price-meta{color:rgba(255,255,255,.62)}
+.price-ads{margin-top:18px;font-size:14.5px;font-weight:600;color:var(--accent)}
+.pricing--dark .price-ads{color:var(--accent-luz)}
+.price-extra{margin-top:16px;font-size:13.5px;color:var(--muted);line-height:1.5;flex:1}
+.pricing--dark .price-extra{color:rgba(255,255,255,.55)}
+.price-card .btn{margin-top:26px}
+.price-note{margin-top:30px;text-align:center;font-size:13px;color:var(--muted)}
+.pricing--dark .price-note{color:rgba(255,255,255,.5)}
+
+.notas{margin:34px auto 0;display:flex;flex-direction:column;gap:11px;max-width:78ch}
+.notas p{font-size:13.5px;line-height:1.6;color:var(--muted);padding-left:16px;
+border-left:2px solid var(--border-2)}
+.notas p.nova{border-left-color:var(--accent)}
+.pricing--dark .notas p{color:rgba(255,255,255,.6);border-left-color:rgba(255,255,255,.18)}
+
+/* ══ 5. faixa final ══ */
+.cta-planos{background:var(--accent);color:#fff;text-align:center}
+.cta-planos .container{max-width:680px}
+.cta-planos .h2{color:#fff}
+.cta-planos p{margin:20px auto 0;color:rgba(255,255,255,.88);font-size:1.1rem;max-width:46ch}
+.cta-planos .btn{margin-top:34px}
+
+footer{padding:34px 0;border-top:1px solid var(--border-2)}
+footer p{font-size:12.5px;color:var(--muted);line-height:1.55;max-width:66ch;margin:0 auto;
+text-align:center}
+footer a{color:var(--accent-ink)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+  html{scroll-behavior:auto}
+}
+@media print{
+  .nav,.hero canvas,.hero-scroll,.idi,.btn{display:none}
+  .hero{background:#fff;color:#000}
+  .hero .h1,.hero .lead{color:#000}
+}
+</style>
+</head>
+<body>
+
+<!-- 1. menu fixo -->
+<nav class="nav"><div class="container">
+  <a class="marca" href="../">LE<span>O</span>N GROUP</a>
+  <div class="nav-links" id="nav_links"></div>
+  <div class="idi">
+    <button type="button" data-idi="pt" class="on">PT</button>
+    <button type="button" data-idi="en">EN</button>
+  </div>
+  <a class="btn btn-accent" id="nav_cta" target="_blank" rel="noopener"></a>
+</div></nav>
+
+<!-- 2. herói escuro com constelação -->
+<header class="hero">
+  <canvas id="ceu" aria-hidden="true"></canvas>
+  <div class="container">
+    <span class="pill"><i></i><span id="hero_pill"></span></span>
+    <h1 class="h1" id="hero_h1"></h1>
+    <p class="lead" id="hero_lead"></p>
+    <div class="hero-bts">
+      <a class="btn btn-accent" href="#planos" id="hero_bt1"></a>
+      <a class="btn btn-glass" id="hero_bt2" target="_blank" rel="noopener"></a>
+    </div>
+    <div class="hero-scroll">
+      <span class="mouse"></span>
+      <span id="hero_scroll"></span>
+    </div>
+  </div>
+</header>
+
+<!-- 3. os planos -->
+<section class="section" id="planos">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow" id="eyebrow"></span>
+      <h2 class="h2" id="titulo"></h2>
+      <p class="lead" id="lead"></p>
+    </div>
+    <div class="plans-grid" id="grade"></div>
+  </div>
+</section>
+
+<!-- 4. uma seção de preços por plano -->
+<div id="precos"></div>
+
+<!-- 5. faixa final -->
+<section class="section cta-planos">
+  <div class="container">
+    <h2 class="h2" id="cta_titulo"></h2>
+    <p id="cta_txt"></p>
+    <a class="btn btn-dark" id="cta_bt" target="_blank" rel="noopener"></a>
+  </div>
+</section>
+
+<footer><div class="container"><p id="rodape"></p></div></footer>
+
+<!-- Mesmo conteudo.js da home, de /planos e de /planosv2. Sem cópia de preço. -->
+<script src="../conteudo.js"></script>
+<script>
+(function(){
+  "use strict";
+  var esc = function(s){ return String(s == null ? "" : s)
+    .replace(/[&<>"']/g, function(m){ return ({"&":"&amp;","<":"&lt;",">":"&gt;",
+      '"':"&quot;","'":"&#39;"})[m] }) };
+  var $ = function(i){ return document.getElementById(i) };
+  var CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"'
+    + ' stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+    + '<circle cx="12" cy="12" r="10"/><polyline points="8.5 12.5 11 15 16 9.5"/></svg>';
+
+  var idi = "pt";
+  try {
+    var q = new URLSearchParams(location.search).get("idi");
+    idi = (q === "en" || q === "pt") ? q : (localStorage.getItem("leon_idi") || "pt");
+  } catch (e) {}
+
+  var din = function(n){ return "US$ " + Math.round(n).toLocaleString("en-US") };
+  /* O WHOP para em US$ 2.500 por cobrança, então o número de parcelas não é
+     enfeite: é quantas cobranças o total exige para caber no limite. Dizer
+     "em até 12x" sem essa conta seria prometer um parcelamento que a
+     ferramenta de cobrança não faz. */
+  var TETO_COBRANCA = 2.5e3;   // US$ 2.500, o limite por cobrança do WHOP
+  var parcelas = function(total){ return Math.max(1, Math.ceil(total / TETO_COBRANCA)) };
+  var slug = function(s){ return String(s).toLowerCase().normalize("NFD")
+    .replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") };
+  var wa = function(msg){
+    return "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(msg) };
+
+  var RODAPE = {
+    pt: "Leon Group &middot; Built to Lead. &middot; Opera&ccedil;&atilde;o remota, sediada no Brasil. "
+      + "Valores em d&oacute;lar americano. Esta p&aacute;gina &eacute; a proposta comercial: o escopo, o prazo "
+      + "e as obriga&ccedil;&otilde;es de cada lado ficam no contrato, que voc&ecirc; l&ecirc; inteiro antes de aceitar. "
+      + "<a href='../'>Voltar ao site</a>",
+    en: "Leon Group &middot; Built to Lead. &middot; Remote operation, based in Brazil. "
+      + "Prices in US dollars. This page is the commercial proposal: scope, timeline and each "
+      + "side's obligations live in the contract, which you read in full before accepting. "
+      + "<a href='../'>Back to the site</a>",
+  };
+
+  function pintar(){
+    var t = T[idi];
+    document.documentElement.lang = idi === "en" ? "en" : "pt-BR";
+
+    /* ── menu: "Planos" mais uma âncora por plano ── */
+    $("nav_links").innerHTML = '<a href="#planos">' + esc(t.v3_nav[0]) + "</a>"
+      + t.planos.map(function(p, i){
+          return '<a href="#precos-' + slug(p[0]) + '">'
+            + esc(t.v3_nav[i + 1] || p[0]) + "</a>";
+        }).join("");
+    var nc = $("nav_cta");
+    nc.textContent = t.v3_nav_cta;
+    nc.href = wa(t.v3_cta_msg);
+
+    /* ── herói ── */
+    $("hero_pill").textContent = t.v3_hero_pill;
+    $("hero_h1").innerHTML = esc(t.v3_hero_h1[0]) + " <em>" + esc(t.v3_hero_h1[1]) + "</em>";
+    $("hero_lead").textContent = t.v3_hero_lead;
+    $("hero_bt1").innerHTML = esc(t.v3_hero_bt1) + " &darr;";
+    var b2 = $("hero_bt2");
+    b2.textContent = t.v3_hero_bt2;
+    b2.href = wa(t.v3_cta_msg);
+    $("hero_scroll").textContent = t.v3_hero_scroll;
+
+    /* ── os três cards, em colunas ── */
+    $("eyebrow").textContent = t.v3_eyebrow;
+    $("titulo").textContent = t.v3_titulo;
+    $("lead").textContent = t.v3_lead;
+    $("grade").innerHTML = t.planos.map(function(p, i){
+      var nome = p[0], itens = p[5];
+      var dest = t.v3_destaque[i] || "", sub = t.v3_subs[i] || "";
+      return '<div class="plan' + (dest ? " plan--" + dest : "") + '">'
+        + (dest === "escuro" ? '<div class="plan-ribbon">' + esc(t.v3_faixa) + "</div>" : "")
+        + '<div class="plan-body">'
+          + '<h3 class="plan-name">' + esc(nome) + "</h3>"
+          + (sub ? '<p class="plan-sub">' + esc(sub) + "</p>" : "")
+          + '<ul class="plan-list">'
+            + itens.map(function(x){ return "<li>" + CHECK + "<span>" + esc(x) + "</span></li>" }).join("")
+          + "</ul>"
+          + '<a class="btn ' + (dest ? "btn-accent" : "btn-ghost") + ' btn-block"'
+            + ' href="#precos-' + slug(nome) + '">' + esc(t.v3_ver) + " &rarr;</a>"
+        + "</div></div>";
+    }).join("");
+
+    /* ── uma seção de preços por plano ──
+       O fundo alterna cinza/branco como na Kairon, e a seção do plano maior é
+       escura. O card destacado vem de v3_featured, escolhido a dedo por plano:
+       na Kairon é nenhum no primeiro, o do meio no segundo e o primeiro no
+       terceiro, e não o mais barato. */
+    var porNome = {};
+    t.planos_periodos.forEach(function(p){ porNome[p[0]] = p[1] });
+
+    $("precos").innerHTML = t.planos.map(function(p, i){
+      var nome = p[0], per = porNome[nome];
+      if (!per) return "";
+      var dest = t.v3_destaque[i] || "", escuro = dest === "escuro";
+      var feat = t.v3_featured[i];
+      var sub = t.v3_subs[i] || "";
+      var fundo = escuro ? " pricing--dark" : (i % 2 === 0 ? "" : " pricing--branco");
+      return '<section class="section pricing' + fundo + '" id="precos-' + slug(nome) + '">'
+        + '<div class="container">'
+        + '<div class="sec-head"><span class="eyebrow">' + esc(t.v3_eyebrow_precos) + "</span>"
+          + '<h2 class="h2">' + esc(t.v3_precos_de) + " " + esc(nome) + "</h2>"
+          + (sub ? '<p class="lead">' + esc(sub) + "</p>" : "") + "</div>"
+        + '<div class="price-grid">' + per.map(function(x, j){
+            var meses = x[0], total = x[1], acresc = x[2];
+            var msg = idi === "en"
+              ? "Hi! I want the " + nome + " plan, " + meses + " months."
+              : "Oi! Quero o plano " + nome + ", " + meses + " meses.";
+            var destaque = feat === j;
+            return '<div class="price-card' + (destaque ? " featured" : "") + '">'
+              + '<p class="price-period">' + esc(t.rot_periodo[j] || "") + "</p>"
+              + '<div class="price-value">' + esc(din(total / meses))
+                + '<span class="price-per">' + esc(t.v3_por_mes) + "</span></div>"
+              + '<div class="price-meta">'
+                + "<span>" + esc(t.v3_total) + " " + esc(din(total)) + "</span>"
+                + "<span>" + esc(t.v3_parcelas.replace("{n}", parcelas(total))) + "</span>"
+              + "</div>"
+              + (escuro ? '<p class="price-ads">' + esc(t.v3_verba) + "</p>" : "")
+              + '<p class="price-extra">' + esc(acresc) + "</p>"
+              + '<a class="btn ' + (destaque ? "btn-accent" : (escuro ? "btn-escuro" : "btn-ghost"))
+                + ' btn-block" target="_blank" rel="noopener" href="' + wa(msg) + '">'
+                + esc(t.planos_cta) + "</a>"
+              + "</div>";
+          }).join("") + "</div>"
+        + '<p class="price-note">' + esc(t.v3_nota) + "</p>"
+        + (i === t.planos.length - 1 ? '<div class="notas">'
+            + '<p class="nova">' + esc(t.planos_nota_nova) + "</p>"
+            + "<p>" + esc(t.planos_nota_pgto) + "</p>"
+            + "<p>" + esc(t.planos_nota_verba) + "</p></div>" : "")
+        + "</div></section>";
+    }).join("");
+
+    $("cta_titulo").textContent = t.v3_cta_titulo;
+    $("cta_txt").textContent = t.v3_cta_txt;
+    var cb = $("cta_bt");
+    cb.textContent = t.v3_cta_bt;
+    cb.href = wa(t.v3_cta_msg);
+    $("rodape").innerHTML = RODAPE[idi];
+
+    var bs = document.querySelectorAll(".idi button");
+    for (var i = 0; i < bs.length; i++)
+      bs[i].className = bs[i].dataset.idi === idi ? "on" : "";
+  }
+
+  var bs = document.querySelectorAll(".idi button");
+  for (var i = 0; i < bs.length; i++) bs[i].addEventListener("click", function(){
+    idi = this.dataset.idi;
+    try { localStorage.setItem("leon_idi", idi) } catch (e) {}
+    pintar();
+  });
+
+  pintar();
+
+  /* ── a constelação do herói ──
+     Canvas e não SVG escrito à mão, pelo mesmo motivo de sempre: pontos e
+     linhas gerados por código não viram 200 linhas de markup. Respeita
+     prefers-reduced-motion parando quieto, e não redesenha em loop: uma
+     pintada, e outra só se a janela mudar de tamanho. */
+  var cv = $("ceu");
+  // getContext pode EXISTIR e devolver null (canvas desativado no navegador,
+  // ou ambiente sem canvas). Testar só a função e usar o retorno como se
+  // fosse contexto derruba a página inteira por causa de uma decoração.
+  var ctx = cv && cv.getContext ? cv.getContext("2d") : null;
+  if (ctx) {
+    var quieto = false;
+    try { quieto = window.matchMedia("(prefers-reduced-motion: reduce)").matches } catch (e) {}
+    function ceu(){
+      var r = cv.parentElement.getBoundingClientRect();
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      cv.width = Math.max(1, Math.round(r.width * dpr));
+      cv.height = Math.max(1, Math.round(r.height * dpr));
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, r.width, r.height);
+      var n = Math.round(Math.min(110, r.width / 14));
+      var pts = [];
+      for (var i = 0; i < n; i++)
+        pts.push({ x: Math.random() * r.width, y: Math.random() * r.height });
+      // linhas primeiro, para os pontos ficarem por cima
+      ctx.strokeStyle = "rgba(255,255,255,.14)";
+      ctx.lineWidth = 1;
+      for (var a = 0; a < pts.length; a++)
+        for (var b = a + 1; b < pts.length; b++) {
+          var dx = pts[a].x - pts[b].x, dy = pts[a].y - pts[b].y;
+          var d = Math.sqrt(dx * dx + dy * dy);
+          if (d < 130) {
+            ctx.globalAlpha = 1 - d / 130;
+            ctx.beginPath(); ctx.moveTo(pts[a].x, pts[a].y);
+            ctx.lineTo(pts[b].x, pts[b].y); ctx.stroke();
+          }
+        }
+      ctx.globalAlpha = 1;
+      ctx.fillStyle = "rgba(255,255,255,.55)";
+      pts.forEach(function(p){
+        ctx.beginPath(); ctx.arc(p.x, p.y, 1.3, 0, Math.PI * 2); ctx.fill();
+      });
+    }
+    if (!quieto) {
+      ceu();
+      var t0;
+      window.addEventListener("resize", function(){
+        clearTimeout(t0); t0 = setTimeout(ceu, 200);
+      });
+    }
+  }
+})();
+</script>
+</body>
+</html>

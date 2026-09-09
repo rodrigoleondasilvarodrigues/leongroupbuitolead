@@ -255,7 +255,7 @@ footer a{color:var(--laranja-esc)}
                             : "Oi! Vi a proposta e quero o plano " + nome)
               + (idi === "en" ? " plan, " + meses + " months." : ", " + meses + " meses."));
             return '<div class="prazo">'
-              + '<div class="nome">' + esc(t.v2_rot_periodo[i] || "") + '</div>'
+              + '<div class="nome">' + esc(t.rot_periodo[i] || "") + '</div>'
               + '<div class="meses">' + meses + " " + esc(t.v2_meses) + '</div>'
               + '<div class="mes"><span class="cifra">US$</span>'
                 + '<span class="num">' + Math.round(mensal[i]).toLocaleString("en-US") + '</span>'

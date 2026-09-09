@@ -261,12 +261,70 @@ acontece do mês 4 ao 12 seria vender ar.
 de um prazo, a segunda é a matriz. Escolha na hora da call qual serve melhor
 para o lead. As duas leem o **mesmo** `conteudo.js`.
 
+## `/planosv3`: cópia do layout da Kairon
+
+Pedido do usuário: exatamente o layout de
+`kairon-assessoria.vercel.app/planos`, com as colunas e a **ancoragem no
+maior**. Medido no CSS real dela e conferido nos prints que ele mandou, não de
+olho.
+
+```
+https://leon-group-site.pages.dev/planosv3
+https://leon-group-site.pages.dev/planosv3?idi=en
+```
+
+A estrutura, na ordem:
+
+| # | Bloco | O que tem |
+|---|---|---|
+| 1 | Menu fixo | Planos mais uma âncora por plano, centralizado, WhatsApp à direita |
+| 2 | Herói escuro | canvas de constelação, pílula com ponto verde, título com a segunda parte em accent, dois botões, dica de rolagem |
+| 3 | Os planos | cabeçalho **centralizado**, 3 colunas a partir de 960px |
+| 4 | Preços | uma seção **por plano**, 3 colunas a partir de 900px |
+| 5 | Faixa final | fundo accent, "Na dúvida entre dois planos?" |
+
+**Ancoragem no MAIOR**, ao contrário de `/planos` e `/planosv2`:
+
+- card 1: cinza claro, sem destaque
+- card 2: branco com borda 2px accent
+- card 3: escuro com **faixa** accent no topo
+
+Medidas copiadas: `--radius-card: 34px`, `.plans-grid` 1fr para
+`repeat(3,1fr)` em 960px, `.price-grid` idem em 900px, `.price-card` com
+`text-align: center`, `hover: translateY(-6px)`, fontes **Onest** (títulos) e
+**Inter** (corpo).
+
+**O card destacado em cada faixa de preço é escolhido a dedo**, não é o mais
+barato. Na Kairon é nenhum no primeiro plano, o do meio no segundo e o primeiro
+no terceiro. Fica em `v3_featured: [null, 1, 0]`. Eu havia feito "o mais
+barato" em `/planosv2` e estava errado em relação ao original.
+
+**A única coisa que não copiei:** o azul `#1c20ff` da Kairon. O accent é o
+laranja da Leon Group, porque a página é da Leon Group e o brand kit já está
+entregue. Trocar é uma linha: `--accent` e `--accent-ink`.
+
+O número de parcelas não é decorativo: sai de `Math.ceil(total / 2500)`, o
+limite por cobrança do WHOP. Dizer "em até 12x" sem essa conta prometeria um
+parcelamento que a ferramenta não faz.
+
+## As três páginas de proposta
+
+| Rota | Formato | Ancoragem |
+|---|---|---|
+| `/planos` | um preço por plano, 3 colunas | no **menor** |
+| `/planosv2` | 3 prazos por plano, plano empilhado | no **menor** |
+| `/planosv3` | layout da Kairon, herói e menu | no **maior** |
+
+As três leem o **mesmo** `conteudo.js`. Nenhum preço escrito em nenhuma delas,
+e os três testes conferem isso.
+
 ## Testes
 
 ```bash
 node sistemas/site-agencia/teste.js            # a home, 102 verificações
 node sistemas/site-agencia/teste-planos.js     # /planos, 43 verificações
 node sistemas/site-agencia/teste-planosv2.js   # /planosv2, 39 verificações
+node sistemas/site-agencia/teste-planosv3.js   # /planosv3, 56 verificações
 ```
 
 ## Publicar uma alteração
