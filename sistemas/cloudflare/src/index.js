@@ -1,6 +1,10 @@
 // Leon Group — Worker único: admin protegido + sites dos clientes + formulário público.
 import * as G from "./geradores.js";
 import * as A from "./auth.js";
+import * as M from "./marca.js";
+import * as Arq from "./arquivos.js";
+import * as F from "./funil.js";
+import { promptLogo, faltaNoBriefing, refinarComIA } from "./logo-prompt.js";
 import { ADMIN_HTML } from "./admin.js";
 import { LOGIN_HTML, formularioHTML, aguardandoHTML, jaRespondidoHTML } from "./paginas.js";
 
@@ -15,7 +19,7 @@ const parseData = (v) => {
   return isNaN(d) ? null : d;
 };
 const horasDesde = (v) => { const d = parseData(v); return d ? (Date.now() - d) / 3600000 : 0; };
-const MIN_FOTOS = 11;   // mesmo mínimo que o formulário exige na tela
+const MIN_FOTOS = G.MIN_FOTOS;   // uma definição só, em geradores.js
 const TETO_LOTE = 500;
 /* Origens do site público autorizadas a mandar lead para o CRM.
    Acrescentar aqui o domínio próprio quando existir. */
@@ -83,6 +87,23 @@ export default {
     const origem = req.headers.get("Origin") || "";
 
     try {
+      /* ───────── ícone da marca ─────────
+         Antes do portão de sessão porque a aba de login, o formulário do
+         cliente e as páginas de aviso também mostram o leão. É o mesmo
+         arquivo que o site da agência usa. */
+      const icone = M.rotaIcone(p);
+      if (icone) return icone;
+
+      /* ───────── mídia dos clientes (R2) ─────────
+         Público e sem cookie: o site do cliente é publicado no Vercel, em
+         outro domínio, e busca as fotos daqui. A chave é um UUID, então o
+         link não é adivinhável, mas o conteúdo é feito para ser visto. */
+      if (p.startsWith("/m/")) {
+        const r = await Arq.servir(env, p);
+        if (r) return r;
+        return new Response("não encontrado", { status: 404 });
+      }
+
       // Sites dos clientes NÃO são servidos aqui — vão 100% para o Vercel,
       // com deploy manual. O admin baixa o index.html em /api/baixar-site.
       // ───────── público: formulário do cliente ─────────
@@ -97,7 +118,67 @@ export default {
           return html(aguardandoHTML(c), 403);
         // uso único: depois de respondido o link morre
         if (c.formulario_em) return html(jaRespondidoHTML(c), 410);
-        return html(formularioHTML(c, t));
+        // Sem armazenamento configurado o formulário não oferece o seletor de
+        // arquivo: melhor não mostrar um botão que vai falhar do que mostrar e
+        // deixar o cliente achando que o problema é o celular dele.
+        return html(formularioHTML(c, t, { upload: Arq.temR2(env) }));
+      }
+      /* ───────── público: o cliente subindo foto e vídeo do celular ─────────
+         Um arquivo por requisição. Não é multipart de propósito: 15 fotos num
+         POST só estouram o corpo do Worker e as 15 falham juntas. Uma por vez
+         mostra progresso, e a que falhar falha sozinha.
+
+         O portão é o mesmo do formulário (contrato, pagamento, link não
+         consumido), porque isso grava no banco em nome do cliente. */
+      if (p.startsWith("/api/subir/")) {
+        const t = p.slice(11).replace(/\/$/, "");
+        if (await A.bloqueadoPorTentativas(env, ip, "upload"))
+          return json({ erro: "Muitos envios em sequência. Espere um minuto e continue." }, 429);
+        const c = await env.DB.prepare(
+          `SELECT id,formulario_em,contrato_assinado,pagamento_confirmado
+           FROM clientes WHERE formulario_token=?`).bind(t).first();
+        if (!c) { await A.registrarTentativa(env, ip, false, "upload"); return json({ erro: "token inválido" }, 404); }
+        if (!c.contrato_assinado || !c.pagamento_confirmado)
+          return json({ erro: "Formulário ainda não liberado." }, 403);
+        if (c.formulario_em) return json({ erro: "Este formulário já foi respondido." }, 410);
+
+        // GET devolve o que já subiu. Serve para quando o navegador do celular
+        // mata a aba no meio do upload: ao voltar, a lista continua lá em vez
+        // de o cliente achar que perdeu tudo e mandar de novo.
+        if (req.method === "GET") {
+          const { results } = await env.DB.prepare(
+            `SELECT id,slot,nome,mime,bytes,chave FROM arquivos
+             WHERE cliente_id=? AND origem='cliente' ORDER BY id`).bind(c.id).all();
+          return json({ arquivos: results.map((a) => ({
+            id: a.id, tipo: a.slot, nome: a.nome, mime: a.mime, bytes: a.bytes,
+            url: Arq.urlDe(a.chave) })) });
+        }
+        if (req.method !== "POST") return json({ erro: "método" }, 405);
+
+        const tipo = url.searchParams.get("tipo") || "foto";
+        if (!["foto", "video", "logo"].includes(tipo)) return json({ erro: "tipo inválido" }, 400);
+        const r = await Arq.receber(env, req, {
+          cliente_id: c.id, origem: "cliente", destino: "cliente", slot: tipo,
+          nome: url.searchParams.get("nome") || "",
+        });
+        if (r.erro) return json({ erro: r.erro }, r.status || 400);
+        return json(r);
+      }
+      // O cliente apagando algo que ele mesmo acabou de subir (mandou a foto
+      // errada). Só o que veio dele, e só antes de o formulário ser enviado.
+      if (p.startsWith("/api/remover/") && req.method === "POST") {
+        const t = p.slice(13).replace(/\/$/, "");
+        const c = await env.DB.prepare(
+          `SELECT id,formulario_em FROM clientes WHERE formulario_token=?`).bind(t).first();
+        if (!c) return json({ erro: "token inválido" }, 404);
+        if (c.formulario_em) return json({ erro: "Formulário já respondido." }, 410);
+        const b = await req.json().catch(() => ({}));
+        const dono = await env.DB.prepare(
+          "SELECT id FROM arquivos WHERE id=? AND cliente_id=? AND origem='cliente'")
+          .bind(Number(b.id) || 0, c.id).first();
+        if (!dono) return json({ erro: "arquivo não encontrado" }, 404);
+        const r = await Arq.apagar(env, c.id, dono.id);
+        return json(r.erro ? { erro: r.erro } : { ok: true }, r.status || 200);
       }
       if (p.startsWith("/api/formulario/") && req.method === "POST") {
         const t = p.slice(16);
@@ -119,26 +200,57 @@ export default {
         // começava a contar sem uma única foto para trabalhar — e o cliente
         // não conseguia reenviar (410).
         const fotosOk = (b.fotos || []).filter((u) => /^https?:\/\//i.test(String(u)));
-        if (fotosOk.length < MIN_FOTOS)
-          return json({ erro: `Faltam fotos: recebi ${fotosOk.length}, o mínimo é ${MIN_FOTOS}. Nada foi salvo — o link continua valendo.` }, 400);
+        // As fotos podem chegar por dois caminhos: subidas do celular (já
+        // gravadas em `arquivos` antes deste envio) ou coladas como link.
+        // O mínimo vale sobre a SOMA dos dois, senão quem subiu 15 fotos do
+        // celular ainda seria barrado por não ter colado link nenhum.
+        const subidas = await env.DB.prepare(
+          "SELECT COUNT(*) n FROM arquivos WHERE cliente_id=? AND origem='cliente' AND slot='foto'")
+          .bind(c.id).first();
+        const totalFotos = fotosOk.length + (subidas?.n || 0);
+        if (totalFotos < MIN_FOTOS)
+          return json({ erro: `Faltam fotos: tenho ${totalFotos}, o mínimo é ${MIN_FOTOS}. Nada foi perdido, o link continua valendo e as fotos que você já subiu continuam aqui.` }, 400);
         if (!String(b.nome_dono || "").trim() || !String(b.cidade || "").trim() || !String(b.servicos || "").trim())
-          return json({ erro: "Nome do dono, cidade e serviços são obrigatórios. Nada foi salvo — o link continua valendo." }, 400);
+          return json({ erro: "Nome do dono, cidade e serviços são obrigatórios. Nada foi salvo, o link continua valendo." }, 400);
 
         const prazo = G.somaDiasUteis(new Date(), G.PRAZO_MAXIMO_DIAS).toISOString();
         // A trava é a própria condição do UPDATE (formulario_em IS NULL).
         // Antes, checar-depois-gravar deixava dois envios simultâneos passarem
         // pelos dois lados da trava, duplicando mídia e reiniciando o prazo.
+        const txt = (v, n = 400) => (String(v ?? "").trim().slice(0, n) || null);
         const gravou = await env.DB.prepare(
           `UPDATE clientes SET nome_dono=?,cidade=?,estado=?,telefone=?,servicos=?,diferencial=?,
            observacoes=?,tem_logo=?,cores=?,tempo_mercado=?,faz=?,nao_faz=?,localizacoes=?,
+           logo_estilo=?,logo_simbolo=?,logo_evitar=?,logo_referencias=?,logo_texto=?,logo_slogan=?,
            formulario_em=?,prazo_final=?,entrega_iniciada_em=?,atualizado_em=?
            WHERE id=? AND formulario_em IS NULL`
         ).bind(b.nome_dono||null,b.cidade||null,b.estado||null,b.telefone||null,b.servicos||null,
                b.diferencial||null,b.observacoes||null,b.tem_logo?1:0,b.cores||null,
                b.tempo_mercado||null,b.faz||null,b.nao_faz||null,b.localizacoes||null,
+               // briefing da logo: é daqui que sai o prompt do gpt-image-2
+               txt(b.logo_estilo),txt(b.logo_simbolo),txt(b.logo_evitar),
+               txt(b.logo_referencias),txt(b.logo_texto,90),txt(b.logo_slogan,60),
                agora(),prazo,agora(),agora(),c.id).run();
         if (!gravou.meta.changes)
           return json({ erro: "Este formulário já foi respondido." }, 410);
+        /* Os arquivos subidos do celular já estão no R2. O resto do sistema
+           (geração do site, contagem de fotos, pasta de entrega) lê de
+           `midias`, então cada upload ganha aqui a linha correspondente,
+           com URL ABSOLUTA: o site do cliente é publicado no Vercel, em outro
+           domínio, e um caminho relativo apontaria para o lugar errado. */
+        const origemAbs = new URL(req.url).origin;
+        const { results: subidos } = await env.DB.prepare(
+          `SELECT chave,slot,nome FROM arquivos
+           WHERE cliente_id=? AND origem='cliente' ORDER BY id`).bind(c.id).all();
+        for (const a of subidos) {
+          const abs = origemAbs + Arq.urlDe(a.chave);
+          const jaLigado = await env.DB.prepare(
+            "SELECT 1 FROM midias WHERE cliente_id=? AND caminho=?").bind(c.id, abs).first();
+          if (jaLigado) continue;
+          await env.DB.prepare(
+            "INSERT INTO midias (cliente_id,tipo,caminho,descricao,criado_em) VALUES (?,?,?,?,?)")
+            .bind(c.id, a.slot, abs, a.nome ? `enviado pelo cliente: ${a.nome}` : "enviado pelo cliente", agora()).run();
+        }
         const jaTem = await env.DB.prepare(
           "SELECT COUNT(*) AS n FROM midias WHERE cliente_id=?").bind(c.id).first();
         const espaco = Math.max(0, 40 - (jaTem?.n || 0));   // teto acumulado de 40 mídias
@@ -314,6 +426,24 @@ export default {
         return autenticado ? html(ADMIN_HTML) : Response.redirect(new URL("/login", req.url).toString(), 302);
       if (!autenticado) return json({ erro: "não autenticado" }, 401);
 
+      /* Upload da agência fica AQUI, e não em apiAdmin, porque apiAdmin
+         começa lendo o corpo como JSON. O corpo de um upload é o arquivo:
+         passar por lá o consumiria e chegaria vazio no R2. */
+      if (p === "/api/subir-arquivo" && req.method === "POST") {
+        const cid = Number(url.searchParams.get("cliente_id")) || 0;
+        if (!cid) return json({ erro: "cliente_id obrigatório" }, 400);
+        const existe = await env.DB.prepare("SELECT id FROM clientes WHERE id=?").bind(cid).first();
+        if (!existe) return json({ erro: "cliente não encontrado" }, 404);
+        const r = await Arq.receber(env, req, {
+          cliente_id: cid, origem: "agencia",
+          destino: url.searchParams.get("destino") || "entrega",
+          slot: url.searchParams.get("slot") || "outros",
+          nome: url.searchParams.get("nome") || "",
+        });
+        if (r.erro) return json({ erro: r.erro }, r.status || 400);
+        return json(r);
+      }
+
       return await apiAdmin(p, req, env);
     } catch (e) {
       console.log("erro:", e.message, e.stack);   // fica no log do Worker, não na resposta
@@ -345,7 +475,7 @@ async function apiAdmin(p, req, env) {
     // uma esperando a outra): 5 clientes = 27 idas ao banco = 3,5s de espera,
     // e crescia linear. Agora são 6 consultas agregadas em batch, custo constante.
     // o batch do painel e o dos KPIs são independentes: vão em paralelo, não em fila
-    const [[qL, qC, qEnt, qRev, qMk, qChk, qMd], kpisPainel] = await Promise.all([
+    const [[qL, qC, qEnt, qRev, qMk, qChk, qMd, qArq], kpisPainel] = await Promise.all([
       D.batch([
         D.prepare("SELECT * FROM leads WHERE arquivado=0 ORDER BY entrou_coluna_em DESC"),
         D.prepare("SELECT * FROM clientes WHERE arquivado=0 ORDER BY id DESC"),
@@ -354,6 +484,7 @@ async function apiAdmin(p, req, env) {
         D.prepare("SELECT cliente_id, COUNT(*) t, SUM(concluido) c FROM marcos GROUP BY cliente_id"),
         D.prepare("SELECT cliente_id, COUNT(*) t, SUM(feito) f FROM checklist WHERE obrigatorio=1 GROUP BY cliente_id"),
         D.prepare("SELECT cliente_id, tipo, COUNT(*) n FROM midias GROUP BY cliente_id, tipo"),
+        D.prepare("SELECT cliente_id, COUNT(*) n FROM arquivos WHERE origem='agencia' GROUP BY cliente_id"),
       ]),
       kpis(D),
     ]);
@@ -368,6 +499,8 @@ async function apiAdmin(p, req, env) {
     for (const r of qRev.results) revs.set(r.cliente_id, r);
     for (const m of qMk.results) mks.set(m.cliente_id, m);
     for (const k of qChk.results) chks.set(k.cliente_id, k);
+    const arqs = new Map();
+    for (const a of qArq.results) arqs.set(a.cliente_id, a.n);
     for (const x of qMd.results) {
       if (!mds.has(x.cliente_id)) mds.set(x.cliente_id, {});
       mds.get(x.cliente_id)[x.tipo] = x.n;
@@ -375,8 +508,10 @@ async function apiAdmin(p, req, env) {
 
     const agoraMs = Date.now();
     for (const c of cls) {
-      // o HTML do site pode ter dezenas de KB e o admin nunca lê esse campo aqui
-      delete c.site_html;
+      // o HTML do site pode ter dezenas de KB e o admin nunca lê esse campo aqui.
+      // logo_prompt é o JSON do gpt-image-2, alguns KB por cliente, e a lista
+      // não usa: só o card usa, e o card busca em /api/cliente.
+      delete c.site_html; delete c.logo_prompt;
       c.dias = dias(c.data_entrada);
       // entrega: quantos dias úteis já correram dos 5
       c.dias_uteis = c.entrega_iniciada_em ? G.diasUteisDesde(parseData(c.entrega_iniciada_em)) : null;
@@ -393,15 +528,22 @@ async function apiAdmin(p, req, env) {
       c.chk_total = ck?.t || 0; c.chk_feitos = ck?.f || 0;
       const entOk = c.entregaveis.filter((e) => ["entregue", "aprovado"].includes(e.status)).length;
       c.ent_total = c.entregaveis.length; c.ent_feitos = entOk;
-      c.entrega_completa = c.marcos_total > 0 && c.marcos_feitos >= c.marcos_total
+      // Mesma regra do portão em /api/cliente, na versão agregada: os três
+      // grupos que travam, ou a conclusão antecipada registrada no botão.
+      c.portao_cumprido = c.marcos_total > 0 && c.marcos_feitos >= c.marcos_total
         && c.chk_total > 0 && c.chk_feitos >= c.chk_total
         && c.ent_total > 0 && entOk >= c.ent_total;
+      c.entrega_completa = c.portao_cumprido || !!c.entrega_forcada;
       // atrasado só vale se o prazo passou E a entrega ainda não terminou
       c.atrasado = c.dias_uteis !== null && c.dias_uteis > G.PRAZO_MAXIMO_DIAS && !c.entrega_completa;
       c.midias = mds.get(c.id) || {};
+      c.arquivos_agencia = arqs.get(c.id) || 0;
     }
     return json({ leads, clientes: cls, pipelines: PIPELINES, ativacoes: ATIV_DIA,
-                  catalogo: CATALOGO, entregaveis: G.ENTREGAVEIS, kpis: kpisPainel });
+                  catalogo: CATALOGO, entregaveis: G.ENTREGAVEIS, kpis: kpisPainel,
+                  // sem o bucket do R2 a área de upload aparece desligada,
+                  // com o comando para criar, em vez de falhar em silêncio
+                  sem_r2: !Arq.temR2(env) });
   }
 
   // ── comercial ──
@@ -552,10 +694,30 @@ async function apiAdmin(p, req, env) {
     c.prazo_maximo = G.PRAZO_MAXIMO_DIAS;
     // as 5 listas vão num round-trip só. E os marcos já vêm nessa leva:
     // antes a tabela marcos era consultada duas vezes na mesma requisição.
-    const TABS = ["entregaveis", "reviews", "posts", "marcos", "midias", "checklist"];
+    const TABS = ["entregaveis", "reviews", "posts", "marcos", "midias", "checklist",
+                  "arquivos", "entradas"];
+    const ordemDe = (t) => (t === "checklist" ? "ordem" : t === "entradas" ? "recebido_em" : "id");
     const res = await D.batch(TABS.map((t) =>
-      D.prepare(`SELECT * FROM ${t} WHERE cliente_id=? ORDER BY ${t === "checklist" ? "ordem" : "id"}`).bind(id)));
+      D.prepare(`SELECT * FROM ${t} WHERE cliente_id=? ORDER BY ${ordemDe(t)}`).bind(id)));
     TABS.forEach((t, i) => { c[t] = res[i].results; });
+    for (const a of c.arquivos) a.url = Arq.urlDe(a.chave);
+    /* O financeiro DESTE cliente, já convertido nas duas moedas: entrada por
+       entrada, com a cotação que cada uma usou. O card mostra dólar e real
+       lado a lado porque a operação fatura em dólar e o fundador vive em real. */
+    {
+      const [cot] = await D.batch([D.prepare(
+        "SELECT chave,valor FROM config WHERE chave IN ('cotacao','cotacao_em','cotacao_fonte')")]);
+      const k = Object.fromEntries((cot.results || []).map((r) => [r.chave, r.valor]));
+      c.cotacao_ref = F.cotacaoValida(k.cotacao) || F.COTACAO_PADRAO;
+      c.cotacao_em = k.cotacao_em || null;
+      c.cotacao_padrao = !F.cotacaoValida(k.cotacao);
+      const qs = await D.prepare("SELECT * FROM saidas WHERE cliente_id=? ORDER BY pago_em")
+        .bind(id).all();
+      c.financeiro = F.financeiroDoCliente(c, c.entradas, c.cotacao_ref, qs.results);
+    }
+    // régua do fluxo de trabalho: logo, site, Instagram, Google, pasta
+    c.pecas = Arq.progresso(c.arquivos);
+    c.catalogo_arquivos = Arq.CATALOGO_ARQUIVOS;
     const total = c.marcos.length, feitos = c.marcos.filter((m) => m.concluido).length;
     c.marcos_total = total; c.marcos_feitos = feitos;
     // A entrega só fecha com as TRÊS coisas prontas. Antes olhava só os
@@ -566,14 +728,22 @@ async function apiAdmin(p, req, env) {
     c.chk_feitos = obr.filter((k) => k.feito).length;
     const entOk = c.entregaveis.filter((e) => ["entregue", "aprovado"].includes(e.status)).length;
     c.ent_total = c.entregaveis.length; c.ent_feitos = entOk;
-    c.entrega_completa = total > 0 && feitos >= total
-      && obr.length > 0 && c.chk_feitos >= obr.length
-      && c.ent_total > 0 && entOk >= c.ent_total;
+    /* O portão de conclusão: uma conta só, no servidor, usada pelo card, pela
+       lista e pelo botão de conclusão antecipada. Antes eram três contagens
+       repetidas em lugares diferentes, e nenhuma tela dizia quais eram. */
+    c.portao = await portaoDeConclusao(D, c);
+    c.entrega_completa = c.portao.concluida;
     /* O QUE FAZER AGORA. O painel tem 14 seções e nenhuma dizia por onde
        começar. Esta é a única pergunta que importa ao abrir o cliente. */
     const temSite = !!c.site_html, temPosts = c.posts.length > 0;
+    const temLogoPronta = c.arquivos.some((a) => a.destino === "logo" && a.origem === "agencia");
     c.proximo_passo =
-      !c.contrato_assinado || !c.pagamento_confirmado
+      c.portao.forcada
+        ? ["Entrega fechada antes do prazo", `Você fechou em ${new Date(c.portao.forcada_em).toLocaleDateString("pt-BR")}.` +
+           (c.portao.forcada_pendencias?.length
+             ? ` Ficou registrado que ${c.portao.forcada_pendencias.length} grupo(s) estavam abertos na hora.`
+             : " O portão estava cumprido na hora do clique.")]
+      : !c.contrato_assinado || !c.pagamento_confirmado
         ? ["Marque contrato e pagamento", "É o portão. Sem os dois, o formulário do cliente nem abre."]
       : !c.formulario_em
         ? ["Mande o link do formulário", "Está na seção Links. Sem ele preencher, não há material pra trabalhar e o prazo nem começa."]
@@ -581,6 +751,10 @@ async function apiAdmin(p, req, env) {
         ? ["Crie o grupo no WhatsApp e cole o link", "Marco 1 da entrega. É onde toda a comunicação vai passar."]
       : !temSite || !temPosts
         ? ["Gere os entregáveis", "Um clique produz o site, as reviews e os briefs do Instagram."]
+      : (!c.tem_logo && !temLogoPronta)
+        // A logo entra no site, no Instagram e no Google. Fazer depois das
+        // três é refazer as três.
+        ? ["Faça a logo primeiro", "O cliente não tinha logo. Copie o prompt na seção “Logo” e suba os arquivos: ela entra no site, no Instagram e no Google."]
       : !c.vercel_url
         ? ["Publique o site no Vercel", "Baixe o index.html, suba no Vercel e cole a URL de volta aqui."]
       : c.chk_feitos < c.chk_total
@@ -591,11 +765,10 @@ async function apiAdmin(p, req, env) {
         ? ["Feche os entregáveis", "Marque cada um como entregue na seção Entregáveis."]
       : ["Entrega concluída", "Atualize os leads recebidos todo mês, é o número da conversa de renovação."];
 
-    c.trava_entrega = [
-      feitos < total ? `${total - feitos} marco(s)` : "",
-      c.chk_feitos < obr.length ? `${obr.length - c.chk_feitos} item(ns) do checklist` : "",
-      entOk < c.ent_total ? `${c.ent_total - entOk} entregável(is)` : "",
-    ].filter(Boolean).join(" · ");
+    // uma linha só, para o resumo no alto do checklist. A lista detalhada
+    // com onde ficar cada coisa vem em c.portao.grupos
+    c.trava_entrega = c.portao.cumprido ? ""
+      : c.portao.pendencias.map((x) => x.rotulo).join(" · ");
     c.atrasado = c.dias_uteis !== null && c.dias_uteis > G.PRAZO_MAXIMO_DIAS && !c.entrega_completa;
     const rv = parseData(c.renovacao_em);
     c.dias_para_renovar = rv ? Math.ceil((rv - Date.now()) / 86400000) : null;
@@ -621,13 +794,25 @@ async function apiAdmin(p, req, env) {
   }
   if (p === "/api/gerar") {
     const id = corpo.id;
-    const [qc, qf] = await D.batch([
+    const [qc, qf, qa] = await D.batch([
       D.prepare("SELECT * FROM clientes WHERE id=?").bind(id),
       D.prepare("SELECT caminho FROM midias WHERE cliente_id=? AND tipo='foto'").bind(id),
+      // As fotos que o cliente SUBIU do celular vivem em `arquivos`, não em
+      // `midias`. Sem esta consulta o site sairia sem foto nenhuma para todo
+      // cliente que usou o seletor de arquivo em vez de colar link, que agora
+      // é o caminho normal.
+      D.prepare(`SELECT chave FROM arquivos WHERE cliente_id=? AND origem='cliente'
+                 AND slot='foto' AND mime LIKE 'image/%' ORDER BY id`).bind(id),
     ]);
     const c = qc.results[0];
     if (!c) return json({ erro: "cliente não encontrado" }, 404);
-    const fotos = qf.results.map((m) => m.caminho);
+    // A junção das duas fontes mora em geradores.js, com teste: já saiu site
+    // sem foto nenhuma por a geração olhar só um dos dois caminhos.
+    const fotos = G.fotosDoCliente({
+      subidas: qa.results.map((x) => Arq.urlDe(x.chave)),
+      coladas: qf.results.map((m) => m.caminho),
+      raiz: new URL(req.url).origin,
+    });
     const feito = [];
     if (corpo.site !== false) {
       // reviews postadas entram no site. Nunca as não postadas: o site só
@@ -758,7 +943,7 @@ async function apiAdmin(p, req, env) {
       if (cli && !corpo.apagar_cliente_tambem)
         return json({ erro: `Este lead virou o cliente "${cli.empresa}" (#${cli.id}). ` +
           `Apague o cliente primeiro, ou reenvie com apagar_cliente_tambem:true.` }, 409);
-      if (cli && corpo.apagar_cliente_tambem) await apagarCliente(D, cli.id);
+      if (cli && corpo.apagar_cliente_tambem) await apagarCliente(D, cli.id, env);
       for (const tab of ["ativacoes", "ligacoes", "mensagens", "eventos"])
         await D.prepare(`DELETE FROM ${tab} WHERE lead_id=?`).bind(id).run();
       await D.prepare("DELETE FROM leads WHERE id=?").bind(id).run();
@@ -768,7 +953,7 @@ async function apiAdmin(p, req, env) {
     if (tipo === "cliente") {
       const c = await D.prepare("SELECT empresa FROM clientes WHERE id=?").bind(id).first();
       if (!c) return json({ erro: "cliente não encontrado" }, 404);
-      await apagarCliente(D, id);
+      await apagarCliente(D, id, env);
       return json({ ok: true, apagado: `cliente "${c.empresa}"` });
     }
 
@@ -853,13 +1038,19 @@ async function apiAdmin(p, req, env) {
     const id = url.searchParams.get("id");
     const c = await D.prepare("SELECT * FROM clientes WHERE id=?").bind(id).first();
     if (!c) return json({ erro: "cliente não encontrado" }, 404);
-    const [qr, qp, qe, ql] = await D.batch([
+    const [qr, qp, qe, ql, qlog] = await D.batch([
       D.prepare("SELECT * FROM reviews WHERE cliente_id=?").bind(id),
       D.prepare("SELECT * FROM posts WHERE cliente_id=? ORDER BY tipo DESC,ordem").bind(id),
       D.prepare("SELECT tipo,status,url FROM entregaveis WHERE cliente_id=?").bind(id),
       D.prepare("SELECT caminho FROM midias WHERE cliente_id=? AND tipo='logo'").bind(id),
+      // a logo pode ter sido SUBIDA (pelo cliente ou pela agência) em vez de colada
+      D.prepare(`SELECT chave FROM arquivos WHERE cliente_id=?
+                 AND (slot='logo' OR (destino='logo' AND slot='principal'))
+                 ORDER BY origem='agencia' DESC, id LIMIT 1`).bind(id),
     ]);
     const revs = qr.results, ps = qp.results;
+    // o .txt é aberto fora do sistema: link relativo ali não abre em lugar nenhum
+    const raizEntrega = new URL(req.url).origin;
     const ent = (t) => (qe.results.find((e) => e.tipo === t) || {}).url || "";
     const risca = (t) => `${t} ${".".repeat(Math.max(2, 22 - t.length))}`;
     const linha = (rot, val) => `  ${risca(rot)} ${val || "(pendente)"}`;
@@ -879,7 +1070,8 @@ async function apiAdmin(p, req, env) {
       linha("Site", c.vercel_url),
       linha("Google Meu Negócio", ent("gmb")),
       linha("Instagram", ent("instagram")),
-      linha("Logo", ent("logo") || (ql.results[0] || {}).caminho),
+      linha("Logo", ent("logo") || (ql.results[0] || {}).caminho
+        || (qlog.results[0] ? raizEntrega + Arq.urlDe(qlog.results[0].chave) : "")),
       "",
       "  O acesso do Instagram e do Google Meu Negócio fica com você.",
       "  A Leon Group não guarda senha nenhuma.",
@@ -902,14 +1094,340 @@ async function apiAdmin(p, req, env) {
       "Content-Disposition": `attachment; filename="entrega-${c.slug}.txt"` } });
   }
 
+  /* ══════════════════ DASHBOARD COMERCIAL ══════════════════
+     O funil inteiro, o dinheiro e o diagnóstico. Separado de /api/painel
+     porque o painel roda a cada 60 segundos e isto não precisa: são
+     agregações do período inteiro, que não mudam de minuto em minuto. */
+  if (p === "/api/dashboard") {
+    const [f, fin] = await Promise.all([F.funil(D), financeiroDoPainel(D)]);
+    return json({
+      etapas: f.etapas, clientes_ativos: f.clientes_ativos,
+      rotulos: F.ROTULOS_FUNIL,
+      financeiro: fin,
+      diagnostico: F.diagnostico(f.etapas),
+      ia_disponivel: !!env.OPENAI_API_KEY,
+    });
+  }
+  // Botão, não automático: cada clique é uma chamada paga na OpenAI, e o
+  // diagnóstico da tela já responde a pergunta na maioria dos dias.
+  if (p === "/api/diagnostico-ia" && req.method === "POST") {
+    const [f, fin] = await Promise.all([F.funil(D), financeiroDoPainel(D)]);
+    const r = await F.diagnosticoIA(f.etapas, fin, F.diagnostico(f.etapas), env.OPENAI_API_KEY || "");
+    return json(r, r.erro ? 400 : 200);
+  }
+
+  /* ══════════════════ ENTRADAS: o que caiu na conta ══════════════════
+     Uma linha por dinheiro que entrou, com moeda, cotação do dia e data.
+     É o que permite responder "quanto entrou na empresa" para contrato
+     recorrente, e é o que trava o total em real: entrada antiga não muda de
+     valor quando o dólar mexe hoje. */
+  if (p === "/api/entrada" && req.method === "POST") {
+    const cid = Number(corpo.cliente_id) || 0;
+    if (corpo.apagar) {
+      const r = await D.prepare("DELETE FROM entradas WHERE id=? AND cliente_id=?")
+        .bind(Number(corpo.id) || 0, cid).run();
+      if (!r.meta.changes) return json({ erro: "entrada não encontrada" }, 404);
+      await ev(D, { cliente_id: cid, tipo: "entrada_apagada", detalhe: `entrada #${corpo.id}` });
+      return json({ ok: true });
+    }
+    const existe = await D.prepare("SELECT id FROM clientes WHERE id=?").bind(cid).first();
+    if (!existe) return json({ erro: "cliente não encontrado" }, 404);
+
+    const v = F.parseDinheiro(corpo.valor);
+    if (!v || v.valor <= 0)
+      return json({ erro: "Valor inválido. Escreva o número, por exemplo 2500 ou 2.500,00." }, 400);
+    const moeda = corpo.moeda === "BRL" ? "BRL" : corpo.moeda === "USD" ? "USD" : (v.moeda || null);
+    if (!moeda) return json({ erro: "Escolha a moeda da entrada." }, 400);
+    // Data do DINHEIRO, não do cadastro: é ela que monta o mês a mês.
+    const data = String(corpo.recebido_em || "").slice(0, 10);
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(data))
+      return json({ erro: "Informe a data em que o dinheiro entrou." }, 400);
+    const cot = corpo.cotacao ? F.cotacaoValida(corpo.cotacao) : null;
+    if (corpo.cotacao && !cot)
+      return json({ erro: "Cotação inválida. É quantos reais valia um dólar naquele dia, por exemplo 5,42." }, 400);
+    const txt = (x, n) => (String(x ?? "").trim().slice(0, n) || null);
+
+    const campos = [String(v.valor), moeda, cot ? String(cot) : null, data,
+                    txt(corpo.meio, 40), txt(corpo.parcela, 40), txt(corpo.nota, 200)];
+    if (corpo.id) {
+      const r = await D.prepare(`UPDATE entradas SET valor=?,moeda=?,cotacao=?,recebido_em=?,
+                                 meio=?,parcela=?,nota=? WHERE id=? AND cliente_id=?`)
+        .bind(...campos, Number(corpo.id), cid).run();
+      if (!r.meta.changes) return json({ erro: "entrada não encontrada" }, 404);
+      return json({ ok: true, id: Number(corpo.id) });
+    }
+    const r = await D.prepare(`INSERT INTO entradas
+      (cliente_id,valor,moeda,cotacao,recebido_em,meio,parcela,nota,criado_em)
+      VALUES (?,?,?,?,?,?,?,?,?)`).bind(cid, ...campos, agora()).run();
+    await ev(D, { cliente_id: cid, tipo: "entrada",
+                  detalhe: `${moeda} ${v.valor} em ${data}${cot ? ` (cotação ${cot})` : ""}` });
+    return json({ ok: true, id: r.meta.last_row_id });
+  }
+
+  /* ══════════════════ SAÍDAS: o outro lado do caixa ══════════════════
+     Uma linha por dinheiro que saiu. `cliente_id` preenchido faz o gasto ser
+     custo direto daquele cliente e entrar no lucro dele; vazio, é custo da
+     operação (anúncio, ferramenta, contador) e entra só no caixa geral. */
+  if (p === "/api/saida" && req.method === "POST") {
+    if (corpo.apagar) {
+      const r = await D.prepare("DELETE FROM saidas WHERE id=?").bind(Number(corpo.id) || 0).run();
+      if (!r.meta.changes) return json({ erro: "despesa não encontrada" }, 404);
+      return json({ ok: true });
+    }
+    const v = F.parseDinheiro(corpo.valor);
+    if (!v || v.valor <= 0)
+      return json({ erro: "Valor inválido. Escreva o número, por exemplo 1800 ou 1.800,00." }, 400);
+    const moeda = corpo.moeda === "BRL" ? "BRL" : corpo.moeda === "USD" ? "USD" : (v.moeda || null);
+    if (!moeda) return json({ erro: "Escolha a moeda da despesa." }, 400);
+    const data = String(corpo.pago_em || "").slice(0, 10);
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(data))
+      return json({ erro: "Informe a data em que o dinheiro saiu." }, 400);
+    const cot = corpo.cotacao ? F.cotacaoValida(corpo.cotacao) : null;
+    if (corpo.cotacao && !cot)
+      return json({ erro: "Cotação inválida. É quantos reais valia um dólar naquele dia, por exemplo 5,42." }, 400);
+    // categoria fora do catálogo cai em "outros": melhor lançar que perder o gasto
+    const cats = F.CATEGORIAS_SAIDA.map(([k]) => k);
+    const cat = cats.includes(corpo.categoria) ? corpo.categoria : "outros";
+    // cliente inexistente vira custo de operação, em vez de linha órfã
+    let cid = Number(corpo.cliente_id) || null;
+    if (cid && !(await D.prepare("SELECT 1 FROM clientes WHERE id=?").bind(cid).first())) cid = null;
+    const txt = (x, n) => (String(x ?? "").trim().slice(0, n) || null);
+
+    const campos = [String(v.valor), moeda, cot ? String(cot) : null, data, cat,
+                    txt(corpo.descricao, 160), cid, corpo.recorrente ? 1 : 0, txt(corpo.nota, 200)];
+    if (corpo.id) {
+      const r = await D.prepare(`UPDATE saidas SET valor=?,moeda=?,cotacao=?,pago_em=?,categoria=?,
+                                 descricao=?,cliente_id=?,recorrente=?,nota=? WHERE id=?`)
+        .bind(...campos, Number(corpo.id)).run();
+      if (!r.meta.changes) return json({ erro: "despesa não encontrada" }, 404);
+      return json({ ok: true, id: Number(corpo.id) });
+    }
+    const r = await D.prepare(`INSERT INTO saidas
+      (valor,moeda,cotacao,pago_em,categoria,descricao,cliente_id,recorrente,nota,criado_em)
+      VALUES (?,?,?,?,?,?,?,?,?,?)`).bind(...campos, agora()).run();
+    return json({ ok: true, id: r.meta.last_row_id });
+  }
+
+  /* Cotação de referência. Usada só onde a entrada não tem cotação própria,
+     e para projetar o que ainda falta receber. O botão de buscar traz a
+     cotação de MERCADO, que é referência: o real que ele recebe de verdade
+     sai da cotação do banco ou da Wise dele, sempre pior que a de mercado. */
+  if (p === "/api/cotacao") {
+    if (req.method === "POST") {
+      if (corpo.buscar) {
+        const r = await F.buscarCotacao();
+        if (r.erro) return json({ erro: r.erro }, 502);
+        await setCfg(D, "cotacao", String(r.valor));
+        await setCfg(D, "cotacao_em", agora());
+        await setCfg(D, "cotacao_fonte", r.fonte);
+        return json({ ok: true, valor: r.valor, em: agora(), fonte: r.fonte });
+      }
+      const v = F.cotacaoValida(corpo.valor);
+      if (!v) return json({ erro: "Cotação inválida. Quantos reais vale um dólar, por exemplo 5,42." }, 400);
+      await setCfg(D, "cotacao", String(v));
+      await setCfg(D, "cotacao_em", agora());
+      await setCfg(D, "cotacao_fonte", "digitada por você");
+      return json({ ok: true, valor: v });
+    }
+    return json({ valor: await cfg(D, "cotacao"), em: await cfg(D, "cotacao_em"),
+                  fonte: await cfg(D, "cotacao_fonte") });
+  }
+  // Taxa do gateway e custo direto do cliente. É o que sai do recebido antes
+  // de virar lucro, e sem isso "valor vendido" e "lucro" são o mesmo número.
+  if (p === "/api/custos" && req.method === "POST") {
+    const pct = String(corpo.taxa_percentual ?? "").replace(",", ".").trim();
+    const n = Number.parseFloat(pct);
+    if (pct && (!Number.isFinite(n) || n < 0 || n > 100))
+      return json({ erro: "A taxa tem que ser um número entre 0 e 100." }, 400);
+    const moedaCusto = corpo.custos_moeda === "BRL" ? "BRL" : corpo.custos_moeda === "USD" ? "USD" : null;
+    await D.prepare(`UPDATE clientes SET taxa_percentual=?,custos_valor=?,custos_moeda=?,
+                     custos_nota=?,atualizado_em=? WHERE id=?`)
+      .bind(pct || null, String(corpo.custos_valor ?? "").trim() || null, moedaCusto,
+            String(corpo.custos_nota ?? "").trim().slice(0, 200) || null, agora(), corpo.id).run();
+    return json({ ok: true });
+  }
+
+  /* ══════════════════ PROMPT DA LOGO ══════════════════
+     Monta o JSON do gpt-image-2 a partir do que o cliente descreveu. Sempre
+     determinístico; com `ia=1` e chave configurada, os campos descritivos
+     são reescritos em inglês de designer. */
+  if (p === "/api/prompt-logo") {
+    const id = url.searchParams.get("id") || corpo.id;
+    const c = await D.prepare("SELECT * FROM clientes WHERE id=?").bind(id).first();
+    if (!c) return json({ erro: "cliente não encontrado" }, 404);
+    let spec = promptLogo(c), rationale = null;
+    if (url.searchParams.get("ia") === "1") {
+      const r = await refinarComIA(spec, env.OPENAI_API_KEY || "");
+      if (r) { spec = r.spec; rationale = r.rationale; }
+      else if (!env.OPENAI_API_KEY) rationale = "Sem OPENAI_API_KEY: saiu o prompt base, sem refinamento.";
+      else rationale = "A IA não respondeu. Saiu o prompt base, que já funciona.";
+    }
+    const texto = JSON.stringify(spec, null, 2);
+    // guarda o último gerado: reabrir o card não precisa remontar nem repagar
+    await D.prepare("UPDATE clientes SET logo_prompt=?,logo_prompt_em=? WHERE id=?")
+      .bind(texto, agora(), id).run();
+    return json({ ok: true, prompt: texto, falta: faltaNoBriefing(c), rationale,
+                  ia_disponivel: !!env.OPENAI_API_KEY });
+  }
+  // Briefing da logo editável no admin: o cliente descreve por áudio no
+  // WhatsApp com muito mais frequência do que preenche campo de formulário.
+  if (p === "/api/logo-briefing" && req.method === "POST") {
+    const campos = ["logo_estilo", "logo_simbolo", "logo_evitar", "logo_referencias",
+                    "logo_texto", "logo_slogan", "cores"];
+    const usar = campos.filter((k) => corpo[k] !== undefined);
+    if (!usar.length) return json({ erro: "nada a alterar" }, 400);
+    await D.prepare(`UPDATE clientes SET ${usar.map((k) => k + "=?").join(",")},atualizado_em=? WHERE id=?`)
+      .bind(...usar.map((k) => String(corpo[k] ?? "").trim().slice(0, 400) || null), agora(), corpo.id).run();
+    return json({ ok: true });
+  }
+
+  /* ══════════════════ ARQUIVOS DA AGÊNCIA ══════════════════
+     A peça PRONTA: logo finalizada, artes do Instagram, fotos do Google.
+     Antes essas peças ficavam no computador de quem fez e não havia onde
+     colocá-las, então a entrega dependia de alguém lembrar de mandar. */
+  if (p === "/api/arquivo-apagar" && req.method === "POST") {
+    const r = await Arq.apagar(env, Number(corpo.cliente_id) || 0, Number(corpo.id) || 0);
+    return json(r.erro ? { erro: r.erro } : { ok: true }, r.status || 200);
+  }
+
+  /* ══════════════════ CONCLUIR A ENTREGA ══════════════════
+     Duas formas de sair de "em entrega":
+
+     1. Cumprindo o portão: marcos, checklist obrigatório e os 4 entregáveis.
+        Isso já acontece sozinho, sem botão.
+     2. Este botão, para quando o trabalho foi entregue ANTES do prazo ou por
+        um caminho diferente do previsto.
+
+     A confirmação é a frase inteira, digitada, e vai no CORPO da requisição:
+     o mesmo padrão da exclusão. E o que estava aberto no momento do clique
+     fica congelado em `entrega_forcada_pendencias`, porque marcar entregue o
+     que não foi feito é exatamente o tipo de número que esta operação não
+     inventa. Quem abrir o card depois vê o que faltava.                     */
+  if (p === "/api/concluir-entrega" && req.method === "POST") {
+    const FRASE = "SERVIÇO ENTREGUE ANTES DO TEMPO";
+    const id = Number(corpo.id) || 0;
+    const c = await D.prepare("SELECT * FROM clientes WHERE id=?").bind(id).first();
+    if (!c) return json({ erro: "cliente não encontrado" }, 404);
+
+    if (corpo.desfazer) {
+      await D.prepare(`UPDATE clientes SET entrega_concluida_em=NULL,entrega_forcada=0,
+                       entrega_forcada_nota=NULL,entrega_forcada_pendencias=NULL,atualizado_em=?
+                       WHERE id=?`).bind(agora(), id).run();
+      await ev(D, { cliente_id: id, tipo: "entrega_reaberta", detalhe: "conclusão antecipada desfeita" });
+      return json({ ok: true, reaberto: true });
+    }
+
+    // Normaliza acento e caixa: quem digita no celular erra o Ç, e recusar
+    // por causa disso não protege nada, só irrita.
+    const norm = (s) => String(s || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .replace(/\s+/g, " ").trim().toUpperCase();
+    if (norm(corpo.confirmacao) !== norm(FRASE))
+      return json({ erro: `Confirmação inválida. Digite exatamente: ${FRASE}` }, 400);
+    if (!String(corpo.nota || "").trim())
+      return json({ erro: "Escreva o que foi entregue e por que está fechando antes do prazo. Fica registrado no card." }, 400);
+
+    const port = await portaoDeConclusao(D, c);
+    await D.prepare(`UPDATE clientes SET entrega_concluida_em=?,entrega_forcada=1,
+                     entrega_forcada_nota=?,entrega_forcada_pendencias=?,atualizado_em=? WHERE id=?`)
+      .bind(agora(), String(corpo.nota).trim().slice(0, 600),
+            port.pendencias.length ? JSON.stringify(port.pendencias) : null, agora(), id).run();
+    await ev(D, { cliente_id: id, tipo: "entrega_concluida_antes",
+                  detalhe: port.pendencias.length
+                    ? `fechada com ${port.pendencias.length} pendência(s): ${port.pendencias.map((x) => x.rotulo).join(" · ")}`
+                    : "fechada com o portão inteiro cumprido" });
+    return json({ ok: true, pendencias: port.pendencias });
+  }
+
   return json({ erro: "rota desconhecida" }, 404);
+}
+
+/* ══════════════════ O PORTÃO DE CONCLUSÃO ══════════════════
+   A pergunta "o que falta para este cliente sair de EM ENTREGA" tinha
+   resposta espalhada por três contas invisíveis em lugares diferentes da
+   tela. Aqui ela fica num lugar só, explícita, e é a MESMA conta que o card,
+   a lista e o botão de conclusão usam.
+
+   São três grupos, e todos os três precisam estar fechados:
+
+     1. os 11 marcos da cadência de 5 dias
+     2. os itens OBRIGATÓRIOS do checklist de otimização
+     3. os 4 entregáveis em "entregue" ou "aprovado"
+
+   Os arquivos do catálogo aparecem como quarto grupo, mas NÃO travam: quem
+   atesta que a logo foi entregue é o item do checklist. O arquivo no R2 é a
+   prova, não a condição, e transformar em condição criaria trabalho que
+   ninguém pediu.                                                            */
+async function portaoDeConclusao(D, c) {
+  const [qMk, qChk, qEnt, qArq] = await D.batch([
+    D.prepare("SELECT COUNT(*) t, SUM(concluido) f FROM marcos WHERE cliente_id=?").bind(c.id),
+    D.prepare("SELECT COUNT(*) t, SUM(feito) f FROM checklist WHERE cliente_id=? AND obrigatorio=1").bind(c.id),
+    D.prepare("SELECT tipo,status FROM entregaveis WHERE cliente_id=?").bind(c.id),
+    D.prepare("SELECT destino,slot,origem FROM arquivos WHERE cliente_id=?").bind(c.id),
+  ]);
+  const mk = qMk.results[0] || {}, ck = qChk.results[0] || {};
+  const ents = qEnt.results || [];
+  const entOk = ents.filter((e) => ["entregue", "aprovado"].includes(e.status));
+  const rot = (t) => (G.ENTREGAVEIS.find((x) => x[0] === t) || [])[1] || t;
+
+  const grupos = [
+    { chave: "marcos", rotulo: "Marcos da cadência", trava: true,
+      feitos: mk.f || 0, total: mk.t || 0,
+      onde: "Seção “Cadência de entrega”, no card",
+      porque: "São os 11 passos dos 5 dias úteis. Um marco aberto significa uma etapa que o cliente não recebeu." },
+    { chave: "checklist", rotulo: "Checklist obrigatório", trava: true,
+      feitos: ck.f || 0, total: ck.t || 0,
+      onde: "Seção “Checklist de otimização”",
+      porque: "É onde mora o Google Meu Negócio, que é a peça de maior retorno do pacote. Fechar sem ele é entregar meia entrega." },
+    { chave: "entregaveis", rotulo: "Entregáveis", trava: true,
+      feitos: entOk.length, total: ents.length,
+      abertos: ents.filter((e) => !["entregue", "aprovado"].includes(e.status)).map((e) => rot(e.tipo)),
+      onde: "Seção “Entregáveis”",
+      porque: "Site, Google Meu Negócio, Instagram e Logo. É o que foi vendido." },
+    { chave: "arquivos", rotulo: "Arquivos das peças", trava: false,
+      ...(() => {
+        const prog = Arq.progresso(qArq.results || []);
+        const obr = prog.flatMap((g) => g.slots.filter((s) => s.minimo > 0));
+        return { feitos: obr.filter((s) => s.completo).length, total: obr.length,
+                 abertos: obr.filter((s) => !s.completo).map((s) => `${s.rotulo} (falta ${s.falta})`) };
+      })(),
+      onde: "Seção “Peças e arquivos”",
+      porque: "Não trava a conclusão: quem atesta a entrega é o checklist. Aqui é a prova, e serve para o cliente ter os arquivos na mão depois." },
+  ];
+
+  const pendencias = grupos.filter((g) => g.trava && g.feitos < g.total)
+    .map((g) => ({ chave: g.chave, rotulo: `${g.rotulo}: ${g.total - g.feitos} de ${g.total} aberto(s)` }));
+  const naturalmente = grupos.filter((g) => g.trava)
+    .every((g) => g.total > 0 && g.feitos >= g.total);
+
+  return {
+    grupos, pendencias,
+    cumprido: naturalmente,
+    // forçada conta como concluída: foi decisão registrada, não conta furada
+    concluida: naturalmente || !!c.entrega_forcada,
+    forcada: !!c.entrega_forcada,
+    forcada_em: c.entrega_concluida_em || null,
+    forcada_nota: c.entrega_forcada_nota || null,
+    forcada_pendencias: (() => {
+      try { return JSON.parse(c.entrega_forcada_pendencias || "null"); } catch { return null; }
+    })(),
+    frase_confirmacao: "SERVIÇO ENTREGUE ANTES DO TEMPO",
+  };
 }
 
 // ══════════════════════ helpers ══════════════════════
 // Apaga o cliente e tudo que pende dele. O D1 não aplica ON DELETE CASCADE,
 // então a limpeza é explícita — se faltar uma tabela aqui, sobra órfão no banco.
-async function apagarCliente(D, id) {
-  for (const tab of ["entregaveis", "midias", "reviews", "posts", "marcos"])
+async function apagarCliente(D, id, env) {
+  // Os objetos do R2 vão primeiro. Storage órfão não aparece em tela nenhuma
+  // e continua sendo cobrado: se a linha for embora antes, ninguém mais sabe
+  // que aquele arquivo existe.
+  if (env) await Arq.apagarDoCliente(env, id).catch((e) => console.log("r2 limpeza:", e.message));
+  /* A saída NÃO é apagada com o cliente: o dinheiro saiu de verdade e some do
+     caixa se a linha for embora. Ela é desvinculada, virando custo da
+     operação, que é o que ela passa a ser quando o cliente deixa de existir. */
+  await D.prepare("UPDATE saidas SET cliente_id=NULL WHERE cliente_id=?").bind(id).run();
+  for (const tab of ["entregaveis", "midias", "reviews", "posts", "marcos", "checklist",
+                     "arquivos", "entradas"])
     await D.prepare(`DELETE FROM ${tab} WHERE cliente_id=?`).bind(id).run();
   await D.prepare("DELETE FROM mensagens WHERE cliente_id=?").bind(id).run();
   await D.prepare("DELETE FROM eventos WHERE cliente_id=?").bind(id).run();
@@ -945,6 +1463,24 @@ async function criarClienteDoLead(D, lead, valorPago) {
     await D.prepare("INSERT INTO entregaveis (cliente_id,tipo,atualizado_em) VALUES (?,?,?)")
       .bind(id, tipo, n).run();
   return { id, slug: s, formulario_token: t };
+}
+
+/* O financeiro completo do painel, num lugar só: as duas rotas que precisam
+   dele (o dashboard e o diagnóstico da IA) tinham a consulta duplicada, e
+   qualquer campo novo teria que ser lembrado nos dois. */
+async function financeiroDoPainel(D) {
+  const [qCli, qEnt, qCot, qSai] = await D.batch([
+    D.prepare(`SELECT id,empresa,data_entrada,valor_contrato,valor_extras,valor_pago,
+               pagamento_confirmado,pagamento_em,tipo_contrato,duracao_meses,
+               taxa_percentual,custos_valor,custos_moeda,custos_nota
+               FROM clientes WHERE arquivado=0`),
+    D.prepare("SELECT * FROM entradas ORDER BY recebido_em"),
+    D.prepare("SELECT chave,valor FROM config WHERE chave IN ('cotacao','cotacao_em','cotacao_fonte')"),
+    D.prepare("SELECT * FROM saidas ORDER BY pago_em"),
+  ]);
+  const c = Object.fromEntries((qCot.results || []).map((r) => [r.chave, r.valor]));
+  return F.financeiroTotal(qCli.results, qEnt.results, {
+    valor: c.cotacao, em: c.cotacao_em, fonte: c.cotacao_fonte }, qSai.results);
 }
 
 async function ev(D, { lead_id = null, cliente_id = null, tipo, de = null, para = null, detalhe = null }) {

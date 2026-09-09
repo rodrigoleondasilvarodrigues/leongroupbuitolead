@@ -64,8 +64,17 @@ setTimeout(async () => {
   console.log("\n\x1b[1m=== 3. A MOLDURA MONTOU ===\x1b[0m");
   t("switch de setor desenhado", $$("#setores button").length === 2,
     $$("#setores button").map((b) => b.textContent.trim().split(/\s+/)[0]).join(" / "));
-  t("abas do comercial desenhadas", $$("#abas button").length === 4,
+  // Dashboard + Caixa + os 4 pipelines. As duas primeiras são as perguntas de
+  // quem olha o comercial de fora ("como está o funil", "onde está o
+  // dinheiro"), e vêm antes de "quem eu ligo agora".
+  t("abas do comercial desenhadas", $$("#abas button").length === 6,
     $$("#abas button").map((b) => b.textContent.trim()).join(" · "));
+  t("Dashboard e Caixa são as duas primeiras abas do comercial",
+    $$("#abas button").slice(0, 2).map((b) => b.textContent.trim()).join(",") === "Dashboard,Caixa",
+    $$("#abas button").slice(0, 2).map((b) => b.textContent.trim()).join(" · "));
+  t("Dashboard é a primeira aba do comercial",
+    $$("#abas button")[0].textContent.trim() === "Dashboard",
+    $$("#abas button")[0].textContent.trim());
   t("KPIs na tela", $$(".kpi").length === 5, $$(".kpi").length + " indicadores");
   t("o lead aparece na lista", doc.body.textContent.includes("Ribeiro Hardwood Flooring"));
 

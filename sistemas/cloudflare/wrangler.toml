@@ -9,6 +9,28 @@ binding = "DB"
 database_name = "leon-group"
 database_id = "becdb3aa-200d-4cfc-8048-729fd3432a67"
 
+# Armazenamento de arquivo (R2) — crie com:  npx wrangler r2 bucket create leon-group-midia
+#
+# É onde ficam as fotos e vídeos que o cliente sobe do celular no formulário e
+# as peças prontas que a agência sobe no card (logo, artes do Instagram, fotos
+# do Google). NÃO vai para o D1: o D1 é SQLite, com linha de no máximo 1 MB, e
+# um vídeo de celular tem 40 MB.
+#
+# O plano grátis do R2 dá 10 GB e não cobra saída de dados, que é justamente o
+# que o site do cliente consome ao carregar as fotos.
+#
+# Armazenamento das fotos e vídeos: o que o cliente manda no formulário e as
+# peças prontas que a agência sobe no card. Bucket criado em 2026-09-09.
+#
+# ⚠ O binding só pode ficar aqui enquanto o bucket EXISTIR na conta. Binding
+# declarado sem bucket criado faz o deploy inteiro falhar (erro 10085), não só
+# o upload. Se algum dia o bucket for apagado, comente estas três linhas: o
+# sistema volta a rodar sem upload, mostrando o aviso na tela e mantendo o
+# campo de colar link no formulário do cliente.
+[[r2_buckets]]
+binding = "MIDIA"
+bucket_name = "leon-group-midia"
+
 [vars]
 NOME_AGENCIA = "Leon Group"
 

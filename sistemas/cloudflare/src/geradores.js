@@ -868,6 +868,46 @@ export const CADENCIA = [
 ];
 export const PRAZO_MAXIMO_DIAS = 5;
 
+/* Mínimo de fotos do formulário. Fica AQUI, num lugar só, porque o número
+   aparece em três: a validação do servidor, o texto da tela e a barra de
+   progresso do upload. Divergindo, o cliente vê "faltam 11" e é barrado
+   por outro número. */
+/* ═══════════ AS FOTOS DO CLIENTE, DE ONDE ELAS VIEREM ═══════════
+   Chegam por dois caminhos e o site precisa dos dois juntos:
+
+   subidas   o cliente escolheu no celular e o arquivo está no R2. A URL é
+             uma rota do próprio Worker (`/m/<chave>`).
+   coladas   o cliente pôs um link de Drive ou Dropbox no formulário.
+
+   Duas coisas que esta função existe para não deixar errar:
+
+   1. URL ABSOLUTA. O site vai publicado no Vercel, em outro domínio. Um
+      `/m/...` relativo resolveria contra o Vercel, onde a imagem não existe,
+      e o site iria ao ar com todas as fotos quebradas.
+   2. SUBIDAS PRIMEIRO. A primeira foto da lista vira a capa do site, e foto
+      subida do celular é a que o cliente escolheu a dedo. Link colado costuma
+      vir em ordem aleatória de pasta.
+
+   Já aconteceu de o site sair sem foto nenhuma porque a geração só olhava as
+   coladas. Por isso a junção mora aqui, com teste, e não solta na rota.     */
+export function fotosDoCliente({ subidas = [], coladas = [], raiz = "" }) {
+  const abs = (u) => {
+    const v = String(u || "").trim();
+    if (!v) return null;
+    if (/^https?:\/\//i.test(v)) return v;      // link já absoluto, passa
+    if (v.startsWith("/")) return raiz ? raiz.replace(/\/$/, "") + v : null;
+    return null;                                // qualquer outra coisa não é URL
+  };
+  const vistas = new Set();
+  return [...subidas, ...coladas].map(abs).filter((u) => {
+    if (!u || vistas.has(u)) return false;      // a mesma foto duas vezes não ajuda
+    vistas.add(u);
+    return true;
+  });
+}
+
+export const MIN_FOTOS = 11;
+
 // Soma dias ÚTEIS a partir de uma data: sábado e domingo não contam.
 // Dia da semana no fuso do cliente (EUA), não em UTC. Formulário respondido
 // domingo 20h em Boston é segunda 01h em UTC: contando em UTC o prazo caía na

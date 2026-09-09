@@ -11,8 +11,17 @@ echo
 echo "── admin num navegador simulado ──"
 node testes/admin.mjs
 echo
+echo "── telas novas: dashboard, portão, logo, peças ──"
+node testes/telas-novas.mjs
+echo
 echo "── fusos horários ──"
 node testes/fusos.js
 echo
 echo "── contratado x recebido ──"
 node testes/valor-recebido.js
+echo
+echo "── as fotos que vão para o site ──"
+node testes/fotos-do-site.js
+echo
+echo "── funil, dinheiro e diagnóstico ──"
+node testes/funil-e-financeiro.js

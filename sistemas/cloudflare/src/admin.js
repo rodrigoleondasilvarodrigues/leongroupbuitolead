@@ -1,6 +1,11 @@
+import { CSS_DASH, JS_DASH } from "./admin-dash.js";
+import { CSS_PARTES, JS_PARTES } from "./admin-partes.js";
+import { CSS_CAIXA, JS_CAIXA } from "./admin-caixa.js";
+import { TAGS_ICONE } from "./marca.js";
+
 export const ADMIN_HTML = `<!doctype html><html lang="pt-BR"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Leon Group · Admin</title><style>
+<title>Leon Group · Admin</title>${TAGS_ICONE}<style>
 :root{--marfim:#F7F3EA;--branco:#FFFDF8;--preto:#171717;--laranja:#E65A19;--laranja-esc:#C44712;
 --laranja-pal:#F4D8C9;--areia:#E9E1D6;--cinza:#68645E;--verde:#2d6a4f;
 /* comercial = laranja da marca · operacional = azul-petróleo */
@@ -186,6 +191,7 @@ dialog::backdrop{background:rgba(23,23,23,.45)}
   .rel-praca{padding:10px 15px}.rel-praca.on .rel-hora{font-size:26px}
   .rel-estado{padding:10px 15px;min-width:170px}.rel-idi{padding:0 12px}
 }
+${CSS_DASH}${CSS_PARTES}${CSS_CAIXA}
 </style></head><body>
 <header><b>LE<span>O</span>N GROUP · Admin</b><span class="selo" id="selo">Comercial</span>
   <button class="sair" id="btn_zap" onclick="abrirConfig()" style="margin-left:auto">WhatsApp</button>
@@ -270,6 +276,10 @@ const dinheiro=c=>{
   return '';
 };
 let D={},setor='comercial',aba='leads_novos',aberto=null,tipoAberto=null;
+/* O cliente aberto, inteiro. As seções novas precisam de dados que não
+   estão na lista do painel (as entradas com a cotação de cada uma, por
+   exemplo), e reabrir o card só para editar uma linha perderia a rolagem. */
+let CLI_ABERTO=null;
 // sub-visões do operacional — filtram a mesma lista de clientes
 const VISOES_OP={
   todos:      {rotulo:'Todos',      filtro:()=>true},
@@ -280,6 +290,13 @@ const VISOES_OP={
   renovacao:  {rotulo:'Renovação',  filtro:c=>c.renovacao_perto},
 };
 const ROT={leads_novos:'Leads novos',agendamento:'Agendamento',nutricao:'Nutrição',recuperacao:'Recuperação'};
+// O dashboard é a primeira aba do comercial: a pergunta "como está o funil"
+// vem antes de "quem eu ligo agora".
+const ABA_DASH='dashboard';
+/* E o Caixa é a segunda: "como está o funil" e "onde está o dinheiro" são as
+   duas perguntas de quem olha o comercial de fora, e nenhuma das duas é a
+   lista de quem ligar agora. */
+const ABA_CAIXA='caixa';
 
 async function carregar(){
   let r;
@@ -291,7 +308,7 @@ async function carregar(){
     if(/autentic/i.test(r&&r.erro||''))return location.href='/login';
     return avisoFalha(r.erro||'Falha ao carregar.');
   }
-  D=r; document.getElementById('aviso-falha')?.remove(); pintar();
+  D=r; document.getElementById('aviso-falha')?.remove(); marcarDashSujo(); pintar();
 }
 
 function avisoFalha(txt){
@@ -327,13 +344,20 @@ function pintar(){
     ? Object.entries(VISOES_OP).map(([k,v])=>{
         const n=D.clientes.filter(v.filtro).length;
         return \`<button class="op \${k===aba?'on':''}" onclick="aba='\${k}';pintar()">\${v.rotulo} (\${n})</button>\`}).join('')
-    : Object.keys(D.pipelines).map(p=>{const n=D.leads.filter(l=>l.pipeline===p).length;
+    : \`<button class="\${aba===ABA_DASH?'on':''}" onclick="aba='\${ABA_DASH}';pintar()">Dashboard</button>
+       <button class="\${aba===ABA_CAIXA?'on':''}" onclick="aba='\${ABA_CAIXA}';pintar()">Caixa</button>
+       <span class="sep"></span>\`
+      + Object.keys(D.pipelines).map(p=>{const n=D.leads.filter(l=>l.pipeline===p).length;
         return \`<button class="\${p===aba?'on':''}" onclick="aba='\${p}';pintar()">\${ROT[p]} (\${n})</button>\`}).join('');
   render();
 }
 
 function render(){
   const c=document.getElementById('conteudo');
+  /* O dashboard tem busca própria (/api/dashboard) e desenho próprio: são
+     agregações do período inteiro, não a lista de quem está em cada coluna. */
+  if(setor==='comercial'&&aba===ABA_DASH) return carregarDash();
+  if(setor==='comercial'&&aba===ABA_CAIXA) return carregarCaixa();
   const k=D.kpis;
   const rotK={whatsapp:'No WhatsApp',ligacao_atendida:'Atenderam',call_marcada:'Calls marcadas',
     call_comparecida:'Compareceram',call_fechada:'Fecharam'};
@@ -360,6 +384,7 @@ function render(){
             \${x.reviews_total?' · '+x.reviews_postadas+'/'+x.reviews_total+' reviews':''}
             \${x.marcos_total?' · '+x.marcos_feitos+'/'+x.marcos_total+' marcos':''}
             \${x.midias&&x.midias.foto?' · '+x.midias.foto+' fotos':''}
+            \${x.arquivos_agencia?' · '+x.arquivos_agencia+' peças':''}
             \${x.leads_recebidos?' · <b>'+x.leads_recebidos+' leads entregues</b>':''}</div>
           <div class="pills">\${pills}</div></div>\`}).join('')
         :\`<p style="color:var(--cinza)">Nenhum cliente \${aba==='todos'?'ainda':'nesta visão'}.</p>\`})();
@@ -461,6 +486,7 @@ async function abrirLead(id){
 async function abrirCliente(id){
   aberto=id;tipoAberto='cliente';
   const c=await api('/api/cliente?id='+id);
+  CLI_ABERTO=c;
   const p=document.getElementById('painel');p.classList.add('on');
   const base=location.origin;
   p.innerHTML=\`<button class="x" onclick="fechar()">×</button>
@@ -480,6 +506,12 @@ async function abrirCliente(id){
        Contrato de 3 meses: <b>\${c.dias_para_renovar>0?'renova em '+c.dias_para_renovar+' dias':'VENCIDO há '+(-c.dias_para_renovar)+' dias'}</b>
        \${c.renovado_vezes?' · já renovou '+c.renovado_vezes+'x':''}
        <button class="acao sec" style="margin-top:7px;font-size:12px" onclick="renovar()">Renovar +3 meses</button></div>\`:''}
+   <section><h4>O que falta para concluir</h4>
+     \${l_portao(c)}
+   </section>
+   <section><h4>Entradas · o que caiu na conta</h4>
+     \${l_entradas(c)}
+   </section>
    <section><h4>Liberação do formulário</h4>
      <div class="linha"><input type="checkbox" \${c.contrato_assinado?'checked':''}
        onchange="liberar('contrato',this.checked)"><span><b>Contrato assinado</b></span></div>
@@ -541,12 +573,18 @@ async function abrirCliente(id){
        ).join('')}</div>\`
        :'<p style="color:var(--cinza);font-size:12.5px">Nenhuma mídia ainda. Ela vem do formulário do cliente.</p>'}
    </section>
+   <section><h4>Logo · briefing e prompt do gpt-image-2</h4>
+     \${l_logo(c)}
+   </section>
    <section><h4>Gerar entregáveis</h4>
      <label>Quantidade de reviews</label><input type="number" id="g_qtd" value="20">
      <button class="acao" onclick="gerar()">Gerar site + reviews + Instagram</button>
      <p style="font-size:11.5px;color:var(--cinza);margin-top:6px">
        Gera o HTML do site, as reviews e os briefs do Instagram. O site NÃO vai ao ar
        sozinho: baixe o index.html na seção abaixo e publique no Vercel.</p></section>
+   <section><h4>Peças e arquivos</h4>
+     \${l_pecas(c)}
+   </section>
    <section><h4>Entregáveis</h4>\${(c.entregaveis||[]).map(e=>\`<div class="linha">
      <select onchange="statusEnt(\${e.id},this.value)" style="width:auto;margin:0">
        \${['pendente','em_producao','entregue','aprovado'].map(s=>\`<option \${e.status===s?'selected':''}>\${s}</option>\`).join('')}
@@ -578,6 +616,26 @@ async function abrirCliente(id){
    <section><h4>Checklist de otimização</h4>\${l_checklist(c)}</section>
    <section><h4>Contrato</h4>
      \${l_contrato(c)}
+   </section>
+   <section><h4>Custos e lucro</h4>
+     <div style="display:flex;gap:8px">
+       <div style="flex:1"><label>Taxa do gateway / câmbio (%)</label>
+         <input id="cu_taxa" value="\${esc(c.taxa_percentual)}" placeholder="4.99" inputmode="decimal"></div>
+       <div style="flex:1"><label>Outros custos deste cliente</label>
+         <input id="cu_valor" value="\${esc(c.custos_valor)}" placeholder="120"></div>
+       <div style="flex:1"><label>Moeda do custo</label>
+         <select id="cu_moeda">
+           <option value="USD" \${c.custos_moeda!=='BRL'?'selected':''}>Dólar (US$)</option>
+           <option value="BRL" \${c.custos_moeda==='BRL'?'selected':''}>Real (R$)</option>
+         </select></div>
+     </div>
+     <label>O que é esse custo</label>
+     <input id="cu_nota" value="\${esc(c.custos_nota)}" placeholder="hospedagem, freela de arte">
+     <button class="acao sec" onclick="salvarCustos()">Salvar</button>
+     <p style="font-size:11.5px;color:var(--cinza);margin-top:6px">
+       Sai do que <b>entrou</b> para chegar no lucro, no dashboard do comercial.
+       Sem isso preenchido, lucro e entrada dão o mesmo número.
+       A moeda importa: ferramenta é cobrada em dólar, contador e freela em real.</p>
    </section>
    <section><h4>Dashboard do cliente</h4>
      <div class="kpis" style="margin-bottom:10px">
@@ -746,6 +804,10 @@ const salvarGrupo=()=>post('/api/cliente-editar',{id:aberto,grupo_whatsapp:V('d_
 const salvarLocal=()=>post('/api/lead-editar',{id:aberto,cidade:V('q_cidade'),
   estado:V('q_estado').toUpperCase(),fuso:V('q_fuso')}).then(carregar).then(()=>abrirLead(aberto));
 const salvarFusoCli=()=>post('/api/cliente-editar',{id:aberto,fuso:V('d_fuso')}).then(carregar).then(()=>abrirCliente(aberto));
+const salvarCustos=()=>post('/api/custos',{id:aberto,taxa_percentual:V('cu_taxa'),
+  custos_valor:V('cu_valor'),custos_moeda:V('cu_moeda'),custos_nota:V('cu_nota')}).then(r=>{
+    if(r.erro)return alert(r.erro);
+    marcarDashSujo();return carregar().then(()=>abrirCliente(aberto))});
 async function renovar(){if(!confirm('Renovar por mais 3 meses?'))return;
   await post('/api/renovar',{id:aberto});await carregar();abrirCliente(aberto)}
 const liberar=(qual,v)=>post('/api/liberar-formulario',{id:aberto,[qual]:v}).then(carregar).then(()=>abrirCliente(aberto));
@@ -1032,6 +1094,10 @@ async function testarZap(){
   m.style.color=r.erro?'#c0392b':'var(--verde)';
   m.textContent=r.erro?('Não saiu: '+r.erro):'Mandei. Confere teu WhatsApp.';
 }
+
+${JS_DASH}
+${JS_PARTES}
+${JS_CAIXA}
 
 carregar();setInterval(()=>{if(!aberto)carregar()},60000);
 </script></body></html>`;

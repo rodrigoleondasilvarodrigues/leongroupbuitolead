@@ -29,8 +29,14 @@ CREATE TABLE IF NOT EXISTS leads (
   renovacao_automatica INTEGER DEFAULT 0,
   servicos_extras TEXT,            -- serviço fora do escopo padrão, se houve
   valor_extras TEXT,
+  cidade TEXT, estado TEXT, fuso TEXT,   -- de onde ele é: alimenta o relógio do card
+  sessao_site TEXT,                -- costura o formulário parcial do site ao envio completo
   arquivado INTEGER DEFAULT 0
 );
+-- uma sessão do site = no máximo um lead. Quem para no meio e volta depois
+-- atualiza a própria linha em vez de criar uma segunda.
+CREATE UNIQUE INDEX IF NOT EXISTS idx_leads_sessao_site
+  ON leads(sessao_site) WHERE sessao_site IS NOT NULL;
 CREATE TABLE IF NOT EXISTS ativacoes (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   lead_id INTEGER NOT NULL, tipo TEXT NOT NULL,
@@ -64,6 +70,8 @@ CREATE TABLE IF NOT EXISTS clientes (
   servicos TEXT, diferencial TEXT, observacoes TEXT,
   tem_logo INTEGER DEFAULT 0, cores TEXT,
   cor_primaria TEXT DEFAULT '#1B4965', cor_destaque TEXT DEFAULT '#F6AE2D',
+  grupo_whatsapp TEXT,     -- onde toda a comunicação da entrega passa
+  fuso TEXT,               -- override do mapa estado -> fuso
   site_html TEXT,          -- site gerado, servido em /site/<slug>
   site_publicado INTEGER DEFAULT 0,
   formulario_em TEXT, formulario_token TEXT,   -- link público do formulário
@@ -93,6 +101,18 @@ CREATE TABLE IF NOT EXISTS clientes (
   renovacao_automatica INTEGER DEFAULT 0,
   servicos_extras TEXT,
   valor_extras TEXT,
+  -- briefing da logo: é daqui que sai o prompt JSON do gpt-image-2
+  logo_estilo TEXT, logo_simbolo TEXT, logo_evitar TEXT, logo_referencias TEXT,
+  logo_texto TEXT, logo_slogan TEXT,
+  logo_prompt TEXT, logo_prompt_em TEXT,
+  -- portão de conclusão: a entrega fecha cumprindo os 3 grupos, ou por decisão
+  -- registrada aqui (entregue antes do prazo), com justificativa e o que ficou aberto
+  entrega_concluida_em TEXT,
+  entrega_forcada INTEGER DEFAULT 0,
+  entrega_forcada_nota TEXT,
+  entrega_forcada_pendencias TEXT,
+  -- o que sai do RECEBIDO antes de virar lucro
+  taxa_percentual TEXT, custos_valor TEXT, custos_nota TEXT,
   criado_em TEXT NOT NULL, atualizado_em TEXT NOT NULL,
   arquivado INTEGER DEFAULT 0
 );
@@ -123,6 +143,69 @@ CREATE TABLE IF NOT EXISTS marcos (
   concluido INTEGER DEFAULT 0, concluido_em TEXT, criado_em TEXT NOT NULL
 );
 
+/* Arquivo de verdade, guardado no R2. Tabela separada de `midias`, que guarda
+   CAMINHO de coisa que veio de fora (link do Drive): aqui o arquivo mora no
+   nosso armazenamento, tem destino, tamanho e precisa ser apagável de fato.
+   destino = para onde a peça vai · slot = qual peça · origem = quem subiu */
+CREATE TABLE IF NOT EXISTS arquivos (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  cliente_id INTEGER NOT NULL,
+  chave TEXT NOT NULL UNIQUE,
+  nome TEXT, mime TEXT, bytes INTEGER,
+  destino TEXT NOT NULL DEFAULT 'entrega',
+  slot TEXT,
+  origem TEXT NOT NULL DEFAULT 'agencia',
+  largura INTEGER, altura INTEGER,
+  criado_em TEXT NOT NULL
+);
+
+/* Checklist de otimização por cliente. Nasce junto com os marcos, quando o
+   cliente responde o formulário. A entrega não fecha enquanto os itens
+   OBRIGATÓRIOS não estiverem feitos. */
+CREATE TABLE IF NOT EXISTS checklist (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  cliente_id INTEGER NOT NULL,
+  area TEXT NOT NULL,
+  item TEXT NOT NULL,
+  detalhe TEXT,
+  obrigatorio INTEGER DEFAULT 1,
+  feito INTEGER DEFAULT 0,
+  feito_em TEXT,
+  ordem INTEGER,
+  criado_em TEXT NOT NULL
+);
+
+-- ─────────────── CAIXA: o dinheiro dos dois lados ───────────────
+-- Ver migracao-11 e migracao-12 para o porquê de cada tabela. Em resumo: um
+-- campo só não responde "quanto entrou na empresa" para contrato mensal, e a
+-- cotação por lançamento é o que impede o total em real de mudar sozinho
+-- quando o dólar mexe.
+CREATE TABLE IF NOT EXISTS entradas (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  cliente_id INTEGER NOT NULL,
+  valor TEXT NOT NULL,
+  moeda TEXT NOT NULL,             -- USD | BRL
+  cotacao TEXT,                    -- reais por dólar NO DIA em que entrou
+  recebido_em TEXT NOT NULL,       -- a data do dinheiro, não a do cadastro
+  meio TEXT,                       -- Wise, Zelle, PIX, transferência
+  parcela TEXT,                    -- "entrada", "mês 2 de 6"
+  nota TEXT,
+  criado_em TEXT NOT NULL
+);
+CREATE TABLE IF NOT EXISTS saidas (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  valor TEXT NOT NULL,
+  moeda TEXT NOT NULL,
+  cotacao TEXT,                    -- reais por dólar NO DIA em que saiu
+  pago_em TEXT NOT NULL,
+  categoria TEXT NOT NULL,
+  descricao TEXT,
+  cliente_id INTEGER,              -- vazio = custo da operação
+  recorrente INTEGER DEFAULT 0,    -- repete todo mês: entra no custo fixo
+  nota TEXT,
+  criado_em TEXT NOT NULL
+);
+
 -- ─────────────── controle ───────────────
 CREATE TABLE IF NOT EXISTS config (chave TEXT PRIMARY KEY, valor TEXT NOT NULL);
 CREATE TABLE IF NOT EXISTS tentativas_login (
@@ -148,4 +231,13 @@ CREATE INDEX IF NOT EXISTS ix_lig  ON ligacoes(lead_id);
 CREATE INDEX IF NOT EXISTS ix_evt  ON eventos(lead_id, tipo);
 CREATE INDEX IF NOT EXISTS ix_msg_lead ON mensagens(lead_id);
 CREATE INDEX IF NOT EXISTS ix_msg_cli  ON mensagens(cliente_id);
+CREATE INDEX IF NOT EXISTS ix_ent_cli  ON entradas(cliente_id, recebido_em);
+CREATE INDEX IF NOT EXISTS ix_ent_data ON entradas(recebido_em);
+CREATE INDEX IF NOT EXISTS ix_sai_data ON saidas(pago_em);
+CREATE INDEX IF NOT EXISTS ix_sai_cli  ON saidas(cliente_id);
+CREATE INDEX IF NOT EXISTS ix_sai_cat  ON saidas(categoria, pago_em);
+CREATE INDEX IF NOT EXISTS ix_chk  ON checklist(cliente_id, area);
+CREATE INDEX IF NOT EXISTS ix_arq  ON arquivos(cliente_id, destino);
+CREATE UNIQUE INDEX IF NOT EXISTS ix_arq_chave ON arquivos(chave);
+CREATE INDEX IF NOT EXISTS ix_evt_tipo ON eventos(tipo, lead_id);
 

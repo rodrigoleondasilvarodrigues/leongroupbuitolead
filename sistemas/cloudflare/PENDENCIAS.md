@@ -190,3 +190,392 @@ Eram dois números tratados como um só. Agora estão separados:
   como receita
 - A tela mostra os dois estados de forma diferente: `6900 a receber` em
   laranja, ou `6900 recebido` em negrito
+
+---
+
+# Pedidos de 2026-09-08 (feitos)
+
+Seis pedidos do usuário, todos implementados e testados. Suíte em 203
+asserções (`./testes/rodar.sh`), mais um percurso ponta a ponta no Worker
+rodando local com D1 e R2 simulados.
+
+## 1. Prompt JSON da logo ✅ FEITO
+
+O formulário perguntava só "quais cores você gostaria", o que não dá para
+gerar logo nenhuma. Agora ele pergunta estilo, símbolo, cores, referências,
+o que **não** quer, o nome exato e o slogan. Desse briefing sai um prompt
+JSON para o gpt-image-2, com botão de copiar, na seção **Logo** do card.
+
+Decisões que valem registrar:
+
+- **Determinístico por padrão.** Mesma entrada, mesma saída, sem chamada de
+  rede e sem custo. A IA (`&ia=1`) é só refinamento opcional dos campos
+  descritivos, e não pode tocar na grafia do nome, na lista negativa nem nos
+  entregáveis, que são exigência e não estilo.
+- **Sai em inglês, guarda o português.** O modelo desenha melhor em inglês e
+  o texto dentro da logo é para dono de casa americano. A frase crua do
+  cliente fica em `client_brief_verbatim`, com instrução de que ela manda em
+  caso de contradição: se a tradução automática errar a intenção, a intenção
+  original está do lado.
+- **Símbolo por ofício.** Flooring puxa tábua e veio de madeira, roofing
+  puxa linha de telhado, HVAC puxa fluxo de ar. Sem isso o modelo devolve
+  casinha genérica para todo mundo, que é a cara de logo de IA que a marca
+  evita.
+- **A lista negativa é padrão da casa**, não preferência de cliente: nada de
+  3D, brilho, gradiente, selo de prêmio falso, fileira de cinco estrelas
+  falsa. As duas últimas por causa da regra de integridade.
+
+## 2. Área para subir a peça pronta ✅ FEITO
+
+Seção **Peças e arquivos** no card, na ordem do fluxo de trabalho e não em
+ordem alfabética: **logo → site → Instagram → Google → pasta de entrega**,
+com o dia da cadência em cada grupo.
+
+A logo vem primeiro porque ela entra nas outras três. Fazer depois é refazer
+as três, e agora o "o que fazer agora" do card aponta para ela quando o
+cliente não tinha logo.
+
+Cada slot diz quantos arquivos precisa, quantos tem e o que é a peça (o
+ícone quadrado do Google recorta em círculo, a arte do post é 1080x1350).
+
+## 3. Upload de verdade no formulário do cliente ✅ FEITO
+
+Era "suba no Drive, deixe público e cole 11 links, um por linha". Ninguém faz
+isso no celular, e era onde a entrega travava. Agora é seletor de arquivo com
+miniatura, contador do que falta e progresso por arquivo.
+
+O que foi preciso resolver:
+
+- **Redução no próprio celular** (canvas, 1920px, JPEG 0.82). Foto de celular
+  tem 4 MB; 15 delas em rede móvel fazia o cliente desistir no meio. Cai para
+  algo entre 200 e 400 KB.
+- **HEIC do iPhone.** Navegador nenhum desenha HEIC em `<img>`. Passar pelo
+  canvas devolve JPEG, então a foto do iPhone funciona no site. O HEIC cru
+  ainda é aceito como último recurso, marcado como sem preview.
+- **Um arquivo por requisição**, não multipart. Um POST com 15 fotos estoura
+  o corpo do Worker e as 15 falham juntas.
+- **Retomada.** O navegador do celular mata a aba quando ele troca de
+  aplicativo para procurar uma foto. `GET /api/subir/<token>` devolve o que já
+  subiu, e a lista volta em vez de ele mandar tudo de novo.
+- **O mínimo de 11 vale sobre a soma** de subidas e links colados. O campo de
+  link continua lá, recolhido, para quem já tem uma pasta pronta.
+- **URL absoluta no banco.** O site do cliente é publicado no Vercel, em outro
+  domínio: caminho relativo apontaria para o lugar errado.
+
+Validação no servidor: tipo na lista, **assinatura dos primeiros bytes**
+conferida contra o tipo declarado (sem isso dava para declarar `image/png` e
+subir HTML, que serviria script no nosso domínio), teto de tamanho, teto de
+quantidade por slot, e a mesma trava de contrato/pagamento/link-consumido do
+formulário.
+
+## 4. O que define "concluído" ✅ FEITO
+
+A pergunta "o que falta para este cliente sair de EM ENTREGA" tinha resposta
+espalhada por três contagens invisíveis em lugares diferentes da tela. Agora é
+uma conta só, no servidor (`portaoDeConclusao`), usada pelo card, pela lista e
+pelo botão. A seção **O que falta para concluir** mostra os grupos, o número de
+cada um, **onde mexer** e por que aquele grupo importa.
+
+Travam: os 11 marcos, os itens obrigatórios do checklist, os 4 entregáveis.
+Os arquivos das peças aparecem no mesmo painel e **não travam**: quem atesta a
+entrega é o checklist, o arquivo é a prova. Transformar em condição criaria
+trabalho que ninguém pediu, e a linha é fácil de mudar se ele quiser.
+
+**Botão de entrega antecipada:** pede a justificativa escrita e a frase
+`SERVIÇO ENTREGUE ANTES DO TEMPO` digitada. Aceita sem acento e em minúscula,
+porque recusar por causa do Ç no teclado do celular não protege nada. O que
+estava aberto no clique fica congelado em `entrega_forcada_pendencias` e
+aparece no card, com evento no histórico. Dá para reabrir.
+
+## 5. Dashboard comercial ✅ FEITO
+
+Primeira aba do setor Comercial, nas cores da marca (marfim, preto, laranja só
+na ênfase, verde para etapa saudável).
+
+- **Funil em 8 barras**, proporcionais a quem entrou e não à etapa anterior:
+  é o que mostra o estreitamento real em vez de dar 100% em toda etapa.
+  Fechamento aparece separado, **na call** e **no follow-up**, derivado do
+  campo `de` do evento de movimentação. Funciona para os dados que já
+  existiam, sem precisar de contador novo.
+- **Dinheiro:** contratado, recebido, a receber, taxas, custos, lucro e lucro
+  por cliente. **Uma linha por moeda**, nunca somando entre moedas. Valor
+  digitado sem moeda vai para um balde próprio e é sinalizado na tela.
+- **Diagnóstico determinístico**, roda sempre e não custa nada. O gargalo é a
+  etapa ruim que perde **mais gente em número absoluto**, não a de pior
+  percentual: 20% de 100 leads dói mais que 5% de 4. Aponta também o que está
+  indo bem, para ele não mexer no que funciona.
+- **Botão de IA**, não automático: cada clique é uma chamada paga, e o
+  diagnóstico da tela já responde na maioria dos dias. Só números agregados
+  saem, nenhum nome ou telefone de lead.
+- **Amostra mínima de 5.** Abaixo disso o diagnóstico se cala e diz que se
+  calou, na tela e na resposta da IA. Taxa em cima de 3 leads é ruído.
+
+O parser de dinheiro tem teste próprio porque os valores são TEXT digitados à
+mão: `US$ 2.500` tinha que dar 2500 e não 2,5.
+
+## 6. Ícone da marca na aba ✅ FEITO
+
+O CRM é um Worker só, sem pasta de arquivos estáticos, então o ícone sai do
+código: os mesmos bytes do favicon do site, em base64 (`src/marca.js`), servidos
+em `/favicon.png` e `/apple-touch-icon.png`. Fica antes do portão de sessão,
+porque a tela de login e o formulário do cliente também mostram o leão.
+
+---
+
+## O que ficou de fora, e por quê
+
+- **Vídeo acima de 95 MB.** O corpo de requisição do Worker para em 100 MB no
+  plano grátis. O formulário avisa e pede um trecho. Resolver de verdade exige
+  upload direto para o R2 com URL assinada, que precisa de credencial S3 como
+  secret. Vale se ele reclamar.
+- **Largura e altura dos arquivos.** As colunas existem na tabela e ficam em
+  branco: nada na tela usa ainda.
+- **O grupo de arquivos não trava a conclusão.** Decisão registrada acima,
+  fácil de inverter: é o campo `trava` em `portaoDeConclusao`.
+- **A auditoria adversarial de 2026-09-06 parou no achado 7 de 32.** Continua
+  valendo, e agora há superfície nova (upload público, rota de mídia pública,
+  duas rotas que chamam a OpenAI). Vale uma segunda rodada antes de operar com
+  volume.
+
+---
+
+# Câmbio e entradas (2026-09-08, mesmo dia, depois do pedido)
+
+Pedido do usuário ao aprovar o resto: *"estou no brasil mas trabalho em dólar,
+quero sim saber real e dólar baseado no que tem entrado na empresa de uma forma
+completa e detalhada."*
+
+O dashboard da primeira rodada mostrava uma linha por moeda e se recusava a
+consolidar. Isso era conservador demais para a situação real: ele precisa dos
+dois números juntos, não de dois relatórios separados.
+
+## O que mudou de desenho
+
+**Antes:** `clientes.valor_pago`, um campo só, e o dashboard somava por moeda
+sem nunca cruzar.
+
+**Agora:** tabela `entradas`, uma linha por dinheiro que caiu, com moeda, **a
+data em que entrou** e **a cotação daquele dia**. O dashboard consolida nas duas
+moedas e declara a conversão.
+
+Três coisas obrigaram a tabela nova:
+
+1. **Contrato MRR recebe todo mês.** O segundo e o terceiro pagamento não tinham
+   onde ser registrados. "Quanto entrou na empresa" era impossível de responder
+   para contrato recorrente.
+2. **A cotação por entrada trava o passado.** Sem ela, o total em real mudaria
+   sozinho a cada abertura da tela conforme o dólar mexesse. Faturamento que muda
+   sozinho não é faturamento. Isso tem teste dedicado, com o cenário de o dólar
+   de referência ir a 7,10 e voltar a 4,10: o real da entrada com cotação
+   gravada não se move em nenhum dos casos.
+3. **A data do dinheiro** é o que permite o mês a mês. `criado_em` não serve:
+   lançar em setembro um pagamento de março colocaria março em setembro.
+
+## Honestidade sobre a conversão
+
+Entrada sem cotação registrada é convertida pela cotação de **referência** e fica
+marcada como estimada. A tela mostra o percentual do total em real que depende
+dessa estimativa, e passando de 20% dá um aviso grande dizendo onde resolver.
+
+A cotação de referência tem um botão que busca a cotação de **mercado**
+(AwesomeAPI, sem chave, falha em silêncio). A tela é explícita: é referência, e o
+real que ele recebe de verdade sai da cotação do banco ou da Wise dele, que é
+sempre um pouco pior. Não dá para o sistema saber a cotação real do banco dele,
+então ele digita quando importa.
+
+## Correções que vieram no caminho
+
+- **`contratado` para MRR estava errado.** Somava a mensalidade crua, então um
+  contrato de 1.200 por 6 meses entrava como 1.200 em vez de 7.200, e o "a
+  receber" nascia subestimado. Agora é mensalidade x duração, e a mensalidade
+  recorrente somada aparece em cartão próprio.
+- **Custo agora tem moeda própria** (`custos_moeda`). Ferramenta é cobrada em
+  dólar, contador e freela em real. Somar os dois num campo só dava um número
+  que não existe.
+- **`lucro por cliente` divide pelos que pagaram**, não pelos que fecharam. Um
+  cliente que assinou e não pagou não pode puxar a média para baixo.
+
+## Um erro que o teste pegou, e vale registrar
+
+O `\n` dentro de `JS_DASH` chegou no navegador como quebra de linha de verdade e
+partiu a string do `prompt()`. É exatamente a classe de bug que
+`testes/html-interno.mjs` existe para pegar (barra invertida comida pela template
+string), e pegou. Dentro de template string tem que ser `\\n`.
+
+Também escrevi três expectativas de teste com aritmética errada e o código
+estava certo: conferi as contas à mão, entrada por entrada, e a conta agora está
+escrita em comentário ao lado da asserção, para o próximo leitor poder verificar
+sem refazer.
+
+---
+
+# Estado do deploy (2026-09-08)
+
+**No ar** em https://leon-group.leongroup.workers.dev, versão
+`b5404efe-8246-4098-b2ea-c18e32062aba`. Migrações 10 e 11 aplicadas no D1 de
+produção. Suíte em **295 asserções**, todas passando.
+
+## ✅ O upload de arquivo está LIGADO (2026-09-09)
+
+R2 habilitado pelo usuário no painel (a ativação pede cartão mesmo custando
+zero), bucket `leon-group-midia` criado, binding religado no `wrangler.toml`.
+
+A primeira tentativa havia falhado com **code 10042, "Please enable R2 through
+the Cloudflare Dashboard"**: é ativação de conta, o token da CLI não resolve.
+Fica registrado que **binding declarado sem bucket criado derruba o deploy
+inteiro** (code 10085), não só o upload. Se o bucket for apagado algum dia,
+comente as três linhas do binding e o sistema volta a rodar sem upload.
+
+Testado de ponta a ponta, com arquivo real:
+
+| O que | Resultado |
+|---|---|
+| Subir pelo card (agência) | grava no R2 e na tabela, devolve a URL |
+| Servir em `/m/<chave>` | 200, bytes idênticos ao original, `immutable` de 1 ano |
+| Rota de mídia sem cookie | 200, e tem que ser: o site do cliente vive em outro domínio |
+| Apagar | objeto sai do R2 e a linha do banco vai junto, `/m/` passa a 404 |
+| Apagar com o cliente errado | recusado, não alcança arquivo de outro cliente |
+| HTML disfarçado de PNG | recusado pelo sniff dos primeiros bytes |
+| Tipo não aceito | recusado com mensagem em português |
+| Chave fora do padrão | 404, sem tocar no R2 |
+| Teto por slot | respeitado (3 arquivos no slot de logo principal) |
+| Subir pelo token do formulário | funciona sem sessão de admin |
+| Token falso, ou sem contrato | recusado |
+
+## O furo que só apareceu com o R2 ligado
+
+Com o upload funcionando, o fluxo principal estava quebrado e ninguém veria até
+o primeiro cliente real: **o site gerado sairia sem foto nenhuma**.
+
+`/api/gerar` lia só a tabela `midias`, que guarda link colado. As fotos subidas
+do celular vivem em `arquivos`. Cliente que usasse o seletor de arquivo (que
+agora é o caminho normal) teria site sem uma única imagem.
+
+Junto vinha um segundo problema: a URL de `/m/<chave>` é relativa. O site é
+publicado no **Vercel**, em outro domínio, então um `/m/...` resolveria contra o
+Vercel, onde a imagem não existe. Site no ar com tudo quebrado.
+
+Os dois estão corrigidos, e a junção das duas fontes foi extraída para
+`G.fotosDoCliente()` com **16 asserções** em `testes/fotos-do-site.js`: URL
+sempre absoluta, subidas antes das coladas (a primeira foto vira a capa do
+site), foto repetida entra uma vez, e `javascript:`, `ftp:` e texto que não é
+URL caem fora.
+
+A pasta de entrega (`.txt`) tinha o mesmo furo com a logo, e também foi
+corrigida: procura a logo subida quando não há link colado, com URL absoluta,
+porque o `.txt` é aberto fora do sistema.
+
+## O que continua pendente
+
+- **A auditoria adversarial parou no achado 7 de 32**, e agora há superfície nova
+  e no ar: upload público, rota de mídia pública, três rotas que chamam API
+  externa (OpenAI duas, AwesomeAPI uma). Vale uma segunda rodada antes de operar
+  com volume.
+- **Nada limpa o R2 quando o teto de storage chegar.** 10 GB no plano grátis dá
+  para muitos clientes de foto, mas vídeo come rápido: 40 MB cada, 5 por
+  cliente. Não há alerta de uso nem expurgo de cliente arquivado. Apagar o
+  cliente apaga os arquivos dele (`apagarDoCliente`), mas arquivar não.
+- **Vídeo acima de 95 MB** continua fora: o corpo de requisição do Worker para em
+  100 MB no plano grátis. Resolver exige upload direto para o R2 com URL
+  assinada, que precisa de credencial S3 como secret.
+- **`wrangler` está na 3.114.17** e avisa em toda execução que a 4 saiu. Não
+  mexi: trocar de major na hora de publicar não é hora de descobrir
+  incompatibilidade.
+
+---
+
+# Funil e caixa (2026-09-09)
+
+Pedido: *"melhora o funil deixa ele bonito, coloca de fato um funil, melhore a
+parte de pagamento e controle como se fosse um aplicativo de gastos que registra
+tudo. Se esforce e busque referência."*
+
+## O funil
+
+Era barra horizontal. Agora é funil: trapézios centrados com `clip-path`,
+largura proporcional ao valor, **altura constante**.
+
+A altura constante saiu da referência e é a decisão que importa: trapézio de
+altura variável distorce a área, e o olho compara área, não largura, então
+diferença pequena entre etapas passa a ser lida errada. Com altura fixa a área
+fica linearmente proporcional à largura. Isso e a recusa de 3D, sombra e
+gradiente vieram das duas fontes consultadas (Atlassian e Domo, ver o final
+desta seção), e por sorte batem com a direção estética da marca.
+
+Detalhes que resolvem problema real:
+
+- A faixa **depois** de uma transição ruim é a única que muda de cor. Pintar
+  tudo tira a ênfase de onde dói.
+- Etapa em zero tem piso de 4% de largura, para aparecer como fio em vez de
+  sumir e dar a impressão de que a etapa não existe.
+- Etapa maior que a anterior (dado torto) trava na largura da anterior e sai
+  aviso em texto. Desenhar funil invertido em silêncio esconderia erro de
+  cadastro.
+
+A geometria tem teste: as larguras do cenário têm que sair exatamente
+100/80/60/12/6, centradas, com a base de cada faixa encostando no topo da
+seguinte, e o caso do dado torto tem que travar sem alargar.
+
+## O caixa
+
+Aba nova no comercial, com os padrões de app de gasto: cartão de saldo no topo,
+navegação por mês, "para onde foi" por categoria em barra, extrato agrupado por
+dia com o saldo de cada dia, entrada e saída por cor e sinal, lançamento rápido
+com a data já em hoje.
+
+Tabela `saidas` nova (migração 12), com dez categorias tiradas da operação real.
+Antes o sistema só sabia o que entrava: custo existia num campo por cliente, e
+anúncio, Z-API, domínio, contador e mentoria não tinham onde ser registrados.
+
+## Três coisas que só apareceram fazendo
+
+**1. Eu tinha juntado duas perguntas num número só.** "Lucro" estava valendo
+`entrou - tudo que saiu`, e `lucro_por_cliente` era esse número dividido pelos
+clientes. Isso responde "sobrou dinheiro no caixa" e "cada cliente se paga" com
+o mesmo valor, e as duas respostas são diferentes: um cliente pode ser
+lucrativo e o caixa fechar negativo se o custo da operação for maior que a soma
+dos clientes. Separei em **lucro nos clientes** (desconta só taxa e custo
+direto) e **saldo do caixa** (desconta tudo), com aviso em texto quando os dois
+divergem em sinal.
+
+**2. A taxa estava sendo rateada por percentual médio.** A tela do caixa
+calculava `taxa_total / entrou_total` e aplicava esse percentual ao real. Com
+clientes de taxas diferentes, média de percentual não fecha com a soma exata:
+dava **R$ 2,29** de diferença no saldo. Agora cada entrada carrega a própria
+taxa, e o mês a mês também. É o tipo de erro que faz a conferência contra o
+banco não bater e ninguém saber por quê.
+
+**3. O extrato não fechava com os totais.** O custo do campo antigo
+(`clientes.custos_valor`) entrava no total de saída do servidor mas não tinha
+linha no extrato. Como a tela soma o extrato para dar o total do mês, as duas
+telas do mesmo sistema mostrariam números diferentes. Agora ele entra como
+linha sintética, marcada como registro antigo e sem id (não há o que editar: o
+jeito de mexer é lançar a saída de verdade). Há teste que soma o extrato e
+compara com o total, para entrada, saída e taxa.
+
+## Erros meus no caminho, registrados para não repetir
+
+- **Backtick dentro de template string.** Escrevi `` `function` `` num
+  comentário dentro de `JS_CAIXA` e fechei a template. O `node --check` pegou.
+- **Três expectativas de teste com aritmética errada**, de novo: usei os números
+  de um cenário no outro. O código estava certo nas três. Conferi à mão, e a
+  conta agora está escrita em comentário ao lado da asserção.
+- **Handler de clique como arrow em const.** `const irMes = m => ...` no topo de
+  um script clássico funciona no navegador (o onclick resolve pela cadeia de
+  escopo) mas não vira propriedade de `window`, e o teste não consegue dirigir a
+  tela pelo mesmo caminho do clique. Virou declaração de função.
+
+## Referências consultadas
+
+- Atlassian, *A Complete Guide to Funnel Charts*
+- Domo, *Funnel Charts in Analytics: How to Visualize Conversion Drop-Offs*
+- Ramotion, *Expense Tracker App UI/UX Design Concept*
+- Muzli, *Designing a finance tracker app*
+
+## Estado
+
+No ar, versão `853ae295-016a-4cdb-825b-adbdc35ed41c`. Migração 12 aplicada em
+produção. Suíte em **386 asserções**, todas passando.
+
+O upload de arquivo continua desligado, esperando o R2 ser habilitado no painel
+(ver a seção acima).
