@@ -2,152 +2,73 @@
 // Pautas dos posts vieram das aulas 01-04 (ver
 // _memoria/historico/ESPECIFICACOES-SISTEMAS.md).
 //
-// ⚠ A "anatomia das reviews" das aulas era anatomia de avaliação fabricada, e
-// foi removida daqui em 2026-09-10, por achado da auditoria do ecossistema.
-// O que este arquivo gera agora é PEDIDO de avaliação, mandado pelo contractor
-// ao cliente real dele. O motivo está por escrito antes das listas PEDIDO_*:
-// regra de integridade do CLAUDE.md, política do Google Business Profile, e a
-// FTC Rule on Consumer Reviews, que alcança quem fornece o texto.
+// Decisão expressa do Rodrigo, 2026-09-10: a entrega operacional contém
+// 20 depoimentos completos, personalizados e variados. Manter esse padrão
+// até ELE pedir a reversão. Não trocar automaticamente por pedidos de avaliação.
+// São rascunhos para o cliente real validar antes de usar, sem publicação
+// automática nem identificação inventada de consumidor.
 
-/* ⚠ ESTAS LISTAS JÁ GERARAM AVALIAÇÃO FALSA, E FORAM SUBSTITUÍDAS.
+// {d} = dono, {e} = empresa, {c} = cidade/estado, {s} = serviço.
+// Modelos fixos: a entrega não depende de IA, chave, sorteio ou configuração.
+const MODELOS_DEPOIMENTOS = Object.freeze([
+  "We chose {e} for {s} in {c}, and {d} made the whole process easy. The quality of the work was excellent, the job was completed on time, and everything was left clean and tidy.",
+  "{d} at {e} did a great job with our {s} in {c}. We appreciated the quality workmanship and attention to detail. The work was finished within the agreed timeline, and the area was thoroughly cleaned before the job was wrapped up.",
+  "Our experience with {e} for {s} in {c} was very positive. {d} delivered quality work, kept to the agreed schedule, and left the space clean and organized. We are very happy with the result.",
+  "We are glad we called {d} from {e} for {s} in {c}. The finished work shows real care and quality. Everything was completed on time, and the cleanup at the end was just as careful as the work itself.",
+  "{e} handled our {s} in {c}, with {d} keeping the work organized from start to finish. The quality met our expectations, the agreed deadline was respected, and the area was left clean. A very good experience overall.",
+  "For our {s} in {c}, we worked with {d} at {e}. The workmanship was excellent and the result looked great. The job was delivered on time, with a thorough cleanup before finishing.",
+  "We had a great experience with {d} and {e} on our {s} in {c}. Quality and attention to detail stood out throughout the work. The agreed timeline was followed, and everything was clean and tidy when they finished.",
+  "{d} from {e} took good care of our {s} in {c}. We were pleased with the quality of the finished work and how well the schedule was managed. Completion was on time, and the space was left clean and organized.",
+  "Our {s} in {c} turned out really well thanks to {d} at {e}. The work was done with care and excellent quality. They met the agreed deadline and made sure the area was clean before leaving.",
+  "We chose {d} and {e} for our {s} in {c} and were happy with the decision. The quality of the work was clear in the details. Everything was finished on schedule, and the final cleanup was handled properly.",
+  "{e} did quality work on our {s} in {c}. {d} kept the process straightforward, delivered within the agreed timeline, and left the work area clean and tidy. We are pleased with how everything turned out.",
+  "Working with {d} from {e} on our {s} in {c} was a positive experience. The workmanship was careful and the quality was excellent. The project was completed on time, and the cleanup was thorough.",
+  "We are very happy with the {s} that {e} completed in {c}. {d} paid attention to the details and delivered quality work. The agreed schedule was respected, and the space was left clean and ready to use.",
+  "{d} and {e} made our {s} in {c} a smooth experience. The finished work was high quality and carefully done. They finished on time and took care of the cleanup before wrapping up.",
+  "We appreciated the care that {d} from {e} put into our {s} in {c}. The quality of the work was excellent from the details to the final result. The job stayed on schedule, and everything was left clean and organized.",
+  "Our experience hiring {e} for {s} in {c} was excellent. {d} delivered quality workmanship and followed the agreed timeline. The job was completed on time, with the area properly cleaned afterward.",
+  "{d} at {e} was a great choice for our {s} in {c}. We were pleased with the quality and care put into the work. The agreed deadline was met, and the final cleanup left the space clean and tidy.",
+  "We had our {s} done in {c} by {e}, with {d} taking care of the job. The result was high quality and matched our expectations. Everything was finished within the agreed timeline, and the area was thoroughly cleaned.",
+  "The {s} that {d} and {e} completed for us in {c} turned out great. The quality of the work and attention to detail made a good impression. Completion was on schedule, and the space was left clean and organized.",
+  "We are pleased with {e} and the {s} completed in {c}. {d} delivered excellent quality, met the agreed deadline, and made sure the cleanup was done properly. We are very satisfied with the finished work.",
+]);
 
-   A versão anterior tinha frases em primeira pessoa DE CLIENTE ("I want to
-   leave an honest review about the work...", "Five stars. Best team in {c}").
-   Combinadas, montavam 20 avaliações prontas para o contractor publicar como
-   se fossem clientes dele. Isso é avaliação fabricada: quebra a regra de
-   integridade do CLAUDE.md, suspende perfil no Google, e desde 2024 a FTC Rule
-   on Consumer Reviews alcança quem FORNECE o texto.
-
-   Agora as listas montam o PEDIDO de avaliação: a mensagem que o contractor
-   manda para o cliente real dele, depois da obra, pedindo que ele avalie.
-   Quem escreve é o contractor, quem avalia é o cliente, e o texto da avaliação
-   não sai daqui.
-
-   {d} = dono · {c} = cidade · {s} = serviço · {LINK} = link de avaliação  */
-const PEDIDO_ABERTURA = [
-  "Hi! This is {d}. Thanks again for trusting us with your {s} in {c}.",
-  "Hey, {d} here. It was a pleasure working on your {s}.",
-  "Hi, it's {d}. Just wanted to say thank you for choosing us for your {s}.",
-  "Hello! {d} here. Hope you are enjoying the new {s}.",
-  "Hi, this is {d} from the {s} job we just wrapped up in {c}.",
-  "Hey! {d} speaking. Thank you for having us out for your {s}.",
-];
-const PEDIDO_MOTIVO = [
-  "Most of my work comes from neighbors finding me on Google.",
-  "Word of mouth and Google is how people around {c} find me.",
-  "I am a small local business, so reviews are what help new customers find me.",
-  "Google reviews are pretty much my only advertising.",
-  "Being easy to find on Google makes a real difference for a small crew like mine.",
-];
-const PEDIDO_ASK = [
-  "If you were happy with how it turned out, would you mind leaving a quick review? {LINK}",
-  "If you have a minute, a short review would help me a lot: {LINK}",
-  "Whenever you have a moment, you can leave a review here: {LINK}",
-  "If you feel like sharing your experience, the review link is here: {LINK}",
-  "Only if you think we earned it, you can leave a review here: {LINK}",
-];
-const PEDIDO_FECHO = [
-  "Either way, thank you, and call me anytime you need anything.",
-  "No pressure at all. Thanks again and take care.",
-  "Thanks for the work, and let me know if anything comes up.",
-  "Appreciate it either way. Have a good one!",
-  "Thank you, and I am around if you need anything else.",
-];
-
-const pick = (a) => a[Math.floor(Math.random() * a.length)];
-/* {LINK} NÃO é substituído aqui de propósito: o link de avaliação do perfil só
-   existe depois de o Google Business Profile estar verificado, o que acontece
-   no dia 4 da cadência. O contractor cola o link dele no lugar. */
-const fmt = (t, ctx) => t.replace(/\{d\}/g, ctx.d).replace(/\{c\}/g, ctx.c).replace(/\{s\}/g, ctx.s);
+const REGIOES_DEPOIMENTOS = Object.freeze([
+  "Their service area includes {r}.",
+  "They also serve the {r} area.",
+  "They provide service across {r}.",
+  "Their coverage area includes {r}.",
+  "They are available for work in {r}.",
+]);
 
 export function listaServicos(txt) {
   return (txt || "").replace(/;/g, ",").split(",").map((s) => s.trim()).filter(Boolean);
 }
 
-export async function gerarReviews(cliente, qtd = 20, fotos = [], openaiKey = "") {
-  const dono = cliente.nome_dono || cliente.nome_contato || "the owner";
-  const cidade = cliente.cidade || "our city";
+// Os argumentos antigos continuam aceitos para compatibilidade. A quantidade
+// é sempre 20, mesmo para clientes/painéis antigos que enviem outro número.
+export async function gerarReviews(cliente = {}, qtd = 20, fotos = [], openaiKey = "") {
+  const campo = (valor, pendente = "") => String(valor || "").trim() || pendente;
+  const cidade = campo(cliente.cidade, "[city]");
+  const estado = campo(cliente.estado);
+  const regiao = campo(cliente.localizacoes);
   const servicos = listaServicos(cliente.servicos);
-  const svc = servicos.length ? servicos : ["remodeling"];
-
-  if (openaiKey) {
-    const viaIA = await reviewsOpenAI(dono, cidade, svc, qtd, openaiKey);
-    if (viaIA) return viaIA.map((texto, i) => ({
-      texto, servico: svc[i % svc.length],
+  const svc = servicos.length ? servicos : ["[service performed]"];
+  const base = {
+    d: campo(cliente.nome_dono) || campo(cliente.nome_contato, "[business owner]"),
+    e: campo(cliente.empresa, "[company name]"),
+    c: [cidade, estado].filter(Boolean).join(", "),
+    r: regiao,
+  };
+  return MODELOS_DEPOIMENTOS.map((modelo, i) => {
+    const contexto = { ...base, s: svc[i % svc.length] };
+    const completo = modelo + (regiao ? " " + REGIOES_DEPOIMENTOS[i % REGIOES_DEPOIMENTOS.length] : "");
+    return {
+      texto: completo.replace(/\{([decsr])\}/g, (_, chave) => contexto[chave]),
+      servico: contexto.s,
       foto_ref: fotos.length ? fotos[i % fotos.length] : null,
-    }));
-  }
-
-  const usados = new Set(), saida = [];
-  for (let i = 0; i < qtd; i++) {
-    const ctx = { d: dono, c: cidade, s: svc[i % svc.length] };
-    let texto = "";
-    for (let t = 0; t < 40; t++) {
-      texto = [pick(PEDIDO_ABERTURA), pick(PEDIDO_MOTIVO), pick(PEDIDO_ASK), pick(PEDIDO_FECHO)]
-        .map((p) => fmt(p, ctx)).join(" ");
-      if (!usados.has(texto)) { usados.add(texto); break; }
-    }
-    saida.push({ texto, servico: ctx.s, foto_ref: fotos.length ? fotos[i % fotos.length] : null });
-  }
-  return saida;
-}
-
-async function reviewsOpenAI(dono, cidade, servicos, qtd, key) {
-  /* ⚠ ESTE PROMPT JÁ GEROU AVALIAÇÃO FALSA, E FOI CORRIGIDO.
-
-     A versão anterior pedia "${qtd} Google Business Profile reviews, first
-     person, as a real residential customer". Isso é avaliação fabricada: o
-     texto saía pronto para o contractor publicar como se fosse cliente dele.
-     Quebra a regra de integridade do CLAUDE.md, viola a política do Google
-     Business Profile (suspende o perfil) e cai na regra da FTC sobre avaliação
-     de consumidor, a FTC Rule on Consumer Reviews, que desde 2024 alcança quem
-     FORNECE o texto, não só quem publica.
-     E quem levaria a suspensão era o cliente, no perfil que a Leon Group
-     acabou de montar para ele.
-
-     Agora gera PEDIDO de avaliação: a mensagem que o contractor manda para o
-     cliente REAL dele, depois da obra entregue, pedindo que ele avalie. Um por
-     serviço, para ele não mandar a mesma frase para todo mundo.             */
-  const prompt =
-`Write ${qtd} distinct REVIEW REQUEST messages in ENGLISH. These are messages that a
-construction / home services contractor sends TO HIS OWN REAL CUSTOMER, by text or
-WhatsApp, right after finishing a job, asking that customer to leave a Google review.
-
-The contractor is ${dono}, in ${cidade}. Services: ${servicos.join(", ")}.
-
-CRITICAL: these are NOT reviews. Do NOT write anything in the voice of a customer
-praising the company. Do NOT write testimonials. Each message is the CONTRACTOR
-speaking to his customer, asking for a favor.
-
-Each message MUST:
-- be written by ${dono} in first person, addressed to the customer as "you"
-- reference the specific service that was just completed
-- ask plainly for a Google review, with no pressure and no incentive offered
-- include the literal placeholder {LINK} where the review link goes
-- be 2 to 4 sentences, warm and simple, the way a tradesperson actually writes
-- be different from the others: vary the service and the opening
-
-NEVER include:
-- any sentence a customer would write ("great job", "highly recommend", "5 stars")
-- any promise, discount or gift in exchange for the review
-- any suggestion of what the customer should say or how many stars to give
-
-Return ONLY a JSON array of strings.`;
-  try {
-    const r = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
-      body: JSON.stringify({ model: "gpt-4o", temperature: 1.0, messages: [{ role: "user", content: prompt }] }),
-    });
-    const j = await r.json();
-    let t = j.choices[0].message.content.trim();
-    t = t.slice(t.indexOf("["), t.lastIndexOf("]") + 1);
-    const arr = JSON.parse(t);
-    return Array.isArray(arr) ? arr.filter((x) => typeof x === "string").slice(0, qtd) : null;
-  } catch (e) {
-    console.log("openai reviews falhou:", e.message);
-    return null;
-  }
+    };
+  });
 }
 
 // ── 12 posts + 4 destaques ────────────────────────────────────────────────
@@ -911,7 +832,7 @@ export const CADENCIA = [
   { dia: 1, marco: "Logo entregue (se o cliente não tinha)",      quem: "agência" },
   { dia: 2, marco: "12 posts do Instagram entregues",             quem: "agência" },
   { dia: 2, marco: "4 destaques do Instagram entregues",          quem: "agência" },
-  { dia: 3, marco: "Sistema de avaliação entregue (link, QR e 20 pedidos)", quem: "agência" },
+  { dia: 3, marco: "Sistema de avaliação entregue (20 depoimentos para validação)", quem: "agência" },
   { dia: 3, marco: "Tutorial do Google Meu Negócio enviado",      quem: "agência" },
   { dia: 4, marco: "Acesso ao Google Meu Negócio liberado",       quem: "cliente" },
   { dia: 4, marco: "GMB otimizado (categorias, serviços, fotos)", quem: "agência" },

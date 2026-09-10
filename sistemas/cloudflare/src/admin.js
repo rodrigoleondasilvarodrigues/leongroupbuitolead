@@ -396,7 +396,7 @@ function render(){
             :x.renovacao_perto?'<b style="color:var(--laranja-esc)">renova em '+x.dias_para_renovar+'d</b>'
             :x.dias+' dias'}</span></div>
           <div class="meta">\${esc(x.nome_contato)}\${x.nicho?' · '+esc(x.nicho):''}\${dinheiro(x)}
-            \${x.reviews_total?' · '+x.reviews_postadas+'/'+x.reviews_total+' pedidos de avaliação':''}
+            \${x.reviews_total?' · '+x.reviews_postadas+'/'+x.reviews_total+' depoimentos':''}
             \${x.marcos_total?' · '+x.marcos_feitos+'/'+x.marcos_total+' marcos':''}
             \${x.midias&&x.midias.foto?' · '+x.midias.foto+' fotos':''}
             \${x.arquivos_agencia?' · '+x.arquivos_agencia+' peças':''}
@@ -568,7 +568,7 @@ async function abrirCliente(id){
        :'<p style="color:var(--cinza);font-size:12.5px">Aguardando o cliente responder.</p>'}
    </section>
    <section><h4>Dados do cliente</h4>
-     <label>Nome do dono (repetido nas reviews)</label><input id="e_nome_dono" value="\${esc(c.nome_dono)}">
+     <label>Nome do dono (usado nos depoimentos)</label><input id="e_nome_dono" value="\${esc(c.nome_dono)}">
      <div style="display:flex;gap:8px"><div style="flex:2"><label>Cidade (SEO local)</label>
        <input id="e_cidade" value="\${esc(c.cidade)}"></div><div style="flex:1"><label>Estado</label>
        <input id="e_estado" value="\${esc(c.estado)}"></div></div>
@@ -599,10 +599,10 @@ async function abrirCliente(id){
      \${l_logo(c)}
    </section>
    <section><h4>Gerar entregáveis</h4>
-     <label>Quantidade de reviews</label><input type="number" id="g_qtd" value="20">
-     <button class="acao" onclick="gerar()">Gerar site + reviews + Instagram</button>
+     <p style="font-size:12.5px;margin-bottom:8px">Entrega fixa: 20 depoimentos personalizados em inglês.</p>
+     <button class="acao" onclick="gerar()">Gerar site + 20 depoimentos + Instagram</button>
      <p style="font-size:11.5px;color:var(--cinza);margin-top:6px">
-       Gera o HTML do site, as reviews e os briefs do Instagram. O site NÃO vai ao ar
+       Gera o HTML do site, os 20 depoimentos e os briefs do Instagram. O site NÃO vai ao ar
        sozinho: baixe o index.html na seção abaixo e publique no Vercel.</p></section>
    <section><h4>Peças e arquivos</h4>
      \${l_pecas(c)}
@@ -626,11 +626,12 @@ async function abrirCliente(id){
    <section><h4>Instagram</h4>\${(c.posts||[]).map(x=>
      \`<div class="linha"><span><b>\${x.tipo==='destaque'?'★':x.ordem}</b> \${esc(x.titulo)}</span></div>\`).join('')
      ||'<p style="color:var(--cinza);font-size:12.5px">Gere os entregáveis.</p>'}</section>
-   <section><h4>Pedidos de avaliação (\${(c.reviews||[]).filter(r=>r.postada).length}/\${(c.reviews||[]).length} enviados)</h4>
+   <section><h4>Depoimentos (\${(c.reviews||[]).filter(r=>r.postada).length}/\${(c.reviews||[]).length} enviados)</h4>
      \${(c.reviews||[]).length?\`<p style="font-size:12px;color:var(--cinza);margin-bottom:8px">
-       Estes são os <b>pedidos</b> que o cliente manda para o cliente DELE depois da obra.
-       Quem escreve a avaliação é o cliente final, sempre. Marque conforme ele for mandando.
-       Trocar {LINK} pelo link de avaliação do perfil, que só existe depois da verificação.</p>\`:''}
+       20 depoimentos prontos e personalizados. O cliente real deve validar os dados e os
+       elogios, ajustando o texto à experiência que teve antes de usar.
+       Marque conforme os textos forem enviados para validação.</p>\`:''}
+     <button class="acao sec" onclick="gerarDepoimentos()" style="margin-bottom:10px">Gerar somente os 20 depoimentos</button>
      \${(c.reviews||[]).slice(0,5).map(r=>\`<div class="rev"><small>
        <input type="checkbox" \${r.postada?'checked':''} onchange="revPost(\${r.id},this.checked)" style="width:auto">
        \${esc(r.servico)}</small>\${esc(r.texto)}</div>\`).join('')}
@@ -666,7 +667,7 @@ async function abrirCliente(id){
      <div class="kpis" style="margin-bottom:10px">
        <div class="kpi"><b>\${c.dias_uteis??'0'}</b><span>dia útil de 5</span></div>
        <div class="kpi"><b>\${(c.marcos||[]).filter(m=>m.concluido).length}/\${(c.marcos||[]).length}</b><span>marcos</span></div>
-       <div class="kpi"><b>\${(c.reviews||[]).filter(r=>r.postada).length}/\${(c.reviews||[]).length}</b><span>pedidos enviados</span></div>
+       <div class="kpi"><b>\${(c.reviews||[]).filter(r=>r.postada).length}/\${(c.reviews||[]).length}</b><span>depoimentos enviados</span></div>
        <div class="kpi"><b>\${(c.midias||[]).filter(m=>m.tipo==='foto').length}</b><span>fotos</span></div>
        <div class="kpi"><b>\${(c.midias||[]).filter(m=>m.tipo==='video').length}</b><span>vídeos</span></div>
        <div class="kpi"><b>\${c.leads_recebidos||0}</b><span>leads entregues</span></div>
@@ -732,8 +733,11 @@ async function salvarCliente(){await post('/api/cliente-editar',{id:aberto,nome_
   diferencial:V('e_diferencial'),observacoes:V('e_observacoes'),cor_primaria:V('e_cor_primaria'),
   cor_destaque:V('e_cor_destaque'),fotos_novas:V('e_fotos').split('\\n').map(s=>s.trim()).filter(Boolean)});
   await carregar();abrirCliente(aberto)}
-async function gerar(){const r=await post('/api/gerar',{id:aberto,qtd_reviews:+V('g_qtd')});
+async function gerar(){const r=await post('/api/gerar',{id:aberto});
   if(r.erro)return alert(r.erro);alert('Gerado: '+r.gerado.join(', ')+'\\n\\n'+(r.proximo||''));
+  await carregar();abrirCliente(aberto)}
+async function gerarDepoimentos(){const r=await post('/api/gerar',{id:aberto,site:false,instagram:false});
+  if(r.erro)return alert(r.erro);alert('Gerados os 20 depoimentos. Confira abaixo ou baixe a entrega.');
   await carregar();abrirCliente(aberto)}
 /* Checklist de otimização, agrupado por área.
    O "detalhe" de cada item é o passo a passo: quem executa não precisa

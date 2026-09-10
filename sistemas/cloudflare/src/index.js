@@ -992,12 +992,8 @@ async function apiAdmin(p, req, env) {
     });
     const feito = [];
     if (corpo.site !== false) {
-      // reviews postadas entram no site. Nunca as não postadas: o site só
-      // mostra o que existe de verdade no perfil do Google.
-      /* O site do cliente NÃO recebe mais os textos gerados. Eles são PEDIDOS
-         de avaliação agora, não avaliações, e antes dessa correção iam para o
-         site público como se fossem depoimento de cliente. Avaliação no site
-         só depois de existir no perfil do Google, digitada à mão. */
+      // Os depoimentos gerados são entregues para validação do cliente real.
+      // Não entram automaticamente no site público do cliente.
       const site = G.gerarSite(c, fotos, []);
       // guarda o HTML; a publicação é manual no Vercel
       await D.batch([
@@ -1010,7 +1006,8 @@ async function apiAdmin(p, req, env) {
       feito.push("site");
     }
     if (corpo.reviews !== false) {
-      const revs = await G.gerarReviews(c, Number(corpo.qtd_reviews) || 20, fotos, env.OPENAI_API_KEY || "");
+      const revs = await G.gerarReviews(c, 20, fotos);
+      const marcoReviews = G.CADENCIA.find(m => m.marco.startsWith("Sistema de avaliação")).marco;
       // apagar + inserir 20 + marcar: num batch só. Antes eram 22 idas ao banco
       // em fila, e o DELETE já tinha acontecido se alguma inserção falhasse —
       // resultado possível: cliente sem review nenhuma.
@@ -1019,10 +1016,10 @@ async function apiAdmin(p, req, env) {
         ...revs.map((r) => D.prepare(
           "INSERT INTO reviews (cliente_id,texto,servico,foto_ref,criado_em) VALUES (?,?,?,?,?)")
           .bind(id, r.texto, r.servico, r.foto_ref, agora())),
-        D.prepare("UPDATE marcos SET concluido=1,concluido_em=? WHERE cliente_id=? AND marco LIKE 'Sistema de avaliação%'")
-          .bind(agora(), id),
+        D.prepare("UPDATE marcos SET marco=?,concluido=1,concluido_em=? WHERE cliente_id=? AND marco LIKE 'Sistema de avaliação%'")
+          .bind(marcoReviews, agora(), id),
       ]);
-      feito.push(`${revs.length} reviews`);
+      feito.push(`${revs.length} depoimentos`);
     }
     if (corpo.instagram !== false) {
       await D.batch([
@@ -1036,7 +1033,9 @@ async function apiAdmin(p, req, env) {
       feito.push("12 posts + 4 destaques");
     }
     return json({ ok: true, gerado: feito,
-      proximo: "Baixe o index.html e publique no Vercel, depois cole a URL no admin." });
+      proximo: feito.includes("site")
+        ? "Baixe o index.html e publique no Vercel, depois cole a URL no admin."
+        : "Confira os textos no card do cliente ou baixe a entrega (.txt)." });
   }
   if (p === "/api/liberar-formulario") {
     // destrava o formulário do cliente: contrato assinado e/ou pagamento confirmado
@@ -1289,14 +1288,16 @@ async function apiAdmin(p, req, env) {
       "  O acesso do Instagram e do Google Meu Negócio fica com você.",
       "  A Leon Group não guarda senha nenhuma.",
       "", "=".repeat(70),
-      `PEDIDOS DE AVALIAÇÃO (${revs.length}). Você manda para o SEU cliente depois da obra.`,
-      `Quem escreve a avaliação é o cliente final, sempre. Troque {LINK} pelo link do seu perfil.`,
+      `DEPOIMENTOS (${revs.length}). Textos personalizados em inglês.`,
+      "O cliente real deve validar os dados e os elogios antes de usar cada depoimento.",
+      "Ajuste o serviço, a cidade, a qualidade, o prazo e a limpeza à experiência real.",
+      "Os textos são rascunhos para validação, sem autor atribuído ou publicação automática.",
       "=".repeat(70), "",
-      ...revs.map((r, i) => `--- PEDIDO ${i+1} (${r.servico||""}) ---\n${r.texto}\n`),
+      ...revs.map((r, i) => `--- DEPOIMENTO ${i+1} (${r.servico||""}) ---\n${r.texto}\n`),
       "=".repeat(70), "INSTAGRAM · 12 POSTS + 4 DESTAQUES", "=".repeat(70), "",
       ...ps.map(x => `[${x.tipo.toUpperCase()} ${x.ordem}] ${x.titulo}\n${x.brief}\n`),
       "=".repeat(70), "O QUE VOCÊ FAZ A PARTIR DE AGORA", "=".repeat(70), "",
-      "  1. Postar as reviews no ritmo combinado, sem acumular tudo num dia",
+      "  1. Enviar os depoimentos para o cliente real validar e ajustar antes de usar",
       "  2. Publicar os 12 posts e montar os 4 destaques no Instagram",
       "  3. Manter o Google Meu Negócio atualizado: foto de obra nova toda semana",
       "  4. Responder lead no mesmo dia. Velocidade fecha mais que argumento",

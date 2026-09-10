@@ -23,7 +23,7 @@ echo
 echo "── o contrato e a prova do aceite ──"
 node testes/contrato.js
 echo
-echo "── avaliação honesta, nunca fabricada ──"
+echo "── 20 depoimentos para validação e isolamento do site ──"
 node testes/avaliacao-honesta.js
 echo
 echo "── ativações com playbook ──"
