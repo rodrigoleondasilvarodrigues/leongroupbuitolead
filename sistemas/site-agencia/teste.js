@@ -189,7 +189,7 @@ setTimeout(()=>{
   $('#form').dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));
   const link=w.__aberto||'';
   t('abriu o WhatsApp',/^https:\/\/wa\.me\//.test(link),link.slice(0,42)+'…');
-  t('número correto no link',link.includes('wa.me/5561998629189'),(link.match(/wa\.me\/(\d+)/)||['','-'])[1]);
+  t('número correto no link',link.includes('wa.me/12133960014'),(link.match(/wa\.me\/(\d+)/)||['','-'])[1]);
   t('mensagem codificada na URL',link.includes('?text=')&&link.length>180);
   t('mensagem decodificada bate com a prévia',
     decodeURIComponent((link.split('?text=')[1]||''))===$('#previa').textContent);

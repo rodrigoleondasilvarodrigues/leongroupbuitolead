@@ -58,14 +58,15 @@ barato da lista (um dia de decisão) e o que desbloqueia mais coisa.
 **Por que agora:** tem espera de terceiro, e trava três coisas ao mesmo tempo.
 O trabalho é curto; o relógio é que é longo.
 
-- [ ] Contratar pela via legítima: Google Voice, OpenPhone ou linha real.
-      **Nunca** pelo método da aula (número por bot do Telegram para simular
-      presença nos EUA). Decisão já tomada em 2026-09-05.
+- [x] Contratar pela via legítima. **Feito em 2026-09-10 pelo Vnumber:
+      `+1 213 396 0014`.** Não foi pelo método da aula (número por bot do
+      Telegram para simular presença nos EUA), conforme decisão de 2026-09-05.
 - [ ] Configurar o WhatsApp Business nele: identidade, descrição, horário,
-      respostas rápidas.
-- [ ] Trocar o número provisório do site (`5561998629189`, brasileiro, DDD 61).
+      respostas rápidas. **É o próximo passo, e agora não está mais travado.**
+- [x] Trocar o número provisório do site. Feito em 2026-09-10, publicado.
       Fica numa linha só em `sistemas/site-agencia/conteudo.js`.
-- [ ] Pôr o mesmo número no CRM (botão WhatsApp do admin).
+- [x] Pôr o mesmo número no CRM. Feito em 2026-09-10, direto no D1 de produção
+      (`config.meu_whatsapp`), o mesmo valor que a tela do admin grava.
 
 **Por que importa tanto:** o método é "lead entra, você liga em menos de um
 minuto". Ligar para dono de casa americano de número brasileiro derruba a taxa

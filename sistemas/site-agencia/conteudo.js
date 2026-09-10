@@ -23,13 +23,14 @@
    Brasil:  55 + DDD + número   ->  "5531999999999"
    EUA:     1  + área + número  ->  "16170000000"
 
-   ⚠ PROVISÓRIO: número brasileiro (61, Brasília), em uso até o número
-     americano legítimo existir. Quando trocar, mude SÓ esta linha e
-     republique. Nenhum outro arquivo referencia o número.
+   OFICIAL desde 2026-09-10: número americano do Rodrigo, obtido pela via
+     legítima (Vnumber). Substituiu o provisório brasileiro 5561998629189,
+     que não deve voltar. Para trocar, mude SÓ esta linha e republique:
+     nenhum outro arquivo do site referencia o número, só o teste.
 
    Deixar como "" faz o botão avisar para usar o e-mail, em vez de abrir
    uma conversa com número errado.                                       */
-const WHATSAPP = "5561998629189";
+const WHATSAPP = "12133960014";
 
 /* Endpoint do CRM. Preenchido, cada formulário enviado também nasce como
    lead em "Leads novos / Super Hot" no CRM, e o formulário abandonado no

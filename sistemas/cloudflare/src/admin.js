@@ -248,7 +248,7 @@ ${CSS_DASH}${CSS_PARTES}${CSS_CAIXA}${CSS_ATIV}
     Lembrete de tarefa vem pra cá. Mensagem pra lead e pra cliente sai daqui.</p>
   <div id="cfg_estado"></div>
   <label>Meu WhatsApp (com código do país, só dígitos)</label>
-  <input id="cfg_num" placeholder="5561999999999" inputmode="tel">
+  <input id="cfg_num" placeholder="12133960014" inputmode="tel">
   <p style="font-size:11.5px;color:var(--cinza);margin:4px 0 10px">
     Brasil: 55 + DDD + número · EUA: 1 + área + número</p>
   <label>Hora do resumo diário (seu horário, Brasília)</label>

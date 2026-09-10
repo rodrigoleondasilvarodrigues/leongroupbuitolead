@@ -21,14 +21,16 @@ e uma pasta de imagens. Hospedado no Cloudflare Pages, como manda o `CLAUDE.md`
 Abra `conteudo.js`. As linhas de configuração ficam no topo:
 
 ```js
-const WHATSAPP = "5561998629189";   // ⚠ PROVISÓRIO, trocar pelo americano
+const WHATSAPP = "12133960014";     // oficial: americano, desde 2026-09-10
 const CRM_ENDPOINT = "https://leon-group.leongroup.workers.dev/api/site-lead";
 const PARCIAL_MS = 2500;            // espera antes de guardar formulário incompleto
 ```
 
-⚠ **O número atual é provisório** (brasileiro, DDD 61). Quando o número americano
-existir, mude **só esta linha** e republique. Nenhum outro arquivo referencia o
-número, nem o HTML, nem o JS. Leva menos de um minuto.
+**O número atual é o oficial**: americano, área 213, obtido pelo Vnumber em
+2026-09-10. Ele substituiu o provisório brasileiro `5561998629189`, que não deve
+voltar. Para trocar de novo, mude **só esta linha** e republique. Fora daqui,
+só o `teste.js` cita o número, e ele falha de propósito se os dois discordarem.
+Nenhum HTML referencia o número. Leva menos de um minuto.
 
 Formato: código do país + DDD + número, só dígitos.
 Brasil `5531999999999` · Estados Unidos `16175550123`

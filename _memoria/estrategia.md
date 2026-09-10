@@ -64,8 +64,11 @@ No ar em **https://leon-group-site.pages.dev** (Cloudflare Pages, código em
 serviços, as doze funções, método, FAQ e formulário na própria página que abre o
 WhatsApp com mensagem pronta e **também cria o lead no CRM** (rota `/api/site-lead`).
 
-- ⚠ **WhatsApp provisório:** `5561998629189` (brasileiro, DDD 61). Usuário avisou que
-  troca "muito em breve". Fica numa única linha em `sistemas/site-agencia/conteudo.js`.
+- ✅ **WhatsApp oficial (2026-09-10):** `12133960014` (+1 213 396 0014, americano,
+  área 213, Los Angeles), obtido pelo Vnumber. Substituiu o provisório brasileiro
+  `5561998629189`, que não volta. Fica numa única linha em
+  `sistemas/site-agencia/conteudo.js`, e no CRM no campo `meu_whatsapp` da tabela
+  `config` (tela "WhatsApp do CRM" do admin). Os dois já estão com o número novo.
 - Falta domínio próprio. Ao registrar, acrescentar a origem em `ORIGENS_SITE` no
   `sistemas/cloudflare/src/index.js`, senão o CORS barra o formulário.
 - Texto escrito dentro da regra de integridade: assume que a agência é nova, sem caso
@@ -102,12 +105,14 @@ ferramenta apurada na fila operacional.
 Sem criativo pronto não há campanha, e o criativo é a primeira coisa que o diagnóstico
 do funil acusa quando a conversão de entrada está baixa.
 
-**2. Pegar o número americano.** Pela via legítima (Google Voice, OpenPhone ou linha
-real), **nunca** pelo método da aula, que ensina comprar número por bot do Telegram para
-simular presença nos EUA. Decisão já tomada em 2026-09-05, ver abaixo.
-Trava três coisas ao mesmo tempo: o site ainda usa um WhatsApp brasileiro provisório
-(`5561998629189`), o WhatsApp Business não pode ser configurado sem ele, e ligar para
-lead americano de número brasileiro derruba a taxa de atendimento.
+**2. Pegar o número americano. ✅ FEITO em 2026-09-10.** `+1 213 396 0014`, pelo
+Vnumber, pela via legítima, e não pelo método da aula (número por bot do Telegram para
+simular presença nos EUA). Já está no site e no CRM.
+**O que ainda falta a partir dele:** configurar o WhatsApp Business nesse número
+(identidade, descrição, horário, respostas rápidas) e conferir se ele recebe código de
+verificação do WhatsApp e do Meta. Nota: a área 213 é de Los Angeles, e a prioridade
+comercial é Massachusetts e Boston (área 617, 508, 781, 978). Não impede nada, mas um
+lead de Boston vê um número da Califórnia.
 
 **3. Tráfego pago.** Confirmado em 2026-09-09 que Instagram, Business Manager, conta de
 anúncios e meio de pagamento **já existem e funcionam**. Falta só a **página do Facebook**,
