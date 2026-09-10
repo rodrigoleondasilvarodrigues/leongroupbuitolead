@@ -26,12 +26,17 @@ Sexta-feira (2026-09-12) é a data da primeira subida de anúncio.
 | Proposta, layout Kairon | .../planosv3 | 56 asserções |
 | CRM, caixa e entrega | https://leon-group.leongroup.workers.dev | 574 asserções |
 
-Rodar antes de todo deploy:
+Rodar antes de todo deploy. **Num clone novo, `npm install` primeiro nas duas
+pastas**, senão os testes morrem com "Cannot find module 'jsdom'" e parece que
+estão quebrados quando é só dependência faltando:
 
 ```bash
-cd sistemas/cloudflare && ./testes/rodar.sh          # 574
-cd sistemas/site-agencia && for f in teste*.js; do node $f; done   # 240
+cd sistemas/cloudflare  && npm install && ./testes/rodar.sh                   # 574
+cd sistemas/site-agencia && npm install && for f in teste*.js; do node $f; done  # 240
 ```
+
+Verificado em 2026-09-10 a partir de um clone limpo do GitHub: 574 e 240,
+zero falhas.
 
 Deploy:
 
