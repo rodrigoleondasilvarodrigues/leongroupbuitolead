@@ -1,5 +1,6 @@
--- Migração 13 — ativação com checklist e playbook.
--- npx wrangler d1 execute leon-group --remote --file=migracao-13-ativacoes.sql
+-- Migração 14 — ativação com checklist e playbook.
+-- (era 13, renumerada: a migração do contrato ocupou o 13 antes)
+-- npx wrangler d1 execute leon-group --remote --file=migracao-14-ativacoes.sql
 --
 -- O QUE MUDA NO COMPORTAMENTO
 --
