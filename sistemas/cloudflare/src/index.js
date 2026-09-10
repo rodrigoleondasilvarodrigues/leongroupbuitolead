@@ -3,6 +3,7 @@ import * as G from "./geradores.js";
 import * as A from "./auth.js";
 import * as M from "./marca.js";
 import * as Arq from "./arquivos.js";
+import * as Ativ from "./ativacoes.js";
 import * as Ct from "./contrato.js";
 import { contratoFormHTML, contratoLerHTML, contratoAceitoHTML,
          contratoIndisponivelHTML } from "./pagina-contrato.js";
@@ -62,7 +63,26 @@ const dias = (v) => { const d = parseData(v); return d ? Math.floor((Date.now() 
 
 // régua de temperatura do pipeline 1
 const ESCADA = ["super_hot", "hot", "warm", "cold", "super_cold"];
-const ATIV_DIA = { responderam: 0, super_hot: 10, hot: 7, warm: 5, cold: 3, super_cold: 2 };
+/* Cota de ativação por dia, por coluna. Antes só o pipeline 1 tinha número:
+   quem estava em agendamento, nutrição ou recuperação via "0 ativações/dia" e
+   o card parecia dizer "não faça nada", que é o oposto do que a régua manda.
+
+   Os números do pipeline 1 vêm da aula. Os outros são derivados da lógica da
+   régua: quem tem call marcada não precisa de ativação (a cadência de
+   confirmação já cuida), quem deu no-show precisa de muita, e nutrição é
+   contato raro de propósito. */
+const ATIV_DIA = {
+  // pipeline 1: quanto mais frio, menos toque, para não queimar o número
+  responderam: 0, super_hot: 10, hot: 7, warm: 5, cold: 3, super_cold: 2,
+  // pipeline 2: a cadência de confirmação já roda sozinha nestes
+  call_agendado: 0, call_rolando: 0, fechou: 0,
+  // no-show é onde o follow-up decide a venda
+  no_show: 6, no_show_f1: 4, no_show_f2: 3, no_show_f3: 1,
+  // recusou: um toque a cada tanto, sem insistir
+  recusou: 1,
+  // pipelines 3 e 4
+  recuperacao: 2, nutricao: 1,
+};
 const PIPELINES = {
   leads_novos: [["responderam","Responderam"],["super_hot","Super Hot"],["hot","Hot"],
                 ["warm","Warm"],["cold","Cold"],["super_cold","Super Cold"]],
@@ -72,15 +92,18 @@ const PIPELINES = {
   recuperacao: [["recuperacao","Recuperação"]],
   nutricao: [["nutricao","Nutrição"]],
 };
-const CATALOGO = [
-  ["ligacao","Ligação"],["audio","Áudio"],["audio_unico","Áudio de visualização única"],
-  ["foto_unica","Foto de visualização única"],["figurinha","Figurinha"],["emoji","Emoji"],
-  ["mensagem","Mensagem de texto"],["video_unico","Vídeo de visualização única"],
-  ["status_mencao","Menção em status"],
-  // ⚠️ engodo — mantida por decisão explícita do usuário (ver README).
-  // PIX não existe nos EUA: contractor brasileiro por lá recebe por Zelle.
-  ["comprovante_falso","Comprovante de Zelle falso ⚠️"],
-];
+/* O catálogo agora vive em ativacoes.js, junto com o playbook de cada uma:
+   ter a lista num arquivo e o conteúdo em outro garantia que um dia entrasse
+   ativação sem playbook, e o operador clicaria num botão que não ensina nada.
+
+   ⚠ MUDANÇA DE COMPORTAMENTO: a ativação "Comprovante de Zelle falso" SAIU.
+   Ela era engodo declarado, mantida antes por decisão explícita do usuário.
+   No lugar entrou "PDF de follow-up", com o prompt que ELE escreveu, que usa
+   a mesma estética de fintech para chamar atenção mas carrega crachá
+   obrigatório "FOLLOW-UP — NOT A PAYMENT" e proíbe por escrito qualquer valor,
+   número de transação ou confirmação de pagamento. Mesmo efeito de atenção,
+   sem fingir transação. Ver o comentário no topo de ativacoes.js. */
+const CATALOGO = Ativ.CATALOGO;
 
 export default {
   async fetch(req, env, ctx) {
@@ -665,6 +688,16 @@ async function apiAdmin(p, req, env) {
       D.prepare("SELECT * FROM mensagens WHERE lead_id=? ORDER BY id DESC LIMIT 20").bind(id),
     ]);
     lead.ativacoes = at.results; lead.eventos = evs.results; lead.mensagens = ms.results;
+    /* O CHECKLIST é derivado da tabela `ativacoes`, não guardado à parte: dois
+       lugares guardando "o que já foi feito" divergem, e no dia em que
+       divergirem o operador manda a mesma coisa duas vezes ou pula uma. */
+    const todas = (await D.prepare(
+      `SELECT tipo, COUNT(*) n, MAX(executada_em) ultima, SUM(respondeu) respostas,
+              MAX(aberto_em) aberto
+       FROM ativacoes WHERE lead_id=? GROUP BY tipo`).bind(id).all()).results;
+    const porTipo = Object.fromEntries(todas.map((a) => [a.tipo, a]));
+    lead.checklist_ativacoes = Ativ.checklist(porTipo, lead);
+    lead.ativacao_falta = Ativ.dadosDoLead(lead).falta;
     return json(lead);
   }
   if (p === "/api/mover") {
@@ -703,10 +736,53 @@ async function apiAdmin(p, req, env) {
         "Poxa, não consegui te encontrar na call. Imagino que você esteja na correria, na obra. Vou deixar marcado amanhã para o mesmo horário. Me confirma aqui.");
     return json({ ok: true });
   }
+  /* ══════════════════ PLAYBOOK DA ATIVAÇÃO ══════════════════
+     Devolve o conteúdo daquela ativação JÁ PERSONALIZADO com o nome e a
+     empresa do lead: o que escrever, o que falar no áudio, os emojis, a
+     direção da foto de visualização única e os prompts de imagem prontos
+     para colar no gerador.
+
+     Abrir NÃO registra o envio. Registrar é outro clique, depois de mandar.
+     Registrar no clique de abrir enchia o histórico de ativações que nunca
+     saíram, e aí o checklist mentia sobre o que já foi feito. */
+  if (p === "/api/ativacao-playbook") {
+    const id = url.searchParams.get("id");
+    const tipo = url.searchParams.get("tipo");
+    const lead = await D.prepare(
+      "SELECT id,nome,empresa,nicho,cidade,estado,telefone,pipeline,coluna,rapport FROM leads WHERE id=?")
+      .bind(id).first();
+    if (!lead) return json({ erro: "lead não encontrado" }, 404);
+    const pb = Ativ.playbookDe(tipo, lead);
+    if (!pb) return json({ erro: "ativação desconhecida" }, 404);
+    // marca que foi ABERTO, sem marcar que foi mandado
+    await D.prepare(`INSERT INTO ativacoes (lead_id,tipo,executada_em,aberto_em,
+                     coluna_na_hora,pipeline_na_hora) VALUES (?,?,?,?,?,?)`)
+      .bind(lead.id, tipo, agora(), agora(), lead.coluna, lead.pipeline).run();
+    return json(pb);
+  }
+
   if (p === "/api/ativacao") {
-    await D.prepare("INSERT INTO ativacoes (lead_id,tipo,executada_em,nota) VALUES (?,?,?,?)")
-      .bind(corpo.id, corpo.tipo, agora(), corpo.nota || null).run();
-    await ev(D, { lead_id: corpo.id, tipo: "ativacao", para: corpo.tipo });
+    const l = await D.prepare("SELECT coluna,pipeline FROM leads WHERE id=?").bind(corpo.id).first();
+    if (!l) return json({ erro: "lead não encontrado" }, 404);
+    /* Fecha a linha que o "abrir" criou, em vez de inserir outra. Sem isso,
+       cada ativação mandada contava duas vezes: uma na abertura e outra no
+       registro, e a cota diária estourava sozinha. */
+    const fechou = await D.prepare(
+      `UPDATE ativacoes SET executada_em=?, aberto_em=NULL, nota=?, conteudo_enviado=?,
+       coluna_na_hora=?, pipeline_na_hora=?
+       WHERE id = (SELECT MAX(id) FROM ativacoes
+                   WHERE lead_id=? AND tipo=? AND aberto_em IS NOT NULL)`
+    ).bind(agora(), corpo.nota || null, String(corpo.conteudo || "").slice(0, 4000) || null,
+           l.coluna, l.pipeline, corpo.id, corpo.tipo).run();
+    if (!fechou.meta.changes)
+      // registrado sem ter aberto o playbook: o operador mandou por fora
+      await D.prepare(`INSERT INTO ativacoes (lead_id,tipo,executada_em,nota,
+                       conteudo_enviado,coluna_na_hora,pipeline_na_hora)
+                       VALUES (?,?,?,?,?,?,?)`)
+        .bind(corpo.id, corpo.tipo, agora(), corpo.nota || null,
+              String(corpo.conteudo || "").slice(0, 4000) || null, l.coluna, l.pipeline).run();
+    await ev(D, { lead_id: corpo.id, tipo: "ativacao", para: corpo.tipo,
+                  detalhe: `em ${l.pipeline}/${l.coluna}` });
     return json({ ok: true });
   }
   if (p === "/api/ligacao") {

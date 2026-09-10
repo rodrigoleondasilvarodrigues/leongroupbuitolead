@@ -23,6 +23,9 @@ echo
 echo "── o contrato e a prova do aceite ──"
 node testes/contrato.js
 echo
+echo "── ativações com playbook ──"
+node testes/ativacoes.mjs
+echo
 echo "── as fotos que vão para o site ──"
 node testes/fotos-do-site.js
 echo
