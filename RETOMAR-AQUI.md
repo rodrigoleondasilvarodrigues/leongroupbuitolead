@@ -14,6 +14,11 @@ O sistema está pronto e no ar. O que separa a Leon Group do primeiro cliente
 pago é oferta decidida, número americano, criativo produzido e campanha no ar.
 Sexta-feira (2026-09-12) é a data da primeira subida de anúncio.
 
+**Ferramenta única, decidido em 2026-09-10:** o trabalho segue só no Claude Code
+dentro do VS Code, nesta pasta. Não há mais edição paralela em outra ferramenta,
+então o risco de conflito na mesma pasta deixou de existir. O `AGENTS.md` fica
+no repositório para o caso de isso mudar.
+
 ---
 
 ## O que está no ar agora
@@ -24,19 +29,20 @@ Sexta-feira (2026-09-12) é a data da primeira subida de anúncio.
 | Proposta, um preço | .../planos | 43 asserções |
 | Proposta, três prazos | .../planosv2 | 39 asserções |
 | Proposta, layout Kairon | .../planosv3 | 56 asserções |
-| CRM, caixa e entrega | https://leon-group.leongroup.workers.dev | 574 asserções |
+| CRM, caixa e entrega | https://leon-group.leongroup.workers.dev | 606 asserções |
 
 Rodar antes de todo deploy. **Num clone novo, `npm install` primeiro nas duas
 pastas**, senão os testes morrem com "Cannot find module 'jsdom'" e parece que
 estão quebrados quando é só dependência faltando:
 
 ```bash
-cd sistemas/cloudflare  && npm install && ./testes/rodar.sh                   # 574
+cd sistemas/cloudflare  && npm install && ./testes/rodar.sh                   # 606
 cd sistemas/site-agencia && npm install && for f in teste*.js; do node $f; done  # 240
 ```
 
-Verificado em 2026-09-10 a partir de um clone limpo do GitHub: 574 e 240,
-zero falhas.
+Verificado em 2026-09-10 na pasta de trabalho do Rodrigo: 606 e 240,
+zero falhas. (Os 574 antigos viraram 606 quando o teste dos depoimentos passou
+de 31 para 63 asserções. Nenhum teste foi removido nem afrouxado.)
 
 Deploy:
 
@@ -177,8 +183,10 @@ superadas por este pedido explícito do Rodrigo.
 **Validação:** 606 asserções do CRM e 240 do site passaram, sem falhas.
 Inclui clique no botão real em jsdom, geração isolada e exportação acessível.
 
-**Publicação:** esta alteração está no código. O CRM no ar só muda depois do
-deploy do Worker; não é necessário publicar o site da agência.
+**Publicação: FEITA em 2026-09-10.** `npx wrangler deploy` rodado da pasta do
+Rodrigo. Versão no ar `c111510d-83c7-469f-b3dc-9c2b6852051b`, com 100% do
+tráfego, confirmada em `npx wrangler deployments list`. O site da agência não
+mudou neste commit e não precisou de nova publicação.
 
 ---
 

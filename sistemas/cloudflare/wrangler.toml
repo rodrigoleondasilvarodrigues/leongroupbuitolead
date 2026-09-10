@@ -37,7 +37,10 @@ NOME_AGENCIA = "Leon Group"
 # Segredos (NUNCA no arquivo — defina por linha de comando):
 #   npx wrangler secret put ADMIN_SENHA
 #   npx wrangler secret put SESSAO_SEGREDO
-#   npx wrangler secret put OPENAI_API_KEY     (opcional, melhora as reviews)
+#   npx wrangler secret put OPENAI_API_KEY     (opcional: diagnóstico do funil
+#                                              por IA e refino do prompt da logo.
+#                                              NÃO afeta os 20 depoimentos, que
+#                                              saem de modelos fixos no código)
 #   npx wrangler secret put ZAPI_INSTANCIA     (opcional, WhatsApp)
 #   npx wrangler secret put ZAPI_TOKEN
 

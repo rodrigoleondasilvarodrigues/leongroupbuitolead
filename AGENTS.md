@@ -36,7 +36,7 @@ com "Cannot find module 'jsdom'" e parecem quebrados quando é só dependência
 faltando.
 
 ```bash
-cd sistemas/cloudflare   && npm install && ./testes/rodar.sh                    # 574 asserções
+cd sistemas/cloudflare   && npm install && ./testes/rodar.sh                    # 606 asserções
 cd sistemas/site-agencia && npm install && for f in teste*.js; do node $f; done # 240 asserções
 ```
 
@@ -72,6 +72,12 @@ o que precisa ser testado.
 
 ## Fluxo de trabalho entre ferramentas
 
-O repositório é a única fonte de verdade compartilhada. Antes de trocar de
-ferramenta, commite e dê push. Ao voltar, dê `git pull` antes de editar
-qualquer coisa. Trabalhar nas duas ao mesmo tempo na mesma pasta gera conflito.
+**Decisão do Rodrigo, 2026-09-10: o trabalho volta a ser feito só no Claude Code
+dentro do VS Code, na pasta `/Users/macbook/Leon Group - Buit To Lead ` (com o
+espaço no fim do nome).** Este arquivo continua aqui para o caso de ele voltar a
+abrir o projeto em outra ferramenta, mas o padrão atual é ferramenta única.
+
+Se outra ferramenta for usada de novo: o repositório é a única fonte de verdade
+compartilhada. Antes de trocar, commite e dê push. Ao voltar, dê `git pull`
+antes de editar qualquer coisa. Trabalhar nas duas ao mesmo tempo na mesma pasta
+gera conflito.
