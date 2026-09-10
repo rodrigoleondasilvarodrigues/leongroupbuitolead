@@ -93,6 +93,21 @@ razoável esperar mais.
 
 ### 3. Os criativos da sexta
 
+**Atualizado em 2026-09-10.** O organograma dos dez criativos (seis no Arcads,
+quatro gravados por ele) e o guia de tráfego pago estão prontos:
+
+| O que | Onde |
+|---|---|
+| Brief para a IA que escreve a copy | `marketing/anuncios/BRIEF-PARA-IA-DE-COPY.md` |
+| Guia de tráfego, fonte do artefato | `saidas/dez-criativos-no-ar.html` |
+| Guia de tráfego, PDF (14 páginas) | `saidas/Leon-Group-Dez-Criativos-no-Ar.pdf` |
+| Regerar o PDF | `./saidas/gerar-pdf-criativos.sh` |
+| Artefato publicado | https://claude.ai/code/artifact/3e52f7bb-0e12-4134-a550-a8c53b91d74c |
+
+A copy dos dez roteiros o Rodrigo escreve em outra ferramenta, colando o brief.
+Ele volta com os roteiros prontos.
+
+
 Ele disse: *"Sexta-feira já vou ter todos os criativos prontos, 4 gravados por
 mim mesmo e 4 a 6 em formato de Arcads. Vou melhorar os anúncios e roteiros de
 copy que você fez, não gostei nada de como ficou, mas eu vou retornar com eles
@@ -109,8 +124,12 @@ teste de criativo.
 **R$ 100 por dia por criativo**, com estrutura 1 campanha = 1 conjunto = 1
 criativo. Com R$ 100/dia no total e 4 a 6 criativos, cada um recebe R$ 16 a
 R$ 25 por dia, e a aula mata criativo que gastou R$ 100 sem trazer lead. Nesse
-ritmo, o critério de matar leva 4 a 6 dias por criativo em vez de 1. O passo a
-passo em `saidas/` já registra isso.
+ritmo, o critério de matar leva 4 a 6 dias por criativo em vez de 1.
+
+A recomendação fechada está na seção 03 do guia: **R$ 200/dia fixos, dois
+criativos por rodada, três dias cada, cinco rodadas para os dez**. Manter o valor
+fixo pelos três dias importa mais do que o valor em si, porque o Meta reaprende a
+entrega quando o orçamento muda e o dia 2 deixa de ser comparável ao dia 1.
 
 ### 4. Decisões que são dele, não suas
 
