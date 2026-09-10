@@ -268,6 +268,20 @@ const api=(u,o)=>fetch(u,o).then(r=>r.json());
 // sem isso, quem tem um link de formulário injeta script no admin.
 const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 const post=(u,b)=>api(u,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b)});
+/* Trava de clique duplo em botão que GRAVA.
+   Achado na inspeção: os botões de lançar entrada e lançar despesa disparavam
+   um POST por clique, sem desabilitar nada. Dois cliques rápidos no "Lançar
+   entrada" gravavam DOIS pagamentos, e aí o faturamento infla sozinho e a
+   conferência contra o banco não bate mais.
+   Envolve a ação, desabilita o botão enquanto ela roda, e devolve o estado
+   mesmo se a ação estourar. */
+async function umaVez(bt, fn){
+  if(!bt || bt.disabled) return;
+  const antes=bt.textContent;
+  bt.disabled=true; bt.style.opacity='.55'; bt.textContent='Salvando...';
+  try{ return await fn() }
+  finally{ bt.disabled=false; bt.style.opacity=''; bt.textContent=antes }
+}
 const hrs=i=>i?((Date.now()-new Date(i))/36e5):0;
 /* Contratado e recebido são números diferentes. Mostrar um valor solto sem
    dizer qual é dos dois é como se contava faturamento que ainda não entrou. */

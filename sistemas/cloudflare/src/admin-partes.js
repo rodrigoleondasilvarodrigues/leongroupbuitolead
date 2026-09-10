@@ -301,7 +301,7 @@ function l_entradas(c){
     +'</div>'
     +'<label>Observação</label><input id="en_nota">'
     +'<input type="hidden" id="en_id" value="">'
-    +'<button class="acao" onclick="salvarEntrada()">Lançar entrada</button>'
+    +'<button class="acao" onclick="salvarEntrada(this)">Lançar entrada</button>'
     +'<button class="acao sec" onclick="limparEntrada()" style="margin-left:7px">Limpar</button>'
     +'<p style="font-size:11.5px;color:var(--cinza);margin-top:7px">'
     +'A <b>cotação do dia</b> é o que trava o valor em real: sem ela, a entrada é convertida pela '
@@ -311,15 +311,18 @@ function l_entradas(c){
   return h;
 }
 
-async function salvarEntrada(){
+async function salvarEntrada(bt){
   const g=id=>{const e=document.getElementById(id);return e?e.value.trim():''};
   if(!g('en_valor')) return alert('Escreva o valor que entrou.');
   if(!g('en_data')) return alert('Informe a data em que o dinheiro entrou.');
-  const r=await post('/api/entrada',{cliente_id:aberto,id:g('en_id')||undefined,
-    valor:g('en_valor'),moeda:g('en_moeda'),recebido_em:g('en_data'),
-    cotacao:g('en_cotacao'),meio:g('en_meio'),parcela:g('en_parcela'),nota:g('en_nota')});
-  if(r.erro) return alert(r.erro);
-  marcarDashSujo(); await carregar(); abrirCliente(aberto);
+  // umaVez trava o clique duplo: sem isso, dois cliques gravam dois pagamentos
+  return umaVez(bt, async ()=>{
+    const r=await post('/api/entrada',{cliente_id:aberto,id:g('en_id')||undefined,
+      valor:g('en_valor'),moeda:g('en_moeda'),recebido_em:g('en_data'),
+      cotacao:g('en_cotacao'),meio:g('en_meio'),parcela:g('en_parcela'),nota:g('en_nota')});
+    if(r.erro) return alert(r.erro);
+    marcarDashSujo(); await carregar(); abrirCliente(aberto);
+  });
 }
 function editarEntrada(id){
   const c=CLI_ABERTO;

@@ -359,7 +359,7 @@ function abrirLancarSaida(edit){
     +'<label class="rec"><input type="checkbox" id="sa_rec"'+(e.recorrente?' checked':'')+'>'
       +'Repete todo mês (entra no custo fixo)</label>'
     +'<input type="hidden" id="sa_id" value="'+(e.id||'')+'">'
-    +'<button class="acao" onclick="salvarSaida()">'+(e.id?'Salvar':'Lançar')+'</button>'
+    +'<button class="acao" onclick="salvarSaida(this)">'+(e.id?'Salvar':'Lançar')+'</button>'
     +'<button class="acao sec" style="margin-left:7px" onclick="fecharLancarSaida()">Cancelar</button>'
     +'<p style="font-size:11.5px;color:var(--cinza);margin-top:8px">'
     +'Gasto em dólar no cartão brasileiro fecha pela cotação do dia da compra. '
@@ -381,16 +381,19 @@ function dicaCat(){
   if(r&&c&&c[3]&&!document.getElementById('sa_id').value) r.checked=true;
 }
 
-async function salvarSaida(){
+async function salvarSaida(bt){
   const g=id=>{const e=document.getElementById(id);return e?e.value.trim():''};
   if(!g('sa_valor')) return alert('Escreva quanto foi.');
   if(!g('sa_data')) return alert('Informe a data do pagamento.');
-  const r=await post('/api/saida',{id:g('sa_id')||undefined,valor:g('sa_valor'),
-    moeda:g('sa_moeda'),pago_em:g('sa_data'),cotacao:g('sa_cotacao'),
-    categoria:g('sa_cat'),descricao:g('sa_desc'),cliente_id:g('sa_cli')||null,
-    recorrente:document.getElementById('sa_rec').checked});
-  if(r.erro) return alert(r.erro);
-  caixaEdit=null; marcarDashSujo(); await carregarCaixa(true);
+  // mesma trava da entrada: dois cliques gravariam duas despesas
+  return umaVez(bt, async ()=>{
+    const r=await post('/api/saida',{id:g('sa_id')||undefined,valor:g('sa_valor'),
+      moeda:g('sa_moeda'),pago_em:g('sa_data'),cotacao:g('sa_cotacao'),
+      categoria:g('sa_cat'),descricao:g('sa_desc'),cliente_id:g('sa_cli')||null,
+      recorrente:document.getElementById('sa_rec').checked});
+    if(r.erro) return alert(r.erro);
+    caixaEdit=null; marcarDashSujo(); await carregarCaixa(true);
+  });
 }
 function editarSaida(id){
   const x=(DASH.financeiro.extrato||[]).find(y=>y.tipo==='saida'&&y.id===id);

@@ -591,6 +591,42 @@ setTimeout(async () => {
   await w.carregarCaixa(true);
   await espera(60);
 
+  console.log("\n\x1b[1m=== 6i. CLIQUE DUPLO NÃO GRAVA DOIS PAGAMENTOS ===\x1b[0m");
+  /* Achado na inspeção de 2026-09-10: o botão de lançar dinheiro disparava um
+     POST por clique, sem desabilitar nada. Dois cliques rápidos gravavam dois
+     pagamentos, o faturamento inflava sozinho e a conferência contra o banco
+     deixava de bater. Este teste é o que impede o defeito de voltar. */
+  const posts = [];
+  const fetchOriginal = w.fetch;
+  w.fetch = (u, o) => {
+    if (String(u) === "/api/saida") posts.push(o);
+    // segura a resposta, para o segundo clique acontecer com o primeiro no ar
+    if (String(u) === "/api/saida")
+      return new Promise((r) => setTimeout(() =>
+        r({ ok: true, json: () => Promise.resolve({ ok: true, id: 99 }) }), 120));
+    return fetchOriginal(u, o);
+  };
+  w.abrirLancarSaida();
+  await espera(60);
+  doc.getElementById("sa_valor").value = "500";
+  doc.getElementById("sa_data").value = "2026-09-10";
+  const btSai = $$(".sai-form .acao").find((b2) => /Lançar|Salvar/.test(b2.textContent));
+  t("o botão de lançar despesa existe", !!btSai);
+  btSai.click();
+  await espera(20);
+  t("durante a gravação o botão fica desabilitado", btSai.disabled);
+  t("e avisa que está salvando", /Salvando/.test(btSai.textContent), btSai.textContent);
+  btSai.click();            // o clique duplo
+  btSai.click();            // e um terceiro, por garantia
+  await espera(240);
+  t("três cliques gravaram UMA despesa só", posts.length === 1,
+    posts.length + " requisição(ões)");
+  t("e o botão volta ao normal depois", !btSai.disabled && /Lançar|Salvar/.test(btSai.textContent),
+    btSai.textContent);
+  w.fetch = fetchOriginal;
+  w.fecharLancarSaida();
+  await espera(40);
+
   console.log("\n\x1b[1m=== 7. CARD DO CLIENTE: PORTÃO DE CONCLUSÃO ===\x1b[0m");
   await w.abrirCliente(7);
   await espera(60);
