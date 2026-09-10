@@ -1,0 +1,243 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<title>Leon Group · Campanha na Meta, passo a passo</title>
+<style>
+@page{size:A4;margin:16mm 14mm 18mm}
+:root{--marfim:#F7F3EA;--branco:#fff;--preto:#171717;--laranja:#E65A19;
+--laranja-esc:#C44712;--areia:#E9E1D6;--cinza:#5c5852;--verde:#2d6a4f}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{font:10.5pt/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,sans-serif;
+color:var(--preto);background:#fff}
+.capa{background:var(--preto);color:var(--marfim);padding:26mm 16mm;margin:-16mm -14mm 10mm;
+page-break-after:always}
+.capa .marca{font:800 15pt/1 "Inter Tight",Inter,sans-serif;letter-spacing:.01em}
+.capa .marca span{color:var(--laranja)}
+.capa .marca em{display:block;font:400 8pt/1 inherit;font-style:normal;opacity:.65;
+margin-top:3mm;letter-spacing:.08em}
+.capa h1{font:800 30pt/1.05 "Inter Tight",Inter,sans-serif;letter-spacing:-.03em;
+margin:40mm 0 6mm;max-width:15cm}
+.capa .sub{font-size:12pt;opacity:.8;max-width:13cm;line-height:1.5}
+.capa .rod{margin-top:36mm;font-size:8.5pt;opacity:.55;line-height:1.6;max-width:14cm}
+/* code na capa: o estilo global usa fundo claro, e sobre o preto da capa o
+   texto desaparecia em blocos cinza. Aqui ele inverte. */
+.capa code{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.18);
+color:#f0ebe1}
+/* o h1 da capa não leva a régua laranja do h1 do corpo */
+.capa h1{border-bottom:0;padding-bottom:0}
+h1{font:800 19pt/1.15 "Inter Tight",Inter,sans-serif;letter-spacing:-.025em;
+margin:0 0 5mm;padding-bottom:2.5mm;border-bottom:2.5pt solid var(--laranja);
+page-break-after:avoid}
+h2{font:700 14pt/1.2 "Inter Tight",Inter,sans-serif;letter-spacing:-.02em;
+margin:8mm 0 3mm;page-break-after:avoid}
+h3{font:700 11pt/1.25 inherit;margin:6mm 0 2mm;color:var(--laranja-esc);
+page-break-after:avoid}
+p{margin:0 0 2.6mm;orphans:3;widows:3}
+strong{font-weight:700}
+code{font:9pt/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--marfim);
+padding:.4mm 1.2mm;border-radius:1mm;border:.3pt solid var(--areia)}
+pre{font:9pt/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--preto);
+color:#e8e3d9;padding:4mm 5mm;border-radius:2mm;margin:0 0 3.5mm;white-space:pre-wrap;
+page-break-inside:avoid}
+ul{margin:0 0 3.5mm;padding-left:6mm}
+ul li{margin-bottom:1.4mm;page-break-inside:avoid}
+/* lista com caixa de marcar: é para riscar no papel */
+ul.chk{list-style:none;padding-left:0}
+ul.chk li{display:flex;gap:2.6mm;align-items:flex-start;margin-bottom:2.2mm;
+page-break-inside:avoid}
+ul.chk .cx{flex:none;width:3.6mm;height:3.6mm;border:.9pt solid var(--preto);
+border-radius:.7mm;margin-top:.9mm}
+ul.chk .cx.on{background:var(--verde);border-color:var(--verde)}
+blockquote{margin:0 0 3.5mm;padding:3mm 4mm;background:var(--marfim);
+border-left:2.5pt solid var(--laranja);border-radius:0 1.5mm 1.5mm 0;
+page-break-inside:avoid}
+blockquote p{margin-bottom:1.6mm;font-size:10pt}
+blockquote p:last-child{margin-bottom:0}
+blockquote .tw{margin-bottom:0}
+.tw{margin:0 0 4mm;page-break-inside:avoid}
+table{border-collapse:collapse;width:100%;font-size:9.5pt}
+th,td{text-align:left;padding:1.8mm 2.4mm;border-bottom:.4pt solid var(--areia);
+vertical-align:top}
+th{font:700 7.6pt/1.3 inherit;letter-spacing:.09em;text-transform:uppercase;
+color:var(--cinza);background:var(--marfim);border-bottom:.8pt solid var(--areia)}
+tr:last-child td{border-bottom:0}
+hr.quebra{border:0;border-top:.4pt solid var(--areia);margin:7mm 0}
+</style></head><body>
+<div class="capa">
+  <div class="marca">LE<span>O</span>N GROUP<em>Built to Lead.</em></div>
+  <h1>Subir a campanha na Meta, passo a passo</h1>
+  <p class="sub">Extraído das 4 aulas da mentoria e do hotseat, filtrado pela
+  regra de integridade da casa. Com a conta do seu orçamento, a tabela de
+  decisão de matar e escalar, e o plano da sexta hora a hora.</p>
+  <p class="rod">Gerado de <code>_memoria/playbook-campanha-meta.md</code>, que é a
+  fonte de verdade. Editar lá e rodar <code>python3
+  scripts/montar_playbook_campanha.py --pdf</code> para refazer este arquivo.<br><br>
+  Os 42 itens marcados como tática enganosa na extração ficam em quarentena na
+  seção 2 e não entram em nenhum passo.</p>
+</div>
+<h1>Subir a campanha na Meta, passo a passo</h1>
+<p>Extraído das 4 aulas da mentoria e do hotseat em 2026-09-10. A aula de anúncios é a <strong>03</strong>, onde o mentor programa ao vivo compartilhando a tela.</p>
+<p>Fonte bruta: <code>_memoria/historico/extracoes/aulas-campanha-meta.json</code> (117 passos, 93 regras, 143 números, com citação literal em cada item).</p>
+<blockquote><p><strong>Este documento não é a aula.</strong> É a aula filtrada pela regra de integridade da casa. 42 itens extraídos foram marcados como tática enganosa e estão em quarentena na seção &quot;O que não entra&quot;, com o motivo. Se você seguir só o que está aqui, você sobe a campanha pelo método e sem nada que suspenda conta, queime número ou minta para cliente.</p></blockquote>
+<hr class="quebra">
+<h1>1. Leia isto primeiro: a conta do seu orçamento</h1>
+<p>Você me disse: <strong>R$ 250 por dia no fim de semana, R$ 100 por dia na semana, testando 4 a 6 criativos.</strong> Isso dá R$ 1.000 por semana.</p>
+<p>O método da aula tem uma unidade fixa, e ela é o que faz a conta fechar ou não:</p>
+<blockquote><p>&quot;Eu gosto de colocar R$100 por criativo, certo? A nossa estrutura, ela sempre vai ser uma campanha, um conjunto e um criativo. Logo, R$100 por campanha.&quot;</p></blockquote>
+<p><strong>R$ 100 por dia POR CRIATIVO.</strong> Não R$ 100 por dia no total.</p>
+<p>E a janela de validação é de 3 dias, com corte diário:</p>
+<blockquote><p>&quot;Se no primeiro dia já deu mais de R$100, eu não trouxe lead, eu já mato. [...] No segundo lead abaixar pelo menos aí para no mínimo R$70, eu deixo. Senão eu mato. E no terceiro dia, o custo por lead tem que estar entre R$20 até R$50 no máximo. Passou de R$50, pode matar.&quot;</p></blockquote>
+<h2>A conta, sem enfeite</h2>
+<div class="tw"><table><thead><tr><th>Se você testar</th><th>Custo por dia</th><th>3 dias de validação</th></tr></thead><tbody><tr><td>1 criativo</td><td>R$ 100</td><td>R$ 300</td></tr><tr><td>2 criativos</td><td>R$ 200</td><td>R$ 600</td></tr><tr><td>4 criativos</td><td>R$ 400</td><td>R$ 1.200</td></tr><tr><td>6 criativos</td><td>R$ 600</td><td>R$ 1.800</td></tr></tbody></table></div>
+<p>Com <strong>R$ 100 por dia você testa UM criativo</strong>, não quatro. Se você dividir R$ 100 entre 4 criativos, cada um fica com R$ 25 por dia, e aí o corte do dia 1 (&quot;gastou R$ 100 e não trouxe lead&quot;) levaria <strong>quatro dias</strong> para acontecer em cada um. O critério de decisão da aula deixa de funcionar.</p>
+<p>Isso não é preciosismo. É o motivo pelo qual gente queima verba testando muito criativo com pouco dinheiro: nenhum recebe entrega suficiente para o Meta sair da fase de aprendizado, e no fim você não sabe qual funcionou.</p>
+<h2>O que eu recomendo, dentro dos seus R$ 1.000</h2>
+<p>Respeita a sua intenção (mais peso no fim de semana), respeita o mínimo de R$ 100 por criativo, e fecha exatamente nos R$ 1.000:</p>
+<div class="tw"><table><thead><tr><th>Dias</th><th>O que roda</th><th>Por dia</th><th>Total</th></tr></thead><tbody><tr><td>Sexta, sábado, domingo</td><td><strong>2 criativos</strong>, R$ 100 cada</td><td>R$ 200</td><td>R$ 600</td></tr><tr><td>Segunda a quinta</td><td><strong>só o vencedor</strong>, R$ 100</td><td>R$ 100</td><td>R$ 400</td></tr><tr><td></td><td></td><td></td><td><strong>R$ 1.000</strong></td></tr></tbody></table></div>
+<p>Por que assim:</p>
+<ul>
+<li><strong>Os 3 dias seguidos são a janela de validação inteira.</strong> Sexta, sábado e domingo dão os três cortes (dia 1, dia 2, dia 3) sem interrupção.</li>
+<li><strong>Fim de semana é quando o contractor está com o celular na mão.</strong> Ele trabalha na obra de segunda a sexta. A sua intuição de pesar o fim de semana está certa, e essa distribuição a respeita.</li>
+<li><strong>Segunda você já sabe qual ganhou</strong> e coloca a semana toda nele.</li>
+</ul>
+<p><strong>A consequência que você precisa aceitar:</strong> 2 criativos por fim de semana. Os seus 4 a 6 criativos viram <strong>2 a 3 fins de semana</strong> de teste. Se quiser testar 4 de uma vez, o orçamento do fim de semana tem que ir para R$ 400 por dia (R$ 1.200 nos três dias).</p>
+<p>Não existe caminho de testar 6 criativos com R$ 100 por dia. Escolher entre &quot;menos criativo por vez&quot; e &quot;mais verba&quot; é a decisão, e ela é sua.</p>
+<hr class="quebra">
+<h1>2. O que não entra</h1>
+<p>A extração marcou <strong>42 itens</strong> como tática enganosa. Eles ficam registrados em <code>_memoria/historico/extracoes/aulas-campanha-meta.json</code> como histórico estudado, e <strong>nenhum entra no passo a passo</strong>. Os que aparecem exatamente no meio da subida da campanha, e que você veria na aula:</p>
+<h3>Número americano comprado em bot de SMS do Telegram</h3>
+<p>A aula ensina comprar número em bot (cita &quot;Notes SNS&quot;) para simular presença nos EUA. <strong>Fora.</strong> Decisão já registrada em 2026-09-05: o número sai por Google Voice, OpenPhone ou linha real. Número de bot descartável é perdido a qualquer momento, e perder o número é perder toda conversa de lead que está nele.</p>
+<h3>Título do anúncio com &quot;5/5&quot; e emoji de estrela</h3>
+<p>É avaliação inventada. <strong>Fora.</strong> Além de quebrar a regra da casa, avaliação fabricada é exatamente o que a FTC passou a multar desde 2024, e a Meta reprova anúncio com nota falsa.</p>
+<h3>Conta de anúncios de familiar para &quot;ter mais liberdade&quot;</h3>
+<p>A aula sugere usar conta de pai, primo ou familiar para driblar limite do Facebook. <strong>Fora.</strong> Você já tem BM e conta de anúncios próprias e funcionando. Rodar na conta de outra pessoa é o caminho mais rápido para perder o ativo.</p>
+<h3>Criativo com caso de cliente fabricado</h3>
+<p>A aula valida um modelo de criativo com dono de construção fictício e número de faturamento inventado. <strong>Fora</strong>, e essa é a que mais importa para sexta:</p>
+<blockquote><p>⚠ <strong>Atenção nos seus criativos de Arcads.</strong> Ator de IA <strong>não é</strong> problema. Ator de IA fingindo ser um cliente satisfeito <strong>é</strong>. Antes de subir, confira cada um dos seus roteiros: se o ator fala como CLIENTE dando depoimento, o criativo está fabricando prova social. Se ele fala como NARRADOR, ou como você, apresentando o serviço, está limpo. Essa é a diferença entre um criativo aceitável e um depoimento falso.</p></blockquote>
+<h3>Prova social inventada no Instagram e na apresentação</h3>
+<p>Empresas fictícias em destaque de &quot;Customers&quot;, depoimento pago a R$ 20, print de Google de outra empresa apresentado como resultado próprio, taxa de insucesso fabricada nos slides. <strong>Tudo fora.</strong> Prova social real só depois do primeiro trabalho pago e documentado.</p>
+<h3>Pressão na hora do fechamento</h3>
+<p>Prazo artificial de 15 minutos, câmera desligada, &quot;não deixar o lead sair da call sem pagar&quot;. <strong>Fora.</strong> Ele tem direito de pensar, e a oferta escrita em <code>propostas/oferta-na-call.md</code> já diz isso.</p>
+<hr class="quebra">
+<h1>3. Antes de subir (faça na quinta)</h1>
+<ul class="chk">
+<li><i class="cx"></i><span><strong>Página do Facebook criada</strong> e ligada na BM e no Instagram.</span></li>
+<li><i class="cx"></i><span><strong>Conta de anúncios com meio de pagamento aceito.</strong> Confirme que passou, não só que foi cadastrado. Recusa de cartão é o motivo mais comum de campanha não subir na hora.</span></li>
+<li><i class="cx"></i><span><strong>Pixel e dataset instalados</strong>, e o evento de conversão do site testado.</span></li>
+<li><i class="cx"></i><span><strong>Número de WhatsApp Business ativo</strong> e o número que vai no anúncio é o mesmo que você vai atender.</span></li>
+<li><i class="cx"></i><span><strong>Os criativos exportados</strong> no formato final, com legenda queimada.</span></li>
+<li><i class="cx"></i><span><strong>Cada roteiro conferido</strong> contra a advertência de prova social acima.</span></li>
+<li><i class="cx"></i><span><strong>A oferta e o nicho decididos.</strong> O criativo promete algo; se a promessa mudar depois, o criativo é refeito.</span></li>
+<li><i class="cx"></i><span><strong>O CRM aberto na aba Comercial</strong>, para o primeiro lead não esperar.</span></li>
+</ul>
+<hr class="quebra">
+<h1>4. O passo a passo</h1>
+<p>Ordenado como um fluxo único. Os três níveis da Meta são campanha, conjunto e anúncio, e a aula percorre nessa ordem.</p>
+<h2>Nível 1: a campanha</h2>
+<ul class="chk">
+<li><i class="cx"></i><span><strong>1.</strong> Gerenciador de Anúncios → <strong>Criar campanha</strong>.</span></li>
+<li><i class="cx"></i><span><strong>2.</strong> Objetivo: <strong>Engajamento</strong>. Continuar. Depois escolher a opção <strong>de baixo, &quot;campanha de engajamento manual&quot;</strong>. Continuar.</span></li>
+</ul>
+<blockquote><p><strong>Nunca use o objetivo Leads.</strong> O motivo, na aula: *&quot;O tipo de engajamento que vai fazer o lead engajar no criativo. E ao final desse criativo ali, mais ou menos 70, 80, 100% do criativo, ele entrar em contato, ou seja, sendo lead extremamente qualificado.&quot;* Com objetivo Leads o Meta busca o lead mais barato, que assistiu 3 segundos e não sabe o que clicou.</p></blockquote>
+<ul class="chk">
+<li><i class="cx"></i><span><strong>3.</strong> Nome da campanha, nesta ordem de blocos:</span></li>
+</ul>
+<pre>0 vendas · CBO · 12/09/2026 · Engajamento WhatsApp · Leon Group</pre>
+<p>O contador de vendas na frente é proposital: na lista de campanhas você vê de relance qual já vendeu. Quando vender, troca o <code>0</code> por <code>1</code>.</p>
+<ul class="chk">
+<li><i class="cx"></i><span><strong>4.</strong> <strong>CBO ligado</strong> (orçamento no nível da campanha), primeira opção. <strong>R$ 100 por dia.</strong></span></li>
+</ul>
+<p>Estrutura <strong>1-1-1</strong>: uma campanha, um conjunto, um criativo. Cada criativo é uma campanha inteira e separada.</p>
+<h2>Nível 2: o conjunto</h2>
+<ul class="chk">
+<li><i class="cx"></i><span><strong>5.</strong> Nome do conjunto: <strong><code>Ad 01</code></strong>. O mesmo número em todos os três níveis é o que amarra campanha, conjunto e anúncio.</span></li>
+<li><i class="cx"></i><span><strong>6.</strong> Selecionar a <strong>página do Facebook</strong>.</span></li>
+<li><i class="cx"></i><span><strong>7.</strong> Destino: trocar automático por <strong>manual → WhatsApp Business</strong>. Se o número não estiver vinculado, aparece &quot;conectar número&quot; na própria tela: clica, coloca o número, e insere o código que chega no WhatsApp Business.</span></li>
+<li><i class="cx"></i><span><strong>8.</strong> Canais de conversa: <strong>só WhatsApp</strong>. Instagram desativado, Messenger desativado. Otimização: <strong>maximizar o número de conversas</strong>.</span></li>
+<li><i class="cx"></i><span><strong>9.</strong> Programação: início <strong>no dia seguinte</strong>, <strong>9h no horário de Brasília</strong>.</span></li>
+</ul>
+<blockquote><p>⚠ <strong>A aula diz que 9h no Brasil é 8h nos EUA.</strong> Isso é verdade de março a novembro. <strong>De novembro a março a diferença passa a ser de 2 horas</strong> (os EUA saem do horário de verão e o Brasil não tem mais desde 2019), então 9h de Brasília cai às 7h em Boston. Em setembro a conta da aula está certa. Em novembro, se você não mexer, a campanha começa a entregar uma hora mais cedo do que você pensa.</p></blockquote>
+<ul class="chk">
+<li><i class="cx"></i><span><strong>10.</strong> Público → Locais → Editar:</span></li>
+</ul>
+<ul>
+<li><strong>Incluir:</strong> Estados Unidos da América, confirmando que está marcado como <strong>país</strong> (não cidade, não região).</li>
+<li><strong>Excluir:</strong> Brasil.</li>
+<li><strong>Excluir:</strong> Alasca.</li>
+</ul>
+<ul class="chk">
+<li><i class="cx"></i><span><strong>11.</strong> Idade: <strong>25 a 55</strong>.</span></li>
+<li><i class="cx"></i><span><strong>12.</strong> Idioma: <strong>Português (Brasil)</strong>. É isso que filtra brasileiro morando nos EUA, e é a peça mais importante da segmentação.</span></li>
+<li><i class="cx"></i><span><strong>13.</strong> Gênero: <strong>somente homens</strong>.</span></li>
+</ul>
+<blockquote><p>Isso é escolha de segmentação da aula, não regra técnica. Vale saber que exclui mulher dona de empresa e mulher que decide a obra em casa. Se o custo por lead ficar alto, é a primeira coisa que eu testaria abrir.</p></blockquote>
+<ul class="chk">
+<li><i class="cx"></i><span><strong>14.</strong> Público Advantage → trocar para <strong>&quot;sugestão de público&quot;</strong>.</span></li>
+<li><i class="cx"></i><span><strong>15.</strong> Posicionamentos: trocar para <strong>manuais</strong> e <strong>desativar WhatsApp</strong> (como posicionamento de exibição) e a <strong>Audience Network</strong>.</span></li>
+<li><i class="cx"></i><span><strong>16.</strong> Em Feeds, <strong>desativar</strong>: notificação do Facebook, página inicial do Explorar, e Facebook Marketplace. Ficam 4 posicionamentos marcados.</span></li>
+<li><i class="cx"></i><span><strong>17.</strong> Veiculação: <strong>24 horas, contínua</strong>, sem programação por hora.</span></li>
+</ul>
+<blockquote><p>A aula é explícita: *&quot;24 horas.&quot;* E explica que a janela em que o lead costuma chegar é das 7h ao meio-dia e das 17h em diante, mas deixa a campanha aberta o dia inteiro em vez de restringir.</p></blockquote>
+<h2>Nível 3: o anúncio</h2>
+<ul class="chk">
+<li><i class="cx"></i><span><strong>18.</strong> Nome do anúncio: <strong><code>Ad 01</code></strong>.</span></li>
+<li><i class="cx"></i><span><strong>19.</strong> Origem: <strong>criar anúncio</strong>. Não usar publicação existente.</span></li>
+<li><i class="cx"></i><span><strong>20.</strong> Formato: <strong>anúncio em vídeo</strong>. Subir o criativo.</span></li>
+<li><i class="cx"></i><span><strong>21.</strong> Texto principal e título.</span></li>
+</ul>
+<blockquote><p><strong>Sem &quot;5/5&quot; e sem emoji de estrela no título.</strong> A aula usa; é avaliação inventada e está na quarentena da seção 2.</p></blockquote>
+<ul class="chk">
+<li><i class="cx"></i><span><strong>22.</strong> Aprimoramentos de criativo: <strong>desativar todos</strong>, exceto <strong>&quot;retoques de vídeos&quot;</strong>, que fica ligado.</span></li>
+<li><i class="cx"></i><span><strong>23.</strong> Botão: <strong>enviar mensagem pelo WhatsApp</strong>.</span></li>
+<li><i class="cx"></i><span><strong>24.</strong> Conversas → <strong>criar modelo de conversa</strong> e <strong>trocar a mensagem de abertura</strong>:</span></li>
+</ul>
+<div class="tw"><table><thead><tr><th></th><th>Texto</th></tr></thead><tbody><tr><td><strong>Antes</strong> (padrão do Meta)</td><td>&quot;Olá, posso ter mais informações sobre isso?&quot;</td></tr><tr><td><strong>Depois</strong> (o que usar)</td><td>&quot;Olá, gostaria de saber mais sobre o programa de marketing de vocês.&quot;</td></tr></tbody></table></div>
+<p>A troca importa porque a mensagem padrão não diz sobre o quê, e você atende sem saber de qual anúncio o lead veio. A frase nova já entrega o contexto na primeira linha da conversa.</p>
+<h2>Os criativos 2 em diante</h2>
+<ul class="chk">
+<li><i class="cx"></i><span><strong>25.</strong> Nos três pontinhos da campanha → <strong>Duplicar</strong>. Na duplicata, trocar <code>01</code> por <code>02</code> nos <strong>três</strong> níveis (campanha, conjunto, anúncio).</span></li>
+<li><i class="cx"></i><span><strong>26.</strong> Em &quot;alterar seleções&quot;, trocar o vídeo.</span></li>
+</ul>
+<blockquote><p><strong>A armadilha da duplicata:</strong> clicar no vídeo novo <strong>não</strong> desmarca o antigo. Você tem que clicar no novo e depois clicar no antigo para desmarcar. Se não fizer, a campanha 02 sobe com o criativo 01 e você testa a mesma coisa duas vezes pagando dobrado.</p></blockquote>
+<ul class="chk">
+<li><i class="cx"></i><span><strong>27.</strong> Publicar tudo de uma vez: clicar na primeira campanha, segurar <strong>Shift</strong>, clicar na última, e <strong>Publicar</strong>.</span></li>
+</ul>
+<hr class="quebra">
+<h1>5. A tabela de decisão</h1>
+<p>Confira uma vez por dia, no fim do dia. O critério é do mentor, medido na operação dele.</p>
+<div class="tw"><table><thead><tr><th>Dia</th><th>Situação</th><th>O que fazer</th></tr></thead><tbody><tr><td><strong>1</strong></td><td>Gastou os R$ 100 e trouxe <strong>zero lead</strong></td><td><strong>Matar</strong></td></tr><tr><td><strong>1</strong></td><td>Trouxe pelo menos 1 lead</td><td>Deixar rodar</td></tr><tr><td><strong>2</strong></td><td>CPL <strong>acima de R$ 70</strong></td><td><strong>Matar</strong></td></tr><tr><td><strong>2</strong></td><td>CPL até R$ 70</td><td>Deixar rodar</td></tr><tr><td><strong>3</strong></td><td>CPL <strong>entre R$ 20 e R$ 50</strong></td><td><strong>Validado.</strong> Escalar</td></tr><tr><td><strong>3</strong></td><td>CPL <strong>acima de R$ 50</strong></td><td><strong>Matar</strong></td></tr></tbody></table></div>
+<p>CPL = verba gasta ÷ leads que chegaram no WhatsApp.</p>
+<h2>O número que decide de verdade não é o CPL</h2>
+<blockquote><p>&quot;Não adianta de nada tu ter um CPL barato, que é o custo por lead, sendo que esse lead é uma merda. Tu tem que ter um CPMQL, que significa custo por marketing qualified lead, ou seja, custo por lead qualificado bom. E além de ter um custo por lead qualificado bom, tem que ter um custo por aquisição de cliente.&quot;</p></blockquote>
+<p>Traduzido para o seu CRM: o CPL você lê no gerenciador da Meta, mas <strong>o lead qualificado e o cliente adquirido você lê no dashboard do Comercial</strong>. O funil lá mostra quantos entraram, quantos responderam, quantos agendaram, quantos compareceram e quantos fecharam. Um criativo com CPL de R$ 25 que nunca agenda é pior que um de R$ 45 que agenda.</p>
+<p>Com menos de 5 leads numa etapa o dashboard se cala de propósito: taxa em cima de 3 leads é ruído. Nos primeiros dias, o CPL da Meta é o que você tem.</p>
+<h2>Escalar o que ganhou</h2>
+<p>A aula não detalha o método de escala além de manter o vencedor rodando. O que está claro nela: cada criativo é uma campanha própria, então escalar é <strong>subir a verba daquela campanha</strong> ou <strong>duplicá-la</strong>, não misturar criativos no mesmo conjunto.</p>
+<p><strong>Buraco real:</strong> a aula 03 não explica quanto subir por vez nem de quanto em quanto tempo. Isso você vai ter que resolver por fora. O padrão de mercado que não quebra aprendizado é subir <strong>20% a cada 2 ou 3 dias</strong> enquanto o CPL se mantiver na faixa. Está anotado como decisão sua, não como recomendação da aula.</p>
+<hr class="quebra">
+<h1>6. O plano da sexta, hora a hora</h1>
+<p>Assumindo que os criativos estão prontos e os itens da seção 3 estão feitos.</p>
+<div class="tw"><table><thead><tr><th>Quando</th><th>O que</th></tr></thead><tbody><tr><td><strong>Quinta, à noite</strong></td><td>Rodar a seção 3 inteira. Se o cartão não estiver aprovado, você descobre com um dia de folga.</td></tr><tr><td><strong>Sexta, de manhã</strong></td><td>Subir as 2 campanhas (criativo 01 e 02), R$ 100 cada, programadas para <strong>sábado às 9h de Brasília</strong>.</td></tr><tr><td><strong>Sexta, à tarde</strong></td><td>Deixar o CRM aberto e o WhatsApp na mão. Testar você mesmo: clicar no seu anúncio, ver se cai no WhatsApp com a mensagem certa e se o lead aparece no CRM.</td></tr><tr><td><strong>Sábado, fim do dia</strong></td><td>Corte do dia 1: gastou R$ 100 e zero lead, mata.</td></tr><tr><td><strong>Domingo, fim do dia</strong></td><td>Corte do dia 2: CPL acima de R$ 70, mata.</td></tr><tr><td><strong>Domingo à noite</strong></td><td>Corte do dia 3: CPL entre R$ 20 e R$ 50 valida. Escolhe o vencedor.</td></tr><tr><td><strong>Segunda, de manhã</strong></td><td>Desliga o perdedor. Deixa o vencedor em R$ 100 por dia até quinta.</td></tr><tr><td><strong>Próxima sexta</strong></td><td>Sobe os 2 criativos seguintes, mesma mecânica.</td></tr></tbody></table></div>
+<blockquote><p><strong>A aula recomenda subir com um dia de folga</strong> entre montar e começar a rodar, e programar sempre para o dia seguinte. Subir sexta para rodar sábado segue essa regra.</p></blockquote>
+<h2>O teste que ninguém faz e que salva a semana</h2>
+<p>Antes de dormir na sexta, <strong>clique no seu próprio anúncio</strong> pelo celular. Confira, na ordem:</p>
+<ul class="chk">
+<li><i class="cx"></i><span>O anúncio abre o WhatsApp (não o Messenger, não o Instagram)</span></li>
+<li><i class="cx"></i><span>A mensagem de abertura vem preenchida com o texto novo</span></li>
+<li><i class="cx"></i><span>O lead aparece no CRM, em Comercial → Leads novos → Super Hot</span></li>
+<li><i class="cx"></i><span>O card mostra a hora local dele e o telefone certo</span></li>
+<li><i class="cx"></i><span>A ativação de Ligação abre o playbook com o nome dele dentro</span></li>
+</ul>
+<p>Se qualquer um desses falhar, você tem a noite para arrumar em vez de descobrir com lead real na segunda.</p>
+<hr class="quebra">
+<h1>7. Os números da aula, com fonte</h1>
+<div class="tw"><table><thead><tr><th>O que</th><th>Valor</th><th>Onde</th></tr></thead><tbody><tr><td>Orçamento por criativo</td><td>R$ 100 por dia</td><td>aula 03</td></tr><tr><td>Caixa pequeno</td><td>R$ 200 por dia = 2 criativos</td><td>aula 03</td></tr><tr><td>Corte dia 1</td><td>R$ 100 gastos, 0 lead</td><td>aula 03</td></tr><tr><td>Corte dia 2</td><td>CPL acima de R$ 70</td><td>aula 03</td></tr><tr><td>Validação dia 3</td><td>CPL de R$ 20 a R$ 50</td><td>aula 03</td></tr><tr><td>Janela de validação</td><td>cerca de 3 dias</td><td>aula 03</td></tr><tr><td>Melhor horário para ligar</td><td>17h às 22h, 52% de atendimento</td><td>aula 03</td></tr><tr><td>Segunda melhor janela</td><td>7h às 11h</td><td>aula 03</td></tr><tr><td>Tempo até a primeira ligação</td><td>menos de 1 minuto</td><td>aula 03</td></tr><tr><td>Ativações por dia, lead quente</td><td>10</td><td>aula 03</td></tr><tr><td>Idade</td><td>25 a 55</td><td>aula 03</td></tr><tr><td>Início da veiculação</td><td>dia seguinte, 9h Brasília</td><td>aula 03</td></tr></tbody></table></div>
+<p>Todos os 143 números extraídos, com a citação literal de cada um, estão em <code>_memoria/historico/extracoes/aulas-campanha-meta.json</code>.</p>
+<hr class="quebra">
+<h1>8. As três aulas que faltam</h1>
+<p>O mentor prometeu mais 3 aulas ainda não liberadas, incluindo a de Claude Coding. Quando saírem, o que vale reextrair para este documento:</p>
+<ul>
+<li>O método de <strong>escala</strong> (o buraco da seção 5)</li>
+<li>Qualquer coisa sobre <strong>retargeting</strong> ou público morno, que a aula 03 quase não toca</li>
+<li>O <strong>arquivo do sistema de registro do Closer</strong>, o único que ele manteve a promessa de enviar</li>
+</ul>
+</body></html>
