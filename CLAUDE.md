@@ -139,7 +139,7 @@ Agência enxuta de geração de leads (metodologia LeadsEveryDay) para brasileir
 
 ## Público e mercado
 
-Contractors e empresas de construção/home services nos EUA, foco em brasileiros. Nichos: Remodeling, Flooring, Painting, Cabinets, Roofing, Gutters, HVAC. Prioridade geográfica inicial: **Massachusetts e Boston**. Recorte comercial prioritário dentro desses nichos ainda **não confirmado** — não decidir por conta própria, perguntar ao usuário quando isso for relevante pra uma entrega.
+Contractors e empresas de construção/home services nos EUA, foco em brasileiros. Nichos: Remodeling, Flooring, Painting, Cabinets, Roofing, Gutters, HVAC. Duas regiões atendidas desde 2026-09-10: **Grande Boston / Massachusetts** e **Grande Los Angeles** (Los Angeles, Van Nuys, North Hollywood, Burbank, Glendale, Pasadena, Long Beach, Culver City, Santa Monica, Inglewood, Torrance, Pomona e Anaheim). O número de atendimento é americano, área 213 (LA). Recorte comercial prioritário dentro desses nichos ainda **não confirmado** — não decidir por conta própria, perguntar ao usuário quando isso for relevante pra uma entrega.
 
 ## Estrutura de pastas
 

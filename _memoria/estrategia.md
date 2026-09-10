@@ -93,8 +93,10 @@ WhatsApp com mensagem pronta e **também cria o lead no CRM** (rota `/api/site-l
 
 Três coisas, nesta ordem, e nenhuma delas depende do sistema (que já está pronto):
 
-**1. Produzir os criativos, todos.** Os **20 roteiros já estão escritos** e prontos para
-a ferramenta: 16 com ator de IA e 4 para o Rodrigo gravar. Fonte de verdade em
+**1. Produzir os criativos, todos.** São **26 roteiros escritos** e prontos para a
+ferramenta: **20 da leva Massachusetts** (16 com ator de IA, 4 para o Rodrigo gravar) e
+**6 da leva Los Angeles** (`marketing/anuncios/roteiros-la.json`, numerados 101 a 106,
+adaptação dos roteiros 1, 2, 4, 12, 15 e 20, com o 106 para o Rodrigo gravar). Fonte de verdade em
 `marketing/anuncios/roteiros-20.json`, documento montado em
 `saidas/Leon-Group-20-Roteiros-de-Anuncio.pdf`. Cada roteiro tem um prompt único,
 copiável de uma vez, com o storyboard embaixo.
@@ -117,6 +119,16 @@ lead de Boston vê um número da Califórnia.
 **3. Tráfego pago.** Confirmado em 2026-09-09 que Instagram, Business Manager, conta de
 anúncios e meio de pagamento **já existem e funcionam**. Falta só a **página do Facebook**,
 mais a campanha montada, o orçamento definido e a régua de acompanhamento no dashboard.
+
+O passo a passo completo da subida está em `_memoria/playbook-campanha-meta.md`, com PDF em
+`saidas/Leon-Group-Campanha-Meta-Passo-a-Passo.pdf` e artefato publicado em
+https://claude.ai/code/artifact/d133d37c-52f0-4190-ad0e-65dd79e9960c (checklist que guarda o
+progresso). Inclui a copy pronta de cada anúncio, a mensagem inicial do WhatsApp, os cortes
+por dia e a folha de fazer e não fazer.
+
+**Segmentação decidida em 2026-09-10:** Estados Unidos como país, excluindo Brasil e Alasca,
+filtrado por **idioma português**. Não se segmenta por cidade: o filtro real é o idioma, e
+restringir a área encolhe o público e encarece a entrega. De onde os leads vêm se lê no CRM.
 
 **Cobrança:** o **WHOP já funciona**, com link limitado a **US$ 2.500 por cobrança**. Esse
 teto é entrada da decisão de preço no item 1, não um detalhe para depois.

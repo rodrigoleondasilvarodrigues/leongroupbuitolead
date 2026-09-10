@@ -390,7 +390,7 @@ const T = {
     pe_frase: "Presença, aquisição e processo comercial para construção e home services nos Estados Unidos.",
     pe_contato: "Contato",
     pe_atende: "Atendemos",
-    pe_regiao: "Prioridade em Massachusetts e Boston · Estados Unidos",
+    pe_regiao: "Boston e Massachusetts · Los Angeles e Grande LA · Estados Unidos",
     pe_nota: "Agência nova. Nenhum caso publicado ainda. Quando houver, com nome e número, estará aqui.",
 
     /* mensagem que sai no WhatsApp */
@@ -700,7 +700,7 @@ Quero saber mais sobre o que a Leon Group pode fazer pela minha empresa.`,
     pe_frase: "Presence, acquisition and sales process for construction and home services in the United States.",
     pe_contato: "Contact",
     pe_atende: "We serve",
-    pe_regiao: "Massachusetts and Boston first · United States",
+    pe_regiao: "Boston and Massachusetts · Los Angeles and Greater LA · United States",
     pe_nota: "New agency. No published case yet. When there is one, with a name and numbers, it will be here.",
 
     wa: (d) =>

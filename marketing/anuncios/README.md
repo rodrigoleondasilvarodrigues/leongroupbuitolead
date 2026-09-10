@@ -7,7 +7,8 @@ realmente aceitam. Dezesseis com ator de IA, quatro gravados pelo Rodrigo.
 
 | Arquivo | O que é |
 |---|---|
-| `roteiros-20.json` | **A fonte de verdade.** Os vinte roteiros. Editar aqui, nunca no HTML |
+| `roteiros-20.json` | **A fonte de verdade da leva Massachusetts.** Os vinte roteiros. Editar aqui, nunca no HTML |
+| `roteiros-la.json` | **A leva Los Angeles.** Seis roteiros, adaptação dos 1, 2, 4, 12, 15 e 20 |
 | `briefing.html` | As três seções de contexto (aulas, criativo de referência, o que muda). Reaproveitadas pelos dois documentos |
 | `referencia-enrico/` | Frames extraídos do criativo que o Enrico mostrou na aula 02 |
 | `dossie-aulas.json` | O que foi minerado das quatro aulas, com citação e origem |
@@ -91,9 +92,34 @@ Nenhum deles é apresentado como cliente da Leon Group nem dá depoimento, que �
 exatamente o que separa dramatização de testemunho fabricado. O campo
 `verificar` de cada roteiro repete essa regra, para não se perder na edição.
 
+## As duas levas
+
+| Leva | Arquivo | Quantos | Cidades |
+|---|---|---|---|
+| Massachusetts | `roteiros-20.json` | 20 | Everett, Malden, Framingham, Waltham, Medford, Revere, Quincy, Lynn, Somerville |
+| Los Angeles | `roteiros-la.json` | 6 | Van Nuys, North Hollywood, Burbank, Glendale, Pasadena, Long Beach, Inglewood, Torrance, Pomona |
+
+Os seis de LA (numerados 101 a 106) são adaptação dos roteiros 1, 2, 4, 12, 15
+e 20. **Adaptação não é troca de nome de cidade.** O roteiro 4 girava em torno
+de fevereiro, neve e ice dam, que não existem no sul da Califórnia, e virou a
+estação de chuva de janeiro (roteiro 103). E **nenhum valor em dólar de
+Massachusetts foi reaproveitado**: ticket de Boston não é ticket de Los
+Angeles, então onde havia número, ou ele saiu do roteiro, ou entrou como faixa
+a conferir em fonte local antes de gravar.
+
+Validar os dois com o mesmo script:
+
+```bash
+python3 scripts/validar_roteiros_anuncio.py marketing/anuncios/roteiros-20.json
+python3 scripts/validar_roteiros_anuncio.py marketing/anuncios/roteiros-la.json
+```
+
 ## Antes da primeira leva
 
-Número americano no WhatsApp (hoje o site usa um brasileiro provisório), página
-no Facebook e conta de anúncio, e o modelo do documento de diagnóstico, que o
-roteiro 15 promete por escrito. Cada roteiro lista o que conferir no seu bloco
-`verificar`.
+✅ O número americano e o WhatsApp Business ficaram prontos em 2026-09-10
+(+1 213 396 0014). Essa trava saiu dos blocos `verificar`.
+
+Continua faltando: **página no Facebook**, o modelo do documento de diagnóstico
+que os roteiros 15, 20, 105 e 106 prometem por escrito, e **os vídeos, que não
+existem**. Roteiro escrito não é criativo pronto. Cada roteiro lista o que
+conferir no seu bloco `verificar`.
