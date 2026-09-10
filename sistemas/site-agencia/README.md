@@ -26,9 +26,12 @@ const CRM_ENDPOINT = "https://leon-group.leongroup.workers.dev/api/site-lead";
 const PARCIAL_MS = 2500;            // espera antes de guardar formulário incompleto
 ```
 
-**O número atual é o oficial**: americano, área 213, obtido pelo Vnumber em
-2026-09-10. Ele substituiu o provisório brasileiro `5561998629189`, que não deve
-voltar. Para trocar de novo, mude **só esta linha** e republique. Fora daqui,
+**O número atual é o oficial**: americano, área 213, em uso desde 2026-09-10.
+Ele substituiu o provisório brasileiro, que não deve voltar. Para trocar de novo,
+mude **só esta linha** e republique.
+
+⚠ Esta pasta inteira vai para o Pages, então `README.md` e `teste.js` também são
+servidos publicamente. Não escrever número pessoal nem credencial aqui dentro. Fora daqui,
 só o `teste.js` cita o número, e ele falha de propósito se os dois discordarem.
 Nenhum HTML referencia o número. Leva menos de um minuto.
 

@@ -23,10 +23,12 @@
    Brasil:  55 + DDD + número   ->  "5531999999999"
    EUA:     1  + área + número  ->  "16170000000"
 
-   OFICIAL desde 2026-09-10: número americano do Rodrigo, obtido pela via
-     legítima (Vnumber). Substituiu o provisório brasileiro 5561998629189,
-     que não deve voltar. Para trocar, mude SÓ esta linha e republique:
-     nenhum outro arquivo do site referencia o número, só o teste.
+   OFICIAL desde 2026-09-10: número americano, obtido pela via legítima.
+     Substituiu o provisório brasileiro, que não deve voltar. Para trocar,
+     mude SÓ esta linha e republique: nenhum outro arquivo do site
+     referencia o número, só o teste.
+     (Este arquivo é servido publicamente. Não escrever número pessoal,
+     e-mail privado ou qualquer credencial nos comentários daqui.)
 
    Deixar como "" faz o botão avisar para usar o e-mail, em vez de abrir
    uma conversa com número errado.                                       */
