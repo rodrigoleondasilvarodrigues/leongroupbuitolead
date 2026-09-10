@@ -180,7 +180,7 @@ Depois de qualquer entrega que mude esse estado (canal configurado, oferta defin
 
 ## Integridade — regra não negociável
 
-Nunca declarar cliente inexistente como real, nunca inventar depoimento, avaliação, localização, equipe ou resultado, nunca reutilizar mídia sem licença, nunca prometer faturamento ou posição no Google sem base verificável. Mockup/demonstração só vale rotulado como tal. Prova social real só depois de um primeiro trabalho pago e documentado.
+Nunca declarar cliente inexistente como real, nunca reutilizar mídia sem licença, nunca prometer faturamento ou posição no Google sem base verificável. Mockup/demonstração só vale rotulado como tal. Prova social real só depois de um primeiro trabalho pago e documentado.
 
 Motivo: o material de origem (aulas + hotseat estudados, ver `_memoria/historico/AULAS-E-HOTSEAT.md`) inclui táticas enganosas de terceiros — casos fake, depoimento encenado, prints manipulados, falsa presença nos EUA, pressão de venda sem tempo de decisão. Ficam registradas como histórico estudado, **nunca como processo operacional da Leon Group**.
 
