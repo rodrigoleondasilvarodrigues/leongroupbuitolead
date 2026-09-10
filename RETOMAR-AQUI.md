@@ -172,8 +172,9 @@ alcança. Use `function nome()` para o que precisa ser testado.
 ## Coisas que dependem da conta antiga do Claude
 
 O roteiro da call foi publicado como artifact em
-`https://claude.ai/code/artifact/04f23839-e588-47d1-a6c8-822c9389eac0`. Esse
-link pertence à conta antiga e pode ficar inacessível depois da troca.
+`https://claude.ai/code/artifact/04f23839-e588-47d1-a6c8-822c9389eac0`. Em
+2026-09-10 esse link **já deixou de responder** ("artifact not found"): ele
+pertence à conta antiga. Não tente abrir nem recuperar.
 
 **Não é perda:** a fonte de verdade é `propostas/oferta-na-call.md`, no
 repositório. Da conta nova, republique a partir dele quando o Rodrigo pedir.
