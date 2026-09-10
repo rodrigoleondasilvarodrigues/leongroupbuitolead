@@ -151,18 +151,37 @@ export const rotuloCategoria = (k) => (CAT.get(k)?.rot || k || "sem categoria");
    MRR é mensalidade: o valor do contrato é a mensalidade VEZES a duração.
    Somar a mensalidade crua com o total de um TCV subestima a carteira e faz o
    "a receber" nascer errado, que era o comportamento antigo.               */
-export function valorDoContrato(c) {
+export function valorDoContrato(c, cotacaoRef) {
   const base = parseDinheiro(c.valor_contrato);
   const extra = parseDinheiro(c.valor_extras);
   if (!base && !extra) return null;
   const meses = Math.max(1, Number(c.duracao_meses) || 1);
   const recorrente = c.tipo_contrato === "MRR";
-  const total = (base ? base.valor * (recorrente ? meses : 1) : 0) + (extra ? extra.valor : 0);
+  const moeda = base?.moeda || extra?.moeda || null;
+
+  /* O EXTRA PODE ESTAR EM OUTRA MOEDA que a base, e antes era somado cru:
+     R$ 800 de serviço extra viravam US$ 800 no "Contratado" e no "Ainda a
+     receber". `parseDinheiro` já detecta a moeda de cada texto; o bug era
+     descartar a do extra. Agora converte pela cotação de referência e marca o
+     total como parcialmente estimado, para a tela poder dizer isso. */
+  const ref = cotacaoValida(cotacaoRef) || COTACAO_PADRAO;
+  let extraNaMoeda = 0, extraConvertido = false;
+  if (extra) {
+    const mesma = !extra.moeda || !moeda || extra.moeda === moeda;
+    if (mesma) extraNaMoeda = extra.valor;
+    else {
+      extraNaMoeda = extra.moeda === "USD" ? extra.valor * ref : extra.valor / ref;
+      extraConvertido = true;
+    }
+  }
+  const total = (base ? base.valor * (recorrente ? meses : 1) : 0) + extraNaMoeda;
   return {
-    total, moeda: base?.moeda || extra?.moeda || null,
+    total, moeda,
     mensalidade: recorrente && base ? base.valor : null,
     meses: recorrente ? meses : null,
     recorrente,
+    extra_convertido: extraConvertido,
+    extra_original: extra ? { valor: extra.valor, moeda: extra.moeda } : null,
   };
 }
 
@@ -173,7 +192,7 @@ export function valorDoContrato(c) {
    custos      custo direto do cliente, na moeda dele
    lucro       entrou - taxa - custos, calculado nas duas moedas             */
 export function financeiroDoCliente(c, entradas = [], cotacaoRef = COTACAO_PADRAO, saidas = []) {
-  const ct = valorDoContrato(c);
+  const ct = valorDoContrato(c, cotacaoRef);
   const minhas = entradas.filter((e) => e.cliente_id === c.id);
 
   /* Compatibilidade com o histórico: cliente antigo tem valor_pago e nenhuma
@@ -197,7 +216,14 @@ export function financeiroDoCliente(c, entradas = [], cotacaoRef = COTACAO_PADRA
     const d = nasDuas(v.valor, moeda, e.cotacao, cotacaoRef);
     detalhe.push({ id: e.id, valor: v.valor, moeda, valor_rot: fmt(v.valor, moeda),
       cotacao: cotacaoValida(e.cotacao), cotacao_usada: d.cotacao_usada,
-      cotacao_estimada: !cotacaoValida(e.cotacao) && moeda === "USD",
+      /* A marca de estimado NÃO depende da moeda. Antes só marcava entrada em
+         dólar; entrada em real sem cotação ficava sem marca e o total em DÓLAR
+         mudava sozinho quando a cotação de referência era atualizada, com a
+         tela jurando estar exata. É a mesma ficção que a migração 11 existe
+         para evitar, virada para o outro lado, e o caso é real: parte do
+         recebimento de contractor brasileiro entra por PIX em real. */
+      cotacao_estimada: !cotacaoValida(e.cotacao),
+      moeda_estimada: !cotacaoValida(e.cotacao) ? (moeda === "USD" ? "BRL" : "USD") : null,
       usd: d.usd, brl: d.brl, usd_rot: fmtUSD(d.usd), brl_rot: fmtBRL(d.brl),
       recebido_em: e.recebido_em, meio: e.meio || null, parcela: e.parcela || null,
       nota: e.nota || null, implicita: !!e.implicita });
@@ -313,6 +339,13 @@ export function financeiroTotal(clientes = [], entradas = [], cotacao = {}, said
   const saiu = zero();
   // o pedaço das saídas que é custo direto de cliente: o resto é overhead
   const custosDeCliente = zero();
+  /* Recorrente por MÊS, não somado no período. Antes `fixoMensal` acumulava
+     toda saída recorrente do período inteiro e a tela imprimia isso como
+     "Custo fixo mensal": depois de um ano de R$ 200 de assinatura, a tela
+     dizia R$ 2.400 de custo fixo mensal. É a base do ponto de equilíbrio, e
+     era o número mais errado do caixa. Agora agrupa por mês e a tela usa o
+     mês mais recente com lançamento. */
+  const recorrentePorMes = new Map();
   const porCategoria = new Map();
   const fixoMensal = zero();
   const detalheSaidas = [];
@@ -324,7 +357,14 @@ export function financeiroTotal(clientes = [], entradas = [], cotacao = {}, said
     if (x.cliente_id) soma(custosDeCliente, v.valor, moeda, x.cotacao, ref);
     if (!porCategoria.has(x.categoria)) porCategoria.set(x.categoria, zero());
     soma(porCategoria.get(x.categoria), v.valor, moeda, x.cotacao, ref);
-    if (x.recorrente) soma(fixoMensal, v.valor, moeda, x.cotacao, ref);
+    if (x.recorrente) {
+      const mes = String(x.pago_em || "").slice(0, 7);
+      if (/^\d{4}-\d{2}$/.test(mes)) {
+        if (!recorrentePorMes.has(mes)) recorrentePorMes.set(mes, zero());
+        soma(recorrentePorMes.get(mes), v.valor, moeda, x.cotacao, ref);
+      }
+      soma(fixoMensal, v.valor, moeda, x.cotacao, ref);   // total do período
+    }
     const d = nasDuas(v.valor, moeda, x.cotacao, ref);
     detalheSaidas.push({
       tipo: "saida", id: x.id, data: String(x.pago_em || "").slice(0, 10),
@@ -382,6 +422,9 @@ export function financeiroTotal(clientes = [], entradas = [], cotacao = {}, said
         usd: d.usd, brl: d.brl, usd_rot: d.usd_rot, brl_rot: d.brl_rot,
         cotacao: d.cotacao, cotacao_usada: d.cotacao_usada,
         cotacao_estimada: d.cotacao_estimada,
+        // qual dos dois lados é o estimado: sem isso a tela não sabe se o
+        // número duvidoso é o de real ou o de dólar
+        moeda_estimada: d.moeda_estimada || null,
         cliente_id: f.id, cliente: f.empresa,
         descricao: [d.parcela, d.meio].filter(Boolean).join(" · ") || null,
         implicita: d.implicita, categoria: "recebimento", categoria_rot: "Recebimento",
@@ -453,9 +496,15 @@ export function financeiroTotal(clientes = [], entradas = [], cotacao = {}, said
 
   const avisos = [];
   if (entrou.estimado_brl > 0) avisos.push(
-    `${Math.round(100 * entrou.estimado_brl / entrou.brl)}% do total em real foi convertido pela cotação de referência ` +
+    `${Math.round(100 * entrou.estimado_brl / entrou.brl)}% do total em REAL foi convertido pela cotação de referência ` +
     `(R$ ${ref.toFixed(2).replace(".", ",")}), não pela cotação do dia em que o dinheiro entrou. ` +
     `Preencha a cotação em cada entrada para o número em real virar exato.`);
+  /* O aviso pelo lado do DÓLAR faltava. Entrada em real sem cotação fazia o
+     total em dólar mudar sozinho, e o dólar é o número grande da tela. */
+  if (entrou.estimado_usd > 0 && entrou.usd) avisos.push(
+    `${Math.round(100 * entrou.estimado_usd / entrou.usd)}% do total em DÓLAR foi convertido pela cotação de ` +
+    `referência (R$ ${ref.toFixed(2).replace(".", ",")}), não pela cotação do dia. São entradas em real sem ` +
+    `cotação registrada: enquanto ficarem assim, o total em dólar muda quando você atualizar a cotação.`);
   if (porCliente.some((f) => f.tem_implicita)) avisos.push(
     "Alguns clientes têm valor recebido antigo, de antes do registro de entradas. " +
     "Ele conta como uma entrada só, sem cotação e sem data do dinheiro. " +
@@ -504,7 +553,17 @@ export function financeiroTotal(clientes = [], entradas = [], cotacao = {}, said
              positivo: saldo.usd >= 0,
              // quanto de cada real que entrou sobrou
              margem: entrou.usd ? Math.round(1000 * saldo.usd / entrou.usd) / 10 : null },
-    custo_fixo_mensal: rotula(fixoMensal),
+    /* Dois números diferentes, e antes eram um só chamado "Custo fixo mensal":
+       o do MÊS é o que serve para ponto de equilíbrio; o do período é o total
+       gasto em recorrentes desde o começo. */
+    custo_fixo_mensal: (() => {
+      const meses = [...recorrentePorMes.keys()].sort();
+      const ultimo = meses[meses.length - 1];
+      return { ...rotula(ultimo ? recorrentePorMes.get(ultimo) : zero()),
+               mes: ultimo || null,
+               n_meses: meses.length };
+    })(),
+    recorrente_no_periodo: rotula(fixoMensal),
     por_categoria: [...porCategoria.entries()]
       .map(([k, a]) => ({ chave: k, rotulo: rotuloCategoria(k), ...rotula(a),
         // fatia do que saiu, para desenhar a barra
@@ -568,9 +627,20 @@ export async function funil(D) {
     D.prepare("SELECT COUNT(DISTINCT lead_id) n FROM eventos WHERE tipo='call_compareceu'"),
     D.prepare("SELECT COUNT(*) n FROM leads WHERE coluna='recusou'"),
     D.prepare("SELECT COUNT(*) n FROM leads WHERE arquivado=1 OR coluna='no_show_f3'"),
-    // todas as passagens para "fechou", com a coluna de onde vieram
-    D.prepare(`SELECT lead_id, de, MIN(id) pid FROM eventos
-               WHERE tipo='moveu' AND para LIKE '%/fechou' GROUP BY lead_id`),
+    /* Fechamento pela PASSAGEM, mas só de quem AINDA está em fechou.
+       O bug: `fecharam` saía de eventos (permanentes) e `recusaram` do estado
+       atual da coluna (reversível). Mover para Fechou e depois para Recusou
+       contava o mesmo lead nas duas pontas, para sempre, e a taxa geral
+       ("X% fecham", que vai no título do funil e para a IA) ficava inflada sem
+       jeito de corrigir a não ser excluindo o lead.
+
+       O `de` do evento continua sendo a fonte de onde ele veio, que é o que
+       separa fechou-na-call de fechou-no-follow-up. O INNER JOIN com leads é
+       o que trava a contagem no estado atual. */
+    D.prepare(`SELECT e.lead_id, e.de, MIN(e.id) pid FROM eventos e
+               JOIN leads l ON l.id = e.lead_id AND l.coluna = 'fechou'
+               WHERE e.tipo='moveu' AND e.para LIKE '%/fechou'
+               GROUP BY e.lead_id`),
     D.prepare("SELECT COUNT(*) n FROM clientes WHERE arquivado=0"),
   ]);
   const n = (q) => q?.results?.[0]?.n || 0;

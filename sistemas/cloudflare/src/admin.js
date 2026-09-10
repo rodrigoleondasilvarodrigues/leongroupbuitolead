@@ -396,7 +396,7 @@ function render(){
             :x.renovacao_perto?'<b style="color:var(--laranja-esc)">renova em '+x.dias_para_renovar+'d</b>'
             :x.dias+' dias'}</span></div>
           <div class="meta">\${esc(x.nome_contato)}\${x.nicho?' · '+esc(x.nicho):''}\${dinheiro(x)}
-            \${x.reviews_total?' · '+x.reviews_postadas+'/'+x.reviews_total+' reviews':''}
+            \${x.reviews_total?' · '+x.reviews_postadas+'/'+x.reviews_total+' pedidos de avaliação':''}
             \${x.marcos_total?' · '+x.marcos_feitos+'/'+x.marcos_total+' marcos':''}
             \${x.midias&&x.midias.foto?' · '+x.midias.foto+' fotos':''}
             \${x.arquivos_agencia?' · '+x.arquivos_agencia+' peças':''}
@@ -626,8 +626,11 @@ async function abrirCliente(id){
    <section><h4>Instagram</h4>\${(c.posts||[]).map(x=>
      \`<div class="linha"><span><b>\${x.tipo==='destaque'?'★':x.ordem}</b> \${esc(x.titulo)}</span></div>\`).join('')
      ||'<p style="color:var(--cinza);font-size:12.5px">Gere os entregáveis.</p>'}</section>
-   <section><h4>Reviews (\${(c.reviews||[]).filter(r=>r.postada).length}/\${(c.reviews||[]).length} postadas)</h4>
-     \${(c.reviews||[]).length?'<p style="font-size:12px;color:var(--cinza);margin-bottom:8px">Quem posta é o <b>cliente</b>. Ritmo: 3 por semana.</p>':''}
+   <section><h4>Pedidos de avaliação (\${(c.reviews||[]).filter(r=>r.postada).length}/\${(c.reviews||[]).length} enviados)</h4>
+     \${(c.reviews||[]).length?\`<p style="font-size:12px;color:var(--cinza);margin-bottom:8px">
+       Estes são os <b>pedidos</b> que o cliente manda para o cliente DELE depois da obra.
+       Quem escreve a avaliação é o cliente final, sempre. Marque conforme ele for mandando.
+       Trocar {LINK} pelo link de avaliação do perfil, que só existe depois da verificação.</p>\`:''}
      \${(c.reviews||[]).slice(0,5).map(r=>\`<div class="rev"><small>
        <input type="checkbox" \${r.postada?'checked':''} onchange="revPost(\${r.id},this.checked)" style="width:auto">
        \${esc(r.servico)}</small>\${esc(r.texto)}</div>\`).join('')}
@@ -663,7 +666,7 @@ async function abrirCliente(id){
      <div class="kpis" style="margin-bottom:10px">
        <div class="kpi"><b>\${c.dias_uteis??'0'}</b><span>dia útil de 5</span></div>
        <div class="kpi"><b>\${(c.marcos||[]).filter(m=>m.concluido).length}/\${(c.marcos||[]).length}</b><span>marcos</span></div>
-       <div class="kpi"><b>\${(c.reviews||[]).filter(r=>r.postada).length}/\${(c.reviews||[]).length}</b><span>reviews postadas</span></div>
+       <div class="kpi"><b>\${(c.reviews||[]).filter(r=>r.postada).length}/\${(c.reviews||[]).length}</b><span>pedidos enviados</span></div>
        <div class="kpi"><b>\${(c.midias||[]).filter(m=>m.tipo==='foto').length}</b><span>fotos</span></div>
        <div class="kpi"><b>\${(c.midias||[]).filter(m=>m.tipo==='video').length}</b><span>vídeos</span></div>
        <div class="kpi"><b>\${c.leads_recebidos||0}</b><span>leads entregues</span></div>

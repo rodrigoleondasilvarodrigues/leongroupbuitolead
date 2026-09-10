@@ -1,43 +1,63 @@
 // Geradores dos entregáveis · Leon Group
-// Anatomia das reviews e pautas dos posts vieram das aulas 01-04 (ver
+// Pautas dos posts vieram das aulas 01-04 (ver
 // _memoria/historico/ESPECIFICACOES-SISTEMAS.md).
+//
+// ⚠ A "anatomia das reviews" das aulas era anatomia de avaliação fabricada, e
+// foi removida daqui em 2026-09-10, por achado da auditoria do ecossistema.
+// O que este arquivo gera agora é PEDIDO de avaliação, mandado pelo contractor
+// ao cliente real dele. O motivo está por escrito antes das listas PEDIDO_*:
+// regra de integridade do CLAUDE.md, política do Google Business Profile, e a
+// FTC Rule on Consumer Reviews, que alcança quem fornece o texto.
 
-const ABERTURAS = [
-  "I had been looking for a reliable {s} contractor in {c} for months before I found {d}.",
-  "After getting three quotes for {s} here in {c}, I decided to go with {d}, and it was the best decision I made.",
-  "We needed {s} done at our home in {c} and a neighbor recommended {d}.",
-  "I want to leave an honest review about the {s} work {d} did for us in {c}.",
-  "Finding a good {s} company in {c} is not easy. {d} changed that for us.",
-  "This is my second project with {d} and once again the {s} work in {c} was flawless.",
+/* ⚠ ESTAS LISTAS JÁ GERARAM AVALIAÇÃO FALSA, E FORAM SUBSTITUÍDAS.
+
+   A versão anterior tinha frases em primeira pessoa DE CLIENTE ("I want to
+   leave an honest review about the work...", "Five stars. Best team in {c}").
+   Combinadas, montavam 20 avaliações prontas para o contractor publicar como
+   se fossem clientes dele. Isso é avaliação fabricada: quebra a regra de
+   integridade do CLAUDE.md, suspende perfil no Google, e desde 2024 a FTC Rule
+   on Consumer Reviews alcança quem FORNECE o texto.
+
+   Agora as listas montam o PEDIDO de avaliação: a mensagem que o contractor
+   manda para o cliente real dele, depois da obra, pedindo que ele avalie.
+   Quem escreve é o contractor, quem avalia é o cliente, e o texto da avaliação
+   não sai daqui.
+
+   {d} = dono · {c} = cidade · {s} = serviço · {LINK} = link de avaliação  */
+const PEDIDO_ABERTURA = [
+  "Hi! This is {d}. Thanks again for trusting us with your {s} in {c}.",
+  "Hey, {d} here. It was a pleasure working on your {s}.",
+  "Hi, it's {d}. Just wanted to say thank you for choosing us for your {s}.",
+  "Hello! {d} here. Hope you are enjoying the new {s}.",
+  "Hi, this is {d} from the {s} job we just wrapped up in {c}.",
+  "Hey! {d} speaking. Thank you for having us out for your {s}.",
 ];
-const ATENDIMENTO = [
-  "{d} was extremely attentive from the very first call and answered every question without rushing me.",
-  "What stood out was the communication. {d} kept me updated every single day of the project.",
-  "{d} showed up exactly when he said he would, which is rare around {c}.",
-  "The whole crew was respectful and clean, and {d} personally checked the work at the end of each day.",
-  "I never had to chase {d} for an update. He was always one step ahead.",
+const PEDIDO_MOTIVO = [
+  "Most of my work comes from neighbors finding me on Google.",
+  "Word of mouth and Google is how people around {c} find me.",
+  "I am a small local business, so reviews are what help new customers find me.",
+  "Google reviews are pretty much my only advertising.",
+  "Being easy to find on Google makes a real difference for a small crew like mine.",
 ];
-const PRAZO = [
-  "The job was finished ahead of the schedule we agreed on. {d} delivered earlier than we expected.",
-  "They finished the {s} faster than promised and without cutting any corners.",
-  "{d} gave me a timeline and beat it. That never happens with contractors.",
-  "Project came in on budget and ahead of the deadline.",
+const PEDIDO_ASK = [
+  "If you were happy with how it turned out, would you mind leaving a quick review? {LINK}",
+  "If you have a minute, a short review would help me a lot: {LINK}",
+  "Whenever you have a moment, you can leave a review here: {LINK}",
+  "If you feel like sharing your experience, the review link is here: {LINK}",
+  "Only if you think we earned it, you can leave a review here: {LINK}",
 ];
-const QUALIDADE = [
-  "The quality of the {s} is exactly what we hoped for. The finish is clean and professional.",
-  "You can tell {d} takes pride in the work. Every detail of the {s} was done right.",
-  "Our neighbors here in {c} have already asked who did our {s}.",
-  "The result completely changed the space. The {s} looks better than the photos we were shown.",
-];
-const FECHAMENTOS = [
-  "If you need {s} in {c}, call {d}. Best {s} service in {c}, hands down.",
-  "I recommend {d} to anyone in {c} looking for {s}. Best {s} contractor in {c}.",
-  "Hands down the best {s} company in {c}. Thank you, {d}!",
-  "Do yourself a favor and hire {d}. Best {s} in {c} by far.",
-  "Five stars. Best {s} team in {c} and I will use {d} again.",
+const PEDIDO_FECHO = [
+  "Either way, thank you, and call me anytime you need anything.",
+  "No pressure at all. Thanks again and take care.",
+  "Thanks for the work, and let me know if anything comes up.",
+  "Appreciate it either way. Have a good one!",
+  "Thank you, and I am around if you need anything else.",
 ];
 
 const pick = (a) => a[Math.floor(Math.random() * a.length)];
+/* {LINK} NÃO é substituído aqui de propósito: o link de avaliação do perfil só
+   existe depois de o Google Business Profile estar verificado, o que acontece
+   no dia 4 da cadência. O contractor cola o link dele no lugar. */
 const fmt = (t, ctx) => t.replace(/\{d\}/g, ctx.d).replace(/\{c\}/g, ctx.c).replace(/\{s\}/g, ctx.s);
 
 export function listaServicos(txt) {
@@ -63,7 +83,7 @@ export async function gerarReviews(cliente, qtd = 20, fotos = [], openaiKey = ""
     const ctx = { d: dono, c: cidade, s: svc[i % svc.length] };
     let texto = "";
     for (let t = 0; t < 40; t++) {
-      texto = [pick(ABERTURAS), pick(ATENDIMENTO), pick(PRAZO), pick(QUALIDADE), pick(FECHAMENTOS)]
+      texto = [pick(PEDIDO_ABERTURA), pick(PEDIDO_MOTIVO), pick(PEDIDO_ASK), pick(PEDIDO_FECHO)]
         .map((p) => fmt(p, ctx)).join(" ");
       if (!usados.has(texto)) { usados.add(texto); break; }
     }
@@ -73,19 +93,44 @@ export async function gerarReviews(cliente, qtd = 20, fotos = [], openaiKey = ""
 }
 
 async function reviewsOpenAI(dono, cidade, servicos, qtd, key) {
-  const prompt =
-`Write ${qtd} distinct Google Business Profile reviews in ENGLISH for a construction / home services
-company in ${cidade}, owned by ${dono}. Services: ${servicos.join(", ")}.
+  /* ⚠ ESTE PROMPT JÁ GEROU AVALIAÇÃO FALSA, E FOI CORRIGIDO.
 
-Each review MUST:
-- be first person, as a real residential customer
-- repeat the owner's name "${dono}" at least twice
-- name the specific service performed
-- name the city "${cidade}" at least twice (local SEO)
-- praise attentiveness and mention the job finished ahead of schedule
-- end stating they are the best [service] in ${cidade}
-- be 4 to 7 sentences, natural, with varied structure
-- sound like different people wrote them
+     A versão anterior pedia "${qtd} Google Business Profile reviews, first
+     person, as a real residential customer". Isso é avaliação fabricada: o
+     texto saía pronto para o contractor publicar como se fosse cliente dele.
+     Quebra a regra de integridade do CLAUDE.md, viola a política do Google
+     Business Profile (suspende o perfil) e cai na regra da FTC sobre avaliação
+     de consumidor, a FTC Rule on Consumer Reviews, que desde 2024 alcança quem
+     FORNECE o texto, não só quem publica.
+     E quem levaria a suspensão era o cliente, no perfil que a Leon Group
+     acabou de montar para ele.
+
+     Agora gera PEDIDO de avaliação: a mensagem que o contractor manda para o
+     cliente REAL dele, depois da obra entregue, pedindo que ele avalie. Um por
+     serviço, para ele não mandar a mesma frase para todo mundo.             */
+  const prompt =
+`Write ${qtd} distinct REVIEW REQUEST messages in ENGLISH. These are messages that a
+construction / home services contractor sends TO HIS OWN REAL CUSTOMER, by text or
+WhatsApp, right after finishing a job, asking that customer to leave a Google review.
+
+The contractor is ${dono}, in ${cidade}. Services: ${servicos.join(", ")}.
+
+CRITICAL: these are NOT reviews. Do NOT write anything in the voice of a customer
+praising the company. Do NOT write testimonials. Each message is the CONTRACTOR
+speaking to his customer, asking for a favor.
+
+Each message MUST:
+- be written by ${dono} in first person, addressed to the customer as "you"
+- reference the specific service that was just completed
+- ask plainly for a Google review, with no pressure and no incentive offered
+- include the literal placeholder {LINK} where the review link goes
+- be 2 to 4 sentences, warm and simple, the way a tradesperson actually writes
+- be different from the others: vary the service and the opening
+
+NEVER include:
+- any sentence a customer would write ("great job", "highly recommend", "5 stars")
+- any promise, discount or gift in exchange for the review
+- any suggestion of what the customer should say or how many stars to give
 
 Return ONLY a JSON array of strings.`;
   try {
@@ -535,7 +580,14 @@ export function gerarSite(c, fotos = [], reviews = []) {
   // lista vira o hero. Está dito no checklist.
   const capa = fotos[0] || "";
   const grade = fotos.slice(1, 10);
-  const revs = (reviews || []).filter((r) => r.postada).slice(0, 3);
+  /* ⚠ O site NÃO recebe mais texto gerado. Antes, `reviews` chegava aqui com
+     avaliação fabricada e ia para o site PÚBLICO do cliente como se fosse
+     depoimento real. Agora só entra avaliação de verdade, digitada à mão
+     depois de existir no perfil do Google, e hoje nada alimenta isso: a lista
+     chega vazia e a seção não é desenhada. É o comportamento certo, e o
+     checklist já dizia isso ("Avaliações do Google aparecendo no site: depois
+     que existirem avaliações reais. Nunca antes, e nunca inventadas"). */
+  const revs = (reviews || []).filter((r) => r.real === 1 || r.real === true).slice(0, 3);
 
   const msg = encodeURIComponent(
     `Hi ${dono || empresa}! I found your website and I would like a free estimate.`);
@@ -859,7 +911,7 @@ export const CADENCIA = [
   { dia: 1, marco: "Logo entregue (se o cliente não tinha)",      quem: "agência" },
   { dia: 2, marco: "12 posts do Instagram entregues",             quem: "agência" },
   { dia: 2, marco: "4 destaques do Instagram entregues",          quem: "agência" },
-  { dia: 3, marco: "20 reviews entregues ao cliente",             quem: "agência" },
+  { dia: 3, marco: "Sistema de avaliação entregue (link, QR e 20 pedidos)", quem: "agência" },
   { dia: 3, marco: "Tutorial do Google Meu Negócio enviado",      quem: "agência" },
   { dia: 4, marco: "Acesso ao Google Meu Negócio liberado",       quem: "cliente" },
   { dia: 4, marco: "GMB otimizado (categorias, serviços, fotos)", quem: "agência" },

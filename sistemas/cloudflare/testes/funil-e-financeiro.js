@@ -338,5 +338,48 @@ const semNota = diagnostico({ entraram: 60, responderam: 50, agendaram: 40, comp
   recusaram: 4, fecharam_call: 9, fecharam_followup: 1, fecharam: 10, perdidos: 5 });
 t("não avisa quando a call fecha mais", !semNota.notas.some((n) => /follow-up/i.test(n)));
 
+console.log("\n\x1b[1m=== 9. OS ACHADOS DA AUDITORIA DE 2026-09-10 ===\x1b[0m");
+/* Quatro números que a auditoria do ecossistema pegou errados. Cada um estava
+   silenciosamente errado numa tela que jurava estar exata. */
+console.log("\n  ── extra em moeda diferente da base (era somado cru) ──");
+const ctMix = valorDoContrato(
+  { tipo_contrato: "TCV", valor_contrato: "US$ 2.500", valor_extras: "R$ 800" }, 5.40);
+t("R$ 800 de extra não vira US$ 800 no contratado",
+  Math.abs(ctMix.total - (2500 + 800 / 5.40)) < 0.01, "US$ " + ctMix.total.toFixed(2));
+t("o total é marcado como parcialmente convertido", ctMix.extra_convertido === true);
+t("e guarda o valor original para a tela poder mostrar",
+  ctMix.extra_original.moeda === "BRL" && ctMix.extra_original.valor === 800);
+const ctIgual = valorDoContrato(
+  { tipo_contrato: "TCV", valor_contrato: "US$ 2.500", valor_extras: "US$ 500" }, 5.40);
+t("extra na MESMA moeda não é convertido nem marcado",
+  ctIgual.total === 3000 && ctIgual.extra_convertido === false);
+console.log("\n  ── entrada em real sem cotação (o dólar mudava sem marca) ──");
+const entBRL = [{ id: 1, cliente_id: 1, valor: "5400", moeda: "BRL", cotacao: null,
+                  recebido_em: "2026-03-01" }];
+const cliBRL = [{ id: 1, empresa: "A", tipo_contrato: "TCV", valor_contrato: "R$ 10.000" }];
+const fBRL = financeiroTotal(cliBRL, entBRL, { valor: "5.40" });
+t("entrada em real sem cotação é marcada como estimada",
+  fBRL.extrato[0].cotacao_estimada === true);
+t("e diz qual lado é o estimado", fBRL.extrato[0].moeda_estimada === "USD",
+  fBRL.extrato[0].moeda_estimada);
+t("o aviso do lado DÓLAR dispara", fBRL.avisos.some((a) => /total em DÓLAR/.test(a)));
+t("entrada em real COM cotação não é marcada", (() => {
+  const f = financeiroTotal(cliBRL,
+    [{ ...entBRL[0], cotacao: "5.30" }], { valor: "5.40" });
+  return f.extrato[0].cotacao_estimada === false
+    && !f.avisos.some((a) => /total em DÓLAR/.test(a));
+})());
+console.log("\n  ── custo fixo mensal somava todos os meses ──");
+const recorrentes = [1, 2, 3].map((m) => ({
+  id: m, valor: "100", moeda: "USD", cotacao: "5.40",
+  pago_em: `2026-0${m}-05`, categoria: "infra", recorrente: 1 }));
+const fRec = financeiroTotal(cliBRL, entBRL, { valor: "5.40" }, recorrentes);
+t("custo fixo do mês é 100, não a soma dos três meses",
+  fRec.custo_fixo_mensal.usd === 100, "US$ " + fRec.custo_fixo_mensal.usd);
+t("e diz de que mês é", fRec.custo_fixo_mensal.mes === "2026-03", fRec.custo_fixo_mensal.mes);
+t("o total do período fica num campo separado",
+  fRec.recorrente_no_periodo.usd === 300, "US$ " + fRec.recorrente_no_periodo.usd);
+t("conta quantos meses tiveram recorrente", fRec.custo_fixo_mensal.n_meses === 3);
+
 console.log(`\n${mal ? "\x1b[31m" : "\x1b[32m"}\x1b[1m${ok} passaram, ${mal} falharam\x1b[0m`);
 process.exit(mal ? 1 : 0);

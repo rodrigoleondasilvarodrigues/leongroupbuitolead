@@ -199,8 +199,11 @@ function renderCaixa(){
 
   h+='<div class="cx-rod">'
     +'<span>Cotação de referência: <b>R$ '+esc(f.cotacao.rotulo)+'</b></span>'
-    +(f.custo_fixo_mensal.usd?'<span>Custo fixo mensal: <b>'+esc(f.custo_fixo_mensal.usd_rot)
-      +'</b> / '+esc(f.custo_fixo_mensal.brl_rot)+'</span>':'')
+    +(f.custo_fixo_mensal.usd?'<span>Custo fixo do mês'
+      +(f.custo_fixo_mensal.mes?' ('+esc(f.custo_fixo_mensal.mes)+')':'')
+      +': <b>'+esc(f.custo_fixo_mensal.usd_rot)+'</b> / '+esc(f.custo_fixo_mensal.brl_rot)+'</span>':'')
+    +(f.recorrente_no_periodo&&f.recorrente_no_periodo.usd&&f.custo_fixo_mensal.n_meses>1
+      ?'<span>Recorrentes no período inteiro: <b>'+esc(f.recorrente_no_periodo.usd_rot)+'</b></span>':'')
     +'<span>Lucro nos clientes: <b>'+esc(f.lucro.usd_rot)+'</b>, custo da operação <b>'
       +esc(f.overhead.usd_rot)+'</b></span>'
     +'</div></div>';
@@ -282,7 +285,8 @@ function blocoExtrato(lista){
       const menos=x.tipo==='saida';
       const tags=[
         x.recorrente?'<span class="tag rec">mensal</span>':'',
-        x.cotacao_estimada?'<span class="tag est">cotação estimada</span>':'',
+        x.cotacao_estimada?'<span class="tag est">'
+          +(x.moeda_estimada==='USD'?'dólar estimado':'real estimado')+'</span>':'',
         x.implicita?'<span class="tag">registro antigo</span>':'',
       ].join('');
       const sub=[menos?esc(x.categoria_rot):null,

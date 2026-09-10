@@ -994,10 +994,11 @@ async function apiAdmin(p, req, env) {
     if (corpo.site !== false) {
       // reviews postadas entram no site. Nunca as não postadas: o site só
       // mostra o que existe de verdade no perfil do Google.
-      const jaPostadas = (await D.prepare(
-        "SELECT texto,servico FROM reviews WHERE cliente_id=? AND postada=1 LIMIT 3")
-        .bind(id).all()).results;
-      const site = G.gerarSite(c, fotos, jaPostadas.map((r) => ({ ...r, postada: 1 })));
+      /* O site do cliente NÃO recebe mais os textos gerados. Eles são PEDIDOS
+         de avaliação agora, não avaliações, e antes dessa correção iam para o
+         site público como se fossem depoimento de cliente. Avaliação no site
+         só depois de existir no perfil do Google, digitada à mão. */
+      const site = G.gerarSite(c, fotos, []);
       // guarda o HTML; a publicação é manual no Vercel
       await D.batch([
         D.prepare("UPDATE clientes SET site_html=?,atualizado_em=? WHERE id=?").bind(site, agora(), id),
@@ -1018,7 +1019,7 @@ async function apiAdmin(p, req, env) {
         ...revs.map((r) => D.prepare(
           "INSERT INTO reviews (cliente_id,texto,servico,foto_ref,criado_em) VALUES (?,?,?,?,?)")
           .bind(id, r.texto, r.servico, r.foto_ref, agora())),
-        D.prepare("UPDATE marcos SET concluido=1,concluido_em=? WHERE cliente_id=? AND marco LIKE '20 reviews%'")
+        D.prepare("UPDATE marcos SET concluido=1,concluido_em=? WHERE cliente_id=? AND marco LIKE 'Sistema de avaliação%'")
           .bind(agora(), id),
       ]);
       feito.push(`${revs.length} reviews`);
@@ -1155,6 +1156,16 @@ async function apiAdmin(p, req, env) {
     if (tipo === "cliente") {
       const c = await D.prepare("SELECT empresa FROM clientes WHERE id=?").bind(id).first();
       if (!c) return json({ erro: "cliente não encontrado" }, 404);
+      /* Dinheiro que entrou não é apagado de tabela por tabela junto com o
+         cliente. Ver o comentário em apagarCliente. */
+      const ent = await D.prepare(
+        "SELECT COUNT(*) n, GROUP_CONCAT(valor || ' ' || moeda, ', ') lista FROM entradas WHERE cliente_id=?")
+        .bind(id).first();
+      if ((ent?.n || 0) > 0 && !corpo.apagar_entradas_tambem)
+        return json({ erro: `"${c.empresa}" tem ${ent.n} entrada(s) de dinheiro lançada(s) ` +
+          `(${ent.lista}). Apagar o cliente apagaria essa receita do caixa e do mês a mês, ` +
+          `sem deixar rastro. Apague as entradas uma a uma na seção Entradas do card, ou ` +
+          `reenvie com apagar_entradas_tambem:true se for isso mesmo que você quer.` }, 409);
       await apagarCliente(D, id, env);
       return json({ ok: true, apagado: `cliente "${c.empresa}"` });
     }
@@ -1278,9 +1289,10 @@ async function apiAdmin(p, req, env) {
       "  O acesso do Instagram e do Google Meu Negócio fica com você.",
       "  A Leon Group não guarda senha nenhuma.",
       "", "=".repeat(70),
-      `REVIEWS (${revs.length}). Quem posta é o cliente. Ritmo: 3 por semana.`,
+      `PEDIDOS DE AVALIAÇÃO (${revs.length}). Você manda para o SEU cliente depois da obra.`,
+      `Quem escreve a avaliação é o cliente final, sempre. Troque {LINK} pelo link do seu perfil.`,
       "=".repeat(70), "",
-      ...revs.map((r, i) => `--- REVIEW ${i+1} (${r.servico||""})${r.foto_ref?` · anexar foto: ${r.foto_ref}`:""} ---\n${r.texto}\n`),
+      ...revs.map((r, i) => `--- PEDIDO ${i+1} (${r.servico||""}) ---\n${r.texto}\n`),
       "=".repeat(70), "INSTAGRAM · 12 POSTS + 4 DESTAQUES", "=".repeat(70), "",
       ...ps.map(x => `[${x.tipo.toUpperCase()} ${x.ordem}] ${x.titulo}\n${x.brief}\n`),
       "=".repeat(70), "O QUE VOCÊ FAZ A PARTIR DE AGORA", "=".repeat(70), "",
@@ -1628,6 +1640,18 @@ async function apagarCliente(D, id, env) {
      caixa se a linha for embora. Ela é desvinculada, virando custo da
      operação, que é o que ela passa a ser quando o cliente deixa de existir. */
   await D.prepare("UPDATE saidas SET cliente_id=NULL WHERE cliente_id=?").bind(id).run();
+  /* A ENTRADA seguia sendo APAGADA aqui, e a justificativa da saída vale
+     idêntica para ela: o dinheiro entrou de verdade. O resultado era
+     assimétrico e caro: excluir um cliente pago apagava a receita, mantinha o
+     custo, e o caixa passava a mostrar prejuízo puro onde houve lucro. Era
+     também a única forma de uma entrada desaparecer sem rastro, porque os
+     eventos do cliente são apagados na mesma função.
+
+     Agora a exclusão é BLOQUEADA enquanto houver entrada lançada. O caminho
+     para remover o dinheiro já existe e já avisa: apagar entrada por entrada
+     na tela do cliente. `entradas.cliente_id` é NOT NULL, então desvincular
+     como se faz com a saída exigiria migração; bloquear é mais honesto do que
+     apagar receita em silêncio. */
   for (const tab of ["entregaveis", "midias", "reviews", "posts", "marcos", "checklist",
                      "arquivos", "entradas"])
     await D.prepare(`DELETE FROM ${tab} WHERE cliente_id=?`).bind(id).run();

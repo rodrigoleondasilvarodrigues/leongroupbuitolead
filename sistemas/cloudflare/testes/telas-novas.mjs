@@ -460,7 +460,15 @@ setTimeout(async () => {
   t("e o mesmo saldo em real, pela soma exata das taxas",
     /R\$ 22\.003,00/.test(txt()), $(".cx-tri .saldo .b").textContent);
   t("diz quanto sobrou de cada real que entrou", /% do que entrou/.test(txt()));
-  t("o rodapé traz o custo fixo mensal", /Custo fixo mensal/.test(txt()));
+  /* O rótulo mudou de "Custo fixo mensal" para "Custo fixo do mês", por achado
+     da auditoria: o número somava as recorrentes de TODOS os meses, então
+     depois de um ano de R$ 200 de assinatura a tela dizia R$ 2.400 de custo
+     fixo mensal. Agora é o mês mais recente com lançamento, e o total do
+     período aparece separado quando há mais de um mês. */
+  t("o rodapé traz o custo fixo DO MÊS, não do período", /Custo fixo do mês/.test(txt()),
+    (txt().match(/Custo fixo[^·]{0,40}/) || [""])[0].trim());
+  t("e não promete mais 'mensal' somando o período inteiro",
+    !/Custo fixo mensal/.test(txt()));
   t("e separa lucro nos clientes de custo da operação",
     /Lucro nos clientes/.test(txt()) && /custo da operação/.test(txt()));
 
