@@ -9,6 +9,14 @@ final dessa página com as regras específicas do seu negócio.
 
 ---
 
+## Onde o trabalho parou
+
+**Antes de qualquer coisa, ler `RETOMAR-AQUI.md` na raiz do projeto.** Ele diz
+em que ponto a última sessão parou, o que está no ar, o que o usuário pediu e
+ainda não foi feito, o que espera decisão dele, e duas armadilhas técnicas que
+já morderam mais de uma vez. Escrito para uma sessão que chega sem memória
+nenhuma da conversa anterior.
+
 ## Contexto do negócio
 
 No início de toda conversa, ler os seguintes arquivos (quando existirem
