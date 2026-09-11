@@ -17,10 +17,10 @@ Los Angeles (seção 0), a copy de cada anúncio foi escrita e está pronta para
 colar (seção 5), e a mensagem inicial do WhatsApp ganhou seção própria
 (seção 6).
 
-> ⚠ **A trava do número não caiu.** O número americano foi contratado, mas o
-> **WhatsApp ainda não o aceitou**: o SMS de verificação não chega. Isso
-> bloqueia o passo 7 da subida. O estado e o que tentar estão na seção 2, e o
-> ponto de decisão está na seção 8.
+> **A trava do número caiu em 2026-09-10.** O número americano está ativo no
+> **WhatsApp Business**, e o passo 7 da subida deixou de estar bloqueado. Falta
+> o teste ponta a ponta, que está descrito na seção 2. O ponto de decisão da
+> subida está na seção 8.
 
 ---
 
@@ -142,27 +142,29 @@ meio da subida da campanha, e que você veria na aula:
 A aula ensina comprar número em bot (cita "Notes SNS") para simular presença
 nos EUA. **Fora.** Decisão registrada em 2026-09-05.
 
-**Contratado pela via legítima em 2026-09-10**, mas **não concluído**. O número
-é **+1 213 396 0014**, do Vnumber, e já está no site e no CRM.
+**Contratado pela via legítima em 2026-09-10, e ativo.** O número é
+**+1 213 396 0014**, do Vnumber, e já está no site e no CRM.
 
-⚠ **O WhatsApp ainda não aceitou esse número.** O código de verificação não
-chega por SMS e o suporte do Vnumber foi acionado no mesmo dia. Enquanto isso
-não resolver, o link `wa.me` para ele **não abre conversa**, e os lembretes que
-o CRM manda para `meu_whatsapp` também não chegam.
+✅ **O WhatsApp Business foi ativado nesse número no fim do dia 2026-09-10**,
+confirmado pelo Rodrigo. O caminho não foi liso: o código de verificação não
+chegou por SMS nas primeiras tentativas, a chamada de voz também não veio, o
+número entrou em bloqueio de segurança por excesso de tentativas e o suporte
+chegou a ser acionado. Depois disso ele entrou.
 
-Duas coisas a tentar antes de repetir a verificação:
+⚠ **Falta o teste ponta a ponta.** Mandar uma mensagem pelo botão do site e
+confirmar que ela chega no aparelho. Só depois disso grave cartela citando o
+número ou suba campanha apontando pra ele.
+
+Se algum dia esse processo precisar ser repetido, o que ficou aprendido:
 
 - **Verificação por chamada de voz.** Depois que o SMS falha e o cronômetro
   zera, aparece a opção "Me ligue" e o código é ditado. Funciona em vários
-  números virtuais onde o SMS não chega, desde que o número receba chamadas
-  de entrada.
-- **Descobrir se a faixa é VoIP.** O WhatsApp recusa faixas VoIP conhecidas, e
-  esse é o sintoma exato (número aceito, código nunca chega). Se for o caso,
-  repetir não resolve: a saída é eSIM pré-pago americano ou linha de operadora.
-
-⚠ **Repetir muitas vezes piora.** O WhatsApp aumenta a espera a cada tentativa
-falha no mesmo número e pode bloqueá-lo temporariamente, justamente quando o
-SMS voltar a funcionar.
+  números onde o SMS não chega, desde que o número receba chamadas de entrada.
+- **Repetir muitas vezes piora.** O WhatsApp aumenta a espera a cada tentativa
+  falha no mesmo número e chega a bloqueá-lo por segurança, justamente quando o
+  SMS voltaria a funcionar. Foi o que aconteceu aqui. Ao ver a tela de bloqueio,
+  pare de tentar e use o botão "Fale conosco" dela, que anexa os dados do
+  aparelho ao chamado.
 
 A regra de origem continua valendo: se precisar de outro número, ele sai por
 serviço legítimo, nunca por bot descartável de Telegram.
@@ -545,9 +547,10 @@ As três precisam de sim. **Qualquer não adia a subida**, e adiar não custa
 nada: a verba não gasta enquanto não sobe, e criativo apressado queima
 orçamento em vez de trazer lead.
 
-> ⚠ **Estado em 2026-09-10:** as três estão em **não**. O WhatsApp não aceitou
-> o número, nenhum vídeo foi produzido (os 26 roteiros estão escritos, e
-> roteiro escrito não é criativo pronto) e a página do Facebook não existe.
+> **Estado em 2026-09-10, fim do dia:** a primeira virou **sim**, o WhatsApp
+> aceitou o número. As outras duas seguem em **não**: nenhum vídeo foi produzido
+> (os 26 roteiros estão escritos, e roteiro escrito não é criativo pronto) e a
+> página do Facebook não existe.
 > O caminho mais barato para a segunda é gravar primeiro os roteiros do próprio
 > Rodrigo, o **106 (LA)** e o **20 (MA)**, que custam zero, e só depois pagar o
 > Arcads.

@@ -61,15 +61,15 @@ O trabalho é curto; o relógio é que é longo.
 - [x] Contratar pela via legítima. **Feito em 2026-09-10 pelo Vnumber:
       `+1 213 396 0014`.** Não foi pelo método da aula (número por bot do
       Telegram para simular presença nos EUA), conforme decisão de 2026-09-05.
-- [ ] **⚠ Fazer o WhatsApp aceitar o número. BLOQUEANTE.** Em 2026-09-10 o
-      código de verificação não chegava por SMS no Vnumber e o suporte foi
-      acionado. Sem isso não há WhatsApp Business, o botão do site não abre
-      conversa, os lembretes do CRM não chegam e a campanha não passa do
-      passo 7. Tentar a verificação por chamada de voz; não repetir o SMS
-      muitas vezes, porque o WhatsApp bloqueia o número temporariamente.
-      Se a faixa for VoIP, a saída é eSIM pré-pago americano ou linha real.
+- [x] **Fazer o WhatsApp aceitar o número.** Feito em 2026-09-10, no fim do
+      dia. O SMS não chegava, o número entrou em bloqueio de segurança por
+      excesso de tentativas e o suporte chegou a ser acionado, mas o WhatsApp
+      Business acabou entrando. Deixou de ser bloqueante.
+- [ ] **Teste ponta a ponta do número.** Mandar uma mensagem pelo botão do site
+      e confirmar que ela chega no aparelho. É o que falta para liberar gravar
+      cartela citando o número e subir campanha apontando pra ele.
 - [ ] Configurar o WhatsApp Business nele: identidade, descrição, horário,
-      respostas rápidas. Depende do item acima.
+      respostas rápidas.
 - [x] Trocar o número provisório do site. Feito em 2026-09-10, publicado.
       Fica numa linha só em `sistemas/site-agencia/conteudo.js`.
 - [x] Pôr o mesmo número no CRM. Feito em 2026-09-10, direto no D1 de produção
