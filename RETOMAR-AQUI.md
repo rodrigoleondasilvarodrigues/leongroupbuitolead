@@ -8,6 +8,17 @@ conta do Claude e a conta nova não tem memória nenhuma desta conversa.
 
 ---
 
+## Acabamento visual aplicado no Codex (2026-09-11)
+
+O Rodrigo retomou o Codex para o design e aprovou a prévia baseada nas telas reais.
+O código agora tem acabamento de cards, dashboard, caixa e painéis, logo oficial,
+estados de conclusão verdes e movimento breve. A navegação, a densidade de informação
+e as regras operacionais foram preservadas. **Ainda sem deploy desta alteração.**
+
+Validação: 655 asserções do CRM e 240 do site passaram. Conferência visual realizada
+no navegador, incluindo checklist sem remontar o painel ao marcar uma tarefa.
+Detalhes e orientação para continuar em `sistemas/cloudflare/ACABAMENTO-VISUAL.md`.
+
 ## O estado em três frases
 
 O sistema está pronto e no ar. O que separa a Leon Group do primeiro cliente

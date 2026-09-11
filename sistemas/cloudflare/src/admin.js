@@ -3,6 +3,8 @@ import { CSS_PARTES, JS_PARTES } from "./admin-partes.js";
 import { CSS_CAIXA, JS_CAIXA } from "./admin-caixa.js";
 import { CSS_ATIV, JS_ATIV } from "./admin-ativacoes.js";
 import { CSS_QUAL, JS_QUAL } from "./admin-qualificacao.js";
+import { CSS_VISUAL } from "./admin-visual.js";
+import { LOGO_ADMIN } from "./admin-logo.js";
 import { TAGS_ICONE } from "./marca.js";
 
 export const ADMIN_HTML = `<!doctype html><html lang="pt-BR"><head>
@@ -193,9 +195,9 @@ dialog::backdrop{background:rgba(23,23,23,.45)}
   .rel-praca{padding:10px 15px}.rel-praca.on .rel-hora{font-size:26px}
   .rel-estado{padding:10px 15px;min-width:170px}.rel-idi{padding:0 12px}
 }
-${CSS_DASH}${CSS_PARTES}${CSS_CAIXA}${CSS_ATIV}${CSS_QUAL}
+${CSS_DASH}${CSS_PARTES}${CSS_CAIXA}${CSS_ATIV}${CSS_QUAL}${CSS_VISUAL}
 </style></head><body>
-<header><b>LE<span>O</span>N GROUP · Admin</b><span class="selo" id="selo">Comercial</span>
+<header><b class="marca-admin"><img src="${LOGO_ADMIN}" alt="Leon Group" width="106" height="40"><small>Admin</small></b><span class="selo" id="selo">Comercial</span>
   <button class="sair" id="btn_zap" onclick="abrirConfig()" style="margin-left:auto">WhatsApp</button>
   <button class="sair" onclick="fetch('/api/logout',{method:'POST'}).then(()=>location.href='/login')" style="margin-left:14px">sair</button></header>
 <div class="relogio" id="relogio">
@@ -389,7 +391,7 @@ function render(){
           const cl=['entregue','aprovado'].includes(e.status)?'ok':(e.status==='em_producao'?'prod':'');
           const r=(D.entregaveis.find(y=>y[0]===e.tipo)||[])[1]||e.tipo;
           return \`<span class="pill \${cl}">\${r.split(' (')[0]}</span>\`}).join('');
-        return \`<div class="cli" onclick="abrirCliente(\${x.id})">
+        return \`<div class="cli \${x.entrega_completa?'concluida':(x.atrasado?'atrasada':'')}" onclick="abrirCliente(\${x.id})">
           <div style="display:flex;align-items:baseline"><h3>\${esc(x.empresa)}</h3>
           <span style="margin-left:auto;font-size:12px;color:var(--cinza)">\${
             x.dias_uteis!==null&&x.dias_uteis<=5?'<b style="color:'+(x.atrasado?'#c0392b':'var(--laranja-esc)')+'">entrega dia '+x.dias_uteis+'/5 útil</b>'
