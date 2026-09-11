@@ -14,6 +14,15 @@ O sistema está pronto e no ar. O que separa a Leon Group do primeiro cliente
 pago é oferta decidida, número americano, criativo produzido e campanha no ar.
 Sexta-feira (2026-09-12) é a data da primeira subida de anúncio.
 
+**⚠ O WhatsApp não aceitou o número americano (2026-09-10).** O número
+`+1 213 396 0014` foi contratado no Vnumber e está no site e no CRM, mas o
+código de verificação do WhatsApp não chega por SMS. Suporte acionado. Enquanto
+isso: o botão do site não abre conversa, os lembretes do CRM não chegam, e a
+campanha não passa do passo 7. **O Rodrigo decidiu manter o número onde está e
+decidir na quinta (2026-09-11) com o estado que houver.** Não trocar o número
+nem mexer no site sem ele pedir. A folha da decisão está na seção 8 de
+`_memoria/playbook-campanha-meta.md`.
+
 **Ferramenta única, decidido em 2026-09-10:** o trabalho segue só no Claude Code
 dentro do VS Code, nesta pasta. Não há mais edição paralela em outra ferramenta,
 então o risco de conflito na mesma pasta deixou de existir. O `AGENTS.md` fica

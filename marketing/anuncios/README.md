@@ -116,8 +116,10 @@ python3 scripts/validar_roteiros_anuncio.py marketing/anuncios/roteiros-la.json
 
 ## Antes da primeira leva
 
-✅ O número americano e o WhatsApp Business ficaram prontos em 2026-09-10
-(+1 213 396 0014). Essa trava saiu dos blocos `verificar`.
+⚠ O número americano foi contratado (+1 213 396 0014), mas **o WhatsApp ainda
+não o aceitou**: o SMS de verificação não chega. Enquanto isso, não gravar
+cartela nem áudio citando número, e não subir campanha apontando pra ele antes
+de mandar uma mensagem de teste e ela chegar. Os blocos `verificar` dizem isso.
 
 Continua faltando: **página no Facebook**, o modelo do documento de diagnóstico
 que os roteiros 15, 20, 105 e 106 prometem por escrito, e **os vídeos, que não

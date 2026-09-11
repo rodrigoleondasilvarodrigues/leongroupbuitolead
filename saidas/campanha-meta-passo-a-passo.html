@@ -78,7 +78,8 @@ hr.quebra{border:0;border-top:.4pt solid var(--areia);margin:7mm 0}
 <p>Extraído das 4 aulas da mentoria e do hotseat em 2026-09-10. A aula de anúncios é a <strong>03</strong>, onde o mentor programa ao vivo compartilhando a tela.</p>
 <p>Fonte bruta: <code>_memoria/historico/extracoes/aulas-campanha-meta.json</code> (117 passos, 93 regras, 143 números, com citação literal em cada item).</p>
 <blockquote><p><strong>Este documento não é a aula.</strong> É a aula filtrada pela regra de integridade da casa. 42 itens extraídos foram marcados como tática enganosa e estão em quarentena na seção &quot;O que não entra&quot;, com o motivo. Se você seguir só o que está aqui, você sobe a campanha pelo método e sem nada que suspenda conta, queime número ou minta para cliente.</p></blockquote>
-<p><strong>Atualizado em 2026-09-10</strong>, com quatro mudanças: a Leon Group passou a atender também a região de Los Angeles (seção 0), o número americano e o WhatsApp Business ficaram prontos e saíram da lista de travas (seção 3), a copy de cada anúncio foi escrita e está pronta para colar (seção 5), e a mensagem inicial do WhatsApp ganhou seção própria (seção 6).</p>
+<p><strong>Atualizado em 2026-09-10.</strong> A Leon Group passou a atender também a região de Los Angeles (seção 0), a copy de cada anúncio foi escrita e está pronta para colar (seção 5), e a mensagem inicial do WhatsApp ganhou seção própria (seção 6).</p>
+<blockquote><p>⚠ <strong>A trava do número não caiu.</strong> O número americano foi contratado, mas o <strong>WhatsApp ainda não o aceitou</strong>: o SMS de verificação não chega. Isso bloqueia o passo 7 da subida. O estado e o que tentar estão na seção 2, e o ponto de decisão está na seção 8.</p></blockquote>
 <hr class="quebra">
 <h1>0. Onde a Leon Group atende, desde 2026-09-10</h1>
 <p>Duas regiões, e a segmentação da campanha <strong>não muda por causa disso</strong>.</p>
@@ -116,7 +117,15 @@ hr.quebra{border:0;border-top:.4pt solid var(--areia);margin:7mm 0}
 <p>A extração marcou <strong>42 itens</strong> como tática enganosa. Eles ficam registrados em <code>_memoria/historico/extracoes/aulas-campanha-meta.json</code> como histórico estudado, e <strong>nenhum entra no passo a passo</strong>. Os que aparecem exatamente no meio da subida da campanha, e que você veria na aula:</p>
 <h3>Número americano comprado em bot de SMS do Telegram</h3>
 <p>A aula ensina comprar número em bot (cita &quot;Notes SNS&quot;) para simular presença nos EUA. <strong>Fora.</strong> Decisão registrada em 2026-09-05.</p>
-<p>✅ <strong>Resolvido em 2026-09-10, pela via legítima.</strong> O número oficial é <strong>+1 213 396 0014</strong>, contratado no Vnumber, com WhatsApp Business ativo nele. Já está no site e no CRM. A regra continua valendo para o futuro: se algum dia precisar de outro número, ele sai por serviço legítimo, nunca por bot descartável, porque perder o número é perder toda conversa de lead que está nele.</p>
+<p><strong>Contratado pela via legítima em 2026-09-10</strong>, mas <strong>não concluído</strong>. O número é <strong>+1 213 396 0014</strong>, do Vnumber, e já está no site e no CRM.</p>
+<p>⚠ <strong>O WhatsApp ainda não aceitou esse número.</strong> O código de verificação não chega por SMS e o suporte do Vnumber foi acionado no mesmo dia. Enquanto isso não resolver, o link <code>wa.me</code> para ele <strong>não abre conversa</strong>, e os lembretes que o CRM manda para <code>meu_whatsapp</code> também não chegam.</p>
+<p>Duas coisas a tentar antes de repetir a verificação:</p>
+<ul>
+<li><strong>Verificação por chamada de voz.</strong> Depois que o SMS falha e o cronômetro zera, aparece a opção &quot;Me ligue&quot; e o código é ditado. Funciona em vários números virtuais onde o SMS não chega, desde que o número receba chamadas de entrada.</li>
+<li><strong>Descobrir se a faixa é VoIP.</strong> O WhatsApp recusa faixas VoIP conhecidas, e esse é o sintoma exato (número aceito, código nunca chega). Se for o caso, repetir não resolve: a saída é eSIM pré-pago americano ou linha de operadora.</li>
+</ul>
+<p>⚠ <strong>Repetir muitas vezes piora.</strong> O WhatsApp aumenta a espera a cada tentativa falha no mesmo número e pode bloqueá-lo temporariamente, justamente quando o SMS voltar a funcionar.</p>
+<p>A regra de origem continua valendo: se precisar de outro número, ele sai por serviço legítimo, nunca por bot descartável de Telegram.</p>
 <h3>Título do anúncio com &quot;5/5&quot; e emoji de estrela</h3>
 <p>É avaliação inventada. <strong>Fora.</strong> Além de quebrar a regra da casa, avaliação fabricada é exatamente o que a FTC passou a multar desde 2024, e a Meta reprova anúncio com nota falsa.</p>
 <h3>Conta de anúncios de familiar para &quot;ter mais liberdade&quot;</h3>
@@ -132,14 +141,15 @@ hr.quebra{border:0;border-top:.4pt solid var(--areia);margin:7mm 0}
 <h1>3. Antes de subir (faça na quinta)</h1>
 <p><strong>Já resolvido, não precisa refazer:</strong></p>
 <ul class="chk">
-<li><i class="cx on"></i><span><strong>Número de WhatsApp Business ativo.</strong> +1 213 396 0014, americano, área 213, no ar desde 2026-09-10. É o mesmo número que vai no anúncio, no site e no CRM, e é o que você vai atender. Essa trava saiu.</span></li>
+<li><i class="cx on"></i><span><strong>Número americano contratado.</strong> +1 213 396 0014, área 213, pela via legítima. Já está no site e no CRM. (A <strong>verificação no WhatsApp</strong> ainda não passou: virou o primeiro item da lista do que falta, logo abaixo.)</span></li>
 <li><i class="cx on"></i><span><strong>Conta de anúncios, Business Manager, Instagram e meio de pagamento.</strong> Confirmados em 2026-09-09.</span></li>
 <li><i class="cx on"></i><span><strong>O CRM.</strong> Comercial, caixa e entrega no ar e testados.</span></li>
 <li><i class="cx on"></i><span><strong>O site com o número certo</strong>, publicado.</span></li>
 </ul>
 <p><strong>Ainda falta, e é o que trava sexta:</strong></p>
 <ul class="chk">
-<li><i class="cx"></i><span><strong>Página do Facebook criada</strong> e ligada na BM e no Instagram. É o único item de infraestrutura que continua pendente, e sem ela o conjunto não deixa escolher a página no passo 6.</span></li>
+<li><i class="cx"></i><span><strong>⚠ O WhatsApp aceitar o número.</strong> Bloqueia tudo: o passo 7 exige vincular um WhatsApp Business ao conjunto, e sem número verificado a campanha não passa dali. Também deixa o botão do site sem conversa e os lembretes do CRM sem destino. Ver a seção 2 para o que tentar.</span></li>
+<li><i class="cx"></i><span><strong>Página do Facebook criada</strong> e ligada na BM e no Instagram. Sem ela o conjunto não deixa escolher a página no passo 6.</span></li>
 <li><i class="cx"></i><span><strong>Confirmar que o meio de pagamento passou</strong>, não só que está cadastrado. Recusa de cartão é o motivo mais comum de campanha não subir na hora.</span></li>
 <li><i class="cx"></i><span><strong>Pixel e dataset instalados</strong>, e o evento de conversão do site testado.</span></li>
 <li><i class="cx"></i><span><strong>Os criativos exportados</strong> no formato final, com legenda queimada. Nenhum vídeo foi produzido ainda: os roteiros estão escritos, o vídeo não.</span></li>
@@ -272,7 +282,15 @@ Quero saber mais sobre o que a Leon Group pode fazer pela minha empresa.</pre>
 <hr class="quebra">
 <h1>8. O plano da sexta, hora a hora</h1>
 <p>Assumindo que os criativos estão prontos e os itens da seção 3 estão feitos.</p>
-<blockquote><p>⚠ <strong>Hoje, 2026-09-10, nenhum vídeo foi produzido ainda.</strong> Os 26 roteiros estão escritos (20 de Massachusetts, 6 de Los Angeles), e roteiro escrito não é criativo pronto. Sem pelo menos dois vídeos exportados, este cronograma não começa. O caminho mais barato é gravar primeiro os roteiros do Rodrigo (106 e 20), que custam zero, e só depois pagar o Arcads. A página do Facebook também continua pendente e trava o passo 6.</p></blockquote>
+<h2>O ponto de decisão, quinta à noite</h2>
+<p><strong>Decisão do Rodrigo em 2026-09-10:</strong> não adiar nem remarcar nada agora. Na quinta à noite ele olha o estado real e decide. Esta é a folha dessa decisão.</p>
+<div class="tw"><table><thead><tr><th>Pergunta</th><th>Se sim</th><th>Se não</th></tr></thead><tbody><tr><td><strong>O WhatsApp aceitou o número?</strong></td><td>Segue para a próxima pergunta</td><td>Ou sobe apontando para outro WhatsApp que funcione, ou adia. Sem número verificado o passo 7 não passa</td></tr><tr><td><strong>Existem 2 vídeos exportados?</strong></td><td>Pode subir sexta</td><td>Adia. Não há campanha sem criativo, e 1 vídeo só não dá teste</td></tr><tr><td><strong>A página do Facebook existe?</strong></td><td>Pode subir sexta</td><td>Adia. O passo 6 não deixa escolher a página</td></tr></tbody></table></div>
+<p>As três precisam de sim. <strong>Qualquer não adia a subida</strong>, e adiar não custa nada: a verba não gasta enquanto não sobe, e criativo apressado queima orçamento em vez de trazer lead.</p>
+<blockquote><p>⚠ <strong>Estado em 2026-09-10:</strong> as três estão em <strong>não</strong>. O WhatsApp não aceitou o número, nenhum vídeo foi produzido (os 26 roteiros estão escritos, e roteiro escrito não é criativo pronto) e a página do Facebook não existe. O caminho mais barato para a segunda é gravar primeiro os roteiros do próprio Rodrigo, o <strong>106 (LA)</strong> e o <strong>20 (MA)</strong>, que custam zero, e só depois pagar o Arcads.</p></blockquote>
+<h3>Se o número não resolver a tempo</h3>
+<p>Duas saídas, e as duas são dele:</p>
+<p>1. <strong>Subir apontando para um WhatsApp que funcione.</strong> Converte de verdade e o lead é atendido. O custo é o lead ver um DDI que não é o da região dele, o que derruba a taxa de atendimento na ligação de volta. 2. <strong>Adiar até o número entrar.</strong> Mantém a operação coerente, e como não há verba comprometida, adiar é barato.</p>
+<p>Não existe terceira: campanha apontando para número sem WhatsApp entrega cliques que morrem na tela, pagando por cada um.</p>
 <div class="tw"><table><thead><tr><th>Quando</th><th>O que</th></tr></thead><tbody><tr><td><strong>Quinta, à noite</strong></td><td>Rodar a seção 3 inteira. Se o cartão não estiver aprovado, você descobre com um dia de folga.</td></tr><tr><td><strong>Sexta, de manhã</strong></td><td>Subir as 2 campanhas, R$ 100 cada, programadas para <strong>sábado às 9h de Brasília</strong>. Se rodar uma leva por região, suba um criativo de LA e um de MA, para o CRM te dizer qual região responde melhor.</td></tr><tr><td><strong>Sexta, à tarde</strong></td><td>Deixar o CRM aberto e o WhatsApp na mão. Testar você mesmo: clicar no seu anúncio, ver se cai no WhatsApp com a mensagem certa e se o lead aparece no CRM.</td></tr><tr><td><strong>Sábado, fim do dia</strong></td><td>Corte do dia 1: gastou R$ 100 e zero lead, mata.</td></tr><tr><td><strong>Domingo, fim do dia</strong></td><td>Corte do dia 2: CPL acima de R$ 70, mata.</td></tr><tr><td><strong>Domingo à noite</strong></td><td>Corte do dia 3: CPL entre R$ 20 e R$ 50 valida. Escolhe o vencedor.</td></tr><tr><td><strong>Segunda, de manhã</strong></td><td>Desliga o perdedor. Deixa o vencedor em R$ 100 por dia até quinta.</td></tr><tr><td><strong>Próxima sexta</strong></td><td>Sobe os 2 criativos seguintes, mesma mecânica.</td></tr></tbody></table></div>
 <blockquote><p><strong>A aula recomenda subir com um dia de folga</strong> entre montar e começar a rodar, e programar sempre para o dia seguinte. Subir sexta para rodar sábado segue essa regra.</p></blockquote>
 <h2>O teste que ninguém faz e que salva a semana</h2>

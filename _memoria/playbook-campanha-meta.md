@@ -12,11 +12,15 @@ Fonte bruta: `_memoria/historico/extracoes/aulas-campanha-meta.json`
 > está aqui, você sobe a campanha pelo método e sem nada que suspenda conta,
 > queime número ou minta para cliente.
 
-**Atualizado em 2026-09-10**, com quatro mudanças: a Leon Group passou a
-atender também a região de Los Angeles (seção 0), o número americano e o
-WhatsApp Business ficaram prontos e saíram da lista de travas (seção 3), a copy
-de cada anúncio foi escrita e está pronta para colar (seção 5), e a mensagem
-inicial do WhatsApp ganhou seção própria (seção 6).
+**Atualizado em 2026-09-10.** A Leon Group passou a atender também a região de
+Los Angeles (seção 0), a copy de cada anúncio foi escrita e está pronta para
+colar (seção 5), e a mensagem inicial do WhatsApp ganhou seção própria
+(seção 6).
+
+> ⚠ **A trava do número não caiu.** O número americano foi contratado, mas o
+> **WhatsApp ainda não o aceitou**: o SMS de verificação não chega. Isso
+> bloqueia o passo 7 da subida. O estado e o que tentar estão na seção 2, e o
+> ponto de decisão está na seção 8.
 
 ---
 
@@ -138,12 +142,30 @@ meio da subida da campanha, e que você veria na aula:
 A aula ensina comprar número em bot (cita "Notes SNS") para simular presença
 nos EUA. **Fora.** Decisão registrada em 2026-09-05.
 
-✅ **Resolvido em 2026-09-10, pela via legítima.** O número oficial é
-**+1 213 396 0014**, contratado no Vnumber, com WhatsApp Business ativo nele.
-Já está no site e no CRM. A regra continua valendo para o futuro: se algum dia
-precisar de outro número, ele sai por serviço legítimo, nunca por bot
-descartável, porque perder o número é perder toda conversa de lead que está
-nele.
+**Contratado pela via legítima em 2026-09-10**, mas **não concluído**. O número
+é **+1 213 396 0014**, do Vnumber, e já está no site e no CRM.
+
+⚠ **O WhatsApp ainda não aceitou esse número.** O código de verificação não
+chega por SMS e o suporte do Vnumber foi acionado no mesmo dia. Enquanto isso
+não resolver, o link `wa.me` para ele **não abre conversa**, e os lembretes que
+o CRM manda para `meu_whatsapp` também não chegam.
+
+Duas coisas a tentar antes de repetir a verificação:
+
+- **Verificação por chamada de voz.** Depois que o SMS falha e o cronômetro
+  zera, aparece a opção "Me ligue" e o código é ditado. Funciona em vários
+  números virtuais onde o SMS não chega, desde que o número receba chamadas
+  de entrada.
+- **Descobrir se a faixa é VoIP.** O WhatsApp recusa faixas VoIP conhecidas, e
+  esse é o sintoma exato (número aceito, código nunca chega). Se for o caso,
+  repetir não resolve: a saída é eSIM pré-pago americano ou linha de operadora.
+
+⚠ **Repetir muitas vezes piora.** O WhatsApp aumenta a espera a cada tentativa
+falha no mesmo número e pode bloqueá-lo temporariamente, justamente quando o
+SMS voltar a funcionar.
+
+A regra de origem continua valendo: se precisar de outro número, ele sai por
+serviço legítimo, nunca por bot descartável de Telegram.
 
 ### Título do anúncio com "5/5" e emoji de estrela
 
@@ -188,9 +210,9 @@ call sem pagar". **Fora.** Ele tem direito de pensar, e a oferta escrita em
 
 **Já resolvido, não precisa refazer:**
 
-- [x] **Número de WhatsApp Business ativo.** +1 213 396 0014, americano, área
-      213, no ar desde 2026-09-10. É o mesmo número que vai no anúncio, no site
-      e no CRM, e é o que você vai atender. Essa trava saiu.
+- [x] **Número americano contratado.** +1 213 396 0014, área 213, pela via
+      legítima. Já está no site e no CRM. (A **verificação no WhatsApp** ainda
+      não passou: virou o primeiro item da lista do que falta, logo abaixo.)
 - [x] **Conta de anúncios, Business Manager, Instagram e meio de pagamento.**
       Confirmados em 2026-09-09.
 - [x] **O CRM.** Comercial, caixa e entrega no ar e testados.
@@ -198,9 +220,12 @@ call sem pagar". **Fora.** Ele tem direito de pensar, e a oferta escrita em
 
 **Ainda falta, e é o que trava sexta:**
 
-- [ ] **Página do Facebook criada** e ligada na BM e no Instagram. É o único
-      item de infraestrutura que continua pendente, e sem ela o conjunto não
-      deixa escolher a página no passo 6.
+- [ ] **⚠ O WhatsApp aceitar o número.** Bloqueia tudo: o passo 7 exige
+      vincular um WhatsApp Business ao conjunto, e sem número verificado a
+      campanha não passa dali. Também deixa o botão do site sem conversa e os
+      lembretes do CRM sem destino. Ver a seção 2 para o que tentar.
+- [ ] **Página do Facebook criada** e ligada na BM e no Instagram. Sem ela o
+      conjunto não deixa escolher a página no passo 6.
 - [ ] **Confirmar que o meio de pagamento passou**, não só que está cadastrado.
       Recusa de cartão é o motivo mais comum de campanha não subir na hora.
 - [ ] **Pixel e dataset instalados**, e o evento de conversão do site testado.
@@ -505,12 +530,40 @@ aula.
 
 Assumindo que os criativos estão prontos e os itens da seção 3 estão feitos.
 
-> ⚠ **Hoje, 2026-09-10, nenhum vídeo foi produzido ainda.** Os 26 roteiros
-> estão escritos (20 de Massachusetts, 6 de Los Angeles), e roteiro escrito não
-> é criativo pronto. Sem pelo menos dois vídeos exportados, este cronograma não
-> começa. O caminho mais barato é gravar primeiro os roteiros do Rodrigo
-> (106 e 20), que custam zero, e só depois pagar o Arcads. A página do Facebook
-> também continua pendente e trava o passo 6.
+## O ponto de decisão, quinta à noite
+
+**Decisão do Rodrigo em 2026-09-10:** não adiar nem remarcar nada agora. Na
+quinta à noite ele olha o estado real e decide. Esta é a folha dessa decisão.
+
+| Pergunta | Se sim | Se não |
+|---|---|---|
+| **O WhatsApp aceitou o número?** | Segue para a próxima pergunta | Ou sobe apontando para outro WhatsApp que funcione, ou adia. Sem número verificado o passo 7 não passa |
+| **Existem 2 vídeos exportados?** | Pode subir sexta | Adia. Não há campanha sem criativo, e 1 vídeo só não dá teste |
+| **A página do Facebook existe?** | Pode subir sexta | Adia. O passo 6 não deixa escolher a página |
+
+As três precisam de sim. **Qualquer não adia a subida**, e adiar não custa
+nada: a verba não gasta enquanto não sobe, e criativo apressado queima
+orçamento em vez de trazer lead.
+
+> ⚠ **Estado em 2026-09-10:** as três estão em **não**. O WhatsApp não aceitou
+> o número, nenhum vídeo foi produzido (os 26 roteiros estão escritos, e
+> roteiro escrito não é criativo pronto) e a página do Facebook não existe.
+> O caminho mais barato para a segunda é gravar primeiro os roteiros do próprio
+> Rodrigo, o **106 (LA)** e o **20 (MA)**, que custam zero, e só depois pagar o
+> Arcads.
+
+### Se o número não resolver a tempo
+
+Duas saídas, e as duas são dele:
+
+1. **Subir apontando para um WhatsApp que funcione.** Converte de verdade e o
+   lead é atendido. O custo é o lead ver um DDI que não é o da região dele, o
+   que derruba a taxa de atendimento na ligação de volta.
+2. **Adiar até o número entrar.** Mantém a operação coerente, e como não há
+   verba comprometida, adiar é barato.
+
+Não existe terceira: campanha apontando para número sem WhatsApp entrega
+cliques que morrem na tela, pagando por cada um.
 
 | Quando | O que |
 |---|---|

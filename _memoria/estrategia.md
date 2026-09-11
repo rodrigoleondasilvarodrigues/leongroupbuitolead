@@ -64,8 +64,12 @@ No ar em **https://leon-group-site.pages.dev** (Cloudflare Pages, código em
 serviços, as doze funções, método, FAQ e formulário na própria página que abre o
 WhatsApp com mensagem pronta e **também cria o lead no CRM** (rota `/api/site-lead`).
 
-- ✅ **WhatsApp oficial (2026-09-10):** `12133960014` (+1 213 396 0014, americano,
-  área 213, Los Angeles), obtido pelo Vnumber. Substituiu o provisório brasileiro
+- ⚠ **WhatsApp (2026-09-10):** `12133960014` (+1 213 396 0014, americano, área 213,
+  Los Angeles), obtido pelo Vnumber. **O WhatsApp ainda NÃO aceitou esse número:** o
+  código de verificação não chega por SMS e o suporte foi acionado. O link `wa.me` não
+  abre conversa e os lembretes do CRM não chegam enquanto durar. O número fica no site e
+  no CRM por decisão do Rodrigo. Tentar verificação por chamada de voz, e não repetir o
+  SMS muitas vezes (o WhatsApp bloqueia o número temporariamente). Substituiu o provisório brasileiro
   `5561998629189`, que não volta. Fica numa única linha em
   `sistemas/site-agencia/conteudo.js`, e no CRM no campo `meu_whatsapp` da tabela
   `config` (tela "WhatsApp do CRM" do admin). Os dois já estão com o número novo.
@@ -107,12 +111,11 @@ ferramenta apurada na fila operacional.
 Sem criativo pronto não há campanha, e o criativo é a primeira coisa que o diagnóstico
 do funil acusa quando a conversão de entrada está baixa.
 
-**2. Pegar o número americano. ✅ FEITO em 2026-09-10.** `+1 213 396 0014`, pelo
+**2. Pegar o número americano. Contratado, não concluído.** `+1 213 396 0014`, pelo
 Vnumber, pela via legítima, e não pelo método da aula (número por bot do Telegram para
-simular presença nos EUA). Já está no site e no CRM.
-**O que ainda falta a partir dele:** configurar o WhatsApp Business nesse número
-(identidade, descrição, horário, respostas rápidas) e conferir se ele recebe código de
-verificação do WhatsApp e do Meta. Nota: a área 213 é de Los Angeles, e a prioridade
+simular presença nos EUA). Já está no site e no CRM, mas **o WhatsApp não aceitou o
+número**: o SMS de verificação não chega, e sem isso o passo 7 da subida de campanha não
+passa. Esta frente voltou a ser bloqueante. Nota: a área 213 é de Los Angeles, e a prioridade
 comercial é Massachusetts e Boston (área 617, 508, 781, 978). Não impede nada, mas um
 lead de Boston vê um número da Califórnia.
 
