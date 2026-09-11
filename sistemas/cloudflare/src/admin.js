@@ -2,6 +2,7 @@ import { CSS_DASH, JS_DASH } from "./admin-dash.js";
 import { CSS_PARTES, JS_PARTES } from "./admin-partes.js";
 import { CSS_CAIXA, JS_CAIXA } from "./admin-caixa.js";
 import { CSS_ATIV, JS_ATIV } from "./admin-ativacoes.js";
+import { CSS_QUAL, JS_QUAL } from "./admin-qualificacao.js";
 import { TAGS_ICONE } from "./marca.js";
 
 export const ADMIN_HTML = `<!doctype html><html lang="pt-BR"><head>
@@ -192,7 +193,7 @@ dialog::backdrop{background:rgba(23,23,23,.45)}
   .rel-praca{padding:10px 15px}.rel-praca.on .rel-hora{font-size:26px}
   .rel-estado{padding:10px 15px;min-width:170px}.rel-idi{padding:0 12px}
 }
-${CSS_DASH}${CSS_PARTES}${CSS_CAIXA}${CSS_ATIV}
+${CSS_DASH}${CSS_PARTES}${CSS_CAIXA}${CSS_ATIV}${CSS_QUAL}
 </style></head><body>
 <header><b>LE<span>O</span>N GROUP · Admin</b><span class="selo" id="selo">Comercial</span>
   <button class="sair" id="btn_zap" onclick="abrirConfig()" style="margin-left:auto">WhatsApp</button>
@@ -439,14 +440,7 @@ async function abrirLead(id){
      <p style="font-size:11.5px;color:var(--cinza);margin-top:9px">
        Follow-up não é venda. Proibido ofertar: a venda acontece na ligação.
        Clicar abre o playbook; registrar é o segundo clique, depois de mandar.</p></section>
-   <section><h4>Qualificação BANT</h4>
-     <label>Rapport (ponto de conexão, reusado no follow de no-show)</label><input id="q_rapport" value="\${esc(l.rapport)}">
-     <label>Budget (ancorar em US$10 mil)</label><input id="q_budget" value="\${esc(l.budget)}">
-     <label>Authority (é o decisor? estará na call?)</label><input id="q_authority" value="\${esc(l.authority)}">
-     <label>Need</label><input id="q_need" value="\${esc(l.need)}">
-     <label>Timeline</label><input id="q_timeline" value="\${esc(l.timeline)}">
-     <button class="acao" onclick="qual(1)">Salvar e qualificar</button>
-     <button class="acao sec" onclick="qual(0)">Só salvar</button></section>
+   <section><h4>Roteiro da ligação</h4>\${l_roteiro(l)}</section>
    <section><h4>Agendar call</h4><input type="datetime-local" id="q_quando">
      <button class="acao" onclick="agendar()">Agendar</button>
      <p style="font-size:11.5px;color:var(--cinza);margin-top:6px">
@@ -702,7 +696,9 @@ async function criarCliente(){const r=await post('/api/cliente',{nome_contato:V(
 const lig=a=>post('/api/ligacao',{id:aberto,atendeu:a}).then(carregar).then(()=>abrirLead(aberto));
 const resp=()=>post('/api/respondeu',{id:aberto}).then(carregar).then(()=>abrirLead(aberto));
 const qual=q=>post('/api/qualificar',{id:aberto,rapport:V('q_rapport'),budget:V('q_budget'),
-  authority:V('q_authority'),need:V('q_need'),timeline:V('q_timeline'),qualificado:q}).then(()=>abrirLead(aberto));
+  authority:V('q_authority'),need:V('q_need'),timeline:V('q_timeline'),
+  nicho:V('q_nicho'),cidade:V('q_cidade'),confirmacao_ao_vivo:rqConfirmacao(),
+  qualificado:q}).then(carregar).then(()=>abrirLead(aberto));
 async function agendar(){const v=V('q_quando');if(!v)return alert('Escolha data e hora');
   const r=await post('/api/agendar',{id:aberto,quando:new Date(v).toISOString()});
   if(r.erro)return alert(r.erro);await carregar();abrirLead(aberto)}
@@ -1124,6 +1120,7 @@ async function testarZap(){
 }
 
 ${JS_DASH}
+${JS_QUAL}
 ${JS_PARTES}
 ${JS_CAIXA}
 ${JS_ATIV}

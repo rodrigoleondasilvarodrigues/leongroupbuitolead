@@ -32,5 +32,8 @@ echo
 echo "── as fotos que vão para o site ──"
 node testes/fotos-do-site.js
 echo
+echo "── roteiro da ligação de qualificação ──"
+node testes/qualificacao.mjs
+echo
 echo "── funil, dinheiro e diagnóstico ──"
 node testes/funil-e-financeiro.js

@@ -1,3 +1,25 @@
+## Roteiro da ligação de qualificação (feito em 2026-09-11)
+
+A seção "Qualificação BANT" do card do lead eram cinco campos em branco com uma
+dica de 11px em cada. Servia para anotar depois. Não servia para conduzir a
+ligação, que é onde a venda acontece.
+
+Agora o card abre o roteiro da Aula 03 etapa por etapa, com a fala já preenchida
+com o nome e a empresa do lead, o campo de captura embaixo da etapa que o
+alimenta, e no fim o checklist da confirmação ao vivo.
+
+- Conteúdo em `src/conteudo-qualificacao.js`, tela em `src/admin-qualificacao.js`
+- 49 asserções em `testes/qualificacao.mjs`
+- Migração 15 guarda quais passos da confirmação ao vivo foram feitos
+
+**Duas adaptações conscientes do script original**, porque o Enrico opera com SDR
+e closer separados e a Leon Group é uma pessoa só: saiu o "quem vai conduzir essa
+call vai ser o Henrico" e saiu o "eu vou pedir para os meus meninos prepararem o
+plano". Fingir equipe é exatamente o que a regra de integridade proíbe. O
+compromisso foi reescrito para o trabalho real, que é o diagnóstico que ele monta
+sozinho, e o efeito de criar custo social para o no-show se mantém porque o
+trabalho é verdadeiro.
+
 # Melhorias pedidas durante o teste integral (2026-09-07)
 
 Anotadas no meio do teste para não interromper o fluxo. Fazer depois que

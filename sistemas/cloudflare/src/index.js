@@ -821,9 +821,14 @@ async function apiAdmin(p, req, env) {
     return json({ ok: true });
   }
   if (p === "/api/qualificar") {
-    await D.prepare(`UPDATE leads SET rapport=?,budget=?,authority=?,need=?,timeline=?,qualificado=?,atualizado_em=? WHERE id=?`)
+    // nicho e cidade vêm do roteiro da ligação (etapas 3 e 4) e alimentam o
+    // relógio do card e a busca do diagnóstico, então valem UPDATE aqui.
+    await D.prepare(`UPDATE leads SET rapport=?,budget=?,authority=?,need=?,timeline=?,
+      nicho=COALESCE(NULLIF(?,''),nicho), cidade=COALESCE(NULLIF(?,''),cidade),
+      confirmacao_ao_vivo=?, qualificado=?, atualizado_em=? WHERE id=?`)
       .bind(corpo.rapport||null,corpo.budget||null,corpo.authority||null,corpo.need||null,
-            corpo.timeline||null,corpo.qualificado?1:0,agora(),corpo.id).run();
+            corpo.timeline||null,corpo.nicho||'',corpo.cidade||'',
+            corpo.confirmacao_ao_vivo||null,corpo.qualificado?1:0,agora(),corpo.id).run();
     return json({ ok: true });
   }
   if (p === "/api/agendar") {
