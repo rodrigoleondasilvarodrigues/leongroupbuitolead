@@ -39,20 +39,21 @@ no repositório para o caso de isso mudar.
 | Proposta, um preço | .../planos | 43 asserções |
 | Proposta, três prazos | .../planosv2 | 39 asserções |
 | Proposta, layout Kairon | .../planosv3 | 56 asserções |
-| CRM, caixa e entrega | https://leon-group.leongroup.workers.dev | 606 asserções |
+| CRM, caixa e entrega | https://leon-group.leongroup.workers.dev | 655 asserções |
 
 Rodar antes de todo deploy. **Num clone novo, `npm install` primeiro nas duas
 pastas**, senão os testes morrem com "Cannot find module 'jsdom'" e parece que
 estão quebrados quando é só dependência faltando:
 
 ```bash
-cd sistemas/cloudflare  && npm install && ./testes/rodar.sh                   # 606
+cd sistemas/cloudflare  && npm install && ./testes/rodar.sh                   # 655
 cd sistemas/site-agencia && npm install && for f in teste*.js; do node $f; done  # 240
 ```
 
 Verificado em 2026-09-10 na pasta de trabalho do Rodrigo: 606 e 240,
-zero falhas. (Os 574 antigos viraram 606 quando o teste dos depoimentos passou
-de 31 para 63 asserções. Nenhum teste foi removido nem afrouxado.)
+zero falhas. (574 viraram 606 quando o teste dos depoimentos passou de 31 para 63,
+e 606 viraram 655 com o roteiro da ligação em 2026-09-11. Nenhum teste foi
+removido nem afrouxado.)
 
 Deploy:
 
@@ -278,6 +279,53 @@ tráfego, confirmada em `npx wrangler deployments list`. O site da agência não
 mudou neste commit e não precisou de nova publicação.
 
 ---
+
+## O comercial, que foi todo reescrito em 2026-09-11
+
+Isto aqui corrige um erro meu que vale a pena entender antes de mexer em
+qualquer texto de WhatsApp ou de anúncio.
+
+**A primeira versão dos textos entregava a oferta por mensagem** e fechava com
+"sem call, sem reunião, ninguém vai te ligar insistindo". Isso mata o funil: a
+agência vende por call, e quem recebe o diagnóstico por escrito no WhatsApp não
+tem motivo nenhum para atender o telefone depois. A aula é explícita nos dois
+pontos: **nunca ofertar nada por mensagem** e **ligar em menos de um minuto**.
+
+A regra que organiza tudo: **o SDR vende a call, a call vende a solução.**
+
+### Onde está cada pedaço
+
+| O quê | Arquivo |
+|---|---|
+| Régua comercial inteira, do anúncio ao no-show | `propostas/sdr-textos-e-regua.md` |
+| Campos do perfil do WhatsApp, com contagem | `marketing/redes-sociais/materiais-gerais/whatsapp-business-textos.md` |
+| Roteiro da ligação, conteúdo | `sistemas/cloudflare/src/conteudo-qualificacao.js` |
+| Roteiro da ligação, tela | `sistemas/cloudflare/src/admin-qualificacao.js` |
+| Testes do roteiro | `sistemas/cloudflare/testes/qualificacao.mjs` (49) |
+| Gerador do diagnóstico | `scripts/gerar_diagnostico.py` |
+
+### O roteiro no card do lead
+
+A seção "Qualificação BANT" eram cinco campos em branco. Virou o roteiro da
+Aula 03 aberto na tela, 11 etapas com a fala já preenchida com o nome e a
+empresa do lead, e no fim o checklist da **confirmação ao vivo**: os seis passos
+que o Enrico faz com o lead AINDA NO TELEFONE (viva-voz, abrir o WhatsApp,
+confirmar que chegou, mandar o e-mail pelo chat, explicar o Meet, compromisso de
+presença). A migração 15 guarda quais foram marcados.
+
+⚠️ **Duas adaptações que NÃO podem ser desfeitas por quem for mexer ali.** O
+script original tem SDR e closer separados ("quem vai conduzir essa call vai ser
+o Henrico") e fala em "meus meninos preparando o plano". A Leon Group é uma
+pessoa só: copiar aquilo é inventar equipe, que a regra de integridade proíbe. O
+compromisso foi reescrito para o trabalho real, o diagnóstico que ele monta
+sozinho. **Há teste travando isso**: a suíte falha se alguém escrever "meus
+meninos" ou "quem vai conduzir" no roteiro.
+
+### O papel do documento de diagnóstico mudou
+
+Ele **não é isca de mensagem**. É a pauta da call: o motivo pelo qual o lead
+aceita sentar 40 minutos. Mostrado na tela durante a reunião, entregue na mão
+dele só depois, junto da proposta.
 
 ## Onde está cada coisa
 
