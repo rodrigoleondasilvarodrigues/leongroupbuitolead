@@ -117,8 +117,9 @@ simular presença nos EUA). Já está no site e no CRM, e o **WhatsApp Business 
 nele no fim do dia 10**. Esta frente deixou de ser bloqueante. Falta configurar a
 identidade do WhatsApp Business (nome, descrição, horário, respostas rápidas) e fazer o
 teste ponta a ponta pelo botão do site. Nota: a área 213 é de Los Angeles, e a prioridade
-comercial é Massachusetts e Boston (área 617, 508, 781, 978). Não impede nada, mas um
-lead de Boston vê um número da Califórnia.
+território é todo os Estados Unidos, então a área do número não é problema.
+Confirmado pelo usuário em 2026-09-11: o número é dele e é o mesmo autenticado no
+WhatsApp Business.
 
 **3. Tráfego pago.** Confirmado em 2026-09-09 que Instagram, Business Manager, conta de
 anúncios e meio de pagamento **já existem e funcionam**. Falta só a **página do Facebook**,
@@ -173,3 +174,14 @@ Nenhum prazo definido ainda.
 As três primeiras frentes estão detalhadas na seção "Próxima frente: aquisição".
 
 **Regra de integridade (não negociável):** nunca declarar cliente inexistente como real, nunca inventar depoimento/avaliação/localização/equipe/resultado, nunca reutilizar mídia sem licença, nunca prometer faturamento ou posição no Google sem base verificável. Mockups/demonstrações só valem rotulados como tal. Prova social real só depois do primeiro trabalho pago e documentado.
+
+## Decisões confirmadas em 2026-09-11
+
+- **Território:** todo o território dos Estados Unidos. Massachusetts foi exemplo, nunca limite.
+- **Nicho:** construção, com os nove subnichos das aulas dentro do escopo (Flooring, Painting,
+  Remodeling, Carpentry, Cabinets, Roofing, HVAC, Gutter, Framing).
+- **Preço:** front de **US$ 5.000**, com piso de negociação em **US$ 2.500**. A ideia é vender mais
+  caro e negociar para baixo, nunca abrir no piso. No pior caso, **US$ 2.000 de recorrência mensal**.
+- **Número americano:** `12133960014`, área 213, já autenticado no WhatsApp Business.
+- **Canais de anúncio:** página no Facebook criada, conta de anúncio e cartão configurados.
+- **Documento de diagnóstico:** modelo e gerador prontos (`scripts/gerar_diagnostico.py`).

@@ -139,7 +139,7 @@ Agência enxuta de geração de leads (metodologia LeadsEveryDay) para brasileir
 
 ## Público e mercado
 
-Contractors e empresas de construção/home services nos EUA, foco em brasileiros. Nichos: Remodeling, Flooring, Painting, Cabinets, Roofing, Gutters, HVAC. Duas regiões atendidas desde 2026-09-10: **Grande Boston / Massachusetts** e **Grande Los Angeles** (Los Angeles, Van Nuys, North Hollywood, Burbank, Glendale, Pasadena, Long Beach, Culver City, Santa Monica, Inglewood, Torrance, Pomona e Anaheim). O número de atendimento é americano, área 213 (LA). Recorte comercial prioritário dentro desses nichos ainda **não confirmado** — não decidir por conta própria, perguntar ao usuário quando isso for relevante pra uma entrega.
+Contractors e empresas de construção/home services nos EUA, foco em brasileiros. Nicho é **construção**, e os 9 subnichos das aulas estão todos dentro do escopo: Flooring (90% dos clientes), Painting, Remodeling, Carpentry, Cabinets, Roofing, HVAC, Gutter e Framing. Descartados por ticket baixo: house cleaning, carpet cleaning, window tint, car detail. **Território: todo o território dos Estados Unidos** (confirmado pelo usuário em 2026-09-11). Massachusetts e Los Angeles apareceram antes como exemplo e como origem de material já produzido, nunca como limite. Não estreitar a segmentação para uma região sem ele pedir. O número de atendimento é americano, área 213, e atende nacionalmente. Ele atende os nove, não há recorte a decidir. Flooring é o maior volume segundo a mentoria, mas isso é dado de mercado, não restrição de escopo.
 
 ## Estrutura de pastas
 

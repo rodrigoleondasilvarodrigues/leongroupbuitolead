@@ -209,17 +209,29 @@ python3 scripts/gerar_diagnostico.py dados/diagnostico-<slug>.json
 - Os itens vêm do mesmo vocabulário do checklist de entrega do CRM, extraído para
   `dados/checklist-otimizacao.json` (42 itens), pra auditar e entregar com a mesma régua
 
-### 5. Decisões que são dele, não suas
+### 5. Decisões que ELE JÁ TOMOU (2026-09-11)
 
-- **O nicho:** flooring (volume) ou HVAC (ticket). Aberto desde o começo.
-- **O preço:** a recomendação está em `propostas/oferta-na-call.md`. Ele nunca
-  confirmou.
-- **O número americano:** o site já está com `12133960014`, então parece resolvido, mas o
-  Rodrigo **não confirmou** se é dele e se é o mesmo que autenticou no WhatsApp Business.
-  Perguntado em 2026-09-10, sem resposta até agora. Detalhe: 213 é código de Los Angeles e
-  o mercado é Massachusetts (617, 857, 508, 781, 978).
-- **O idioma do perfil:** ele cogitou pôr em inglês. A recomendação registrada é manter a
-  descrição bilíngue (o ICP é brasileiro e os anúncios são em português), mas a decisão é dele.
+Nada aqui está mais em aberto. Não perguntar de novo.
+
+- **Território: TODO o território dos Estados Unidos.** Massachusetts e Los Angeles
+  apareceram em material anterior como exemplo e como origem de criativo, nunca como
+  limite. Não estreitar segmentação para região nenhuma sem ele pedir.
+- **Nicho: construção**, com os nove subnichos das aulas todos dentro do escopo:
+  Flooring, Painting, Remodeling, Carpentry, Cabinets, Roofing, HVAC, Gutter, Framing.
+- **Preço: US$ 5.000 de front, piso de negociação em US$ 2.500.** A ideia é abrir caro e
+  negociar para baixo, nunca abrir no piso. Pior caso aceitável: US$ 2.000 de recorrência
+  mensal.
+- **Número americano:** `12133960014`, área 213, dele, já autenticado no WhatsApp Business.
+- **Página no Facebook, conta de anúncio e cartão:** prontos.
+- **Perfil do WhatsApp Business:** foto, capa, descrição e automações no ar. Textos
+  atualizados para território nacional em
+  `marketing/redes-sociais/materiais-gerais/whatsapp-business-textos.md`.
+
+### O que sobrou para sexta
+
+Só os criativos, e eles são dele: 4 gravados por ele mais 4 a 6 em Arcads. Ele rejeitou
+os 20 roteiros do Claude e volta com os dele prontos. **Não defender nem reaproveitar os
+antigos sem ele pedir.**
 
 ---
 
