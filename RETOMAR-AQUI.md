@@ -192,12 +192,34 @@ criativos por rodada, três dias cada, cinco rodadas para os dez**. Manter o val
 fixo pelos três dias importa mais do que o valor em si, porque o Meta reaprende a
 entrega quando o orçamento muda e o dia 2 deixa de ser comparável ao dia 1.
 
-### 4. Decisões que são dele, não suas
+### 4. O documento de diagnóstico (feito em 2026-09-10)
+
+Era o único dos três bloqueios da sexta que dependia do Claude, e estava sem dono:
+**todo anúncio promete "diagnóstico gratuito por escrito" e o modelo não existia.**
+
+Agora existe:
+
+```bash
+python3 scripts/gerar_diagnostico.py dados/diagnostico-<slug>.json
+```
+
+- `dados/diagnostico-modelo.json` em branco, 27 itens em 3 áreas, pronto pra copiar por lead
+- `dados/diagnostico-exemplo.json` preenchido com empresa fictícia, rotulado EXEMPLO na capa
+- Sai em `saidas/Diagnostico-<slug>.pdf`, A4, identidade da marca
+- Os itens vêm do mesmo vocabulário do checklist de entrega do CRM, extraído para
+  `dados/checklist-otimizacao.json` (42 itens), pra auditar e entregar com a mesma régua
+
+### 5. Decisões que são dele, não suas
 
 - **O nicho:** flooring (volume) ou HVAC (ticket). Aberto desde o começo.
 - **O preço:** a recomendação está em `propostas/oferta-na-call.md`. Ele nunca
   confirmou.
-- **O número americano:** decidido que será pela via legítima, ainda não obtido.
+- **O número americano:** o site já está com `12133960014`, então parece resolvido, mas o
+  Rodrigo **não confirmou** se é dele e se é o mesmo que autenticou no WhatsApp Business.
+  Perguntado em 2026-09-10, sem resposta até agora. Detalhe: 213 é código de Los Angeles e
+  o mercado é Massachusetts (617, 857, 508, 781, 978).
+- **O idioma do perfil:** ele cogitou pôr em inglês. A recomendação registrada é manter a
+  descrição bilíngue (o ICP é brasileiro e os anúncios são em português), mas a decisão é dele.
 
 ---
 

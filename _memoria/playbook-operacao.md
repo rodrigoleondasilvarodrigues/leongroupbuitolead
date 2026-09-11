@@ -110,6 +110,82 @@ Flooring é apontado como 90% dos clientes — forte candidato a recorte priorit
 
 ---
 
+---
+
+## Estrutura de campanha por verba disponível
+
+O material tem **três orientações diferentes** sobre como montar a campanha, e elas não
+se contradizem: cada uma pressupõe uma quantidade de dinheiro. Escolha pela verba que
+existe hoje, não pela que você quer ter.
+
+### Cenário A · Verba curta, R$ 100/dia no total (o caso de hoje)
+
+```
+1 campanha CBO
+  └ 1 conjunto
+      ├ criativo 1
+      ├ criativo 2
+      └ criativo 3
+```
+
+A verba fica **no nível da campanha** e o Meta decide sozinho quem recebe. Ele não divide
+em três: em um ou dois dias concentra a maior parte no que está performando e sufoca o
+resto.
+
+- **Não se mata criativo na mão.** A distribuição mata por você: o que parou de receber
+  entrega é o perdedor.
+- **Não mexer em nada por 3 dias**, por causa da fase de aprendizagem.
+- O vencedor acaba recebendo uns R$ 70 a 80 por dia sozinho, então dá leitura sem precisar
+  de R$ 100 em cada um.
+- **Gastou uns R$ 300 e não veio lead nenhum: o problema não é criativo.** Trocar criativo
+  não resolve, o furo está na oferta ou na segmentação.
+
+Origem: aula ainda **não transcrita**, relatada pelo Rodrigo em 2026-09-10. O detalhe dos
+3 dias e do corte em R$ 300 é raciocínio de como CBO funciona, **não** fala do instrutor.
+
+### Cenário B · Verba sobrando, R$ 100/dia por criativo
+
+```
+1 campanha ABO
+  ├ conjunto 1 · R$ 100/dia · criativo 1
+  ├ conjunto 2 · R$ 100/dia · criativo 2
+  └ conjunto 3 · R$ 100/dia · criativo 3
+```
+
+Aqui cada criativo tem verba própria e ninguém compete com ninguém, então cada um é
+julgado pelo próprio dinheiro. É onde a regra clássica vale: **criativo que gastou R$ 100
+sem trazer lead, mata.**
+
+Custa 3x mais por dia e entrega leitura limpa em 1 dia em vez de 3.
+
+**Quando migrar do A para o B:** quando já houver cliente pago e caixa para sustentar
+R$ 300/dia sem depender do resultado da semana.
+
+### Cenário C · O que a Aula 03 registrou
+
+`R$ 100/dia no CBO, 1 campanha / 1 conjunto / 1 criativo.` É o mais conservador de todos:
+um criativo por vez, sem competição interna, leitura mais lenta porém inequívoca.
+
+Serve para quando você quer testar **um ângulo específico isolado**, sem o Meta escolher
+por você.
+
+### O que não muda em nenhum dos três
+
+- Objetivo **Engajamento, nunca Leads**
+- Destino manual no WhatsApp Business, com Instagram e Messenger desativados
+- Público: EUA excluindo Alasca, 25 a 55 anos, só homens, português do Brasil
+- Posicionamento manual, sem Audience Network
+- Nomenclatura: número de vendas + CBO + data + engajamento WhatsApp + nome da agência
+
+---
+
 ## Próximas aulas
 
-Faltam 3 aulas ainda não liberadas na mentoria (segundo o usuário, em 2026-09-04). Atualizar este arquivo quando saírem.
+Faltam 3 aulas ainda não liberadas na mentoria (segundo o usuário, em 2026-09-04).
+Atualizar este arquivo quando saírem.
+
+⚠️ Em 2026-09-10 o Rodrigo relatou conteúdo de aula **posterior às quatro transcritas e
+ainda não publicada na plataforma**: a estrutura CBO com 1 conjunto e 3 criativos do
+Cenário A acima. Enquanto essa aula não for gravada e transcrita, o que está no Cenário A
+é relato de segunda mão mais raciocínio técnico, não citação. Quando a aula sair, conferir
+e corrigir.

@@ -1,0 +1,118 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<title>Diagnóstico · Ribeiro Hardwood Flooring</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+@page{size:A4 portrait;margin:16mm 14mm 18mm}
+@page :first{margin-top:0}
+*{box-sizing:border-box}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{margin:0;font-family:'Archivo','Helvetica Neue',Arial,sans-serif;font-size:9.6pt;
+     line-height:1.55;color:#171717;background:#fff}
+.disp{font-family:'Anton',Impact,sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.01em}
+.mono{font-family:'JetBrains Mono',ui-monospace,Menlo,monospace}
+
+.capa{height:262mm;padding:36mm 0 0;display:flex;flex-direction:column;break-after:page}
+.capa .eyebrow{font-family:'JetBrains Mono',monospace;font-size:8pt;letter-spacing:.18em;
+  text-transform:uppercase;color:#E65A19;margin-bottom:10mm}
+.capa h1{font-family:'Anton',Impact,sans-serif;font-size:46pt;line-height:.95;text-transform:uppercase;margin:0 0 6mm}
+.capa .quem{font-size:15pt;line-height:1.4;margin-bottom:3mm}
+.capa .quem b{display:block;font-size:20pt;font-weight:700}
+.capa .sub{font-size:11pt;color:#5E564C;max-width:130mm;margin-top:8mm}
+.capa .rodape{margin-top:auto;padding-top:8mm;border-top:1.5pt solid #171717;
+  display:flex;justify-content:space-between;align-items:baseline}
+.capa .marca{font-family:'Anton',Impact,sans-serif;font-size:13pt;letter-spacing:.05em;text-transform:uppercase}
+.capa .marca em{font-style:normal;color:#E65A19}
+.capa .data{font-family:'JetBrains Mono',monospace;font-size:8pt;color:#6E655A;text-align:right;line-height:1.7}
+
+h2{font-family:'Anton',Impact,sans-serif;font-size:19pt;text-transform:uppercase;margin:0 0 4mm;letter-spacing:.005em}
+h3{font-size:12pt;margin:7mm 0 2.5mm}
+.rot{font-family:'JetBrains Mono',monospace;font-size:7.5pt;letter-spacing:.15em;
+  text-transform:uppercase;color:#6E655A;margin-bottom:2.5mm}
+p{margin:0 0 3.5mm}
+
+.placar{display:flex;gap:4mm;margin:5mm 0 7mm}
+.placar>div{flex:1;border:1pt solid #DCD2BF;border-radius:2.5mm;padding:4mm;background:#FFFDF7}
+.placar .n{font-family:'Anton',Impact,sans-serif;font-size:26pt;line-height:1}
+.placar .l{font-family:'JetBrains Mono',monospace;font-size:7pt;letter-spacing:.1em;
+  text-transform:uppercase;color:#6E655A;margin-top:1mm}
+.placar .b{height:2mm;border-radius:1mm;background:#EFE8D9;margin-top:2.5mm;overflow:hidden}
+.placar .b i{display:block;height:100%;background:#E65A19}
+
+section.area{break-before:page}
+table{width:100%;border-collapse:collapse;font-size:8.8pt;table-layout:fixed}
+th{text-align:left;font-family:'JetBrains Mono',monospace;font-size:6.8pt;letter-spacing:.1em;
+  text-transform:uppercase;color:#6E655A;background:#F0E9DA;padding:2mm;border-bottom:.6pt solid #171717;font-weight:500}
+td{padding:2.4mm 2mm;border-bottom:.4pt solid #DCD2BF;vertical-align:top;overflow-wrap:anywhere}
+tr{break-inside:avoid-page}
+th.c1{width:44mm}th.c2{width:20mm}
+td.it{font-weight:600}
+td.fz{color:#3F3A33}
+.chip{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:6.8pt;letter-spacing:.07em;
+  text-transform:uppercase;padding:.8mm 2mm;border-radius:1mm;color:#fff;white-space:nowrap}
+.obs{font-size:8.2pt;color:#6E655A;display:block;margin-top:1mm;font-style:italic}
+
+ol.ordem{counter-reset:p;list-style:none;padding:0;margin:0}
+ol.ordem li{counter-increment:p;position:relative;padding-left:11mm;margin-bottom:4mm;break-inside:avoid-page}
+ol.ordem li::before{content:counter(p);position:absolute;left:0;top:-.5mm;
+  font-family:'Anton',Impact,sans-serif;font-size:15pt;color:#E65A19;line-height:1}
+ol.ordem b{display:block;font-size:10pt}
+ol.ordem span{display:block;font-size:8.8pt;color:#3F3A33;margin-top:.8mm}
+ol.ordem .pq{font-family:'JetBrains Mono',monospace;font-size:7.2pt;color:#6E655A;margin-top:1mm;display:block}
+
+.nota{border-left:2.5pt solid #E65A19;background:#FDF8F2;padding:3.5mm 4mm;margin:5mm 0;
+  border-radius:0 2mm 2mm 0;break-inside:avoid-page}
+/* so o rotulo vira bloco; b dentro do texto continua inline */
+.nota > b:first-child{display:block;font-family:'JetBrains Mono',monospace;font-size:7.2pt;
+  letter-spacing:.12em;text-transform:uppercase;color:#E65A19;margin-bottom:1.5mm}
+.nota p b{font-weight:700;color:#171717}
+.nota p:last-child{margin-bottom:0}
+.fecho{break-before:page}
+.assin{margin-top:8mm;padding-top:5mm;border-top:1pt solid #171717;font-size:9pt}
+.assin b{font-family:'Anton',Impact,sans-serif;font-size:12pt;letter-spacing:.04em;text-transform:uppercase}
+.assin b em{font-style:normal;color:#E65A19}
+</style></head><body>
+
+<div class="capa">
+  <div class="eyebrow">Diagnóstico gratuito · Leon Group</div>
+  <h1>Onde a sua<br>empresa está hoje</h1>
+  <div class="quem"><b>Ribeiro Hardwood Flooring</b>Flooring · Everett, MA</div>
+  <p class="sub">Um retrato do que o dono da casa encontra quando procura o seu serviço na sua cidade, e a ordem para corrigir.</p>
+  <div class="rodape">
+    <div class="marca">Le<em>o</em>n Group · Built to Lead.</div>
+    <div class="data">10/09/2026<br>Rodrigo Leon</div>
+  </div>
+</div>
+
+<section>
+  <div class="rot">Resumo</div>
+  <h2>O que a gente encontrou</h2>
+  <div class="nota"><b>Exemplo</b><p>Este documento é um modelo de demonstração. A empresa, os dados e os achados são fictícios, criados só para mostrar o formato.</p></div>
+  <p>O serviço está lá e as fotos mostram acabamento bom. O problema é que quase nada disso chega ao dono da casa: o perfil no Google existe mas está pela metade, o site não diz em quais cidades você atende, e você tem onze avaliações contra duzentas e catorze de quem aparece em primeiro em Everett. Nenhum desses três é difícil de corrigir.</p>
+  <div class="placar"><div><div class="n">3<span style="font-size:14pt;color:#8A8279">/12</span></div><div class="l">Google Business Profile</div><div class="b"><i style="width:25%"></i></div></div><div><div class="n">3<span style="font-size:14pt;color:#8A8279">/10</span></div><div class="l">Site</div><div class="b"><i style="width:30%"></i></div></div><div><div class="n">2<span style="font-size:14pt;color:#8A8279">/5</span></div><div class="l">Avaliações</div><div class="b"><i style="width:40%"></i></div></div></div>
+  <div class="nota"><b>Como ler</b>
+    <p><b>Feito</b> quer dizer que está lá e está certo. <b>Parcial</b> quer dizer que existe mas está incompleto ou errado. <b>Falta</b> quer dizer que não existe.</p>
+    <p>Nada aqui é opinião: cada linha é uma coisa que dá para conferir abrindo o seu perfil ou o seu site agora.</p>
+  </div>
+</section>
+
+<section class="area"><div class="rot">Área um</div><h2>Google Business Profile</h2><p>É a primeira coisa que o dono da casa vê, e na maioria das buscas é a única. Aqui está item a item.</p><table><thead><tr><th class="c1">O que a gente olhou</th><th class="c2">Como está</th><th>O que fazer</th></tr></thead><tbody><tr><td class="it">Perfil existe e está verificado<span class="obs">Verificado em 2024.</span></td><td><span class="chip" style="background:#2F6B4F">Feito</span></td><td class="fz">Reivindique em google.com/business. O Google escolhe como verificar: vídeo costuma sair no mesmo dia. Grave o veículo, a ferramenta e o material, sem cortes. Sem isso, nada mais aparece.</td></tr><tr><td class="it">Nome sem palavra-chave enfiada</td><td><span class="chip" style="background:#2F6B4F">Feito</span></td><td class="fz">O nome é o da empresa, igual ao dos documentos. Colocar cidade ou serviço no nome é violação e é o motivo número 1 de suspensão de perfil de contractor.</td></tr><tr><td class="it">Categoria principal específica<span class="obs">Está como General Contractor. O correto seria Flooring contractor.</span></td><td><span class="chip" style="background:#B07818">Parcial</span></td><td class="fz">A mais específica que existir. Flooring contractor, não Contractor. É a maior alavanca gratuita de ranqueamento local.</td></tr><tr><td class="it">Categorias secundárias preenchidas<span class="obs">Nenhuma preenchida. Cabem nove.</span></td><td><span class="chip" style="background:#C44712">Falta</span></td><td class="fz">Até nove, uma por serviço que você presta de verdade. Não invente: gera lead ruim.</td></tr><tr><td class="it">Área de atendimento configurada, sem endereço público<span class="obs">O endereço residencial está visível no mapa.</span></td><td><span class="chip" style="background:#C44712">Falta</span></td><td class="fz">Quem vai à casa do cliente é service area business. Marque as cidades e esconda o endereço. Endereço residencial visível é violação e expõe a sua casa.</td></tr><tr><td class="it">Telefone local, igual ao do site<span class="obs">O perfil tem um número e o site tem outro.</span></td><td><span class="chip" style="background:#B07818">Parcial</span></td><td class="fz">Número com DDD da região, o mesmo dígito por dígito no perfil, no site e no Instagram. Divergência derruba a confiança do Google.</td></tr><tr><td class="it">Site apontado no perfil</td><td><span class="chip" style="background:#2F6B4F">Feito</span></td><td class="fz">Campo Website preenchido. É de lá que vem boa parte do tráfego que converte.</td></tr><tr><td class="it">Horário de funcionamento preenchido<span class="obs">Aparece como Horário não informado.</span></td><td><span class="chip" style="background:#C44712">Falta</span></td><td class="fz">Preencha os sete dias. Perfil sem horário perde posição para quem tem, e o cliente presume que está fechado.</td></tr><tr><td class="it">Descrição escrita, até 750 caracteres<span class="obs">Campo vazio.</span></td><td><span class="chip" style="background:#C44712">Falta</span></td><td class="fz">Diga o que faz, para quem e em quais cidades. Sem enfeite e sem promessa.</td></tr><tr><td class="it">Serviços cadastrados um a um<span class="obs">Nenhum serviço cadastrado.</span></td><td><span class="chip" style="background:#C44712">Falta</span></td><td class="fz">Cada serviço com nome e descrição curta. É o que o Google usa para casar a sua empresa com a busca do cliente.</td></tr><tr><td class="it">Fotos: logo, capa e no mínimo dez de obra<span class="obs">Três fotos, todas de 2023, nenhuma de capa.</span></td><td><span class="chip" style="background:#B07818">Parcial</span></td><td class="fz">Foto real, tirada por você. Perfil com foto recebe muito mais pedido de rota e de ligação que perfil sem.</td></tr><tr><td class="it">Perguntas e respostas semeadas<span class="obs">Nenhuma pergunta publicada.</span></td><td><span class="chip" style="background:#C44712">Falta</span></td><td class="fz">Publique as cinco perguntas que todo cliente faz e responda você mesmo. Se você não responder, alguém responde errado.</td></tr></tbody></table></section><section class="area"><div class="rot">Área dois</div><h2>Site</h2><p>O site não precisa ser bonito. Precisa carregar rápido, dizer o que você faz, onde você atende, e ter um jeito óbvio de te chamar.</p><table><thead><tr><th class="c1">O que a gente olhou</th><th class="c2">Como está</th><th>O que fazer</th></tr></thead><tbody><tr><td class="it">O site existe</td><td><span class="chip" style="background:#2F6B4F">Feito</span></td><td class="fz">Uma página só já resolve, desde que tenha serviço, cidade, telefone e foto de obra.</td></tr><tr><td class="it">HTTPS ativo</td><td><span class="chip" style="background:#2F6B4F">Feito</span></td><td class="fz">Sem cadeado o navegador avisa que o site não é seguro e o cliente sai antes de ler.</td></tr><tr><td class="it">Abre rápido no celular<span class="obs">8,4 segundos no celular. As fotos da galeria têm 4 MB cada.</span></td><td><span class="chip" style="background:#B07818">Parcial</span></td><td class="fz">Teste em pagespeed.web.dev. Quase todo cliente chega pelo telefone. Imagem pesada é a causa mais comum de lentidão.</td></tr><tr><td class="it">Telefone clicável fixo no topo<span class="obs">O telefone está escrito no rodapé, como texto.</span></td><td><span class="chip" style="background:#C44712">Falta</span></td><td class="fz">Tem que ser um link tel:, não um texto. No celular o cliente toca e liga.</td></tr><tr><td class="it">Nome, telefone e área idênticos aos do perfil<span class="obs">Telefone diferente do que está no Google.</span></td><td><span class="chip" style="background:#C44712">Falta</span></td><td class="fz">Divergência entre site e Google é o erro silencioso mais comum, e derruba os dois.</td></tr><tr><td class="it">Uma seção ou página por serviço principal<span class="obs">Uma página só, com todos os serviços numa lista.</span></td><td><span class="chip" style="background:#B07818">Parcial</span></td><td class="fz">Quem procura bathroom remodel não quer cair numa página genérica de construção.</td></tr><tr><td class="it">Todas as cidades atendidas escritas no site<span class="obs">Nenhuma cidade aparece escrita no site.</span></td><td><span class="chip" style="background:#C44712">Falta</span></td><td class="fz">Se a cidade não está escrita em lugar nenhum, o Google não tem como te associar a ela.</td></tr><tr><td class="it">Título e descrição próprios em cada página<span class="obs">O título é Home.</span></td><td><span class="chip" style="background:#C44712">Falta</span></td><td class="fz">É o que aparece no resultado da busca. Sem isso o Google inventa, e costuma inventar mal.</td></tr><tr><td class="it">Fotos reais de obra, com antes e depois<span class="obs">Boas fotos, é o ponto mais forte do site.</span></td><td><span class="chip" style="background:#2F6B4F">Feito</span></td><td class="fz">Foto de banco de imagem o cliente reconhece na hora e desconfia do resto.</td></tr><tr><td class="it">Botão ou formulário de orçamento que chega em algum lugar<span class="obs">O formulário envia, mas o e-mail de destino não existe mais.</span></td><td><span class="chip" style="background:#B07818">Parcial</span></td><td class="fz">Teste você mesmo enviando um. Formulário quebrado é lead perdido sem você saber.</td></tr></tbody></table></section><section class="area"><div class="rot">Área três</div><h2>Avaliações</h2><p>É o único ativo que o concorrente não copia da noite para o dia, e é o que decide entre você e o vizinho.</p><table><thead><tr><th class="c1">O que a gente olhou</th><th class="c2">Como está</th><th>O que fazer</th></tr></thead><tbody><tr><td class="it">Quantidade de avaliações<span class="obs">Onze avaliações em seis anos de empresa.</span></td><td><span class="chip" style="background:#B07818">Parcial</span></td><td class="fz">Peça para todo cliente satisfeito, no dia da entrega, com o link direto na mão dele. É o único caminho.</td></tr><tr><td class="it">Nota média<span class="obs">4,9. A nota é excelente, o volume é que falta.</span></td><td><span class="chip" style="background:#2F6B4F">Feito</span></td><td class="fz">Abaixo de 4,5 o cliente hesita. Responder avaliação ruim com educação recupera boa parte do estrago.</td></tr><tr><td class="it">Comparação com os três do mapa<span class="obs">Os três primeiros em Everett têm 214, 97 e 63 avaliações.</span></td><td><span class="chip" style="background:#C44712">Falta</span></td><td class="fz">Olhe quantas avaliações tem quem aparece em primeiro na sua cidade. É a distância real que você precisa cobrir.</td></tr><tr><td class="it">Respostas às avaliações<span class="obs">Nenhuma das onze foi respondida.</span></td><td><span class="chip" style="background:#C44712">Falta</span></td><td class="fz">Responda todas, inclusive as boas. O Google lê isso como sinal de negócio ativo.</td></tr><tr><td class="it">Nenhuma avaliação fabricada<span class="obs">Todas parecem legítimas.</span></td><td><span class="chip" style="background:#2F6B4F">Feito</span></td><td class="fz">Comprar avaliação derruba o perfil inteiro e não tem volta. Não existe atalho aqui.</td></tr></tbody></table><div class="nota"><b>Observação</b><p>Você já fez o trabalho que vale essas avaliações. As onze que existem têm nota 4,9. O que falta não é qualidade, é pedir.</p></div></section>
+
+<section class="fecho">
+  <div class="rot">O que fazer</div>
+  <h2>A ordem de correção</h2>
+  <p>Consertar tudo ao mesmo tempo não funciona. Essa é a sequência que dá mais resultado por esforço, de cima para baixo.</p>
+  <ol class="ordem"><li><b>Esconder o endereço residencial e configurar a área de atendimento</b><span>No perfil do Google, troque para service area business e marque Everett, Malden, Revere, Medford e Chelsea.</span><span class="pq">Por que primeiro: É violação das diretrizes, pode suspender o perfil, e expõe a sua casa no mapa.</span></li><li><b>Corrigir a categoria principal para Flooring contractor</b><span>Editar a categoria no perfil. Leva um minuto e vale para sempre.</span><span class="pq">Por que primeiro: É a maior alavanca gratuita de ranqueamento local, e General Contractor te coloca numa disputa que não é a sua.</span></li><li><b>Unificar o telefone entre o perfil e o site</b><span>Escolha um número e deixe ele nos dois, dígito por dígito.</span><span class="pq">Por que primeiro: Divergência de telefone derruba a confiança do Google no negócio inteiro.</span></li><li><b>Preencher horário, descrição e serviços</b><span>Uma tarde de trabalho. Sete dias de horário, 750 caracteres de descrição, um item por serviço.</span><span class="pq">Por que primeiro: São três campos vazios que o Google usa para casar você com a busca do cliente.</span></li><li><b>Começar a pedir avaliação em todo job entregue</b><span>Peça no dia da entrega, com o link curto do perfil aberto no seu celular, na frente do cliente.</span><span class="pq">Por que primeiro: É o item mais lento de todos: cada mês que passa sem pedir é mês que não volta.</span></li><li><b>Escrever as cidades atendidas no site e arrumar o formulário</b><span>Uma linha com as cidades em cada página, e testar o formulário enviando um você mesmo.</span><span class="pq">Por que primeiro: Hoje o formulário envia para um e-mail que não existe: todo lead que preenche está se perdendo.</span></li><li><b>Comprimir as fotos da galeria</b><span>Exportar em no máximo 300 KB cada. O site cai de 8,4 para menos de 3 segundos.</span><span class="pq">Por que primeiro: Metade dos visitantes de celular desiste antes de oito segundos.</span></li></ol>
+
+  <div class="nota"><b>Isso é seu</b>
+    <p>Você pode executar essa lista sozinho, sem contratar ninguém. Está tudo aqui de propósito: nenhum passo depende de ferramenta paga nem de acesso que só a gente tem.</p>
+    <p>Se quiser que a gente faça, a Leon Group monta o perfil no Google, publica o site com SEO local com o botão indo direto para o seu WhatsApp, organiza a estratégia de avaliação e cuida do Instagram. Tráfego pago só na última etapa, quando já existe alguma coisa para encontrar.</p>
+  </div>
+
+  <div class="assin">
+    <b>Le<em>o</em>n Group · Built to Lead.</b>
+    <p style="margin-top:2mm">Qualquer dúvida sobre um item específico, me chama no WhatsApp que eu explico.</p>
+  </div>
+</section>
+</body></html>
