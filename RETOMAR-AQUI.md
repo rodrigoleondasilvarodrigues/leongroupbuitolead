@@ -14,14 +14,15 @@ O sistema está pronto e no ar. O que separa a Leon Group do primeiro cliente
 pago é oferta decidida, número americano, criativo produzido e campanha no ar.
 Sexta-feira (2026-09-12) é a data da primeira subida de anúncio.
 
-**⚠ O WhatsApp não aceitou o número americano (2026-09-10).** O número
-`+1 213 396 0014` foi contratado no Vnumber e está no site e no CRM, mas o
-código de verificação do WhatsApp não chega por SMS. Suporte acionado. Enquanto
-isso: o botão do site não abre conversa, os lembretes do CRM não chegam, e a
-campanha não passa do passo 7. **O Rodrigo decidiu manter o número onde está e
-decidir na quinta (2026-09-11) com o estado que houver.** Não trocar o número
-nem mexer no site sem ele pedir. A folha da decisão está na seção 8 de
-`_memoria/playbook-campanha-meta.md`.
+**✅ O WhatsApp aceitou o número americano (2026-09-10, fim do dia).** O número
+`+1 213 396 0014` (Vnumber, área 213, Los Angeles) está ativo no WhatsApp
+Business, confirmado pelo Rodrigo. O site e o CRM já apontam para ele, e o passo
+7 da subida de campanha deixou de estar bloqueado.
+
+**O que ainda não foi testado:** mandar uma mensagem pelo botão do site e ela
+chegar de verdade no aparelho. Faça esse teste antes de gravar cartela citando o
+número e antes de subir campanha apontando pra ele. O histórico de como o número
+entrou está na seção 8 de `_memoria/playbook-campanha-meta.md`.
 
 **Ferramenta única, decidido em 2026-09-10:** o trabalho segue só no Claude Code
 dentro do VS Code, nesta pasta. Não há mais edição paralela em outra ferramenta,
@@ -64,29 +65,51 @@ npx wrangler pages deploy sistemas/site-agencia --project-name=leon-group-site -
 
 ## O que o Rodrigo pediu e ainda não foi feito
 
-### 1. Apagar os dados de teste do CRM (esperando o ok dele)
+### 1. Os dados de teste do CRM (feito em 2026-09-10)
 
-Ele disse: *"se eu der o ok, apague todo o crm com dados de clientes falsos"*.
-**Esse ok nunca veio.** Não apague nada sem ele pedir de novo, com essas
-palavras.
+O ok veio e foi executado. **O banco de produção foi esvaziado por inteiro**,
+incluindo o lead e o cliente "Richard Leon / RL HVAC", que o Rodrigo confirmou
+que podiam ir junto, e as 3 entradas de US$ 2.500 do caixa.
 
-O que é teste, hoje, em produção:
+Backup de tudo que existia antes está em
+`dados/backup-crm-2026-09-10/` (11 tabelas em JSON). É de onde recuperar o
+Richard Leon, se ele fizer falta.
 
-| Tabela | O que | Como reconhecer |
+No lugar entraram **registros de teste cobrindo todas as etapas**, para dar
+para percorrer o sistema de ponta a ponta:
+
+| Onde | Quantos | O que |
 |---|---|---|
-| `leads` | #2 "Teste Planos" | criado pelo Claude ao verificar o clique no plano |
-| `leads` | #3 "Marcos Oliveira" | `origem = site:TESTE-AO-VIVO` |
-| `leads` | #5 "Anderson Ribeiro" | `origem = site:TESTE-COMPLETO` |
-| `clientes` | #4 "Ribeiro Painting & Drywall" | `slug = ribeiro-painting-teste` |
-| `entradas` | US$ 2.500 do cliente #4 | única entrada do banco |
+| `leads` | 16 | um em cada etapa dos 4 pipelines, de "responderam" a "nutrição" |
+| `clientes` | 8 | um em cada estágio da entrega, do cadastro ao **atrasado** e ao concluído |
+| `entradas` | 6 | US$ 2.500 por cliente que já pagou |
+| `marcos` | 88 | a cadência de 11 marcos por cliente, com quantidade concluída variando |
+| `checklist` | 336 | os 42 itens de otimização por cliente |
 
-⚠ O lead **#1 "Richard Leon / RL HVAC"** não é teste do Claude, é do próprio
-Rodrigo. Não apagar sem perguntar.
+**Como reconhecer que é teste:** todo lead tem `origem` começando com `TESTE:`,
+todo cliente tem `slug` começando com `teste-0`, e as observações dizem
+"REGISTRO DE TESTE" em texto. Os telefones estão na faixa 555-01XX, reservada
+para ficção, então nenhum cai em pessoa real.
 
-⚠ Apagar o cliente #4 pela API vai ser **bloqueado**, de propósito: ele tem
-entrada de dinheiro lançada. Isso é a correção do achado 5 da auditoria (ver
-abaixo). O caminho é apagar a entrada primeiro, na seção Entradas do card, ou
-mandar `apagar_entradas_tambem: true`.
+**Para refazer, ou recriar depois de limpar:**
+
+```bash
+cd sistemas/cloudflare
+node semear-etapas.mjs > /tmp/semear.sql
+npx wrangler d1 execute leon-group --remote --file=/tmp/semear.sql
+```
+
+O cabeçalho do `semear-etapas.mjs` traz o comando de limpeza e explica por que
+os INSERTs são individuais (com UNION ALL o statement do checklist estoura o
+limite do D1).
+
+⚠ **`entrou_coluna_em` de todo lead é o instante da criação**, de propósito: o
+motor roda de 15 em 15 minutos e move lead parado há mais de 24h na régua de
+temperatura. Com data recente, os 16 ficam onde foram postos. Se você quiser
+ver o decaimento acontecer, recue essa coluna de um lead específico.
+
+⚠ **Os blobs do R2 ficaram órfãos.** As 38 linhas de mídia saíram do banco, os
+arquivos não. É a dívida técnica 2 do `PENDENCIAS.md`, que continua aberta.
 
 ### 2. Terminar a auditoria do ecossistema
 
