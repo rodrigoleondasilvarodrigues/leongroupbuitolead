@@ -81,10 +81,29 @@ para percorrer o sistema de ponta a ponta:
 | Onde | Quantos | O que |
 |---|---|---|
 | `leads` | 16 | um em cada etapa dos 4 pipelines, de "responderam" a "nutrição" |
-| `clientes` | 8 | um em cada estágio da entrega, do cadastro ao **atrasado** e ao concluído |
-| `entradas` | 6 | US$ 2.500 por cliente que já pagou |
-| `marcos` | 88 | a cadência de 11 marcos por cliente, com quantidade concluída variando |
-| `checklist` | 336 | os 42 itens de otimização por cliente |
+| `clientes` | 5 | um em cada sub-visão da aba Entrega (ver a tabela abaixo) |
+| `entradas` | 5 | US$ 2.500 por cliente |
+| `marcos` | 55 | a cadência de 11 marcos por cliente, concluídos variando |
+| `checklist` | 210 | os 42 itens de otimização por cliente |
+| `reviews` | 80 | os 20 depoimentos nos 4 clientes que já passaram da geração |
+| `posts` | 64 | 12 posts + 4 destaques nos mesmos 4 |
+
+**Os 5 clientes do operacional, um por sub-visão de `VISOES_OP`:**
+
+| Cliente | Aparece em | Por quê |
+|---|---|---|
+| Moreira Flooring · Van Nuys CA | Aguardando cliente | sem `formulario_em`: o link foi enviado e não voltou |
+| Ruiz Cabinets · Framingham MA | Em entrega | 3 dias úteis, dentro do prazo, marcos 5/11 |
+| Amaral HVAC · Glendale CA | Em entrega, **Atrasados** | 10 dias úteis com entrega aberta |
+| Caldeira Remodeling · Inglewood CA | Concluídos | **portão cumprido**: 11/11 marcos, 37/37 checklist, 4/4 entregáveis |
+| Tavares Hardwood · Burbank CA | Concluídos, **Renovação** | renova em 9 dias, fechou por **conclusão antecipada** (`entrega_forcada`) |
+
+⚠ **As duas sobreposições são do sistema, não erro dos dados.** Atrasado também
+é "Em entrega" (começou e não terminou), e quem renova também é "Concluído"
+(quem renova já recebeu a entrega). Os filtros em `VISOES_OP` são assim.
+
+Há um cliente para cada caminho de conclusão: o Caldeira fecha pelo portão de
+verdade, o Tavares pelo botão de fechar antes do prazo.
 
 **Como reconhecer que é teste:** todo lead tem `origem` começando com `TESTE:`,
 todo cliente tem `slug` começando com `teste-0`, e as observações dizem
@@ -93,13 +112,17 @@ para ficção, então nenhum cai em pessoa real.
 
 **Para refazer, ou recriar depois de limpar:**
 
+Um script por CRM, para um não sobrescrever o outro:
+
 ```bash
 cd sistemas/cloudflare
-node semear-etapas.mjs > /tmp/semear.sql
-npx wrangler d1 execute leon-group --remote --file=/tmp/semear.sql
+node semear-comercial.mjs   > /tmp/com.sql   # os 16 leads
+node semear-operacional.mjs > /tmp/op.sql    # os 5 clientes
+npx wrangler d1 execute leon-group --remote --file=/tmp/com.sql
+npx wrangler d1 execute leon-group --remote --file=/tmp/op.sql
 ```
 
-O cabeçalho do `semear-etapas.mjs` traz o comando de limpeza e explica por que
+O cabeçalho de cada um traz o comando de limpeza da sua metade e explica por que
 os INSERTs são individuais (com UNION ALL o statement do checklist estoura o
 limite do D1).
 
