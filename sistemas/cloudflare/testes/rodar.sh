@@ -37,3 +37,7 @@ node testes/qualificacao.mjs
 echo
 echo "── funil, dinheiro e diagnóstico ──"
 node testes/funil-e-financeiro.js
+
+echo
+echo "── movimento, resposta assíncrona e persistência da conclusão ──"
+node testes/interface-motion.mjs

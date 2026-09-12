@@ -133,8 +133,8 @@ const MESES_PT=['janeiro','fevereiro','março','abril','maio','junho',
 const mesRotuloLongo=m=>MESES_PT[Number(m.slice(5,7))-1]+' de '+m.slice(0,4);
 
 async function carregarCaixa(forcar){
-  if(!DASH||forcar||dashSujo) await carregarDash(true);
-  if(!DASH) return;
+  if(!DASH||forcar||dashSujo){if(!await carregarDash(true))return;}
+  if(!DASH||setor!=='comercial'||aba!==ABA_CAIXA) return;
   renderCaixa();
 }
 
@@ -165,7 +165,7 @@ function renderCaixa(){
   const tx={usd:e1.txu,brl:e1.txb};
   const sal={usd:ent.usd-sai.usd-tx.usd,brl:ent.brl-sai.brl-tx.brl};
 
-  let h='<div class="dash">';
+  let h=uiCabecalho('Caixa','','')+'<div class="dash">';
 
   // ── navegação de mês + cartão de saldo ──
   const i=f.por_mes.findIndex(m=>m.mes===caixaMes);
@@ -243,6 +243,7 @@ function renderCaixa(){
   h+='</div>';
   cx.innerHTML=h;
   if(caixaEdit) abrirLancarSaida(caixaEdit);
+  uiFimVista('comercial:'+ABA_CAIXA);
 }
 
 const dinDol=v=>'US$ '+Number(v||0).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});

@@ -1,61 +1,90 @@
-# Acabamento visual do CRM
+# Interface visual e movimento do CRM
 
-Implementado no Codex em 2026-09-11, após a aprovação da prévia pelo Rodrigo.
-Pedido: manter a densidade de informação e o fluxo construído com o Claude,
-com visual mais vivo, cores nos estados de conclusão e movimento nas interações.
+Concluído no Codex em 2026-09-12. Rodrigo considerou o primeiro acabamento
+sutil demais e pediu uma evolução visível, mantendo a identidade da Leon Group,
+a densidade de informação e o fluxo construído com o Claude.
 
-## O que mudou
+## O que mudou nesta revisão
 
-- Cabeçalho com o logo oficial, copiado sem recoloração do brand kit.
-- Relógios, seletor de setor e abas em superfícies claras da marca, na mesma ordem.
-- Cards, indicadores, formulários, painéis, dashboard e caixa com acabamento consistente.
-- Clientes concluídos recebem destaque verde a partir de `entrega_completa`, calculado
-  pelo sistema. Atrasados recebem borda de alerta. As pills não definem a conclusão.
-- Checklist, marcos, etapas respondidas e arquivos concluídos aproveitam seus estados
-  existentes para dar retorno visual. O portão de fechamento antecipado mantém a
-  indicação laranja e a explicação que já existia.
-- Movimento breve na abertura do painel e de detalhes, no clique e na marcação de
-  tarefas. Sem animação contínua nos relógios ou nos valores financeiros. Respeita
-  `prefers-reduced-motion`.
-- Notas do funil, barras de categoria e coluna em real continuam acessíveis em tela
-  pequena, com rolagem dentro das tabelas quando necessária.
+- Abas em uma superfície contínua, com marcador que desliza até a seleção.
+  Setores, filtros e pipelines continuam na mesma ordem.
+- Entrada de tela em sequência, com deslocamento e transparência nos indicadores,
+  colunas e cards. A atualização automática de dados não repete essa animação.
+- Indicadores maiores, ícones discretos e contraste entre captação e fechamento.
+  Cards de leads com iniciais, empresa, nicho, permanência e resposta ao passar o mouse.
+- Cards operacionais com progresso dos marcos, todas as informações anteriores,
+  destaque de atraso e estado verde baseado no campo real `entrega_completa`.
+  A barra dos marcos não decide se a entrega está concluída.
+- Funil e diagnóstico lado a lado em telas largas, dinheiro em seguida. No celular,
+  seguem em sequência. Larguras proporcionais, alturas iguais por etapa, percentuais
+  e cálculos financeiros não foram alterados.
+- Painel com abertura animada, foco no botão de fechar ao abrir outro registro,
+  Escape para fechar e proteção contra resposta atrasada de um registro anterior.
+- Checklist e marcos ganham destaque e aviso de conclusão apenas depois de a API
+  confirmar. Durante o salvamento, o checkbox fica desabilitado. Em erro, volta ao
+  estado anterior. Rascunhos, nós do formulário e rolagem são preservados.
+- Preferência de movimento reduzido respeitada, inclusive quando muda com o CRM aberto.
+  Não há animação contínua nos dados nem contagem fictícia de dinheiro.
+- Cabeçalho, relógios e indicadores compactados em tela estreita. Ambos os fusos,
+  a janela de contato e os valores continuam disponíveis.
+
+A logo é o PNG oficial do brand kit, sem recoloração. Não foi criada outra marca.
+
+## Correções necessárias para o retorno visual ser verdadeiro
+
+`/api/checklist` invertia os parâmetros `id` e `cid`. Com valores diferentes,
+a API podia não gravar ou atualizar o par inverso em outro cliente, retornando sucesso.
+A ordem foi corrigida. Checklist e marcos agora retornam 404 quando nenhuma linha
+é encontrada. O teste usa SQLite em memória, o Worker real e uma sessão assinada,
+com um segundo registro de IDs invertidos para garantir o isolamento.
+
+A contagem dos marcos passou a considerar o estado confirmado. Uma segunda tarefa
+pendente ou com erro não pode liberar visualmente a trava.
+
+Dashboard e Caixa compartilham uma busca pendente. A resposta ou o erro de uma aba
+anterior não substitui a tela escolhida depois.
+
+Estas correções estão no código local e no GitHub após o commit desta revisão.
+**Não foram aplicadas ao banco de produção nem publicadas no Worker.**
 
 ## Onde editar
 
-- `src/admin-visual.js`: acabamento geral e estados do operacional.
-- `src/admin-visual-dados.js`: dashboard e caixa.
-- `src/admin-logo.js`: PNG oficial incorporado para funcionar no mesmo Worker.
-- `src/admin.js`: importa o acabamento no final do CSS, usa o logo no cabeçalho e
-  acrescenta as classes visuais de cliente concluído ou atrasado.
+- `src/admin-visual.js`: estilos gerais, cards, painel, conclusão e responsividade.
+- `src/admin-visual-dados.js`: dashboard e caixa, sobre os componentes existentes.
+- `src/admin-interface.js`: ícones, movimento, marcador de navegação, foco e
+  confirmação assíncrona dos itens.
+- `src/admin.js`: integração das classes e funções visuais no HTML real.
+- `src/admin-dash.js` e `src/admin-caixa.js`: composição do dashboard e busca compartilhada.
+- `src/admin-logo.js`: logo oficial incorporada no Worker.
+- `src/index.js`: correção dos identificadores do checklist e confirmação de atualização.
 
-Rotas, persistência, automações, contratos, cálculos, filtros, roteiro da ligação,
-confirmação ao vivo, ordem das seções e geração dos 20 depoimentos foram preservados.
-Os nomes dos campos e os manipuladores das ações continuam os mesmos.
+Automações, contratos, filtros, cálculo de prazos, roteiro da ligação, seis
+confirmações ao vivo, ordem das seções do painel e geração dos 20 depoimentos
+mantêm suas regras. Não há migração de banco, biblioteca de animação ou rota nova.
 
 ## Validação
 
-- `./testes/rodar.sh`: 655 asserções passaram, zero falhas.
-- Suítes `teste*.js` do site: 240 asserções passaram, zero falhas.
-- `node testes/relogio.js`: passou.
-- Navegador: pipelines, troca de setor, seis filtros operacionais, dashboard, caixa,
-  painel do cliente e checkbox do checklist. O estado verde aparece ao marcar; o
-  campo de observações continua preenchido e o painel permanece na região da tarefa.
-- Conferência em 1280 px e 390 px. Dashboard e caixa sem transbordamento da página;
-  as cinco faixas do funil continuam com altura igual em cada largura.
-- Sem erros JavaScript no navegador. `git diff --check` passou.
+- `./testes/rodar.sh`: 690 asserções, zero falhas, incluindo as 35 novas verificações
+  de persistência, respostas atrasadas, falha de rede, movimento e contagens.
+- Suítes `teste*.js` do site: 240 asserções, zero falhas.
+- A nova suíte usa `node:sqlite`; validada no Node 24.12.0 desta máquina.
+- Navegador: dashboard, caixa, pipelines, seis filtros operacionais, painel por teclado,
+  checklist salvo com aviso verde, rascunho preservado e rolagem mantida.
+- Conferência em 1280 px e 390 px, sem transbordamento da página. As cinco faixas
+  do funil continuam com altura igual; tabelas densas rolam dentro dos cartões.
+- Sintaxe do JavaScript embutido no HTML e `git diff --check` conferidos.
 
-O script avulso histórico `testes/troca-de-setor.js` não integra a suíte oficial e
-não executa diretamente: usa CommonJS dentro do pacote ESM e depende de arquivos
-externos `admin.html` e `painel.json`. Não foi alterado nesta entrega. A troca de
-setor foi conferida na interface atual e pelas verificações da suíte oficial.
+O script histórico `testes/troca-de-setor.js` continua fora da suíte oficial:
+usa CommonJS em pacote ESM e depende de arquivos externos `admin.html` e
+`painel.json`. Não foi alterado. A navegação atual é coberta pela suíte e pelo navegador.
 
-## Publicação
+## Prévia e publicação
 
-O código foi preparado e testado localmente. **Deploy não realizado nesta entrega.**
-Os dados de demonstração usados na inspeção ficaram em um servidor local temporário,
-fora do repositório, sem conexão com a produção.
+A prévia local usa dados de demonstração num servidor temporário fora do repositório,
+sem conexão com a produção. O endereço utilizado é http://127.0.0.1:8810/.
+As alterações da prévia não gravam no CRM em produção.
 
-Para publicar o CRM a partir desta pasta, depois de conferir a versão desejada:
+**Deploy não realizado.** Para publicar a versão conferida a partir desta pasta:
 
 ```bash
 cd sistemas/cloudflare

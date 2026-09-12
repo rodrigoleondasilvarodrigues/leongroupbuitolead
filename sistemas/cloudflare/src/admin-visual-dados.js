@@ -2,6 +2,29 @@
    A geometria do funil e os valores das barras continuam vindo dos dados.
    As duas moedas mantêm a ordem definida pelos componentes. */
 export const CSS_VISUAL_DADOS = `
+.dash{max-width:none}
+.dash-grid{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(300px,1fr);gap:22px;align-items:start}
+.dash-overview,.dash-insight,.dash-money{border:0;padding:0;margin:0;min-width:0}
+.dash-money{margin-top:26px}
+.dash-grid h3,.dash-money>h3{font-size:17px;font-weight:700;letter-spacing:-.025em;line-height:1.4;margin:0 0 14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.dash-grid h3:before,.dash-money>h3:before{content:'';width:4px;height:17px;background:var(--laranja);border-radius:3px}
+.dash-grid h3 em,.dash-money>h3 em{font-size:12px;font-style:normal;font-weight:400;color:var(--cinza);letter-spacing:0}
+.dash .funil{padding:24px 20px 20px;border-color:var(--ui-borda);border-radius:16px}
+.dash .diag{border-radius:16px;background:var(--ui-ink);border-top:4px solid var(--laranja);padding:24px}
+.dash .diag .grande{font-size:18px;letter-spacing:-.025em}
+.dash .diag li{font-size:13px}
+.dash .entrou-cx,.dash .cx-topo{border-radius:16px;background:var(--ui-ink);padding:26px}
+.dash .entrou-cx .v,.dash .cx-tri .u{font-size:34px;letter-spacing:-.045em;line-height:1.25}
+.dash .cx-tri .saldo .u{color:#9DE5B7}
+.dash .d2{border-color:var(--ui-borda);border-radius:14px;background:#fff}
+.dash .d2 .u{font-size:23px;letter-spacing:-.035em}
+.dash .d2.forte{background:var(--ui-sucesso);border-color:var(--ui-sucesso-borda)}
+.dash .d2.forte .u,.dash .d2.forte .b{color:var(--verde)}
+.dash .fx-fuga{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(min-width:1051px){.dash-grid .fx-l,.dash-grid .fx-p{grid-template-columns:112px minmax(100px,1fr) 102px;gap:0 12px}}
+@media(max-width:1050px){.dash-grid{grid-template-columns:1fr}.dash .diag .grande{font-size:17px}}
+@media(max-width:600px){.dash .entrou-cx,.dash .cx-topo{padding:20px}.dash .entrou-cx .v,.dash .cx-tri .u{font-size:27px}.dash .funil{padding:20px 12px}.dash .fg{padding:11px!important}.dash .fg span{font-size:10px!important}}
+
 .dash > h3{font-size:14px;font-weight:750;letter-spacing:-.015em;
   line-height:1.45;margin:24px 0 11px}
 .dash > h3:first-child{margin-top:0}

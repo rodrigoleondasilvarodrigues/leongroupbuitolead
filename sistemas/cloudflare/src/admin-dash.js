@@ -184,7 +184,7 @@ export const JS_DASH = `
    Busca própria, separada de /api/painel: o painel recarrega a cada 60
    segundos e isto são agregações do período inteiro, que não mudam de
    minuto em minuto. Só busca quando a aba é aberta. */
-let DASH=null, dashCarregando=false, iaSaida=null, dashSujo=true;
+let DASH=null, dashCarregando=false, dashPedido=null, iaSaida=null, dashSujo=true;
 
 /* Chamada por carregar() a cada leva de dados novos. O dashboard NÃO é
    buscado junto do painel: ele só refaz a conta quando está na tela, senão
@@ -192,23 +192,30 @@ let DASH=null, dashCarregando=false, iaSaida=null, dashSujo=true;
 function marcarDashSujo(){ dashSujo=true }
 
 async function carregarDash(forcar){
-  if(dashCarregando) return;
-  if(DASH&&!forcar&&!dashSujo) return renderDash();
-  dashCarregando=true;
-  const cx=document.getElementById('conteudo');
-  if(cx&&!DASH) cx.innerHTML='<p style="color:var(--cinza)">Somando o funil...</p>';
-  try{
-    const r=await api('/api/dashboard');
-    if(r&&r.erro) throw new Error(r.erro);
-    DASH=r;
-  }catch(e){
-    dashCarregando=false; dashSujo=false;
-    if(cx) cx.innerHTML='<div class="vazio"><b>Não consegui carregar o dashboard</b>'
-      +esc(e.message||'')+'</div>';
-    return;
+  if(!DASH||forcar||dashSujo){
+    // Dashboard e caixa compartilham a busca quando as abas mudam rapidamente.
+    if(!dashPedido){
+      dashCarregando=true;
+      const cx=document.getElementById('conteudo');
+      if(cx&&!DASH) cx.innerHTML='<div class="ui-loading" role="status"><i></i>Carregando indicadores...</div>';
+      dashPedido=(async()=>{
+        try{
+          const r=await api('/api/dashboard');
+          if(!r||r.erro) throw new Error(r?.erro||'Resposta vazia do servidor.');
+          DASH=r;dashSujo=false;return true;
+        }catch(e){
+          if(cx&&setor==='comercial'&&(aba===ABA_DASH||aba===ABA_CAIXA)){
+            cx.innerHTML='<div class="vazio"><b>Não consegui carregar os indicadores</b>'+esc(e.message||'')+'</div>';
+            uiFimVista('comercial:'+aba);
+          }
+          return false;
+        }finally{dashPedido=null;dashCarregando=false;}
+      })();
+    }
+    if(!await dashPedido)return false;
   }
-  dashCarregando=false; dashSujo=false;
   if(setor==='comercial'&&aba===ABA_DASH) renderDash();
+  return true;
 }
 
 const nfmt=n=>Number(n||0).toLocaleString('pt-BR');
@@ -222,6 +229,7 @@ function renderDash(){
     cx.innerHTML='<div class="dash"><div class="vazio"><b>Nenhum lead no sistema ainda</b>'
       +'O funil, o dinheiro e o diagnóstico aparecem aqui a partir do primeiro lead. '
       +'Nada é estimado: enquanto não houver dado, esta tela fica vazia de propósito.</div></div>';
+    uiFimVista('comercial:'+ABA_DASH);
     return;
   }
 
@@ -303,14 +311,15 @@ function renderDash(){
     +'A faixa foi travada na largura da anterior para o funil não alargar.</div>';
   funil+='</div>';
 
-  cx.innerHTML='<div class="dash">'
+  cx.innerHTML=uiCabecalho('Dashboard','','')+'<div class="dash"><div class="dash-grid"><section class="dash-overview">'
     +'<h3>Funil <em>'+nfmt(e.entraram)+' leads no período inteiro · '
     +(d.taxa_geral!==null?d.taxa_geral+'% fecham':'taxa sem amostra')+'</em></h3>'
-    +funil
-    +'<h3>Diagnóstico</h3>'+blocoDiag(d)
+    +funil+'</section><section class="dash-insight">'
+    +'<h3>Diagnóstico</h3>'+blocoDiag(d)+'</section></div><section class="dash-money">'
     +'<h3>Dinheiro <em>dólar e real, do contrato ao que sobrou</em></h3>'+blocoGrana(DASH.financeiro)
-    +'</div>';
+    +'</section></div>';
   if(iaSaida) pintarIA(iaSaida);
+  uiFimVista('comercial:'+ABA_DASH);
 }
 
 function estadoCls(de,para){

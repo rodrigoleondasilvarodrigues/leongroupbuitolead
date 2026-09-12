@@ -8,16 +8,24 @@ conta do Claude e a conta nova não tem memória nenhuma desta conversa.
 
 ---
 
-## Acabamento visual aplicado no Codex (2026-09-11)
+## Interface e movimento revisados no Codex (2026-09-12)
 
-O Rodrigo retomou o Codex para o design e aprovou a prévia baseada nas telas reais.
-O código agora tem acabamento de cards, dashboard, caixa e painéis, logo oficial,
-estados de conclusão verdes e movimento breve. A navegação, a densidade de informação
-e as regras operacionais foram preservadas. **Ainda sem deploy desta alteração.**
+Rodrigo considerou o primeiro acabamento sutil demais. A segunda revisão tem
+marcador animado nas abas, entrada de telas em sequência, cards com mais contraste,
+progresso dos marcos e feedback de conclusão depois da confirmação do servidor.
+O dashboard mostra funil e diagnóstico lado a lado em telas largas. As informações,
+filtros, roteiro e regras operacionais foram preservados.
 
-Validação: 655 asserções do CRM e 240 do site passaram. Conferência visual realizada
-no navegador, incluindo checklist sem remontar o painel ao marcar uma tarefa.
-Detalhes e orientação para continuar em `sistemas/cloudflare/ACABAMENTO-VISUAL.md`.
+Também foi corrigida a inversão de `id`/`cid` em `/api/checklist`, que podia
+retornar sucesso sem gravar o item correto. Checklist e marcos não anunciam
+sucesso quando o registro não existe. A contagem usa apenas conclusões confirmadas.
+A busca compartilhada entre Dashboard e Caixa respeita a última aba escolhida.
+
+**Sem deploy desta revisão.** Código local preparado para continuar no Claude Code.
+Prévia em `http://127.0.0.1:8810/`, com dados de demonstração fora do repositório.
+Validação: 690 asserções do CRM e 240 do site, zero falhas. A suíte nova usa
+`node:sqlite`, validado no Node 24.12.0 desta máquina.
+Detalhes em `sistemas/cloudflare/ACABAMENTO-VISUAL.md`.
 
 ## O estado em três frases
 
@@ -57,7 +65,7 @@ pastas**, senão os testes morrem com "Cannot find module 'jsdom'" e parece que
 estão quebrados quando é só dependência faltando:
 
 ```bash
-cd sistemas/cloudflare  && npm install && ./testes/rodar.sh                   # 655
+cd sistemas/cloudflare  && npm install && ./testes/rodar.sh                   # 690
 cd sistemas/site-agencia && npm install && for f in teste*.js; do node $f; done  # 240
 ```
 

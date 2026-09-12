@@ -1203,13 +1203,15 @@ async function apiAdmin(p, req, env) {
     return json({ ok: true });
   }
   if (p === "/api/checklist") {
-    await D.prepare("UPDATE checklist SET feito=?,feito_em=? WHERE id=? AND cliente_id=?")
-      .bind(corpo.feito ? 1 : 0, corpo.feito ? agora() : null, corpo.cid, corpo.id).run();
+    const salvo = await D.prepare("UPDATE checklist SET feito=?,feito_em=? WHERE id=? AND cliente_id=?")
+      .bind(corpo.feito ? 1 : 0, corpo.feito ? agora() : null, corpo.id, corpo.cid).run();
+    if (salvo.meta?.changes === 0) return json({ erro: 'Item não encontrado neste cliente.' }, 404);
     return json({ ok: true });
   }
   if (p === "/api/marco") {
-    await D.prepare("UPDATE marcos SET concluido=?,concluido_em=? WHERE id=?")
+    const salvo = await D.prepare("UPDATE marcos SET concluido=?,concluido_em=? WHERE id=?")
       .bind(corpo.concluido ? 1 : 0, corpo.concluido ? agora() : null, corpo.mid).run();
+    if (salvo.meta?.changes === 0) return json({ erro: 'Marco não encontrado.' }, 404);
     return json({ ok: true });
   }
   if (p === "/api/review-postada") {

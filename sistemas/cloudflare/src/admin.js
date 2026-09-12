@@ -4,6 +4,7 @@ import { CSS_CAIXA, JS_CAIXA } from "./admin-caixa.js";
 import { CSS_ATIV, JS_ATIV } from "./admin-ativacoes.js";
 import { CSS_QUAL, JS_QUAL } from "./admin-qualificacao.js";
 import { CSS_VISUAL } from "./admin-visual.js";
+import { JS_INTERFACE } from "./admin-interface.js";
 import { LOGO_ADMIN } from "./admin-logo.js";
 import { TAGS_ICONE } from "./marca.js";
 
@@ -344,6 +345,7 @@ function avisoFalha(txt){
 // na tela parecia que o clique não fez nada. Agora a troca é instantânea e completa.
 function pintar(){
   if(!D.clientes) return;              // ainda carregando o primeiro painel
+  uiPrepararVista(setor+':'+aba);
   const operacional = setor==='operacional';
   document.body.classList.toggle('operacional', operacional);
   document.getElementById('selo').textContent = operacional?'Operacional':'Comercial';
@@ -367,6 +369,7 @@ function pintar(){
        <span class="sep"></span>\`
       + Object.keys(D.pipelines).map(p=>{const n=D.leads.filter(l=>l.pipeline===p).length;
         return \`<button class="\${p===aba?'on':''}" onclick="aba='\${p}';pintar()">\${ROT[p]} (\${n})</button>\`}).join('');
+  uiNavegacao();
   render();
 }
 
@@ -380,19 +383,19 @@ function render(){
   const rotK={whatsapp:'No WhatsApp',ligacao_atendida:'Atenderam',call_marcada:'Calls marcadas',
     call_comparecida:'Compareceram',call_fechada:'Fecharam'};
   const kpis=\`<div class="kpis">\${Object.entries(k.etapas).map(([e,v])=>
-    \`<div class="kpi"><b>\${v}</b><span>\${rotK[e]||e}</span></div>\`).join('')}
+    \`<div class="kpi" data-etapa="\${esc(e)}"><div class="ui-kpi-icon">\${uiIcone(e)}</div><b>\${v}</b><span>\${rotK[e]||e}</span></div>\`).join('')}
     \${k.alertas.map(a=>\`<div class="alerta"><b>\${a.taxa}%</b> em \${a.transicao} · \${a.diagnostico}</div>\`).join('')}</div>\`;
 
   if(setor==='operacional'){
-    c.innerHTML=kpis+\`<div style="margin-bottom:14px"><button class="acao" onclick="dlgCli.showModal()">+ Cliente fechado</button></div>\`
+    c.innerHTML=uiCabecalho('Entrega · '+(VISOES_OP[aba]||VISOES_OP.todos).rotulo,'','<button class="acao" onclick="dlgCli.showModal()">+ Cliente fechado</button>')+kpis
       +(()=>{const lista=D.clientes.filter((VISOES_OP[aba]||VISOES_OP.todos).filtro);
         return lista.length?lista.map(x=>{
         const pills=x.entregaveis.map(e=>{
           const cl=['entregue','aprovado'].includes(e.status)?'ok':(e.status==='em_producao'?'prod':'');
           const r=(D.entregaveis.find(y=>y[0]===e.tipo)||[])[1]||e.tipo;
           return \`<span class="pill \${cl}">\${r.split(' (')[0]}</span>\`}).join('');
-        return \`<div class="cli \${x.entrega_completa?'concluida':(x.atrasado?'atrasada':'')}" onclick="abrirCliente(\${x.id})">
-          <div style="display:flex;align-items:baseline"><h3>\${esc(x.empresa)}</h3>
+        return \`<div class="cli \${x.entrega_completa?'concluida':(x.atrasado?'atrasada':'')}" role="button" tabindex="0" onclick="abrirCliente(\${x.id})">
+          <div style="display:flex;align-items:center"><div class="ui-client-name"><span class="ui-avatar" aria-hidden="true">\${uiIniciais(x.empresa)}</span><h3>\${esc(x.empresa)}</h3></div>
           <span style="margin-left:auto;font-size:12px;color:var(--cinza)">\${
             x.dias_uteis!==null&&x.dias_uteis<=5?'<b style="color:'+(x.atrasado?'#c0392b':'var(--laranja-esc)')+'">entrega dia '+x.dias_uteis+'/5 útil</b>'
             :x.atrasado?'<b style="color:#c0392b">ENTREGA ATRASADA</b>'
@@ -404,29 +407,33 @@ function render(){
             \${x.midias&&x.midias.foto?' · '+x.midias.foto+' fotos':''}
             \${x.arquivos_agencia?' · '+x.arquivos_agencia+' peças':''}
             \${x.leads_recebidos?' · <b>'+x.leads_recebidos+' leads entregues</b>':''}</div>
-          <div class="pills">\${pills}</div></div>\`}).join('')
+          <div class="ui-client-foot"><div class="pills">\${pills}</div>
+          \${x.marcos_total?\`<div class="ui-client-progress"><span>Marcos da entrega <b>\${x.marcos_feitos}/\${x.marcos_total}</b></span><progress aria-label="Marcos da entrega" value="\${x.marcos_feitos}" max="\${x.marcos_total}"></progress></div>\`:''}</div></div>\`}).join('')
         :\`<p style="color:var(--cinza)">Nenhum cliente \${aba==='todos'?'ainda':'nesta visão'}.</p>\`})();
+    uiFimVista(setor+':'+aba);
     return;
   }
   const cols=D.pipelines[aba]||[];
-  c.innerHTML=kpis+\`<div style="margin-bottom:14px"><button class="acao" onclick="dlgLead.showModal()">+ Novo lead</button></div>
-   <div class="quadro">\${cols.map(([col,rot])=>{
+  c.innerHTML=uiCabecalho(ROT[aba]||aba,'','<button class="acao" onclick="dlgLead.showModal()">+ Novo lead</button>')+kpis+\`<div class="quadro">\${cols.map(([col,rot])=>{
     const ls=D.leads.filter(l=>l.pipeline===aba&&l.coluna===col);
     const a=D.ativacoes[col];
-    return \`<div class="col"><h3>\${rot}<em>\${ls.length}</em></h3>
+    return \`<div class="col" data-etapa="\${esc(col)}"><h3>\${rot}<em>\${ls.length}</em></h3>
       \${a?\`<div class="ativ">\${a} ativações/dia</div>\`:''}
       <div class="cards">\${ls.length?ls.map(l=>{const h=hrs(l.entrou_coluna_em);
-        return \`<div class="card" onclick="abrirLead(\${l.id})"><b>\${esc(l.nome)}</b>
+        return \`<div class="card" role="button" tabindex="0" onclick="abrirLead(\${l.id})"><div class="ui-lead-top"><span class="ui-avatar" aria-hidden="true">\${uiIniciais(l.nome)}</span><b>\${esc(l.nome)}</b></div>
           <small>\${esc(l.empresa||'sem empresa')}\${l.nicho?' · '+esc(l.nicho):''}</small>
-          <div class="t">\${h<1?'agora há pouco':h.toFixed(0)+'h aqui'}\${h>=24?' · decai no próximo ciclo':''}</div>
+          <div class="t">\${uiIcone('clock')}<span>\${h<1?'agora há pouco':h.toFixed(0)+'h aqui'}\${h>=24?' · decai no próximo ciclo':''}</span><span class="ui-card-arrow">\${uiIcone('arrow')}</span></div>
         </div>\`}).join(''):'<div style="color:var(--cinza);font-size:12px;padding:8px 12px">vazio</div>'}</div></div>\`}).join('')}</div>\`;
+  uiFimVista(setor+':'+aba);
 }
 
 async function abrirLead(id){
+  const vista=uiInicioPainel('lead',id);
   aberto=id;tipoAberto='lead';
   const l=await api('/api/lead?id='+id);
+  if(vista.pedido!==uiPedidoPainel)return;
   const p=document.getElementById('painel');p.classList.add('on');
-  p.innerHTML=\`<button class="x" onclick="fechar()">×</button>
+  p.innerHTML=\`<button class="x" aria-label="Fechar painel" onclick="fechar()">×</button>
    <h2 style="font-size:18px">\${esc(l.nome)}</h2>
    <div style="color:var(--cinza);font-size:12.5px">\${esc(l.empresa||'sem empresa')} · \${esc(l.telefone)}</div>
    <div style="font-size:12px;margin-top:5px"><b>\${esc(l.pipeline)}</b> / \${esc(l.coluna)} · \${hrs(l.entrou_coluna_em).toFixed(0)}h aqui</div>
@@ -492,15 +499,18 @@ async function abrirLead(id){
      <p style="font-size:11.5px;color:var(--cinza);margin-top:6px">
        Apaga o lead e todo o histórico dele. Não tem como desfazer.</p>
    </section>\`;
+  uiFocoPainel(vista);
 }
 
 async function abrirCliente(id){
+  const vista=uiInicioPainel('cliente',id);
   aberto=id;tipoAberto='cliente';
   const c=await api('/api/cliente?id='+id);
+  if(vista.pedido!==uiPedidoPainel)return;
   CLI_ABERTO=c;
   const p=document.getElementById('painel');p.classList.add('on');
   const base=location.origin;
-  p.innerHTML=\`<button class="x" onclick="fechar()">×</button>
+  p.innerHTML=\`<button class="x" aria-label="Fechar painel" onclick="fechar()">×</button>
    <h2 style="font-size:18px">\${esc(c.empresa)}</h2>
    <div style="color:var(--cinza);font-size:12.5px">\${esc(c.nome_contato)} · dia \${c.dias}\${dinheiro(c)}</div>
    \${blocoRelogio(c,'Hora do cliente')}
@@ -632,7 +642,7 @@ async function abrirCliente(id){
        <input type="checkbox" \${r.postada?'checked':''} onchange="revPost(\${r.id},this.checked)" style="width:auto">
        \${esc(r.servico)}</small>\${esc(r.texto)}</div>\`).join('')}
      \${(c.reviews||[]).length>5?\`<p style="font-size:12px;color:var(--cinza)">…e mais \${c.reviews.length-5} no arquivo.</p>\`:''}</section>
-   <section><h4>Cadência de entrega · máximo 5 dias</h4>\${(c.marcos||[]).map(m=>\`<div class="linha \${m.concluido?'feito':''}">
+   <section><h4>Cadência de entrega · máximo 5 dias</h4>\${(c.marcos||[]).map(m=>\`<div class="linha \${m.concluido?'feito':''}" data-marco>
      <input type="checkbox" \${m.concluido?'checked':''} onchange="marco(\${m.id},this.checked,this)">
      <span>\${esc(m.marco)} <small style="color:var(--cinza)">· dia \${m.prazo_dias}</small></span></div>\`).join('')}</section>
    <section><h4>Checklist de otimização</h4>\${l_checklist(c)}</section>
@@ -677,6 +687,7 @@ async function abrirCliente(id){
      <p style="font-size:11.5px;color:var(--cinza);margin-top:6px">
        Apaga o cliente, entregáveis, reviews, posts, marcos e mídias. Não tem como desfazer.</p>
    </section>\`;
+  uiFocoPainel(vista);
 }
 
 function irPara(s){
@@ -687,7 +698,7 @@ function irPara(s){
   pintar();                            // instantâneo: usa os dados já em memória
   window.scrollTo(0,0);
 }
-const fechar=()=>{document.getElementById('painel').classList.remove('on');aberto=null};
+const fechar=()=>{document.getElementById('painel').classList.remove('on');aberto=null;uiFecharPainel()};
 const V=id=>document.getElementById(id).value;
 async function criarLead(){const r=await post('/api/lead',{nome:V('l_nome'),telefone:V('l_tel'),empresa:V('l_emp'),nicho:V('l_nicho')});
   if(r.id){dlgLead.close();['l_nome','l_tel','l_emp','l_nicho'].forEach(i=>document.getElementById(i).value='');await carregar();abrirLead(r.id)}}
@@ -846,14 +857,10 @@ const statusEnt=(eid,s)=>post('/api/entregavel',{eid,status:s}).then(carregar);
    item tinha sumido. Agora o DOM é atualizado no lugar e a lista de trás
    recarrega em segundo plano.                                            */
 async function marco(mid,v,el){
-  const linha=el&&el.closest('.linha'); if(linha) linha.classList.toggle('feito',v);
-  await post('/api/marco',{mid,concluido:v});
-  recontar(); carregar();
+  return uiSalvarConclusao('/api/marco',{mid,concluido:v},el,'.linha','feito',v);
 }
 async function chk(id,v,el){
-  const item=el&&el.closest('.chk-item'); if(item) item.classList.toggle('ok',v);
-  await post('/api/checklist',{id,cid:aberto,feito:v});
-  recontar(); carregar();
+  return uiSalvarConclusao('/api/checklist',{id,cid:aberto,feito:v},el,'.chk-item','ok',v);
 }
 // recalcula contadores, barra e aviso de trava direto do que está na tela
 function recontar(){
@@ -873,8 +880,8 @@ function recontar(){
     const f=o.filter(i=>i.classList.contains('ok')).length;
     const em=a.querySelector('b em'); if(em) em.textContent=f+'/'+o.length;
   });
-  const mk=[...document.querySelectorAll('.linha input[type=checkbox]')];
-  const mkF=mk.filter(x=>x.checked).length;
+  const mk=[...document.querySelectorAll('.linha[data-marco]')];
+  const mkF=mk.filter(x=>x.classList.contains('feito')).length;
   const t=document.getElementById('trava_txt');
   if(t){
     const falta=[ mk.length-mkF ? (mk.length-mkF)+' marco(s)' : '',
@@ -1126,6 +1133,7 @@ ${JS_QUAL}
 ${JS_PARTES}
 ${JS_CAIXA}
 ${JS_ATIV}
+${JS_INTERFACE}
 
 carregar();setInterval(()=>{if(!aberto)carregar()},60000);
 </script></body></html>`;
