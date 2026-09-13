@@ -354,11 +354,8 @@ function blocoDiag(d){
     +' na etapa, qualquer taxa é ruído, então nada é diagnosticado aí.</li>';
   h+='</ul>';
   if(d.gargalo) h+='<div class="acao-cx"><b>Primeira coisa a fazer</b>'+esc(d.gargalo.acao)+'</div>';
-  h+='<div class="ia-cx"><button class="acao" onclick="rodarIA(this)">'
-    +(DASH.ia_disponivel?'Analisar com IA':'Analisar com IA (sem chave configurada)')+'</button>'
-    +'<span style="font-size:11.5px;color:#8a8580;margin-left:9px">'
-    +(DASH.ia_disponivel?'Só números agregados saem daqui, nenhum nome ou telefone de lead.'
-      :'Precisa de OPENAI_API_KEY. O diagnóstico acima funciona sem ela.')+'</span></div>';
+  h+='<div class="ia-cx"><button class="acao" onclick="abrirAssistente()">Conversar com o Assistente Leon</button>'
+    +'<span style="font-size:11.5px;color:#8a8580;margin-left:9px">Analise os números e desenvolva ideias com o Claude conectado no seu Mac.</span></div>';
   h+='</div><div class="ia-saida" id="ia_saida"></div>';
   return h;
 }

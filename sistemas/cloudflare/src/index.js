@@ -8,6 +8,7 @@ import * as Ct from "./contrato.js";
 import { contratoFormHTML, contratoLerHTML, contratoAceitoHTML,
          contratoIndisponivelHTML } from "./pagina-contrato.js";
 import * as F from "./funil.js";
+import { criarContextoIA, validarContexto } from "./ai-contexto.js";
 import { promptLogo, faltaNoBriefing, refinarComIA } from "./logo-prompt.js";
 import { ADMIN_HTML } from "./admin.js";
 import { LOGIN_HTML, formularioHTML, aguardandoHTML, jaRespondidoHTML } from "./paginas.js";
@@ -585,6 +586,17 @@ async function apiAdmin(p, req, env) {
   const url = new URL(req.url);
   const D = env.DB;
   const corpo = req.method === "POST" ? await req.json().catch(() => ({})) : {};
+
+  if (p === "/api/assistente/contexto" && req.method === "POST") {
+    let contexto;
+    try { contexto = validarContexto(corpo.contexto); }
+    catch (e) { return json({ erro: e.message }, 400); }
+    try { return json(await criarContextoIA(contexto, env, { financeiroDoPainel })); }
+    catch (e) {
+      return json({ erro: e.message === 'Registro não encontrado ou arquivado.'
+        ? e.message : 'Não foi possível consultar os dados do CRM. Tente novamente.' }, e.message === 'Registro não encontrado ou arquivado.' ? 404 : 503);
+    }
+  }
 
   // ── painel geral ──
   if (p === "/api/painel") {

@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "assistente": "node src-local/assistente-servidor.mjs",
     "dev": "wrangler dev",
     "deploy": "wrangler deploy",
     "db:criar": "wrangler d1 create leon-group",

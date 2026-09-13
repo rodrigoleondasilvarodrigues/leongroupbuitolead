@@ -41,3 +41,9 @@ node testes/funil-e-financeiro.js
 echo
 echo "── movimento, resposta assíncrona e persistência da conclusão ──"
 node testes/interface-motion.mjs
+
+echo
+echo "── assistente local, contexto e conversa ──"
+node testes/assistente.mjs
+node testes/assistente-concorrencia.mjs
+node testes/assistente-ui.mjs

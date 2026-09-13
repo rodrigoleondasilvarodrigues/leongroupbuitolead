@@ -5,6 +5,7 @@ import { CSS_ATIV, JS_ATIV } from "./admin-ativacoes.js";
 import { CSS_QUAL, JS_QUAL } from "./admin-qualificacao.js";
 import { CSS_VISUAL } from "./admin-visual.js";
 import { JS_INTERFACE } from "./admin-interface.js";
+import { CSS_ASSISTENTE, HTML_ASSISTENTE, JS_ASSISTENTE } from "./admin-assistente.js";
 import { LOGO_ADMIN } from "./admin-logo.js";
 import { TAGS_ICONE } from "./marca.js";
 
@@ -196,10 +197,11 @@ dialog::backdrop{background:rgba(23,23,23,.45)}
   .rel-praca{padding:10px 15px}.rel-praca.on .rel-hora{font-size:26px}
   .rel-estado{padding:10px 15px;min-width:170px}.rel-idi{padding:0 12px}
 }
-${CSS_DASH}${CSS_PARTES}${CSS_CAIXA}${CSS_ATIV}${CSS_QUAL}${CSS_VISUAL}
+${CSS_DASH}${CSS_PARTES}${CSS_CAIXA}${CSS_ATIV}${CSS_QUAL}${CSS_VISUAL}${CSS_ASSISTENTE}
 </style></head><body>
 <header><b class="marca-admin"><img src="${LOGO_ADMIN}" alt="Leon Group" width="106" height="40"><small>Admin</small></b><span class="selo" id="selo">Comercial</span>
-  <button class="sair" id="btn_zap" onclick="abrirConfig()" style="margin-left:auto">WhatsApp</button>
+  <button class="ai-abrir" onclick="abrirAssistente()" style="margin-left:auto">✦ Assistente Leon</button>
+  <button class="sair" id="btn_zap" onclick="abrirConfig()" style="margin-left:0">WhatsApp</button>
   <button class="sair" onclick="fetch('/api/logout',{method:'POST'}).then(()=>location.href='/login')" style="margin-left:14px">sair</button></header>
 <div class="relogio" id="relogio">
   <div class="rel-praca eua" data-praca="eua" id="p_eua">
@@ -229,6 +231,7 @@ ${CSS_DASH}${CSS_PARTES}${CSS_CAIXA}${CSS_ATIV}${CSS_QUAL}${CSS_VISUAL}
 <nav id="abas"></nav>
 <main><div id="conteudo"></div></main>
 <div class="painel" id="painel"></div>
+${HTML_ASSISTENTE}
 
 <dialog id="dlgLead"><h3 style="margin-bottom:13px">Novo lead</h3>
   <label>Nome</label><input id="l_nome"><label>Telefone (com DDI)</label><input id="l_tel">
@@ -1134,6 +1137,7 @@ ${JS_PARTES}
 ${JS_CAIXA}
 ${JS_ATIV}
 ${JS_INTERFACE}
+${JS_ASSISTENTE}
 
 carregar();setInterval(()=>{if(!aberto)carregar()},60000);
 </script></body></html>`;

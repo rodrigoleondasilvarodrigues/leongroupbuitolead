@@ -8,6 +8,35 @@ conta do Claude e a conta nova não tem memória nenhuma desta conversa.
 
 ---
 
+## Assistente do CRM pronto para retomar no Claude Code (2026-09-12)
+
+Rodrigo pediu uma IA conversacional de verdade, somente para conversar,
+analisar dados e escrever, sem alterar registros. Também definiu que não quer
+chave de API. Foi implementado o Assistente Leon usando o Claude Code já
+autenticado pela assinatura neste Mac, com ferramentas desativadas.
+
+O botão fica no cabeçalho dos dois setores e no diagnóstico do dashboard.
+Tem histórico local, contexto atualizado do CRM por mensagem, seleção de lead
+ou cliente, resposta progressiva, copiar, interromper e tentar novamente.
+O financeiro reutiliza os cálculos existentes e a operação mantém suas regras.
+
+Para iniciar: abrir `sistemas/cloudflare/Abrir Assistente Leon.command` ou
+executar `npm run assistente` nessa pasta. Manter o terminal aberto e conectar
+pelo botão do chat. Usa os limites da assinatura Claude e precisa de internet.
+Histórico fora do Git: `~/Library/Application Support/Leon Group/assistente.sqlite`.
+
+**Sem deploy na Cloudflare desta entrega.** O código e os testes seguem pelo
+GitHub para o Claude Code. A prévia 8810 tem dados de demonstração e o serviço
+local usa a porta 8811. Uma resposta real no navegador identificou os 16 leads
+e 5 clientes de demonstração corretamente. Não foram alterados registros.
+Validação final: 791 asserções do CRM, zero falhas. A suíte do site passou.
+A segunda mensagem real manteve o contexto da conversa e escreveu o texto pedido.
+
+Leia `sistemas/cloudflare/ASSISTENTE-LOCAL.md` para arquitetura, limites,
+inicialização e publicação. Não substituir por pedido de OPENAI_API_KEY.
+Mudanças paralelas nas propostas e no material de anúncios foram preservadas
+na pasta e não fazem parte do commit do assistente.
+
 ## Interface e movimento revisados no Codex (2026-09-12)
 
 Rodrigo considerou o primeiro acabamento sutil demais. A segunda revisão tem
