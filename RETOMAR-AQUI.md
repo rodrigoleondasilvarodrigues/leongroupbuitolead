@@ -8,6 +8,55 @@ conta do Claude e a conta nova não tem memória nenhuma desta conversa.
 
 ---
 
+## O CRM com o Assistente Leon está NO AR (2026-09-13)
+
+**Publicado na Cloudflare em 2026-09-13, 00:34 UTC.**
+Version ID `d1edbe7c-d173-4d0e-898a-f9ef782a43aa`, a 100% do tráfego, a partir do
+commit `46ad97c`. Foi o deploy que faltava nas duas entregas anteriores: o
+acabamento visual e o Assistente Leon entraram juntos, porque nenhum dos dois
+tinha sido publicado.
+
+O que foi conferido antes: **791 asserções do CRM e 327 do site, zero falhas**.
+Bindings preservados no deploy: D1 `leon-group`
+(`becdb3aa-200d-4cfc-8048-729fd3432a67`), R2 `leon-group-midia`, var
+`NOME_AGENCIA` e o cron de 15 minutos. **Nenhuma migração de banco foi rodada**,
+porque esta entrega não pede.
+
+Validado direto em produção, sem sessão:
+
+- `/admin` sem sessão redireciona para `/login`, e `/login` responde 200
+- `POST /api/assistente/contexto` sem sessão responde **401**, ou seja, a rota
+  que alimenta a IA está atrás da autenticação do CRM
+- `src/ai-contexto.js` só tem **SELECT**, 18 deles, e nenhum INSERT, UPDATE ou
+  DELETE. A IA não escreve no banco por construção, não por promessa
+
+**A ponte HTTPS para o serviço local foi testada e funciona.** Era o risco que a
+prévia local não exercitava, porque lá as duas pontas são HTTP. O preflight
+vindo de `https://leon-group.leongroup.workers.dev` para
+`http://127.0.0.1:8811` devolve 204 com
+`Access-Control-Allow-Private-Network: true`, que é o cabeçalho que o Chrome
+exige para uma página HTTPS alcançar serviço na rede local. Origem estranha
+recebe 403 e navegador sem pareamento recebe 401.
+
+**O que ainda não foi validado, e por quê:** abrir o CRM logado, navegar os dois
+setores, parear o navegador e conversar de verdade em produção exigem a senha do
+admin, que é do Rodrigo e não fica no repositório. Tudo que se valida sem a
+senha foi validado. O caminho logado está coberto pelos testes automatizados,
+mas não por um clique real em produção.
+
+### Para usar o assistente agora
+
+1. Serviço local rodando no Mac: `cd sistemas/cloudflare && npm run assistente`,
+   ou dois cliques em `Abrir Assistente Leon.command`. **Confira antes se já não
+   está rodando**, para não subir uma segunda instância na 8811
+2. Abrir `https://leon-group.leongroup.workers.dev`, entrar, clicar em
+   **Assistente Leon** e depois em **Conectar**
+3. Confirmar na janela local que abrir
+4. Se o navegador pedir, **permitir acesso à rede local**
+5. Manter o terminal aberto enquanto usar
+
+O pareamento vale 12 horas e cai quando o serviço reinicia.
+
 ## Assistente do CRM pronto para retomar no Claude Code (2026-09-12)
 
 Rodrigo pediu uma IA conversacional de verdade, somente para conversar,
@@ -25,8 +74,8 @@ executar `npm run assistente` nessa pasta. Manter o terminal aberto e conectar
 pelo botão do chat. Usa os limites da assinatura Claude e precisa de internet.
 Histórico fora do Git: `~/Library/Application Support/Leon Group/assistente.sqlite`.
 
-**Sem deploy na Cloudflare desta entrega.** O código e os testes seguem pelo
-GitHub para o Claude Code. A prévia 8810 tem dados de demonstração e o serviço
+**Publicado em 2026-09-13** (ver a seção no topo). Quando esta seção foi
+escrita ainda não tinha deploy. A prévia 8810 tem dados de demonstração e o serviço
 local usa a porta 8811. Uma resposta real no navegador identificou os 16 leads
 e 5 clientes de demonstração corretamente. Não foram alterados registros.
 Validação final: 791 asserções do CRM, zero falhas. A suíte do site passou.
@@ -50,7 +99,7 @@ retornar sucesso sem gravar o item correto. Checklist e marcos não anunciam
 sucesso quando o registro não existe. A contagem usa apenas conclusões confirmadas.
 A busca compartilhada entre Dashboard e Caixa respeita a última aba escolhida.
 
-**Sem deploy desta revisão.** Código local preparado para continuar no Claude Code.
+**Publicado em 2026-09-13**, junto com o assistente (ver a seção no topo).
 Prévia em `http://127.0.0.1:8810/`, com dados de demonstração fora do repositório.
 Validação: 690 asserções do CRM e 240 do site, zero falhas. A suíte nova usa
 `node:sqlite`, validado no Node 24.12.0 desta máquina.

@@ -34,3 +34,7 @@ _memoria/historico/FONTES/aulas-novas-videos/
 
 # cache do wrangler (id da conta e projeto, gerado a cada deploy)
 .wrangler/
+
+# Pacote de criativos zipado: artefato de build, refeito por
+# scripts/montar_pacote_criativos.py. A pasta vai versionada, o zip não.
+saidas/pacote-criativos-ia.zip
