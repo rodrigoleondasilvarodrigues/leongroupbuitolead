@@ -29,6 +29,13 @@ dados/*
 _memoria/historico/exploracoes-visuais/
 
 # Prints e vídeos de curso pago de terceiro (conteúdo com direito autoral — não versionar)
+#
+# O REPOSITÓRIO É PRIVADO (confirmado pelo Rodrigo em 2026-09-13). Por isso os
+# frames já extraídos desses vídeos para estudo e documentação PODEM ficar
+# versionados, e ficam: marketing/anuncios/referencia-enrico/ e
+# marketing/anuncios/arcads-passo-a-passo/. O que continua fora daqui são os
+# arquivos originais, pesados e redistribuíveis. Se o repositório um dia virar
+# público, essas duas pastas saem junto.
 _memoria/historico/FONTES/aulas-novas-prints/
 _memoria/historico/FONTES/aulas-novas-videos/
 
