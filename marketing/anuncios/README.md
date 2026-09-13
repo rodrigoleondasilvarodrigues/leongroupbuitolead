@@ -11,9 +11,34 @@ realmente aceitam. Dezesseis com ator de IA, quatro gravados pelo Rodrigo.
 | `roteiros-la.json` | **A leva Los Angeles.** Seis roteiros, adaptação dos 1, 2, 4, 12, 15 e 20 |
 | `briefing.html` | As três seções de contexto (aulas, criativo de referência, o que muda). Reaproveitadas pelos dois documentos |
 | `referencia-enrico/` | Frames extraídos do criativo que o Enrico mostrou na aula 02 |
+| `CRIATIVO-DE-REFERENCIA-ENRICO.md` | **O criativo dele por escrito:** linha do tempo, grafismos com especificação, o truque dos números, o que foi copiado e o que foi recusado. Viaja junto com os frames no pacote, porque frame sem legenda convida a copiar o que não pode |
 | `dossie-aulas.json` | O que foi minerado das quatro aulas, com citação e origem |
 | `testar-documento.mjs` | 25 verificações no documento montado |
 | `roteiros-20-formato-antigo.json` | Versão anterior, de bloco único. Histórico, não usar |
+| `BRIEF-PARA-IA-DE-COPY.md` | Brief dos 10 criativos. **Desatualizado** em preço e território, ver aviso no topo dele |
+
+## Entregar tudo isso a outra inteligência artificial
+
+```bash
+python3 scripts/montar_pacote_criativos.py
+```
+
+Monta `saidas/pacote-criativos-ia/`: contexto do negócio, oferta, produto,
+entrega, mecanismo, regras de integridade, especificação da ferramenta, os 26
+roteiros em Markdown e em JSON, a identidade e os frames de referência.
+
+**Para IA de navegador (ChatGPT, Gemini, Claude), o caminho é outro:** sobe
+`CONTEXTO-COMPLETO.md` uma vez (os cinco documentos de contexto juntos, ~9 mil
+tokens) e depois um arquivo de `roteiros-um-a-um/` por vez (~2 a 3 mil tokens
+cada). O `05-ROTEIROS-MASSACHUSETTS.md` tem ~70 mil tokens e nessa janela deixa
+de ser lido inteiro: a ferramenta passa a buscar trechos, e roteiro precisa sair
+palavra por palavra. Serve para ler o conjunto, não para produzir.
+
+**É um gerador, não uma pasta montada na mão**, e isso é o ponto: ele lê os
+roteiros, a oferta publicada em `conteudo.js` e o checklist de entrega toda vez
+que roda. Pacote copiado na mão diverge da origem no primeiro ajuste, e aí a IA
+de fora produz vídeo com preço velho ou cidade fora do escopo. Rodar de novo
+depois de mexer em qualquer fonte.
 
 Saídas em `saidas/`: `roteiros-anuncios.html` (artefato),
 `roteiros-anuncios-impressao.html` e `Leon-Group-20-Roteiros-de-Anuncio.pdf`.

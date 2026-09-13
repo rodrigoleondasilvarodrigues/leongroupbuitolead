@@ -1,5 +1,27 @@
 # Brief de copy · 10 criativos · Leon Group
 
+> ⚠ **DESATUALIZADO EM DOIS PONTOS. NÃO COLAR EM IA SEM LER ISTO.**
+>
+> Este arquivo é de 2026-09-10 e foi ultrapassado pelas decisões de 2026-09-11:
+>
+> - **Território.** Aqui está escrito "prioridade geográfica: Massachusetts e a
+>   região de Boston". A decisão vigente é **todo o território dos Estados
+>   Unidos**, com a campanha filtrada por **idioma português**, não por cidade.
+> - **Preço.** Aqui está escrito "US$ 2.500, pagamento único" como se fosse o
+>   preço. A decisão vigente é **front de US$ 5.000 com piso de negociação em
+>   US$ 2.500**, e a página pública de planos tem três faixas
+>   (2.500 / 4.500 / 7.500). Os três números convivem e **ninguém resolveu qual
+>   vale**.
+>
+> **Para entregar contexto a outra inteligência artificial, use o pacote novo**,
+> que é gerado das fontes de verdade e não envelhece sozinho:
+>
+> ```bash
+> python3 scripts/montar_pacote_criativos.py   # saidas/pacote-criativos-ia/
+> ```
+>
+> Este arquivo fica como histórico do raciocínio dos 10 criativos.
+
 **Como usar este arquivo:** cole ele inteiro na outra inteligência artificial,
 antes de qualquer pedido. Ele foi escrito para ser lido por uma IA que não sabe
 nada sobre este negócio. Depois de colar, peça os roteiros por bloco (três ou
