@@ -8,6 +8,55 @@ conta do Claude e a conta nova não tem memória nenhuma desta conversa.
 
 ---
 
+## Material de criativos, feito na mesma sessão de 2026-09-13
+
+Além do deploy do CRM, esta sessão produziu a base para produzir os anúncios.
+Tudo commitado, nada pendente de salvar.
+
+**`saidas/pacote-criativos-ia/`, 50 arquivos.** Pacote para entregar a uma IA de
+fora: contexto do negócio, oferta, produto, entrega, mecanismo único, regras de
+integridade, manual do Arcads, os 26 roteiros em Markdown e JSON, identidade e
+frames de referência. **É gerado, não montado na mão:**
+`python3 scripts/montar_pacote_criativos.py` relê os roteiros, a oferta de
+`conteudo.js` e o checklist de entrega toda vez. Rodar de novo depois de mexer
+em qualquer fonte.
+
+**Para subir numa IA de navegador:** `CONTEXTO-COMPLETO.md` uma vez (~13,7 mil
+tokens), depois um arquivo de `roteiros-um-a-um/` por vez. **Não subir o
+`05-ROTEIROS-MASSACHUSETTS.md`** esperando fidelidade palavra por palavra: tem
+~70 mil tokens e a ferramenta passa a buscar trechos em vez de ler inteiro.
+Não subir o `.zip` também.
+
+**`scripts/auditar_pacote_criativos.py` é um portão, não um relatório.** Roda
+dentro do montador e **apaga o pacote** se ele quebrar qualquer uma das sete
+regras (cliente inventado, depoimento falso, resultado atribuído à agência,
+promessa de faturamento ou posição, escritório ou equipe americana, dólar sem
+fonte, travessão). Foi testado com violações plantadas e pega os sete tipos.
+
+**`marketing/anuncios/ARCADS-FLUXO-PARA-IA.md`**, o manual técnico da
+ferramenta, com os planos atuais (Starter US$ 77, Creator US$ 154, Pro US$ 385)
+e quatro prints da interface. **Está escrito sem nenhuma referência aos 26
+roteiros de propósito:** o Rodrigo decidiu começar com roteiros novos, e o
+documento tem uma seção "Informação faltante" esperando eles. Quando chegarem,
+a primeira tarefa é a verificação de caracteres descrita lá.
+
+**`marketing/anuncios/CRIATIVO-DE-REFERENCIA-ENRICO.md`**, o criativo de
+referência da aula 02 por escrito, com a fala reconstruída da transcrição da
+aula. Cada linha marcada com a fonte e o grau de confiança, e as lacunas
+declaradas em branco.
+
+**Correção importante que ficou registrada:** o preço do Arcads divergia entre
+as fontes. A aula dizia R$ 396 no primeiro mês; a tela atual mostra planos em
+dólar com sistema de créditos. O limite que morde primeiro **não é o preço, são
+os segundos**: o Starter dá 600 segundos de avatar falando por mês, ou 13
+criativos de 45 segundos, e cada regeração consome de novo.
+
+**Nas três páginas de proposta o leão da marca entrou**, no fundo acompanhando
+a rolagem e no cursor do mouse. Já está no ar em `leon-group-site.pages.dev`.
+Código em `sistemas/site-agencia/assets/leao.js`, um arquivo para as três
+versões, com 87 asserções em `teste-leao.js`. A suíte do site foi de 240 para
+327.
+
 ## O CRM com o Assistente Leon está NO AR (2026-09-13)
 
 **Publicado na Cloudflare em 2026-09-13, 00:34 UTC.**
