@@ -14,6 +14,7 @@ e uma pasta de imagens. Hospedado no Cloudflare Pages, como manda o `CLAUDE.md`
 | `conteudo.js` | **Todo o texto**, em português e inglês. É aqui que você edita |
 | `site.js` | Comportamento: idioma, leão de fundo, formulário, WhatsApp, CRM |
 | `teste.js` | 96 verificações automáticas (ver abaixo) |
+| `assets/leao.js` | O leão das **páginas de proposta**: fundo na rolagem e cursor (ver abaixo) |
 | `assets/` | Logo, símbolo, favicon e imagem de compartilhamento |
 
 ## O que precisa ser configurado
@@ -151,6 +152,46 @@ atrapalhar a leitura. Nas seções escuras a opacidade sobe, nas claras desce.
 
 Para mexer, edite a tabela `ANCORAS` em `site.js`: `x`/`y` em vw/vh, `s` escala,
 `r` rotação, `o` opacidade.
+
+## O leão das páginas de proposta: `assets/leao.js`
+
+As três páginas de plano têm o leão **e o cursor do mouse virando a cabeça do
+leão**. Um arquivo só para as três, ligado por uma linha em cada HTML:
+
+```html
+<script src="../assets/leao.js" data-conteudo=".topo,.env" data-forca=".07"></script>
+```
+
+| Atributo | O que faz |
+|---|---|
+| `data-conteudo` | Os seletores que seguram o conteúdo. Sobem para `z-index: 2`, o leão fica no `1` |
+| `data-forca` | Opacidade base do leão nessa página (`.07` nas claras, `.085` na v3, que tem faixa escura) |
+
+É um arquivo só de propósito: três cópias de animação divergem, e o dia em que
+divergirem uma das páginas abre numa call com um comportamento que ninguém
+revisou. Diferente do leão da home, este é guiado pela **fração de rolagem**
+(cinco paradas, tabela `PARADAS`), não por seções, porque as três páginas têm
+alturas diferentes e nenhuma tem as mesmas âncoras.
+
+**Três regras que o `teste-leao.js` protege, e que não são óbvias:**
+
+1. **O cursor do sistema só é escondido depois que a imagem do leão carregou.**
+   Se o arquivo não carregar ou a imagem falhar, a página fica com o ponteiro
+   normal. Página de proposta sem cursor nenhum, aberta na frente do cliente, é
+   pior que página sem efeito.
+2. **A regra de `z-index` usa `:where()`**, que zera a especificidade e a
+   transforma num padrão que o estilo da página derruba. Sem isso ela entra no
+   `<head>` depois do CSS da página, ganha no desempate e rebaixa o que já
+   estava posicionado: o menu da v3 é `position:sticky;z-index:40` e
+   descolaria do topo.
+3. **Cursor só em quem tem mouse** (`hover:hover` e `pointer:fine`). Em tela de
+   toque nada é montado. Quem pediu "menos movimento" no sistema recebe o leão
+   colado no ponteiro, sem perseguição nem respiro, e campo de texto sempre
+   devolve o cursor do sistema.
+
+Para mexer no movimento, edite `PARADAS` em `assets/leao.js` (`x`/`y` em vw/vh,
+`s` escala, `r` rotação, `o` multiplicador da opacidade). O tamanho do cursor é
+`width`/`height` da regra `.leao-cursor`, hoje 26px.
 
 ## Idioma
 
@@ -330,6 +371,13 @@ node sistemas/site-agencia/teste.js            # a home, 102 verificações
 node sistemas/site-agencia/teste-planos.js     # /planos, 43 verificações
 node sistemas/site-agencia/teste-planosv2.js   # /planosv2, 39 verificações
 node sistemas/site-agencia/teste-planosv3.js   # /planosv3, 56 verificações
+node sistemas/site-agencia/teste-leao.js       # o leão das 3 propostas, 87 verificações
+```
+
+Total: **327 asserções**. Rodar as cinco antes de todo deploy:
+
+```bash
+cd sistemas/site-agencia && npm install && for f in teste*.js; do node $f; done
 ```
 
 ## Publicar uma alteração
