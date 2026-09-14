@@ -63,7 +63,7 @@ setTimeout(() => {
     const n = planos.map((p) => parseFloat(p.querySelector(".num").textContent.replace(/[.,]/g, "")));
     return n[0] < n[1] && n[1] < n[2];
   })(), planos.map((p) => p.querySelector(".num").textContent).join(" < "));
-  t("o alvo custa 2.500", /2\.500/.test($(".plano.alvo .num").textContent));
+  t("o alvo custa 9.000", /9\.000/.test($(".plano.alvo .num").textContent));
   t("cada plano lista o que entrega", planos.every((p) => p.querySelectorAll("li").length >= 5),
     planos.map((p) => p.querySelectorAll("li").length).join(" / ") + " itens");
   t("o subtítulo desaconselha o plano caro",
