@@ -1,11 +1,18 @@
 /* ═══════════ A CONDIÇÃO DE REUNIÃO, ESCONDIDA ═══════════
    Uma oferta que NÃO está na página e que só existe quando o Rodrigo a chama,
-   ao vivo, dentro da call: US$ 2.000 por mês, recorrente.
+   ao vivo, dentro da call: US$ 2.400 por mês, recorrente.
 
    ── por que escondida ──
    Se o valor estivesse impresso na tabela, ele viraria o preço da agência e
    os planos de cima viram enfeite. Escondido, ele é o que ele deve ser: uma
    condição que aparece no momento da decisão, e só para quem está na reunião.
+
+   ── por que 2.400, sendo que é mais caro ──
+   Ela custa MAIS por mês que o Presença Local anual (24.000 dividido por 12
+   dá 2.000), e isso é de propósito: quem não se compromete com prazo paga
+   mais, como em qualquer assinatura. Por isso o texto nunca diz desconto,
+   promoção nem "só hoje". O que ela vende é não ter amarra, e a nota fala
+   disso na cara, para o cliente não descobrir sozinho comparando na tela.
 
    ── como abrir ──
    Digite  l e o n  no teclado, com a página em foco. Quatro letras, sem clique
@@ -27,10 +34,10 @@
   var T = {
     pt: {
       selo: "Condição de reunião",
-      titulo: "Uma porta que não está na tabela",
-      sub: "Válida nesta conversa, para começar agora.",
+      titulo: "A porta que eu só abro aqui",
+      sub: "Não está na tabela nem no site. Começa agora, sem prazo mínimo.",
       unid: "por mês",
-      rec: "recorrente, sem prazo mínimo",
+      rec: "recorrente, sem prazo mínimo e sem multa",
       inclui: "O que entra",
       itens: [
         "Perfil no Google criado e otimizado, e mantido todo mês",
@@ -39,17 +46,17 @@
         "Conteúdo publicado no perfil e no Instagram",
         "Acompanhamento direto comigo no WhatsApp",
       ],
-      nota: "Sem fidelidade e sem multa. Você para quando quiser, e o que foi construído continua seu: o perfil, o site e as avaliações estão no seu nome, não no meu.",
+      nota: "Os planos da tabela pedem compromisso de prazo, e por isso saem mais em conta por mês. Esta condição não pede prazo nenhum: você para quando quiser, e o que foi construído continua seu, porque o perfil, o site e as avaliações estão no seu nome, não no meu.",
       cta: "Quero começar assim",
       fechar: "Fechar",
-      msg: "Oi Rodrigo! Quero começar pela condição de 2.000 por mês que você me mostrou na reunião.",
+      msg: "Oi Rodrigo! Quero começar pela condição de 2.400 por mês que você me mostrou na reunião.",
     },
     en: {
       selo: "Meeting-only terms",
-      titulo: "A door that is not on the table",
-      sub: "Good in this conversation, to start now.",
+      titulo: "The door I only open here",
+      sub: "Not on the table and not on the site. Start now, with no minimum term.",
       unid: "per month",
-      rec: "recurring, no minimum term",
+      rec: "recurring, no minimum term and no cancellation fee",
       inclui: "What is included",
       itens: [
         "Google profile built, optimized and maintained every month",
@@ -58,10 +65,10 @@
         "Content published on the profile and on Instagram",
         "Direct support with me on WhatsApp",
       ],
-      nota: "No lock-in and no cancellation fee. You stop whenever you want, and what was built stays yours: the profile, the site and the reviews are in your name, not mine.",
+      nota: "The plans on the table ask for a term commitment, which is why they cost less per month. This one asks for no term at all: you stop whenever you want, and what was built stays yours, because the profile, the site and the reviews are in your name, not mine.",
       cta: "I want to start like this",
       fechar: "Close",
-      msg: "Hi Rodrigo! I want to start with the 2,000 a month terms you showed me in the meeting.",
+      msg: "Hi Rodrigo! I want to start with the 2,400 a month terms you showed me in the meeting.",
     },
   };
 
@@ -176,13 +183,13 @@
       lento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     } catch (e) {}
     // quem pediu menos movimento recebe o número na hora, sem espera nenhuma
-    if (lento) { alvo.textContent = "2,000"; return; }
+    if (lento) { alvo.textContent = "2,400"; return; }
     var ini = null, dur = 950;
     function passo(ts) {
       if (ini === null) ini = ts;
       var k = Math.min(1, (ts - ini) / dur);
       var suave = 1 - Math.pow(1 - k, 3);
-      alvo.textContent = Math.round(2000 * suave).toLocaleString("en-US");
+      alvo.textContent = Math.round(2400 * suave).toLocaleString("en-US");
       if (k < 1) requestAnimationFrame(passo);
     }
     // deixa o cartão pousar antes de o número começar a subir

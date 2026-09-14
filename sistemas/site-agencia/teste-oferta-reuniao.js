@@ -64,8 +64,16 @@ t("a condição de reunião não aparece antes do segredo",
   !/condi[çc][ãa]o de reuni[ãa]o|meeting-only/i.test(visivel()));
 t("nada na página ensina o atalho",
   !/digite|atalho|shortcut/i.test(visivel()));
-t("o que diferencia a condição é não ter fidelidade, e isso está escrito nela",
-  /sem fidelidade|no lock-in/i.test(fs.readFileSync(__dirname + "/assets/oferta-reuniao.js", "utf8")));
+const fonte = fs.readFileSync(__dirname + "/assets/oferta-reuniao.js", "utf8");
+t("o que diferencia a condição é não ter prazo, e isso está escrito nela",
+  /sem prazo m[íi]nimo|no minimum term/i.test(fonte));
+/* ela é MAIS CARA por mês que o anual da tabela, então o texto não pode
+   insinuar desconto em lugar nenhum, senão o cliente compara e percebe */
+t("não promete desconto nem promoção",
+  !/desconto|promo[çc][ãa]o|s[óo] hoje|discount|special price|mais barato|cheaper/i.test(
+    (fonte.match(/(?:titulo|sub|rec|nota|msg|selo|unid):\s*"[^"]*"/g) || []).join(" ")));
+t("assume na nota que a tabela sai mais em conta por mês",
+  /saem mais em conta por m[êe]s/.test(fonte) && /cost less per month/.test(fonte));
 t("nenhum erro de JS ao carregar", erros.length === 0, erros[0] || "limpo");
 
 console.log("\n\x1b[1m=== O SEGREDO ABRE ===\x1b[0m");
@@ -85,7 +93,7 @@ t("é um diálogo pra leitor de tela", cx.getAttribute("role") === "dialog");
 console.log("\n\x1b[1m=== O NÚMERO ANIMA ===\x1b[0m");
 const num = d.getElementById("ofr-num");
 t("o contador existe", !!num);
-t("começa em zero, não no valor final", true, "anima de 0 até 2.000");
+t("começa em zero, não no valor final", true, "anima de 0 até 2.400");
 t("respeita quem pediu menos movimento", /prefers-reduced-motion/.test(
   fs.readFileSync(__dirname + "/assets/oferta-reuniao.js", "utf8")));
 
@@ -100,7 +108,7 @@ t("respeita quem pediu menos movimento", /prefers-reduced-motion/.test(
   dom2.window.document.body.appendChild(e2);
   dom2.window.leonOferta.abrir();
   const n2 = dom2.window.document.getElementById("ofr-num");
-  t("o valor final é 2.000", n2 && n2.textContent === "2,000", n2 ? n2.textContent : "sem contador");
+  t("o valor final é 2.400", n2 && n2.textContent === "2,400", n2 ? n2.textContent : "sem contador");
 }
 
 console.log("\n\x1b[1m=== FECHAR ===\x1b[0m");
