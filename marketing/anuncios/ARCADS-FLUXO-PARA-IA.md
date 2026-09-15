@@ -368,7 +368,9 @@ que faz vender.
 
 **6. Estime a duração falada** de cada copy e some o total, para conferir contra
 os segundos do plano. Uma estimativa razoável para fala com respiro é **2,6 a
-2,9 caracteres por segundo**, mas **calibre com o primeiro áudio real gravado**:
+2,9 palavras por segundo, o que em português dá cerca de 13 a 15 caracteres por
+segundo** (45 segundos ficam perto de 600 a 650 caracteres), mas **calibre com o
+primeiro áudio real gravado**:
 cronometre a gravação, divida pelos caracteres e use o número medido.
 
 **7. Se um formato exigir duração diferente** (corte de 15s para stories, 30s
