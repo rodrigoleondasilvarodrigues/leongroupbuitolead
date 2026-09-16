@@ -130,6 +130,40 @@ Não existe caminho de testar 6 criativos com R$ 100 por dia. Escolher entre
 
 ---
 
+## O que a Aula 05 mudou aqui (transcrita em 2026-09-16)
+
+> **O cronograma das rodadas, com a verba real de R$ 1.300 por semana e os 18 criativos, está em
+> `_memoria/plano-campanha-rodadas.md`.** Este documento aqui continua sendo o passo a passo de
+> tela. Aquele diz quantas peças sobem por vez e como se lê o resultado.
+
+A aula 05 respondeu, por citação direta, o que antes era relato de segunda mão. Duas coisas
+mudam neste documento, e nenhuma delas muda a conta de R$ 100 por criativo.
+
+**1. Os criativos da mesma leva ficam num conjunto só, não num conjunto cada.** Um aluno
+descreveu 1 campanha com 5 conjuntos e 5 anúncios, e o instrutor corrigiu:
+
+> "Não, é um, se você for rodar assim, é uma campanha, um conjunto, 5 criativos."
+> (linha 109 da transcrição)
+
+**2. Quem decide a estrutura é a sua confiança no criativo, não a sua verba:**
+
+> "Se tu não tem muita confiança nos teus criativos, eu faria uma campanha, um conjunto e os
+> criativos. Tem confiança, eu faria uma campanha, conjunto criativo." (linha 121)
+
+Ou seja, o **1-1-1** que está no passo a passo abaixo é o caminho de quem **já sabe** qual
+criativo funciona. Na primeira subida, quando ninguém sabe, o caminho é **1 campanha, 1 conjunto,
+os criativos juntos**, deixando o Meta concentrar a entrega no que responder.
+
+**O que NÃO mudou:** a unidade de R$ 100 por criativo por dia. Três criativos no mesmo conjunto
+continuam pedindo R$ 300 por dia. O instrutor chega a citar R$ 300 como ponto de partida de uma
+leva nova (linha 117), o que confirma que o piso de uma leva é a soma, não R$ 100 no total.
+
+**Consequência prática para a recomendação acima:** mantenha os 2 criativos a R$ 200 por dia no
+fim de semana, mas coloque os dois **no mesmo conjunto**, com CBO, em vez de duas campanhas
+separadas. A leitura do vencedor passa a ser a distribuição do Meta, e não o corte manual do dia 1.
+
+---
+
 # 2. O que não entra
 
 A extração marcou **42 itens** como tática enganosa. Eles ficam registrados em

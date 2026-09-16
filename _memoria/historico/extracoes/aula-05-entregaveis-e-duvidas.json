@@ -1,0 +1,211 @@
+{
+  "fonte": {
+    "aula": "Aula 05",
+    "titulo": "Os quatro entregáveis do cliente e a rodada de dúvidas",
+    "arquivo": "_memoria/historico/FONTES/aulas-novas-transcricoes/aula-05-transcricao.txt",
+    "formato": "Speaker A/B/C, sem marcação de tempo. As referências abaixo são por NÚMERO DE LINHA do arquivo, porque não há timestamp para citar.",
+    "extraido_em": "2026-09-16",
+    "aviso": "Speaker B é o instrutor na maior parte da call, mas a transcrição junta falas de pessoas diferentes dentro do mesmo bloco de Speaker B (por exemplo, a linha 177 tem pergunta de aluno e resposta do instrutor no mesmo parágrafo). Onde a autoria não é inequívoca, o item está marcado AMBIGUO."
+  },
+
+  "entregaveis": [
+    {
+      "titulo": "Os quatro entregáveis do cliente, confirmados",
+      "o_que_fazer": "Entregar quatro coisas: Google Meu Negócio, site, Instagram e logo.",
+      "citacao_literal": "é te entregar 4 coisas: Google Meu Negócio, site, Instagram e logo",
+      "linha_fonte": "linha 39",
+      "status": "EXPLICITO",
+      "ja_aplicado_na_leon_group": "Sim. É o mesmo escopo do plano Presença Local, que ainda soma sistema de avaliação e 12 posts com 4 destaques."
+    },
+    {
+      "titulo": "O processo depois que o cliente paga",
+      "o_que_fazer": "Cliente pagou, cria o grupo no WhatsApp, marca uma call de apresentação e acesso, e nessa call pega o login do Google, do Instagram e do Facebook. O que ele não tiver, você cria com o e-mail e a senha que ele quiser.",
+      "citacao_literal": "cliente pagou, cria o grupo no WhatsApp, certo, criou o grupo no WhatsApp, você vai marcar uma call de apresentação e acesso. Nessa call você vai pegar o login do Google do Insta e do Face. O que ele não tiver, você cria com o email e senha que ele quiser",
+      "linha_fonte": "linha 39",
+      "status": "EXPLICITO",
+      "ja_aplicado_na_leon_group": "Parcial. O CRM já tem grupo de WhatsApp e formulário de onboarding. A call de apresentação e acesso não está nomeada como marco na cadência."
+    },
+    {
+      "titulo": "Produção dos entregáveis por arquivo de agentes no Claude Code",
+      "o_que_fazer": "O instrutor vai disponibilizar na área de membros um arquivo com os agentes e subagentes dele. O aluno joga o arquivo no Claude Code e pede site, Instagram e logo em linguagem natural.",
+      "citacao_literal": "Vamos pegar o arquivo que eu vou mandar para vocês, vocês vão ver no Cloud Code e vai jogar esse arquivo aqui. [...] chat, preciso criar o site de um cliente",
+      "linha_fonte": "linha 39",
+      "status": "EXPLICITO",
+      "ja_aplicado_na_leon_group": "Superado. A Leon Group já gera site, posts, logo e checklist dentro do próprio sistema em produção. O arquivo do instrutor pode servir de comparação, não de substituição."
+    },
+    {
+      "titulo": "Hospedagem na Cloudflare, de graça",
+      "o_que_fazer": "Hospedar o site do cliente na Cloudflare, com tutorial dentro do arquivo. Custo zero, e o instrutor afirma caber até 500 sites.",
+      "citacao_literal": "vai criar uma conta na Cloudflare, ele vai ficar hospedado lá, é de graça, não tem custo nenhum, e você consegue hospedar até 500 clientes lá, até 500 sites",
+      "linha_fonte": "linha 39",
+      "status": "EXPLICITO",
+      "ja_aplicado_na_leon_group": "Sim, a agência inteira já roda em Cloudflare. O teto de 500 é afirmação do instrutor, não checada contra os limites reais da plataforma."
+    },
+    {
+      "titulo": "Plataforma paga para auditar o Google Meu Negócio do cliente",
+      "o_que_fazer": "Comprar, depois do primeiro cliente, uma plataforma externa que aponta o que falta no perfil. Cerca de uma hora para otimizar tudo.",
+      "citacao_literal": "você vai utilizar uma plataforma externa que se chama GPT Chat [...] Custa R$200 só por mês. E essa plataforma, ela mostra exatamente tudo que você tem que melhorar no perfil do seu cliente",
+      "linha_fonte": "linhas 39 e 43",
+      "status": "AMBIGUO",
+      "por_que_ambiguo": "O nome saiu corrompido na transcrição. Na linha 43 ele responde 'GBP, check. Google Business Profile, check. GBP', que pode ser o nome da ferramenta ou apenas a sigla. Confirmar na área de membros antes de comprar qualquer coisa.",
+      "ja_aplicado_na_leon_group": "Não é necessário hoje: o checklist de 42 itens já cumpre essa função, e o diagnóstico de 27 itens já audita perfil, site e avaliações."
+    }
+  ],
+
+  "trafego": [
+    {
+      "titulo": "Estrutura quando há pouco dinheiro: uma campanha, um conjunto, os criativos dentro",
+      "o_que_fazer": "Uma campanha, um conjunto e 3 criativos dentro, mantendo R$ 100 por criativo como unidade de verba.",
+      "citacao_literal": "Se você tem pouco dinheiro, uma campanha, um conjunto, 3 criativos dentro, mas sempre R$100 por criativo.",
+      "linha_fonte": "linha 97",
+      "status": "EXPLICITO",
+      "resolve_pendencia": "Sim. Confirma por citação o que estava no Cenário A do playbook como relato de segunda mão desde 2026-09-10."
+    },
+    {
+      "titulo": "Correção explícita: não é um conjunto por criativo",
+      "o_que_fazer": "Um aluno descreve 1 campanha com 5 conjuntos e 5 anúncios. O instrutor corrige: é uma campanha, um conjunto, 5 criativos.",
+      "citacao_literal": "Não, é um, se você for rodar assim, é uma campanha, um conjunto, 5 criativos.",
+      "linha_fonte": "linhas 99 a 113",
+      "status": "EXPLICITO"
+    },
+    {
+      "titulo": "Testar mais criativos depois, e o piso real de verba",
+      "o_que_fazer": "Para testar outra leva, criar outro conjunto em outra campanha. Nesse caso a unidade de R$ 100 por criativo deixa de ser obrigatória e o instrutor sugere começar com cerca de R$ 300.",
+      "citacao_literal": "Isso, se você não tiver muito dinheiro. E aí você não precisa colocar necessariamente R$100 por criativo, dá para começar tipo uns R$300, sei lá.",
+      "linha_fonte": "linhas 115 a 117",
+      "status": "EXPLICITO",
+      "consequencia": "O piso citado na aula para uma leva de criativos é cerca de R$ 300 por dia, não R$ 100 por dia."
+    },
+    {
+      "titulo": "A regra da confiança decide a estrutura",
+      "o_que_fazer": "Sem confiança nos criativos: uma campanha, um conjunto e todos os criativos juntos, deixando o Meta escolher. Com confiança: uma campanha, um conjunto, um criativo.",
+      "citacao_literal": "Se tu não tem muita confiança nos teus criativos, eu faria uma campanha, um conjunto e os criativos. Tem confiança, eu faria uma campanha, conjunto criativo.",
+      "linha_fonte": "linha 121",
+      "status": "EXPLICITO",
+      "observacao": "Inverte a leitura anterior: o 1-1-1 da Aula 03 é o caminho de quem já sabe qual criativo funciona, não o caminho de quem tem pouca verba."
+    },
+    {
+      "titulo": "Segmentação por interesse: nenhuma",
+      "o_que_fazer": "Público 100% aberto, sem interesses, com filtro de idioma português.",
+      "citacao_literal": "Isso, eu queria saber se tinha algum Algum tipo de interesse nos anúncios ou literalmente daquele tipo? 100% aberto, velho, 100% aberto.",
+      "linha_fonte": "linhas 181 a 183",
+      "status": "EXPLICITO",
+      "ja_aplicado_na_leon_group": "Sim. A segmentação decidida em 2026-09-10 já é país mais idioma, sem interesses."
+    },
+    {
+      "titulo": "Lead curioso não tem taxa, tem causa",
+      "o_que_fazer": "Diante de muitos leads curiosos, o instrutor nega existir taxa de referência e atribui o problema ao criativo ou à condução da ligação.",
+      "citacao_literal": "você tá vendo muito lead curioso, mano, é porque a sua call de SDR tá ruim, você não tá executando bem o lead, e seu criativo tá ruim também",
+      "linha_fonte": "linha 177",
+      "status": "AMBIGUO",
+      "por_que_ambiguo": "Pergunta do aluno e resposta do instrutor estão no mesmo bloco de Speaker B.",
+      "uso_na_leon_group": "Serve de leitura para o diagnóstico do funil do CRM, que já aponta gargalo por etapa."
+    }
+  ],
+
+  "criativo_e_arcads": [
+    {
+      "titulo": "O erro que o instrutor aponta: deixar a voz de IA",
+      "o_que_fazer": "Não escrever o texto e deixar a ferramenta narrar. Gravar a própria voz com a entonação desejada e enviar.",
+      "citacao_literal": "vocês pularam a etapa que eu falei na última call para estar ficando com voz de IA. Certeza que vocês estão escrevendo o texto e mandando ele.",
+      "linha_fonte": "linhas 3 a 5",
+      "status": "EXPLICITO",
+      "ja_aplicado_na_leon_group": "Sim, é exatamente o caminho de Speech to Speech já escolhido."
+    },
+    {
+      "titulo": "A escolha do ator pesa mais que a voz",
+      "o_que_fazer": "Usar os atores indicados pelo instrutor, citados como Matthew e Magnus. Ele atribui o resultado ruim de um aluno ao ator escolhido, não à narração.",
+      "citacao_literal": "eu não posso ser esse ator para usar, velho. Eu falei do Matthew, do Magnus, foram eles só que eu falei para usar. Esse é outro.",
+      "linha_fonte": "linhas 23, 39 e 57",
+      "status": "EXPLICITO",
+      "observacao": "Os nomes podem estar corrompidos na transcrição. Conferir na biblioteca da ferramenta antes de gerar."
+    },
+    {
+      "titulo": "Trocar ator e voz na hora do envio, e filtrar por idioma",
+      "o_que_fazer": "É possível trocar o ator e a voz no momento de enviar o vídeo, e filtrar as vozes por português ou inglês.",
+      "citacao_literal": "dá para você usar outro ator com outra voz na hora que você envia o vídeo, você pode alterar. Então Você escolhe lá a voz que você quer usar exatamente, pode selecionar só para português, só para inglês.",
+      "linha_fonte": "linha 35",
+      "status": "EXPLICITO"
+    },
+    {
+      "titulo": "Naturalidade: não limpar demais a gravação",
+      "o_que_fazer": "Manter respiro e vício de linguagem em vez de remover tudo, e escolher voz que combine com o personagem.",
+      "citacao_literal": "eu não me atentei, mano, em ficar tirando erro de respiro, palavra com muito vício de linguagem [...] Tem que deixar o mais natural possível. E de modo geral escolher realmente uma voz que combine com o personagem escolhido",
+      "linha_fonte": "linha 53",
+      "status": "EXPLICITO"
+    },
+    {
+      "titulo": "Como o instrutor pensa a copy do criativo",
+      "o_que_fazer": "Pensar como o brasileiro que mora nos Estados Unidos ouviria: em que momento vê o vídeo, o que prende a atenção, o que é possível dentro da realidade dele. Os três pilares citados são faturamento, mecanismo e intercâmbio. Estudar o público, inclusive por canais não convencionais como YouTube.",
+      "citacao_literal": "eu penso como o brasileiro que mora lá gostaria de ouvir um criativo e o que faria ele ficar preso no meu criativo [...] É o quê? Faturamento, mecanismo, intercâmbio. E ser possível dentro da realidade do cara.",
+      "linha_fonte": "linhas 269 a 277",
+      "status": "EXPLICITO"
+    }
+  ],
+
+  "prazos_e_cobranca": [
+    {
+      "titulo": "Prazo de resultado que o instrutor dá ao cliente",
+      "o_que_fazer": "Segundo ele, com o cliente publicando de 3 a 4 avaliações por semana, o resultado aparece em uma semana e meia a duas semanas. Sem avaliação, não aparece nunca.",
+      "citacao_literal": "se o cara ele cumprir, colocar os reviews no tempo que você pede, mano, 2 semanas, 1 semana por aí. Se o cara não colocar, ele não vai ter resultado nunca.",
+      "linha_fonte": "linhas 157 a 165",
+      "status": "EXPLICITO",
+      "alerta": "NÃO VERIFICADO e NÃO PROMETÍVEL. É afirmação do instrutor sem evidência. Prometer prazo de resultado em anúncio ou em call quebra a regra de integridade da Leon Group, que garante método e não número."
+    },
+    {
+      "titulo": "Por que o WHOP limita a US$ 2.500",
+      "o_que_fazer": "O limite existe por falta de histórico de vendas. Saídas citadas: verificação manual com histórico de outra plataforma, ou link de recorrência que cobra metade agora e metade em três dias.",
+      "citacao_literal": "Ele limita, mano, quando você não tem histórico. [...] Você pode fazer um link de recorrência. Então o cara cobra R$2.500, ele inicia com R$2.500, depois de 3 dias vai cobrar mais R$2.500.",
+      "linha_fonte": "linhas 227 a 241",
+      "status": "EXPLICITO",
+      "uso_na_leon_group": "Resolve o teto de cobrança que estava anotado como restrição do preço de US$ 5.000."
+    },
+    {
+      "titulo": "VNumber confirmado como fornecedor de número",
+      "o_que_fazer": "Número que não expira, entre R$ 25 e R$ 30 por mês, recomendado no grupo.",
+      "citacao_literal": "Você paga R$25, R$30 por mês e fica com ele para toda a eternidade",
+      "linha_fonte": "linhas 205 a 217",
+      "status": "EXPLICITO",
+      "ja_aplicado_na_leon_group": "Sim, o número americano da agência veio do VNumber em 2026-09-10."
+    }
+  ],
+
+  "calendario_da_mentoria": [
+    {
+      "titulo": "A mentoria teve cinco calls, não sete",
+      "citacao_literal": "Não, não teve nenhuma outra call, mano. Essa é a quinta call. [...] Eu vou usar a 6ª, 7ª call para tirar dúvidas.",
+      "linha_fonte": "linhas 291 a 297",
+      "status": "EXPLICITO",
+      "consequencia": "A nota do playbook que dizia faltar 3 aulas está superada. Não há aula 06 e 07 de conteúdo novo, e sim calls de dúvida."
+    }
+  ],
+
+  "taticas_que_a_leon_group_nao_copia": [
+    {
+      "o_que_aparece": "Criativo lido em voz alta durante a call, com cliente nomeado e resultado atribuído: empresa LS Constructions, mais de US$ 80 mil em um único mês, sem gastar com tráfego pago.",
+      "linha_fonte": "linha 219",
+      "por_que_nao_copiar": "É exatamente o formato de depoimento e resultado fabricado que a regra de integridade proíbe, e que a regra de testemunhos da FTC alcança."
+    },
+    {
+      "o_que_aparece": "Modelagem do criativo alheio, dito na hora: 'já tô modelando aqui os criativos' e 'vai roubar o criativo do coleguinha'.",
+      "linha_fonte": "linhas 87, 141 e 219",
+      "por_que_nao_copiar": "Copiar estrutura de criativo é prática comum de mercado, mas copiar a peça de terceiro traz risco de direito autoral e de repetir uma alegação falsa que não é sua."
+    },
+    {
+      "o_que_aparece": "Discussão sobre número americano obtido por fornecedor de SMS e bloqueios do WhatsApp.",
+      "linha_fonte": "linhas 193 a 213",
+      "por_que_nao_copiar": "A Leon Group já resolveu pela via legítima, com número próprio do VNumber autenticado no WhatsApp Business."
+    }
+  ],
+
+  "totais": {
+    "itens_extraidos": 18,
+    "explicitos": 16,
+    "ambiguos": 2,
+    "pendencias_resolvidas": [
+      "Estrutura de campanha com pouco dinheiro, que estava como relato de segunda mão no Cenário A",
+      "Calendário da mentoria: são cinco calls, a 6ª e a 7ª são de dúvidas",
+      "Contorno do teto de US$ 2.500 por cobrança no WHOP"
+    ]
+  }
+}

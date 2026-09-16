@@ -1,0 +1,311 @@
+Speaker A: de IA mesmo, tá ligado?
+
+Speaker B: Certo. Bom, rapidão, então vocês vão ver a aula 5, a gente vai falar sobre os entregáveis dos clientes e tirar dúvidas. Mano, sobre o Arquedes, vocês estão fazendo, vocês pularam a etapa que eu falei na última call para estar ficando com voz de IA. Certeza que vocês estão escrevendo o texto e mandando ele.
+
+Speaker A: Pode que eu usei minha voz, velho. Eu gravei minha voz narrando com entonação certinha, mandei, pá, mesma coisa, velho.
+
+Speaker B: Você usou os atores que eu falei ou não?
+
+Speaker A: Usei.
+
+Speaker B: Deixa eu ver, compartilha a tela aí.
+
+Speaker A: Calma aí, deixa eu achar o vídeo aqui. Ô Renan, você tem o vídeo aí? Porque o meu eu deletei, mano.
+
+Speaker C: Tem, deixa eu pegar aqui.
+
+Speaker A: Eu deletei, porque a caixinha da lixeira do Mac é hoje. Bosta. Salve, salve!
+
+Speaker B: Eu fui meio lesado, não tinha lido a mensagem não. Relaxa.
+
+Speaker C: Fez uns 3 testes assim, eu falei, não, vou segurar aqui que eu tô fazendo alguma coisa que não tá legal.
+
+Speaker B: Enquanto não tira, eu vou chegar rapidão aqui no— porra, mas eu não posso ser esse ator para usar, velho. Eu falei do Matthew, do Magnus, foram eles só que eu falei para usar. Esse é outro.
+
+Speaker A: Magnífico!
+
+Speaker B: Mostra o criativo aqui para mim copiar, mano.
+
+Speaker C: Já mandei aí, mano. Ah, o dele? Ah, tá.
+
+Speaker B: Não mostrou uma parte do criativo. Eu achei que era o Vin Diesel. Não, não, você é louco. É porque, mano, varia de ator para ator, tá ligado? Nem tentei, mas dá para usar outra pessoa, outro ator com outra voz?
+
+Speaker A: O Henrique pode responder, Paulo, primeiro.
+
+Speaker B: Mano, dá para você usar outro ator com outra voz na hora que você envia o vídeo, você pode alterar. Então Você escolhe lá a voz que você quer usar exatamente, pode selecionar só para português, só para inglês. Eu mostro isso lá na call. Fechou, fechou.
+
+Speaker A: Eu perdi o meu vídeo que eu fiz aqui porque eu acabei deletando, mas na hora que você vai narrar, você pega pelo celular mesmo, coloca do lado da boca e vai falando nessa entonação que você quer. É isso, não é?
+
+Speaker B: É porque você usou um ator muito ruim. Esse ator, ele é fake, mano, é um ator de ar. Você usa o outro real, do Renato, ele tá falando. Rapaziada, eu vou, tamo junto, vou explicar sobre as entregáveis porque é muito simples. Eu vou enviar um arquivo para vocês, vocês simplesmente vão subir esse arquivo no cloud. Subir esse arquivo no cloud é simples, é te entregar 4 coisas: Google Meu Negócio, site, Instagram e logo. Certo, para criar conta no Google Meu Negócio do cliente, vocês vão no Google, vocês vão primeiramente, o processo é o seguinte, tá, ó, cliente pagou, cria o grupo no WhatsApp, certo, criou o grupo no WhatsApp, você vai marcar uma call de apresentação e acesso. Nessa call você vai pegar o login do Google do Insta e do Face. O que ele não tiver, você cria com o email e senha que ele quiser, certo? Aqui é isso. Beleza. Qual que é o próximo passo para você desenvolver site, Instagram e logos? Vamos pegar o arquivo que eu vou mandar para vocês, vocês vão ver no Cloud Code e vai jogar esse arquivo aqui. Joguei esse arquivo aqui, mano, É simples, você vai falar assim: chat, preciso criar o site de um cliente. Você vai dar enter, ele vai te fazer uma série de perguntas sobre o cliente, você responde e pronto, ele vai criar um site. Chat, preciso criar o Instagram do meu cliente. Envia as fotos do seu cliente, ele vai criar. Chat, preciso criar a logo do meu cliente. Ele vai te fazer uma série de perguntas, tu responde e ele vai criar. É isso. Esse arquivo já vem com tudo, todos os meus agentes, subagentes que eu utilizo para fazer criação, tudo super simples. E aí, para otimizar o Google Meu Negócio do seu cliente, você vai utilizar uma plataforma externa que se chama GPT Chat. Vou mostrar para vocês agora. Essa aqui, depois que a gente achar o primeiro cliente, vocês vão comprar ela. Custa R$200 só por mês. E essa plataforma, ela mostra exatamente tudo que você tem que melhorar no perfil do seu cliente. Tudo leva uma hora para você otimizar tudo, na média. É isso, é muito simples, mano. Eu falei para vocês que era muito fácil, é muito fácil. Esse arquivo que você vai enviar no Cloud Code, ele vai ficar disponível amanhã, amanhã de tarde, ou hoje de noite lá na área de membros, que não consigo mandar no grupo aí agora não. Beleza. Tá, aí eu vou dedicar essa call aqui mais para tirar dúvida de vocês, porque do entregável é isso, não tem dúvida. Henrico, como que eu vou hospedar esse site? Dentro do arquivo tem um tutorial que você vai linkar, vai criar uma conta na Cloudflare, ele vai ficar hospedado lá, é de graça, não tem custo nenhum, e você consegue hospedar até 500 clientes lá, até 500 sites. Como é que se escreve? Cloudflare? Cloudflare, só que, mano, vai ter todo um tutorial no próprio Cloudflare assim que você jogar. Não, beleza, beleza. Aí tem que jogar primeiro esse arquivo lá no cloud, depois vocês é isso aí. É, ele vai dar uma instrução de tudo que você pode fazer, todos os passo a passo, é bem de boa. Fechou, fechou.
+
+Speaker A: Oi, qual o nome da plataforma do Google Meu Negócio que eu não escutei?
+
+Speaker B: GBP, check. Google Business Profile, check. GBP. Obrigado, é nós. Vamos, deixa eu só lembrar, e aí depois a gente foca só em dúvidas. Ótimo, rapidão, rapidão. Ô Paulo, ensina para galera aí como é que você faz para ganhar dinheiro fácil. Arrasta para cima e compra o meu curso de R$3.000, ou arruma uma ex-namorada doida também, né? Deixa eu falar, ultimamente não tô podendo ensinar não, velho. Eu tenho que aprender também.
+
+Speaker A: Arrumar namorada ou fazer dinheiro?
+
+Speaker B: O que você precisar, meu amigo. Eu acho que os entregáveis era mais ou menos o que a gente já tava esperando mesmo.
+
+Speaker C: Eu cheguei a montar isso daí tudo já, eu já tenho isso daí. Até gravei o vídeo lá para vocês no grupo, eu já tinha. Eu vou tirar algumas dúvidas a respeito mais de criativo, vou pedir para ele dar uns 3 exemplo de copy, daí eu vou fazer. Só que, cara, realmente a porra do AirTags lá, mano, é meio difícil.
+
+Speaker A: Então eu tô achando que o B.O. é a narração, velho. Eu vou pedir para alguém que narra bem, porque eu não sou um cara que sabe narrar muito legal, gravar um áudio para mim. Eu vou testar porque, mano, com a minha voz ficou uma merda.
+
+Speaker B: Eu fiz aqui no Arcades, mano, né, como eu sou editor, e eu levei muito em conta o Henrique falou sobre a questão de deixar mais natural possível. Então eu não me atentei, mano, em ficar tirando erro de respiro, palavra com muito vício de linguagem, o A, E, I, entendeu? Tem que deixar o mais natural possível. E de modo geral escolher realmente uma voz que combine com o personagem escolhido, entendeu? Agora assim, tá ligado, fez a mesma coisa, alterou tudo, colocou suspiro, tirou susto, colocou susto, fez o caralho, fez tudo aqui, mano, tá o mais natural possível.
+
+Speaker C: Eu acho que é só, não é nem o jeito do vídeo, porque hoje em dia tá muito bom, mas Mas assim, a voz, cara, pô, eu não sei se é porque eu mexo com isso todo dia, cara. A voz do Arquedes que eu tô, cara, que merda, velho. A voz completamente robotizada.
+
+Speaker B: Eu só escolhi, eles só escolheram o ator errado, só isso.
+
+Speaker C: É o Matthew e o Magnus.
+
+Speaker A: É, cara, e chega a modificar a voz deles ou não? Só o meu sei que tem que modificar, né, que é o que tá sentado.
+
+Speaker B: Pode deixar normal.
+
+Speaker C: Beleza. Ô Henrique, será que a gente também não tá se cobrando muito não para querer chegar na perfeição?
+
+Speaker B: Ainda assim vira uma bosta aquele ali, tá muito ruim, viado, aquele ali. Mostra aí para nós, mostra aí para nós, pô.
+
+Speaker A: Cadê? Mostra exemplo aí.
+
+Speaker C: Eu mandei o meu, porra.
+
+Speaker B: Vocês viram meu, viado?
+
+Speaker C: É, não é porque assim, o teu, mano, porra, ficou bom para caralho.
+
+Speaker B: É um ator, viado. Tem ator que é uma merda. Caralho, cara, minha empresa de construção ela saiu de 30, 40 mil dólares que faturava por mês para mais de 100 nos últimos 30 dias, cara.
+
+Speaker C: Assim bizarro. Não investir em tráfego pago. Eles estão trocando entre o ator e as cenas de B-roll.
+
+Speaker B: O cara do vídeo aqui seu aqui tá parecendo o Baitola, velho, falando.
+
+Speaker A: Você narrou, foi você mesmo ou você pediu para alguém criar essa narração com entonação?
+
+Speaker B: É a mesma aí. Entendi, fechou. Não é difícil, mano. Cara, muitas vezes construção saiu de 30, 40 mil dólares, de 20 a 30 mil dólares total por mês por causa que você Twitter durante a maior parte do tempo. Esse anúncio é o antigo, né? Ou é o recente? Não, é recente. Acho que eu tô me cobrando demais também. Se eu te mandar o anúncio no privado, no seu privado aí do WhatsApp, é encher seu WhatsApp. Não, tem que mandar no grupo, tem que mandar no grupo. Aí você que dá. Aí escreve safado, velho.
+
+Speaker C: Pô, mano, não é possível, velho. Ô, galera, tá todo mundo aqui na mesma querendo ganhar dinheiro, vai roubar o criativo do coleguinha.
+
+Speaker B: É foda, velho.
+
+Speaker C: Porra, vocês são foda, tá?
+
+Speaker B: Infelizmente a vida não é um morango.
+
+Speaker C: Ai, velho, vocês são foda, cara. Se eu tivesse que segmentar mais a campanha de tráfego, o que que tu faria além daquilo lá que tu passou? Ou é tipo assim, é para a gente fazer teste. Como é que tu testaria no tráfego pago, mano?
+
+Speaker B: Ah, teste, mano. Se você tem pouco dinheiro, uma campanha, um conjunto, 3 criativos dentro, mas sempre R$100 por criativo.
+
+Speaker C: R$100 dia por criativo, certo? E aí uma parada, mano, uma dúvida real. Se eu fiz lá 5 criativos para começar, eu fiz uma campanha, um Uma campanha, 5 conjuntos e 5 anúncios. Se eu quiser testar mais criativos e esses 5 estiverem rodando, eu crio novos conjuntos ou eu crio uma nova campanha?
+
+Speaker B: Repete.
+
+Speaker C: Eu, por exemplo, tenho 5 criativos já, aí eu tô na estrutura de uma campanha, 5 conjuntos e um criativo por campanha, 5 anúncios diferentes também.
+
+Speaker B: Uma campanha, 5 conjuntos e 5 criativos?
+
+Speaker C: Isso é mais ou menos isso, né?
+
+Speaker B: Não, é um, se você for rodar assim, é uma campanha, um conjunto, 5 criativos.
+
+Speaker C: São 5 criativos dentro de uma campanha?
+
+Speaker A: Sim.
+
+Speaker C: E aí se eu quiser testar mais 5, eu crio outro conjunto dentro de outra campanha?
+
+Speaker B: Isso, se você não tiver muito dinheiro. E aí você não precisa colocar necessariamente R$100 por criativo, dá para começar tipo uns R$300, sei lá.
+
+Speaker C: Mas assim, se você tiver como colocar assim, vai ser melhor, porque tem uma realidade tipo de assim de uns 250 até uns 350 por dia.
+
+Speaker B: Eu testei até 3, porra, viado. Se tu não tem muita confiança nos teus criativos, eu faria uma campanha, um conjunto e os criativos. Tem confiança, eu faria uma campanha, conjunto criativo.
+
+Speaker C: Ah, justo, mano.
+
+Speaker B: De fato, velho, eu acho que aí você já sabe o que que tá funcionando ou não. Aí você pega tipo o Hulk, se o Hulk dele é melhor ou não. Dá para segmentar melhor.
+
+Speaker C: Eu vou mandar um criativo lá. Se eu pegar rodando na biblioteca de anúncio, alguém vai se lascar. Tá mais justo. E uma parada que eu queria ver se tu, Henrique, tu chegou a falar uma vez, mas acabou que nem foi para frente.
+
+Speaker B: Se tu conseguir disponibilizar uma call do teu closer, mano, do meu closer não, mas minha sim.
+
+Speaker A: Pode ser, então pode ser, mano. Você disse que ia passar.
+
+Speaker B: Eu passei, pô.
+
+Speaker A: Tá na área de membros? Você só gravou o script.
+
+Speaker B: Certeza? Você disse que ia passar para gente. Era para estar na área de membros. Se não tá, eu vou verificar. Eu lembro que não tá mesmo. Caralho, eu vou mandar lá. Era para estar lá.
+
+Speaker C: Manda lá para nós, que é uma outra dúvida assim bem legal, o quanto, como conduzir ele na call em si, né?
+
+Speaker B: Cadê o criativo, Leão? Já manda aí no grupo aí para mim já começar a modelar.
+
+Speaker C: Não, vou mandar 3:30 da manhã só o criativo. Se vocês quiserem ver, vocês estejam acordados. Tão de sacanagem. E a última coisa que eu acabei de chegar aqui na casa da minha mulher, é, o Henrique, eu quero, eu vou entrar pelo computador. E eu queria te mostrar o CRM que eu fiz junto com entregável, mano, para ver se tu aprova.
+
+Speaker B: Bora, bora, pode ser.
+
+Speaker C: Então, galera, eu vou sair aqui rapidinho e vou entrar rapidão pelo computador. Um segundo aí, já volto.
+
+Speaker B: Henrico, uma pergunta sincera aqui, irmão. Os entregáveis são tão simples assim mesmo, cara? Não tem nada mais que isso? Por que que eu estaria mentindo, pai? É básico. É porque a gente pensou que pelo valor que a gente cobra pelo cliente seria um puta trampo. Não, sai fora. Eu paguei R$5.000 num tênis que é sujo, viado. Eu vi.
+
+Speaker A: Lá é bom, velho.
+
+Speaker B: Aí, que loucura!
+
+Speaker A: Aí você pegou a cor que eu queria, velho.
+
+Speaker B: Literalmente, ele é sujo assim, mano. É o brand dos cara. É massa esse aqui, é um Balenciaga diferenciado, um Balenciaga que acertou, que eu acho que o Balenciaga, cara, deitou mesmo, viu, velho. Mas eu acho que tem coisa da Balenciaga que é massa. Enrico, uma pergunta que eu estou tendo algumas objeções ali é no quesito assim: quanto tempo para ver ali a começar a produzir? Tipo assim, eu começo o trabalho com cliente, quanto tempo ele começa a ver resultado disso aí? Qual a média, você acha? Mano, se o cara ele cumprir, colocar os reviews no tempo que você pede, mano, 2 semanas, 1 semana por aí. Se o cara não colocar, ele não vai ter resultado nunca. Então o cara vai, coloca os reviews que vocês estão gerando no perfil dele, ou o cara vai ter resultado. Esse cara conseguir colocar uma média de 3, 4 reviews por semana, ele vai ter uma média boa de serviço. A partir de 2 semanas ali colocando review vai dar bom. Os reviews coloca tudo no Google My Business lá, né? Perfeitamente.
+
+Speaker A: Eu não escutei. Colocando uma média de 3, 4 por semana, quanto tempo começa a dar resultado?
+
+Speaker B: Uma semana e meia, duas semanas.
+
+Speaker A: Entendi.
+
+Speaker B: Na constância, né, de 3 a 4 reviews por semana.
+
+Speaker A: Sim, sim.
+
+Speaker B: Alguém tem mais alguma dúvida?
+
+Speaker C: Não, cara, a minha era só aquela do coletivo mesmo.
+
+Speaker B: Tô tentando lembrar aqui.
+
+Speaker A: A minha também era só sobre workouts.
+
+Speaker B: Um exemplo, Henrico, vi alguns leads aqui que eram mais curiosos do que realmente interessados para mim. Como é que você faz com isso aí? Você tem uma taxa de média, tipo assim, a cada 100 leads chegar nas conversas? Vai ter tantas pessoas sem job? Você tem alguma taxa disso ou não, mano? Não tem taxa disso porque meu SDR é muito bom. Então SDR qualifica muito bem o lead, né? E você tá vendo muito lead curioso, mano, é porque a sua call de SDR tá ruim, você não tá executando bem o lead, e seu criativo tá ruim também. Perfeito, perfeito. Entendeu? Não tem muito segredo, viu? Você não tá vendendo é porque o criativo tá ruim, ou você tá errando na call. Se o lead tem dinheiro, ele tá interessado, ele não tá curioso, é você que tá errando na call. Entendeu? É básico.
+
+Speaker C: Ah, outra parada que eu tinha até falado com Paulo. Ei, Paulo, só me corrija aí. A parada lá do anúncio em relação aos interesses que você tinha falado mais cedo comigo.
+
+Speaker B: Isso, eu queria saber se tinha algum Algum tipo de interesse nos anúncios ou literalmente daquele tipo? 100% aberto, velho, 100% aberto.
+
+Speaker A: Porra, coloca a linguagem português daí, né?
+
+Speaker C: Ou entrei aqui pelo computador, deixa eu já tirar essa dúvida contigo que eu vou acabar precisando sair, né? Vamos lá, mano, eu vou esperar o teu entregável, que eu sei lá, eu confirmar no teu entregável do que no meu. Mas esse fluxo de trabalho aqui, velho, o que que tu acha?
+
+Speaker B: Compartilhadinho aqui.
+
+Speaker C: Já estão vendo minha tela ou não, né?
+
+Speaker B: Não, não, não.
+
+Speaker A: Enquanto ele abre aí, o Henrique, usando aquele fornecedor de número do Telegram, mano, baixa no WhatsApp, bloqueia tudo.
+
+Speaker C: Eu coloco, mas eu mandei o outro lá.
+
+Speaker A: Ah, o VNumber.
+
+Speaker B: Mas é porque você tá mandando mensagem antes, não tá?
+
+Speaker A: Não, não chega nem ativar, mano. A hora que eu coloco o número para enviar o SMS, para ativar o número de confirmação, já aparece bloqueio de não sei o quê e trava tudo o Google Business ou WhatsApp Business.
+
+Speaker B: Caralho, isso nunca aconteceu comigo.
+
+Speaker A: Já tentou instalar o WhatsApp? Já devolvi esse VNumber que eles mandaram no grupo. Eu fiquei pensando se era IP. Eu falei, pô, será que esse celular meu que tá dando B.O.? Aí eu fui tentar, bate o Multilogin, usa 4G, pô, resolve o teu problema. Eu precisei usar uma VPN, algum bagulho assim, mas eu tentei no da minha mãe para ver se era o meu dispositivo que tava com B.O., mesma coisa. A hora que eu vou mandar SMS aparece um aviso vermelhinho na tela do WhatsApp, é bloqueado por não sei o quê. Daí só essa dúvida mesmo, se você compra por lá mesmo, você tem algum outro? Ou uso o VNumber, né, que eles recomendaram.
+
+Speaker C: Mano, o VNumber é bom mesmo.
+
+Speaker B: Papo reto.
+
+Speaker A: Fechou, obrigado, pô.
+
+Speaker C: Ele nunca expira, pô, ele sempre fica ali disponível pra você usar. Ele nunca expira, teu velho. Então, tipo assim, se o seu WhatsApp for restringido— Mano, eu realmente ainda não lembro quem é que recomendou, mas esse cara foi foda, mano. Eu recomendei, pô. Foi tu? Porra, mano, muito foda. E aí, se o número, por exemplo, fica bloqueado ou restringido, e aí tu tem que colocar o número de novo pra receber o SMS de novo, o descartável tu se fudeu, pô, tu perdeu 30 conto. Esse não, mano. Você paga R$25, R$30 por mês e fica com ele para toda a eternidade, sacou? Então acaba que é barato demais, mano. Ô Henrique, agora tá dando para ver, mano?
+
+Speaker B: Essa parada aí, quanto que foi?
+
+Speaker C: R$30 por mês, mano. O VNumber é esse daqui, ó.
+
+Speaker B: Dólares com contratos em um único mês sem gastar um centavo com tráfego pago. Foi exatamente desse nível de resultado que o Lucas da LS Constructions saiu para faturar mais de $80 mil em um único mês. E o detalhe que mais chama atenção: ele não gastou um centavo com tráfego pago, não contratou agência de marketing, não ficou dependente de indicações. Nunca alcançou esse resultado por meio de estratégia. Já tô, já tô, já tô modelando aqui os criativos, cara. Mostra mais aí, galera.
+
+Speaker C: Tá certo, é esse daqui, mano. O VNB é bom para caramba, bom para caramba mesmo, fato, mano. Realmente curti muito. Ô Henrique, tu, eu posso mostrar aqui, mano, o meu workflow que eu criei?
+
+Speaker B: Pode mostrar.
+
+Speaker C: Mano, eu já tô pensando mais para frente, tá? Porque eu tô pensando mais para frente, eu já coloquei para abrir um CNPJ americano, eu tenho família lá, final do ano eu quero ir para lá, eu já ia, né, de qualquer forma. Por conta do jiu-jitsu, né, da arte marcial. Então, tipo assim, mano, eu já tô pensando mais para frente. Então montei esse site, um site, pá, tudo bem, bacana. Enfim, mano, só que qual que me preocupava bastante? A parte da entrega, mano. Então eu fiz esse CRM aqui e, tipo assim, como eu quero manter uma paradinha enxuta, é mais ou menos essa base. Então aqui eu botei o horário dos lugares que possivelmente vai vir cliente, né? Então, tipo, Filadélfia são 6 horas, Houston 5 horas, entendeu? Para eu ter ideia. Enfim, mano, aqui cai, ó, Marcos Oliveira. Aí vem atendeu, não atendeu, respondeu. Aqui já tem as 10 ativações que tu falou, a qualificação Bunch, agendamento de call. Ele não deixa eu agendar para depois de 2 dias, ó, nunca mais de 2 dias. Se eu tento agendar, ele manda eu ligar outro dia e tudo mais. E a parte operacional, mano, ficou assim, ó. Eu entrego, deixa eu mover esse cliente aqui para fechou. Cliente criado, pronto. Aí ele tira da pipe do comercial, manda para do operacional. E já aparece tudo aqui, entendeu? E aí vem, tá na cadência, checklist obrigatório, entregável. E aí eu fiz, mano, site, Google Meu Negócio, Instagram e logo, né? Só que antes a gente não tinha essa tua parada. Aí eu vou colocar aqui que ele, isso daqui é um exemplo, pagou $2.500, a cotação do dia é $5,50 por meio da UOP.
+
+Speaker A: Aproveitar que você tá falando nesse momento, Na UOP tá limitando o valor em R$2.500. É normal para primeira venda ou vai ficar bloqueado assim?
+
+Speaker C: Ah, é verdade, né? Mas tem essa buceta ainda aí de R$2.500.
+
+Speaker B: É porque você nunca vendeu, né? É verdade. Ou se vocês tiverem algum, alguma movimentação do outro mercado, se vocês já tiverem alguma verificação em transações em algum outro GET, vocês podem mandar para eles ou fazer alguma verificação manual ou vender. Alguma coisa.
+
+Speaker C: Eu pensei em meter o louco, mano, e mandar o link de R$2.500 duas vezes para o cliente. Falei, cara, tem que pagar duas vezes aí.
+
+Speaker B: Você pode fazer um link de recorrência. Então o cara cobra R$2.500, ele inicia com R$2.500, depois de 3 dias vai cobrar mais R$2.500. Aí você faz um link que cobra depois de 3 dias. Só tem que ficar esperto quanto é fácil cobrar depois de 3 dias de novo. Eu verifiquei a minha, deu R$4.900, pô.
+
+Speaker A: A minha não, a minha fica limitada mesmo verificado, ficou em R$2.500.
+
+Speaker C: Uai, ela pede R$2.500.
+
+Speaker B: Ele limita, mano, quando você não tem histórico.
+
+Speaker C: Aí aqui é, enfim, mano, isso daqui é a parte que entra, vai para o caixa, né, que eu sou bem organizado. Aí entra para o caixa R$3.500, entra tanto em dólar quanto BR. Mas aqui que importa, eu criei um formulário para o cliente preencher as paradas dele. Então só depois do contrato assinado e depois do pagamento que destrava, sacou? Aí, ó, destrava o link formulário. Eu pego o link formulário e aí clico aqui, aí ele já manda: Olá, Oliveira Hardwood, né? Aí enfim, já vem cliente, o número, há quanto tempo, de onde você atende, quais as cidades, o que que você faz. E assim, eu tentei deixar mais Mais forte ainda o formulário para o cara já mandar muito armamento. Então aqui ele sobe, enfim, tudo do negócio dele, foto, vídeo, os caralho a 4, faz observação e manda. Quando ele manda, já automatiza aqui, ó, baixar entrega, sacou? E aí a entrega, mano, ele já cria os 12 posts, ele já cria logo, ele já cria do Google Meu Negócio e já cria o site. Aí, tipo assim, eu não preenchi esse teste aqui, mas para vocês verem, é tipo assim, só um testezinho que eu fiz, ele RL HVAC, né? E aí o site ficou assim, mano. Aqui estaria as fotos do cliente, lógico, né?
+
+Speaker B: Assim, ele é bem, bem moderno. Tu pode pegar o template que eu vou mandar e falar para pegar os entregáveis e linkar no CRM. Pronto.
+
+Speaker C: E tipo assim, aí ficou esse fluxo de trabalho, mano, esse workflow. O que que tu acha? E aí, mano, eu realmente tentei deixar mais completo. Depois daqui eu posso, aí fica verde, se eu entrego tudo pra ele, ó, entrega antes do prazo. Eu tenho checklist, tá ligado? Acho que isso daqui vai gerar um valor do caralho pra os clientes, pra eu mostrar dentro do CRM bonitinho. Automaticamente, quando o cliente já entra na pipeline do operacional, já é criado um Drive lá no Google Drive. Ele já compartilha o link. Então, tipo assim, tudo cloud code isso daqui, mano. Mas ficou muito bom. Já tem os posts do Insta, aí já tem o site, porra, o index. Aqui tem aprovado, aprovado, aprovado. Enfim, acho que ficou bem legal. Aqui já automaticamente gera também as 20, os 20 reviews para o Google My Business, né, do cara, e as entregas todas, mano, sacou? E aí tem concluído, entrega, atrasado, guardando cliente. Depois eu coloquei uma paradinha de renovação, se ele quiser renova automaticamente, e assim sucessivamente, mano. Aí eu queria te perguntar, essa porra é balela e ficou bom? Tu mudaria alguma parada também?
+
+Speaker B: Bem melhor que o meu, tá muito foda, muito foda.
+
+Speaker C: Legal, massa então.
+
+Speaker B: Parabéns, ficou muito bom, muito bom mesmo, vai te ajudar muito.
+
+Speaker C: É isso, é isso, é isso. Foi tudo aqui, mano. Aqui, ó, mostrar para vocês também. Só já aproveitando o gancho, que eu vou precisar sair mais cedo hoje, eu vou assistir gravado, mano. Tudo com Cloud Code, velho.
+
+Speaker B: Aqui, que bizarro!
+
+Speaker C: Dá para ver aí?
+
+Speaker B: Só na conversa. Calma aí, só uma fita. Quem tá vendo aí tá se assustando é porque ele tá usando VS Code, por isso que tá aparecendo que tem que manjar muito Pode, mas dá para fazer pelo próprio Cloud Code, dá.
+
+Speaker C: E aí aqui, mano, eu separo o chat de acordo com— é porque eu sou ratinho de Cloud Code, né, mano? E aí eu separo o chat, ele já é ligado direto no meu repositório, mano. Enfim, tudo por aqui, velho. Eu curto para caramba. Ele automatizou tudo com os API, ele cria o grupo, já manda o link, já conecta dentro do CRM, mano. Ficou bem redondinho. Daí ficou muito foda, ficou bem redondinho mesmo.
+
+Speaker B: Muito foda, daí parabéns, ficou pica, ficou pica. Valeu, meu irmão.
+
+Speaker C: E velho, uma última coisa, até para ser redundante mesmo, mano, a respeito dos criativos, como é que tu pensa? Porque assim, eu quero testar muito, mano. Eu tenho um objetivo pessoal de fechar pelo menos uns 3, 4 clientes na primeira semana, sacou? Para isso que eu vou colocar uma grana a mais.
+
+Speaker B: Eu, quando vou testar criativo, eu penso como o brasileiro que mora lá gostaria de ouvir um criativo e o que faria ele ficar preso no meu criativo. Então, em que momento que ele vai ver meu criativo? O que que ele vai estar fazendo? O que que vai prender atenção dele? O que que de fato é interessante para o cara? Para eu não me perder durante a criação da copy. É o quê? Faturamento, mecanismo, intercâmbio. E ser possível dentro da realidade do cara. É isso. A partir daí, irmão, é um flow infinito, pai. Infinito. Tá. Não tem muito, eu não uso, eu não tenho muito uma parada que eu penso, mano. É muito automático na minha cabeça isso. Entendeu?
+
+Speaker C: Entendi. Entendi. É porque, mano, eu acho que eu tô me travando muito.
+
+Speaker B: Eu estudei muito sobre o público, então vem muito de forma autônoma na minha cabeça, sabe? Estuda sobre o mercado, mercado de construção, sobre o público que tu vai deitar.
+
+Speaker C: Tipo assim, também posso estudar por meios, entre aspas, não convencionais. Tipo, eu posso entrar no YouTube e dar uma olhada lá como é que é a vida do cara. Tipo, esse tipo de coisa também consideraria estudo?
+
+Speaker B: 100%.
+
+Speaker C: Ok, ok.
+
+Speaker B: Fechou, rapaziada. Alguém tem mais alguma dúvida? Por mim não.
+
+Speaker C: É, mano, eu acho que era mais a parte do entregável que eu tava com uma insegurança. E você mandando um arquivo lá, velho, já vou linkar tudo com meu CRM para fazer essa parada automática e vou possivelmente amanhã já começar a rodar os ads. Possivelmente amanhã vou botar a média de R$350 até uns R$500 ali por dia. E marcha, quero fechar 3, 4 pontos aí.
+
+Speaker B: Marcha, vamos embora! É isso, fechou? Hoje, rapaziada, eu tô meio corrido porque é aniversário do Mateus, meu sócio. Então até por isso que eu tô acelerando a call, porque tá foda, tem que sair já já.
+
+Speaker C: Sim, manda parabéns para ele lá.
+
+Speaker B: Ô Henrico, agora é isso mesmo. Agora é só a gente testar esses criativos aí e largar aí para as vendas aí. Se Deus quiser, vai dar bom. É isso, vamos demais então, fechou? Amanhã de manhã essa cola vai estar disponível já com os arquivos para vocês colocarem, começarem a rodar os entregáveis.
+
+Speaker C: Por favor, meu irmão. Beleza. E a última coisa, mano, tu tem como subir as aulas gravadas lá? Tá faltando as 5, 6 e a 7, né? No caso, a 7 seria essa.
+
+Speaker B: Não, não teve nenhuma outra call, mano. Essa é a quinta call.
+
+Speaker C: Aí, porque lá na paradinha, na área, tem disponibilidade para 7 aulas, sacou?
+
+Speaker B: Mas é porque a gente conseguiu, é que no caso é que a gente teve 5. Essa é a quinta call, no caso. Eu vou usar a 6ª, 7ª call para tirar dúvidas. Entendeu?
+
+Speaker C: Entendi, entendi. Perfeito, perfeito então. E aí, cara, até uma recomendação minha que eu gostaria de ter é para a gente pular, para a gente voltar segunda-feira, mano, com as aulas, porque eu vou começar amanhã, mano, a rodar os ads.
+
+Speaker B: Então sexta-feira, tipo assim, não vai ter muito conteúdo, vai ser literalmente mais, vai ser segunda-feira mesmo. Então não vai assim, tá de boa.
+
+Speaker C: Não, fechou. E é isso, velho, marcha. Vou atarefar vocês lá no grupo mesmo, vou perguntar.
+
+Speaker B: E é isso, vamos de marcha então, vamos embora. Fechou, é nós, rapaziada. Fiquem com Deus. Amanhã de manhã ou mais para tarde vai estar tudo lá, fechou? Valeu, meu irmão.
+
+Speaker C: Com Deus.
+
+Speaker B: Falou, irmão.
+
+Speaker C: Sucesso, valeu, até mais.

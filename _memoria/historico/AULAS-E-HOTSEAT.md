@@ -43,6 +43,16 @@
 - Formalizar proposta, contrato, pagamento e onboarding.
 - Alinhar expectativa, acessos, cronograma e responsabilidades antes de iniciar a entrega.
 
+### Aula 05: entregáveis do cliente e rodada de dúvidas
+
+- Confirmar o escopo entregue ao cliente: Google Meu Negócio, site, Instagram e logo.
+- Abrir o trabalho com grupo no WhatsApp e uma call de apresentação e acesso, onde se recolhem os logins.
+- Produzir os entregáveis com apoio de agentes e hospedar o site na Cloudflare.
+- Estrutura de campanha: uma campanha, um conjunto e os criativos dentro quando não há confiança em qual funciona; um criativo isolado quando há.
+- Público sem interesses, filtrado por idioma português.
+- Transcrição em `FONTES/aulas-novas-transcricoes/aula-05-transcricao.txt` e extração em `extracoes/aula-05-entregaveis-e-duvidas.json`.
+- A mentoria teve cinco calls. A sexta e a sétima são de dúvidas, não de conteúdo novo.
+
 ### Hotseat — complementos operacionais
 
 - Usar nicho reconhecível na apresentação do cliente.

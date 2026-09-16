@@ -112,6 +112,80 @@ Flooring é apontado como 90% dos clientes — forte candidato a recorte priorit
 
 ---
 
+## Aula 05: os quatro entregáveis do cliente e a rodada de dúvidas
+
+> Transcrita em 2026-09-16. Formato `Speaker A/B/C`, **sem marcação de tempo**: as citações
+> são referenciadas por número de linha. Extração completa em
+> `_memoria/historico/extracoes/aula-05-entregaveis-e-duvidas.json`.
+
+**Os quatro entregáveis, confirmados:** Google Meu Negócio, site, Instagram e logo. Nada além
+disso. Perguntado se era simples demais para o valor cobrado, o instrutor respondeu que é básico
+mesmo (linha 149).
+
+**O processo depois do pagamento:** cliente pagou → cria o grupo no WhatsApp → marca uma call de
+apresentação e acesso → nessa call pega o login do Google, do Instagram e do Facebook, criando o
+que não existir com e-mail e senha escolhidos pelo cliente (linha 39).
+
+**Produção:** o instrutor vai disponibilizar na área de membros um arquivo com os agentes dele
+para rodar no Claude Code, e o site fica hospedado de graça na Cloudflare. A Leon Group já faz
+isso em sistema próprio, mais completo, então esse arquivo serve de comparação e não de troca.
+
+**Auditoria do perfil:** ele cita uma plataforma externa de cerca de R$ 200 por mês que aponta o
+que falta no Google Meu Negócio. ⚠️ O nome saiu corrompido na transcrição ("GPT Chat", depois
+"GBP, check"). Confirmar na área de membros antes de assinar. O checklist de 42 itens e o
+diagnóstico de 27 já cobrem essa função hoje.
+
+### Tráfego: a resposta que faltava
+
+| Situação | Estrutura | Verba |
+|---|---|---|
+| **Pouca confiança nos criativos** | 1 campanha, 1 conjunto, todos os criativos dentro | R$ 100 por criativo (3 criativos = R$ 300/dia) |
+| **Confiança no criativo** | 1 campanha, 1 conjunto, 1 criativo | R$ 100/dia |
+| **Nova leva, com pouco dinheiro** | outro conjunto em outra campanha | "não precisa ser R$ 100 por criativo, dá para começar com uns R$ 300" |
+
+Citações: linhas 97, 109, 117 e 121.
+
+**Duas correções que isso traz:**
+
+1. **O 1-1-1 da Aula 03 é o caminho de quem já sabe qual criativo funciona**, não o de quem tem
+   pouca verba. Quem não sabe joga todos no mesmo conjunto e deixa o Meta escolher.
+2. **O piso de verba citado para uma leva é cerca de R$ 300 por dia**, não R$ 100. R$ 100 por dia
+   é a unidade de UM criativo.
+
+**Segmentação por interesse: nenhuma.** Público 100% aberto, com filtro de idioma português
+(linhas 181 e 183). É o que a Leon Group já decidiu em 2026-09-10.
+
+**Lead curioso não tem taxa, tem causa:** ele nega existir métrica de referência e aponta criativo
+fraco ou condução ruim da ligação (linha 177).
+
+### Criativo e Arcads
+
+- **O erro que ele aponta é deixar a voz de IA.** Gravar a própria narração com entonação e enviar
+  (linhas 3 e 5). É o Speech to Speech que a Leon Group já escolheu.
+- **A escolha do ator pesa mais que a narração.** Ele indica dois atores, transcritos como
+  "Matthew" e "Magnus", e atribui o resultado ruim de um aluno ao ator errado (linhas 23 e 57).
+  Conferir os nomes na biblioteca antes de gerar.
+- **Dá para trocar ator e voz na hora do envio**, filtrando vozes por idioma (linha 35).
+- **Não limpar demais a gravação:** respiro e vício de linguagem mantêm a naturalidade (linha 53).
+- **Como ele pensa a copy:** o que prende o brasileiro que mora lá, dentro da realidade dele. Os
+  três pilares citados são faturamento, mecanismo e intercâmbio (linha 269).
+
+### Prazo, cobrança e integridade
+
+- ⚠️ **Prazo de resultado (linha 157):** ele afirma que, com o cliente publicando de 3 a 4
+  avaliações por semana, o resultado vem em uma semana e meia a duas. **Não verificado e não
+  prometível.** A Leon Group garante método e prazo de entrega, nunca prazo de resultado.
+- **O teto de US$ 2.500 do WHOP é por falta de histórico** (linha 241). Saídas citadas:
+  verificação manual ou link de recorrência que cobra metade agora e metade em três dias.
+- **VNumber confirmado** como fornecedor de número que não expira, R$ 25 a R$ 30 por mês
+  (linha 213). É o caminho que a agência já usou.
+- 🚫 **O que não se copia:** na linha 219 ele lê em voz alta um criativo com cliente nomeado
+  ("LS Constructions") e resultado atribuído (mais de US$ 80 mil em um mês, sem tráfego pago), e
+  fala em modelar criativo de terceiros. É o formato de depoimento fabricado que a regra de
+  integridade proíbe.
+
+---
+
 ## Estrutura de campanha por verba disponível
 
 O material tem **três orientações diferentes** sobre como montar a campanha, e elas não
@@ -140,8 +214,17 @@ resto.
 - **Gastou uns R$ 300 e não veio lead nenhum: o problema não é criativo.** Trocar criativo
   não resolve, o furo está na oferta ou na segmentação.
 
-Origem: aula ainda **não transcrita**, relatada pelo Rodrigo em 2026-09-10. O detalhe dos
-3 dias e do corte em R$ 300 é raciocínio de como CBO funciona, **não** fala do instrutor.
+Origem: **confirmado por citação na Aula 05** (linhas 97, 109 e 121), transcrita em 2026-09-16.
+O instrutor manda uma campanha, um conjunto e os criativos dentro quando não há confiança em qual
+deles funciona, mantendo R$ 100 por criativo como unidade.
+
+⚠️ **Dois ajustes que a citação impõe a este cenário:**
+
+1. **A verba é a soma, não o total.** Três criativos no mesmo conjunto pedem R$ 300 por dia. O
+   título deste cenário ("R$ 100/dia no total") descreve a sua realidade de caixa, não a
+   recomendação do instrutor. Com R$ 100 por dia, o que a aula autoriza é **um** criativo.
+2. **O detalhe dos 3 dias e do corte em R$ 300 continua sendo raciocínio** de como CBO funciona,
+   **não** fala do instrutor.
 
 ### Cenário B · Verba sobrando, R$ 100/dia por criativo
 
@@ -181,11 +264,15 @@ por você.
 
 ## Próximas aulas
 
-Faltam 3 aulas ainda não liberadas na mentoria (segundo o usuário, em 2026-09-04).
-Atualizar este arquivo quando saírem.
+**Atualizado em 2026-09-16, pela própria aula 05:** a mentoria teve **cinco calls**, e a quinta
+já está transcrita. Não existem aulas 06 e 07 de conteúdo novo.
 
-⚠️ Em 2026-09-10 o Rodrigo relatou conteúdo de aula **posterior às quatro transcritas e
-ainda não publicada na plataforma**: a estrutura CBO com 1 conjunto e 3 criativos do
-Cenário A acima. Enquanto essa aula não for gravada e transcrita, o que está no Cenário A
-é relato de segunda mão mais raciocínio técnico, não citação. Quando a aula sair, conferir
-e corrigir.
+> "Não, não teve nenhuma outra call, mano. Essa é a quinta call. [...] Eu vou usar a 6ª, 7ª call
+> para tirar dúvidas." (linhas 291 a 297 da transcrição da aula 05)
+
+A área de membros mostra espaço para sete aulas, e foi isso que criou a impressão de que faltavam
+três. O que ainda pode chegar não é aula: é o arquivo de agentes que ele prometeu publicar e a
+gravação de uma call de closer, cobrada na linha 137 e até agora não disponibilizada.
+
+✅ A pendência que estava aqui desde 2026-09-10, sobre a estrutura CBO relatada de segunda mão,
+foi resolvida: virou citação direta no Cenário A abaixo.
