@@ -26,7 +26,7 @@ Recorte comercial prioritário ainda **não decidido** (usuário optou por decid
 Playbook operacional completo (passo a passo das 4 aulas da mentoria) em `_memoria/playbook-operacao.md`.
 **Canais oficiais:** e-mail `leongroup.builtolead@gmail.com` · Instagram `@leongroup.builtolead` · YouTube (canal criado e descrito)
 **Equipe:** Fundador sozinho hoje; planeja trazer a namorada pra ajudar em alguma frente futuramente.
-**Ferramentas:** WhatsApp (captação/atendimento) + CRM (integração ainda manual)
+**Ferramentas:** WhatsApp (captação/atendimento) + CRM (integração ainda manual) + **Arcads** (assinado em 2026-09-14, vídeo de anúncio com ator de IA, áudio gravado pelo Rodrigo em Speech to Speech) + **CapCut** (assinado em 2026-09-15, edição de áudio e vídeo para anúncio, YouTube e Instagram)
 **Principais entregas:** Geração de leads e visibilidade via metodologia LeadsEveryDay
 
 ## Contexto adicional
