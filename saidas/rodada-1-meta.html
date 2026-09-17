@@ -224,6 +224,46 @@
   }
   footer code { font-family: var(--mono); font-size: 13.5px; }
   @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+  /* impressão e PDF */
+  @media print {
+    :root,
+    :root:not([data-theme="light"]),
+    :root[data-theme="dark"] {
+      --ground: #FFFFFF;
+      --surface: #FFFFFF;
+      --surface-2: #F5F0E6;
+      --ink: #171717;
+      --muted: #55504A;
+      --line: #D8CEBD;
+      --line-strong: #B4A692;
+      --accent: #C44712;
+      --accent-deep: #C44712;
+      --alert: #8A3312;
+      --alert-bg: #FBEDE4;
+      --ok: #2A5E3B;
+      --ok-bg: #EDF3EE;
+      --shadow: none;
+    }
+    @page { margin: 14mm 13mm; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    body { font-size: 10.5pt; line-height: 1.5; }
+    .wrap { max-width: none; padding: 0; }
+    .bar { position: static; padding: 0 0 10px; }
+    .bar .count, button.reset { display: none; }
+    header.top { padding: 18px 0 20px; }
+    h1 { font-size: 30pt; }
+    h2 { font-size: 16pt; }
+    h3 { font-size: 12pt; }
+    .lede { font-size: 11.5pt; }
+    p, .box, .check, .copyblock, table { max-width: none; }
+    ol.steps > li, .box, .copyblock, .check, .tree, .tablewrap { break-inside: avoid; page-break-inside: avoid; }
+    h2, h3, .part { break-after: avoid; page-break-after: avoid; }
+    .part { break-before: page; page-break-before: always; }
+    header.top + .box { break-after: avoid; }
+    a { color: var(--ink); text-decoration: none; }
+    footer { break-inside: avoid; }
+  }
   @media (max-width: 560px) {
     body { font-size: 16px; }
     ol.steps > li { grid-template-columns: 34px 1fr; gap: 10px; }
