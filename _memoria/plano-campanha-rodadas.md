@@ -6,6 +6,12 @@ plataforma em `_memoria/pesquisa-abo-cbo-verba-metricas.md`. O passo a passo de 
 
 **Este documento é para reproduzir. Cada número aqui tem origem declarada.**
 
+> **Versão clicável, para seguir na tela enquanto monta:**
+> https://claude.ai/artifact/JktX46fPVLnRSEjaLcmD4y
+> Mesma informação em linguagem simples, com caixas de marcar que ficam salvas no navegador.
+> A fonte dela está em `saidas/rodada-1-meta.html`. Para alterar a página, edite esse arquivo e
+> publique de novo pelo mesmo caminho.
+
 ---
 
 ## A decisão, em cinco linhas

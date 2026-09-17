@@ -1,0 +1,595 @@
+<title>Rodada 1 na Meta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --ground: #F7F3EA;
+    --surface: #FFFDF8;
+    --surface-2: #F1EADC;
+    --ink: #171717;
+    --muted: #6A645C;
+    --line: #E3DACB;
+    --line-strong: #CDBFA9;
+    --accent: #E65A19;
+    --accent-deep: #C44712;
+    --alert: #8A3312;
+    --alert-bg: #FBEDE4;
+    --ok: #2F6A43;
+    --ok-bg: #E9F1EA;
+    --shadow: 0 1px 2px rgba(23, 23, 23, .06);
+    --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #14120F;
+      --surface: #1D1A16;
+      --surface-2: #242019;
+      --ink: #F2EDE3;
+      --muted: #A79E92;
+      --line: #332E27;
+      --line-strong: #4A4238;
+      --accent: #FF7A3D;
+      --accent-deep: #FFA06B;
+      --alert: #FF9166;
+      --alert-bg: #2B1A12;
+      --ok: #8FCBA3;
+      --ok-bg: #16231A;
+      --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #14120F;
+    --surface: #1D1A16;
+    --surface-2: #242019;
+    --ink: #F2EDE3;
+    --muted: #A79E92;
+    --line: #332E27;
+    --line-strong: #4A4238;
+    --accent: #FF7A3D;
+    --accent-deep: #FFA06B;
+    --alert: #FF9166;
+    --alert-bg: #2B1A12;
+    --ok: #8FCBA3;
+    --ok-bg: #16231A;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 0 22px 96px; }
+
+  /* barra fixa */
+  .bar {
+    position: sticky; top: 0; z-index: 20;
+    background: var(--surface);
+    border-bottom: 1px solid var(--line);
+    display: flex; align-items: center; gap: 18px;
+    padding: 12px 22px;
+    flex-wrap: wrap;
+  }
+  .bar .mark {
+    font-family: var(--display); font-weight: 700; font-size: 15px;
+    letter-spacing: .02em; white-space: nowrap;
+  }
+  .bar .mark span { color: var(--accent); }
+  .bar .decision {
+    font-family: var(--mono); font-size: 12.5px; color: var(--muted);
+    white-space: nowrap; overflow-x: auto;
+  }
+  .bar .count {
+    margin-left: auto; font-family: var(--mono); font-size: 12.5px;
+    color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap;
+  }
+  .bar .count b { color: var(--accent); font-weight: 600; }
+
+  /* cabeçalho */
+  header.top { padding: 46px 0 30px; }
+  .eyebrow {
+    font-family: var(--mono); font-size: 12px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--accent-deep); margin: 0 0 14px;
+  }
+  h1 {
+    font-family: var(--display); font-weight: 700; font-size: clamp(34px, 6vw, 52px);
+    line-height: 1.04; letter-spacing: -.02em; margin: 0 0 16px; text-wrap: balance;
+  }
+  .lede { font-size: 19px; color: var(--muted); max-width: 62ch; margin: 0; }
+
+  h2 {
+    font-family: var(--display); font-weight: 700; font-size: 26px;
+    letter-spacing: -.01em; margin: 0 0 6px; text-wrap: balance;
+  }
+  .part {
+    margin: 52px 0 22px; padding-top: 22px; border-top: 2px solid var(--ink);
+  }
+  .part .kicker {
+    font-family: var(--mono); font-size: 12px; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--muted); margin: 0 0 10px;
+  }
+  .part p.sub { margin: 8px 0 0; color: var(--muted); max-width: 66ch; }
+
+  h3 {
+    font-family: var(--display); font-weight: 600; font-size: 19px;
+    margin: 32px 0 10px; letter-spacing: -.005em;
+  }
+  p { margin: 0 0 14px; max-width: 68ch; }
+  a { color: var(--accent-deep); }
+  strong { font-weight: 600; }
+
+  /* passos */
+  ol.steps { list-style: none; margin: 18px 0 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+  ol.steps > li {
+    display: grid; grid-template-columns: 46px 1fr; gap: 14px;
+    padding: 14px 0; border-bottom: 1px solid var(--line);
+    align-items: start;
+  }
+  ol.steps > li:last-child { border-bottom: none; }
+  .num {
+    font-family: var(--mono); font-size: 13px; font-weight: 600;
+    color: var(--muted); padding-top: 3px; font-variant-numeric: tabular-nums;
+  }
+  .step-body { min-width: 0; }
+  .step-body p:last-child { margin-bottom: 0; }
+  .say {
+    font-family: var(--mono); font-size: 14.5px;
+    background: var(--surface-2); border: 1px solid var(--line);
+    padding: 3px 7px; border-radius: 3px; display: inline-block;
+    word-break: break-word;
+  }
+  .note { font-size: 15px; color: var(--muted); margin-top: 6px; }
+
+  /* caixas */
+  .box {
+    background: var(--surface); border: 1px solid var(--line);
+    border-left: 4px solid var(--line-strong);
+    padding: 16px 18px; margin: 18px 0; box-shadow: var(--shadow);
+  }
+  .box h4 {
+    font-family: var(--display); font-size: 16px; font-weight: 600;
+    margin: 0 0 8px;
+  }
+  .box p:last-child, .box ul:last-child { margin-bottom: 0; }
+  .box.alert { border-left-color: var(--alert); background: var(--alert-bg); }
+  .box.alert h4 { color: var(--alert); }
+  .box.ok { border-left-color: var(--ok); background: var(--ok-bg); }
+  .box.ok h4 { color: var(--ok); }
+
+  /* copiar */
+  .copyblock {
+    background: var(--surface-2); border: 1px solid var(--line);
+    padding: 16px 18px; margin: 14px 0; font-family: var(--mono);
+    font-size: 14.5px; line-height: 1.65; white-space: pre-wrap;
+    overflow-x: auto;
+  }
+
+  /* tabelas */
+  .tablewrap { overflow-x: auto; margin: 16px 0; }
+  table { border-collapse: collapse; width: 100%; font-size: 15.5px; }
+  th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th {
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--muted); font-weight: 600;
+    border-bottom: 1px solid var(--line-strong);
+  }
+  td.n { font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  tr:last-child td { border-bottom: none; }
+
+  /* checklist */
+  .check { display: flex; gap: 11px; align-items: flex-start; padding: 11px 0; border-bottom: 1px solid var(--line); }
+  .check:last-child { border-bottom: none; }
+  .check input { margin: 5px 0 0; width: 17px; height: 17px; accent-color: var(--accent); flex: none; cursor: pointer; }
+  .check label { cursor: pointer; }
+  .check input:checked + label { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--line-strong); }
+  input:focus-visible, button:focus-visible, a:focus-visible {
+    outline: 2px solid var(--accent); outline-offset: 2px;
+  }
+
+  /* estrutura visual da campanha */
+  .tree {
+    font-family: var(--mono); font-size: 14.5px; line-height: 1.9;
+    background: var(--surface); border: 1px solid var(--line);
+    padding: 18px 20px; margin: 16px 0; overflow-x: auto;
+  }
+  .tree .lvl1 { color: var(--accent); font-weight: 600; }
+  .tree .lvl2 { color: var(--ink); }
+  .tree .lvl3 { color: var(--muted); }
+
+  .pill {
+    display: inline-block; font-family: var(--mono); font-size: 11.5px;
+    letter-spacing: .08em; text-transform: uppercase;
+    border: 1px solid var(--line-strong); border-radius: 999px;
+    padding: 2px 9px; color: var(--muted);
+  }
+  .pill.now { border-color: var(--accent); color: var(--accent); }
+
+  button.reset {
+    font-family: var(--body); font-size: 13.5px; color: var(--muted);
+    background: none; border: 1px solid var(--line); border-radius: 4px;
+    padding: 5px 11px; cursor: pointer;
+  }
+  button.reset:hover { border-color: var(--line-strong); color: var(--ink); }
+
+  footer {
+    margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--line);
+    font-size: 14.5px; color: var(--muted);
+  }
+  footer code { font-family: var(--mono); font-size: 13.5px; }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+  @media (max-width: 560px) {
+    body { font-size: 16px; }
+    ol.steps > li { grid-template-columns: 34px 1fr; gap: 10px; }
+    .bar .decision { display: none; }
+  }
+</style>
+
+<div class="bar">
+  <div class="mark">LEON GR<span>O</span>UP</div>
+  <div class="decision">1 campanha · 1 conjunto · 4 vídeos · CBO · R$ 250/dia</div>
+  <div class="count"><b id="done">0</b> de <span id="total">0</span> marcados</div>
+</div>
+
+<div class="wrap">
+
+<header class="top">
+  <p class="eyebrow">Rodada 1 · sobe hoje, começa amanhã às 9h</p>
+  <h1>Subir a primeira campanha, do zero à primeira conversa</h1>
+  <p class="lede">Tudo que você precisa fazer, na ordem, com os valores exatos para digitar em cada tela. Marque cada item conforme for fazendo: as marcações ficam salvas neste navegador.</p>
+</header>
+
+<div class="box alert">
+  <h4>Antes de qualquer coisa: o teste do WhatsApp</h4>
+  <p>Mande uma mensagem pelo botão do site e veja se ela chega no aparelho com o número <span class="say">+1 213 396 0014</span>. Esse teste nunca foi feito.</p>
+  <p><strong>Se a mensagem não chegar, não suba a campanha.</strong> O anúncio continua gastando e as pessoas clicam para lugar nenhum. É o único item que transforma a verba inteira em prejuízo.</p>
+  <div class="check">
+    <input type="checkbox" id="c-wpp">
+    <label for="c-wpp">Mandei a mensagem e ela chegou no meu WhatsApp Business</label>
+  </div>
+</div>
+
+<section class="part">
+  <p class="kicker">Parte 1</p>
+  <h2>O que você vai montar</h2>
+  <p class="sub">Uma coisa só, com quatro vídeos dentro. Não são quatro campanhas nem quatro conjuntos.</p>
+</section>
+
+<div class="tree"><span class="lvl1">CAMPANHA · R$ 250 por dia (o dinheiro fica aqui)</span>
+  └ <span class="lvl2">CONJUNTO (só um, com todo o público)</span>
+      ├ <span class="lvl3">Vídeo 1</span>
+      ├ <span class="lvl3">Vídeo 2</span>
+      ├ <span class="lvl3">Vídeo 3</span>
+      └ <span class="lvl3">Vídeo 4</span></div>
+
+<p>Você coloca o dinheiro na campanha. O Meta distribui sozinho entre os quatro vídeos e concentra no que responder melhor. Você não divide nada na mão.</p>
+
+<h3>Por que não dividir em cinco conjuntos</h3>
+<p>O Meta precisa de cerca de 50 conversas por conjunto a cada 7 dias para estabilizar a entrega. Com a sua verba, dividir deixa cada pedaço cego:</p>
+
+<div class="tablewrap">
+<table>
+  <tr><th>Se você montar</th><th>Cada conjunto recebe por dia</th><th>Conversas por semana</th><th>Do que o Meta precisa</th></tr>
+  <tr><td>5 conjuntos</td><td class="n">R$ 50</td><td class="n">6,5</td><td class="n">13%</td></tr>
+  <tr><td>3 conjuntos</td><td class="n">R$ 83</td><td class="n">10,8</td><td class="n">22%</td></tr>
+  <tr><td><strong>1 conjunto</strong></td><td class="n"><strong>R$ 250</strong></td><td class="n"><strong>32,5</strong></td><td class="n"><strong>65%</strong></td></tr>
+</table>
+</div>
+
+<p>Nenhuma opção chega aos 50 com R$ 1.300 por semana. Mas uma chega a dois terços do caminho e as outras ficam pelo caminho. É por isso que a decisão é um conjunto só.</p>
+
+<section class="part">
+  <p class="kicker">Parte 2</p>
+  <h2>Preparar os quatro vídeos</h2>
+  <p class="sub">Faça isto antes de abrir o Gerenciador de Anúncios.</p>
+</section>
+
+<div class="check"><input type="checkbox" id="p-1"><label for="p-1"><strong>Escolher quatro ângulos diferentes.</strong> Três gravados por você, um UGC do Arcads. Dois vídeos que dizem a mesma coisa com rostos diferentes são a mesma aposta e não devem rodar juntos.</label></div>
+<div class="check"><input type="checkbox" id="p-2"><label for="p-2"><strong>Formato 9:16</strong>, vertical, com legenda queimada no vídeo. Boa parte assiste sem som.</label></div>
+<div class="check"><input type="checkbox" id="p-3"><label for="p-3"><strong>Renomear os arquivos</strong> antes de subir, para não se perder depois: <span class="say">R1-01-carteira-rodrigo.mp4</span>, <span class="say">R1-02-indicacao-rodrigo.mp4</span>, <span class="say">R1-03-trabalhar-mais-rodrigo.mp4</span>, <span class="say">R1-04-anuncio-sem-base-ugc.mp4</span></label></div>
+<div class="check"><input type="checkbox" id="p-4"><label for="p-4"><strong>Assistir os quatro uma vez</strong>, do começo ao fim, procurando por áudio ruim e por qualquer frase que prometa faturamento ou cite cliente. Depois de no ar, sai caro corrigir.</label></div>
+
+<section class="part">
+  <p class="kicker">Parte 3 · Nível campanha</p>
+  <h2>Montar a campanha</h2>
+  <p class="sub">Gerenciador de Anúncios, botão verde Criar.</p>
+</section>
+
+<ol class="steps">
+  <li><div class="num">01</div><div class="step-body">
+    <p>Objetivo: <strong>Engajamento</strong>. Continuar.</p>
+    <p class="note">Depois, na tela seguinte, escolher a opção de baixo: <strong>campanha de engajamento manual</strong>.</p>
+  </div></li>
+  <li><div class="num">02</div><div class="step-body">
+    <p><strong>Nunca escolha o objetivo Leads.</strong> Com Leads o Meta busca o clique mais barato, e vem gente que assistiu três segundos e não sabe o que clicou.</p>
+  </div></li>
+  <li><div class="num">03</div><div class="step-body">
+    <p>Nome da campanha, exatamente assim:</p>
+    <div class="copyblock">0 vendas · CBO · R1 · 18/09/2026 · Engajamento WhatsApp · Leon Group</div>
+    <p class="note">O <span class="say">0 vendas</span> na frente vira <span class="say">1 vendas</span> quando fechar o primeiro cliente. Assim a lista de campanhas conta a história sozinha.</p>
+  </div></li>
+  <li><div class="num">04</div><div class="step-body">
+    <p><strong>Orçamento da campanha ligado</strong> (é o CBO, primeira opção). Valor: <span class="say">R$ 250 por dia</span>.</p>
+    <p class="note">É aqui, e só aqui, que o dinheiro entra. O conjunto não recebe orçamento próprio.</p>
+  </div></li>
+</ol>
+
+<section class="part">
+  <p class="kicker">Parte 4 · Nível conjunto</p>
+  <h2>Configurar o conjunto</h2>
+  <p class="sub">Um conjunto só. É aqui que mora o público.</p>
+</section>
+
+<ol class="steps">
+  <li><div class="num">05</div><div class="step-body">
+    <p>Nome do conjunto:</p>
+    <div class="copyblock">R1 · EUA · PT · 25-55 · WhatsApp</div>
+  </div></li>
+  <li><div class="num">06</div><div class="step-body">
+    <p>Selecionar a <strong>página do Facebook</strong> da Leon Group.</p>
+  </div></li>
+  <li><div class="num">07</div><div class="step-body">
+    <p>Destino: trocar de automático para <strong>manual</strong>, e escolher <strong>WhatsApp Business</strong>.</p>
+    <p class="note">Se o número não estiver vinculado, aparece "conectar número" na própria tela. Clica, coloca o número e digita o código que chega no WhatsApp Business.</p>
+  </div></li>
+  <li><div class="num">08</div><div class="step-body">
+    <p>Canais de conversa: <strong>só WhatsApp</strong>. Desative Instagram e Messenger.</p>
+    <p class="note">Otimização: <strong>maximizar o número de conversas</strong>.</p>
+  </div></li>
+  <li><div class="num">09</div><div class="step-body">
+    <p>Programação: início <strong>amanhã, 18/09, às 9h no horário de Brasília</strong>.</p>
+    <p class="note">Em setembro, 9h em Brasília são 8h da manhã na costa leste dos Estados Unidos. De novembro a março a diferença muda para duas horas, e aí esse mesmo horário vira 7h. Quando virar novembro, ajuste.</p>
+  </div></li>
+  <li><div class="num">10</div><div class="step-body">
+    <p>Público, Locais, Editar:</p>
+    <p><strong>Incluir:</strong> Estados Unidos da América, conferindo que ficou marcado como <strong>país</strong>, não cidade nem região.<br>
+    <strong>Excluir:</strong> Brasil.<br>
+    <strong>Excluir:</strong> Alasca.</p>
+  </div></li>
+  <li><div class="num">11</div><div class="step-body">
+    <p>Idade: <span class="say">25 a 55</span>.</p>
+  </div></li>
+  <li><div class="num">12</div><div class="step-body">
+    <p>Idioma: <strong>Português (Brasil)</strong>.</p>
+    <p class="note">Esta é a peça mais importante de toda a segmentação. É o idioma que separa o brasileiro que mora nos Estados Unidos do resto do país.</p>
+  </div></li>
+  <li><div class="num">13</div><div class="step-body">
+    <p>Gênero: <strong>somente homens</strong>.</p>
+    <p class="note">Escolha da aula, não regra técnica. Deixa de fora mulher dona de empresa e mulher que decide a obra em casa. Se o custo por conversa ficar alto, é a primeira coisa a testar abrir.</p>
+  </div></li>
+  <li><div class="num">14</div><div class="step-body">
+    <p><strong>Nenhum interesse.</strong> Público 100% aberto, sem detalhamento.</p>
+    <p class="note">Confirmado na aula 05. O filtro real é o idioma, não o interesse.</p>
+  </div></li>
+  <li><div class="num">15</div><div class="step-body">
+    <p>Público Advantage: trocar para <strong>sugestão de público</strong>.</p>
+  </div></li>
+  <li><div class="num">16</div><div class="step-body">
+    <p>Posicionamentos: trocar para <strong>manuais</strong>. Desativar <strong>WhatsApp</strong> como posicionamento de exibição e desativar a <strong>Audience Network</strong>.</p>
+    <p class="note">Em Feeds, desativar também: notificação do Facebook, página inicial do Explorar e Facebook Marketplace. Sobram quatro posicionamentos marcados.</p>
+  </div></li>
+  <li><div class="num">17</div><div class="step-body">
+    <p>Veiculação: <strong>24 horas, contínua</strong>. Sem programação por hora.</p>
+    <p class="note">O lead costuma chegar das 7h ao meio-dia e das 17h em diante, mas a campanha fica aberta o dia inteiro mesmo assim.</p>
+  </div></li>
+</ol>
+
+<section class="part">
+  <p class="kicker">Parte 5 · Nível anúncio</p>
+  <h2>Subir os quatro vídeos</h2>
+  <p class="sub">O primeiro você monta inteiro. Os outros três são cópia com o vídeo trocado.</p>
+</section>
+
+<ol class="steps">
+  <li><div class="num">18</div><div class="step-body">
+    <p>Nome do anúncio: <span class="say">R1-01 Carteira · Rodrigo</span></p>
+    <p class="note">Sempre no padrão <span class="say">R1-0X ângulo · quem aparece</span>. É esse nome que vai te dizer, no domingo, qual mensagem funcionou.</p>
+  </div></li>
+  <li><div class="num">19</div><div class="step-body">
+    <p>Origem: <strong>criar anúncio</strong>. Não usar publicação existente.</p>
+  </div></li>
+  <li><div class="num">20</div><div class="step-body">
+    <p>Formato: <strong>anúncio em vídeo</strong>. Subir o arquivo.</p>
+  </div></li>
+  <li><div class="num">21</div><div class="step-body">
+    <p>Título, até 40 caracteres:</p>
+    <div class="copyblock">Diagnóstico gratuito da sua empresa</div>
+    <p>Texto principal, o mesmo nos quatro anúncios:</p>
+    <div class="copyblock">Você sabe executar a obra. O que falta é o cliente te achar.
+
+Me manda o nome da sua empresa e a cidade onde você trabalha. Eu olho o seu Google, o seu site e as suas avaliações, e te mostro por escrito o que está travando.
+
+Sem custo, e o documento é seu mesmo que você não contrate nada.
+
+Para brasileiros com empresa de construção nos Estados Unidos.</div>
+    <div class="box alert">
+      <h4>A mesma copy nos quatro. Isso não é preguiça, é o que faz o teste valer.</h4>
+      <p>Se cada vídeo tiver um texto diferente, no domingo você não vai saber se o que funcionou foi o vídeo ou o texto. Só o vídeo muda.</p>
+    </div>
+  </div></li>
+  <li><div class="num">22</div><div class="step-body">
+    <p>Aprimoramentos de criativo: <strong>desativar todos</strong>, menos <strong>retoques de vídeos</strong>, que fica ligado.</p>
+  </div></li>
+  <li><div class="num">23</div><div class="step-body">
+    <p>Botão: <strong>enviar mensagem pelo WhatsApp</strong>.</p>
+  </div></li>
+  <li><div class="num">24</div><div class="step-body">
+    <p>Conversas, <strong>criar modelo de conversa</strong>, e trocar a mensagem de abertura:</p>
+    <div class="copyblock">Olá, gostaria de saber mais sobre o programa de marketing de vocês.</div>
+    <p class="note">A mensagem padrão do Meta ("Olá, posso ter mais informações sobre isso?") não diz sobre o quê, e você atende sem saber de onde a pessoa veio.</p>
+  </div></li>
+  <li><div class="num">25</div><div class="step-body">
+    <p><strong>Os outros três vídeos:</strong> nos três pontinhos do anúncio, <strong>Duplicar</strong>, e na cópia trocar só duas coisas: o <strong>vídeo</strong> e o <strong>nome do anúncio</strong> (<span class="say">R1-02</span>, <span class="say">R1-03</span>, <span class="say">R1-04</span>).</p>
+    <p class="note">Duplique o anúncio dentro do mesmo conjunto. Não duplique a campanha nem o conjunto.</p>
+  </div></li>
+  <li><div class="num">26</div><div class="step-body">
+    <p>Publicar. Conferir se aparecem <strong>quatro anúncios dentro de um conjunto só</strong>, e a campanha com R$ 250 por dia.</p>
+  </div></li>
+</ol>
+
+<div class="box alert">
+  <h4>O que o título nunca pode dizer</h4>
+  <div class="tablewrap">
+  <table>
+    <tr><th>Não escreva</th><th>Por quê</th></tr>
+    <tr><td>"5/5" ou qualquer nota</td><td>Avaliação inventada. A Meta reprova e a FTC multa</td></tr>
+    <tr><td>"Já ajudamos X empresas"</td><td>A Leon Group não tem cliente fechado ainda</td></tr>
+    <tr><td>"Garanto primeiro lugar no Google"</td><td>Ninguém controla posição no Google</td></tr>
+    <tr><td>"Você vai faturar X"</td><td>Promessa de faturamento</td></tr>
+    <tr><td>"Aqui nos Estados Unidos"</td><td>Presença física falsa. A operação é remota</td></tr>
+    <tr><td>Qualquer travessão</td><td>Regra da casa. Vírgula, dois pontos ou parênteses</td></tr>
+  </table>
+  </div>
+  <p>O campo de título você digita direto na Meta, onde não existe validador. Confira na mão antes de publicar.</p>
+</div>
+
+<section class="part">
+  <p class="kicker">Parte 6</p>
+  <h2>Quando alguém chamar</h2>
+  <p class="sub">A primeira resposta não vende. Ela confirma e marca.</p>
+</section>
+
+<p><strong>Responda em menos de um minuto.</strong> É a regra mais dura da aula, e a que mais muda resultado.</p>
+
+<div class="copyblock">Opa, [nome]! Aqui é o Rodrigo, da Leon Group. Vi que você tem [empresa] em [cidade]. Vou olhar seu Google, seu site e suas avaliações e te mandar o diagnóstico por escrito. Antes disso, me diz uma coisa: hoje seu cliente chega mais por indicação ou por busca no Google?</div>
+
+<p>Confirma o que a pessoa mandou, entrega a promessa do anúncio e abre a qualificação com uma pergunta só. Sem apresentação de vendas, sem PDF, sem "posso te ligar?".</p>
+
+<h3>Para ligar, os horários que atendem mais</h3>
+<div class="tablewrap">
+<table>
+  <tr><th>Janela</th><th>Atendimento</th><th>Observação</th></tr>
+  <tr><td class="n">17h às 22h</td><td class="n">52%</td><td>A melhor. Fuso do lead, não o seu</td></tr>
+  <tr><td class="n">7h às 11h</td><td>segunda melhor</td><td>Antes de ele entrar na obra</td></tr>
+</table>
+</div>
+<p class="note">O card do lead no CRM mostra o relógio local dele justamente para isso.</p>
+
+<div class="check"><input type="checkbox" id="q-1"><label for="q-1">Cada pessoa que chamar entra no CRM <strong>no mesmo dia</strong>. Sem isso você tem custo por conversa, mas nunca custo por cliente.</label></div>
+<div class="check"><input type="checkbox" id="q-2"><label for="q-2">Lançar a verba gasta no Caixa, como saída de anúncio.</label></div>
+
+<section class="part">
+  <p class="kicker">Parte 7</p>
+  <h2>O que fazer em cada dia</h2>
+  <p class="sub">A rodada 1 vai de sexta 18/09 a domingo 20/09. Depois a verba cai para R$ 100 até quarta.</p>
+</section>
+
+<div class="tablewrap">
+<table>
+  <tr><th>Dia</th><th>O que olhar</th><th>O que fazer</th></tr>
+  <tr><td><strong>Sexta 18</strong> <span class="pill now">dia 1</span></td><td>Se a campanha saiu da análise e está entregando</td><td><strong>Nada.</strong> Só confirmar que a mensagem chega no WhatsApp</td></tr>
+  <tr><td><strong>Sábado 19</strong></td><td>Conversas iniciadas</td><td><strong>Nada.</strong> Ainda é fase de aprendizado</td></tr>
+  <tr><td><strong>Domingo 20</strong></td><td>Gasto e conversas por vídeo</td><td>Pausar vídeo com <strong>R$ 150 gastos e zero conversa</strong>. À noite, escolher o campeão</td></tr>
+  <tr><td><strong>Segunda 21</strong></td><td></td><td>Deixar <strong>só o campeão</strong> ligado e baixar a campanha para <strong>R$ 100 por dia</strong></td></tr>
+  <tr><td><strong>Quarta 23</strong></td><td></td><td>Preparar a rodada 2: campeão mais três vídeos novos, para subir na quinta</td></tr>
+</table>
+</div>
+
+<div class="box">
+  <h4>Não mexa em nada entre sexta e sábado</h4>
+  <p>Cada edição reinicia o aprendizado do Meta e joga fora o que ele já tinha descoberto. A única exceção é a pausa de domingo.</p>
+  <p><strong>E só julgue vídeo que passou de R$ 100 de gasto.</strong> Abaixo disso ele não é ruim, é não testado, e volta na rodada 2.</p>
+</div>
+
+<section class="part">
+  <p class="kicker">Parte 8</p>
+  <h2>Como saber se está bom</h2>
+  <p class="sub">Uma conta só: dinheiro gasto dividido por quantas pessoas te chamaram no WhatsApp.</p>
+</section>
+
+<div class="tablewrap">
+<table>
+  <tr><th>Custo por conversa</th><th>Leitura</th><th>Ação</th></tr>
+  <tr><td class="n">R$ 20 a R$ 50</td><td>Validado</td><td>É o campeão, mantém</td></tr>
+  <tr><td class="n">R$ 50 a R$ 70</td><td>Aceitável</td><td>Segue rodando, observa</td></tr>
+  <tr><td class="n">Acima de R$ 70</td><td>Caro demais</td><td>Desliga esse vídeo</td></tr>
+</table>
+</div>
+
+<p>Para calibrar expectativa: nos Estados Unidos, uma conversa iniciada custa entre <strong>R$ 16 e R$ 55</strong> nas referências de mercado, porque o CPM de lá é cerca de cinco vezes o do Brasil. Não espere preço de Brasil.</p>
+
+<h3>O que olhar na Meta, por vídeo</h3>
+<div class="tablewrap">
+<table>
+  <tr><th>Métrica</th><th>O que ela diz</th><th>Sinal de problema</th></tr>
+  <tr><td>Conversas iniciadas</td><td>Seu volume bruto</td><td>Zero com R$ 150 gastos</td></tr>
+  <tr><td>Custo por conversa</td><td>O preço de cada pessoa</td><td>Acima de R$ 70</td></tr>
+  <tr><td>CTR</td><td>Se o anúncio convence a agir</td><td>Abaixo de 1%</td></tr>
+  <tr><td>Reproduções de 3 segundos</td><td>Se o começo do vídeo segura</td><td>Abaixo de 25% de quem viu</td></tr>
+  <tr><td>Frequência</td><td>Quantas vezes a mesma pessoa viu</td><td>Acima de 2 na semana</td></tr>
+  <tr><td>CPM</td><td>O preço da mídia</td><td>Alto com CTR bom significa público caro, não vídeo ruim</td></tr>
+</table>
+</div>
+
+<h3>O que decide de verdade está no CRM</h3>
+<p>Um vídeo de R$ 25 por conversa que só traz curioso vale menos que um de R$ 45 que marca reunião. No dashboard do Comercial você lê quantos responderam, quantos agendaram, quantos compareceram e quantos fecharam. Com menos de cinco pessoas numa etapa, o dashboard se cala de propósito, porque taxa em cima de três leads é ruído.</p>
+
+<section class="part">
+  <p class="kicker">Parte 9</p>
+  <h2>Os dois cenários ruins, já decididos</h2>
+  <p class="sub">Decidir agora evita decidir no domingo, cansado e com dinheiro gasto.</p>
+</section>
+
+<div class="box alert">
+  <h4>Domingo chegou com zero conversa e R$ 750 gastos</h4>
+  <p><strong>Não troque os vídeos.</strong> Quatro ângulos diferentes com zero conversa não é problema de criativo. É oferta ou segmentação. Pare, revise a oferta e a mensagem de abertura, e só então gaste a rodada 2.</p>
+</div>
+
+<div class="box ok">
+  <h4>Vieram conversas, mas ninguém agendou</h4>
+  <p>O criativo funcionou e o problema está na ligação. O vídeo continua no ar, o que muda é como você conduz a conversa. Lead curioso costuma ser sintoma de call malconduzida, não de mercado ruim.</p>
+</div>
+
+<div style="margin-top:34px"><button class="reset" id="reset">Limpar todas as marcações</button></div>
+
+<footer>
+  <p>Os documentos completos ficam no repositório: a decisão e o calendário das rodadas em <code>_memoria/plano-campanha-rodadas.md</code>, a pesquisa de plataforma com as fontes em <code>_memoria/pesquisa-abo-cbo-verba-metricas.md</code>, e o passo a passo original em <code>_memoria/playbook-campanha-meta.md</code>.</p>
+  <p>Leon Group · Built to Lead. · Rodada 1, montada em 17 de setembro de 2026.</p>
+</footer>
+
+</div>
+
+<script>
+  (function () {
+    var boxes = document.querySelectorAll('input[type="checkbox"]');
+    var done = document.getElementById('done');
+    var total = document.getElementById('total');
+    var KEY = 'leon-rodada1-';
+    total.textContent = boxes.length;
+
+    function count() {
+      var n = 0;
+      boxes.forEach(function (b) { if (b.checked) n++; });
+      done.textContent = n;
+    }
+
+    boxes.forEach(function (b) {
+      try {
+        if (localStorage.getItem(KEY + b.id) === '1') b.checked = true;
+      } catch (e) {}
+      b.addEventListener('change', function () {
+        try {
+          if (b.checked) localStorage.setItem(KEY + b.id, '1');
+          else localStorage.removeItem(KEY + b.id);
+        } catch (e) {}
+        count();
+      });
+    });
+
+    document.getElementById('reset').addEventListener('click', function () {
+      boxes.forEach(function (b) {
+        b.checked = false;
+        try { localStorage.removeItem(KEY + b.id); } catch (e) {}
+      });
+      count();
+    });
+
+    count();
+  })();
+</script>
