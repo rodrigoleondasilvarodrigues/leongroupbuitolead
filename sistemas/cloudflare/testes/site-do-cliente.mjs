@@ -17,7 +17,8 @@
       O território é o país inteiro desde 2026-09-11.                        */
 import fs from "node:fs";
 import path from "node:path";
-import { gerarSite, CADENCIA, CHECKLIST } from "../src/geradores.js";
+import { gerarSite, CADENCIA, CHECKLIST,
+         AGENCIA_NOME, AGENCIA_URL, AGENCIA_CREDITO } from "../src/geradores.js";
 
 const RAIZ = path.join(import.meta.dirname, "..");
 const ler = (p) => fs.readFileSync(path.join(RAIZ, p), "utf8");
@@ -136,13 +137,26 @@ t("e cita render e IA entre as recusadas", /render 3D ou de IA/i.test(chk));
 t("o formulário explica ao cliente o que não serve como foto",
   /O que não serve/i.test(form) && /feita por IA/i.test(form));
 
-console.log("\n\x1b[1m=== 9. WHITE LABEL: O MATERIAL É DO CLIENTE ===\x1b[0m");
-/* Regra do kit que vale como regra nossa: o site entregue não carrega a marca
-   de quem produziu. Nunca teve verificação, e agora tem. */
+console.log("\n\x1b[1m=== 9. A ASSINATURA DA AGÊNCIA NO RODAPÉ ===\x1b[0m");
+/* Decisão do Rodrigo em 2026-09-18: o site entregue leva o crédito da Leon
+   Group. Isso REVOGA a regra de white label que veio do kit da mentoria.
+   O que estes testes garantem agora é outra coisa: que o crédito existe, que
+   é verdadeiro (marketing e social media, não "gerencia a empresa") e que não
+   compete com a marca do cliente, que é quem tem que aparecer. */
 const entregue = gerarSite({ ...BASE, email: "a@b.test", instagram: "@x" }, FOTOS, []);
-for (const marca of ["Leon Group", "leongroup", "Built to Lead"])
-  t(`o site do cliente não cita "${marca}"`, !entregue.includes(marca));
-t("e o rodapé é assinado pela empresa do cliente", entregue.includes("Summit Painting"));
+const vezes = (txt, alvo) => txt.split(alvo).length - 1;
+
+t("o rodapé credita a agência", entregue.includes(`${AGENCIA_CREDITO} `) && entregue.includes(AGENCIA_NOME));
+t("o crédito diz o que a agência faz, não que administra a empresa",
+  /marketing and social media by/i.test(entregue) && !/managed by/i.test(entregue));
+t("tem link para o site da agência", entregue.includes(AGENCIA_URL));
+t("o link abre em aba nova e sem passar a referência",
+  new RegExp(`href="${AGENCIA_URL}"[^>]*target="_blank"[^>]*rel="noopener"`).test(entregue));
+t("a agência aparece uma vez só na página", vezes(entregue, `>${AGENCIA_NOME}<`) === 1);
+t("o crédito fica no rodapé, não no topo",
+  entregue.indexOf(AGENCIA_NOME) > entregue.indexOf("<footer"));
+t("a marca do cliente continua dominando a página",
+  vezes(entregue, "Summit Painting") > 5, String(vezes(entregue, "Summit Painting")));
 
 console.log("\n" + (mal ? "\x1b[31m" : "\x1b[32m") + "\x1b[1m" + ok
   + " passaram, " + mal + " falharam\x1b[0m");

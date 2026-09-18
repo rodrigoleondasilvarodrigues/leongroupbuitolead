@@ -463,6 +463,22 @@ function diferenciaisDe(c, oficio) {
   return achados.slice(0, 3);
 }
 
+/* ─────────── ASSINATURA DA AGÊNCIA NO SITE DO CLIENTE ───────────
+   Decisão do Rodrigo em 2026-09-18: o site entregue leva o crédito da
+   Leon Group no rodapé. Isso REVOGA a regra de white label que veio do kit
+   da mentoria, e é decisão de negócio dele, não engano de ninguém: o crédito
+   é verdadeiro e fica discreto, sem competir com a marca do cliente.
+
+   O texto é em inglês porque quem lê o site é o homeowner americano. Diz o
+   que a agência faz de fato (marketing e social media), e não "managed by",
+   que em inglês sugere que a agência administra a empresa dele.
+
+   Os dois valores moram aqui, num lugar só: trocar o domínio quando sair o
+   domínio próprio é mexer numa linha.                                      */
+export const AGENCIA_NOME = "Leon Group";
+export const AGENCIA_URL = "https://leon-group-site.pages.dev";
+export const AGENCIA_CREDITO = "Marketing and social media by";
+
 export function gerarSite(c, fotos = [], reviews = []) {
   const empresa = esc(c.empresa || "Our Company");
   const dono = esc(tit(c.nome_dono || c.nome_contato || ""));
@@ -688,7 +704,11 @@ footer{background:var(--prim-esc);color:rgba(255,255,255,.72);padding:44px 0 100
 footer .g{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:26px}
 footer b{color:#fff;font-family:var(--disp);font-size:16px;display:block;margin-bottom:9px}
 footer a{color:rgba(255,255,255,.8)}
-footer .base{margin-top:32px;padding-top:18px;border-top:1px solid rgba(255,255,255,.14);font-size:13px;opacity:.65}
+footer .base{margin-top:32px;padding-top:18px;border-top:1px solid rgba(255,255,255,.14);font-size:13px;opacity:.65;
+  display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center;justify-content:space-between}
+footer .credito{font-size:12.5px}
+footer .credito a{color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.4)}
+footer .credito a:hover{border-bottom-color:#fff}
 
 /* barra fixa no celular: ligar e WhatsApp sempre à mão */
 .movel{position:fixed;left:0;right:0;bottom:0;z-index:60;display:none;
@@ -817,7 +837,10 @@ ${revs.length ? `<section class="sec"><div class="env">
     <div><b>Hours</b>Monday to Saturday<br>7:00am to 7:00pm</div>
     <div><b>Languages</b>English<br>Portuguese</div>
   </div>
-  <div class="base">&copy; <span id="y"></span> ${empresa}. All rights reserved.</div>
+  <div class="base">
+    <span>&copy; <span id="y"></span> ${empresa}. All rights reserved.</span>
+    <span class="credito">${AGENCIA_CREDITO} <a href="${AGENCIA_URL}" target="_blank" rel="noopener">${AGENCIA_NOME}</a></span>
+  </div>
 </div></footer>
 
 <nav class="movel">
