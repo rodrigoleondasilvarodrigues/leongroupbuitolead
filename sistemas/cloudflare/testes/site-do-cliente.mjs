@@ -100,6 +100,26 @@ const mig = ler("migracao-16-site-do-cliente.sql");
 for (const col of ["instagram", "licenciado", "segurado"])
   t(`a migração 16 cria a coluna ${col}`, new RegExp(`ADD COLUMN ${col}\\b`).test(mig));
 
+console.log("\n\x1b[1m=== 7. DÁ PARA VER O SITE ANTES DE ENTREGAR ===\x1b[0m");
+/* Antes existia só o download, e ele marcava o site como exportado. Conferir
+   o que saiu obrigava a baixar o arquivo, o que sujava o acompanhamento da
+   entrega. A visualização resolve, desde que não marque nada. */
+const rota = api.slice(api.indexOf('"/api/ver-site"'), api.indexOf('"/api/baixar-site"'));
+t("existe a rota de visualizar o site", api.includes('"/api/ver-site"'));
+t("ela devolve HTML para o navegador desenhar", /text\/html/.test(rota));
+t("ela não força download", !/Content-Disposition/i.test(rota));
+// a busca é pela ATRIBUIÇÃO, não pela palavra: o comentário da própria rota
+// cita site_exportado_em para explicar por que não mexe nele
+t("visualizar NÃO marca o site como exportado", !/site_exportado_em\s*=/.test(rota));
+t("baixar continua marcando",
+  /site_exportado_em\s*=/.test(api.slice(api.indexOf('"/api/baixar-site"'))));
+t("a prévia interna não é indexável", /X-Robots-Tag/.test(rota) && /noindex/.test(rota));
+t("e não fica em cache, senão gerar de novo mostra o antigo", /no-store/.test(rota));
+const tela = ler("src/admin.js");
+t("o card tem o botão de visualizar", tela.includes("/api/ver-site?id="));
+t("o botão abre em aba nova", /ver-site\?id=[^"]*"[^>]*target="_blank"/.test(tela));
+t("e o de baixar continua lá", tela.includes("/api/baixar-site?id="));
+
 console.log("\n" + (mal ? "\x1b[31m" : "\x1b[32m") + "\x1b[1m" + ok
   + " passaram, " + mal + " falharam\x1b[0m");
 process.exit(mal ? 1 : 0);

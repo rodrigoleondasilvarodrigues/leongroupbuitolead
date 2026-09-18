@@ -622,7 +622,8 @@ async function abrirCliente(id){
      </select><span><b>\${((D.entregaveis.find(y=>y[0]===e.tipo)||[])[1])||e.tipo}</b></span></div>\`).join('')}</section>
    <section><h4>Site · deploy manual no Vercel</h4>
      \${c.site_html?\`
-       <a class="acao" style="display:inline-block;text-decoration:none;padding:8px 15px" href="/api/baixar-site?id=\${c.id}">Baixar index.html</a>
+       <a class="acao" style="display:inline-block;text-decoration:none;padding:8px 15px" href="/api/ver-site?id=\${c.id}" target="_blank" rel="noopener">Visualizar site ↗</a>
+       <a class="acao sec" style="display:inline-block;text-decoration:none;padding:8px 15px;margin-left:7px" href="/api/baixar-site?id=\${c.id}">Baixar index.html</a>
        <p style="font-size:11.5px;color:var(--cinza);margin:8px 0">
          Suba esse arquivo no Vercel (vercel.com → Add New → Project → arraste a pasta),
          depois cole a URL aqui embaixo.</p>

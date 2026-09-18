@@ -1236,6 +1236,22 @@ async function apiAdmin(p, req, env) {
       .bind(corpo.postada ? 1 : 0, corpo.postada ? agora() : null, corpo.rid).run();
     return json({ ok: true });
   }
+  if (p === "/api/ver-site") {
+    /* Ver o site antes de entregar. Existia só o download, então conferir o
+       que foi gerado exigia baixar o arquivo e abrir na mão, e o download
+       ainda marcava o site como exportado.
+
+       Visualizar NÃO marca `site_exportado_em` de propósito: essa marca
+       alimenta o acompanhamento da entrega, e abrir para conferir não é
+       entregar. Só o botão de baixar marca. */
+    const id = url.searchParams.get("id");
+    const c = await D.prepare("SELECT site_html FROM clientes WHERE id=?").bind(id).first();
+    if (!c?.site_html) return json({ erro: "gere o site primeiro" }, 400);
+    return new Response(c.site_html, { headers: {
+      "Content-Type": "text/html; charset=utf-8",
+      "X-Robots-Tag": "noindex, nofollow",   // prévia interna nunca indexa
+      "Cache-Control": "no-store" } });      // gerou de novo, vê o novo
+  }
   if (p === "/api/baixar-site") {
     const id = url.searchParams.get("id");
     const c = await D.prepare("SELECT * FROM clientes WHERE id=?").bind(id).first();
