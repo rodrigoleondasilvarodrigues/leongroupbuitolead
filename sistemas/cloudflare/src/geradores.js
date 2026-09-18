@@ -847,6 +847,12 @@ function enviar(e){
 // Prazo máximo: 5 DIAS ÚTEIS (fim de semana não conta).
 export const CADENCIA = [
   { dia: 1, marco: "Grupo do WhatsApp criado com o cliente",      quem: "agência" },
+  /* Aula 05: depois do grupo vem uma call de apresentação e acesso, e é NELA
+     que se recolhe o login do Google, do Instagram e do Facebook. O que o
+     cliente não tiver, se cria na hora com o e-mail e a senha que ele quiser.
+     Sem esse marco, o acesso vira uma cobrança solta no meio da entrega e o
+     prazo de 5 dias escorre esperando o cliente responder. */
+  { dia: 1, marco: "Call de apresentação e acesso (logins do Google, Instagram e Facebook)", quem: "ambos" },
   { dia: 1, marco: "Site no ar e link enviado ao cliente",        quem: "agência" },
   { dia: 1, marco: "Logo entregue (se o cliente não tinha)",      quem: "agência" },
   { dia: 2, marco: "12 posts do Instagram entregues",             quem: "agência" },
@@ -980,6 +986,14 @@ export const CHECKLIST = [
    "Marque 'Speaks Portuguese' e 'Identifies as Latino-owned' se ele quiser. Para o público brasileiro nos Estados Unidos isso é filtro de escolha, não enfeite."],
   ["gbp", "Perguntas e respostas semeadas", 0,
    "O próprio dono pode publicar pergunta e responder. Coloque 3 a 5 que ele ouve toda semana: quanto tempo leva, se dá garantia, se atende tal cidade, se faz orçamento grátis. Aparece direto na busca."],
+  /* As duas regras abaixo vieram do kit da mentoria (docs/REGRAS.md dele) e
+     valem porque protegem o alcance do perfil do CLIENTE, não a nossa
+     estética: post de GMB com cara de anúncio perde entrega orgânica, e foto
+     que não mostra trabalho real não prova nada para o homeowner. */
+  ["gbp", "Post do Google usa foto real, sem texto desenhado em cima", 1,
+   "Título, moldura, botão ou 'antes e depois' escrito na imagem transformam o post em anúncio, e o Google entrega menos. A imagem é a foto da obra, no máximo com a logo pequena num canto. Todo o texto vai na legenda, nunca na foto."],
+  ["gbp", "Foto fora do assunto é recusada antes de entrar", 1,
+   "Não entram: foto com texto ou banner já aplicado, paisagem solta, animal, comida, selfie sem contexto, print de tela, documento, e qualquer imagem com cara de render 3D ou de IA. Se sobrar pouca foto, peça mais ao cliente em vez de completar com o que não presta."],
   ["gbp", "Processo de avaliação entregue e explicado ao cliente", 1,
    "Link direto de avaliação, mensagem-modelo em inglês, e o momento certo de pedir: na entrega da obra, com o cliente na frente do resultado. Avaliação é o ativo de maior retorno do perfil."],
   ["gbp", "Nenhuma avaliação fabricada, em hipótese nenhuma", 1,

@@ -247,6 +247,11 @@ em até <b>5 dias úteis</b>. Vamos te avisando a cada etapa.</div>
   <div class="subir" id="cx_up_foto">
     <label class="btn" for="f_foto">Escolher fotos</label>
     <input type="file" id="f_foto" accept="image/*" multiple onchange="escolheu(this,'foto')">
+    <p class="dica"><b>O que serve:</b> foto do serviço pronto e do serviço sendo feito, de perto e
+    de longe, com boa luz. Antes e depois separados, em duas fotos.<br>
+    <b>O que não serve:</b> foto com texto ou moldura escrita por cima, print de tela, documento,
+    selfie sem obra atrás, paisagem solta, e imagem tirada da internet ou feita por IA. O cliente
+    americano percebe, e o Google entrega menos post que parece anúncio.</p>
     <p>Pode selecionar várias de uma vez. Elas são reduzidas no seu celular antes
     de subir, então gasta pouca internet.</p>
   </div>

@@ -608,11 +608,11 @@ async function abrirCliente(id){
      \${l_logo(c)}
    </section>
    <section><h4>Gerar entregáveis</h4>
-     <p style="font-size:12.5px;margin-bottom:8px">Entrega fixa: 20 depoimentos personalizados em inglês.</p>
-     <button class="acao" onclick="gerar()">Gerar site + 20 depoimentos + Instagram</button>
+     <p style="font-size:12.5px;margin-bottom:8px">Entrega fixa: 20 textos de referência de avaliação, em inglês.</p>
+     <button class="acao" onclick="gerar()">Gerar site + 20 textos de avaliação + Instagram</button>
      <p style="font-size:11.5px;color:var(--cinza);margin-top:6px">
-       Gera o HTML do site, os 20 depoimentos e os briefs do Instagram. O site NÃO vai ao ar
-       sozinho: baixe o index.html na seção abaixo e publique no Vercel.</p></section>
+       Gera o HTML do site, os 20 textos de avaliação e os briefs do Instagram. O site NÃO vai ao ar
+       sozinho: use "Visualizar site" para conferir, baixe o index.html na seção abaixo e publique.</p></section>
    <section><h4>Peças e arquivos</h4>
      \${l_pecas(c)}
    </section>
@@ -638,10 +638,12 @@ async function abrirCliente(id){
      ||'<p style="color:var(--cinza);font-size:12.5px">Gere os entregáveis.</p>'}</section>
    <section><h4>Depoimentos (\${(c.reviews||[]).filter(r=>r.postada).length}/\${(c.reviews||[]).length} enviados)</h4>
      \${(c.reviews||[]).length?\`<p style="font-size:12px;color:var(--cinza);margin-bottom:8px">
-       20 depoimentos prontos e personalizados. O cliente real deve validar os dados e os
-       elogios, ajustando o texto à experiência que teve antes de usar.
-       Marque conforme os textos forem enviados para validação.</p>\`:''}
-     <button class="acao sec" onclick="gerarDepoimentos()" style="margin-bottom:10px">Gerar somente os 20 depoimentos</button>
+       20 textos de REFERÊNCIA, personalizados com os dados do cliente. O cliente real precisa
+       validar e ajustar cada um à experiência que teve, e são os clientes dele que escrevem e
+       publicam a avaliação no Google. A agência não posta avaliação em nome de ninguém, e
+       nenhum desses textos entra no site sozinho.
+       Marque conforme forem enviados ao cliente.</p>\`:''}
+     <button class="acao sec" onclick="gerarDepoimentos()" style="margin-bottom:10px">Gerar somente os 20 textos de avaliação</button>
      \${(c.reviews||[]).slice(0,5).map(r=>\`<div class="rev"><small>
        <input type="checkbox" \${r.postada?'checked':''} onchange="revPost(\${r.id},this.checked)" style="width:auto">
        \${esc(r.servico)}</small>\${esc(r.texto)}</div>\`).join('')}
@@ -750,7 +752,7 @@ async function gerar(){const r=await post('/api/gerar',{id:aberto});
   if(r.erro)return alert(r.erro);alert('Gerado: '+r.gerado.join(', ')+'\\n\\n'+(r.proximo||''));
   await carregar();abrirCliente(aberto)}
 async function gerarDepoimentos(){const r=await post('/api/gerar',{id:aberto,site:false,instagram:false});
-  if(r.erro)return alert(r.erro);alert('Gerados os 20 depoimentos. Confira abaixo ou baixe a entrega.');
+  if(r.erro)return alert(r.erro);alert('Gerados os 20 textos de avaliação. Confira abaixo ou baixe a entrega.');
   await carregar();abrirCliente(aberto)}
 /* Checklist de otimização, agrupado por área.
    O "detalhe" de cada item é o passo a passo: quem executa não precisa

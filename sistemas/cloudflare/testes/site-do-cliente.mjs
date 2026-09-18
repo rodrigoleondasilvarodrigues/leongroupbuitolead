@@ -17,7 +17,7 @@
       O território é o país inteiro desde 2026-09-11.                        */
 import fs from "node:fs";
 import path from "node:path";
-import { gerarSite } from "../src/geradores.js";
+import { gerarSite, CADENCIA, CHECKLIST } from "../src/geradores.js";
 
 const RAIZ = path.join(import.meta.dirname, "..");
 const ler = (p) => fs.readFileSync(path.join(RAIZ, p), "utf8");
@@ -119,6 +119,30 @@ const tela = ler("src/admin.js");
 t("o card tem o botão de visualizar", tela.includes("/api/ver-site?id="));
 t("o botão abre em aba nova", /ver-site\?id=[^"]*"[^>]*target="_blank"/.test(tela));
 t("e o de baixar continua lá", tela.includes("/api/baixar-site?id="));
+
+console.log("\n\x1b[1m=== 8. O QUE O KIT DA MENTORIA ACRESCENTOU AO PROCESSO ===\x1b[0m");
+const cad = JSON.stringify(CADENCIA);
+t("a cadência tem a call de apresentação e acesso", /apresenta[çc][ãa]o e acesso/i.test(cad));
+t("ela acontece no dia 1, antes de tudo depender do cliente",
+  CADENCIA.some((m) => m.dia === 1 && /apresenta[çc][ãa]o e acesso/i.test(m.marco)));
+t("e é marcada como tarefa dos dois lados",
+  CADENCIA.some((m) => /apresenta[çc][ãa]o e acesso/i.test(m.marco) && m.quem === "ambos"));
+
+const chk = JSON.stringify(CHECKLIST);
+t("o checklist proíbe texto desenhado na foto do Google", /sem texto desenhado em cima/i.test(chk));
+t("e manda o texto do post viver na legenda", /na legenda, nunca na foto/i.test(chk));
+t("o checklist manda recusar foto fora do assunto", /foto fora do assunto/i.test(chk));
+t("e cita render e IA entre as recusadas", /render 3D ou de IA/i.test(chk));
+t("o formulário explica ao cliente o que não serve como foto",
+  /O que não serve/i.test(form) && /feita por IA/i.test(form));
+
+console.log("\n\x1b[1m=== 9. WHITE LABEL: O MATERIAL É DO CLIENTE ===\x1b[0m");
+/* Regra do kit que vale como regra nossa: o site entregue não carrega a marca
+   de quem produziu. Nunca teve verificação, e agora tem. */
+const entregue = gerarSite({ ...BASE, email: "a@b.test", instagram: "@x" }, FOTOS, []);
+for (const marca of ["Leon Group", "leongroup", "Built to Lead"])
+  t(`o site do cliente não cita "${marca}"`, !entregue.includes(marca));
+t("e o rodapé é assinado pela empresa do cliente", entregue.includes("Summit Painting"));
 
 console.log("\n" + (mal ? "\x1b[31m" : "\x1b[32m") + "\x1b[1m" + ok
   + " passaram, " + mal + " falharam\x1b[0m");

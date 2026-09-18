@@ -161,7 +161,10 @@ try {
   w.irPara("operacional");
   await w.abrirCliente(7);
   const botao = [...doc.querySelectorAll("#painel button")]
-    .find((b) => b.textContent.trim() === "Gerar somente os 20 depoimentos");
+    // rótulo mudou em 2026-09-18: "depoimento" virou "texto de avaliação", para
+    // a tela dizer o que a entrega é de fato (referência para o cliente real
+    // pedir avaliação aos clientes DELE). O que o botão faz não mudou.
+    .find((b) => b.textContent.trim() === "Gerar somente os 20 textos de avaliação");
   t("o botão exclusivo existe no card do cliente", !!botao);
   t("a quantidade da entrega não é configurável no card", !doc.querySelector("#g_qtd"));
   const inicioClique = requisicoes.length;
