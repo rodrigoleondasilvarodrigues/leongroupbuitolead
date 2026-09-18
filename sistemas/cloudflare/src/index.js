@@ -338,12 +338,17 @@ export default {
         const gravou = await env.DB.prepare(
           `UPDATE clientes SET nome_dono=?,cidade=?,estado=?,telefone=?,servicos=?,diferencial=?,
            observacoes=?,tem_logo=?,cores=?,tempo_mercado=?,faz=?,nao_faz=?,localizacoes=?,
+           email=COALESCE(?,email),instagram=?,licenciado=?,segurado=?,
            logo_estilo=?,logo_simbolo=?,logo_evitar=?,logo_referencias=?,logo_texto=?,logo_slogan=?,
            formulario_em=?,prazo_final=?,entrega_iniciada_em=?,atualizado_em=?
            WHERE id=? AND formulario_em IS NULL`
         ).bind(b.nome_dono||null,b.cidade||null,b.estado||null,b.telefone||null,b.servicos||null,
                b.diferencial||null,b.observacoes||null,b.tem_logo?1:0,b.cores||null,
                b.tempo_mercado||null,b.faz||null,b.nao_faz||null,b.localizacoes||null,
+               // e-mail: COALESCE porque o cliente pode deixar em branco e o
+               // admin já ter cadastrado um na venda. Em branco não apaga.
+               txt(b.email, 120), txt(b.instagram, 60),
+               b.licenciado ? 1 : 0, b.segurado ? 1 : 0,
                // briefing da logo: é daqui que sai o prompt do gpt-image-2
                txt(b.logo_estilo),txt(b.logo_simbolo),txt(b.logo_evitar),
                txt(b.logo_referencias),txt(b.logo_texto,90),txt(b.logo_slogan,60),

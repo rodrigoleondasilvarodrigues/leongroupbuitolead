@@ -26,6 +26,9 @@ echo
 echo "── 20 depoimentos para validação e isolamento do site ──"
 node testes/avaliacao-honesta.js
 echo
+echo "── o site que sai para o cliente ──"
+node testes/site-do-cliente.mjs
+echo
 echo "── ativações com playbook ──"
 node testes/ativacoes.mjs
 echo

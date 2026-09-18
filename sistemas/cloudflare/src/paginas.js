@@ -133,6 +133,12 @@ em até <b>5 dias úteis</b>. Vamos te avisando a cada etapa.</div>
   <p class="dica">Esse nome vai aparecer nas avaliações do Google. Use como as pessoas te conhecem.</p>
   <label>Telefone / WhatsApp de atendimento <span class="obg">*</span></label>
   <input id="telefone" inputmode="tel" placeholder="+1 617 555 0100">
+  <label>E-mail do negócio</label>
+  <input id="email" type="email" inputmode="email" placeholder="contato@suaempresa.com">
+  <p class="dica">Aparece no rodapé do seu site. Se não tiver um do negócio, pode deixar em branco.</p>
+  <label>Seu Instagram</label>
+  <input id="instagram" placeholder="@suaempresa">
+  <p class="dica">Vira link no seu site e liga o site ao perfil que a gente monta pra você.</p>
   <label>Há quanto tempo você trabalha nessa área? <span class="obg">*</span></label>
   <input id="tempo_mercado" placeholder="8 anos">
   <p class="dica">Tempo de mercado é um dos argumentos que mais pesa para o cliente final.</p>
@@ -161,6 +167,15 @@ em até <b>5 dias úteis</b>. Vamos te avisando a cada etapa.</div>
   procura serviço que você não presta.</p>
   <label>O que te diferencia dos concorrentes <span class="obg">*</span></label>
   <textarea id="diferencial" placeholder="Equipe própria, limpeza garantida no fim de cada dia, garantia de 2 anos"></textarea>
+  <label style="font-weight:600;color:var(--preto);margin-top:16px">
+    <input type="checkbox" id="licenciado" style="width:auto;margin-right:7px">
+    Tenho license no estado onde atendo</label>
+  <label style="font-weight:600;color:var(--preto)">
+    <input type="checkbox" id="segurado" style="width:auto;margin-right:7px">
+    Tenho seguro (insurance) do negócio</label>
+  <p class="dica">Marque só o que for verdade. Esses dois selos aparecem no topo do seu site, e
+  o homeowner americano confere. Escrever que tem sem ter é o tipo de coisa que derruba a
+  confiança e te expõe.</p>
 </fieldset>
 
 <fieldset><legend>4 · Sua marca</legend>
@@ -498,6 +513,9 @@ async function enviar(){
   var r=await fetch('/api/formulario/'+TOKEN,{method:'POST',
     headers:{'Content-Type':'application/json'},body:JSON.stringify({
       nome_dono:v('nome_dono'),telefone:v('telefone'),tempo_mercado:v('tempo_mercado'),
+      email:v('email'),instagram:v('instagram'),
+      licenciado:!!(el('licenciado')&&el('licenciado').checked),
+      segurado:!!(el('segurado')&&el('segurado').checked),
       cidade:v('cidade'),estado:v('estado'),localizacoes:v('localizacoes'),
       servicos:v('servicos'),faz:v('faz'),nao_faz:v('nao_faz'),diferencial:v('diferencial'),
       observacoes:v('observacoes'),tem_logo:el('tem_logo').checked,

@@ -191,7 +191,7 @@ const FALA = {
     ],
     servicos: [
       ["Interior painting", "Walls, ceilings, trim and doors, room by room or the whole house."],
-      ["Exterior painting", "Siding, trim and porches, with the prep and primer the New England weather demands."],
+      ["Exterior painting", "Siding, trim and porches, with the prep and primer that make the finish hold up."],
       ["Cabinet refinishing", "A kitchen that looks new for a fraction of a full remodel."],
       ["Drywall repair and patching", "Holes, cracks and water damage fixed before the paint goes on."],
       ["Deck and fence staining", "Cleaned, prepped and sealed to hold up through the season."],
@@ -263,7 +263,7 @@ const FALA = {
       ["Built-ins and shelving", "Using the awkward wall or alcove that furniture never fits."],
       ["Trim and molding", "Baseboard, crown, casing and wainscoting, mitered properly."],
       ["Doors and hardware", "Hung square, closing right, the first time."],
-      ["Decks and outdoor structures", "Built for the New England winter, not for one summer."],
+      ["Decks and outdoor structures", "Built for the weather you actually get, not for one summer."],
     ],
     faq: [
       ["How long does custom work take?", "Most cabinet jobs run three to five weeks from measurement to install. We give you the dates in writing."],
@@ -331,7 +331,7 @@ const FALA = {
       ["Weekly lawn maintenance", "Mowing, trimming and blowing, on a set day."],
       ["Spring and fall cleanups", "Leaves, beds and the winter debris."],
       ["Mulch and bed work", "Edged, weeded and mulched."],
-      ["Planting and design", "Plants that survive the New England winter."],
+      ["Planting and design", "Plants chosen for your climate, not for the catalog."],
       ["Hardscaping", "Walkways, patios and retaining walls."],
     ],
     faq: [
@@ -510,6 +510,20 @@ export function gerarSite(c, fotos = [], reviews = []) {
      que existirem avaliações reais. Nunca antes, e nunca inventadas"). */
   const revs = (reviews || []).filter((r) => r.real === 1 || r.real === true).slice(0, 3);
 
+  /* Contato e credenciais, vindos do formulário do cliente.
+     Os selos são CONDICIONAIS de propósito: o template do kit da mentoria
+     escreve "Licensed & Insured" fixo para todo cliente, e boa parte dos
+     contratistas brasileiros não tem license. Publicar isso no site deles
+     seria alegação falsa feita por nós, em nome deles. Só aparece quem
+     marcou no formulário. */
+  const email = esc(String(c.email || "").trim());
+  const insta = String(c.instagram || "").trim().replace(/^@+/, "").replace(/[^A-Za-z0-9._]/g, "");
+  const tagline = esc(String(c.logo_slogan || "").trim());
+  const selos = [];
+  if (c.licenciado) selos.push("Licensed");
+  if (c.segurado) selos.push("Insured");
+  selos.push("Free estimates");
+
   const msg = encodeURIComponent(
     `Hi ${dono || empresa}! I found your website and I would like a free estimate.`);
   const linkZap = zap ? `https://wa.me/${zap}?text=${msg}` : "";
@@ -594,6 +608,10 @@ header{position:sticky;top:0;z-index:50;background:var(--prim);color:#fff;
 .hero h1{max-width:17ch}
 .hero .lead{font-size:clamp(1.05rem,1.7vw,1.22rem);margin-top:20px;max-width:52ch;color:rgba(255,255,255,.9)}
 .hero .acoes{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.hero-selos{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-top:22px;
+  font:600 13.5px/1 var(--corpo);color:rgba(255,255,255,.88)}
+.hero-selos span{display:inline-flex;align-items:center;gap:7px}
+.hero-selos span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--dest)}
 
 /* faixa de confiança */
 .faixa{background:var(--prim-cl);border-bottom:1px solid var(--linha)}
@@ -710,6 +728,7 @@ footer .base{margin-top:32px;padding-top:18px;border-top:1px solid rgba(255,255,
       <a class="btn" href="#estimate">Get a Free Estimate</a>
       ${tel ? `<a class="btn linha2" href="tel:${esc(telBruto.replace(/[^\d+]/g, ""))}">Call ${tel}</a>` : ""}
     </div>
+    <div class="hero-selos">${selos.map((s) => `<span>${esc(s)}</span>`).join("")}</div>
   </div>
 </section>
 
@@ -793,8 +812,8 @@ ${revs.length ? `<section class="sec"><div class="env">
 
 <footer><div class="env">
   <div class="g">
-    <div><b>${empresa}</b>${cidade ? `${cidade}, ${uf}<br>` : ""}${esc(area)}</div>
-    <div><b>Contact</b>${tel ? `<a href="tel:${esc(telBruto.replace(/[^\d+]/g, ""))}">${tel}</a><br>` : ""}${linkZap ? `<a href="${linkZap}" target="_blank" rel="noopener">WhatsApp</a>` : ""}</div>
+    <div><b>${empresa}</b>${tagline ? `${tagline}<br>` : ""}${cidade ? `${cidade}, ${uf}<br>` : ""}${esc(area)}</div>
+    <div><b>Contact</b>${tel ? `<a href="tel:${esc(telBruto.replace(/[^\d+]/g, ""))}">${tel}</a><br>` : ""}${email ? `<a href="mailto:${email}">${email}</a><br>` : ""}${linkZap ? `<a href="${linkZap}" target="_blank" rel="noopener">WhatsApp</a><br>` : ""}${insta ? `<a href="https://instagram.com/${esc(insta)}" target="_blank" rel="noopener">@${esc(insta)}</a>` : ""}</div>
     <div><b>Hours</b>Monday to Saturday<br>7:00am to 7:00pm</div>
     <div><b>Languages</b>English<br>Portuguese</div>
   </div>
