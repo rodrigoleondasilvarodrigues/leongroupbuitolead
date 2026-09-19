@@ -620,17 +620,26 @@ async function abrirCliente(id){
      <select onchange="statusEnt(\${e.id},this.value)" style="width:auto;margin:0">
        \${['pendente','em_producao','entregue','aprovado'].map(s=>\`<option \${e.status===s?'selected':''}>\${s}</option>\`).join('')}
      </select><span><b>\${((D.entregaveis.find(y=>y[0]===e.tipo)||[])[1])||e.tipo}</b></span></div>\`).join('')}</section>
-   <section><h4>Site · deploy manual no Vercel</h4>
+   <section><h4>Site · domínio próprio do cliente</h4>
      \${c.site_html?\`
        <a class="acao" style="display:inline-block;text-decoration:none;padding:8px 15px" href="/api/ver-site?id=\${c.id}" target="_blank" rel="noopener">Visualizar site ↗</a>
        <a class="acao sec" style="display:inline-block;text-decoration:none;padding:8px 15px;margin-left:7px" href="/api/baixar-site?id=\${c.id}">Baixar index.html</a>
+       <label style="margin-top:12px">Domínio do cliente</label>
+       <div style="display:flex;gap:7px"><input id="d_dominio" value="\${esc(c.dominio)}" placeholder="vieirafloors.com" style="flex:1">
+         <button class="acao sec" onclick="salvarDominio()">Salvar</button></div>
        <p style="font-size:11.5px;color:var(--cinza);margin:8px 0">
-         Suba esse arquivo no Vercel (vercel.com → Add New → Project → arraste a pasta),
-         depois cole a URL aqui embaixo.</p>
-       <label>URL publicada no Vercel</label>
-       <div style="display:flex;gap:7px"><input id="d_vercel" value="\${esc(c.vercel_url)}" placeholder="https://empresa.vercel.app" style="flex:1">
-         <button class="acao sec" onclick="salvarVercel()">Salvar</button></div>
-       \${c.vercel_url?\`<p style="font-size:12px;margin-top:5px"><a href="\${esc(c.vercel_url)}" target="_blank">abrir site do cliente ↗</a></p>\`:''}\`
+         Sem www e sem https. O site é servido por este sistema no domínio do cliente, então
+         gerar de novo atualiza o que está no ar na hora, sem upload e sem deploy.</p>
+       \${c.dominio?\`
+         <div style="display:flex;gap:9px;align-items:center;margin-top:10px">
+           <button class="acao\${c.site_publicado?' sec':''}" onclick="publicarDominio()">\${c.site_publicado?'Republicar':'Publicar no domínio'}</button>
+           \${c.site_publicado?\`<a href="https://\${esc(c.dominio)}" target="_blank" rel="noopener">abrir site do cliente ↗</a>\`:''}
+         </div>
+         <p style="font-size:11.5px;color:var(--cinza);margin-top:8px">
+           Antes de publicar, o domínio precisa estar apontando para cá: adicione o domínio na
+           sua conta Cloudflare (Websites, Add a site), troque os nameservers no registrador do
+           cliente, e crie a rota <b>\${esc(c.dominio)}/*</b> para o worker leon-group.</p>\`
+         :''}\`
        :'<p style="color:var(--cinza);font-size:12.5px">Gere os entregáveis primeiro.</p>'}
    </section>
    <section><h4>Instagram</h4>\${(c.posts||[]).map(x=>
@@ -842,7 +851,12 @@ async function excluir(tipo,id){
   fechar();await carregar();
 }
 const salvarResultado=()=>post('/api/resultado',{id:aberto,leads:+V('d_leads')}).then(carregar).then(()=>abrirCliente(aberto));
-const salvarVercel=()=>post('/api/vercel-url',{id:aberto,url:V('d_vercel')}).then(carregar).then(()=>abrirCliente(aberto));
+const salvarDominio=()=>post('/api/cliente-editar',{id:aberto,dominio:V('d_dominio')}).then(carregar).then(()=>abrirCliente(aberto));
+function publicarDominio(){
+  var d=(V('d_dominio')||'').trim().replace(/^https?:\\/\\//,'').replace(/^www\\./,'').replace(/\\/.*$/,'');
+  if(!d)return alert('Preencha e salve o domínio primeiro.');
+  return post('/api/vercel-url',{id:aberto,url:'https://'+d}).then(carregar).then(()=>abrirCliente(aberto));
+}
 const salvarGrupo=()=>post('/api/cliente-editar',{id:aberto,grupo_whatsapp:V('d_grupo')}).then(carregar).then(()=>abrirCliente(aberto));
 const salvarLocal=()=>post('/api/lead-editar',{id:aberto,cidade:V('q_cidade'),
   estado:V('q_estado').toUpperCase(),fuso:V('q_fuso')}).then(carregar).then(()=>abrirLead(aberto));

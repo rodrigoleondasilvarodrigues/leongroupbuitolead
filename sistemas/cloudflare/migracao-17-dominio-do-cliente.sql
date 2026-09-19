@@ -1,0 +1,23 @@
+-- O domínio próprio do cliente, e o site dele servido pelo nosso Worker.
+--
+-- Decisão do Rodrigo em 2026-09-18: cada cliente tem o DOMÍNIO DELE, não um
+-- subdomínio nosso, e tudo fica dentro da Cloudflare, gerenciado por nós.
+--
+-- Por que servir pelo Worker em vez de criar um projeto Pages por cliente,
+-- que é o que o kit da mentoria faz:
+--
+--   1. O HTML já vive aqui, em clientes.site_html. Gerar de novo no CRM passa
+--      a atualizar o site no ar na hora, sem upload e sem deploy por cliente.
+--   2. A conta tem teto de 100 projetos Pages. Um projeto por cliente gasta
+--      esse teto à toa.
+--   3. Um lugar só para olhar quando algo quebra.
+--
+-- O que continua sendo manual, e nenhuma automação resolve: o domínio precisa
+-- existir e apontar para a Cloudflare. Quem faz isso é quem controla o
+-- registro do domínio.
+--
+-- `dominio` guarda o host sem www e em minúsculas (exemplo: vieirafloors.com).
+-- O índice único impede dois clientes reivindicarem o mesmo endereço, que
+-- serviria o site errado para o público do outro.
+ALTER TABLE clientes ADD COLUMN dominio TEXT;
+CREATE UNIQUE INDEX IF NOT EXISTS idx_clientes_dominio ON clientes(dominio) WHERE dominio IS NOT NULL;

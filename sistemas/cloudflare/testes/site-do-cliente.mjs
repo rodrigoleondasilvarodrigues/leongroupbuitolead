@@ -17,7 +17,7 @@
       O território é o país inteiro desde 2026-09-11.                        */
 import fs from "node:fs";
 import path from "node:path";
-import { gerarSite, CADENCIA, CHECKLIST,
+import { gerarSite, CADENCIA, CHECKLIST, normalizaDominio,
          AGENCIA_NOME, AGENCIA_URL, AGENCIA_CREDITO } from "../src/geradores.js";
 
 const RAIZ = path.join(import.meta.dirname, "..");
@@ -157,6 +157,34 @@ t("o crédito fica no rodapé, não no topo",
   entregue.indexOf(AGENCIA_NOME) > entregue.indexOf("<footer"));
 t("a marca do cliente continua dominando a página",
   vezes(entregue, "Summit Painting") > 5, String(vezes(entregue, "Summit Painting")));
+
+console.log("\n\x1b[1m=== 10. O DOMÍNIO PRÓPRIO DO CLIENTE ===\x1b[0m");
+/* O Worker serve o site do cliente no domínio dele, escolhido pelo host que
+   chega. Se o que está guardado e o que chega não forem escritos igual, o
+   site não aparece e o erro é invisível. Por isso a normalização tem teste. */
+for (const [entrada, esperado] of [
+  ["vieirafloors.com", "vieirafloors.com"],
+  ["WWW.VieiraFloors.com", "vieirafloors.com"],
+  ["https://www.vieirafloors.com/", "vieirafloors.com"],
+  ["http://vieirafloors.com/contato?x=1", "vieirafloors.com"],
+  ["  vieirafloors.com  ", "vieirafloors.com"],
+  ["floors.vieira.com.br", "floors.vieira.com.br"],
+]) t(`normaliza "${entrada}"`, normalizaDominio(entrada) === esperado, String(normalizaDominio(entrada)));
+for (const lixo of ["", null, undefined, "não é domínio", "localhost", "http://", "  "])
+  t(`recusa ${JSON.stringify(lixo)}`, normalizaDominio(lixo) === null);
+
+t("o Worker escolhe o site pelo host que chegou", /WHERE dominio=\?/.test(api));
+t("e só serve com a publicação ligada", /dominio=\?[\s\S]{0,80}site_publicado=1/.test(api));
+t("host do sistema não cai nessa busca", /workers\.dev/.test(api) && /ehDoSistema/.test(api));
+t("falha de banco não derruba o CRM", /catch \(_\)/.test(api));
+t("o admin pode editar o domínio", /"dominio"/.test(api));
+t("o card tem campo e botão de publicar",
+  tela.includes("d_dominio") && tela.includes("publicarDominio"));
+t("e explica o passo de DNS, que é o único manual",
+  /nameservers/i.test(tela) && /Add a site/i.test(tela));
+const mig17 = ler("migracao-17-dominio-do-cliente.sql");
+t("a migração 17 cria a coluna", /ADD COLUMN dominio/.test(mig17));
+t("e impede dois clientes com o mesmo domínio", /UNIQUE INDEX/.test(mig17));
 
 console.log("\n" + (mal ? "\x1b[31m" : "\x1b[32m") + "\x1b[1m" + ok
   + " passaram, " + mal + " falharam\x1b[0m");

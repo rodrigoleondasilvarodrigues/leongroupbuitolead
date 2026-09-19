@@ -121,6 +121,39 @@ export default {
       const icone = M.rotaIcone(p);
       if (icone) return icone;
 
+      /* ───────── o site do cliente, no domínio dele ─────────
+         Decisão do Rodrigo em 2026-09-18: cada cliente tem o domínio dele,
+         não um subdomínio nosso, e tudo fica dentro da Cloudflare.
+
+         Em vez de um projeto Pages por cliente (o caminho do kit da
+         mentoria, que gasta o teto de 100 projetos da conta e exige upload a
+         cada mudança), o próprio Worker serve o HTML que já está no banco,
+         escolhido pelo endereço que chegou. Gerar de novo no CRM atualiza o
+         site no ar na hora.
+
+         Só serve com `site_publicado` ligado: gerar não publica, publicar é
+         um clique separado. E host desconhecido NÃO vira 404 aqui, segue o
+         fluxo normal, senão um erro de DNS ficaria escondido atrás de uma
+         página de "não encontrado". */
+      const anfitriao = String(url.hostname || "").toLowerCase().replace(/^www\./, "");
+      const ehDoSistema = anfitriao.endsWith(".workers.dev")
+        || anfitriao === "localhost" || anfitriao === "127.0.0.1"
+        || anfitriao === String(env.DOMINIO_CRM || "").toLowerCase().replace(/^www\./, "");
+      if (!ehDoSistema) {
+        /* A consulta é tolerante a falha de propósito. Ela roda em TODA
+           requisição que não vem do domínio do sistema, e um erro de banco
+           aqui derrubaria o CRM inteiro, inclusive o login, por causa de um
+           site de cliente. Falhou, segue o fluxo normal. */
+        try {
+          const dono = await env.DB.prepare(
+            `SELECT site_html FROM clientes
+             WHERE dominio=? AND site_publicado=1 AND site_html IS NOT NULL`).bind(anfitriao).first();
+          if (dono?.site_html) return new Response(dono.site_html, { headers: {
+            "Content-Type": "text/html; charset=utf-8",
+            "Cache-Control": "public, max-age=60" } });
+        } catch (_) { /* sem tabela, sem coluna ou banco fora: não é problema do visitante */ }
+      }
+
       /* ───────── mídia dos clientes (R2) ─────────
          Público e sem cookie: o site do cliente é publicado no Vercel, em
          outro domínio, e busca as fotos daqui. A chave é um UUID, então o
@@ -976,13 +1009,18 @@ async function apiAdmin(p, req, env) {
   if (p === "/api/cliente-editar") {
     const permitidos = ["nome_dono","cidade","estado","telefone","servicos","diferencial","observacoes",
                         "cores","nicho","email","valor_pago","cor_primaria","cor_destaque","tem_logo",
-                        "grupo_whatsapp","fuso"];
+                        "grupo_whatsapp","fuso","instagram","licenciado","segurado","dominio"];
     // Só grava o que veio no corpo. Antes gravava TODOS os campos com `?? null`,
     // então cada clique em "Salvar" no painel do cliente apagava nicho, e-mail,
     // valor_pago, cores e tem_logo — a tela de edição nem manda esses campos.
     const campos = permitidos.filter((c) => corpo[c] !== undefined);
     if (campos.length) {
-      const valores = campos.map((c) => (c === "tem_logo" ? (corpo[c] ? 1 : 0) : (corpo[c] ?? null)));
+      const valores = campos.map((c) => {
+        if (c === "tem_logo" || c === "licenciado" || c === "segurado") return corpo[c] ? 1 : 0;
+        // domínio sempre no mesmo formato, senão o host que chega nunca casa
+        if (c === "dominio") return G.normalizaDominio(corpo[c]);
+        return corpo[c] ?? null;
+      });
       await D.prepare(`UPDATE clientes SET ${campos.map(c=>c+"=?").join(",")},atualizado_em=? WHERE id=?`)
         .bind(...valores, agora(), corpo.id).run();
     }

@@ -463,6 +463,23 @@ function diferenciaisDe(c, oficio) {
   return achados.slice(0, 3);
 }
 
+/* Domínio do cliente, sempre guardado do mesmo jeito: minúsculo, sem
+   protocolo, sem www e sem caminho. O operador digita de todo jeito
+   ("https://VieiraFloors.com/", "www.vieirafloors.com"), e o Worker compara
+   isso com o host que chega na requisição. Se os dois não forem escritos
+   igual, o site simplesmente não aparece, e o erro é invisível.
+
+   Devolve null para o que não parece domínio, para não gravar lixo que
+   reivindica um endereço e bloqueia o índice único. */
+export function normalizaDominio(v) {
+  const s = String(v ?? "").trim().toLowerCase()
+    .replace(/^https?:\/\//, "")
+    .replace(/\/.*$/, "")
+    .replace(/^www\./, "")
+    .replace(/[^a-z0-9.-]/g, "");
+  return /^[a-z0-9-]+(\.[a-z0-9-]+)+$/.test(s) ? s : null;
+}
+
 /* ─────────── ASSINATURA DA AGÊNCIA NO SITE DO CLIENTE ───────────
    Decisão do Rodrigo em 2026-09-18: o site entregue leva o crédito da
    Leon Group no rodapé. Isso REVOGA a regra de white label que veio do kit
