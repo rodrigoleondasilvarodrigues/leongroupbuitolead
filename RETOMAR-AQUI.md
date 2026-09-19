@@ -8,6 +8,85 @@ conta do Claude e a conta nova não tem memória nenhuma desta conversa.
 
 ---
 
+## O kit da mentoria entrou no sistema (2026-09-17 e 18)
+
+O Rodrigo recebeu o "Kit Agência Delafiori" do Enrico e mandou incorporar o que
+fosse melhor que o nosso. O kit está em `dados/kit-agencia-delafiori.zip`
+(162 MB, **fora do git**, a pasta `dados/` é ignorada). Ele traz 4 skills de
+Claude Code, um motor em Node com Puppeteer, banco de imagens por nicho e um
+cliente de exemplo.
+
+**O que foi trazido dele:** a linha de selos do herói, o rodapé com e-mail e
+Instagram, a regra de post do Google (foto real, sem texto em cima) e a regra de
+recusa de foto, as duas no checklist de 42 itens.
+
+**O que foi recusado, e por quê:** o template dele escreve "Licensed & Insured"
+fixo para todo cliente. Boa parte dos contratistas brasileiros não tem license, e
+isso seria alegação falsa feita por nós em nome deles. Aqui os selos são
+**condicionais**, marcados pelo cliente no formulário.
+
+**Defeito nosso que apareceu na comparação:** a biblioteca de textos dizia "the
+New England weather demands" na descrição de serviço, e isso ia para cliente de
+qualquer estado. Corrigido, com teste.
+
+### Duas decisões do Rodrigo que revogam regras anteriores
+
+1. **White label caiu.** O site entregue leva "Marketing and social media by
+   Leon Group" no rodapé, com link. O teste que exigia o contrário foi invertido.
+   Nome, URL e texto vivem em três constantes no topo de `geradores.js`.
+2. **Crédito só no site.** Nas peças de Instagram, não.
+
+### O site do cliente agora é servido pelo nosso Worker
+
+Decisão de 2026-09-18: **cada cliente no domínio dele**, não em subdomínio nosso,
+tudo dentro da Cloudflare. Em vez de um projeto Pages por cliente (o caminho do
+kit), o Worker serve o HTML que já está no banco, escolhido pelo host que chega.
+Gerar de novo no CRM atualiza o site no ar na hora.
+
+O passo que continua manual, e nenhuma automação resolve: o domínio precisa
+existir e apontar para a Cloudflare (nameservers no registrador, mais a rota
+`dominio/*` para o worker). O card do cliente explica.
+
+### O que está no ar
+
+| O que | Versão / estado |
+|---|---|
+| Worker | `7ed16560-0e25-4e75-883f-a1364d99fa8a` |
+| Migração 16 (instagram, licenciado, segurado) | aplicada em produção |
+| Migração 17 (dominio + índice único) | aplicada em produção |
+| Suíte | **872 asserções, zero falhas** |
+
+⚠ **Ordem obrigatória em todo deploy com migração: rodar a migração no banco
+`--remote` ANTES do `wrangler deploy`.** O código novo consulta colunas que
+precisam existir, senão a rota do formulário quebra na hora de gravar.
+
+### Para testar local sem tocar em produção
+
+```bash
+cd sistemas/cloudflare && ./preparar-demo-local.sh
+# depois, em dois terminais:
+cd sistemas/cloudflare/demo-fotos && python3 -m http.server 8899
+cd sistemas/cloudflare && npm run dev
+```
+
+Entra em `http://127.0.0.1:8787` com a senha do `.dev.vars` (`demo-local`, arquivo
+ignorado pelo git). O cliente de demonstração é **Vieira Hardwood Floors**, criado
+por `semear-cliente-demo.mjs` com 12 fotos, pagamento, marcos e checklist. O slug
+começa com `demo-` para dar para apagar depois.
+
+### O que ficou para a próxima sessão
+
+Da lista que o Rodrigo aprovou, faltam: **QA automático do site** antes de
+entregar, **biblioteca de textos por nicho** (o kit tem 27 KB de copy em inglês
+por serviço), **hashtags por nicho**, e como fase 2 o **motor local** que renderiza
+os 12 posts e os 4 destaques em PNG com tratamento de cor das fotos.
+
+E uma coisa que só ele pode fazer: **os 5 clientes de teste em produção têm o site
+antigo guardado**. O crédito no rodapé e os selos só aparecem quando ele clicar em
+gerar de novo em cada um.
+
+---
+
 ## Material de criativos, feito na mesma sessão de 2026-09-13
 
 Além do deploy do CRM, esta sessão produziu a base para produzir os anúncios.

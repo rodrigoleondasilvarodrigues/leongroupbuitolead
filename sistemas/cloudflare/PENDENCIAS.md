@@ -1,3 +1,38 @@
+## Site do cliente: o que entrou em 2026-09-17 e 18
+
+Feito, no ar e com teste (`testes/site-do-cliente.mjs`, 81 asserções):
+
+- **Selos condicionais** no herói: Licensed e Insured só para quem marcou no
+  formulário. O template do kit da mentoria os escreve fixos, e isso seria
+  alegação falsa em nome do cliente.
+- **Rodapé** com e-mail, Instagram e tagline, mais o crédito
+  "Marketing and social media by Leon Group" (decisão de 2026-09-18, que revoga
+  a regra de white label herdada do kit).
+- **Visualizar site** (`/api/ver-site`), que faltava: só existia o download, e ele
+  marcava `site_exportado_em`. Visualizar não marca nada.
+- **Domínio próprio do cliente**: o Worker serve o site pelo host que chega,
+  sem projeto Pages por cliente. Migração 17, com índice único.
+- **Região fixa fora da copy**: "New England" saiu da biblioteca de textos.
+- **Cadência** ganhou o marco da call de apresentação e acesso (Aula 05).
+- **Checklist** ganhou as duas regras de foto do kit (post do Google sem texto
+  na imagem, e recusa de foto fora do assunto).
+
+### O que falta dessa frente
+
+1. **QA automático do site** antes de marcar o entregável como pronto. O kit tem
+   um `site_qa.js` que confere seções, imagens quebradas e slots de foto.
+2. **Biblioteca de textos por nicho** do kit (`lib_niche_defaults.js`, 27 KB de
+   copy em inglês por serviço) para substituir a nossa, que é mais curta.
+3. **Hashtags por nicho** (`lib_hashtags.js`).
+4. **Fase 2, motor local:** renderizar os 12 posts e os 4 destaques em PNG com
+   Puppeteer e tratar a cor das fotos com ffmpeg. Não roda em Worker, precisa do
+   mesmo desenho do Assistente Leon (serviço local pareado com o sistema no ar).
+
+⚠ Os 5 clientes de teste em produção guardam o site antigo em `site_html`. O
+crédito e os selos só aparecem depois de gerar de novo em cada card.
+
+---
+
 ## Roteiro da ligação de qualificação (feito em 2026-09-11)
 
 A seção "Qualificação BANT" do card do lead eram cinco campos em branco com uma

@@ -38,9 +38,16 @@ O que o sistema faz hoje:
   checklist de otimização de 40 itens com passo a passo, cadência de 5 dias úteis,
   portão de conclusão explícito e fechamento antecipado por frase digitada.
 - **Logo:** prompt JSON para o gpt-image-2 montado a partir do briefing do cliente.
+- **Site do cliente (2026-09-18):** gerado com selos de license e seguro só para quem
+  marcou no formulário, rodapé com e-mail, Instagram e o crédito da Leon Group, botão de
+  visualizar antes de entregar, e **servido pelo próprio Worker no domínio do cliente**.
+  Gerar de novo atualiza o site no ar na hora, sem deploy. O que continua manual é apontar
+  o domínio para a Cloudflare.
 
-Suíte de testes em **402 asserções** (`sistemas/cloudflare/testes/rodar.sh`). Rodar
-antes de todo deploy.
+Suíte de testes em **872 asserções** (`sistemas/cloudflare/testes/rodar.sh`). Rodar
+antes de todo deploy. Quando o deploy vier com migração, a migração roda no banco
+`--remote` **antes** do `wrangler deploy`, senão o código novo consulta coluna que ainda
+não existe.
 
 Ordem de uso recomendada pela própria aula: começar pela entrega manual; ligar o
 CRM comercial só na transição do 2º para o 3º cliente.
