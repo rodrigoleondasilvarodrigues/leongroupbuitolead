@@ -1,0 +1,31 @@
+{
+  "name": "conecta-brasil-eua",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "db:migrate:local": "wrangler d1 migrations apply conecta-db --local",
+    "db:seed:local": "tsx scripts/import-csvs.ts data/sample-groups.csv data/sample-empresas.csv --local",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "validate-csv": "tsx scripts/validate-csv.ts",
+    "revalidate": "tsx scripts/revalidate.ts",
+    "import:local": "tsx scripts/import-csvs.ts --local",
+    "import:sql": "tsx scripts/import-csvs.ts --sql out/import.sql",
+    "validate": "tsx scripts/validate-csv.ts",
+    "deploy:remote": "bash scripts/deploy.sh",
+    "reimport": "bash scripts/reimport.sh"
+  },
+  "dependencies": {
+    "hono": "^4.13.18"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261113.1",
+    "@types/node": "^26.6.6",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vitest": "^5.1.0",
+    "wrangler": "^4.162.0"
+  }
+}

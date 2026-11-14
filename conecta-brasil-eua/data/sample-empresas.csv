@@ -1,0 +1,4 @@
+empresa,nicho,cidade,estado,telefone_comercial,site,instagram,facebook,google_nota,google_avaliacoes,indicio_brasileiro,oportunidade_marketing,fonte_url,data_coleta
+Exemplo Fake Padaria Mineira,comida,Orlando,FL,(407) 555-0101,https://example.com/padaria,https://www.instagram.com/exemplofake,,4.6,120,nome em português; listado em guia brasileiro (fictício),sem Facebook comercial listado; oportunidade de Google Business,https://example.com/guia/1,2026-11-13
+Exemplo Fake Limpeza Brasil,limpeza,Framingham,MA,+1 508-555-0102,,,,,,nome com Brasil,sem site próprio; sem Instagram comercial listado,https://example.com/guia/2,2026-11-13
+Exemplo Fake Construções,construcao,Newark,NJ,,https://example.com/construcoes,,https://www.facebook.com/exemplofake,,,descrição menciona comunidade brasileira,sem telefone comercial no diretório,https://example.com/guia/3,2026-11-13

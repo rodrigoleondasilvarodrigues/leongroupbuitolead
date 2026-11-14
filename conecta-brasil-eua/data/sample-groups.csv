@@ -1,0 +1,13 @@
+codigo,link,nome_grupo,estado,cidade,categoria,fonte_url,data_coleta,status,ultima_validacao
+EXEMPLOFAKE00XXXXXXXXX,https://chat.whatsapp.com/EXEMPLOFAKE00XXXXXXXXX,Vagas Orlando (EXEMPLO FICTÍCIO),FL,Orlando,empregos,https://example.com/fonte-ficticia/0,2026-11-01,ativo,2026-11-02
+EXEMPLOFAKE01XXXXXXXXX,https://chat.whatsapp.com/EXEMPLOFAKE01XXXXXXXXX,Quartos e aluguel Miami (EXEMPLO FICTÍCIO),FL,Miami,moradia,https://example.com/fonte-ficticia/1,2026-11-01,ativo,2026-11-02
+EXEMPLOFAKE02XXXXXXXXX,https://chat.whatsapp.com/EXEMPLOFAKE02XXXXXXXXX,Desapega Pompano (EXEMPLO FICTÍCIO),FL,Pompano Beach,compra-e-venda,https://example.com/fonte-ficticia/2,2026-11-01,ativo,2026-11-02
+EXEMPLOFAKE03XXXXXXXXX,https://chat.whatsapp.com/EXEMPLOFAKE03XXXXXXXXX,Prestadores de serviço Boston (EXEMPLO FICTÍCIO),MA,Boston,servicos,https://example.com/fonte-ficticia/3,2026-11-01,ativo,2026-11-02
+EXEMPLOFAKE04XXXXXXXXX,https://chat.whatsapp.com/EXEMPLOFAKE04XXXXXXXXX,Motoristas Framingham (EXEMPLO FICTÍCIO),MA,Framingham,uber-delivery,https://example.com/fonte-ficticia/4,2026-11-01,ativo,2026-11-02
+EXEMPLOFAKE05XXXXXXXXX,https://chat.whatsapp.com/EXEMPLOFAKE05XXXXXXXXX,Igreja brasileira Newark (EXEMPLO FICTÍCIO),NJ,Newark,igrejas,https://example.com/fonte-ficticia/5,2026-11-01,ativo,2026-11-02
+EXEMPLOFAKE06XXXXXXXXX,https://chat.whatsapp.com/EXEMPLOFAKE06XXXXXXXXX,Brasileiras em NY (EXEMPLO FICTÍCIO),NY,New York,mulheres,https://example.com/fonte-ficticia/6,2026-11-01,ativo,2026-11-02
+EXEMPLOFAKE07XXXXXXXXX,https://chat.whatsapp.com/EXEMPLOFAKE07XXXXXXXXX,Dúvidas de imigração Houston (EXEMPLO FICTÍCIO),TX,Houston,imigracao,https://example.com/fonte-ficticia/7,2026-11-01,ativo,2026-11-02
+EXEMPLOFAKE08XXXXXXXXX,https://chat.whatsapp.com/EXEMPLOFAKE08XXXXXXXXX,Eventos BR em LA (EXEMPLO FICTÍCIO),CA,Los Angeles,eventos,https://example.com/fonte-ficticia/8,2026-11-01,ativo,2026-11-02
+EXEMPLOFAKE09XXXXXXXXX,https://chat.whatsapp.com/EXEMPLOFAKE09XXXXXXXXX,Brasileiros em Atlanta (EXEMPLO FICTÍCIO),GA,Atlanta,geral,https://example.com/fonte-ficticia/9,2026-11-01,ativo,2026-11-02
+EXEMPLOFAKE10XXXXXXXXX,https://chat.whatsapp.com/EXEMPLOFAKE10XXXXXXXXX,Grupo antigo Orlando (EXEMPLO FICTÍCIO),FL,Orlando,geral,https://example.com/fonte-ficticia/10,2026-11-01,expirado,2026-11-02
+EXEMPLOFAKE11XXXXXXXXX,https://chat.whatsapp.com/EXEMPLOFAKE11XXXXXXXXX,"Vagas em Connecticut, todo o estado (EXEMPLO FICTÍCIO)",CT,,empregos,https://example.com/fonte-ficticia/11,2026-11-01,indeterminado,

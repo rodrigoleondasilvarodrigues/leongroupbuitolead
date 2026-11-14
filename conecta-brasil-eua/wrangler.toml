@@ -1,0 +1,25 @@
+name = "conecta-brasil-eua"
+main = "src/index.ts"
+compatibility_date = "2025-09-01"
+workers_dev = true
+
+# Revalidação diária dos links (06:00 UTC). Cada execução verifica um lote pequeno.
+[triggers]
+crons = ["0 6 * * *"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "conecta-db"
+# Substitua pelo ID retornado por `npx wrangler d1 create conecta-db`
+database_id = "01ac58ae-21fb-434a-80bb-9f757153cb56"
+migrations_dir = "migrations"
+
+[vars]
+# Quantos links verificar por execução do cron (mantém dentro do plano gratuito)
+CHECK_BATCH = "20"
+# Pausa entre requisições ao WhatsApp, em ms (rate limit educado)
+CHECK_DELAY_MS = "1500"
+# Cloudflare Access (opcional). Deixe vazio em dev local para pular a verificação.
+# Em produção, defina:
+# ACCESS_AUD = "<Application Audience (AUD) Tag>"
+# ACCESS_TEAM_DOMAIN = "<seu-time>.cloudflareaccess.com"
